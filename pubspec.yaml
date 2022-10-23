@@ -1,0 +1,58 @@
+name: mercurius
+description: For mercurius.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  package_info: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.10.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: HarmonyOS_Sans_SC
+      fonts:
+        - asset: assets/fonts/HarmonyOS_Sans_SC_Regular.ttf
+        - asset: assets/fonts/HarmonyOS_Sans_SC_Thin.ttf
+          weight: 100
+        - asset: assets/fonts/HarmonyOS_Sans_SC_Light.ttf
+          weight: 300
+        - asset: assets/fonts/HarmonyOS_Sans_SC_Medium.ttf
+          weight: 500
+        - asset: assets/fonts/HarmonyOS_Sans_SC_Bold.ttf
+          weight: 700
+        - asset: assets/fonts/HarmonyOS_Sans_SC_Black.ttf
+          weight: 900
+    - family: cmdysj
+      fonts:
+        - asset: assets/fonts/cmdysj.ttf
+  assets:
+    - assets/icon/icon.png
