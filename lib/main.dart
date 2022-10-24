@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mercurius/color_theme.dart';
 import 'package:mercurius/pages/home_page.dart';
-import 'package:mercurius/pages/setting_page.dart';
+import 'package:mercurius/pages/more_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatefulWidget {
   const Home({super.key});
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -39,7 +38,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    SettingPage(),
+    MorePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -61,8 +60,8 @@ class _HomeState extends State<Home> {
             label: '主页',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '设定',
+            icon: Icon(Icons.more_horiz),
+            label: '更多',
           ),
         ],
         currentIndex: _selectedIndex,

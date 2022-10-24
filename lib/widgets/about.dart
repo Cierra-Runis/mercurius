@@ -63,13 +63,15 @@ class _AboutState extends State<About> {
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Text('项目地址'),
+              children: <Widget>[
+                const Text('项目地址'),
                 Text(
                   _url,
                   style: TextStyle(
                     fontSize: 8,
-                    color: Colors.white54,
+                    color: (Theme.of(context).brightness == Brightness.dark)
+                        ? Colors.white54
+                        : Colors.black54,
                   ),
                 ),
               ],
@@ -86,13 +88,15 @@ class _AboutState extends State<About> {
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Text('素材引用'),
+              children: <Widget>[
+                const Text('素材引用'),
                 Text(
                   '字体、图片相关',
                   style: TextStyle(
                     fontSize: 8,
-                    color: Colors.white54,
+                    color: (Theme.of(context).brightness == Brightness.dark)
+                        ? Colors.white54
+                        : Colors.black54,
                   ),
                 )
               ],
