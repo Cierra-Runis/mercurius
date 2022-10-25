@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mercurius/common/global.dart';
+import 'package:mercurius/index.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -46,6 +48,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               child: const Text('跟随系统'),
               onPressed: () {
+                Global.profile.themeMode = ThemeMode.system;
                 Navigator.of(context).pop();
               },
             ),
@@ -55,6 +58,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               child: const Text('常暗模式'),
               onPressed: () {
+                Global.profile.themeMode = ThemeMode.dark;
                 Navigator.of(context).pop();
               },
             ),
@@ -64,6 +68,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               child: const Text('常亮模式'),
               onPressed: () {
+                Global.profile.themeMode = ThemeMode.light;
                 Navigator.of(context).pop();
               },
             ),

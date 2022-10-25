@@ -1,71 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:mercurius/color_theme.dart';
-import 'package:mercurius/pages/home_page.dart';
-import 'package:mercurius/pages/more_page.dart';
+import 'index.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => Global.init().then((e) => runApp(const MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: lightColorScheme,
-        fontFamily: 'HarmonyOS_Sans_SC',
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: darkColorScheme,
-        fontFamily: 'HarmonyOS_Sans_SC',
-      ),
-      home: const Home(),
-    );
-  }
-}
-
-class Home extends StatefulWidget {
-  const Home({super.key});
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    MorePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '主页',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
-            label: '更多',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeModel()),
+        ChangeNotifierProvider(create: (_) => UserModel()),
+      ],
+      child: Consumer<ThemeModel>(
+        builder: (context, themeModel, child) {
+          return MaterialApp(
+            theme: ThemeData(
+              useMaterial3: true,
+              colorScheme: lightColorScheme,
+              fontFamily: 'HarmonyOS_Sans_SC',
+            ),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              colorScheme: darkColorScheme,
+              fontFamily: 'HarmonyOS_Sans_SC',
+            ),
+            themeMode: themeModel.themeMode,
+            home: const HomeRoute(),
+          );
+        },
       ),
     );
   }

@@ -3,10 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:mercurius/widgets/about.dart';
-import 'package:mercurius/pages/setting_page.dart';
-
 import 'package:http/http.dart' as http;
+
+import 'package:mercurius/widgets/index.dart';
+import 'package:mercurius/routes/index.dart';
 
 Future<HiToKoTo> fetchHiToKoTo() async {
   final response = await http.get(Uri.parse('https://v1.hitokoto.cn/'));
