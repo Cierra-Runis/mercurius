@@ -8,13 +8,20 @@ class ProfileChangeNotifier extends ChangeNotifier {
 
   @override
   void notifyListeners() {
-    Global.saveProfile(); //保存Profile变更
-    super.notifyListeners(); //通知依赖的Widget更新
+    Global.saveProfile(); //保存 Profile 变更
+    super.notifyListeners(); //通知依赖的 Widget 更新
   }
 }
 
 class UserModel extends ProfileChangeNotifier {
-  User get user => _profile.user;
+  User? get user => _profile.user;
+
+  set user(User? user) {
+    if (this.user != user) {
+      _profile.user = user;
+      notifyListeners();
+    }
+  }
 }
 
 class ThemeModel extends ProfileChangeNotifier {

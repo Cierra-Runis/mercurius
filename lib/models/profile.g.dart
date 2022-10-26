@@ -7,9 +7,11 @@ part of 'profile.dart';
 // **************************************************************************
 
 Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile()
-  ..user = User.fromJson(json['user'] as Map<String, dynamic>)
+  ..user = json['user'] == null
+      ? null
+      : User.fromJson(json['user'] as Map<String, dynamic>)
   ..token = json['token'] as String?
-  ..themeMode = json['themeMode'] as ThemeMode?
+  ..themeMode = $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode'])
   ..cache = json['cache'] == null
       ? null
       : CacheConfig.fromJson(json['cache'] as Map<String, dynamic>)
@@ -18,7 +20,13 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile()
 Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'user': instance.user,
       'token': instance.token,
-      'themeMode': instance.themeMode,
+      'themeMode': _$ThemeModeEnumMap[instance.themeMode],
       'cache': instance.cache,
       'lastLogin': instance.lastLogin,
     };
+
+const _$ThemeModeEnumMap = {
+  ThemeMode.system: 'system',
+  ThemeMode.light: 'light',
+  ThemeMode.dark: 'dark',
+};

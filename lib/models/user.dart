@@ -6,8 +6,8 @@ part 'user.g.dart';
 class User {
   User();
 
-  late num mercuriusId;
-  late String username;
+  num? mercuriusId;
+  String? username;
   String? email;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

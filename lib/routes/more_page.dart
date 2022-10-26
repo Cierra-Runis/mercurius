@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mercurius/index.dart';
 
 import 'package:mercurius/widgets/index.dart';
 import 'package:mercurius/routes/index.dart';
@@ -86,6 +87,28 @@ class _MorePageState extends State<MorePage> {
       child: ListView(
         padding: const EdgeInsets.all(8),
         children: <Widget>[
+          MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => UserModel()),
+            ],
+            child: Consumer<UserModel>(
+              builder: (context, value, child) {
+                return ListTile(
+                  leading: const Icon(Icons.supervised_user_circle),
+                  title: Text(Global.profile.user?.username ?? '未登录'),
+                  onTap: () {
+                    Global.profile.user = User()
+                      ..mercuriusId = 0
+                      ..username = '114'
+                      ..email = 'byrdsaron@gmail.com';
+                  },
+                );
+              },
+            ),
+          ),
+          const Divider(
+            height: 5,
+          ),
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('设定'),

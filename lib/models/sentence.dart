@@ -6,10 +6,10 @@ part 'sentence.g.dart';
 class Sentence {
   Sentence();
 
-  late num id;
-  late String context;
-  late User owner;
-  late String createdAt;
+  num? id;
+  String? context;
+  User? owner;
+  String? createdAt;
 
   factory Sentence.fromJson(Map<String, dynamic> json) =>
       _$SentenceFromJson(json);

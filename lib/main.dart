@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeModel()),
-        ChangeNotifierProvider(create: (_) => UserModel()),
       ],
       child: Consumer<ThemeModel>(
         builder: (context, themeModel, child) {

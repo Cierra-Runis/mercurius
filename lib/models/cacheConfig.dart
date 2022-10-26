@@ -6,9 +6,9 @@ part 'cacheConfig.g.dart';
 class CacheConfig {
   CacheConfig();
 
-  late bool enable;
-  late num maxAge;
-  late num maxCount;
+  bool? enable;
+  num? maxAge;
+  num? maxCount;
 
   factory CacheConfig.fromJson(Map<String, dynamic> json) =>
       _$CacheConfigFromJson(json);
