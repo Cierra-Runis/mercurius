@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:mercurius/common/global.dart';
-import 'package:mercurius/index.dart';
+import 'package:mercurius/widgets/index.dart';
+
+import 'index.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -23,7 +23,7 @@ class _SettingPageState extends State<SettingPage> {
               leading: const Icon(Icons.dark_mode_rounded),
               title: const Text('深色模式'),
               trailing: const Icon(Icons.navigate_next),
-              onTap: () => _settingDarkMode(context),
+              onTap: () => _themeSelectorDialog(context),
             ),
             const Divider(
               height: 5,
@@ -34,46 +34,11 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  Future<void> _settingDarkMode(BuildContext context) {
+  Future<void> _themeSelectorDialog(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          actionsAlignment: MainAxisAlignment.center,
-          actionsPadding: const EdgeInsets.all(0),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('跟随系统'),
-              onPressed: () {
-                Global.profile.themeMode = ThemeMode.system;
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('常暗模式'),
-              onPressed: () {
-                Global.profile.themeMode = ThemeMode.dark;
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('常亮模式'),
-              onPressed: () {
-                Global.profile.themeMode = ThemeMode.light;
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
+        return const ThemeSelectorWidget();
       },
     );
   }

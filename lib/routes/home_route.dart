@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:mercurius/routes/index.dart';
+import 'index.dart';
 
 class HomeRoute extends StatefulWidget {
   const HomeRoute({super.key});

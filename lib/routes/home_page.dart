@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:mercurius/common/global.dart';
+import 'package:mercurius/common/index.dart';
+
+import 'index.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

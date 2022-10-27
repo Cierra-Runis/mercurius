@@ -1,17 +1,18 @@
-import 'package:flutter/material.dart';
+import 'index.dart';
+
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-const String _url = 'https://github.com/Cierra-Runis/mercurius';
+const String _url = 'https://github.com/Cierra-Runis/';
 
-class About extends StatefulWidget {
-  const About({super.key});
+class AboutWidget extends StatefulWidget {
+  const AboutWidget({super.key});
 
   @override
-  State<About> createState() => _AboutState();
+  State<AboutWidget> createState() => _AboutWidgetState();
 }
 
-class _AboutState extends State<About> {
+class _AboutWidgetState extends State<AboutWidget> {
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -64,7 +65,7 @@ class _AboutState extends State<About> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text('项目地址'),
+                const Text('联系我们'),
                 Text(
                   _url,
                   style: TextStyle(
@@ -101,7 +102,47 @@ class _AboutState extends State<About> {
                 )
               ],
             ),
-          )
+          ),
+          ListTile(
+            leading: const Icon(Icons.privacy_tip_rounded),
+            title: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text('隐私政策'),
+                Text(
+                  'Mercurius 隐私政策',
+                  style: TextStyle(
+                    fontSize: 8,
+                    color: (Theme.of(context).brightness == Brightness.dark)
+                        ? Colors.white54
+                        : Colors.black54,
+                  ),
+                ),
+              ],
+            ),
+            onTap: () => _privacyDialog(context),
+          ),
+          ListTile(
+            leading: const Icon(Icons.bookmark),
+            title: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text('用户协议'),
+                Text(
+                  'Mercurius 用户协议',
+                  style: TextStyle(
+                    fontSize: 8,
+                    color: (Theme.of(context).brightness == Brightness.dark)
+                        ? Colors.white54
+                        : Colors.black54,
+                  ),
+                ),
+              ],
+            ),
+            onTap: () => _agreementDialog(context),
+          ),
         ],
       ),
       actions: <Widget>[
@@ -117,6 +158,24 @@ class _AboutState extends State<About> {
       ],
       contentPadding: const EdgeInsets.all(4),
       actionsPadding: const EdgeInsets.all(8),
+    );
+  }
+
+  Future<void> _privacyDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const PrivacyWidget();
+      },
+    );
+  }
+
+  Future<void> _agreementDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const AgreementWidget();
+      },
     );
   }
 }
