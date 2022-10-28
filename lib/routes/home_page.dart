@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:mercurius/common/index.dart';
-
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +13,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Text(jsonEncode(Global.profile.toJson())),
+      child: Scaffold(
+        body: Consumer2<ThemeModel, UserModel>(
+          builder: (context, themeModel, userModel, child) {
+            return Center(
+              child: Text(jsonEncode(userModel.user)),
+            );
+          },
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -45,11 +45,19 @@ class _AboutWidgetState extends State<AboutWidget> {
           ),
           Column(
             children: [
-              Text(_packageInfo.appName),
+              Text(
+                _packageInfo.appName,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'cmdysj',
+                ),
+              ),
               Text(
                 _packageInfo.version,
                 style: const TextStyle(
                   fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'cmdysj',
                 ),
               ),
             ],
@@ -90,9 +98,9 @@ class _AboutWidgetState extends State<AboutWidget> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text('素材引用'),
+                const Text('引用声明'),
                 Text(
-                  '字体、图片相关',
+                  '字体、图标相关',
                   style: TextStyle(
                     fontSize: 8,
                     color: (Theme.of(context).brightness == Brightness.dark)
@@ -102,6 +110,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                 )
               ],
             ),
+            onTap: () => _importDeclarationDialog(context),
           ),
           ListTile(
             leading: const Icon(Icons.privacy_tip_rounded),
@@ -156,8 +165,16 @@ class _AboutWidgetState extends State<AboutWidget> {
           },
         ),
       ],
-      contentPadding: const EdgeInsets.all(4),
-      actionsPadding: const EdgeInsets.all(8),
+      actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+    );
+  }
+
+  Future<void> _importDeclarationDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const ImportDeclarationDialogWidget();
+      },
     );
   }
 
@@ -165,7 +182,7 @@ class _AboutWidgetState extends State<AboutWidget> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return const PrivacyWidget();
+        return const PrivacyDialogWidget();
       },
     );
   }
@@ -174,7 +191,7 @@ class _AboutWidgetState extends State<AboutWidget> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return const AgreementWidget();
+        return const AgreementDialogWidget();
       },
     );
   }

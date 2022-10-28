@@ -1,6 +1,4 @@
-import 'package:mercurius/common/index.dart';
-
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 class ThemeSelectorWidget extends StatefulWidget {
   const ThemeSelectorWidget({super.key});
@@ -12,41 +10,43 @@ class ThemeSelectorWidget extends StatefulWidget {
 class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      actionsAlignment: MainAxisAlignment.center,
-      actionsPadding: const EdgeInsets.all(0),
-      actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
+    return Consumer<ThemeModel>(builder: (_, themeModel, child) {
+      return AlertDialog(
+        actionsAlignment: MainAxisAlignment.center,
+        actionsPadding: const EdgeInsets.all(0),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('跟随系统'),
+            onPressed: () {
+              themeModel.changeThemeMode(ThemeMode.system);
+              Navigator.of(context).pop();
+            },
           ),
-          child: const Text('跟随系统'),
-          onPressed: () {
-            Global.profile.themeMode = ThemeMode.system;
-            Navigator.of(context).pop();
-          },
-        ),
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('常暗模式'),
+            onPressed: () {
+              themeModel.changeThemeMode(ThemeMode.dark);
+              Navigator.of(context).pop();
+            },
           ),
-          child: const Text('常暗模式'),
-          onPressed: () {
-            Global.profile.themeMode = ThemeMode.dark;
-            Navigator.of(context).pop();
-          },
-        ),
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('常亮模式'),
+            onPressed: () {
+              themeModel.changeThemeMode(ThemeMode.light);
+              Navigator.of(context).pop();
+            },
           ),
-          child: const Text('常亮模式'),
-          onPressed: () {
-            Global.profile.themeMode = ThemeMode.light;
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 }

@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
-import 'package:mercurius/models/index.dart';
+import 'package:dio/dio.dart';
 
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 const String _url = 'https://v1.hitokoto.cn/';
 
@@ -53,9 +52,9 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
 }
 
 Future<HiToKoTo> fetchHiToKoTo() async {
-  final http.Response response;
+  Response response;
   try {
-    response = await http.get(Uri.parse(_url));
+    response = await Dio().get(_url);
   } catch (e) {
     return HiToKoTo.fromJson(
       jsonDecode(
@@ -65,7 +64,7 @@ Future<HiToKoTo> fetchHiToKoTo() async {
   }
 
   if (response.statusCode == 200) {
-    return HiToKoTo.fromJson(jsonDecode(response.body));
+    return HiToKoTo.fromJson(jsonDecode(response.toString()));
   } else {
     return HiToKoTo.fromJson(
       jsonDecode(

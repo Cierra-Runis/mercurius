@@ -1,6 +1,9 @@
 import 'index.dart';
 
-void main() => Global.init().then((e) => runApp(const MyApp()));
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeModel()),
+        ChangeNotifierProvider(create: (_) => UserModel()),
       ],
       child: Consumer<ThemeModel>(
         builder: (context, themeModel, child) {
