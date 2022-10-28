@@ -39,9 +39,13 @@ class _AboutWidgetState extends State<AboutWidget> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          const Image(
-            image: AssetImage('assets/icon/icon.png'),
-            height: 50,
+          IconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {},
+            icon: const Image(
+              image: AssetImage('assets/icon/icon.png'),
+              height: 50,
+            ),
           ),
           Column(
             children: [

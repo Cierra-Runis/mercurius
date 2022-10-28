@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'cacheConfig.g.dart';
+part 'cache_config.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class CacheConfig {

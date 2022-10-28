@@ -11,21 +11,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  package_info_plus: ^3.0.1
-  url_launcher: ^6.1.6
-  http: ^0.13.5
-  shared_preferences: ^2.0.15
-  sp_util: ^2.0.3
-  provider: ^6.0.4
-  json_serializable: ^6.5.3
-  build_runner: ^2.3.2
-  json_annotation: ^4.7.0
-  json_model: ^1.0.0
-  cached_network_image: ^3.2.2
-  fluttertoast: ^8.1.1
-  dio: ^4.0.6
-  flukit: ^3.0.1
+  package_info_plus: ^3.0.1       # 程序内部获取包信息
+  url_launcher: ^6.1.6            # 打开外部连接
+  provider: ^6.0.4                # 状态管理
+  json_serializable: ^6.5.3       # json 相关
+  json_annotation: ^4.7.0         # json 相关
+  json_model: ^1.0.0              # json 相关
+  build_runner: ^2.3.2            # 代码生成用的实用工具
+  cached_network_image: ^3.2.2    # 缓存从网络获取的图片
+  dio: ^4.0.6                     # 网络请求
+  drift_dev: ^2.2.0+1             # 非常好数据库
 
 dev_dependencies:
   flutter_test:
@@ -41,8 +36,8 @@ flutter_icons:
   web:
     generate: true
     image_path: "assets/icon/icon.png"
-    background_color: "#hexcode"
-    theme_color: "#hexcode"
+    background_color: "#00000000"
+    theme_color: "#00000000"
   windows:
     generate: true
     image_path: "assets/icon/icon.png"
