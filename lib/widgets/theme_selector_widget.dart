@@ -10,7 +10,7 @@ class ThemeSelectorWidget extends StatefulWidget {
 class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeModel>(builder: (_, themeModel, child) {
+    return Consumer<ProfileModel>(builder: (_, profileModel, child) {
       return AlertDialog(
         actionsAlignment: MainAxisAlignment.center,
         actionsPadding: const EdgeInsets.all(0),
@@ -21,7 +21,9 @@ class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
             ),
             child: const Text('跟随系统'),
             onPressed: () {
-              themeModel.changeThemeMode(ThemeMode.system);
+              profileModel.changeProfile(
+                profileModel.profile..themeMode = ThemeMode.system,
+              );
               Navigator.of(context).pop();
             },
           ),
@@ -31,7 +33,9 @@ class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
             ),
             child: const Text('常暗模式'),
             onPressed: () {
-              themeModel.changeThemeMode(ThemeMode.dark);
+              profileModel.changeProfile(
+                profileModel.profile..themeMode = ThemeMode.dark,
+              );
               Navigator.of(context).pop();
             },
           ),
@@ -41,7 +45,9 @@ class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
             ),
             child: const Text('常亮模式'),
             onPressed: () {
-              themeModel.changeThemeMode(ThemeMode.light);
+              profileModel.changeProfile(
+                profileModel.profile..themeMode = ThemeMode.light,
+              );
               Navigator.of(context).pop();
             },
           ),

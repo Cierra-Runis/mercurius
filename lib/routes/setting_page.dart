@@ -17,8 +17,8 @@ class _SettingPageState extends State<SettingPage> {
         child: ListView(
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            Consumer<ThemeModel>(
-              builder: (context, themeModel, child) {
+            Consumer<ProfileModel>(
+              builder: (context, profileModel, child) {
                 return ListTile(
                   leading: const Icon(Icons.dark_mode_rounded),
                   title: Row(
@@ -26,9 +26,9 @@ class _SettingPageState extends State<SettingPage> {
                     children: [
                       const Text('深色模式'),
                       Text(
-                        themeModel.themeMode == ThemeMode.system
+                        profileModel.profile.themeMode == ThemeMode.system
                             ? '跟随系统'
-                            : themeModel.themeMode == ThemeMode.dark
+                            : profileModel.profile.themeMode == ThemeMode.dark
                                 ? '常暗模式'
                                 : '常亮模式',
                         style: TextStyle(

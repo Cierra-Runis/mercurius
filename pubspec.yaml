@@ -11,22 +11,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  package_info_plus: ^3.0.1       # 程序内部获取包信息
-  url_launcher: ^6.1.6            # 打开外部连接
-  provider: ^6.0.4                # 状态管理
-  json_serializable: ^6.5.3       # json 相关
-  json_annotation: ^4.7.0         # json 相关
-  json_model: ^1.0.0              # json 相关
-  build_runner: ^2.3.2            # 代码生成用的实用工具
-  cached_network_image: ^3.2.2    # 缓存从网络获取的图片
-  dio: ^4.0.6                     # 网络请求
-  drift_dev: ^2.2.0+1             # 非常好数据库
+  package_info_plus: ^3.0.1           # 程序内部获取包信息
+  url_launcher: ^6.1.6                # 打开外部连接
+  provider: ^6.0.4                    # 状态管理
+  json_serializable: ^6.5.3           # json 相关
+  json_annotation: ^4.7.0             # json 相关
+  json_model: ^1.0.0                  # json 相关
+  cached_network_image: ^3.2.2        # 缓存从网络获取的图片
+  dio: ^4.0.6                         # 网络请求
+  fluttertoast: ^8.1.1                # 小提示
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   flutter_launcher_icons: "^0.10.0"
+  build_runner: ^2.3.2                # 代码生成用的实用工具
 
 flutter_icons:
   android: "launcher_icon"

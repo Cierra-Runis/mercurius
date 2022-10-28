@@ -12,11 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ThemeModel()),
-        ChangeNotifierProvider(create: (_) => UserModel()),
+        ChangeNotifierProvider(create: (_) => ProfileModel()),
       ],
-      child: Consumer<ThemeModel>(
-        builder: (context, themeModel, child) {
+      child: Consumer<ProfileModel>(
+        builder: (context, profileModel, child) {
           return MaterialApp(
             theme: ThemeData(
               useMaterial3: true,
@@ -28,7 +27,7 @@ class MyApp extends StatelessWidget {
               colorScheme: darkColorScheme,
               fontFamily: 'HarmonyOS_Sans_SC',
             ),
-            themeMode: themeModel.themeMode,
+            themeMode: profileModel.profile.themeMode,
             home: const HomeRoute(),
           );
         },

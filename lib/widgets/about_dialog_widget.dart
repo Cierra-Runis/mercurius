@@ -92,7 +92,7 @@ class _AboutWidgetState extends State<AboutWidget> {
             onTap: () {
               launchUrlString(
                 _url,
-                mode: LaunchMode.externalApplication,
+                mode: LaunchMode.inAppWebView,
               );
             },
           ),

@@ -14,10 +14,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Consumer2<ThemeModel, UserModel>(
-          builder: (context, themeModel, userModel, child) {
+        body: Consumer<ProfileModel>(
+          builder: (context, profileModel, child) {
             return Center(
-              child: Text(jsonEncode(userModel.user)),
+              child: Text(jsonEncode(profileModel.profile)),
             );
           },
         ),

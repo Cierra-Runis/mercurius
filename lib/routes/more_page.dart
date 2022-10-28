@@ -15,17 +15,18 @@ class _MorePageState extends State<MorePage> {
         child: ListView(
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            Consumer<UserModel>(
-              builder: (context, userModel, child) {
+            Consumer<ProfileModel>(
+              builder: (context, profileModel, child) {
                 return ListTile(
                   leading: const Icon(Icons.supervised_user_circle),
-                  title: Text(userModel.user.username ?? '未登录'),
+                  title: Text(profileModel.profile.user?.username ?? '未登录'),
                   onTap: () {
-                    userModel.changeUser(
-                      User()
-                        ..mercuriusId = 0
-                        ..username = '114'
-                        ..email = 'byrdsaron@gmail.com',
+                    profileModel.changeProfile(
+                      profileModel.profile
+                        ..user = (User()
+                          ..mercuriusId = 0
+                          ..email = 'byrdsaron@gmail.com'
+                          ..username = '114'),
                     );
                   },
                 );
