@@ -1,4 +1,4 @@
-package com.example.mercurius
+package pers.cierra_runis.mercurius
 
 import io.flutter.embedding.android.FlutterActivity
 
