@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 class LoginDialogWidget extends StatefulWidget {
   const LoginDialogWidget({super.key});

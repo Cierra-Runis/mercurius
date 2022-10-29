@@ -1,5 +1,3 @@
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:mercurius/index.dart';
 
 const String _url = 'https://github.com/Cierra-Runis/';

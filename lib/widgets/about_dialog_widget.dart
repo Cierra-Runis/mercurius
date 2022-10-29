@@ -1,8 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 const String _url = 'https://github.com/Cierra-Runis/';
 
 class AboutWidget extends StatefulWidget {

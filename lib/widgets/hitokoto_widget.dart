@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
-
 import 'package:mercurius/index.dart';
 
 const String _url = 'https://v1.hitokoto.cn/';

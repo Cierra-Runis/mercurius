@@ -20,6 +20,8 @@ dependencies:
   cached_network_image: ^3.2.2        # 缓存从网络获取的图片
   dio: ^4.0.6                         # 网络请求
   fluttertoast: ^8.1.1                # 小提示
+  shared_preferences: ^2.0.15         # 数据持久化
+
 
 dev_dependencies:
   flutter_test:

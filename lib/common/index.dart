@@ -1,4 +1,2 @@
 export 'color_theme.dart';
-
-export 'package:flutter/material.dart';
-export 'package:provider/provider.dart';
+export 'global.dart';

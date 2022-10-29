@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,

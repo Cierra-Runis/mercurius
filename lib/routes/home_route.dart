@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'package:mercurius/index.dart';
 
 class HomeRoute extends StatefulWidget {
   const HomeRoute({super.key});
