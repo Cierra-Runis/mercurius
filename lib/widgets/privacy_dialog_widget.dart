@@ -145,12 +145,13 @@ class _PrivacyDialogWidgetState extends State<PrivacyDialogWidget> {
           Text(_privacyContent),
         ],
       ),
+      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
             textStyle: Theme.of(context).textTheme.labelLarge,
           ),
-          child: const Text('返回'),
+          child: const Text('确认'),
           onPressed: () {
             Navigator.of(context).pop();
           },

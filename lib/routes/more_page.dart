@@ -21,13 +21,16 @@ class _MorePageState extends State<MorePage> {
                   leading: const Icon(Icons.supervised_user_circle),
                   title: Text(profileModel.profile.user?.username ?? '未登录'),
                   onTap: () {
-                    profileModel.changeProfile(
-                      profileModel.profile
-                        ..user = (User()
-                          ..mercuriusId = 0
-                          ..email = 'byrdsaron@gmail.com'
-                          ..username = '114'),
-                    );
+                    if (profileModel.profile.user == null) {
+                      _loginDialog(context);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                      );
+                    }
                   },
                 );
               },
@@ -73,6 +76,15 @@ class _MorePageState extends State<MorePage> {
       context: context,
       builder: (BuildContext context) {
         return const AboutWidget();
+      },
+    );
+  }
+
+  Future<void> _loginDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const LoginDialogWidget();
       },
     );
   }

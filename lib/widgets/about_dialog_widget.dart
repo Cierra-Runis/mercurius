@@ -158,6 +158,7 @@ class _AboutWidgetState extends State<AboutWidget> {
           ),
         ],
       ),
+      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
