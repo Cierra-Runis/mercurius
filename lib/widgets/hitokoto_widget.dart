@@ -14,7 +14,7 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
   @override
   void initState() {
     super.initState();
-    futureHiToKoTo = fetchHiToKoTo();
+    futureHiToKoTo = _fetchHiToKoTo();
   }
 
   @override
@@ -47,7 +47,7 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
   }
 }
 
-Future<HiToKoTo> fetchHiToKoTo() async {
+Future<HiToKoTo> _fetchHiToKoTo() async {
   Response response;
   try {
     response = await Dio().get(_url);

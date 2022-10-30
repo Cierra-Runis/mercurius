@@ -1,23 +1,24 @@
 import 'package:mercurius/index.dart';
 
-void main() {
-  Global.init();
-  runApp(const MyApp());
-}
+ProfileModel profileModel = ProfileModel();
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+void main() =>
+    profileModel.init().then((value) => runApp(const MercuriusApp()));
+
+class MercuriusApp extends StatefulWidget {
+  const MercuriusApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MercuriusApp> createState() => _MercuriusAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MercuriusAppState extends State<MercuriusApp> {
   @override
   Widget build(BuildContext context) {
+    print('[403]');
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ProfileModel()),
+        ChangeNotifierProvider(create: (_) => profileModel),
       ],
       child: Consumer<ProfileModel>(
         builder: (context, profileModel, child) {
