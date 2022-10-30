@@ -6,19 +6,19 @@ class ProfileModel extends ChangeNotifier {
 
   Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
-    print('[401]');
+    DevTools.printLog('[001] 程序初始化中');
     _preferences = await SharedPreferences.getInstance();
     if (_preferences.getString('profile') == null) {
       _preferences.setString(
           'profile', jsonEncode(Profile()..themeMode = ThemeMode.system));
-      print('[01] ${jsonEncode(profile)}');
+      DevTools.printLog('[002] 程序完全初次运行，创建 profile 为 ${jsonEncode(profile)}');
     }
     profile = Profile.fromJson(jsonDecode(_preferences.getString('profile')!));
-    print('[02] ${jsonEncode(profile)}');
+    DevTools.printLog('[003] 程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
   }
 
-  void changeProfile(Profile profile) {
-    print('[402]');
+  void changeProfile(Profile profile) async {
+    DevTools.printLog('[004] 更改 profile 为 ${jsonEncode(this.profile)}');
     this.profile = profile;
     save();
     notifyListeners();
@@ -26,6 +26,6 @@ class ProfileModel extends ChangeNotifier {
 
   void save() async {
     _preferences.setString('profile', jsonEncode(profile));
-    print('[03] ${jsonEncode(profile)}');
+    DevTools.printLog('[005] 保存 profile 为 ${jsonEncode(profile)}');
   }
 }

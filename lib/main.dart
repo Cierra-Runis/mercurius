@@ -2,8 +2,7 @@ import 'package:mercurius/index.dart';
 
 ProfileModel profileModel = ProfileModel();
 
-void main() =>
-    profileModel.init().then((value) => runApp(const MercuriusApp()));
+void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
 
 class MercuriusApp extends StatefulWidget {
   const MercuriusApp({super.key});
@@ -15,7 +14,7 @@ class MercuriusApp extends StatefulWidget {
 class _MercuriusAppState extends State<MercuriusApp> {
   @override
   Widget build(BuildContext context) {
-    print('[403]');
+    DevTools.printLog('[006] MercuriusApp 构建中');
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => profileModel),
