@@ -37,13 +37,31 @@ class _AboutWidgetState extends State<AboutWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
-            icon: const Image(
-              image: AssetImage('assets/icon/icon.png'),
-              height: 50,
-            ),
-          ),
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                DevTools.printLog('[007] 彩蛋🎉️');
+              },
+              icon: Container(
+                width: 48,
+                height: 48,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/icon/icon.png'),
+                  ),
+                  shadows: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(0.0, 15.0),
+                      blurRadius: 15.0,
+                      spreadRadius: 1.0,
+                    ),
+                  ],
+                ),
+              )),
           Column(
             children: [
               Text(

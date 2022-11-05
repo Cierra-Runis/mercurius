@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:mercurius/index.dart';
+import 'package:mercurius/main.dart';
 
 class LoginDialogWidget extends StatefulWidget {
   const LoginDialogWidget({super.key});
@@ -8,6 +11,8 @@ class LoginDialogWidget extends StatefulWidget {
 }
 
 class _LoginDialogWidgetState extends State<LoginDialogWidget> {
+  final TextEditingController _mercuriusId = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -34,18 +39,33 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
         children: [
           Form(
             key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: 'mercuriusId',
-                  ),
-                ),
+                    controller: _mercuriusId,
+                    decoration: const InputDecoration(
+                      hintText: 'Mercurius Id',
+                    ),
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
+                        return 'Mercurius Id 不能为空';
+                      }
+                      try {
+                        int.parse(value);
+                      } catch (e) {
+                        return '请仅输入数字';
+                      }
+                      return null;
+                    }),
                 TextFormField(
+                  controller: _password,
                   decoration: const InputDecoration(
                     hintText: '密码',
                   ),
+                  validator: (value) =>
+                      value!.trim().isNotEmpty ? null : '密码不能为空',
                   obscureText: true,
                 ),
               ],
@@ -69,12 +89,17 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            // TODO: 写逻辑
-            Navigator.of(context).pop();
+        Consumer<ProfileModel>(
+          builder: (context, profileModel, childe) {
+            return TextButton(
+              onPressed: () => _fetchUser(
+                int.parse(_mercuriusId.text),
+                _password.text,
+                context,
+              ),
+              child: const Text('确认'),
+            );
           },
-          child: const Text('确认'),
         ),
       ],
     );
@@ -100,5 +125,18 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
         return const AgreementDialogWidget();
       },
     );
+  }
+
+  Future<void> _fetchUser(
+    num mercuriusId,
+    String password,
+    BuildContext context,
+  ) async {
+    User newUser = User()
+      ..mercuriusId = mercuriusId
+      ..username = '田所浩二'
+      ..email = 'byrdsaron@gmail.com';
+    profileModel.changeProfile(profileModel.profile..user = newUser);
+    Navigator.of(context).pop();
   }
 }

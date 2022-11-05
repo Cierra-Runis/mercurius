@@ -19,7 +19,10 @@ class _MorePageState extends State<MorePage> {
               builder: (context, profileModel, child) {
                 return ListTile(
                   leading: const Icon(Icons.supervised_user_circle),
-                  title: Text(profileModel.profile.user?.username ?? '未登录'),
+                  title: Text(profileModel.profile.user == null
+                      ? '未登录'
+                      : profileModel.profile.user?.username ??
+                          '不写 username 的屑'),
                   onTap: () {
                     if (profileModel.profile.user == null) {
                       _loginDialog(context);

@@ -11,6 +11,7 @@ class HiToKoToWidget extends StatefulWidget {
 
 class _HiToKoToWidgetState extends State<HiToKoToWidget> {
   late Future<HiToKoTo> futureHiToKoTo;
+
   @override
   void initState() {
     super.initState();
