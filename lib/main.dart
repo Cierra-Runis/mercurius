@@ -33,7 +33,7 @@ class _MercuriusAppState extends State<MercuriusApp> {
               fontFamily: 'HarmonyOS_Sans_SC',
             ),
             themeMode: profileModel.profile.themeMode,
-            home: const HomeRoute(),
+            home: const SplashPage(),
           );
         },
       ),
