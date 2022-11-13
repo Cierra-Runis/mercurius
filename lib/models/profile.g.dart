@@ -16,7 +16,7 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile()
       ? null
       : CacheConfig.fromJson(json['cache'] as Map<String, dynamic>)
   ..lastLogin = json['lastLogin'] as String?
-  ..sudokuDifficulty = json['sudokuDifficulty'] as String;
+  ..sudokuDifficulty = json['sudokuDifficulty'] as String?;
 
 Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'user': instance.user,

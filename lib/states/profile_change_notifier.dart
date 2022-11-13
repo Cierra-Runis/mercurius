@@ -14,6 +14,11 @@ class ProfileModel extends ChangeNotifier {
       DevTools.printLog('[002] 程序完全初次运行，创建 profile 为 ${jsonEncode(profile)}');
     }
     profile = Profile.fromJson(jsonDecode(_preferences.getString('profile')!));
+
+    // 当 profile.dart 添加新数据时
+    // 为了版本的迭代, 在此进行判断
+    profile.sudokuDifficulty ??= 'hard';
+
     DevTools.printLog('[003] 程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
   }
 
