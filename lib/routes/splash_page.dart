@@ -14,10 +14,9 @@ class _SplashPageState extends State<SplashPage>
 
   @override
   void initState() {
-    super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 800),
     );
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
     _animation.addStatusListener(
@@ -32,6 +31,7 @@ class _SplashPageState extends State<SplashPage>
       },
     );
     _controller.forward();
+    super.initState();
   }
 
   @override
@@ -45,9 +45,7 @@ class _SplashPageState extends State<SplashPage>
             children: <Widget>[
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {
-                  DevTools.printLog('[007] 彩蛋🎉️');
-                },
+                onPressed: () {},
                 icon: Container(
                   width: 48,
                   height: 48,
@@ -62,9 +60,8 @@ class _SplashPageState extends State<SplashPage>
                     shadows: const [
                       BoxShadow(
                         color: Colors.black12,
-                        offset: Offset(0.0, 15.0),
                         blurRadius: 15.0,
-                        spreadRadius: 1.0,
+                        spreadRadius: 4.0,
                       ),
                     ],
                   ),

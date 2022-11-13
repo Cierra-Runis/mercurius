@@ -15,7 +15,8 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile()
   ..cache = json['cache'] == null
       ? null
       : CacheConfig.fromJson(json['cache'] as Map<String, dynamic>)
-  ..lastLogin = json['lastLogin'] as String?;
+  ..lastLogin = json['lastLogin'] as String?
+  ..sudokuDifficulty = json['sudokuDifficulty'] as String;
 
 Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'user': instance.user,
@@ -23,6 +24,7 @@ Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'themeMode': _$ThemeModeEnumMap[instance.themeMode],
       'cache': instance.cache,
       'lastLogin': instance.lastLogin,
+      'sudokuDifficulty': instance.sudokuDifficulty,
     };
 
 const _$ThemeModeEnumMap = {

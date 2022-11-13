@@ -40,6 +40,12 @@ class _AboutWidgetState extends State<AboutWidget> {
               padding: EdgeInsets.zero,
               onPressed: () {
                 DevTools.printLog('[007] 彩蛋🎉️');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SudokuPage(),
+                  ),
+                );
               },
               icon: Container(
                 width: 48,
@@ -55,9 +61,8 @@ class _AboutWidgetState extends State<AboutWidget> {
                   shadows: const [
                     BoxShadow(
                       color: Colors.black12,
-                      offset: Offset(0.0, 15.0),
                       blurRadius: 15.0,
-                      spreadRadius: 1.0,
+                      spreadRadius: 4.0,
                     ),
                   ],
                 ),
@@ -188,31 +193,31 @@ class _AboutWidgetState extends State<AboutWidget> {
       actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
     );
   }
+}
 
-  Future<void> _importDeclarationDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const ImportDeclarationDialogWidget();
-      },
-    );
-  }
+Future<void> _importDeclarationDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return const ImportDeclarationDialogWidget();
+    },
+  );
+}
 
-  Future<void> _privacyDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const PrivacyDialogWidget();
-      },
-    );
-  }
+Future<void> _privacyDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return const PrivacyDialogWidget();
+    },
+  );
+}
 
-  Future<void> _agreementDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const AgreementDialogWidget();
-      },
-    );
-  }
+Future<void> _agreementDialog(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return const AgreementDialogWidget();
+    },
+  );
 }

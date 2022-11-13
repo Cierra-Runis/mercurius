@@ -6,3 +6,5 @@ export 'agreement_dialog_widget.dart';
 export 'import_declaration_dialog_widget.dart';
 export 'login_dialog_widget.dart';
 export 'register_dialog_widget.dart';
+export 'sudoku_num_selector_dialog_widget.dart';
+export 'sudoku_difficulty_selector_dialog.dart';

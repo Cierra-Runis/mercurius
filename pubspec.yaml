@@ -21,13 +21,15 @@ dependencies:
   dio: ^4.0.6                         # 网络请求
   fluttertoast: ^8.1.1                # 小提示
   shared_preferences: ^2.0.15         # 数据持久化
+  sudoku_solver_generator: ^2.1.0+1   # 数独生成器
+  confetti: ^0.7.0                    # 彩纸效果
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  flutter_launcher_icons: "^0.10.0"
+  flutter_launcher_icons: "^0.10.0"   # 生成图标的工具
   build_runner: ^2.3.2                # 代码生成用的实用工具
 
 flutter_icons:

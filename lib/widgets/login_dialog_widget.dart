@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:mercurius/index.dart';
-import 'package:mercurius/main.dart';
 
 class LoginDialogWidget extends StatefulWidget {
   const LoginDialogWidget({super.key});
@@ -92,11 +89,15 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
         Consumer<ProfileModel>(
           builder: (context, profileModel, childe) {
             return TextButton(
-              onPressed: () => _fetchUser(
-                int.parse(_mercuriusId.text),
-                _password.text,
-                context,
-              ),
+              onPressed: () {
+                if ((_formKey.currentState as FormState).validate()) {
+                  _fetchUser(
+                    int.parse(_mercuriusId.text),
+                    _password.text,
+                    context,
+                  );
+                }
+              },
               child: const Text('确认'),
             );
           },
@@ -104,39 +105,39 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
       ],
     );
   }
+}
 
-  Future<void> _registerDialog(BuildContext context) {
-    FocusManager.instance.primaryFocus?.unfocus();
-    showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const RegisterDialogWidget();
-      },
-    );
-    showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const PrivacyDialogWidget();
-      },
-    );
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const AgreementDialogWidget();
-      },
-    );
-  }
+Future<void> _registerDialog(BuildContext context) {
+  FocusManager.instance.primaryFocus?.unfocus();
+  showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return const RegisterDialogWidget();
+    },
+  );
+  showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return const PrivacyDialogWidget();
+    },
+  );
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return const AgreementDialogWidget();
+    },
+  );
+}
 
-  Future<void> _fetchUser(
-    num mercuriusId,
-    String password,
-    BuildContext context,
-  ) async {
-    User newUser = User()
-      ..mercuriusId = mercuriusId
-      ..username = '田所浩二'
-      ..email = 'byrdsaron@gmail.com';
-    profileModel.changeProfile(profileModel.profile..user = newUser);
-    Navigator.of(context).pop();
-  }
+Future<void> _fetchUser(
+  num mercuriusId,
+  String password,
+  BuildContext context,
+) async {
+  User newUser = User()
+    ..mercuriusId = mercuriusId
+    ..username = '田所浩二'
+    ..email = 'byrdsaron@gmail.com';
+  profileModel.changeProfile(profileModel.profile..user = newUser);
+  Navigator.of(context).pop();
 }

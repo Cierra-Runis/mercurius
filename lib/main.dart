@@ -1,8 +1,18 @@
 import 'package:mercurius/index.dart';
 
+// 位于 main.dart 的 changeNotifier
 ProfileModel profileModel = ProfileModel();
+SudokuModel sudokuModel = SudokuModel();
 
-void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
+// 因 profileModel 需要读取本地数据, 故先进入 profileModel 进行初始化
+void main() => profileModel.init().then(
+      (e) {
+        // 进行调试工具的初始化
+        DevTools.init();
+        // 进入 MercuriusApp()
+        runApp(const MercuriusApp());
+      },
+    );
 
 class MercuriusApp extends StatefulWidget {
   const MercuriusApp({super.key});
@@ -15,9 +25,11 @@ class _MercuriusAppState extends State<MercuriusApp> {
   @override
   Widget build(BuildContext context) {
     DevTools.printLog('[006] MercuriusApp 构建中');
+    // 利用 provide 包进行状态管理
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => profileModel),
+        ChangeNotifierProvider(create: (_) => sudokuModel),
       ],
       child: Consumer<ProfileModel>(
         builder: (context, profileModel, child) {
@@ -32,7 +44,9 @@ class _MercuriusAppState extends State<MercuriusApp> {
               colorScheme: darkColorScheme,
               fontFamily: 'HarmonyOS_Sans_SC',
             ),
+            // 控制主题样式
             themeMode: profileModel.profile.themeMode,
+            // 进入 SplashPage()
             home: const SplashPage(),
           );
         },

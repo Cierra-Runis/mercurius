@@ -12,6 +12,7 @@ class Profile {
   ThemeMode? themeMode;
   CacheConfig? cache;
   String? lastLogin;
+  String sudokuDifficulty = 'hard';
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);

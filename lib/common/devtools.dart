@@ -1,10 +1,20 @@
 import 'dart:developer' as devtools show log;
+import 'package:mercurius/index.dart';
 
 class DevTools {
-  static const isDevMode = true;
+  // 在这改设定
+  static const showLog = true;
+  static const showDebugPaintSizeEnabled = true;
+
+  // 调试用输出语句
   static void printLog(String message) {
-    if (isDevMode) {
+    if (showLog) {
       devtools.log(message);
     }
+  }
+
+  static void init() {
+    // 是否启用边界显示
+    debugPaintSizeEnabled = DevTools.showDebugPaintSizeEnabled;
   }
 }

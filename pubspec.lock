@@ -162,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
+  confetti:
+    dependency: "direct main"
+    description:
+      name: confetti
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   convert:
     dependency: transitive
     description:
@@ -693,6 +700,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+  sudoku_solver_generator:
+    dependency: "direct main"
+    description:
+      name: sudoku_solver_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0+1"
   synchronized:
     dependency: transitive
     description:
