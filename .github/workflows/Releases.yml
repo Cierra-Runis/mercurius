@@ -16,4 +16,4 @@ jobs:
         with:
           artifacts: "app-arm64-v8a-release.apk"
           bodyFile: "body.md"
-          token: ${{ secrets.YOUR_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
