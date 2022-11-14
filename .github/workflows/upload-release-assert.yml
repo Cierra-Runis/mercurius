@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $RESOLVED_VERSION
-          release_name: Release $RESOLVED_VERSION
+          tag_name: v0.0.1
+          release_name: Mercurius v0.0.1
           draft: false
           prerelease: false
       - name: Upload Release Asset
