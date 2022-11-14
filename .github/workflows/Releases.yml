@@ -15,7 +15,6 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "app-arm64-v8a-release.apk"
-          # 每次变动此处和 body.md 文件
-          tag: "v0.0.1"
+          tag: "v0.0.1+2"
           bodyFile: "body.md"
           token: ${{ secrets.GITHUB_TOKEN }}
