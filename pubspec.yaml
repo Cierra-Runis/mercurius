@@ -3,6 +3,7 @@ description: For mercurius.
 
 publish_to: 'none'
 
+# 请使用 .release_tool\change_version_and_build.py 进行修改
 version: 0.0.1+1
 
 environment:
