@@ -5,3 +5,4 @@ app.apk
 app.apk.sha1
 
 release.py
+release.bat
