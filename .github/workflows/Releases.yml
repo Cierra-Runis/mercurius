@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "app-arm64-v8a-release.apk"
