@@ -1,3 +1,3 @@
-# Mercurius v0.0.1+1
+# Mercurius v0.0.2+1
 
-- 测试
+- 希望是那样的绿灯
