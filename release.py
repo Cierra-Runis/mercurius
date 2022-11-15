@@ -8,7 +8,7 @@ import re
 
 REG_STR = {
     'version_str': r'(\d+)\.(\d+)\.(\d+)\+(\d+)',
-    'release_yml': r'tag: "v(.*)',
+    'release_yml': r'tag: "v(.*)"',
     'body_md': r'# Mercurius v(.*)'
 }
 
