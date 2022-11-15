@@ -35,6 +35,7 @@ def release_model():
     '''
     print('-- release.py --')
     release_version_str = get_current_version_str_from_release_yml()
+    print(f'> 正在发布 v{release_version_str}')
     os.system('git add .')
     os.system(f'git commit -m "v{release_version_str}"')
     os.system('git push')
