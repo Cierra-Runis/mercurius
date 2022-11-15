@@ -3,6 +3,3 @@ app-debug.apk
 app-x86_64-release.apk
 app.apk
 app.apk.sha1
-
-release.py
-release.bat
