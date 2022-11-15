@@ -43,4 +43,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-.release_tool/mercurius_warehouse/*
+.release_tool/mercurius_warehouse/
