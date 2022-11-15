@@ -23,3 +23,4 @@ export 'package:dio/dio.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 export 'package:confetti/confetti.dart';
+export 'package:json_annotation/json_annotation.dart';

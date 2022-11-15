@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
-import "index.dart";
+import 'package:mercurius/index.dart';
+
 part 'profile.g.dart';
 
 @JsonSerializable()

@@ -1,4 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:mercurius/index.dart';
 
 part 'user.g.dart';
 
