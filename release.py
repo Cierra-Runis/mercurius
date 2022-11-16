@@ -37,6 +37,8 @@ def release_model():
     os.system('git add .')
     os.system(f'git commit -m "v{release_version_str}"')
     os.system('git push')
+    os.system(f'git tag v{release_version_str}')
+    os.system('git push --tags')
     print(f'> 已发布 v{release_version_str}')
 
 
