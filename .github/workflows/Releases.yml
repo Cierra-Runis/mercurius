@@ -1,9 +1,13 @@
 name: Releases
 
-on: [push]
+on:
+  push:
+    tags:
+    - v**
 
 jobs:
-  build:
+  release:
+    name: 自动发布
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -14,4 +18,5 @@ jobs:
           artifacts: "app-arm64-v8a-release.apk"
           tag: "v0.0.1+1"
           bodyFile: "body.md"
+          skipIfReleaseExists: true
           token: ${{ secrets.WAREHOUSE_TOKEN }}
