@@ -1,8 +1,18 @@
 import 'package:mercurius/index.dart';
 
+const String _url =
+    'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
+
 class ProfileModel extends ChangeNotifier {
   static late SharedPreferences _preferences;
   Profile profile = Profile();
+
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
 
   Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +29,15 @@ class ProfileModel extends ChangeNotifier {
     // 为了版本的迭代, 在此进行判断
     profile.sudokuDifficulty ??= 'hard';
 
+    _packageInfo = await PackageInfo.fromPlatform();
+    profile.currentVersion =
+        'v${_packageInfo.version}+${_packageInfo.buildNumber}';
+
     DevTools.printLog('[003] 程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
+    save();
+
+    // 进入 mercuriusWebModel 的初始化
+    mercuriusWebModel.init();
   }
 
   void changeProfile(Profile profile) async {
@@ -27,6 +45,7 @@ class ProfileModel extends ChangeNotifier {
     this.profile = profile;
     save();
     notifyListeners();
+    super.notifyListeners();
   }
 
   void save() async {

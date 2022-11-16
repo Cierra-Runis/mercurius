@@ -24,6 +24,7 @@ class Profile {
   [输入项｜输入项]	  可选地在显示的值中选择一个填写。
   */
   String? sudokuDifficulty = 'hard';
+  String? currentVersion;
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);

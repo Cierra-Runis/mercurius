@@ -40,7 +40,7 @@ class SudokuModel extends ChangeNotifier {
   }
 
   void backToSudokuList() {
-    DevTools.printLog('[011] sudokuListCopy 重回');
+    DevTools.printLog('[010] sudokuListCopy 重回');
     sudokuListCopy = _copyGrid(sudokuList);
     showedAnswer = false;
     won = false;

@@ -2,34 +2,14 @@ import 'package:mercurius/index.dart';
 
 const String _url = 'https://github.com/Cierra-Runis/';
 
-class AboutWidget extends StatefulWidget {
-  const AboutWidget({super.key});
+class AboutDialogWidget extends StatefulWidget {
+  const AboutDialogWidget({super.key});
 
   @override
-  State<AboutWidget> createState() => _AboutWidgetState();
+  State<AboutDialogWidget> createState() => _AboutDialogWidgetState();
 }
 
-class _AboutWidgetState extends State<AboutWidget> {
-  PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _initPackageInfo();
-  }
-
-  Future<void> _initPackageInfo() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() {
-      _packageInfo = info;
-    });
-  }
-
+class _AboutDialogWidgetState extends State<AboutDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -69,21 +49,60 @@ class _AboutWidgetState extends State<AboutWidget> {
               )),
           Column(
             children: [
-              Text(
-                _packageInfo.appName,
-                style: const TextStyle(
+              const Text(
+                'Mercurius',
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: 'cmdysj',
                 ),
               ),
-              Text(
-                _packageInfo.version,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'cmdysj',
-                ),
-              ),
+              Row(
+                children: [
+                  Text(
+                    profileModel.profile.currentVersion!,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'cmdysj',
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(2),
+                  ),
+                  profileModel.profile.currentVersion !=
+                          mercuriusWebModel.githubLatestRelease.tag_name
+                      ? TextButton(
+                          onPressed: () {
+                            DevTools.printLog('已是最新');
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            padding: const EdgeInsets.all(1.5),
+                            minimumSize: const Size(20, 10),
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          child: const Text(
+                            '已是最新版本',
+                            style: TextStyle(color: Colors.white, fontSize: 8),
+                          ),
+                        )
+                      : TextButton(
+                          onPressed: () {
+                            DevTools.printLog('开始下载');
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            padding: const EdgeInsets.all(1.5),
+                            minimumSize: const Size(20, 10),
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          child: const Text(
+                            '更新至新版本',
+                            style: TextStyle(color: Colors.white, fontSize: 8),
+                          ),
+                        ),
+                ],
+              )
             ],
           ),
         ],

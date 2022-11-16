@@ -78,7 +78,7 @@ class _MorePageState extends State<MorePage> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return const AboutWidget();
+        return const AboutDialogWidget();
       },
     );
   }
