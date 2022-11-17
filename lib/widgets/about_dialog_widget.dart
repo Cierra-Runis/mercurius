@@ -69,7 +69,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   const Padding(
                     padding: EdgeInsets.all(2),
                   ),
-                  profileModel.profile.currentVersion !=
+                  profileModel.profile.currentVersion ==
                           mercuriusWebModel.githubLatestRelease.tag_name
                       ? TextButton(
                           onPressed: () {

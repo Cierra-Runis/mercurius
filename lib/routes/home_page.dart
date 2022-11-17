@@ -12,10 +12,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Consumer<ProfileModel>(
-          builder: (context, profileModel, child) {
+        body: Consumer2<ProfileModel, MercuriusWebModel>(
+          builder: (context, profileModel, mercuriusWebModel, child) {
             return Center(
-              child: Text(jsonEncode(profileModel.profile)),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  ListTile(
+                    title: Text(jsonEncode(profileModel.profile)),
+                  ),
+                  ListTile(
+                    title: Text(jsonEncode(
+                        mercuriusWebModel.githubLatestRelease.toJson())),
+                  ),
+                ],
+              ),
             );
           },
         ),
