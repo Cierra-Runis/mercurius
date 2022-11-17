@@ -14,6 +14,7 @@ export 'package:flutter/rendering.dart';
 export 'dart:async';
 export 'dart:convert';
 export 'dart:math';
+export 'dart:io';
 
 // 外部包相关
 export 'package:provider/provider.dart';
@@ -24,3 +25,5 @@ export 'package:shared_preferences/shared_preferences.dart';
 export 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 export 'package:confetti/confetti.dart';
 export 'package:json_annotation/json_annotation.dart';
+export 'package:flutter_markdown/flutter_markdown.dart';
+export 'package:unicons/unicons.dart';

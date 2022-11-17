@@ -4,7 +4,7 @@ const String _url =
     'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
 
 class MercuriusWebModel extends ChangeNotifier {
-  late GithubLatestRelease githubLatestRelease;
+  GithubLatestRelease githubLatestRelease = GithubLatestRelease();
 
   void _fetchGithubLatestRelease() async {
     Response response;
@@ -17,6 +17,8 @@ class MercuriusWebModel extends ChangeNotifier {
           '{"tag_name": "${profileModel.profile.currentVersion}连接失败"}',
         ),
       );
+      notifyListeners();
+      super.notifyListeners();
       return;
     }
 
@@ -35,6 +37,8 @@ class MercuriusWebModel extends ChangeNotifier {
         ),
       );
     }
+    notifyListeners();
+    super.notifyListeners();
   }
 
   void refetchGithubLatestRelease() {
@@ -43,7 +47,7 @@ class MercuriusWebModel extends ChangeNotifier {
     super.notifyListeners();
   }
 
-  void init() async {
+  void init() {
     DevTools.printLog('[017] GithubLatestRelease 初始化中');
     _fetchGithubLatestRelease();
   }

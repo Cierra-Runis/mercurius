@@ -69,26 +69,18 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   const Padding(
                     padding: EdgeInsets.all(2),
                   ),
-                  profileModel.profile.currentVersion ==
+                  profileModel.profile.currentVersion !=
                           mercuriusWebModel.githubLatestRelease.tag_name
                       ? TextButton(
                           onPressed: () {
-                            DevTools.printLog('已是最新');
-                          },
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            padding: const EdgeInsets.all(1.5),
-                            minimumSize: const Size(20, 10),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: const Text(
-                            '已是最新版本',
-                            style: TextStyle(color: Colors.white, fontSize: 8),
-                          ),
-                        )
-                      : TextButton(
-                          onPressed: () {
-                            DevTools.printLog('开始下载');
+                            DevTools.printLog('更新至新版本');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const GithubLatestReleasePage(),
+                              ),
+                            );
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: Colors.red,
@@ -98,6 +90,21 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                           ),
                           child: const Text(
                             '更新至新版本',
+                            style: TextStyle(color: Colors.white, fontSize: 8),
+                          ),
+                        )
+                      : TextButton(
+                          onPressed: () {
+                            DevTools.printLog('已是最新版本');
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            padding: const EdgeInsets.all(1.5),
+                            minimumSize: const Size(20, 10),
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          child: const Text(
+                            '已是最新版本',
                             style: TextStyle(color: Colors.white, fontSize: 8),
                           ),
                         ),

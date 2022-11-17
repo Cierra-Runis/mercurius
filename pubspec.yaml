@@ -31,7 +31,7 @@ publish_to: 'none'
 #         (ARCH_X86_64)       : 0,
 #   ]
 
-version: 0.0.1+4
+version: 0.0.1+6
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -51,6 +51,8 @@ dependencies:
   shared_preferences: ^2.0.15         # 数据持久化
   sudoku_solver_generator: ^2.1.0+1   # 数独生成器
   confetti: ^0.7.0                    # 彩纸效果
+  flutter_markdown: ^0.6.13           # markdown
+  unicons: ^2.1.0                     # 图标
 
 
 dev_dependencies:

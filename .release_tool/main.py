@@ -12,7 +12,7 @@ REG_STR = {
     'version_str': r'(\d+)\.(\d+)\.(\d+)\+(\d+)',
     'pubspec_yaml': r'version: (\d+\.\d+\.\d+\+\d+)',
     'release_yml': r'tag: "v(.*)"',
-    'body_md': r'# Mercurius v(.*)'
+    'body_md': r'v(.*)'
 }
 
 FILE_DIR = {
@@ -71,7 +71,7 @@ def rewrite_release_version_in_mercurius_warehouse(new_version: str) -> None:
     rewrite_tool(
         file_dir=FILE_DIR['body_md'],
         reg=REG_STR['body_md'],
-        repl=f'# Mercurius v{new_version}'
+        repl=f'v{new_version}'
     )
 
 
@@ -81,6 +81,10 @@ def is_new_version_bigger(current_version: str, new_version: str) -> bool:
     '''
     current = re.match(REG_STR['version_str'], current_version)
     new = re.match(REG_STR['version_str'], new_version)
+
+    if new[4] <= current[4]:
+        print(f'> 新构建号 {new[4]} 应该绝对大于 {current[4]}')
+        return False
 
     for i in range(1, 5):
         if int(new[i]) > int(current[i]):

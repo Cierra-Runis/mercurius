@@ -5,3 +5,4 @@ export 'setting_page.dart';
 export 'profile_page.dart';
 export 'splash_page.dart';
 export 'sudoku_page.dart';
+export 'github_latest_release_page.dart';
