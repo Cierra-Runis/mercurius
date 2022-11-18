@@ -75,7 +75,7 @@ class _SplashPageState extends State<SplashPage>
                     style: TextStyle(
                       fontSize: 42,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'cmdysj',
+                      fontFamily: 'Saira',
                     ),
                   ),
                 ],
