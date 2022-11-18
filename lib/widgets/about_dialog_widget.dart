@@ -53,7 +53,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                 'Mercurius',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'cmdysj',
+                  fontFamily: 'Saira',
                 ),
               ),
               Row(
@@ -63,7 +63,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                      fontFamily: 'cmdysj',
+                      fontFamily: 'Saira',
                     ),
                   ),
                   const Padding(

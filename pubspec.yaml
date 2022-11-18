@@ -31,7 +31,7 @@ publish_to: 'none'
 #         (ARCH_X86_64)       : 0,
 #   ]
 
-version: 0.0.1+6
+version: 0.0.1+7
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -53,6 +53,7 @@ dependencies:
   confetti: ^0.7.0                    # 彩纸效果
   flutter_markdown: ^0.6.13           # markdown
   unicons: ^2.1.0                     # 图标
+  google_fonts: ^3.0.1
 
 
 dev_dependencies:
@@ -84,8 +85,8 @@ flutter:
           weight: 700
         - asset: assets/fonts/HarmonyOS_Sans_SC_Black.ttf
           weight: 900
-    - family: cmdysj
+    - family: Saira
       fonts:
-        - asset: assets/fonts/cmdysj.ttf
+        - asset: assets/fonts/Saira.ttf
   assets:
     - assets/icon/icon.png
