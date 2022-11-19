@@ -4,9 +4,10 @@ description: For mercurius.
 publish_to: 'none'
 
 # 请使用 .release_tool/change_version_and_build.py 进行修改版本号
-# 注意构建号问题, 以下简化自 https://www.jianshu.com/p/5058eb7505d3
+# 简化自 https://www.jianshu.com/p/5058eb7505d3
 
-# Flutter 使用 android\app\build.gradle 进行 apk 打包, 引用了 D:\flutter\packages\flutter_tools\gradle\flutter.gradle
+# Flutter 使用 android/app/build.gradle 来打包 apk, 且其引入了 flutter.gradle 如 D:/flutter/packages/flutter_tools/gradle/flutter.gradle
+
 # 约在 flutter.gradle 的 810 行
 
 # def addFlutterDeps = { variant ->
@@ -20,16 +21,18 @@ publish_to: 'none'
 #                 }
 #             }
 
-# 可以看到, 判断是否使用了 split-per-abi 命令, 若使用则在 ABI_VERSION 里面取一个版本 *1000 在加上本身的版本号
-# 官方解释如 https://developer.android.com/studio/build/configure-apk-splits
-# 现更改 Map 如下
+# 我们知道 flutter 将判断是否使用了 'split-per-abi' 命令, 是则在 ABI_VERSION 选择一个版本 *1000 再加上构建号
 
-#   private static final Map ABI_VERSION = [
-#         (ARCH_ARM32)        : 0,
-#         (ARCH_ARM64)        : 0,
-#         (ARCH_X86)          : 0,
-#         (ARCH_X86_64)       : 0,
-#   ]
+# 官方解释见 https://developer.android.com/studio/build/configure-apk-splits
+
+# 我们只需修改 ABI_VERSION map 如下
+
+# private static final Map ABI_VERSION = [
+#     (ARCH_ARM32)        : 0,
+#     (ARCH_ARM64)        : 0,
+#     (ARCH_X86)          : 0,
+#     (ARCH_X86_64)       : 0,
+# ]
 
 version: 0.0.1+8
 
