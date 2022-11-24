@@ -96,6 +96,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                       : TextButton(
                           onPressed: () {
                             DevTools.printLog('已是最新版本');
+                            mercuriusWebModel.refetchGithubLatestRelease();
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: Colors.green,

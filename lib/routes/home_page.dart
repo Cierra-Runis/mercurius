@@ -22,8 +22,11 @@ class _HomePageState extends State<HomePage> {
                     title: Text(jsonEncode(profileModel.profile)),
                   ),
                   ListTile(
-                    title: Text(jsonEncode(
-                        mercuriusWebModel.githubLatestRelease.toJson())),
+                    title: Text(
+                      jsonEncode(
+                        mercuriusWebModel.githubLatestRelease.toJson(),
+                      ),
+                    ),
                   ),
                 ],
               ),

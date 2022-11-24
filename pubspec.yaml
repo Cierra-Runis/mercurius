@@ -62,7 +62,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  flutter_launcher_icons: "^0.10.0"   # 生成图标的工具
   build_runner: ^2.3.2                # 代码生成用的实用工具
 
 flutter_icons:

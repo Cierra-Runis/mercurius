@@ -14,7 +14,7 @@ class MercuriusWebModel extends ChangeNotifier {
       DevTools.printLog('[018] GithubLatestRelease 连接失败');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(
-          '{"tag_name": "${profileModel.profile.currentVersion}连接失败"}',
+          '{"tag_name": "${profileModel.profile.currentVersion}"}',
         ),
       );
       notifyListeners();
@@ -33,7 +33,7 @@ class MercuriusWebModel extends ChangeNotifier {
       DevTools.printLog('[021] GithubLatestRelease 请求失败');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(
-          '{"tag_name": "${profileModel.profile.currentVersion}请求失败"}',
+          '{"tag_name": "${profileModel.profile.currentVersion}"}',
         ),
       );
     }

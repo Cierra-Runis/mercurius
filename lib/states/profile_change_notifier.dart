@@ -1,8 +1,5 @@
 import 'package:mercurius/index.dart';
 
-const String _url =
-    'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
-
 class ProfileModel extends ChangeNotifier {
   static late SharedPreferences _preferences;
   Profile profile = Profile();
