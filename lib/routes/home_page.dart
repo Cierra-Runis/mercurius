@@ -78,6 +78,16 @@ class _HomePageState extends State<HomePage> {
                   jsonEncode(locationModel.weatherBody.daily?[0].textDay),
                 ),
               ),
+              ListTile(
+                title: Text(
+                  jsonEncode(locationModel.geoBody),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  jsonEncode(locationModel.position),
+                ),
+              ),
               const DiaryListCardWidget(),
               const DiaryListCardWidget(),
             ],

@@ -1,7 +1,10 @@
 import 'package:mercurius/index.dart';
+import 'package:mercurius/models/ip_geo.dart';
 
 String _geoUrl = 'https://geoapi.qweather.com/v2/city/lookup?';
 String _weatherUrl = 'https://devapi.qweather.com/v7/weather/3d?';
+String _ipGeoUrl =
+    'https://restapi.amap.com/v3/ip?&output=json&key=eb5254d31736ca5298ad4d68fae76c09';
 
 class LocationModel extends ChangeNotifier {
   Position position = Position(
@@ -51,8 +54,50 @@ class LocationModel extends ChangeNotifier {
       DevTools.printLog('[028] 当前权限状况为 $permission');
       DevTools.printLog('[030] 获取位置中');
 
-      position = await Geolocator.getCurrentPosition(
-          forceAndroidLocationManager: true);
+      try {
+        position = await Geolocator.getCurrentPosition(
+            forceAndroidLocationManager: true);
+      } catch (e) {
+        DevTools.printLog('[035] 超时 $e 尝试使用 ip 获取');
+
+        Response response;
+        IpGeo ipGeo;
+        RegExp pos = RegExp(r'(.*),(.*);');
+        try {
+          response = await Dio().get(_ipGeoUrl);
+        } catch (e) {
+          DevTools.printLog('[036] ipGeo 连接失败');
+          notifyListeners();
+          super.notifyListeners();
+          return;
+        }
+
+        DevTools.printLog('[037] ipGeo 连接成功');
+
+        if (response.statusCode == 200) {
+          ipGeo = IpGeo.fromJson(jsonDecode(response.toString()));
+          DevTools.printLog('[038] 获取 ipGeo 成功，且为${jsonEncode(ipGeo)}');
+        } else {
+          ipGeo = IpGeo.fromJson(
+            jsonDecode(
+                '{"status":"1","info":"OK","infocode":"10000","province":"江西省","city":"南昌市","adcode":"360100","rectangle":"115.6786001,28.48182853;116.1596596,28.86719757"}'),
+          );
+          DevTools.printLog('[039] 获取 ipGeo 失败');
+        }
+
+        var match = pos.firstMatch(ipGeo.rectangle!);
+
+        position = Position(
+          longitude: double.parse(match![1].toString()),
+          latitude: double.parse(match[2].toString()),
+          timestamp: DateTime.now(),
+          accuracy: 0,
+          altitude: 0,
+          heading: 0,
+          speed: 0,
+          speedAccuracy: 0,
+        );
+      }
 
       DevTools.printLog('[029] 获取位置为 $position');
 

@@ -82,7 +82,7 @@ def is_new_version_bigger(current_version: str, new_version: str) -> bool:
     current = re.match(REG_STR['version_str'], current_version)
     new = re.match(REG_STR['version_str'], new_version)
 
-    if new[4] <= current[4]:
+    if int(new[4]) <= int(current[4]):
         print(f'> 新构建号 {new[4]} 应该绝对大于 {current[4]}')
         return False
 
