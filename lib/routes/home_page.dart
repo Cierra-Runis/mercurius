@@ -1,5 +1,6 @@
 import 'package:mercurius/index.dart';
 import 'package:mercurius/states/location_change_notifier.dart';
+import 'package:mercurius/states/log_change_notifier.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,25 +27,29 @@ class _HomePageState extends State<HomePage> {
                 fontFamily: 'Saira',
               ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  UniconsLine.location_arrow,
-                  size: 6,
-                ),
-                Text(
-                  " ${(locationModel.position.latitude * 100).toInt() / 100}N ${(locationModel.position.longitude * 100).toInt() / 100}E ",
-                  style: const TextStyle(
-                    fontSize: 8,
-                  ),
-                ),
-                const Icon(
-                  UniconsLine.cloud,
-                  size: 7,
-                ),
-              ],
-            )
+            Consumer<LocationModel>(
+              builder: (context, locationModel, child) {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      UniconsLine.location_arrow,
+                      size: 6,
+                    ),
+                    Text(
+                      " ${(locationModel.position.latitude * 100).toInt() / 100}N ${(locationModel.position.longitude * 100).toInt() / 100}E ",
+                      style: const TextStyle(
+                        fontSize: 8,
+                      ),
+                    ),
+                    const Icon(
+                      UniconsLine.cloud,
+                      size: 7,
+                    ),
+                  ],
+                );
+              },
+            ),
           ],
         ),
         centerTitle: true,
@@ -59,18 +64,37 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Consumer3<ProfileModel, MercuriusWebModel, LocationModel>(
-        builder:
-            (context, profileModel, mercuriusWebModel, locationModel, child) {
+      body: Consumer4<ProfileModel, MercuriusWebModel, LocationModel, LogModel>(
+        builder: (context, profileModel, mercuriusWebModel, locationModel,
+            logModel, child) {
           return ListView(
             shrinkWrap: true,
             children: [
               ListTile(
-                title: Text(jsonEncode(profileModel.profile)),
+                title: Text(
+                  logModel.logString,
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontFamily: 'Saira',
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  jsonEncode(profileModel.profile),
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontFamily: 'Saira',
+                  ),
+                ),
               ),
               ListTile(
                 title: Text(
                   jsonEncode(mercuriusWebModel.githubLatestRelease),
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontFamily: 'Saira',
+                  ),
                 ),
               ),
               ListTile(
@@ -81,11 +105,19 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: Text(
                   jsonEncode(locationModel.geoBody),
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontFamily: 'Saira',
+                  ),
                 ),
               ),
               ListTile(
                 title: Text(
                   jsonEncode(locationModel.position),
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontFamily: 'Saira',
+                  ),
                 ),
               ),
               const DiaryListCardWidget(),

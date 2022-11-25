@@ -13,6 +13,7 @@ class DevTools {
   static void printLog(String message) {
     if (showLog) {
       devtools.log(message);
+      logModel.addLog('$message\n');
     }
   }
 

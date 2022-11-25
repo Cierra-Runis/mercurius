@@ -1,11 +1,13 @@
 import 'package:mercurius/index.dart';
 import 'package:mercurius/states/location_change_notifier.dart';
+import 'package:mercurius/states/log_change_notifier.dart';
 
 // 位于 main.dart 的 changeNotifier
 ProfileModel profileModel = ProfileModel();
 SudokuModel sudokuModel = SudokuModel();
 MercuriusWebModel mercuriusWebModel = MercuriusWebModel();
 LocationModel locationModel = LocationModel();
+LogModel logModel = LogModel();
 
 // 因 profileModel 需要读取本地数据, 故先进入 profileModel 进行初始化
 void main() => profileModel.init().then(
@@ -35,6 +37,7 @@ class _MercuriusAppState extends State<MercuriusApp> {
         ChangeNotifierProvider(create: (_) => sudokuModel),
         ChangeNotifierProvider(create: (_) => mercuriusWebModel),
         ChangeNotifierProvider(create: (_) => locationModel),
+        ChangeNotifierProvider(create: (_) => logModel),
       ],
       child: Consumer<ProfileModel>(
         builder: (context, profileModel, child) {

@@ -31,7 +31,7 @@ class LocationModel extends ChangeNotifier {
                 .inDays <=
             5) {
       DevTools.printLog(
-          '[035] profile 中已含 cacheLocation 记录且与现在时差为 ${now.difference(profileModel.profile.cacheLocation!.cacheDateTime!).inDays} 天，不超过 5 天');
+          '[035] profile 中已含 cacheLocation 记录且与现在时差为 ${now.difference(profileModel.profile.cacheLocation!.cacheDateTime!).inSeconds} 秒，不超过 5 天');
       position = Position(
         longitude: double.parse(profileModel.profile.cacheLocation!.longitude!),
         latitude: double.parse(profileModel.profile.cacheLocation!.latitude!),
@@ -56,7 +56,9 @@ class LocationModel extends ChangeNotifier {
 
       try {
         position = await Geolocator.getCurrentPosition(
-            forceAndroidLocationManager: true);
+          forceAndroidLocationManager: true,
+          timeLimit: const Duration(seconds: 5),
+        );
       } catch (e) {
         DevTools.printLog('[035] 超时 $e 尝试使用 ip 获取');
 
