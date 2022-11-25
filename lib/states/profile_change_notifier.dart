@@ -35,6 +35,8 @@ class ProfileModel extends ChangeNotifier {
 
     // 进入 mercuriusWebModel 的初始化
     mercuriusWebModel.init();
+    // 进入 locationModel 的初始化
+    locationModel.init();
   }
 
   void changeProfile(Profile profile) async {

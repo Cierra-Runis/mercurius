@@ -34,7 +34,7 @@ publish_to: 'none'
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+8
+version: 0.0.1+9
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -56,13 +56,18 @@ dependencies:
   confetti: ^0.7.0                    # 彩纸效果
   flutter_markdown: ^0.6.13           # markdown
   unicons: ^2.1.0                     # 图标
+  isar: ^3.0.5                        # 数据库
+  isar_flutter_libs: ^3.0.5           # 数据库的库
+  flutter_quill: ^6.1.6               # 富文本
+  geolocator: ^9.0.2                  # 定位
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  build_runner: ^2.3.2                # 代码生成用的实用工具
+  isar_generator: ^3.0.5              # 数据库代码生成工具
+  build_runner: ^2.3.2                # 代码生成用实用工具
 
 flutter_icons:
   android: "launcher_icon"

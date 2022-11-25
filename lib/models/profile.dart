@@ -25,8 +25,22 @@ class Profile {
   */
   String? sudokuDifficulty = 'hard';
   String? currentVersion;
+  CacheLocation? cacheLocation;
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
   Map<String, dynamic> toJson() => _$ProfileToJson(this);
+}
+
+@JsonSerializable()
+class CacheLocation {
+  CacheLocation();
+
+  String? latitude;
+  String? longitude;
+  DateTime? cacheDateTime;
+
+  factory CacheLocation.fromJson(Map<String, dynamic> json) =>
+      _$CacheLocationFromJson(json);
+  Map<String, dynamic> toJson() => _$CacheLocationToJson(this);
 }

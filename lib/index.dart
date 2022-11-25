@@ -27,3 +27,5 @@ export 'package:confetti/confetti.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:flutter_markdown/flutter_markdown.dart';
 export 'package:unicons/unicons.dart';
+export 'package:isar/isar.dart';
+export 'package:geolocator/geolocator.dart';
