@@ -6,7 +6,7 @@ part 'ip_geo.g.dart';
 class IpGeo {
   IpGeo();
 
-  String? statue;
+  String? status;
   String? info;
   String? infocode;
   String? province;

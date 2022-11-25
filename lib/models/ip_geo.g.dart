@@ -7,7 +7,7 @@ part of 'ip_geo.dart';
 // **************************************************************************
 
 IpGeo _$IpGeoFromJson(Map<String, dynamic> json) => IpGeo()
-  ..statue = json['statue'] as String?
+  ..status = json['status'] as String?
   ..info = json['info'] as String?
   ..infocode = json['infocode'] as String?
   ..province = json['province'] as String?
@@ -16,7 +16,7 @@ IpGeo _$IpGeoFromJson(Map<String, dynamic> json) => IpGeo()
   ..rectangle = json['rectangle'] as String?;
 
 Map<String, dynamic> _$IpGeoToJson(IpGeo instance) => <String, dynamic>{
-      'statue': instance.statue,
+      'status': instance.status,
       'info': instance.info,
       'infocode': instance.infocode,
       'province': instance.province,

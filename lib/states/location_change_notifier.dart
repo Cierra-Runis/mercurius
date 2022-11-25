@@ -74,11 +74,21 @@ class LocationModel extends ChangeNotifier {
           return;
         }
 
-        DevTools.printLog('[037] ipGeo 连接成功');
+        DevTools.printLog('[037] ipGeo 连接成功，且为 ${response.toString()}');
 
         if (response.statusCode == 200) {
           ipGeo = IpGeo.fromJson(jsonDecode(response.toString()));
-          DevTools.printLog('[038] 获取 ipGeo 成功，且为${jsonEncode(ipGeo)}');
+          if (ipGeo.province == null ||
+              ipGeo.city == null ||
+              ipGeo.rectangle == null) {
+            ipGeo = IpGeo.fromJson(
+              jsonDecode(
+                  '{"status":"1","info":"OK","infocode":"10000","province":"江西省","city":"南昌市","adcode":"360100","rectangle":"115.6786001,28.48182853;116.1596596,28.86719757"}'),
+            );
+            DevTools.printLog('[039] 获取 ipGeo 失败');
+          } else {
+            DevTools.printLog('[038] 获取 ipGeo 成功，且为 ${jsonEncode(ipGeo)}');
+          }
         } else {
           ipGeo = IpGeo.fromJson(
             jsonDecode(
