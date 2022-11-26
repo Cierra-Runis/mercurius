@@ -34,7 +34,7 @@ publish_to: 'none'
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+12
+version: 0.0.1+13
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -94,5 +94,8 @@ flutter:
     - family: Saira
       fonts:
         - asset: assets/fonts/Saira.ttf
+    - family: QWeather_Icon
+      fonts:
+        - asset: assets/fonts/QWeather_Icons.ttf
   assets:
     - assets/icon/icon.png

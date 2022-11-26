@@ -22,16 +22,17 @@ class LocationModel extends ChangeNotifier {
 
   WeatherBody weatherBody = WeatherBody();
 
-  void _fetchCurrentPosition() async {
+  void _fetchCurrentPosition(bool force) async {
     DateTime now = DateTime.now();
 
     if (profileModel.profile.cacheLocation != null &&
         now
                 .difference(profileModel.profile.cacheLocation!.cacheDateTime!)
                 .inDays <=
-            5) {
+            5 &&
+        !force) {
       DevTools.printLog(
-          '[035] profile 中已含 cacheLocation 记录且与现在时差为 ${now.difference(profileModel.profile.cacheLocation!.cacheDateTime!).inSeconds} 秒，不超过 5 天');
+          '[035] profile 中已含 cacheLocation 记录且与现在时差为 ${now.difference(profileModel.profile.cacheLocation!.cacheDateTime!).inSeconds} 秒，不超过 5 天，且不是强制模式');
       position = Position(
         longitude: double.parse(profileModel.profile.cacheLocation!.longitude!),
         latitude: double.parse(profileModel.profile.cacheLocation!.latitude!),
@@ -44,6 +45,7 @@ class LocationModel extends ChangeNotifier {
       );
       DevTools.printLog('[029] 获取位置为 $position');
     } else {
+      force ? DevTools.printLog('[038] 进入强制模式') : null;
       LocationPermission permission = await Geolocator.checkPermission();
       DevTools.printLog('[028] 当前权限状况为 $permission');
       while (permission == LocationPermission.denied ||
@@ -51,7 +53,7 @@ class LocationModel extends ChangeNotifier {
         DevTools.printLog('[023] 获取权限');
         permission = await Geolocator.requestPermission();
       }
-      DevTools.printLog('[028] 当前权限状况为 $permission');
+      DevTools.printLog('[042] 当前权限状况为 $permission');
       DevTools.printLog('[030] 获取位置中');
 
       try {
@@ -60,7 +62,7 @@ class LocationModel extends ChangeNotifier {
           timeLimit: const Duration(seconds: 5),
         );
       } catch (e) {
-        DevTools.printLog('[035] 超时 $e 尝试使用 ip 获取');
+        DevTools.printLog('[044] 超时 $e 尝试使用 ip 获取');
 
         Response response;
         IpGeo ipGeo;
@@ -87,14 +89,14 @@ class LocationModel extends ChangeNotifier {
             );
             DevTools.printLog('[039] 获取 ipGeo 失败');
           } else {
-            DevTools.printLog('[038] 获取 ipGeo 成功，且为 ${jsonEncode(ipGeo)}');
+            DevTools.printLog('[043] 获取 ipGeo 成功，且为 ${jsonEncode(ipGeo)}');
           }
         } else {
           ipGeo = IpGeo.fromJson(
             jsonDecode(
                 '{"status":"1","info":"OK","infocode":"10000","province":"江西省","city":"南昌市","adcode":"360100","rectangle":"115.6786001,28.48182853;116.1596596,28.86719757"}'),
           );
-          DevTools.printLog('[039] 获取 ipGeo 失败');
+          DevTools.printLog('[040] 获取 ipGeo 失败');
         }
 
         var match = pos.firstMatch(ipGeo.rectangle!);
@@ -111,7 +113,7 @@ class LocationModel extends ChangeNotifier {
         );
       }
 
-      DevTools.printLog('[029] 获取位置为 $position');
+      DevTools.printLog('[041] 获取位置为 $position');
 
       profileModel.changeProfile(
         profileModel.profile
@@ -179,7 +181,7 @@ class LocationModel extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       weatherBody = WeatherBody.fromJson(jsonDecode(response.toString()));
-      DevTools.printLog('[033] 获取天气成功，且为 ${weatherBody.toJson()}');
+      DevTools.printLog('[033] 获取天气成功');
     } else {
       weatherBody = WeatherBody.fromJson(
         jsonDecode(
@@ -192,14 +194,14 @@ class LocationModel extends ChangeNotifier {
     super.notifyListeners();
   }
 
-  void refetchCurrentPosition() {
-    _fetchCurrentPosition();
+  void refetchCurrentPosition(bool force) {
+    _fetchCurrentPosition(force);
     notifyListeners();
     super.notifyListeners();
   }
 
   void init() {
     DevTools.printLog('[022] CurrentPosition 初始化中');
-    _fetchCurrentPosition();
+    _fetchCurrentPosition(false);
   }
 }

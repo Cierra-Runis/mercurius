@@ -8,4 +8,10 @@ class LogModel extends ChangeNotifier {
     notifyListeners();
     super.notifyListeners();
   }
+
+  void clearLog() {
+    logString = '';
+    notifyListeners();
+    super.notifyListeners();
+  }
 }

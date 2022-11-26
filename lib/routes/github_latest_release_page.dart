@@ -11,26 +11,30 @@ class GithubLatestReleasePage extends StatefulWidget {
 class _GithubLatestReleasePageState extends State<GithubLatestReleasePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          '更新至 ${mercuriusWebModel.githubLatestRelease.tag_name}',
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
+    return Consumer<MercuriusWebModel>(
+      builder: (context, mercuriusWebModel, child) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              '更新至 ${mercuriusWebModel.githubLatestRelease.tag_name}',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-        ),
-      ),
-      body: Center(
-        child: Markdown(
-          data: mercuriusWebModel.githubLatestRelease.body!,
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _optionMenu(context),
-        mini: true,
-        child: const Icon(Icons.download_rounded),
-      ),
+          body: Center(
+            child: Markdown(
+              data: mercuriusWebModel.githubLatestRelease.body!,
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => _optionMenu(context),
+            mini: true,
+            child: const Icon(Icons.download_rounded),
+          ),
+        );
+      },
     );
   }
 }

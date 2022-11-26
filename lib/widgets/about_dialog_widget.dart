@@ -56,61 +56,67 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   fontFamily: 'Saira',
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    profileModel.profile.currentVersion!,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Saira',
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(2),
-                  ),
-                  profileModel.profile.currentVersion !=
-                          mercuriusWebModel.githubLatestRelease.tag_name
-                      ? TextButton(
-                          onPressed: () {
-                            DevTools.printLog('更新至新版本');
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const GithubLatestReleasePage(),
-                              ),
-                            );
-                          },
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.red,
-                            padding: const EdgeInsets.all(1.5),
-                            minimumSize: const Size(20, 10),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: const Text(
-                            '更新至新版本',
-                            style: TextStyle(color: Colors.white, fontSize: 8),
-                          ),
-                        )
-                      : TextButton(
-                          onPressed: () {
-                            DevTools.printLog('已是最新版本');
-                            mercuriusWebModel.refetchGithubLatestRelease();
-                          },
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            padding: const EdgeInsets.all(1.5),
-                            minimumSize: const Size(20, 10),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: const Text(
-                            '已是最新版本',
-                            style: TextStyle(color: Colors.white, fontSize: 8),
-                          ),
+              Consumer2<MercuriusWebModel, ProfileModel>(
+                builder: (context, mercuriusWebModel, profileModel, child) {
+                  return Row(
+                    children: [
+                      Text(
+                        profileModel.profile.currentVersion!,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Saira',
                         ),
-                ],
-              )
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(2),
+                      ),
+                      profileModel.profile.currentVersion !=
+                              mercuriusWebModel.githubLatestRelease.tag_name
+                          ? TextButton(
+                              onPressed: () {
+                                DevTools.printLog('更新至新版本');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const GithubLatestReleasePage(),
+                                  ),
+                                );
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                padding: const EdgeInsets.all(1.5),
+                                minimumSize: const Size(20, 10),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
+                              child: const Text(
+                                '更新至新版本',
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 8),
+                              ),
+                            )
+                          : TextButton(
+                              onPressed: () {
+                                DevTools.printLog('已是最新版本');
+                                mercuriusWebModel.refetchGithubLatestRelease();
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.green,
+                                padding: const EdgeInsets.all(1.5),
+                                minimumSize: const Size(20, 10),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
+                              child: const Text(
+                                '已是最新版本',
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 8),
+                              ),
+                            ),
+                    ],
+                  );
+                },
+              ),
             ],
           ),
         ],
