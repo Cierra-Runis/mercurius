@@ -1,5 +1,7 @@
 import 'package:mercurius/index.dart';
 
+import 'dart:ui';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -190,77 +192,80 @@ class _HomePageState extends State<HomePage> {
             logModel,
             child,
           ) {
-            return ListView(
-              children: [
-                InkWell(
-                  onLongPress: () {
-                    logModel.clearLog();
-                  },
-                  child: ListTile(
+            return BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 0.25, sigmaY: 0.25),
+              child: ListView(
+                children: [
+                  InkWell(
+                    onLongPress: () {
+                      logModel.clearLog();
+                    },
+                    child: ListTile(
+                      title: Text(
+                        logModel.logString,
+                        style: const TextStyle(
+                          fontSize: 8,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                    ),
+                  ),
+                  ListTile(
                     title: Text(
-                      logModel.logString,
+                      jsonEncode(profileModel.profile),
                       style: const TextStyle(
                         fontSize: 8,
                         fontFamily: 'Saira',
                       ),
                     ),
                   ),
-                ),
-                ListTile(
-                  title: Text(
-                    jsonEncode(profileModel.profile),
-                    style: const TextStyle(
-                      fontSize: 8,
-                      fontFamily: 'Saira',
+                  ListTile(
+                    title: Text(
+                      jsonEncode(mercuriusWebModel.githubLatestRelease),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  title: Text(
-                    jsonEncode(mercuriusWebModel.githubLatestRelease),
-                    style: const TextStyle(
-                      fontSize: 8,
-                      fontFamily: 'Saira',
+                  ListTile(
+                    title: Text(
+                      jsonEncode(locationModel.weatherBody.daily?[0].textDay),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  title: Text(
-                    jsonEncode(locationModel.weatherBody.daily?[0].textDay),
-                    style: const TextStyle(
-                      fontSize: 8,
-                      fontFamily: 'Saira',
+                  ListTile(
+                    title: Text(
+                      jsonEncode(locationModel.weatherBody),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  title: Text(
-                    jsonEncode(locationModel.weatherBody),
-                    style: const TextStyle(
-                      fontSize: 8,
-                      fontFamily: 'Saira',
+                  ListTile(
+                    title: Text(
+                      jsonEncode(locationModel.geoBody),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  title: Text(
-                    jsonEncode(locationModel.geoBody),
-                    style: const TextStyle(
-                      fontSize: 8,
-                      fontFamily: 'Saira',
+                  ListTile(
+                    title: Text(
+                      jsonEncode(locationModel.position),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
                     ),
                   ),
-                ),
-                ListTile(
-                  title: Text(
-                    jsonEncode(locationModel.position),
-                    style: const TextStyle(
-                      fontSize: 8,
-                      fontFamily: 'Saira',
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:mercurius/index.dart';
 
 part 'github_latest_release.g.dart';

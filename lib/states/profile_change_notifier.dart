@@ -41,6 +41,8 @@ class ProfileModel extends ChangeNotifier {
     pathModel.init();
     // 实现高刷
     await FlutterDisplayMode.setHighRefreshRate();
+    // 进行调试工具的初始化
+    DevTools.init();
   }
 
   void changeProfile(Profile profile) async {

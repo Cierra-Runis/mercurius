@@ -22,11 +22,12 @@ class _SplashPageState extends State<SplashPage>
     _animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.completed) {
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-            builder: (context) {
-              return const HomeRoute();
-            },
-          ), (route) => route == null);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => const HomeRoute(),
+            ),
+            (route) => false,
+          );
         }
       },
     );

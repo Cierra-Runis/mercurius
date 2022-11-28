@@ -10,14 +10,9 @@ PathModel pathModel = PathModel();
 DiaryEditorModel diaryEditorModel = DiaryEditorModel();
 
 // 因 profileModel 需要读取本地数据, 故先进入 profileModel 进行初始化
-void main() => profileModel.init().then(
-      (e) {
-        // 进行调试工具的初始化
-        DevTools.init();
-        // 进入 MercuriusApp()
-        runApp(const MercuriusApp());
-      },
-    );
+void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MercuriusApp extends StatefulWidget {
   const MercuriusApp({super.key});
@@ -44,6 +39,7 @@ class _MercuriusAppState extends State<MercuriusApp> {
       child: Consumer<ProfileModel>(
         builder: (context, profileModel, child) {
           return MaterialApp(
+            navigatorKey: navigatorKey,
             theme: ThemeData(
               useMaterial3: true,
               colorScheme: lightColorScheme,
