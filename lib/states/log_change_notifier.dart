@@ -5,8 +5,6 @@ class LogModel extends ChangeNotifier {
 
   void addLog(String newLog) {
     logString += newLog;
-    notifyListeners();
-    super.notifyListeners();
   }
 
   void clearLog() {

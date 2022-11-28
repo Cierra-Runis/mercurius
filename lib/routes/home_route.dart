@@ -26,6 +26,9 @@ class _HomeRouteState extends State<HomeRoute> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? darkColorScheme.onInverseSurface
+            : lightColorScheme.surface,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

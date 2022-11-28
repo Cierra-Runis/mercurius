@@ -37,6 +37,10 @@ class ProfileModel extends ChangeNotifier {
     mercuriusWebModel.init();
     // 进入 locationModel 的初始化
     locationModel.init();
+    // 进入 pathModel 的初始化
+    pathModel.init();
+    // 实现高刷
+    await FlutterDisplayMode.setHighRefreshRate();
   }
 
   void changeProfile(Profile profile) async {

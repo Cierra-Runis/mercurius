@@ -1,5 +1,4 @@
 import 'package:mercurius/index.dart';
-import 'package:mercurius/models/ip_geo.dart';
 
 String _geoUrl = 'https://geoapi.qweather.com/v2/city/lookup?';
 String _weatherUrl = 'https://devapi.qweather.com/v7/weather/3d?';
@@ -181,7 +180,7 @@ class LocationModel extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       weatherBody = WeatherBody.fromJson(jsonDecode(response.toString()));
-      DevTools.printLog('[033] 获取天气成功');
+      DevTools.printLog('[033] 获取天气成功，且为 ${weatherBody.toJson()}');
     } else {
       weatherBody = WeatherBody.fromJson(
         jsonDecode(
