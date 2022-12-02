@@ -2,32 +2,6 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
-class DiaryEditorModel extends ChangeNotifier {
-  late Diary diary;
-
-  void init(Diary diary) {
-    this.diary = diary;
-  }
-
-  void changeMood(String mood) {
-    diary.mood = mood;
-    notifyListeners();
-    super.notifyListeners();
-  }
-}
-
-Map<String, IconData> _moodMap = {
-  '开心': UniconsLine.smile,
-  '一般': UniconsLine.meh_closed_eye,
-  '生气': UniconsLine.angry,
-  '困惑': UniconsLine.confused,
-  '失落': UniconsLine.frown,
-  '大笑': UniconsLine.laughing,
-  '难受': UniconsLine.silent_squint,
-  '大哭': UniconsLine.sad_crying,
-  '我死': UniconsLine.smile_dizzy,
-};
-
 class DiaryEditorPage extends StatefulWidget {
   const DiaryEditorPage({
     Key? key,
@@ -48,16 +22,17 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
 
   @override
   void initState() {
+    diaryEditorModel.init(widget.diary);
     _controller = flutter_quill.QuillController(
-      document: widget.diary.contentJsonString != null
+      document: diaryEditorModel.diary.contentJsonString != null
           ? flutter_quill.Document.fromJson(
-              jsonDecode(widget.diary.contentJsonString!),
+              jsonDecode(diaryEditorModel.diary.contentJsonString!),
             )
           : flutter_quill.Document(),
       selection: const TextSelection.collapsed(offset: 0),
     );
-    _title.text = widget.diary.titleString ?? '';
-    diaryEditorModel.init(widget.diary);
+    _title.text = diaryEditorModel.diary.titleString ?? '';
+
     super.initState();
   }
 
@@ -70,121 +45,126 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   // TODO: 修复遮挡问题
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all<Size>(
-              const Size(56, 56),
-            ),
-          ),
-          child: const Text('取消'),
-        ),
-        title: TextField(
-          textAlign: TextAlign.center,
-          key: _formKey,
-          controller: _title,
-          decoration: const InputDecoration(
-            hintText: '无标题',
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          TextButton(
-            onPressed: () {
-              DevTools.printLog(
-                jsonEncode(_controller.document.toDelta().toJson()),
-              );
-              diaryEditorModel.diary.contentJsonString =
-                  jsonEncode(_controller.document.toDelta().toJson());
-              isarService.saveDiary(
-                diaryEditorModel.diary
-                  ..latestEditTime = DateTime.now().toString()
-                  ..titleString = (_title.text == '' ? null : _title.text),
-              );
-              Navigator.of(context).pop();
-            },
-            style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all<Size>(
-                const Size(56, 56),
-              ),
-            ),
-            child: const Text('保存'),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: flutter_quill.QuillEditor(
-                locale: const Locale('zh', 'hk'),
-                focusNode: FocusNode(),
-                scrollController: ScrollController(),
-                scrollable: true,
-                expands: false,
-                padding: const EdgeInsets.all(2.0),
-                autoFocus: true,
-                placeholder: '记些什么吧',
-                controller: _controller,
-                readOnly: false,
-                scrollBottomInset: 10,
-              ),
-            ),
-            const Divider(
-              height: 12,
-              thickness: 1.8,
-            ),
-            flutter_quill.QuillToolbar.basic(
-              controller: _controller,
-              showUndo: false,
-              showRedo: false,
-              showFontFamily: false,
-              showFontSize: false,
-              showBackgroundColorButton: false,
-              showClearFormat: false,
-              showColorButton: false,
-              showCodeBlock: false,
-              showInlineCode: false,
-              showAlignmentButtons: true,
-              showListBullets: false,
-              showListCheck: false,
-              showListNumbers: false,
-              showJustifyAlignment: false,
-              showDividers: false,
-              showSmallButton: true,
-              showSearchButton: false,
-              showIndent: false,
-              toolbarSectionSpacing: 14,
-              iconTheme: flutter_quill.QuillIconTheme(
-                borderRadius: 12,
-                iconSelectedFillColor:
-                    Theme.of(context).brightness == Brightness.dark
-                        ? Theme.of(context).cardColor
-                        : Theme.of(context).backgroundColor,
-              ),
-              customButtons: [
-                flutter_quill.QuillCustomButton(
-                  icon: UniconsLine.clock,
-                  onTap: () {
-                    // TODO: 插入时间
-                  },
+    return Consumer<DiaryEditorModel>(
+      builder: (context, diaryEditorModel, child) {
+        return Scaffold(
+          appBar: AppBar(
+            leading: TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all<Size>(
+                  const Size(56, 56),
                 ),
-                flutter_quill.QuillCustomButton(
-                  icon: Icons.mood,
-                  onTap: () =>
-                      _selectDiaryMoodDialog(context, diaryEditorModel.diary),
+              ),
+              child: const Text('取消'),
+            ),
+            title: TextField(
+              textAlign: TextAlign.center,
+              key: _formKey,
+              controller: _title,
+              decoration: const InputDecoration(
+                hintText: '无标题',
+              ),
+            ),
+            centerTitle: true,
+            actions: [
+              TextButton(
+                onPressed: () {
+                  DevTools.printLog(
+                    jsonEncode(_controller.document.toDelta().toJson()),
+                  );
+                  diaryEditorModel.diary.contentJsonString =
+                      jsonEncode(_controller.document.toDelta().toJson());
+                  diaryEditorModel.saveDiary();
+                  isarService.saveDiary(
+                    diaryEditorModel.diary
+                      ..latestEditTime = DateTime.now().toString()
+                      ..titleString = (_title.text == '' ? null : _title.text),
+                  );
+                  Navigator.of(context).pop();
+                },
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all<Size>(
+                    const Size(56, 56),
+                  ),
+                ),
+                child: const Text('保存'),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: flutter_quill.QuillEditor(
+                    locale: const Locale('zh', 'hk'),
+                    focusNode: FocusNode(),
+                    scrollController: ScrollController(),
+                    scrollable: true,
+                    expands: false,
+                    padding: const EdgeInsets.all(2.0),
+                    autoFocus: true,
+                    placeholder: '记些什么吧',
+                    controller: _controller,
+                    readOnly: false,
+                    scrollBottomInset: 10,
+                  ),
+                ),
+                const Divider(
+                  height: 12,
+                  thickness: 1.8,
+                ),
+                flutter_quill.QuillToolbar.basic(
+                  controller: _controller,
+                  showUndo: false,
+                  showRedo: false,
+                  showFontFamily: false,
+                  showFontSize: false,
+                  showBackgroundColorButton: false,
+                  showClearFormat: false,
+                  showColorButton: false,
+                  showCodeBlock: false,
+                  showInlineCode: false,
+                  showAlignmentButtons: true,
+                  showListBullets: false,
+                  showListCheck: false,
+                  showListNumbers: false,
+                  showJustifyAlignment: false,
+                  showDividers: false,
+                  showSmallButton: true,
+                  showSearchButton: false,
+                  showIndent: false,
+                  toolbarSectionSpacing: 14,
+                  iconTheme: flutter_quill.QuillIconTheme(
+                    borderRadius: 12,
+                    iconSelectedFillColor:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? Theme.of(context).cardColor
+                            : Theme.of(context).backgroundColor,
+                  ),
+                  customButtons: [
+                    flutter_quill.QuillCustomButton(
+                      icon: UniconsLine.clock,
+                      onTap: () {
+                        // TODO: 插入时间
+                      },
+                    ),
+                    flutter_quill.QuillCustomButton(
+                      icon: Icons.mood,
+                      onTap: () => _selectDiaryMoodDialog(
+                          context, diaryEditorModel.diary),
+                    ),
+                  ],
+                  locale: const Locale('zh', 'hk'),
                 ),
               ],
-              locale: const Locale('zh', 'hk'),
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -216,7 +196,7 @@ class _DiaryMoodSelectorDialogWidgetState
     extends State<DiaryMoodSelectorDialogWidget> {
   List<Widget> _listAllMood() {
     List<Widget> buttonList = List<Widget>.from([]);
-    _moodMap.forEach(
+    Constance.moodMap.forEach(
       (key, value) {
         buttonList.add(
           Consumer<DiaryEditorModel>(
@@ -224,6 +204,7 @@ class _DiaryMoodSelectorDialogWidgetState
               return IconButton(
                 onPressed: () {
                   diaryEditorModel.changeMood(key);
+                  Navigator.of(context).pop();
                 },
                 icon: Column(
                   children: [Icon(value), Text(key)],

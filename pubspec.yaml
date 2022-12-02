@@ -34,7 +34,7 @@ publish_to: 'none'
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+16
+version: 0.0.1+17
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -67,6 +67,7 @@ dependencies:
   dart_date: ^1.1.1                   # 转换时间工具
   double_back_to_close: ^2.0.0        # 二次退出确认
   another_flushbar: ^1.12.29          # 提示框
+  share_plus: ^6.3.0                  # 分享
 
 
 dev_dependencies:

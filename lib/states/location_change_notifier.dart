@@ -137,7 +137,7 @@ class LocationModel extends ChangeNotifier {
       String latitude = (((position.latitude * 100).toInt()) / 100).toString();
 
       response = await Dio().get(
-          '${_geoUrl}location=$longitude,$latitude&key=${DevTools.weatherKey}');
+          '${_geoUrl}location=$longitude,$latitude&key=${Constance.weatherKey}');
     } catch (e) {
       DevTools.printLog('[024] 城市搜索 连接失败');
       notifyListeners();
@@ -168,7 +168,7 @@ class LocationModel extends ChangeNotifier {
     Response response;
     try {
       response = await Dio().get(
-          '${_weatherUrl}location=${geoBody.location![0].id}&key=${DevTools.weatherKey}');
+          '${_weatherUrl}location=${geoBody.location![0].id}&key=${Constance.weatherKey}');
     } catch (e) {
       DevTools.printLog('[031] 天气获取 连接失败');
       notifyListeners();

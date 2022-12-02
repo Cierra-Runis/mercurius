@@ -83,39 +83,43 @@ class _MorePageState extends State<MorePage> {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: ListView(
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('设定'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SettingPage(),
-                  ),
-                );
-              },
-            ),
-            const Divider(
-              height: 5,
-            ),
-            ListTile(
-              leading: const Icon(Icons.info_outline),
-              title: const Text('关于'),
-              onTap: () => _aboutDialog(context),
-            ),
-            const Divider(
-              height: 5,
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: const HiToKoToWidget(),
-            )
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(8),
+            children: <Widget>[
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('设定'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingPage(),
+                    ),
+                  );
+                },
+              ),
+              const Divider(
+                height: 5,
+              ),
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: const Text('关于'),
+                onTap: () => _aboutDialog(context),
+              ),
+              const Divider(
+                height: 5,
+              ),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.all(10),
+            child: HiToKoToWidget(),
+          )
+        ],
       ),
     );
   }

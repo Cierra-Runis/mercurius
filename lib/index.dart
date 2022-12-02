@@ -36,3 +36,4 @@ export 'package:flutter_displaymode/flutter_displaymode.dart';
 export 'package:double_back_to_close/double_back_to_close.dart';
 export 'package:another_flushbar/flushbar.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
+export 'package:share_plus/share_plus.dart';

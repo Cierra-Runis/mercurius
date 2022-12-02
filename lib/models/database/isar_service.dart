@@ -49,9 +49,9 @@ class IsarService {
   Future<List<dynamic>> isDiaryExisted(DateTime dateTime) async {
     final isar = await db;
 
-    List<Diary> diarys = isar.diarys.filter().idIsNotNull().findAllSync();
-    DevTools.printLog(diarys.length.toString());
-    for (var i in diarys) {
+    List<Diary> diaries = isar.diarys.filter().idIsNotNull().findAllSync();
+    DevTools.printLog(diaries.length.toString());
+    for (var i in diaries) {
       if (DateTime.parse(i.createDateTime).isSameDay(dateTime)) {
         DevTools.printLog(
             '[052] 创建时间 ${DateTime.parse(i.createDateTime)} 与 点击按钮时间 $dateTime 已显示，已有日记');
@@ -60,6 +60,15 @@ class IsarService {
     }
     DevTools.printLog('[052] $dateTime 不含日记');
     return [false, null];
+  }
+
+  Future<void> deleteDiaryById(int id) async {
+    final isar = await db;
+
+    await isar.writeTxn(() async {
+      final success = await isar.diarys.delete(id);
+      DevTools.printLog('日记删除情况 $success');
+    });
   }
 
   Future<Isar> openDB() async {

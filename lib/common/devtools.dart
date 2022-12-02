@@ -7,9 +7,6 @@ class DevTools {
   static const showLog = true;
   static const showDebugPaintSizeEnabled = false;
 
-  // 一些开发者信息
-  static String weatherKey = 'a13fc8e191d14cc0930bc07c6660d900';
-
   // 调试用输出语句
   static void printLog(String message) {
     if (showLog) {

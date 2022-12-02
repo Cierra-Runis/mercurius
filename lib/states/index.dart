@@ -4,3 +4,4 @@ export 'mercurius_web_change_notifier.dart';
 export 'location_change_notifier.dart';
 export 'path_change_notifier.dart';
 export 'log_change_notifier.dart';
+export 'diary_editor_change_notifier.dart';

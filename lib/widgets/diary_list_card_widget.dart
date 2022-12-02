@@ -2,28 +2,6 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
-Map<int, String> _weekdayMap = {
-  1: '星期一',
-  2: '星期二',
-  3: '星期三',
-  4: '星期四',
-  5: '星期五',
-  6: '星期六',
-  7: '星期日',
-};
-
-Map<String, IconData> _moodMap = {
-  '开心': UniconsLine.smile,
-  '一般': UniconsLine.meh_closed_eye,
-  '生气': UniconsLine.angry,
-  '困惑': UniconsLine.confused,
-  '失落': UniconsLine.frown,
-  '大笑': UniconsLine.laughing,
-  '难受': UniconsLine.silent_squint,
-  '大哭': UniconsLine.sad_crying,
-  '我死': UniconsLine.smile_dizzy,
-};
-
 class DiaryListCardWidget extends StatefulWidget {
   const DiaryListCardWidget({
     Key? key,
@@ -48,17 +26,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: InkWell(
-        onTap: () {
-          DevTools.printLog('[053] 进入修改模式');
-          // ignore: use_build_context_synchronously
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DiaryEditorPage(diary: widget.diary),
-            ),
-          );
-        },
-        onLongPress: () {},
+        onTap: () => _diaryShowingDialog(context, widget.diary),
         borderRadius: BorderRadius.circular(12),
         child: SizedBox(
           height: 76,
@@ -81,7 +49,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                           ),
                         ),
                         Text(
-                          _weekdayMap[
+                          Constance.weekdayMap[
                               DateTime.parse(widget.diary.createDateTime)
                                   .weekday]!,
                           style: const TextStyle(
@@ -135,7 +103,10 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(size: 18, _moodMap[widget.diary.mood] ?? _moodMap['开心']),
+                  Icon(
+                      size: 18,
+                      Constance.moodMap[widget.diary.mood] ??
+                          Constance.moodMap['开心']),
                   Icon(
                     size: 18,
                     QWeatherIcon.getIconById(
@@ -148,6 +119,15 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _diaryShowingDialog(BuildContext context, Diary diary) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return DiaryShowingDialogWidget(diary: diary);
+      },
     );
   }
 }
