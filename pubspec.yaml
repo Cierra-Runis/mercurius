@@ -34,13 +34,15 @@ publish_to: 'none'
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+15
+version: 0.0.1+16
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
   package_info_plus: ^3.0.1           # 程序内部获取包信息
   url_launcher: ^6.1.6                # 打开外部连接

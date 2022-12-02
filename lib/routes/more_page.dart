@@ -9,38 +9,84 @@ class MorePage extends StatefulWidget {
 class _MorePageState extends State<MorePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        leading: Consumer<ProfileModel>(
+          builder: (context, value, child) {
+            return IconButton(
+              icon: const Icon(UniconsLine.user_circle),
+              onPressed: () {
+                if (profileModel.profile.user == null) {
+                  _loginDialog(context);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfilePage(),
+                    ),
+                  );
+                }
+              },
+            );
+          },
+        ),
+        title: Consumer<LocationModel>(
+          builder: (context, locationModel, child) {
+            return Column(
+              children: [
+                const Text(
+                  'Mercurius',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Saira',
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    locationModel.refetchCurrentPosition(true);
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        UniconsLine.location_arrow,
+                        size: 6,
+                      ),
+                      Text(
+                        " ${(locationModel.position.latitude * 100).toInt() / 100}N ${(locationModel.position.longitude * 100).toInt() / 100}E ",
+                        style: const TextStyle(
+                          fontSize: 8,
+                        ),
+                      ),
+                      Icon(
+                        QWeatherIcon.getIconById(
+                              int.parse(
+                                locationModel.weatherBody.daily?[0].iconDay ??
+                                    '2028',
+                              ),
+                            ) ??
+                            QWeatherIcon.tag_weather_advisory,
+                        size: 6,
+                      ),
+                    ],
+                  ),
+                ),
+                Text(
+                  locationModel.geoBody.location?[0].name ?? '',
+                  style: const TextStyle(
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: ListView(
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            Consumer<ProfileModel>(
-              builder: (context, profileModel, child) {
-                return ListTile(
-                  leading: const Icon(Icons.supervised_user_circle),
-                  title: Text(profileModel.profile.user == null
-                      ? '未登录'
-                      : profileModel.profile.user?.username ??
-                          '不写 username 的屑'),
-                  onTap: () {
-                    if (profileModel.profile.user == null) {
-                      _loginDialog(context);
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ProfilePage(),
-                        ),
-                      );
-                    }
-                  },
-                );
-              },
-            ),
-            const Divider(
-              height: 5,
-            ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('设定'),
@@ -71,7 +117,7 @@ class _MorePageState extends State<MorePage> {
           ],
         ),
       ),
-    ));
+    );
   }
 
   Future<void> _aboutDialog(BuildContext context) {

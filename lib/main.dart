@@ -1,5 +1,7 @@
 import 'package:mercurius/index.dart';
 
+import 'package:flutter/cupertino.dart';
+
 // 位于 main.dart 的 changeNotifier
 ProfileModel profileModel = ProfileModel();
 SudokuModel sudokuModel = SudokuModel();
@@ -54,7 +56,14 @@ class _MercuriusAppState extends State<MercuriusApp> {
             themeMode: profileModel.profile.themeMode,
             // 进入 SplashPage()
             home: const SplashPage(),
-            locale: const Locale('zh', 'cn'),
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              DefaultCupertinoLocalizations.delegate
+            ],
+            supportedLocales: const [
+              Locale('zh', 'CN'),
+            ],
           );
         },
       ),

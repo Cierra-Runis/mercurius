@@ -33,6 +33,7 @@ class _HomeRouteState extends State<HomeRoute> {
           onFirstBackPress: (context) {
             Flushbar(
               icon: const Icon(UniconsLine.exit),
+              isDismissible: false,
               messageText: const Center(
                 child: Text(
                   '再次返回以退出',
@@ -56,8 +57,8 @@ class _HomeRouteState extends State<HomeRoute> {
                 ),
               ],
               duration: const Duration(
-                milliseconds: 1000,
-              ), // show 15 second flushbar
+                milliseconds: 600,
+              ),
             ).show(context);
           },
           child: _widgetOptions.elementAt(_selectedIndex),

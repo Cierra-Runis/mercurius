@@ -108,6 +108,8 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                           Text(
                             widget.diary.titleString ??
                                 widget.diary.latestEditTime.substring(0, 10),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,

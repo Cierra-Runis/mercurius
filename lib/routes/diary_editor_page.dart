@@ -67,6 +67,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
     super.dispose();
   }
 
+  // TODO: 修复遮挡问题
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,8 +87,8 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
           textAlign: TextAlign.center,
           key: _formKey,
           controller: _title,
-          decoration: InputDecoration(
-            hintText: diaryEditorModel.diary.titleString == null ? '无标题' : null,
+          decoration: const InputDecoration(
+            hintText: '无标题',
           ),
         ),
         centerTitle: true,
@@ -131,7 +132,6 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 placeholder: '记些什么吧',
                 controller: _controller,
                 readOnly: false,
-                enableSelectionToolbar: false,
                 scrollBottomInset: 10,
               ),
             ),

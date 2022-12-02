@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'dart:ui';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -44,9 +42,24 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(UniconsLine.user_circle),
-          onPressed: () {},
+        leading: Consumer<ProfileModel>(
+          builder: (context, value, child) {
+            return IconButton(
+              icon: const Icon(UniconsLine.user_circle),
+              onPressed: () {
+                if (profileModel.profile.user == null) {
+                  _loginDialog(context);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfilePage(),
+                    ),
+                  );
+                }
+              },
+            );
+          },
         ),
         title: Consumer<LocationModel>(
           builder: (context, locationModel, child) {
@@ -144,6 +157,7 @@ class _HomePageState extends State<HomePage> {
               },
             )
           : const Center(
+              // TODO: 写日历视图
               child: Text('日历视图'),
             ),
       floatingActionButton: FloatingActionButton(
@@ -180,96 +194,16 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.transparent,
-        child:
-            Consumer4<ProfileModel, MercuriusWebModel, LocationModel, LogModel>(
-          builder: (
-            context,
-            profileModel,
-            mercuriusWebModel,
-            locationModel,
-            logModel,
-            child,
-          ) {
-            return BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 0.25, sigmaY: 0.25),
-              child: ListView(
-                children: [
-                  InkWell(
-                    onLongPress: () {
-                      logModel.clearLog();
-                    },
-                    child: ListTile(
-                      title: Text(
-                        logModel.logString,
-                        style: const TextStyle(
-                          fontSize: 8,
-                          fontFamily: 'Saira',
-                        ),
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(profileModel.profile),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(mercuriusWebModel.githubLatestRelease),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.weatherBody.daily?[0].textDay),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.weatherBody),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.geoBody),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.position),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
+      drawer: const DevLogDrawerWidget(),
+    );
+  }
+
+  Future<void> _loginDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const LoginDialogWidget();
+      },
     );
   }
 }
