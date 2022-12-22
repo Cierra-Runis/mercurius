@@ -10,7 +10,7 @@ class SudokuDifficultySelectorDialogWidget extends StatefulWidget {
 
 class _SudokuDifficultySelectorDialogWidgetState
     extends State<SudokuDifficultySelectorDialogWidget> {
-  // 利用 difficultyIconMay 进行简化
+  /// 利用 `difficultyIconMay` 进行简化
   Map difficultyIconMay = {
     'beginner': Icons.child_friendly_rounded,
     'easy': Icons.child_care_rounded,
@@ -18,11 +18,12 @@ class _SudokuDifficultySelectorDialogWidgetState
     'hard': Icons.biotech_rounded,
   };
 
-  // 创建难度表
+  /// 创建难度表
   List<ListTile> _createDifficultyList(BuildContext context) {
     List<ListTile> list =
         List<ListTile>.generate(0, (index) => const ListTile());
-    // 遍历
+
+    /// 遍历
     sudokuModel.difficultyMap.forEach(
       (key, value) {
         list.add(
@@ -46,7 +47,8 @@ class _SudokuDifficultySelectorDialogWidgetState
             ),
             onTap: () {
               sudokuModel.changeDifficulty(key);
-              // 直接退回至数独界面
+
+              /// 直接退回至数独界面
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },

@@ -10,7 +10,7 @@ class ThemeSelectorWidget extends StatefulWidget {
 class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
   @override
   Widget build(BuildContext context) {
-    // 利用 provide 包进行状态管理
+    /// 利用 `provide` 包进行状态管理
     return Consumer<ProfileModel>(
       builder: (_, profileModel, child) {
         return AlertDialog(

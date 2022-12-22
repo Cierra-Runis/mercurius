@@ -8,7 +8,7 @@ class PathModel extends ChangeNotifier {
   void init() async {
     DevTools.printLog('[045] pathModel 初始化中');
 
-    // 可见于 Android/pers.cierra_runis.mercurius/files
+    /// 可见于 Android/pers.cierra_runis.mercurius/files
     directory = getExternalStorageDirectory();
 
     directory.then((value) {

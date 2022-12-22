@@ -10,7 +10,7 @@ class SudokuPage extends StatefulWidget {
 class SudokuPageState extends State<SudokuPage> {
   late ConfettiController _confettiController;
 
-  // 行列获取数独底色
+  /// 行列获取数独底色
   Color _buttonColor(BuildContext context, int rowIndex, int columnIndex) {
     Color color;
     if (([0, 1, 2].contains(rowIndex) && [3, 4, 5].contains(columnIndex)) ||
@@ -28,7 +28,7 @@ class SudokuPageState extends State<SudokuPage> {
     return color;
   }
 
-  // 创建一行按钮
+  /// 创建一行按钮
   List<SizedBox> _createOneRowButton(BuildContext context, int rowIndex) {
     List<SizedBox> buttonList =
         List<SizedBox>.generate(0, (index) => const SizedBox());
@@ -82,7 +82,7 @@ class SudokuPageState extends State<SudokuPage> {
     return buttonList;
   }
 
-  // 创建多行按钮
+  /// 创建多行按钮
   List<Row> _createRows(BuildContext context) {
     List<Row> rows = List<Row>.generate(0, (index) => Row());
     for (var rowIndex = 0; rowIndex < 9; rowIndex++) {
@@ -98,14 +98,14 @@ class SudokuPageState extends State<SudokuPage> {
 
   @override
   void initState() {
-    // 至数独界面再进行 sudokuModel 的初始化
+    /// 至数独界面再进行 sudokuModel 的初始化
     sudokuModel.init();
     _confettiController =
         ConfettiController(duration: const Duration(milliseconds: 1500));
     super.initState();
   }
 
-  // 彩纸路径
+  /// 彩纸路径
   Path drawStar(Size size) {
     double degToRad(double deg) => deg * (pi / 180.0);
 

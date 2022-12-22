@@ -23,6 +23,6 @@ class Constance {
     '我死': UniconsLine.smile_dizzy,
   };
 
-  // 一些开发者信息
+  /// 天气 `api` 所需开发者 `key`
   static String weatherKey = 'a13fc8e191d14cc0930bc07c6660d900';
 }

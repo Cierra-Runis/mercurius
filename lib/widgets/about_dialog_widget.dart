@@ -90,10 +90,12 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                                 minimumSize: const Size(20, 10),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                              child: const Text(
-                                '更新至新版本',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 8),
+                              child: Badge(
+                                child: const Text(
+                                  '更新至新版本',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 8),
+                                ),
                               ),
                             )
                           : TextButton(

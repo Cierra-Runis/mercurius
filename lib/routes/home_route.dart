@@ -68,13 +68,20 @@ class _HomeRouteState extends State<HomeRoute> {
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? darkColorScheme.onInverseSurface
             : lightColorScheme.surface,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: [
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: '主页',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
+            icon: Consumer2<ProfileModel, MercuriusWebModel>(
+              builder: (context, profileModel, mercuriusWebModel, child) =>
+                  Badge(
+                showBadge: profileModel.profile.currentVersion !=
+                    mercuriusWebModel.githubLatestRelease.tag_name,
+                child: const Icon(Icons.more_horiz),
+              ),
+            ),
             label: '更多',
           ),
         ],

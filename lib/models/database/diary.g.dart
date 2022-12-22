@@ -25,12 +25,12 @@ const DiarySchema = CollectionSchema(
     r'createDateTime': PropertySchema(
       id: 1,
       name: r'createDateTime',
-      type: IsarType.string,
+      type: IsarType.dateTime,
     ),
     r'latestEditTime': PropertySchema(
       id: 2,
       name: r'latestEditTime',
-      type: IsarType.string,
+      type: IsarType.dateTime,
     ),
     r'mood': PropertySchema(
       id: 3,
@@ -81,8 +81,6 @@ int _diaryEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.createDateTime.length * 3;
-  bytesCount += 3 + object.latestEditTime.length * 3;
   bytesCount += 3 + object.mood.length * 3;
   {
     final value = object.titleString;
@@ -101,8 +99,8 @@ void _diarySerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.contentJsonString);
-  writer.writeString(offsets[1], object.createDateTime);
-  writer.writeString(offsets[2], object.latestEditTime);
+  writer.writeDateTime(offsets[1], object.createDateTime);
+  writer.writeDateTime(offsets[2], object.latestEditTime);
   writer.writeString(offsets[3], object.mood);
   writer.writeString(offsets[4], object.titleString);
   writer.writeString(offsets[5], object.weather);
@@ -116,9 +114,9 @@ Diary _diaryDeserialize(
 ) {
   final object = Diary();
   object.contentJsonString = reader.readStringOrNull(offsets[0]);
-  object.createDateTime = reader.readString(offsets[1]);
+  object.createDateTime = reader.readDateTime(offsets[1]);
   object.id = id;
-  object.latestEditTime = reader.readString(offsets[2]);
+  object.latestEditTime = reader.readDateTime(offsets[2]);
   object.mood = reader.readString(offsets[3]);
   object.titleString = reader.readStringOrNull(offsets[4]);
   object.weather = reader.readString(offsets[5]);
@@ -135,9 +133,9 @@ P _diaryDeserializeProp<P>(
     case 0:
       return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 2:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 3:
       return (reader.readString(offset)) as P;
     case 4:
@@ -389,54 +387,46 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+      DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'createDateTime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeGreaterThan(
-    String value, {
+    DateTime value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'createDateTime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeLessThan(
-    String value, {
+    DateTime value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'createDateTime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeBetween(
-    String lower,
-    String upper, {
+    DateTime lower,
+    DateTime upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -445,75 +435,6 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'createDateTime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'createDateTime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'createDateTime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'createDateTime',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'createDateTime',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'createDateTime',
-        value: '',
       ));
     });
   }
@@ -587,54 +508,46 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+      DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'latestEditTime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeGreaterThan(
-    String value, {
+    DateTime value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'latestEditTime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeLessThan(
-    String value, {
+    DateTime value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'latestEditTime',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeBetween(
-    String lower,
-    String upper, {
+    DateTime lower,
+    DateTime upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -643,75 +556,6 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'latestEditTime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'latestEditTime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'latestEditTime',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'latestEditTime',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'latestEditTime',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'latestEditTime',
-        value: '',
       ));
     });
   }
@@ -1351,19 +1195,15 @@ extension DiaryQueryWhereDistinct on QueryBuilder<Diary, Diary, QDistinct> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QDistinct> distinctByCreateDateTime(
-      {bool caseSensitive = true}) {
+  QueryBuilder<Diary, Diary, QDistinct> distinctByCreateDateTime() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'createDateTime',
-          caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'createDateTime');
     });
   }
 
-  QueryBuilder<Diary, Diary, QDistinct> distinctByLatestEditTime(
-      {bool caseSensitive = true}) {
+  QueryBuilder<Diary, Diary, QDistinct> distinctByLatestEditTime() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'latestEditTime',
-          caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'latestEditTime');
     });
   }
 
@@ -1402,13 +1242,13 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Diary, String, QQueryOperations> createDateTimeProperty() {
+  QueryBuilder<Diary, DateTime, QQueryOperations> createDateTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'createDateTime');
     });
   }
 
-  QueryBuilder<Diary, String, QQueryOperations> latestEditTimeProperty() {
+  QueryBuilder<Diary, DateTime, QQueryOperations> latestEditTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'latestEditTime');
     });
@@ -1439,8 +1279,8 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
 
 Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary()
   ..id = json['id'] as int?
-  ..createDateTime = json['createDateTime'] as String
-  ..latestEditTime = json['latestEditTime'] as String
+  ..createDateTime = DateTime.parse(json['createDateTime'] as String)
+  ..latestEditTime = DateTime.parse(json['latestEditTime'] as String)
   ..titleString = json['titleString'] as String?
   ..contentJsonString = json['contentJsonString'] as String?
   ..weather = json['weather'] as String
@@ -1448,8 +1288,8 @@ Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary()
 
 Map<String, dynamic> _$DiaryToJson(Diary instance) => <String, dynamic>{
       'id': instance.id,
-      'createDateTime': instance.createDateTime,
-      'latestEditTime': instance.latestEditTime,
+      'createDateTime': instance.createDateTime.toIso8601String(),
+      'latestEditTime': instance.latestEditTime.toIso8601String(),
       'titleString': instance.titleString,
       'contentJsonString': instance.contentJsonString,
       'weather': instance.weather,

@@ -6,1563 +6,1563 @@ class QWeatherIcon {
   QWeatherIcon._();
   static const _fontFam = 'QWeather_Icon';
 
-  /// QWeather Icon with code "100"
+  /// QWeather Icon with code `100`
   static const IconData code_100 = IconData(0xf101, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "101"
+  /// QWeather Icon with code `101`
   static const IconData code_101 = IconData(0xf102, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "102"
+  /// QWeather Icon with code `102`
   static const IconData code_102 = IconData(0xf103, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "103"
+  /// QWeather Icon with code `103`
   static const IconData code_103 = IconData(0xf104, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "104"
+  /// QWeather Icon with code `104`
   static const IconData code_104 = IconData(0xf105, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "150"
+  /// QWeather Icon with code `150`
   static const IconData code_150 = IconData(0xf106, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "151"
+  /// QWeather Icon with code `151`
   static const IconData code_151 = IconData(0xf107, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "152"
+  /// QWeather Icon with code `152`
   static const IconData code_152 = IconData(0xf108, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "153"
+  /// QWeather Icon with code `153`
   static const IconData code_153 = IconData(0xf109, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "300"
+  /// QWeather Icon with code `300`
   static const IconData code_300 = IconData(0xf10a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "301"
+  /// QWeather Icon with code `301`
   static const IconData code_301 = IconData(0xf10b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "302"
+  /// QWeather Icon with code `302`
   static const IconData code_302 = IconData(0xf10c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "303"
+  /// QWeather Icon with code `303`
   static const IconData code_303 = IconData(0xf10d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "304"
+  /// QWeather Icon with code `304`
   static const IconData code_304 = IconData(0xf10e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "305"
+  /// QWeather Icon with code `305`
   static const IconData code_305 = IconData(0xf10f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "306"
+  /// QWeather Icon with code `306`
   static const IconData code_306 = IconData(0xf110, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "307"
+  /// QWeather Icon with code `307`
   static const IconData code_307 = IconData(0xf111, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "308"
+  /// QWeather Icon with code `308`
   static const IconData code_308 = IconData(0xf112, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "309"
+  /// QWeather Icon with code `309`
   static const IconData code_309 = IconData(0xf113, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "310"
+  /// QWeather Icon with code `310`
   static const IconData code_310 = IconData(0xf114, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "311"
+  /// QWeather Icon with code `311`
   static const IconData code_311 = IconData(0xf115, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "312"
+  /// QWeather Icon with code `312`
   static const IconData code_312 = IconData(0xf116, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "313"
+  /// QWeather Icon with code `313`
   static const IconData code_313 = IconData(0xf117, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "314"
+  /// QWeather Icon with code `314`
   static const IconData code_314 = IconData(0xf118, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "315"
+  /// QWeather Icon with code `315`
   static const IconData code_315 = IconData(0xf119, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "316"
+  /// QWeather Icon with code `316`
   static const IconData code_316 = IconData(0xf11a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "317"
+  /// QWeather Icon with code `317`
   static const IconData code_317 = IconData(0xf11b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "318"
+  /// QWeather Icon with code `318`
   static const IconData code_318 = IconData(0xf11c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "350"
+  /// QWeather Icon with code `350`
   static const IconData code_350 = IconData(0xf11d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "351"
+  /// QWeather Icon with code `351`
   static const IconData code_351 = IconData(0xf11e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "399"
+  /// QWeather Icon with code `399`
   static const IconData code_399 = IconData(0xf11f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "400"
+  /// QWeather Icon with code `400`
   static const IconData code_400 = IconData(0xf120, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "401"
+  /// QWeather Icon with code `401`
   static const IconData code_401 = IconData(0xf121, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "402"
+  /// QWeather Icon with code `402`
   static const IconData code_402 = IconData(0xf122, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "403"
+  /// QWeather Icon with code `403`
   static const IconData code_403 = IconData(0xf123, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "404"
+  /// QWeather Icon with code `404`
   static const IconData code_404 = IconData(0xf124, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "405"
+  /// QWeather Icon with code `405`
   static const IconData code_405 = IconData(0xf125, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "406"
+  /// QWeather Icon with code `406`
   static const IconData code_406 = IconData(0xf126, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "407"
+  /// QWeather Icon with code `407`
   static const IconData code_407 = IconData(0xf127, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "408"
+  /// QWeather Icon with code `408`
   static const IconData code_408 = IconData(0xf128, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "409"
+  /// QWeather Icon with code `409`
   static const IconData code_409 = IconData(0xf129, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "410"
+  /// QWeather Icon with code `410`
   static const IconData code_410 = IconData(0xf12a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "456"
+  /// QWeather Icon with code `456`
   static const IconData code_456 = IconData(0xf12b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "457"
+  /// QWeather Icon with code `457`
   static const IconData code_457 = IconData(0xf12c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "499"
+  /// QWeather Icon with code `499`
   static const IconData code_499 = IconData(0xf12d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "500"
+  /// QWeather Icon with code `500`
   static const IconData code_500 = IconData(0xf12e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "501"
+  /// QWeather Icon with code `501`
   static const IconData code_501 = IconData(0xf12f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "502"
+  /// QWeather Icon with code `502`
   static const IconData code_502 = IconData(0xf130, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "503"
+  /// QWeather Icon with code `503`
   static const IconData code_503 = IconData(0xf131, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "504"
+  /// QWeather Icon with code `504`
   static const IconData code_504 = IconData(0xf132, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "507"
+  /// QWeather Icon with code `507`
   static const IconData code_507 = IconData(0xf133, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "508"
+  /// QWeather Icon with code `508`
   static const IconData code_508 = IconData(0xf134, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "509"
+  /// QWeather Icon with code `509`
   static const IconData code_509 = IconData(0xf135, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "510"
+  /// QWeather Icon with code `510`
   static const IconData code_510 = IconData(0xf136, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "511"
+  /// QWeather Icon with code `511`
   static const IconData code_511 = IconData(0xf137, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "512"
+  /// QWeather Icon with code `512`
   static const IconData code_512 = IconData(0xf138, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "513"
+  /// QWeather Icon with code `513`
   static const IconData code_513 = IconData(0xf139, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "514"
+  /// QWeather Icon with code `514`
   static const IconData code_514 = IconData(0xf13a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "515"
+  /// QWeather Icon with code `515`
   static const IconData code_515 = IconData(0xf13b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "800"
+  /// QWeather Icon with code `800`
   static const IconData code_800 = IconData(0xf13c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "801"
+  /// QWeather Icon with code `801`
   static const IconData code_801 = IconData(0xf13d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "802"
+  /// QWeather Icon with code `802`
   static const IconData code_802 = IconData(0xf13e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "803"
+  /// QWeather Icon with code `803`
   static const IconData code_803 = IconData(0xf13f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "804"
+  /// QWeather Icon with code `804`
   static const IconData code_804 = IconData(0xf140, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "805"
+  /// QWeather Icon with code `805`
   static const IconData code_805 = IconData(0xf141, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "806"
+  /// QWeather Icon with code `806`
   static const IconData code_806 = IconData(0xf142, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "807"
+  /// QWeather Icon with code `807`
   static const IconData code_807 = IconData(0xf143, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "900"
+  /// QWeather Icon with code `900`
   static const IconData code_900 = IconData(0xf144, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "901"
+  /// QWeather Icon with code `901`
   static const IconData code_901 = IconData(0xf145, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "999"
+  /// QWeather Icon with code `999`
   static const IconData code_999 = IconData(0xf146, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1001"
+  /// QWeather Icon with code `1001`
   static const IconData code_1001 = IconData(0xf147, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1002"
+  /// QWeather Icon with code `1002`
   static const IconData code_1002 = IconData(0xf148, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1003"
+  /// QWeather Icon with code `1003`
   static const IconData code_1003 = IconData(0xf149, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1004"
+  /// QWeather Icon with code `1004`
   static const IconData code_1004 = IconData(0xf14a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1005"
+  /// QWeather Icon with code `1005`
   static const IconData code_1005 = IconData(0xf14b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1006"
+  /// QWeather Icon with code `1006`
   static const IconData code_1006 = IconData(0xf14c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1007"
+  /// QWeather Icon with code `1007`
   static const IconData code_1007 = IconData(0xf14d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1008"
+  /// QWeather Icon with code `1008`
   static const IconData code_1008 = IconData(0xf14e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1009"
+  /// QWeather Icon with code `1009`
   static const IconData code_1009 = IconData(0xf14f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1010"
+  /// QWeather Icon with code `1010`
   static const IconData code_1010 = IconData(0xf150, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1011"
+  /// QWeather Icon with code `1011`
   static const IconData code_1011 = IconData(0xf151, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1012"
+  /// QWeather Icon with code `1012`
   static const IconData code_1012 = IconData(0xf152, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1013"
+  /// QWeather Icon with code `1013`
   static const IconData code_1013 = IconData(0xf153, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1014"
+  /// QWeather Icon with code `1014`
   static const IconData code_1014 = IconData(0xf154, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1015"
+  /// QWeather Icon with code `1015`
   static const IconData code_1015 = IconData(0xf155, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1016"
+  /// QWeather Icon with code `1016`
   static const IconData code_1016 = IconData(0xf156, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1017"
+  /// QWeather Icon with code `1017`
   static const IconData code_1017 = IconData(0xf157, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1018"
+  /// QWeather Icon with code `1018`
   static const IconData code_1018 = IconData(0xf158, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1019"
+  /// QWeather Icon with code `1019`
   static const IconData code_1019 = IconData(0xf159, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1020"
+  /// QWeather Icon with code `1020`
   static const IconData code_1020 = IconData(0xf15a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1021"
+  /// QWeather Icon with code `1021`
   static const IconData code_1021 = IconData(0xf15b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1022"
+  /// QWeather Icon with code `1022`
   static const IconData code_1022 = IconData(0xf15c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1023"
+  /// QWeather Icon with code `1023`
   static const IconData code_1023 = IconData(0xf15d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1024"
+  /// QWeather Icon with code `1024`
   static const IconData code_1024 = IconData(0xf15e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1025"
+  /// QWeather Icon with code `1025`
   static const IconData code_1025 = IconData(0xf15f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1026"
+  /// QWeather Icon with code `1026`
   static const IconData code_1026 = IconData(0xf160, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1027"
+  /// QWeather Icon with code `1027`
   static const IconData code_1027 = IconData(0xf161, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1028"
+  /// QWeather Icon with code `1028`
   static const IconData code_1028 = IconData(0xf162, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1029"
+  /// QWeather Icon with code `1029`
   static const IconData code_1029 = IconData(0xf163, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1030"
+  /// QWeather Icon with code `1030`
   static const IconData code_1030 = IconData(0xf164, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1031"
+  /// QWeather Icon with code `1031`
   static const IconData code_1031 = IconData(0xf165, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1032"
+  /// QWeather Icon with code `1032`
   static const IconData code_1032 = IconData(0xf166, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1033"
+  /// QWeather Icon with code `1033`
   static const IconData code_1033 = IconData(0xf167, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1034"
+  /// QWeather Icon with code `1034`
   static const IconData code_1034 = IconData(0xf168, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1035"
+  /// QWeather Icon with code `1035`
   static const IconData code_1035 = IconData(0xf169, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1036"
+  /// QWeather Icon with code `1036`
   static const IconData code_1036 = IconData(0xf16a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1037"
+  /// QWeather Icon with code `1037`
   static const IconData code_1037 = IconData(0xf16b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1038"
+  /// QWeather Icon with code `1038`
   static const IconData code_1038 = IconData(0xf16c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1039"
+  /// QWeather Icon with code `1039`
   static const IconData code_1039 = IconData(0xf16d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1040"
+  /// QWeather Icon with code `1040`
   static const IconData code_1040 = IconData(0xf16e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1041"
+  /// QWeather Icon with code `1041`
   static const IconData code_1041 = IconData(0xf16f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1042"
+  /// QWeather Icon with code `1042`
   static const IconData code_1042 = IconData(0xf170, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1043"
+  /// QWeather Icon with code `1043`
   static const IconData code_1043 = IconData(0xf171, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1044"
+  /// QWeather Icon with code `1044`
   static const IconData code_1044 = IconData(0xf172, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1045"
+  /// QWeather Icon with code `1045`
   static const IconData code_1045 = IconData(0xf173, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1046"
+  /// QWeather Icon with code `1046`
   static const IconData code_1046 = IconData(0xf174, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1047"
+  /// QWeather Icon with code `1047`
   static const IconData code_1047 = IconData(0xf175, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1048"
+  /// QWeather Icon with code `1048`
   static const IconData code_1048 = IconData(0xf176, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1049"
+  /// QWeather Icon with code `1049`
   static const IconData code_1049 = IconData(0xf177, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1050"
+  /// QWeather Icon with code `1050`
   static const IconData code_1050 = IconData(0xf178, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1051"
+  /// QWeather Icon with code `1051`
   static const IconData code_1051 = IconData(0xf179, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1052"
+  /// QWeather Icon with code `1052`
   static const IconData code_1052 = IconData(0xf17a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1053"
+  /// QWeather Icon with code `1053`
   static const IconData code_1053 = IconData(0xf17b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1054"
+  /// QWeather Icon with code `1054`
   static const IconData code_1054 = IconData(0xf17c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1055"
+  /// QWeather Icon with code `1055`
   static const IconData code_1055 = IconData(0xf17d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1056"
+  /// QWeather Icon with code `1056`
   static const IconData code_1056 = IconData(0xf17e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1057"
+  /// QWeather Icon with code `1057`
   static const IconData code_1057 = IconData(0xf17f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1058"
+  /// QWeather Icon with code `1058`
   static const IconData code_1058 = IconData(0xf180, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1059"
+  /// QWeather Icon with code `1059`
   static const IconData code_1059 = IconData(0xf181, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1061"
+  /// QWeather Icon with code `1061`
   static const IconData code_1061 = IconData(0xf182, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1064"
+  /// QWeather Icon with code `1064`
   static const IconData code_1064 = IconData(0xf183, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1101"
+  /// QWeather Icon with code `1101`
   static const IconData code_1101 = IconData(0xf184, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1302"
+  /// QWeather Icon with code `1302`
   static const IconData code_1302 = IconData(0xf185, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1402"
+  /// QWeather Icon with code `1402`
   static const IconData code_1402 = IconData(0xf186, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1601"
+  /// QWeather Icon with code `1601`
   static const IconData code_1601 = IconData(0xf187, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1602"
+  /// QWeather Icon with code `1602`
   static const IconData code_1602 = IconData(0xf188, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1603"
+  /// QWeather Icon with code `1603`
   static const IconData code_1603 = IconData(0xf189, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1604"
+  /// QWeather Icon with code `1604`
   static const IconData code_1604 = IconData(0xf18a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1605"
+  /// QWeather Icon with code `1605`
   static const IconData code_1605 = IconData(0xf18b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1606"
+  /// QWeather Icon with code `1606`
   static const IconData code_1606 = IconData(0xf18c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "1607"
+  /// QWeather Icon with code `1607`
   static const IconData code_1607 = IconData(0xf18d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2001"
+  /// QWeather Icon with code `2001`
   static const IconData code_2001 = IconData(0xf18e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2002"
+  /// QWeather Icon with code `2002`
   static const IconData code_2002 = IconData(0xf18f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2003"
+  /// QWeather Icon with code `2003`
   static const IconData code_2003 = IconData(0xf190, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2004"
+  /// QWeather Icon with code `2004`
   static const IconData code_2004 = IconData(0xf191, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2005"
+  /// QWeather Icon with code `2005`
   static const IconData code_2005 = IconData(0xf192, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2006"
+  /// QWeather Icon with code `2006`
   static const IconData code_2006 = IconData(0xf193, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2007"
+  /// QWeather Icon with code `2007`
   static const IconData code_2007 = IconData(0xf194, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2008"
+  /// QWeather Icon with code `2008`
   static const IconData code_2008 = IconData(0xf195, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2009"
+  /// QWeather Icon with code `2009`
   static const IconData code_2009 = IconData(0xf196, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2010"
+  /// QWeather Icon with code `2010`
   static const IconData code_2010 = IconData(0xf197, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2011"
+  /// QWeather Icon with code `2011`
   static const IconData code_2011 = IconData(0xf198, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2012"
+  /// QWeather Icon with code `2012`
   static const IconData code_2012 = IconData(0xf199, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2013"
+  /// QWeather Icon with code `2013`
   static const IconData code_2013 = IconData(0xf19a, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2014"
+  /// QWeather Icon with code `2014`
   static const IconData code_2014 = IconData(0xf19b, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2015"
+  /// QWeather Icon with code `2015`
   static const IconData code_2015 = IconData(0xf19c, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2016"
+  /// QWeather Icon with code `2016`
   static const IconData code_2016 = IconData(0xf19d, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2017"
+  /// QWeather Icon with code `2017`
   static const IconData code_2017 = IconData(0xf19e, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2018"
+  /// QWeather Icon with code `2018`
   static const IconData code_2018 = IconData(0xf19f, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2019"
+  /// QWeather Icon with code `2019`
   static const IconData code_2019 = IconData(0xf1a0, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2020"
+  /// QWeather Icon with code `2020`
   static const IconData code_2020 = IconData(0xf1a1, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2021"
+  /// QWeather Icon with code `2021`
   static const IconData code_2021 = IconData(0xf1a2, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2022"
+  /// QWeather Icon with code `2022`
   static const IconData code_2022 = IconData(0xf1a3, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2023"
+  /// QWeather Icon with code `2023`
   static const IconData code_2023 = IconData(0xf1a4, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2024"
+  /// QWeather Icon with code `2024`
   static const IconData code_2024 = IconData(0xf1a5, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2025"
+  /// QWeather Icon with code `2025`
   static const IconData code_2025 = IconData(0xf1a6, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2026"
+  /// QWeather Icon with code `2026`
   static const IconData code_2026 = IconData(0xf1a7, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2027"
+  /// QWeather Icon with code `2027`
   static const IconData code_2027 = IconData(0xf1a8, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "2028"
+  /// QWeather Icon with code `2028`
   static const IconData code_2028 = IconData(0xf1a9, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "9998"
+  /// QWeather Icon with code `9998`
   static const IconData code_9998 = IconData(0xf1aa, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "9999"
+  /// QWeather Icon with code `9999`
   static const IconData code_9999 = IconData(0xf1ab, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "100_fill"
+  /// QWeather Icon with code `100_fill`
   static const IconData code_100_fill = IconData(0xf1ac, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "101_fill"
+  /// QWeather Icon with code `101_fill`
   static const IconData code_101_fill = IconData(0xf1ad, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "102_fill"
+  /// QWeather Icon with code `102_fill`
   static const IconData code_102_fill = IconData(0xf1ae, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "103_fill"
+  /// QWeather Icon with code `103_fill`
   static const IconData code_103_fill = IconData(0xf1af, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "104_fill"
+  /// QWeather Icon with code `104_fill`
   static const IconData code_104_fill = IconData(0xf1b0, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "150_fill"
+  /// QWeather Icon with code `150_fill`
   static const IconData code_150_fill = IconData(0xf1b1, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "151_fill"
+  /// QWeather Icon with code `151_fill`
   static const IconData code_151_fill = IconData(0xf1b2, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "152_fill"
+  /// QWeather Icon with code `152_fill`
   static const IconData code_152_fill = IconData(0xf1b3, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "153_fill"
+  /// QWeather Icon with code `153_fill`
   static const IconData code_153_fill = IconData(0xf1b4, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "300_fill"
+  /// QWeather Icon with code `300_fill`
   static const IconData code_300_fill = IconData(0xf1b5, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "301_fill"
+  /// QWeather Icon with code `301_fill`
   static const IconData code_301_fill = IconData(0xf1b6, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "302_fill"
+  /// QWeather Icon with code `302_fill`
   static const IconData code_302_fill = IconData(0xf1b7, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "303_fill"
+  /// QWeather Icon with code `303_fill`
   static const IconData code_303_fill = IconData(0xf1b8, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "304_fill"
+  /// QWeather Icon with code `304_fill`
   static const IconData code_304_fill = IconData(0xf1b9, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "305_fill"
+  /// QWeather Icon with code `305_fill`
   static const IconData code_305_fill = IconData(0xf1ba, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "306_fill"
+  /// QWeather Icon with code `306_fill`
   static const IconData code_306_fill = IconData(0xf1bb, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "307_fill"
+  /// QWeather Icon with code `307_fill`
   static const IconData code_307_fill = IconData(0xf1bc, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "308_fill"
+  /// QWeather Icon with code `308_fill`
   static const IconData code_308_fill = IconData(0xf1bd, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "309_fill"
+  /// QWeather Icon with code `309_fill`
   static const IconData code_309_fill = IconData(0xf1be, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "310_fill"
+  /// QWeather Icon with code `310_fill`
   static const IconData code_310_fill = IconData(0xf1bf, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "311_fill"
+  /// QWeather Icon with code `311_fill`
   static const IconData code_311_fill = IconData(0xf1c0, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "312_fill"
+  /// QWeather Icon with code `312_fill`
   static const IconData code_312_fill = IconData(0xf1c1, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "313_fill"
+  /// QWeather Icon with code `313_fill`
   static const IconData code_313_fill = IconData(0xf1c2, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "314_fill"
+  /// QWeather Icon with code `314_fill`
   static const IconData code_314_fill = IconData(0xf1c3, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "315_fill"
+  /// QWeather Icon with code `315_fill`
   static const IconData code_315_fill = IconData(0xf1c4, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "316_fill"
+  /// QWeather Icon with code `316_fill`
   static const IconData code_316_fill = IconData(0xf1c5, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "317_fill"
+  /// QWeather Icon with code `317_fill`
   static const IconData code_317_fill = IconData(0xf1c6, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "318_fill"
+  /// QWeather Icon with code `318_fill`
   static const IconData code_318_fill = IconData(0xf1c7, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "350_fill"
+  /// QWeather Icon with code `350_fill`
   static const IconData code_350_fill = IconData(0xf1c8, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "351_fill"
+  /// QWeather Icon with code `351_fill`
   static const IconData code_351_fill = IconData(0xf1c9, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "399_fill"
+  /// QWeather Icon with code `399_fill`
   static const IconData code_399_fill = IconData(0xf1ca, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "400_fill"
+  /// QWeather Icon with code `400_fill`
   static const IconData code_400_fill = IconData(0xf1cb, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "401_fill"
+  /// QWeather Icon with code `401_fill`
   static const IconData code_401_fill = IconData(0xf1cc, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "402_fill"
+  /// QWeather Icon with code `402_fill`
   static const IconData code_402_fill = IconData(0xf1cd, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "403_fill"
+  /// QWeather Icon with code `403_fill`
   static const IconData code_403_fill = IconData(0xf1ce, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "404_fill"
+  /// QWeather Icon with code `404_fill`
   static const IconData code_404_fill = IconData(0xf1cf, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "405_fill"
+  /// QWeather Icon with code `405_fill`
   static const IconData code_405_fill = IconData(0xf1d0, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "406_fill"
+  /// QWeather Icon with code `406_fill`
   static const IconData code_406_fill = IconData(0xf1d1, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "407_fill"
+  /// QWeather Icon with code `407_fill`
   static const IconData code_407_fill = IconData(0xf1d2, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "408_fill"
+  /// QWeather Icon with code `408_fill`
   static const IconData code_408_fill = IconData(0xf1d3, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "409_fill"
+  /// QWeather Icon with code `409_fill`
   static const IconData code_409_fill = IconData(0xf1d4, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "410_fill"
+  /// QWeather Icon with code `410_fill`
   static const IconData code_410_fill = IconData(0xf1d5, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "456_fill"
+  /// QWeather Icon with code `456_fill`
   static const IconData code_456_fill = IconData(0xf1d6, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "457_fill"
+  /// QWeather Icon with code `457_fill`
   static const IconData code_457_fill = IconData(0xf1d7, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "499_fill"
+  /// QWeather Icon with code `499_fill`
   static const IconData code_499_fill = IconData(0xf1d8, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "500_fill"
+  /// QWeather Icon with code `500_fill`
   static const IconData code_500_fill = IconData(0xf1d9, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "501_fill"
+  /// QWeather Icon with code `501_fill`
   static const IconData code_501_fill = IconData(0xf1da, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "502_fill"
+  /// QWeather Icon with code `502_fill`
   static const IconData code_502_fill = IconData(0xf1db, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "503_fill"
+  /// QWeather Icon with code `503_fill`
   static const IconData code_503_fill = IconData(0xf1dc, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "504_fill"
+  /// QWeather Icon with code `504_fill`
   static const IconData code_504_fill = IconData(0xf1dd, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "507_fill"
+  /// QWeather Icon with code `507_fill`
   static const IconData code_507_fill = IconData(0xf1de, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "508_fill"
+  /// QWeather Icon with code `508_fill`
   static const IconData code_508_fill = IconData(0xf1df, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "509_fill"
+  /// QWeather Icon with code `509_fill`
   static const IconData code_509_fill = IconData(0xf1e0, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "510_fill"
+  /// QWeather Icon with code `510_fill`
   static const IconData code_510_fill = IconData(0xf1e1, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "511_fill"
+  /// QWeather Icon with code `511_fill`
   static const IconData code_511_fill = IconData(0xf1e2, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "512_fill"
+  /// QWeather Icon with code `512_fill`
   static const IconData code_512_fill = IconData(0xf1e3, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "513_fill"
+  /// QWeather Icon with code `513_fill`
   static const IconData code_513_fill = IconData(0xf1e4, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "514_fill"
+  /// QWeather Icon with code `514_fill`
   static const IconData code_514_fill = IconData(0xf1e5, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "515_fill"
+  /// QWeather Icon with code `515_fill`
   static const IconData code_515_fill = IconData(0xf1e6, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "900_fill"
+  /// QWeather Icon with code `900_fill`
   static const IconData code_900_fill = IconData(0xf1e7, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "901_fill"
+  /// QWeather Icon with code `901_fill`
   static const IconData code_901_fill = IconData(0xf1e8, fontFamily: _fontFam);
 
-  /// QWeather Icon with code "999_fill"
+  /// QWeather Icon with code `999_fill`
   static const IconData code_999_fill = IconData(0xf1e9, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sunny"
+  /// QWeather Icon with tag `sunny`
   static const IconData tag_sunny = IconData(0xf101, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cloudy"
+  /// QWeather Icon with tag `cloudy`
   static const IconData tag_cloudy = IconData(0xf102, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "few_clouds"
+  /// QWeather Icon with tag `few_clouds`
   static const IconData tag_few_clouds = IconData(0xf103, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "partly_cloudy"
+  /// QWeather Icon with tag `partly_cloudy`
   static const IconData tag_partly_cloudy =
       IconData(0xf104, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "overcast"
+  /// QWeather Icon with tag `overcast`
   static const IconData tag_overcast = IconData(0xf105, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "clear_night"
+  /// QWeather Icon with tag `clear_night`
   static const IconData tag_clear_night =
       IconData(0xf106, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cloudy_night"
+  /// QWeather Icon with tag `cloudy_night`
   static const IconData tag_cloudy_night =
       IconData(0xf107, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "few_clouds_night"
+  /// QWeather Icon with tag `few_clouds_night`
   static const IconData tag_few_clouds_night =
       IconData(0xf108, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "partly_cloudy_night"
+  /// QWeather Icon with tag `partly_cloudy_night`
   static const IconData tag_partly_cloudy_night =
       IconData(0xf109, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_rain"
+  /// QWeather Icon with tag `shower_rain`
   static const IconData tag_shower_rain =
       IconData(0xf10a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_shower_rain"
+  /// QWeather Icon with tag `heavy_shower_rain`
   static const IconData tag_heavy_shower_rain =
       IconData(0xf10b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thundershower"
+  /// QWeather Icon with tag `thundershower`
   static const IconData tag_thundershower =
       IconData(0xf10c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_thunderstorm"
+  /// QWeather Icon with tag `heavy_thunderstorm`
   static const IconData tag_heavy_thunderstorm =
       IconData(0xf10d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thundershower_with_hail"
+  /// QWeather Icon with tag `thundershower_with_hail`
   static const IconData tag_thundershower_with_hail =
       IconData(0xf10e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_rain"
+  /// QWeather Icon with tag `light_rain`
   static const IconData tag_light_rain = IconData(0xf10f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_rain"
+  /// QWeather Icon with tag `moderate_rain`
   static const IconData tag_moderate_rain =
       IconData(0xf110, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_rain"
+  /// QWeather Icon with tag `heavy_rain`
   static const IconData tag_heavy_rain = IconData(0xf111, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "extreme_rain"
+  /// QWeather Icon with tag `extreme_rain`
   static const IconData tag_extreme_rain =
       IconData(0xf112, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "drizzle_rain"
+  /// QWeather Icon with tag `drizzle_rain`
   static const IconData tag_drizzle_rain =
       IconData(0xf113, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "storm"
+  /// QWeather Icon with tag `storm`
   static const IconData tag_storm = IconData(0xf114, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_storm"
+  /// QWeather Icon with tag `heavy_storm`
   static const IconData tag_heavy_storm =
       IconData(0xf115, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severe_storm"
+  /// QWeather Icon with tag `severe_storm`
   static const IconData tag_severe_storm =
       IconData(0xf116, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "freezing_rain"
+  /// QWeather Icon with tag `freezing_rain`
   static const IconData tag_freezing_rain =
       IconData(0xf117, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_to_moderate_rain"
+  /// QWeather Icon with tag `light_to_moderate_rain`
   static const IconData tag_light_to_moderate_rain =
       IconData(0xf118, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_to_heavy_rain"
+  /// QWeather Icon with tag `moderate_to_heavy_rain`
   static const IconData tag_moderate_to_heavy_rain =
       IconData(0xf119, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_rain_to_storm"
+  /// QWeather Icon with tag `heavy_rain_to_storm`
   static const IconData tag_heavy_rain_to_storm =
       IconData(0xf11a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "storm_to_heavy_storm"
+  /// QWeather Icon with tag `storm_to_heavy_storm`
   static const IconData tag_storm_to_heavy_storm =
       IconData(0xf11b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_to_severe_storm"
+  /// QWeather Icon with tag `heavy_to_severe_storm`
   static const IconData tag_heavy_to_severe_storm =
       IconData(0xf11c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_rain_night"
+  /// QWeather Icon with tag `shower_rain_night`
   static const IconData tag_shower_rain_night =
       IconData(0xf11d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_shower_rain_night"
+  /// QWeather Icon with tag `heavy_shower_rain_night`
   static const IconData tag_heavy_shower_rain_night =
       IconData(0xf11e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rain"
+  /// QWeather Icon with tag `rain`
   static const IconData tag_rain = IconData(0xf11f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_snow"
+  /// QWeather Icon with tag `light_snow`
   static const IconData tag_light_snow = IconData(0xf120, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_snow"
+  /// QWeather Icon with tag `moderate_snow`
   static const IconData tag_moderate_snow =
       IconData(0xf121, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_snow"
+  /// QWeather Icon with tag `heavy_snow`
   static const IconData tag_heavy_snow = IconData(0xf122, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snowstorm"
+  /// QWeather Icon with tag `snowstorm`
   static const IconData tag_snowstorm = IconData(0xf123, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sleet"
+  /// QWeather Icon with tag `sleet`
   static const IconData tag_sleet = IconData(0xf124, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rain_and_snow"
+  /// QWeather Icon with tag `rain_and_snow`
   static const IconData tag_rain_and_snow =
       IconData(0xf125, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_snow"
+  /// QWeather Icon with tag `shower_snow`
   static const IconData tag_shower_snow =
       IconData(0xf126, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_flurry"
+  /// QWeather Icon with tag `snow_flurry`
   static const IconData tag_snow_flurry =
       IconData(0xf127, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_to_moderate_snow"
+  /// QWeather Icon with tag `light_to_moderate_snow`
   static const IconData tag_light_to_moderate_snow =
       IconData(0xf128, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_to_heavy_snow"
+  /// QWeather Icon with tag `moderate_to_heavy_snow`
   static const IconData tag_moderate_to_heavy_snow =
       IconData(0xf129, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_snow_to_snowstorm"
+  /// QWeather Icon with tag `heavy_snow_to_snowstorm`
   static const IconData tag_heavy_snow_to_snowstorm =
       IconData(0xf12a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_snow_night"
+  /// QWeather Icon with tag `shower_snow_night`
   static const IconData tag_shower_snow_night =
       IconData(0xf12b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_flurry_night"
+  /// QWeather Icon with tag `snow_flurry_night`
   static const IconData tag_snow_flurry_night =
       IconData(0xf12c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow"
+  /// QWeather Icon with tag `snow`
   static const IconData tag_snow = IconData(0xf12d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "mist"
+  /// QWeather Icon with tag `mist`
   static const IconData tag_mist = IconData(0xf12e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "foggy"
+  /// QWeather Icon with tag `foggy`
   static const IconData tag_foggy = IconData(0xf12f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "haze"
+  /// QWeather Icon with tag `haze`
   static const IconData tag_haze = IconData(0xf130, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sand"
+  /// QWeather Icon with tag `sand`
   static const IconData tag_sand = IconData(0xf131, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "dust"
+  /// QWeather Icon with tag `dust`
   static const IconData tag_dust = IconData(0xf132, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "duststorm"
+  /// QWeather Icon with tag `duststorm`
   static const IconData tag_duststorm = IconData(0xf133, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sandstorm"
+  /// QWeather Icon with tag `sandstorm`
   static const IconData tag_sandstorm = IconData(0xf134, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "dense_fog"
+  /// QWeather Icon with tag `dense_fog`
   static const IconData tag_dense_fog = IconData(0xf135, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "strong_fog"
+  /// QWeather Icon with tag `strong_fog`
   static const IconData tag_strong_fog = IconData(0xf136, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_haze"
+  /// QWeather Icon with tag `moderate_haze`
   static const IconData tag_moderate_haze =
       IconData(0xf137, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_haze"
+  /// QWeather Icon with tag `heavy_haze`
   static const IconData tag_heavy_haze = IconData(0xf138, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severe_haze"
+  /// QWeather Icon with tag `severe_haze`
   static const IconData tag_severe_haze =
       IconData(0xf139, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_fog"
+  /// QWeather Icon with tag `heavy_fog`
   static const IconData tag_heavy_fog = IconData(0xf13a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "extra_heavy_fog"
+  /// QWeather Icon with tag `extra_heavy_fog`
   static const IconData tag_extra_heavy_fog =
       IconData(0xf13b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "new_moon"
+  /// QWeather Icon with tag `new_moon`
   static const IconData tag_new_moon = IconData(0xf13c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "waxing_crescent"
+  /// QWeather Icon with tag `waxing_crescent`
   static const IconData tag_waxing_crescent =
       IconData(0xf13d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "first_quarter"
+  /// QWeather Icon with tag `first_quarter`
   static const IconData tag_first_quarter =
       IconData(0xf13e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "waxing_gibbous"
+  /// QWeather Icon with tag `waxing_gibbous`
   static const IconData tag_waxing_gibbous =
       IconData(0xf13f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "full_moon"
+  /// QWeather Icon with tag `full_moon`
   static const IconData tag_full_moon = IconData(0xf140, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "waning_gibbous"
+  /// QWeather Icon with tag `waning_gibbous`
   static const IconData tag_waning_gibbous =
       IconData(0xf141, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "last_quarter"
+  /// QWeather Icon with tag `last_quarter`
   static const IconData tag_last_quarter =
       IconData(0xf142, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "waning_crescent"
+  /// QWeather Icon with tag `waning_crescent`
   static const IconData tag_waning_crescent =
       IconData(0xf143, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "hot"
+  /// QWeather Icon with tag `hot`
   static const IconData tag_hot = IconData(0xf144, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cold"
+  /// QWeather Icon with tag `cold`
   static const IconData tag_cold = IconData(0xf145, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "unknown"
+  /// QWeather Icon with tag `unknown`
   static const IconData tag_unknown = IconData(0xf146, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "typhoon"
+  /// QWeather Icon with tag `typhoon`
   static const IconData tag_typhoon = IconData(0xf147, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "tornado"
+  /// QWeather Icon with tag `tornado`
   static const IconData tag_tornado = IconData(0xf148, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rainstorm"
+  /// QWeather Icon with tag `rainstorm`
   static const IconData tag_rainstorm = IconData(0xf149, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_storm"
+  /// QWeather Icon with tag `snow_storm`
   static const IconData tag_snow_storm = IconData(0xf14a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cold_wave"
+  /// QWeather Icon with tag `cold_wave`
   static const IconData tag_cold_wave = IconData(0xf14b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "gale"
+  /// QWeather Icon with tag `gale`
   static const IconData tag_gale = IconData(0xf14c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sandstorm_warning"
+  /// QWeather Icon with tag `sandstorm_warning`
   static const IconData tag_sandstorm_warning =
       IconData(0xf14d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "low_temperature_freeze"
+  /// QWeather Icon with tag `low_temperature_freeze`
   static const IconData tag_low_temperature_freeze =
       IconData(0xf14e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "high_temperature"
+  /// QWeather Icon with tag `high_temperature`
   static const IconData tag_high_temperature =
       IconData(0xf14f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heat_wave"
+  /// QWeather Icon with tag `heat_wave`
   static const IconData tag_heat_wave = IconData(0xf150, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "dry_hot_air"
+  /// QWeather Icon with tag `dry_hot_air`
   static const IconData tag_dry_hot_air =
       IconData(0xf151, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "downburst"
+  /// QWeather Icon with tag `downburst`
   static const IconData tag_downburst = IconData(0xf152, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "avalanche"
+  /// QWeather Icon with tag `avalanche`
   static const IconData tag_avalanche = IconData(0xf153, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "lightning"
+  /// QWeather Icon with tag `lightning`
   static const IconData tag_lightning = IconData(0xf154, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "hail"
+  /// QWeather Icon with tag `hail`
   static const IconData tag_hail = IconData(0xf155, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "frost"
+  /// QWeather Icon with tag `frost`
   static const IconData tag_frost = IconData(0xf156, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_fog_warning"
+  /// QWeather Icon with tag `heavy_fog_warning`
   static const IconData tag_heavy_fog_warning =
       IconData(0xf157, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "low_level_wind_shearl"
+  /// QWeather Icon with tag `low_level_wind_shearl`
   static const IconData tag_low_level_wind_shearl =
       IconData(0xf158, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "haze_warning"
+  /// QWeather Icon with tag `haze_warning`
   static const IconData tag_haze_warning =
       IconData(0xf159, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thunder_gust"
+  /// QWeather Icon with tag `thunder_gust`
   static const IconData tag_thunder_gust =
       IconData(0xf15a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "road_icing"
+  /// QWeather Icon with tag `road_icing`
   static const IconData tag_road_icing = IconData(0xf15b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "drought"
+  /// QWeather Icon with tag `drought`
   static const IconData tag_drought = IconData(0xf15c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "gale_at_sea"
+  /// QWeather Icon with tag `gale_at_sea`
   static const IconData tag_gale_at_sea =
       IconData(0xf15d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heat_stroke"
+  /// QWeather Icon with tag `heat_stroke`
   static const IconData tag_heat_stroke =
       IconData(0xf15e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "wildfire"
+  /// QWeather Icon with tag `wildfire`
   static const IconData tag_wildfire = IconData(0xf15f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "grassland_fire"
+  /// QWeather Icon with tag `grassland_fire`
   static const IconData tag_grassland_fire =
       IconData(0xf160, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "freeze"
+  /// QWeather Icon with tag `freeze`
   static const IconData tag_freeze = IconData(0xf161, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "space_weather"
+  /// QWeather Icon with tag `space_weather`
   static const IconData tag_space_weather =
       IconData(0xf162, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_air_pollution"
+  /// QWeather Icon with tag `heavy_air_pollution`
   static const IconData tag_heavy_air_pollution =
       IconData(0xf163, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "low_temperature_rain_and_snow"
+  /// QWeather Icon with tag `low_temperature_rain_and_snow`
   static const IconData tag_low_temperature_rain_and_snow =
       IconData(0xf164, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "strong_convection"
+  /// QWeather Icon with tag `strong_convection`
   static const IconData tag_strong_convection =
       IconData(0xf165, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "ozone"
+  /// QWeather Icon with tag `ozone`
   static const IconData tag_ozone = IconData(0xf166, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_snow_warning"
+  /// QWeather Icon with tag `heavy_snow_warning`
   static const IconData tag_heavy_snow_warning =
       IconData(0xf167, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cold_warning"
+  /// QWeather Icon with tag `cold_warning`
   static const IconData tag_cold_warning =
       IconData(0xf168, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "continuous_rain"
+  /// QWeather Icon with tag `continuous_rain`
   static const IconData tag_continuous_rain =
       IconData(0xf169, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "waterlogging"
+  /// QWeather Icon with tag `waterlogging`
   static const IconData tag_waterlogging =
       IconData(0xf16a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "geological_hazard"
+  /// QWeather Icon with tag `geological_hazard`
   static const IconData tag_geological_hazard =
       IconData(0xf16b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_rainfall"
+  /// QWeather Icon with tag `heavy_rainfall`
   static const IconData tag_heavy_rainfall =
       IconData(0xf16c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severely_falling_temperature"
+  /// QWeather Icon with tag `severely_falling_temperature`
   static const IconData tag_severely_falling_temperature =
       IconData(0xf16d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_disaster"
+  /// QWeather Icon with tag `snow_disaster`
   static const IconData tag_snow_disaster =
       IconData(0xf16e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "wildfire_grassland"
+  /// QWeather Icon with tag `wildfire_grassland`
   static const IconData tag_wildfire_grassland =
       IconData(0xf16f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "medical_meteorology"
+  /// QWeather Icon with tag `medical_meteorology`
   static const IconData tag_medical_meteorology =
       IconData(0xf170, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thunderstorm"
+  /// QWeather Icon with tag `thunderstorm`
   static const IconData tag_thunderstorm =
       IconData(0xf171, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "school_closure"
+  /// QWeather Icon with tag `school_closure`
   static const IconData tag_school_closure =
       IconData(0xf172, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "factory_closure"
+  /// QWeather Icon with tag `factory_closure`
   static const IconData tag_factory_closure =
       IconData(0xf173, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "maritime_risk"
+  /// QWeather Icon with tag `maritime_risk`
   static const IconData tag_maritime_risk =
       IconData(0xf174, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "spring_dust"
+  /// QWeather Icon with tag `spring_dust`
   static const IconData tag_spring_dust =
       IconData(0xf175, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "falling_temperature"
+  /// QWeather Icon with tag `falling_temperature`
   static const IconData tag_falling_temperature =
       IconData(0xf176, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "typhoon_and_rainstorm"
+  /// QWeather Icon with tag `typhoon_and_rainstorm`
   static const IconData tag_typhoon_and_rainstorm =
       IconData(0xf177, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severe_cold"
+  /// QWeather Icon with tag `severe_cold`
   static const IconData tag_severe_cold =
       IconData(0xf178, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sand_dust"
+  /// QWeather Icon with tag `sand_dust`
   static const IconData tag_sand_dust = IconData(0xf179, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sea_thunderstorms"
+  /// QWeather Icon with tag `sea_thunderstorms`
   static const IconData tag_sea_thunderstorms =
       IconData(0xf17a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sea_fog"
+  /// QWeather Icon with tag `sea_fog`
   static const IconData tag_sea_fog = IconData(0xf17b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sea_thunder"
+  /// QWeather Icon with tag `sea_thunder`
   static const IconData tag_sea_thunder =
       IconData(0xf17c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sea_typhoon"
+  /// QWeather Icon with tag `sea_typhoon`
   static const IconData tag_sea_typhoon =
       IconData(0xf17d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "low_temperature"
+  /// QWeather Icon with tag `low_temperature`
   static const IconData tag_low_temperature =
       IconData(0xf17e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "road_ice_and_snow"
+  /// QWeather Icon with tag `road_ice_and_snow`
   static const IconData tag_road_ice_and_snow =
       IconData(0xf17f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thunderstorm_and_gale"
+  /// QWeather Icon with tag `thunderstorm_and_gale`
   static const IconData tag_thunderstorm_and_gale =
       IconData(0xf180, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "continuous_low_temperature"
+  /// QWeather Icon with tag `continuous_low_temperature`
   static const IconData tag_continuous_low_temperature =
       IconData(0xf181, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "strong_dust"
+  /// QWeather Icon with tag `strong_dust`
   static const IconData tag_strong_dust =
       IconData(0xf182, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "short_lived_heavy_shower_rain"
+  /// QWeather Icon with tag `short_lived_heavy_shower_rain`
   static const IconData tag_short_lived_heavy_shower_rain =
       IconData(0xf183, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "flood"
+  /// QWeather Icon with tag `flood`
   static const IconData tag_flood = IconData(0xf184, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "mudflow"
+  /// QWeather Icon with tag `mudflow`
   static const IconData tag_mudflow = IconData(0xf185, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "storm_surge"
+  /// QWeather Icon with tag `storm_surge`
   static const IconData tag_storm_surge =
       IconData(0xf186, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "very_hot_weather"
+  /// QWeather Icon with tag `very_hot_weather`
   static const IconData tag_very_hot_weather =
       IconData(0xf187, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "strong_monsoon_signal"
+  /// QWeather Icon with tag `strong_monsoon_signal`
   static const IconData tag_strong_monsoon_signal =
       IconData(0xf188, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "landslip"
+  /// QWeather Icon with tag `landslip`
   static const IconData tag_landslip = IconData(0xf189, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "tropical_cyclone"
+  /// QWeather Icon with tag `tropical_cyclone`
   static const IconData tag_tropical_cyclone =
       IconData(0xf18a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "fire_danger"
+  /// QWeather Icon with tag `fire_danger`
   static const IconData tag_fire_danger =
       IconData(0xf18b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "flooding_in_the_northern_new_territories"
+  /// QWeather Icon with tag `flooding_in_the_northern_new_territories`
   static const IconData tag_flooding_in_the_northern_new_territories =
       IconData(0xf18c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cold_weather"
+  /// QWeather Icon with tag `cold_weather`
   static const IconData tag_cold_weather =
       IconData(0xf18d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "wind"
+  /// QWeather Icon with tag `wind`
   static const IconData tag_wind = IconData(0xf18e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_ice"
+  /// QWeather Icon with tag `snow_ice`
   static const IconData tag_snow_ice = IconData(0xf18f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "fog"
+  /// QWeather Icon with tag `fog`
   static const IconData tag_fog = IconData(0xf190, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "coastal_event"
+  /// QWeather Icon with tag `coastal_event`
   static const IconData tag_coastal_event =
       IconData(0xf191, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "forest_fire"
+  /// QWeather Icon with tag `forest_fire`
   static const IconData tag_forest_fire =
       IconData(0xf192, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rain_warning"
+  /// QWeather Icon with tag `rain_warning`
   static const IconData tag_rain_warning =
       IconData(0xf193, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rain_flood"
+  /// QWeather Icon with tag `rain_flood`
   static const IconData tag_rain_flood = IconData(0xf194, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "freezing_rain_icing"
+  /// QWeather Icon with tag `freezing_rain_icing`
   static const IconData tag_freezing_rain_icing =
       IconData(0xf195, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "ground_frost"
+  /// QWeather Icon with tag `ground_frost`
   static const IconData tag_ground_frost =
       IconData(0xf196, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "dust_raising_winds"
+  /// QWeather Icon with tag `dust_raising_winds`
   static const IconData tag_dust_raising_winds =
       IconData(0xf197, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "strong_surface_winds"
+  /// QWeather Icon with tag `strong_surface_winds`
   static const IconData tag_strong_surface_winds =
       IconData(0xf198, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "hot_day"
+  /// QWeather Icon with tag `hot_day`
   static const IconData tag_hot_day = IconData(0xf199, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "warm_night"
+  /// QWeather Icon with tag `warm_night`
   static const IconData tag_warm_night = IconData(0xf19a, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cold_day"
+  /// QWeather Icon with tag `cold_day`
   static const IconData tag_cold_day = IconData(0xf19b, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thunderstorm_and_lightning"
+  /// QWeather Icon with tag `thunderstorm_and_lightning`
   static const IconData tag_thunderstorm_and_lightning =
       IconData(0xf19c, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "hailstorm"
+  /// QWeather Icon with tag `hailstorm`
   static const IconData tag_hailstorm = IconData(0xf19d, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sea_area_warning"
+  /// QWeather Icon with tag `sea_area_warning`
   static const IconData tag_sea_area_warning =
       IconData(0xf19e, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "fishermen_warning"
+  /// QWeather Icon with tag `fishermen_warning`
   static const IconData tag_fishermen_warning =
       IconData(0xf19f, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "low_humidity"
+  /// QWeather Icon with tag `low_humidity`
   static const IconData tag_low_humidity =
       IconData(0xf1a0, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "accumulated_rain"
+  /// QWeather Icon with tag `accumulated_rain`
   static const IconData tag_accumulated_rain =
       IconData(0xf1a1, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "hazardous_surf_warning"
+  /// QWeather Icon with tag `hazardous_surf_warning`
   static const IconData tag_hazardous_surf_warning =
       IconData(0xf1a2, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "marine_wind_warning"
+  /// QWeather Icon with tag `marine_wind_warning`
   static const IconData tag_marine_wind_warning =
       IconData(0xf1a3, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "road_weather_alert"
+  /// QWeather Icon with tag `road_weather_alert`
   static const IconData tag_road_weather_alert =
       IconData(0xf1a4, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thunder_rain"
+  /// QWeather Icon with tag `thunder_rain`
   static const IconData tag_thunder_rain =
       IconData(0xf1a5, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thunder_rain_and_fog"
+  /// QWeather Icon with tag `thunder_rain_and_fog`
   static const IconData tag_thunder_rain_and_fog =
       IconData(0xf1a6, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "damaging_winds"
+  /// QWeather Icon with tag `damaging_winds`
   static const IconData tag_damaging_winds =
       IconData(0xf1a7, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "veld_fire_conditions"
+  /// QWeather Icon with tag `veld_fire_conditions`
   static const IconData tag_veld_fire_conditions =
       IconData(0xf1a8, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "weather_advisory"
+  /// QWeather Icon with tag `weather_advisory`
   static const IconData tag_weather_advisory =
       IconData(0xf1a9, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severe_weather_warning"
+  /// QWeather Icon with tag `severe_weather_warning`
   static const IconData tag_severe_weather_warning =
       IconData(0xf1aa, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "warning_default"
+  /// QWeather Icon with tag `warning_default`
   static const IconData tag_warning_default =
       IconData(0xf1ab, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sunny_fill"
+  /// QWeather Icon with tag `sunny_fill`
   static const IconData tag_sunny_fill = IconData(0xf1ac, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cloudy_fill"
+  /// QWeather Icon with tag `cloudy_fill`
   static const IconData tag_cloudy_fill =
       IconData(0xf1ad, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "few_clouds_fill"
+  /// QWeather Icon with tag `few_clouds_fill`
   static const IconData tag_few_clouds_fill =
       IconData(0xf1ae, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "partly_cloudy_fill"
+  /// QWeather Icon with tag `partly_cloudy_fill`
   static const IconData tag_partly_cloudy_fill =
       IconData(0xf1af, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "overcast_fill"
+  /// QWeather Icon with tag `overcast_fill`
   static const IconData tag_overcast_fill =
       IconData(0xf1b0, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "clear_night_fill"
+  /// QWeather Icon with tag `clear_night_fill`
   static const IconData tag_clear_night_fill =
       IconData(0xf1b1, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cloudy_night_fill"
+  /// QWeather Icon with tag `cloudy_night_fill`
   static const IconData tag_cloudy_night_fill =
       IconData(0xf1b2, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "few_clouds_night_fill"
+  /// QWeather Icon with tag `few_clouds_night_fill`
   static const IconData tag_few_clouds_night_fill =
       IconData(0xf1b3, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "partly_cloudy_night_fill"
+  /// QWeather Icon with tag `partly_cloudy_night_fill`
   static const IconData tag_partly_cloudy_night_fill =
       IconData(0xf1b4, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_rain_fill"
+  /// QWeather Icon with tag `shower_rain_fill`
   static const IconData tag_shower_rain_fill =
       IconData(0xf1b5, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_shower_rain_fill"
+  /// QWeather Icon with tag `heavy_shower_rain_fill`
   static const IconData tag_heavy_shower_rain_fill =
       IconData(0xf1b6, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thundershower_fill"
+  /// QWeather Icon with tag `thundershower_fill`
   static const IconData tag_thundershower_fill =
       IconData(0xf1b7, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_thunderstorm_fill"
+  /// QWeather Icon with tag `heavy_thunderstorm_fill`
   static const IconData tag_heavy_thunderstorm_fill =
       IconData(0xf1b8, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "thundershower_with_hail_fill"
+  /// QWeather Icon with tag `thundershower_with_hail_fill`
   static const IconData tag_thundershower_with_hail_fill =
       IconData(0xf1b9, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_rain_fill"
+  /// QWeather Icon with tag `light_rain_fill`
   static const IconData tag_light_rain_fill =
       IconData(0xf1ba, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_rain_fill"
+  /// QWeather Icon with tag `moderate_rain_fill`
   static const IconData tag_moderate_rain_fill =
       IconData(0xf1bb, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_rain_fill"
+  /// QWeather Icon with tag `heavy_rain_fill`
   static const IconData tag_heavy_rain_fill =
       IconData(0xf1bc, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "extreme_rain_fill"
+  /// QWeather Icon with tag `extreme_rain_fill`
   static const IconData tag_extreme_rain_fill =
       IconData(0xf1bd, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "drizzle_rain_fill"
+  /// QWeather Icon with tag `drizzle_rain_fill`
   static const IconData tag_drizzle_rain_fill =
       IconData(0xf1be, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "storm_fill"
+  /// QWeather Icon with tag `storm_fill`
   static const IconData tag_storm_fill = IconData(0xf1bf, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_storm_fill"
+  /// QWeather Icon with tag `heavy_storm_fill`
   static const IconData tag_heavy_storm_fill =
       IconData(0xf1c0, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severe_storm_fill"
+  /// QWeather Icon with tag `severe_storm_fill`
   static const IconData tag_severe_storm_fill =
       IconData(0xf1c1, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "freezing_rain_fill"
+  /// QWeather Icon with tag `freezing_rain_fill`
   static const IconData tag_freezing_rain_fill =
       IconData(0xf1c2, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_to_moderate_rain_fill"
+  /// QWeather Icon with tag `light_to_moderate_rain_fill`
   static const IconData tag_light_to_moderate_rain_fill =
       IconData(0xf1c3, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_to_heavy_rain_fill"
+  /// QWeather Icon with tag `moderate_to_heavy_rain_fill`
   static const IconData tag_moderate_to_heavy_rain_fill =
       IconData(0xf1c4, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_rain_to_storm_fill"
+  /// QWeather Icon with tag `heavy_rain_to_storm_fill`
   static const IconData tag_heavy_rain_to_storm_fill =
       IconData(0xf1c5, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "storm_to_heavy_storm_fill"
+  /// QWeather Icon with tag `storm_to_heavy_storm_fill`
   static const IconData tag_storm_to_heavy_storm_fill =
       IconData(0xf1c6, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_to_severe_storm_fill"
+  /// QWeather Icon with tag `heavy_to_severe_storm_fill`
   static const IconData tag_heavy_to_severe_storm_fill =
       IconData(0xf1c7, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_rain_night_fill"
+  /// QWeather Icon with tag `shower_rain_night_fill`
   static const IconData tag_shower_rain_night_fill =
       IconData(0xf1c8, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_shower_rain_night_fill"
+  /// QWeather Icon with tag `heavy_shower_rain_night_fill`
   static const IconData tag_heavy_shower_rain_night_fill =
       IconData(0xf1c9, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rain_fill"
+  /// QWeather Icon with tag `rain_fill`
   static const IconData tag_rain_fill = IconData(0xf1ca, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_snow_fill"
+  /// QWeather Icon with tag `light_snow_fill`
   static const IconData tag_light_snow_fill =
       IconData(0xf1cb, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_snow_fill"
+  /// QWeather Icon with tag `moderate_snow_fill`
   static const IconData tag_moderate_snow_fill =
       IconData(0xf1cc, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_snow_fill"
+  /// QWeather Icon with tag `heavy_snow_fill`
   static const IconData tag_heavy_snow_fill =
       IconData(0xf1cd, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snowstorm_fill"
+  /// QWeather Icon with tag `snowstorm_fill`
   static const IconData tag_snowstorm_fill =
       IconData(0xf1ce, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sleet_fill"
+  /// QWeather Icon with tag `sleet_fill`
   static const IconData tag_sleet_fill = IconData(0xf1cf, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "rain_and_snow_fill"
+  /// QWeather Icon with tag `rain_and_snow_fill`
   static const IconData tag_rain_and_snow_fill =
       IconData(0xf1d0, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_snow_fill"
+  /// QWeather Icon with tag `shower_snow_fill`
   static const IconData tag_shower_snow_fill =
       IconData(0xf1d1, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_flurry_fill"
+  /// QWeather Icon with tag `snow_flurry_fill`
   static const IconData tag_snow_flurry_fill =
       IconData(0xf1d2, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "light_to_moderate_snow_fill"
+  /// QWeather Icon with tag `light_to_moderate_snow_fill`
   static const IconData tag_light_to_moderate_snow_fill =
       IconData(0xf1d3, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_to_heavy_snow_fill"
+  /// QWeather Icon with tag `moderate_to_heavy_snow_fill`
   static const IconData tag_moderate_to_heavy_snow_fill =
       IconData(0xf1d4, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_snow_to_snowstorm_fill"
+  /// QWeather Icon with tag `heavy_snow_to_snowstorm_fill`
   static const IconData tag_heavy_snow_to_snowstorm_fill =
       IconData(0xf1d5, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "shower_snow_night_fill"
+  /// QWeather Icon with tag `shower_snow_night_fill`
   static const IconData tag_shower_snow_night_fill =
       IconData(0xf1d6, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_flurry_night_fill"
+  /// QWeather Icon with tag `snow_flurry_night_fill`
   static const IconData tag_snow_flurry_night_fill =
       IconData(0xf1d7, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "snow_fill"
+  /// QWeather Icon with tag `snow_fill`
   static const IconData tag_snow_fill = IconData(0xf1d8, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "mist_fill"
+  /// QWeather Icon with tag `mist_fill`
   static const IconData tag_mist_fill = IconData(0xf1d9, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "foggy_fill"
+  /// QWeather Icon with tag `foggy_fill`
   static const IconData tag_foggy_fill = IconData(0xf1da, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "haze_fill"
+  /// QWeather Icon with tag `haze_fill`
   static const IconData tag_haze_fill = IconData(0xf1db, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sand_fill"
+  /// QWeather Icon with tag `sand_fill`
   static const IconData tag_sand_fill = IconData(0xf1dc, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "dust_fill"
+  /// QWeather Icon with tag `dust_fill`
   static const IconData tag_dust_fill = IconData(0xf1dd, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "duststorm_fill"
+  /// QWeather Icon with tag `duststorm_fill`
   static const IconData tag_duststorm_fill =
       IconData(0xf1de, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "sandstorm_fill"
+  /// QWeather Icon with tag `sandstorm_fill`
   static const IconData tag_sandstorm_fill =
       IconData(0xf1df, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "dense_fog_fill"
+  /// QWeather Icon with tag `dense_fog_fill`
   static const IconData tag_dense_fog_fill =
       IconData(0xf1e0, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "strong_fog_fill"
+  /// QWeather Icon with tag `strong_fog_fill`
   static const IconData tag_strong_fog_fill =
       IconData(0xf1e1, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "moderate_haze_fill"
+  /// QWeather Icon with tag `moderate_haze_fill`
   static const IconData tag_moderate_haze_fill =
       IconData(0xf1e2, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_haze_fill"
+  /// QWeather Icon with tag `heavy_haze_fill`
   static const IconData tag_heavy_haze_fill =
       IconData(0xf1e3, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "severe_haze_fill"
+  /// QWeather Icon with tag `severe_haze_fill`
   static const IconData tag_severe_haze_fill =
       IconData(0xf1e4, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "heavy_fog_fill"
+  /// QWeather Icon with tag `heavy_fog_fill`
   static const IconData tag_heavy_fog_fill =
       IconData(0xf1e5, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "extra_heavy_fog_fill"
+  /// QWeather Icon with tag `extra_heavy_fog_fill`
   static const IconData tag_extra_heavy_fog_fill =
       IconData(0xf1e6, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "hot_fill"
+  /// QWeather Icon with tag `hot_fill`
   static const IconData tag_hot_fill = IconData(0xf1e7, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "cold_fill"
+  /// QWeather Icon with tag `cold_fill`
   static const IconData tag_cold_fill = IconData(0xf1e8, fontFamily: _fontFam);
 
-  /// QWeather Icon with tag "unknown_fill"
+  /// QWeather Icon with tag `unknown_fill`
   static const IconData tag_unknown_fill =
       IconData(0xf1e9, fontFamily: _fontFam);
 

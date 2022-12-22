@@ -22,8 +22,8 @@ class ProfileModel extends ChangeNotifier {
     }
     profile = Profile.fromJson(jsonDecode(_preferences.getString('profile')!));
 
-    // 当 profile.dart 添加新数据时
-    // 为了版本的迭代, 在此进行判断
+    /// 当 `profile.dart` 添加新数据时
+    /// 为了版本的迭代, 在此进行判断
     profile.sudokuDifficulty ??= 'hard';
 
     _packageInfo = await PackageInfo.fromPlatform();
@@ -33,14 +33,18 @@ class ProfileModel extends ChangeNotifier {
     DevTools.printLog('[003] 程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
     save();
 
-    // 进入 mercuriusWebModel 的初始化
+    /// 进入 `mercuriusWebModel` 的初始化
     mercuriusWebModel.init();
-    // 进入 locationModel 的初始化
+
+    /// 进入 `locationModel` 的初始化
     locationModel.init();
-    // 进入 pathModel 的初始化
+
+    /// 进入 `pathModel` 的初始化
     pathModel.init();
-    // 实现高刷
+
+    /// 实现高刷
     await FlutterDisplayMode.setHighRefreshRate();
+
     // 进行调试工具的初始化
     DevTools.init();
   }

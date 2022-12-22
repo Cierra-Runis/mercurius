@@ -84,7 +84,7 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
       actions: <Widget>[
         TextButton(
           onPressed: () {
-            // TODO: 写逻辑
+            /// TODO: 写逻辑
             Navigator.of(context).pop();
           },
           child: const Text('确认'),

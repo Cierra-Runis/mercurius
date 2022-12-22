@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
 class SudokuNumSelectorDialogWidget extends StatefulWidget {
-  // 自定义组件
+  /// 自定义组件
   const SudokuNumSelectorDialogWidget({
     Key? key,
     required this.row,
@@ -18,7 +18,7 @@ class SudokuNumSelectorDialogWidget extends StatefulWidget {
 
 class _SudokuNumSelectorDialogWidgetState
     extends State<SudokuNumSelectorDialogWidget> {
-  // 创建一行按钮
+  /// 创建一行按钮
   List<SizedBox> _createOneRowButton(int rowIndex) {
     List<SizedBox> buttonList =
         List<SizedBox>.generate(0, (index) => const SizedBox());
@@ -43,7 +43,7 @@ class _SudokuNumSelectorDialogWidgetState
     return buttonList;
   }
 
-  // 创建多行按钮
+  /// 创建多行按钮
   List<Row> _createRows() {
     List<Row> row = List<Row>.generate(0, (index) => Row());
     for (var rowIndex = 0; rowIndex < 3; rowIndex++) {

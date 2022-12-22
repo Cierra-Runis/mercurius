@@ -1,4 +1,4 @@
-// 各路由下的 index.dart
+/// 各路由下的 index.dart
 export 'models/index.dart';
 export 'states/index.dart';
 export 'routes/index.dart';
@@ -6,17 +6,17 @@ export 'widgets/index.dart';
 export 'common/index.dart';
 export 'main.dart';
 
-// flutter 相关
+/// flutter 相关
 export 'package:flutter/material.dart';
 export 'package:flutter/rendering.dart';
 
-// dart 相关
+/// dart 相关
 export 'dart:async';
 export 'dart:convert';
 export 'dart:math';
 export 'dart:io';
 
-// 外部包相关
+/// 外部包相关
 export 'package:provider/provider.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:url_launcher/url_launcher_string.dart';
@@ -37,3 +37,5 @@ export 'package:double_back_to_close/double_back_to_close.dart';
 export 'package:another_flushbar/flushbar.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:share_plus/share_plus.dart';
+export 'package:table_calendar/table_calendar.dart';
+export 'package:badges/badges.dart';

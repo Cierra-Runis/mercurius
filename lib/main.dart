@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter/cupertino.dart';
 
-// 位于 main.dart 的 changeNotifier
+/// 位于 `main.dart` 的 `changeNotifier`
 ProfileModel profileModel = ProfileModel();
 SudokuModel sudokuModel = SudokuModel();
 MercuriusWebModel mercuriusWebModel = MercuriusWebModel();
@@ -11,7 +11,7 @@ LogModel logModel = LogModel();
 PathModel pathModel = PathModel();
 DiaryEditorModel diaryEditorModel = DiaryEditorModel();
 
-// 因 profileModel 需要读取本地数据, 故先进入 profileModel 进行初始化
+/// 因 `profileModel` 需要读取本地数据, 故先进入 `profileModel` 进行初始化
 void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -27,7 +27,8 @@ class _MercuriusAppState extends State<MercuriusApp> {
   @override
   Widget build(BuildContext context) {
     DevTools.printLog('[006] MercuriusApp 构建中');
-    // 利用 provide 包进行状态管理
+
+    /// 利用 `provide` 包进行状态管理
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => profileModel),
@@ -52,9 +53,11 @@ class _MercuriusAppState extends State<MercuriusApp> {
               colorScheme: darkColorScheme,
               fontFamily: 'HarmonyOS_Sans_SC',
             ),
-            // 控制主题样式
+
+            /// 控制主题样式
             themeMode: profileModel.profile.themeMode,
-            // 进入 SplashPage()
+
+            /// 进入 `SplashPage()`
             home: const SplashPage(),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

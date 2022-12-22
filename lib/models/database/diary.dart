@@ -8,8 +8,8 @@ class Diary {
   Diary();
   Id? id;
 
-  late String createDateTime;
-  late String latestEditTime;
+  late DateTime createDateTime;
+  late DateTime latestEditTime;
   String? titleString;
   String? contentJsonString;
   late String weather;

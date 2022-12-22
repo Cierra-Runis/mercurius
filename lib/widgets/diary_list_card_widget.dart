@@ -19,11 +19,20 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
       margin: const EdgeInsets.all(10.0),
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(22),
+        ),
+        color: Theme.of(context).colorScheme.background,
+        shadows: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10.0,
+            spreadRadius: 0.6,
+          ),
+        ],
       ),
       child: InkWell(
         onTap: () => _diaryShowingDialog(context, widget.diary),
@@ -33,88 +42,87 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(width: 10),
               SizedBox(
-                width: 290,
-                child: Row(
+                width: 50,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          widget.diary.createDateTime.substring(8, 10),
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontFamily: 'Saira',
-                          ),
-                        ),
-                        Text(
-                          Constance.weekdayMap[
-                              DateTime.parse(widget.diary.createDateTime)
-                                  .weekday]!,
-                          style: const TextStyle(
-                            fontSize: 10,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                      ],
-                    ),
-                    const SizedBox(width: 10),
-                    SizedBox(
-                      width: 240,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.diary.latestEditTime.substring(11, 19),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            widget.diary.titleString ??
-                                widget.diary.latestEditTime.substring(0, 10),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            flutter_quill.Document.fromJson(
-                              jsonDecode(widget.diary.contentJsonString!),
-                            ).toPlainText(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
+                    Text(
+                      widget.diary.createDateTime.toString().substring(8, 10),
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontFamily: 'Saira',
                       ),
-                    )
+                    ),
+                    Text(
+                      Constance
+                          .weekdayMap[widget.diary.createDateTime.weekday]!,
+                      style: const TextStyle(
+                        fontSize: 10,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(
+              SizedBox(
+                width: 240,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      widget.diary.latestEditTime.toString().substring(11, 19),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      widget.diary.titleString ??
+                          widget.diary.createDateTime
+                              .toString()
+                              .substring(0, 10),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      flutter_quill.Document.fromJson(
+                        jsonDecode(widget.diary.contentJsonString!),
+                      ).toPlainText(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 24,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
                       size: 18,
                       Constance.moodMap[widget.diary.mood] ??
-                          Constance.moodMap['开心']),
-                  Icon(
-                    size: 18,
-                    QWeatherIcon.getIconById(
-                      int.parse(widget.diary.weather),
+                          Constance.moodMap['开心'],
                     ),
-                  ),
-                ],
-              )
+                    Icon(
+                      size: 18,
+                      QWeatherIcon.getIconById(
+                        int.parse(widget.diary.weather),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
