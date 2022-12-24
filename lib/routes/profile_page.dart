@@ -17,7 +17,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Center(
         child: ListView(
           padding: const EdgeInsets.all(8),
-          children: <Widget>[
+          children: [
             Consumer<ProfileModel>(
               builder: (context, profileModel, child) {
                 return ListTile(
@@ -29,8 +29,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                   onTap: () {
-                    profileModel
-                        .changeProfile(profileModel.profile..user = null);
+                    profileModel.changeProfile(
+                      profileModel.profile..user = null,
+                    );
                     Navigator.of(context).pop();
                   },
                 );

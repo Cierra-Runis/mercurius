@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter/cupertino.dart';
 
-/// 位于 `main.dart` 的 `changeNotifier`
+/// 位于 `main.dart` 的 `changeNotifier` 们
 ProfileModel profileModel = ProfileModel();
 SudokuModel sudokuModel = SudokuModel();
 MercuriusWebModel mercuriusWebModel = MercuriusWebModel();
@@ -53,11 +53,7 @@ class _MercuriusAppState extends State<MercuriusApp> {
               colorScheme: darkColorScheme,
               fontFamily: 'HarmonyOS_Sans_SC',
             ),
-
-            /// 控制主题样式
             themeMode: profileModel.profile.themeMode,
-
-            /// 进入 `SplashPage()`
             home: const SplashPage(),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

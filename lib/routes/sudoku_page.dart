@@ -30,8 +30,7 @@ class SudokuPageState extends State<SudokuPage> {
 
   /// 创建一行按钮
   List<SizedBox> _createOneRowButton(BuildContext context, int rowIndex) {
-    List<SizedBox> buttonList =
-        List<SizedBox>.generate(0, (index) => const SizedBox());
+    List<SizedBox> buttonList = [];
     for (var columnIndex = 0; columnIndex < 9; columnIndex++) {
       buttonList.add(
         SizedBox(
@@ -84,7 +83,7 @@ class SudokuPageState extends State<SudokuPage> {
 
   /// 创建多行按钮
   List<Row> _createRows(BuildContext context) {
-    List<Row> rows = List<Row>.generate(0, (index) => Row());
+    List<Row> rows = [];
     for (var rowIndex = 0; rowIndex < 9; rowIndex++) {
       rows.add(
         Row(
@@ -96,17 +95,8 @@ class SudokuPageState extends State<SudokuPage> {
     return rows;
   }
 
-  @override
-  void initState() {
-    /// 至数独界面再进行 sudokuModel 的初始化
-    sudokuModel.init();
-    _confettiController =
-        ConfettiController(duration: const Duration(milliseconds: 1500));
-    super.initState();
-  }
-
   /// 彩纸路径
-  Path drawStar(Size size) {
+  Path _drawStar(Size size) {
     double degToRad(double deg) => deg * (pi / 180.0);
 
     const numberOfPoints = 5;
@@ -127,6 +117,15 @@ class SudokuPageState extends State<SudokuPage> {
     }
     path.close();
     return path;
+  }
+
+  @override
+  void initState() {
+    /// 至数独界面再进行 sudokuModel 的初始化
+    sudokuModel.init();
+    _confettiController =
+        ConfettiController(duration: const Duration(milliseconds: 1500));
+    super.initState();
   }
 
   @override
@@ -168,7 +167,7 @@ class SudokuPageState extends State<SudokuPage> {
                       Colors.orange,
                       Colors.purple
                     ],
-                    createParticlePath: drawStar,
+                    createParticlePath: _drawStar,
                     emissionFrequency: 0.3,
                     minimumSize: const Size(10, 10),
                     maximumSize: const Size(50, 50),
@@ -188,7 +187,7 @@ class SudokuPageState extends State<SudokuPage> {
                       Colors.orange,
                       Colors.purple
                     ],
-                    createParticlePath: drawStar,
+                    createParticlePath: _drawStar,
                     emissionFrequency: 0.3,
                     minimumSize: const Size(10, 10),
                     maximumSize: const Size(50, 50),
@@ -207,71 +206,74 @@ class SudokuPageState extends State<SudokuPage> {
       ),
     );
   }
-}
 
-Future<void> _selectSudokuNumDialog(
-    BuildContext context, int rowIndex, int columnIndex) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return SudokuNumSelectorDialogWidget(row: rowIndex, column: columnIndex);
-    },
-  );
-}
+  Future<void> _selectSudokuNumDialog(
+      BuildContext context, int rowIndex, int columnIndex) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return SudokuNumSelectorDialogWidget(
+          row: rowIndex,
+          column: columnIndex,
+        );
+      },
+    );
+  }
 
-Future<void> _optionMenu(BuildContext context) {
-  return showModalBottomSheet<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return SizedBox(
-        height: 230,
-        child: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.restart_alt_rounded),
-              title: const Text('回到初始'),
-              trailing: const Icon(Icons.navigate_next),
-              onTap: () {
-                sudokuModel.backToSudokuList();
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.add),
-              title: const Text('重开一局'),
-              trailing: const Icon(Icons.navigate_next),
-              onTap: () {
-                sudokuModel.newSudoku();
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.question_answer_rounded),
-              title: const Text('显示答案'),
-              trailing: const Icon(Icons.navigate_next),
-              onTap: () {
-                sudokuModel.getAnswer();
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.handyman_sharp),
-              title: const Text('更改难度'),
-              trailing: const Icon(Icons.navigate_next),
-              onTap: () => _selectDifficultyDialog(context),
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
+  Future<void> _optionMenu(BuildContext context) {
+    return showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 230,
+          child: ListView(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.restart_alt_rounded),
+                title: const Text('回到初始'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {
+                  sudokuModel.backToSudokuList();
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.add),
+                title: const Text('重开一局'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {
+                  sudokuModel.newSudoku();
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.question_answer_rounded),
+                title: const Text('显示答案'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {
+                  sudokuModel.getAnswer();
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.handyman_sharp),
+                title: const Text('更改难度'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () => _selectDifficultyDialog(context),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
-Future<void> _selectDifficultyDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const SudokuDifficultySelectorDialogWidget();
-    },
-  );
+  Future<void> _selectDifficultyDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const SudokuDifficultySelectorDialogWidget();
+      },
+    );
+  }
 }

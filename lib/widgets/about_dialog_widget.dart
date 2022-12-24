@@ -15,18 +15,15 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
     return AlertDialog(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
+        children: [
           IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () {
-                DevTools.printLog('[007] 彩蛋🎉️');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SudokuPage(),
+              onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SudokuPage(),
+                    ),
                   ),
-                );
-              },
               icon: Container(
                 width: 48,
                 height: 48,
@@ -74,16 +71,13 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                       profileModel.profile.currentVersion !=
                               mercuriusWebModel.githubLatestRelease.tag_name
                           ? TextButton(
-                              onPressed: () {
-                                DevTools.printLog('更新至新版本');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const GithubLatestReleasePage(),
-                                  ),
-                                );
-                              },
+                              onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const GithubLatestReleasePage(),
+                                ),
+                              ),
                               style: TextButton.styleFrom(
                                 backgroundColor: Colors.red,
                                 padding: const EdgeInsets.all(1.5),
@@ -99,10 +93,8 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                               ),
                             )
                           : TextButton(
-                              onPressed: () {
-                                DevTools.printLog('已是最新版本');
-                                mercuriusWebModel.refetchGithubLatestRelease();
-                              },
+                              onPressed: () => mercuriusWebModel
+                                  .refetchGithubLatestRelease(),
                               style: TextButton.styleFrom(
                                 backgroundColor: Colors.green,
                                 padding: const EdgeInsets.all(1.5),
@@ -125,13 +117,13 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
       ),
       content: ListView(
         shrinkWrap: true,
-        children: <Widget>[
+        children: [
           ListTile(
             leading: const Icon(Icons.link),
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const Text('联系我们'),
                 Text(
                   _url,
@@ -144,19 +136,17 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                 ),
               ],
             ),
-            onTap: () {
-              launchUrlString(
-                _url,
-                mode: LaunchMode.inAppWebView,
-              );
-            },
+            onTap: () => launchUrlString(
+              _url,
+              mode: LaunchMode.inAppWebView,
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.import_contacts_rounded),
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const Text('引用声明'),
                 Text(
                   '字体、图标相关',
@@ -176,7 +166,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const Text('隐私政策'),
                 Text(
                   'Mercurius 隐私政策',
@@ -196,7 +186,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const Text('用户协议'),
                 Text(
                   'Mercurius 用户协议',
@@ -214,15 +204,13 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
         ],
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-      actions: <Widget>[
+      actions: [
         TextButton(
           style: TextButton.styleFrom(
             textStyle: Theme.of(context).textTheme.labelLarge,
           ),
           child: const Text('返回'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ],
       actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),

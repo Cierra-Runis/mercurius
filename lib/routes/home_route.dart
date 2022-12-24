@@ -8,7 +8,8 @@ class HomeRoute extends StatefulWidget {
 
 class _HomeRouteState extends State<HomeRoute> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+
+  static const List<Widget> _widgetOptions = [
     HomePage(),
     MorePage(),
   ];
@@ -25,11 +26,9 @@ class _HomeRouteState extends State<HomeRoute> {
       body: Center(
         child: DoubleBack(
           condition: _selectedIndex == 0,
-          onConditionFail: () {
-            setState(() {
-              _selectedIndex = 0;
-            });
-          },
+          onConditionFail: () => setState(() {
+            _selectedIndex = 0;
+          }),
           onFirstBackPress: (context) {
             Flushbar(
               icon: const Icon(UniconsLine.exit),

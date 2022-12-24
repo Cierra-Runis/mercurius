@@ -16,7 +16,7 @@ class _SettingPageState extends State<SettingPage> {
       body: Center(
         child: ListView(
           padding: const EdgeInsets.all(8),
-          children: <Widget>[
+          children: [
             Consumer<ProfileModel>(
               builder: (context, profileModel, child) {
                 return ListTile(
@@ -33,10 +33,9 @@ class _SettingPageState extends State<SettingPage> {
                                 : '常亮模式',
                         style: TextStyle(
                           fontSize: 12,
-                          color:
-                              (Theme.of(context).brightness == Brightness.dark)
-                                  ? Colors.white54
-                                  : Colors.black54,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white54
+                              : Colors.black54,
                         ),
                       ),
                     ],

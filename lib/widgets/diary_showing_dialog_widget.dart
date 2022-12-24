@@ -1,6 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:tuple/tuple.dart';
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
 class DiaryShowingDialogWidget extends StatefulWidget {
@@ -92,16 +91,16 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                                       ),
                                     ),
                                     Text(
-                                      '${Constance.weekdayMap[diaryEditorModel.diary.createDateTime.weekday]!} ${widget.diary.latestEditTime.toString().substring(11, 19)}',
+                                      '${DiaryConstance.weekdayMap[diaryEditorModel.diary.createDateTime.weekday]!} ${widget.diary.latestEditTime.toString().substring(11, 19)}',
                                       style: const TextStyle(
                                         fontSize: 12,
                                       ),
                                     ),
                                     Icon(
                                       size: 9,
-                                      Constance.moodMap[
+                                      DiaryConstance.moodMap[
                                               diaryEditorModel.diary.mood] ??
-                                          Constance.moodMap['开心'],
+                                          DiaryConstance.moodMap['开心'],
                                     ),
                                   ],
                                 )
@@ -206,29 +205,25 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                         Row(
                           children: [
                             IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => DiaryEditorPage(
-                                      diary: diaryEditorModel.diary,
-                                    ),
+                              onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DiaryEditorPage(
+                                    diary: diaryEditorModel.diary,
                                   ),
-                                );
-                              },
+                                ),
+                              ),
                               icon: const Icon(Icons.edit),
                             ),
                             IconButton(
-                              onPressed: () {
-                                Share.share(
-                                  flutter_quill.Document.fromJson(
-                                    jsonDecode(diaryEditorModel
-                                        .diary.contentJsonString!),
-                                  ).toPlainText(),
-                                );
-                              },
+                              onPressed: () => Share.share(
+                                flutter_quill.Document.fromJson(
+                                  jsonDecode(diaryEditorModel
+                                      .diary.contentJsonString!),
+                                ).toPlainText(),
+                              ),
                               icon: const Icon(UniconsLine.share),
-                            )
+                            ),
                           ],
                         )
                       ],

@@ -20,8 +20,7 @@ class _SudokuNumSelectorDialogWidgetState
     extends State<SudokuNumSelectorDialogWidget> {
   /// 创建一行按钮
   List<SizedBox> _createOneRowButton(int rowIndex) {
-    List<SizedBox> buttonList =
-        List<SizedBox>.generate(0, (index) => const SizedBox());
+    List<SizedBox> buttonList = [];
     for (var columnIndex = 0; columnIndex < 3; columnIndex++) {
       buttonList.add(
         SizedBox(
@@ -45,7 +44,7 @@ class _SudokuNumSelectorDialogWidgetState
 
   /// 创建多行按钮
   List<Row> _createRows() {
-    List<Row> row = List<Row>.generate(0, (index) => Row());
+    List<Row> row = [];
     for (var rowIndex = 0; rowIndex < 3; rowIndex++) {
       row.add(
         Row(
@@ -65,7 +64,7 @@ class _SudokuNumSelectorDialogWidgetState
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           const Text('请选择一位数字'),
           Text(
             '请选择一位数字',

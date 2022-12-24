@@ -18,7 +18,7 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           const Text('登录'),
           Text(
             '欢迎来到 Mercurius',
@@ -39,23 +39,24 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+              children: [
                 TextFormField(
-                    controller: _mercuriusId,
-                    decoration: const InputDecoration(
-                      hintText: 'Mercurius Id',
-                    ),
-                    validator: (value) {
-                      if (value!.trim().isEmpty) {
-                        return 'Mercurius Id 不能为空';
-                      }
-                      try {
-                        int.parse(value);
-                      } catch (e) {
-                        return '请仅输入数字';
-                      }
-                      return null;
-                    }),
+                  controller: _mercuriusId,
+                  decoration: const InputDecoration(
+                    hintText: 'Mercurius Id',
+                  ),
+                  validator: (value) {
+                    if (value!.trim().isEmpty) {
+                      return 'Mercurius Id 不能为空';
+                    }
+                    try {
+                      int.parse(value);
+                    } catch (e) {
+                      return '请仅输入数字';
+                    }
+                    return null;
+                  },
+                ),
                 TextFormField(
                   controller: _password,
                   decoration: const InputDecoration(
@@ -85,7 +86,7 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
         ],
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-      actions: <Widget>[
+      actions: [
         Consumer<ProfileModel>(
           builder: (context, profileModel, childe) {
             return TextButton(
@@ -105,39 +106,39 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
       ],
     );
   }
-}
 
-Future<void> _registerDialog(BuildContext context) {
-  FocusManager.instance.primaryFocus?.unfocus();
-  showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const RegisterDialogWidget();
-    },
-  );
-  showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const PrivacyDialogWidget();
-    },
-  );
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const AgreementDialogWidget();
-    },
-  );
-}
+  Future<void> _registerDialog(BuildContext context) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const RegisterDialogWidget();
+      },
+    );
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const PrivacyDialogWidget();
+      },
+    );
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const AgreementDialogWidget();
+      },
+    );
+  }
 
-Future<void> _fetchUser(
-  num mercuriusId,
-  String password,
-  BuildContext context,
-) async {
-  User newUser = User()
-    ..mercuriusId = mercuriusId
-    ..username = '田所浩二'
-    ..email = 'byrdsaron@gmail.com';
-  profileModel.changeProfile(profileModel.profile..user = newUser);
-  Navigator.of(context).pop();
+  Future<void> _fetchUser(
+    num mercuriusId,
+    String password,
+    BuildContext context,
+  ) async {
+    User newUser = User()
+      ..mercuriusId = mercuriusId
+      ..username = '田所浩二'
+      ..email = 'byrdsaron@gmail.com';
+    profileModel.changeProfile(profileModel.profile..user = newUser);
+    Navigator.of(context).pop();
+  }
 }

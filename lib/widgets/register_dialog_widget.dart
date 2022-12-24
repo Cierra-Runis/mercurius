@@ -18,7 +18,7 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           const Text('注册'),
           Text(
             '欢迎来到 Mercurius',
@@ -38,7 +38,7 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
             key: _formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+              children: [
                 TextFormField(
                   decoration: const InputDecoration(
                     hintText: '邮箱',
@@ -60,12 +60,10 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
             ),
           ),
           InkWell(
-            onTap: () {
-              launchUrlString(
-                _url,
-                mode: LaunchMode.inAppWebView,
-              );
-            },
+            onTap: () => launchUrlString(
+              _url,
+              mode: LaunchMode.inAppWebView,
+            ),
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
             child: const Align(
@@ -81,7 +79,7 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
         ],
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-      actions: <Widget>[
+      actions: [
         TextButton(
           onPressed: () {
             /// TODO: 写逻辑

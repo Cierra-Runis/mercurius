@@ -30,9 +30,7 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
               child: ListView(
                 children: [
                   InkWell(
-                    onLongPress: () {
-                      logModel.clearLog();
-                    },
+                    onLongPress: () => logModel.clearLog(),
                     child: ListTile(
                       title: Text(
                         logModel.logString,

@@ -36,7 +36,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
       ),
       child: InkWell(
         onTap: () => _diaryShowingDialog(context, widget.diary),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(22),
         child: SizedBox(
           height: 76,
           child: Row(
@@ -55,7 +55,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                       ),
                     ),
                     Text(
-                      Constance
+                      DiaryConstance
                           .weekdayMap[widget.diary.createDateTime.weekday]!,
                       style: const TextStyle(
                         fontSize: 10,
@@ -111,8 +111,8 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   children: [
                     Icon(
                       size: 18,
-                      Constance.moodMap[widget.diary.mood] ??
-                          Constance.moodMap['开心'],
+                      DiaryConstance.moodMap[widget.diary.mood] ??
+                          DiaryConstance.moodMap['开心'],
                     ),
                     Icon(
                       size: 18,

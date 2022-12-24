@@ -6,8 +6,13 @@ part 'user.g.dart';
 class User {
   User();
 
+  /// Mercurius Id
   num? mercuriusId;
+
+  /// 用户名
   String? username;
+
+  /// 邮箱
   String? email;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

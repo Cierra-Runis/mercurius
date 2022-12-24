@@ -42,9 +42,7 @@ class _MorePageState extends State<MorePage> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    locationModel.refetchCurrentPosition(true);
-                  },
+                  onTap: () => locationModel.refetchCurrentPosition(true),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -72,7 +70,7 @@ class _MorePageState extends State<MorePage> {
                   ),
                 ),
                 Text(
-                  locationModel.geoBody.location?[0].name ?? '',
+                  locationModel.geoBody.location?[0].name ?? '未定位城市',
                   style: const TextStyle(
                     fontSize: 8,
                   ),
@@ -89,18 +87,16 @@ class _MorePageState extends State<MorePage> {
           ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.all(8),
-            children: <Widget>[
+            children: [
               ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text('设定'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SettingPage(),
-                    ),
-                  );
-                },
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingPage(),
+                  ),
+                ),
               ),
               const Divider(
                 height: 5,

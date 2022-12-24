@@ -4,14 +4,14 @@ import 'dart:developer' as devtools show log;
 
 class DevTools {
   /// 是否显示日志
-  static const showLog = true;
+  static const _showLog = true;
 
   /// 是否显示边界
-  static const showDebugPaintSizeEnabled = false;
+  static const _showDebugPaintSizeEnabled = false;
 
   /// 调试用输出语句
   static void printLog(String message) {
-    if (showLog) {
+    if (_showLog) {
       message = '[${DateTime.now()}] $message';
       devtools.log(message);
       logModel.addLog('$message\n');
@@ -20,6 +20,6 @@ class DevTools {
 
   static void init() {
     /// 是否启用边界显示
-    debugPaintSizeEnabled = DevTools.showDebugPaintSizeEnabled;
+    debugPaintSizeEnabled = DevTools._showDebugPaintSizeEnabled;
   }
 }

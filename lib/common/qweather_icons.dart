@@ -1567,7 +1567,7 @@ class QWeatherIcon {
       IconData(0xf1e9, fontFamily: _fontFam);
 
   /// iconMap
-  static const Map<int, IconData> iconMap = {
+  static const Map<int, IconData> _iconMap = {
     100: code_100,
     101: code_101,
     102: code_102,
@@ -1742,6 +1742,6 @@ class QWeatherIcon {
   };
 
   static IconData? getIconById(int id) {
-    return iconMap[id];
+    return _iconMap[id];
   }
 }

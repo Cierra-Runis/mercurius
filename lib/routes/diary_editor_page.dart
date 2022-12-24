@@ -1,6 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:tuple/tuple.dart';
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
 class DiaryEditorPage extends StatefulWidget {
@@ -17,10 +16,11 @@ class DiaryEditorPage extends StatefulWidget {
 
 class _DiaryEditorPageState extends State<DiaryEditorPage> {
   late final flutter_quill.QuillController _controller;
-  final isarService = IsarService();
   final TextEditingController _title = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final ScrollController _scrollController = ScrollController();
+
+  final isarService = IsarService();
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
     super.dispose();
   }
 
-  /// TODO: 修复遮挡问题
+  /// 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017
   @override
   Widget build(BuildContext context) {
     return Consumer<DiaryEditorModel>(
@@ -52,9 +52,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
         return Scaffold(
           appBar: AppBar(
             leading: TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => Navigator.of(context).pop(),
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all<Size>(
                   const Size(56, 56),
@@ -195,20 +193,20 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
       },
     );
   }
+
+  Future<void> _selectDiaryMoodDialog(BuildContext context, Diary diary) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return _DiaryMoodSelectorDialogWidget(diary: diary);
+      },
+    );
+  }
 }
 
-Future<void> _selectDiaryMoodDialog(BuildContext context, Diary diary) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return DiaryMoodSelectorDialogWidget(diary: diary);
-    },
-  );
-}
-
-class DiaryMoodSelectorDialogWidget extends StatefulWidget {
+class _DiaryMoodSelectorDialogWidget extends StatefulWidget {
   /// 自定义组件
-  const DiaryMoodSelectorDialogWidget({
+  const _DiaryMoodSelectorDialogWidget({
     Key? key,
     required this.diary,
   }) : super(key: key);
@@ -216,37 +214,35 @@ class DiaryMoodSelectorDialogWidget extends StatefulWidget {
   final Diary diary;
 
   @override
-  State<DiaryMoodSelectorDialogWidget> createState() =>
+  State<_DiaryMoodSelectorDialogWidget> createState() =>
       _DiaryMoodSelectorDialogWidgetState();
 }
 
 class _DiaryMoodSelectorDialogWidgetState
-    extends State<DiaryMoodSelectorDialogWidget> {
+    extends State<_DiaryMoodSelectorDialogWidget> {
   List<Widget> _listAllMood() {
-    List<Widget> buttonList = List<Widget>.from([]);
-    Constance.moodMap.forEach(
-      (key, value) {
-        buttonList.add(
-          Consumer<DiaryEditorModel>(
-            builder: (context, diaryEditorModel, child) {
-              return IconButton(
-                onPressed: () {
-                  diaryEditorModel.changeMood(key);
-                  Navigator.of(context).pop();
-                },
-                icon: Column(
-                  children: [Icon(value), Text(key)],
-                ),
-                color: diaryEditorModel.diary.mood != key
-                    ? null
-                    : Theme.of(context).brightness == Brightness.dark
-                        ? darkColorScheme.primary
-                        : lightColorScheme.primary,
-              );
-            },
-          ),
-        );
-      },
+    List<Widget> buttonList = [];
+    DiaryConstance.moodMap.forEach(
+      (key, value) => buttonList.add(
+        Consumer<DiaryEditorModel>(
+          builder: (context, diaryEditorModel, child) {
+            return IconButton(
+              onPressed: () {
+                diaryEditorModel.changeMood(key);
+                Navigator.of(context).pop();
+              },
+              icon: Column(
+                children: [Icon(value), Text(key)],
+              ),
+              color: diaryEditorModel.diary.mood != key
+                  ? null
+                  : Theme.of(context).brightness == Brightness.dark
+                      ? darkColorScheme.primary
+                      : lightColorScheme.primary,
+            );
+          },
+        ),
+      ),
     );
     return buttonList;
   }
@@ -257,7 +253,7 @@ class _DiaryMoodSelectorDialogWidgetState
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           const Text('现在心情如何'),
           Text(
             'ねぇ、今どんな気持ち',
@@ -285,9 +281,7 @@ class _DiaryMoodSelectorDialogWidgetState
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
           child: const Text('返回'),
         ),
       ],

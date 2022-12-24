@@ -43,10 +43,10 @@ class _SplashPageState extends State<SplashPage>
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
+            children: [
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: null,
                 icon: Container(
                   width: 48,
                   height: 48,

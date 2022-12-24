@@ -16,7 +16,7 @@ class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
         return AlertDialog(
           actionsAlignment: MainAxisAlignment.center,
           actionsPadding: const EdgeInsets.all(0),
-          actions: <Widget>[
+          actions: [
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.labelLarge,

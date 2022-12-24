@@ -1,5 +1,6 @@
 import 'package:mercurius/index.dart';
 
+/// 亮色模式下的颜色集
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF00629F),
@@ -32,6 +33,7 @@ const lightColorScheme = ColorScheme(
   surfaceTint: Color(0xFF00629F),
 );
 
+/// 暗色模式下的颜色集
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
   primary: Color(0xFFFFB787),

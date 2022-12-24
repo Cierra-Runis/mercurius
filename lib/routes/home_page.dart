@@ -8,9 +8,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final isarService = IsarService();
-
   bool _currentListViewMode = true;
+
+  final isarService = IsarService();
 
   void _switchCurrentViewMode() {
     DevTools.printLog('[053] 现在是否为列表视图 $_currentListViewMode 并开始切换');
@@ -59,15 +59,6 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
-  }
-
-  Future<void> _loginDialog(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const LoginDialogWidget();
-      },
-    );
   }
 
   @override
@@ -163,6 +154,15 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(UniconsLine.diary),
       ),
       drawer: const DevLogDrawerWidget(),
+    );
+  }
+
+  Future<void> _loginDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const LoginDialogWidget();
+      },
     );
   }
 }

@@ -34,7 +34,7 @@ publish_to: 'none'
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+18
+version: 0.0.1+19
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -59,7 +59,7 @@ dependencies:
   unicons: ^2.1.0                     # 图标
   isar: ^3.0.5                        # 数据库
   isar_flutter_libs: ^3.0.5           # 数据库的库
-  flutter_quill: ^6.1.6               # 富文本
+  flutter_quill: ^6.1.9               # 富文本
   geolocator: ^9.0.2                  # 定位
   path_provider: ^2.0.11              # 路径获取
   flutter_quill_extensions: ^0.1.0    # 富文本扩展
@@ -70,6 +70,7 @@ dependencies:
   share_plus: ^6.3.0                  # 分享
   table_calendar: ^3.0.8              # 日历
   badges: ^2.0.3                      # 小红点提示
+  tuple: ^2.0.1                       # tuple 类型支持
 
 
 dev_dependencies:

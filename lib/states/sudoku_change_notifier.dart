@@ -1,34 +1,30 @@
 import 'package:mercurius/index.dart';
 
 class SudokuModel extends ChangeNotifier {
-  late SudokuGenerator sudokuGenerator;
+  late SudokuGenerator _sudokuGenerator;
+  late List<List<int>> _sudokuListAnswer;
+
   late List<List<int>> sudokuList;
   late List<List<int>> sudokuListCopy;
-  late List<List<int>> sudokuListAnswer;
-  late String difficulty;
   late bool showedAnswer;
   late bool won;
 
-  Map difficultyMap = {
-    'beginner': 18,
-    'easy': 27,
-    'medium': 36,
-    'hard': 54,
-  };
-
+  /// 深复制
   static List<List<int>> _copyGrid(List<List<int>> grid) {
     return grid.map((rowIndex) => [...rowIndex]).toList();
   }
 
   void init() {
     DevTools.printLog('[008] 数独初始化中');
-    sudokuGenerator = SudokuGenerator(
-        emptySquares: difficultyMap[profileModel.profile.sudokuDifficulty]);
+    _sudokuGenerator = SudokuGenerator(
+      emptySquares:
+          SudokuConstance.difficultyMap[profileModel.profile.sudokuDifficulty],
+    );
     showedAnswer = false;
     won = false;
-    sudokuList = sudokuGenerator.newSudoku;
+    sudokuList = _sudokuGenerator.newSudoku;
     sudokuListCopy = _copyGrid(sudokuList);
-    sudokuListAnswer = SudokuSolver.solve(sudokuList);
+    _sudokuListAnswer = SudokuSolver.solve(sudokuList);
   }
 
   void changeSudoku(int rowIndex, int columnIndex, int value) {
@@ -55,7 +51,7 @@ class SudokuModel extends ChangeNotifier {
   }
 
   void getAnswer() {
-    sudokuListCopy = _copyGrid(sudokuListAnswer);
+    sudokuListCopy = _copyGrid(_sudokuListAnswer);
     showedAnswer = true;
     won = false;
     notifyListeners();
@@ -64,7 +60,7 @@ class SudokuModel extends ChangeNotifier {
 
   void checkAnswer() {
     if (sudokuModel.sudokuListCopy.toString() ==
-        sudokuModel.sudokuListAnswer.toString()) {
+        sudokuModel._sudokuListAnswer.toString()) {
       DevTools.printLog("Game Over");
       won = true;
     } else {
@@ -76,7 +72,6 @@ class SudokuModel extends ChangeNotifier {
   }
 
   void changeDifficulty(String newDifficulty) {
-    difficulty = newDifficulty;
     profileModel
         .changeProfile(profileModel.profile..sudokuDifficulty = newDifficulty);
     newSudoku();

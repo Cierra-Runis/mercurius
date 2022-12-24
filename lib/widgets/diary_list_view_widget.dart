@@ -10,7 +10,7 @@ class DiaryListViewWidget extends StatefulWidget {
 class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
   final isarService = IsarService();
 
-  Widget getDiaryListCards(List<Diary>? data) {
+  Widget _getDiaryListCards(List<Diary>? data) {
     List<Widget> diaryListCards = [];
     if (data == null || data.isEmpty) {
       return const Center(
@@ -55,14 +55,9 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
       diaryListCards.add(DiaryListCardWidget(diary: element));
     }
 
-    ListView listView = ListView(
-      controller: ScrollController(),
-      children: diaryListCards.toList(),
-    );
-
     return Scrollbar(
       radius: const Radius.circular(2.0),
-      child: listView,
+      child: ListView(children: diaryListCards.toList()),
     );
   }
 
@@ -85,7 +80,7 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
           case ConnectionState.waiting:
             return Container();
           case ConnectionState.active:
-            return getDiaryListCards(snapshot.data);
+            return _getDiaryListCards(snapshot.data);
           case ConnectionState.done:
             return const Text('Stream 已关闭');
         }

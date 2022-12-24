@@ -10,29 +10,20 @@ class SudokuDifficultySelectorDialogWidget extends StatefulWidget {
 
 class _SudokuDifficultySelectorDialogWidgetState
     extends State<SudokuDifficultySelectorDialogWidget> {
-  /// 利用 `difficultyIconMay` 进行简化
-  Map difficultyIconMay = {
-    'beginner': Icons.child_friendly_rounded,
-    'easy': Icons.child_care_rounded,
-    'medium': Icons.school_rounded,
-    'hard': Icons.biotech_rounded,
-  };
-
   /// 创建难度表
   List<ListTile> _createDifficultyList(BuildContext context) {
-    List<ListTile> list =
-        List<ListTile>.generate(0, (index) => const ListTile());
+    List<ListTile> list = [];
 
     /// 遍历
-    sudokuModel.difficultyMap.forEach(
+    SudokuConstance.difficultyMap.forEach(
       (key, value) {
         list.add(
           ListTile(
-            leading: Icon(difficultyIconMay[key]),
+            leading: Icon(SudokuConstance.difficultyIconMay[key]),
             title: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 Text(key),
                 Text(
                   '空格数 $value',
@@ -65,7 +56,7 @@ class _SudokuDifficultySelectorDialogWidgetState
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           const Text('请选择难度'),
           Text(
             '请选择难度',
@@ -85,9 +76,7 @@ class _SudokuDifficultySelectorDialogWidgetState
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
           child: const Text('返回'),
         ),
       ],

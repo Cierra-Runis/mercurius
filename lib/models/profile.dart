@@ -6,12 +6,6 @@ part 'profile.g.dart';
 class Profile {
   Profile();
 
-  User? user;
-  String? token;
-  ThemeMode? themeMode;
-  CacheConfig? cache;
-  String? lastLogin;
-
   /// 当 profile.dart 添加新数据时
   /// 为了版本的迭代, 在此添加的新数据格式应该为
   /// <类型>? <变量名> [= <一般初始值>];
@@ -23,8 +17,29 @@ class Profile {
   (输入项｜输入项)	  必须地在显示的值中选择一个填写。
   [输入项｜输入项]	  可选地在显示的值中选择一个填写。
   */
+
+  /// 用户
+  User? user;
+
+  /// 用户 `token`
+  String? token;
+
+  /// 主题模式
+  ThemeMode? themeMode;
+
+  /// 缓存策略
+  CacheConfig? cache;
+
+  /// 最后登录于
+  String? lastLogin;
+
+  /// 数独难度
   String? sudokuDifficulty = 'hard';
+
+  /// 当前版本
   String? currentVersion;
+
+  /// 缓存的位置
   CacheLocation? cacheLocation;
 
   factory Profile.fromJson(Map<String, dynamic> json) =>

@@ -52,7 +52,7 @@ Future<void> _optionMenu(BuildContext context) {
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   const Text('从 Github 下载'),
                   Text(
                     '推荐源，但国内速度较慢',
@@ -66,21 +66,18 @@ Future<void> _optionMenu(BuildContext context) {
                 ],
               ),
               trailing: const Icon(Icons.navigate_next),
-              onTap: () {
-                DevTools.printLog('开始下载');
-                launchUrlString(
-                  mercuriusWebModel
-                      .githubLatestRelease.assets![0].browser_download_url!,
-                  mode: LaunchMode.externalApplication,
-                );
-              },
+              onTap: () => launchUrlString(
+                mercuriusWebModel
+                    .githubLatestRelease.assets![0].browser_download_url!,
+                mode: LaunchMode.externalApplication,
+              ),
             ),
             ListTile(
               leading: const Icon(UniconsLine.cloud),
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   const Text('从 其他 下载'),
                   Text(
                     '其他源，暂未开放',
@@ -94,7 +91,9 @@ Future<void> _optionMenu(BuildContext context) {
                 ],
               ),
               trailing: const Icon(Icons.navigate_next),
-              onTap: null,
+              onTap: () {
+                /// TODO: 那样的其他源
+              },
             ),
           ],
         ),
