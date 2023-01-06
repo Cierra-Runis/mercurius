@@ -16,7 +16,7 @@ FILE_DIR = {
 }
 
 
-def get_current_version_str_from_release_yml() -> str:
+def get_version_from_release_yml() -> str:
     '''
     从 release.yml 文件中获取当前版本的字符串
     '''
@@ -32,7 +32,7 @@ def release_model():
     release 模块
     '''
     print('-- release.py --')
-    release_version_str = get_current_version_str_from_release_yml()
+    release_version_str = get_version_from_release_yml()
     print(f'> 正在发布 v{release_version_str}')
     os.system('git add .')
     os.system(f'git commit -m "v{release_version_str}"')
