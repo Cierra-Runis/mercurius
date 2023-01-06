@@ -1,32 +1,42 @@
 <div align="center">
-  <img id="mercurius" width="64" alt="mercurius" src="assets\icon\icon.png">
-  <p>「 Mercurius 」</p>
+  <img id="mercurius" width="96" alt="mercurius" src="repository_icon/icon.svg">
+  <p>『 Mercurius - 记点日记！』</p>
 </div>
 
-<br>
+[📚 简介](#-简介)
 
-[📚 功能](#功能)
+[📦 使用方式](#-使用方式)
 
-[📦 安装](#安装)
+[⏳ 进度](#-进度)
 
-[⚠️ 注意事项](#注意事项)
+[📌 注意事项](#-注意事项)
 
-[🧑‍💻 开发者](#开发者)
+[🧑‍💻 贡献者](#-贡献者)
 
-# 功能
+[🔦 声明](#-声明)
 
-本软件基于 [Flutter](https://flutter.dev/) 开发
+# 📚 简介
 
-# 安装
+本软件是基于 [Flutter](https://flutter.dev/) 开发的一款日记软件
+
+# 📦 使用方式
 
 详见 [此仓库](https://github.com/Cierra-Runis/mercurius_warehouse)
 
-# 注意事项
+# ⏳ 进度
 
-暂无
+持续更新中
 
-# 开发者
+# 📌 注意事项
 
-<a href="https://github.com/Cierra-Runis/word-cloud/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Cierra-Runis/word-cloud" />
+- 无
+
+# 🧑‍💻 贡献者
+
+<a href="https://github.com/Cierra-Runis/mercurius_warehouse/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius_warehouse" />
 </a>
+
+# 🔦 声明
+
+该仓库为闭源仓库，不对外公开

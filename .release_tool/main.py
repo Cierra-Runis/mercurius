@@ -26,7 +26,7 @@ FILE_DIR = {
 }
 
 
-def get_current_version_str_from_pubspec_yaml() -> str:
+def get_version_from_pubspec_yaml() -> str:
     '''
     从 pubspec.yaml 文件中获取当前版本的字符串
     '''
@@ -60,7 +60,7 @@ def rewrite_current_version_str_in_pubspec_yaml(new_version: str) -> None:
     )
 
 
-def rewrite_release_version_in_mercurius_warehouse(new_version: str) -> None:
+def rewrite_release_version(new_version: str) -> None:
     '''
     修改 release.yml 和 body.md 文件中的版本号
     '''
@@ -77,7 +77,7 @@ def rewrite_release_version_in_mercurius_warehouse(new_version: str) -> None:
     )
 
 
-def is_new_version_bigger(current_version: str, new_version: str) -> bool:
+def is_new_version_legal(current_version: str, new_version: str) -> bool:
     '''
     比较版本号大小, 两字符串格式类似 1.0.0+1
     '''
@@ -97,9 +97,9 @@ def is_new_version_bigger(current_version: str, new_version: str) -> bool:
             # 从最高级一一对比, 某级新版本若小于旧版本, 则是新版本小了
             # 返回 False
             return False
-    # 运行到这说明俩版本号一样大
-    # 返回 False
-    return False
+    # 运行到这说明俩版本号一样大, 即重新构建该版本
+    # 返回 True
+    return True
 
 
 def input_tool(
@@ -146,7 +146,7 @@ def main_module() -> None:
     '''
     # 程序开始
     print('-- main.py --')
-    current_version_str = get_current_version_str_from_pubspec_yaml()
+    current_version_str = get_version_from_pubspec_yaml()
     input_str = ''
 
     input_str = input_tool(
@@ -169,10 +169,10 @@ def main_module() -> None:
             ),
         )
 
-        # 当新版本号不大于原版本号时
-        while not is_new_version_bigger(current_version_str, input_str):
+        # 当新版本号不合法时
+        while not is_new_version_legal(current_version_str, input_str):
             # 重新提醒并输入
-            print(f'> 请使得新输入的版本号 {input_str} 大于旧版本号 {current_version_str}')
+            print(f'> 请使得新输入的版本号 {input_str} 不小于旧版本号 {current_version_str}')
             input_str = input_tool(
                 first_message='请输入版本号',
                 rule='',
@@ -188,7 +188,7 @@ def main_module() -> None:
         rewrite_current_version_str_in_pubspec_yaml(input_str)
 
         # 版本号已修改
-        print(f'> 版本号已修改为 {get_current_version_str_from_pubspec_yaml()}')
+        print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')
 
         # 修改版本号后自动构建
         os.system('flutter build apk' + ' --obfuscate' +
@@ -211,7 +211,7 @@ def release_module() -> None:
     '''
     发布模块
     '''
-    current_version_str = get_current_version_str_from_pubspec_yaml()
+    current_version_str = get_version_from_pubspec_yaml()
     input_str = ''
 
     input_str = input_tool(
@@ -224,7 +224,7 @@ def release_module() -> None:
     # 若输入的是 'y'
     if input_str == 'y':
         # 修改发布版本
-        rewrite_release_version_in_mercurius_warehouse(current_version_str)
+        rewrite_release_version(current_version_str)
         # 打开 body.md 文件进行修改
         print('> 已为你打开 body.md 文件')
         os.startfile(FILE_DIR['body_md'])
