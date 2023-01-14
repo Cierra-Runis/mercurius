@@ -133,7 +133,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                       child: flutter_quill.QuillEditor(
-                        locale: const Locale('zh', 'hk'),
+                        locale: const Locale('zh', 'cn'),
                         focusNode: FocusNode(),
                         scrollController: ScrollController(),
                         scrollable: true,
@@ -155,7 +155,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                         customStyles: flutter_quill.DefaultStyles(
                           placeHolder: flutter_quill.DefaultTextBlockStyle(
                             TextStyle(
-                              fontFamily: 'HarmonyOS_Sans_SC',
+                              fontFamily: 'Saira',
                               fontSize: 14,
                               height: 1.5,
                               color: Colors.grey.withOpacity(0.6),
@@ -166,7 +166,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                           ),
                           paragraph: flutter_quill.DefaultTextBlockStyle(
                             TextStyle(
-                              fontFamily: 'HarmonyOS_Sans_SC',
+                              fontFamily: 'Saira',
                               fontSize: 14,
                               height: 1.5,
                               color:

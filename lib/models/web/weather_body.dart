@@ -2,14 +2,14 @@ import 'package:mercurius/index.dart';
 
 part 'weather_body.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class WeatherBody {
   WeatherBody();
 
   String? code;
   String? updateTime;
   String? fxLink;
-  List<Daily>? daily;
+  Now? now;
   Refer? refer;
 
   factory WeatherBody.fromJson(Map<String, dynamic> json) =>
@@ -17,38 +17,53 @@ class WeatherBody {
   Map<String, dynamic> toJson() => _$WeatherBodyToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
-class Daily {
-  Daily();
+@JsonSerializable()
+class Now {
+  Now({
+    this.obsTime,
+    this.temp,
+    this.feelsLike,
+    this.icon,
+    this.text,
+    this.wind360,
+    this.windDir,
+    this.windScale,
+    this.windSpeed,
+    this.humidity,
+    this.precip,
+    this.pressure,
+    this.vis,
+    this.cloud,
+    this.dew,
+  });
 
-  DateTime? fxDate;
-  String? sunrise;
-  String? sunset;
-  String? moonrise;
-  String? moonset;
-  String? moonPhase;
-  String? moonPhaseIcon;
-  String? tempMax;
-  String? tempMin;
-  String? iconDay;
-  String? textDay;
-  String? iconNight;
-  String? textNight;
-  String? wind360Day;
-  String? windDirDay;
-  String? windScaleDay;
-  String? windSpeedDay;
-  String? wind360Night;
-  String? windDirNight;
-  String? windScaleNight;
-  String? windSpeedNight;
+  String? obsTime;
+  String? temp;
+  String? feelsLike;
+  String? icon;
+  String? text;
+  String? wind360;
+  String? windDir;
+  String? windScale;
+  String? windSpeed;
   String? humidity;
   String? precip;
   String? pressure;
   String? vis;
   String? cloud;
-  String? uvIndex;
+  String? dew;
 
-  factory Daily.fromJson(Map<String, dynamic> json) => _$DailyFromJson(json);
-  Map<String, dynamic> toJson() => _$DailyToJson(this);
+  factory Now.fromJson(Map<String, dynamic> json) => _$NowFromJson(json);
+  Map<String, dynamic> toJson() => _$NowToJson(this);
+}
+
+@JsonSerializable()
+class Refer {
+  Refer();
+
+  List<String>? sources;
+  List<String>? license;
+
+  factory Refer.fromJson(Map<String, dynamic> json) => _$ReferFromJson(json);
+  Map<String, dynamic> toJson() => _$ReferToJson(this);
 }

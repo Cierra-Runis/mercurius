@@ -100,7 +100,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
               children: [
                 Expanded(
                   child: flutter_quill.QuillEditor(
-                    locale: const Locale('zh', 'hk'),
+                    locale: const Locale('zh', 'cn'),
                     focusNode: FocusNode(),
                     scrollController: _scrollController,
                     scrollable: true,
@@ -114,7 +114,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                     customStyles: flutter_quill.DefaultStyles(
                       placeHolder: flutter_quill.DefaultTextBlockStyle(
                         TextStyle(
-                          fontFamily: 'HarmonyOS_Sans_SC',
+                          fontFamily: 'Saira',
                           fontSize: 14,
                           height: 1.5,
                           color: Colors.grey.withOpacity(0.6),
@@ -125,7 +125,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                       ),
                       paragraph: flutter_quill.DefaultTextBlockStyle(
                         TextStyle(
-                          fontFamily: 'HarmonyOS_Sans_SC',
+                          fontFamily: 'Saira',
                           fontSize: 14,
                           height: 1.5,
                           color: Theme.of(context).textTheme.bodyText1!.color,
@@ -184,7 +184,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                       ),
                     ),
                   ],
-                  locale: const Locale('zh', 'hk'),
+                  locale: const Locale('zh', 'cn'),
                 ),
               ],
             ),

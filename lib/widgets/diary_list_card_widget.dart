@@ -35,7 +35,10 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
         ],
       ),
       child: InkWell(
-        onTap: () => _diaryShowingDialog(context, widget.diary),
+        onTap: () async {
+          Vibration.vibrate(duration: 50, amplitude: 255);
+          _diaryShowingDialog(context, widget.diary);
+        },
         borderRadius: BorderRadius.circular(22),
         child: SizedBox(
           height: 76,

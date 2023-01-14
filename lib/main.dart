@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 ProfileModel profileModel = ProfileModel();
 SudokuModel sudokuModel = SudokuModel();
 MercuriusWebModel mercuriusWebModel = MercuriusWebModel();
-LocationModel locationModel = LocationModel();
+PositionModel positionModel = PositionModel();
 LogModel logModel = LogModel();
 PathModel pathModel = PathModel();
 DiaryEditorModel diaryEditorModel = DiaryEditorModel();
@@ -26,7 +26,7 @@ class MercuriusApp extends StatefulWidget {
 class _MercuriusAppState extends State<MercuriusApp> {
   @override
   Widget build(BuildContext context) {
-    DevTools.printLog('[006] MercuriusApp 构建中');
+    DevTools.printLog('MercuriusApp 构建中');
 
     /// 利用 `provide` 包进行状态管理
     return MultiProvider(
@@ -34,7 +34,7 @@ class _MercuriusAppState extends State<MercuriusApp> {
         ChangeNotifierProvider(create: (_) => profileModel),
         ChangeNotifierProvider(create: (_) => sudokuModel),
         ChangeNotifierProvider(create: (_) => mercuriusWebModel),
-        ChangeNotifierProvider(create: (_) => locationModel),
+        ChangeNotifierProvider(create: (_) => positionModel),
         ChangeNotifierProvider(create: (_) => pathModel),
         ChangeNotifierProvider(create: (_) => logModel),
         ChangeNotifierProvider(create: (_) => diaryEditorModel)
@@ -46,12 +46,12 @@ class _MercuriusAppState extends State<MercuriusApp> {
             theme: ThemeData(
               useMaterial3: true,
               colorScheme: lightColorScheme,
-              fontFamily: 'HarmonyOS_Sans_SC',
+              fontFamily: 'Saira',
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
               colorScheme: darkColorScheme,
-              fontFamily: 'HarmonyOS_Sans_SC',
+              fontFamily: 'Saira',
             ),
             themeMode: profileModel.profile.themeMode,
             home: const SplashPage(),

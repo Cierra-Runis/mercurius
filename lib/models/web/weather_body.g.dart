@@ -10,9 +10,9 @@ WeatherBody _$WeatherBodyFromJson(Map<String, dynamic> json) => WeatherBody()
   ..code = json['code'] as String?
   ..updateTime = json['updateTime'] as String?
   ..fxLink = json['fxLink'] as String?
-  ..daily = (json['daily'] as List<dynamic>?)
-      ?.map((e) => Daily.fromJson(e as Map<String, dynamic>))
-      .toList()
+  ..now = json['now'] == null
+      ? null
+      : Now.fromJson(json['now'] as Map<String, dynamic>)
   ..refer = json['refer'] == null
       ? null
       : Refer.fromJson(json['refer'] as Map<String, dynamic>);
@@ -22,66 +22,53 @@ Map<String, dynamic> _$WeatherBodyToJson(WeatherBody instance) =>
       'code': instance.code,
       'updateTime': instance.updateTime,
       'fxLink': instance.fxLink,
-      'daily': instance.daily?.map((e) => e.toJson()).toList(),
-      'refer': instance.refer?.toJson(),
+      'now': instance.now,
+      'refer': instance.refer,
     };
 
-Daily _$DailyFromJson(Map<String, dynamic> json) => Daily()
-  ..fxDate =
-      json['fxDate'] == null ? null : DateTime.parse(json['fxDate'] as String)
-  ..sunrise = json['sunrise'] as String?
-  ..sunset = json['sunset'] as String?
-  ..moonrise = json['moonrise'] as String?
-  ..moonset = json['moonset'] as String?
-  ..moonPhase = json['moonPhase'] as String?
-  ..moonPhaseIcon = json['moonPhaseIcon'] as String?
-  ..tempMax = json['tempMax'] as String?
-  ..tempMin = json['tempMin'] as String?
-  ..iconDay = json['iconDay'] as String?
-  ..textDay = json['textDay'] as String?
-  ..iconNight = json['iconNight'] as String?
-  ..textNight = json['textNight'] as String?
-  ..wind360Day = json['wind360Day'] as String?
-  ..windDirDay = json['windDirDay'] as String?
-  ..windScaleDay = json['windScaleDay'] as String?
-  ..windSpeedDay = json['windSpeedDay'] as String?
-  ..wind360Night = json['wind360Night'] as String?
-  ..windDirNight = json['windDirNight'] as String?
-  ..windScaleNight = json['windScaleNight'] as String?
-  ..windSpeedNight = json['windSpeedNight'] as String?
-  ..humidity = json['humidity'] as String?
-  ..precip = json['precip'] as String?
-  ..pressure = json['pressure'] as String?
-  ..vis = json['vis'] as String?
-  ..cloud = json['cloud'] as String?
-  ..uvIndex = json['uvIndex'] as String?;
+Now _$NowFromJson(Map<String, dynamic> json) => Now(
+      obsTime: json['obsTime'] as String?,
+      temp: json['temp'] as String?,
+      feelsLike: json['feelsLike'] as String?,
+      icon: json['icon'] as String?,
+      text: json['text'] as String?,
+      wind360: json['wind360'] as String?,
+      windDir: json['windDir'] as String?,
+      windScale: json['windScale'] as String?,
+      windSpeed: json['windSpeed'] as String?,
+      humidity: json['humidity'] as String?,
+      precip: json['precip'] as String?,
+      pressure: json['pressure'] as String?,
+      vis: json['vis'] as String?,
+      cloud: json['cloud'] as String?,
+      dew: json['dew'] as String?,
+    );
 
-Map<String, dynamic> _$DailyToJson(Daily instance) => <String, dynamic>{
-      'fxDate': instance.fxDate?.toIso8601String(),
-      'sunrise': instance.sunrise,
-      'sunset': instance.sunset,
-      'moonrise': instance.moonrise,
-      'moonset': instance.moonset,
-      'moonPhase': instance.moonPhase,
-      'moonPhaseIcon': instance.moonPhaseIcon,
-      'tempMax': instance.tempMax,
-      'tempMin': instance.tempMin,
-      'iconDay': instance.iconDay,
-      'textDay': instance.textDay,
-      'iconNight': instance.iconNight,
-      'textNight': instance.textNight,
-      'wind360Day': instance.wind360Day,
-      'windDirDay': instance.windDirDay,
-      'windScaleDay': instance.windScaleDay,
-      'windSpeedDay': instance.windSpeedDay,
-      'wind360Night': instance.wind360Night,
-      'windDirNight': instance.windDirNight,
-      'windScaleNight': instance.windScaleNight,
-      'windSpeedNight': instance.windSpeedNight,
+Map<String, dynamic> _$NowToJson(Now instance) => <String, dynamic>{
+      'obsTime': instance.obsTime,
+      'temp': instance.temp,
+      'feelsLike': instance.feelsLike,
+      'icon': instance.icon,
+      'text': instance.text,
+      'wind360': instance.wind360,
+      'windDir': instance.windDir,
+      'windScale': instance.windScale,
+      'windSpeed': instance.windSpeed,
       'humidity': instance.humidity,
       'precip': instance.precip,
       'pressure': instance.pressure,
       'vis': instance.vis,
       'cloud': instance.cloud,
-      'uvIndex': instance.uvIndex,
+      'dew': instance.dew,
+    };
+
+Refer _$ReferFromJson(Map<String, dynamic> json) => Refer()
+  ..sources =
+      (json['sources'] as List<dynamic>?)?.map((e) => e as String).toList()
+  ..license =
+      (json['license'] as List<dynamic>?)?.map((e) => e as String).toList();
+
+Map<String, dynamic> _$ReferToJson(Refer instance) => <String, dynamic>{
+      'sources': instance.sources,
+      'license': instance.license,
     };

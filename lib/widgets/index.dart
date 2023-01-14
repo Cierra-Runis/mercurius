@@ -13,3 +13,4 @@ export 'dev_log_drawer_widget.dart';
 export 'diary_showing_dialog_widget.dart';
 export 'diary_list_view_widget.dart';
 export 'diary_calendar_view_widget.dart';
+export 'mercurius_title_widget.dart';

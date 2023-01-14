@@ -30,55 +30,7 @@ class _MorePageState extends State<MorePage> {
             );
           },
         ),
-        title: Consumer<LocationModel>(
-          builder: (context, locationModel, child) {
-            return Column(
-              children: [
-                const Text(
-                  'Mercurius',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Saira',
-                  ),
-                ),
-                InkWell(
-                  onTap: () => locationModel.refetchCurrentPosition(true),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        UniconsLine.location_arrow,
-                        size: 6,
-                      ),
-                      Text(
-                        " ${(locationModel.position.latitude * 100).toInt() / 100}N ${(locationModel.position.longitude * 100).toInt() / 100}E ",
-                        style: const TextStyle(
-                          fontSize: 8,
-                        ),
-                      ),
-                      Icon(
-                        QWeatherIcon.getIconById(
-                              int.parse(
-                                locationModel.weatherBody.daily?[0].iconDay ??
-                                    '2028',
-                              ),
-                            ) ??
-                            QWeatherIcon.tag_weather_advisory,
-                        size: 6,
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  locationModel.geoBody.location?[0].name ?? '未定位城市',
-                  style: const TextStyle(
-                    fontSize: 8,
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
+        title: const MercuriusTitleWidget(),
         centerTitle: true,
       ),
       body: Column(

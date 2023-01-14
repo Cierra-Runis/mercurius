@@ -145,7 +145,7 @@ class AgreementContentConstance {
 
 /// 引入声明相关常数
 class DeclarationContentConstance {
-  static const String declarationContentUpdateDate = '更新于 2022 年 11 月 18 日';
+  static const String declarationContentUpdateDate = '更新于 2023 年 1 月 14 日';
 
   static const String declarationContent = '''
 欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。
@@ -153,8 +153,7 @@ class DeclarationContentConstance {
 本次 Cierra_Runis 编写了《Mercurius 引入声明》（以下简称「本声明」）。
 
 一、字体声明
-1. Mercurius 引入了 HarmonyOS Sans 字体作为 Mercurius 的主要字体。[License](HarmonyOS_Sans)
-2. Mercurius 引入了 Saira 字体作为 Mercurius 的次要字体。[License](Saira)
+1. Mercurius 引入了 Saira 字体作为 Mercurius 的主要字体。[License](Saira)
 
 二、图标声明
 1. Mercurius 引入了 Material Icons 作为 Mercurius 的主要图标。[License](Material_Icons)
@@ -162,41 +161,6 @@ class DeclarationContentConstance {
 ''';
 
   static const Map license = {
-    'HarmonyOS_Sans': '''
-License Notice
-Copyright 2021 Huawei Device Co., Ltd.
-HarmonyOS Sans Fonts Software is licensed under HarmonyOS Sans Fonts License Agreement.
-
---------------------------------------------------------------------------------
-HarmonyOS Sans Fonts License Agreement
-
-THIS HARMONYOS SANS FONTS LICENSE AGREEMENT ("AGREEMENT") IS A LEGAL AGREEMENT BETWEEN YOU (EITHER A SINGLE INDIVIDUAL, OR SINGLE LEGAL ENTITY) AND HUAWEI DEVICE CO., LTD.( "LICENSOR")FOR THE USE OF THE HARMONYOS SANS FONTS ACCOMPANYING THIS AGREEMENT.BY DOWNLOADING,COPYING OR OTHERWISE USING HARMONYOS SANS FONTS YOU INDICATE THAT YOU AGREE TO BE BOUND BY ALL OF THE TERMS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, YOU MAY NOT DOWNLOAD, COPY OR OTHERWISE USE THE HARMONYOS SANS FONTS, AND YOU SHALL PROMPTLY DESTROY AND DELETE ALL THE HARMONYOS SANS FONTS.
-
-1.Definition
-"HarmonyOS Sans Fonts" shall mean the collection of fonts software components provided by Licensor under this Agreement and clearly marked as "HarmonyOS¬ Sans".
-
-"YOU" shall mean an individual or legal entity exercising permissions granted by this Agreement.
-
-2.GRANT OF LICENSE
-
-Subject to the terms and conditions of this Agreement, Licensor hereby grant YOU a non-transferable, non-exclusive, royalty-free, revocable, worldwide copyright license to use,copy, merge, embed, bundle, redistribute and/or sell unmodified copies of HarmonyOS Sans Fonts with any software except for fonts software，subject to the  following conditions:
-1)YOU shall make a prominent notice in the software to state that HarmonyOS Sans Fonts are used.
-2)YOU may not make any modifications to HarmonyOS Sans Fonts or any of their individual components.
-3)Neither HarmonyOS Sans Fonts nor any of their individual components may be redistributed or sold in a stand-alone base. This limitation does not apply to any work created by using HarmonyOS Sans Fonts. You can freely distribute or sell your work, such as materials, logos, application software etc. created by using HarmonyOS Sans Fonts.
-4)YOU shall retain the copyright notice and this Agreement in any copies of HarmonyOS Sans Fonts.
-
-3.Termination
-This Agreement will be automatically terminated if YOU breach any of this Agreement.
-
-4.NO WARRANTY
-YOU AGREE THAT THE HARMONYOS SANS FONTS ARE PROVIDED BY LICENSOR ON AN "AS IS" BASIS. LICENSOR MAKES NO WARRANTY, EXPRESSED OR IMPLIED OR STATUTORY, WITH RESPECT TO ANY OF THE HARMONYOS SANS FONTS, INCLUDING WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT.
-
-5.NO LIABILITY
-
-IN NO EVENT SHALL LICENSOR BE LIABLE FOR ANY DIRECT OR INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE OF OR INABILITY TO USE HARMONYOS SANS FONTS, WHETHER UNDER THEORY OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHER LEGAL THEORY, EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-YOU EXPRESSLY ASSUME ALL LIABILITIES AND RISKS FOR USE OF HARMONYOS SANS FONTS. SHOULD THE HARMONYOS SANS FONTS PROVE DEFECTIVE, YOU ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
-''',
     'Saira': '''
 Copyright 2020 The Saira Project Authors (https://github.com/Omnibus-Type/Saira)
 
@@ -675,6 +639,9 @@ class PrivacyContentConstance {
 
 /// `API` 所需的 `key`
 class ApiKeyConstance {
-  /// 天气 `api` 所需开发者 `key`
-  static const String weatherKey = 'a13fc8e191d14cc0930bc07c6660d900';
+  /// 和风天气 `api` 所需开发者 `key`
+  static const String qWeatherKey = 'a13fc8e191d14cc0930bc07c6660d900';
+
+  /// 高德 `api` 所需开发者 `key`
+  static const String aMapKey = 'eb5254d31736ca5298ad4d68fae76c09';
 }

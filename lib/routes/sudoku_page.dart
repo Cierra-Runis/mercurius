@@ -130,7 +130,7 @@ class SudokuPageState extends State<SudokuPage> {
 
   @override
   Widget build(BuildContext context) {
-    DevTools.printLog('[011] SudokuPage 构建中');
+    DevTools.printLog('SudokuPage 构建中');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

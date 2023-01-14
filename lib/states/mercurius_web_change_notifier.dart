@@ -11,7 +11,7 @@ class MercuriusWebModel extends ChangeNotifier {
     try {
       response = await Dio().get(_url);
     } catch (e) {
-      DevTools.printLog('[018] GithubLatestRelease 连接失败');
+      DevTools.printLog('GithubLatestRelease 连接失败');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(
           '{"tag_name": "${profileModel.profile.currentVersion}"}',
@@ -22,15 +22,15 @@ class MercuriusWebModel extends ChangeNotifier {
       return;
     }
 
-    DevTools.printLog('[019] GithubLatestRelease 连接成功');
+    DevTools.printLog('GithubLatestRelease 连接成功');
 
     if (response.statusCode == 200) {
-      DevTools.printLog('[020] GithubLatestRelease 请求成功');
+      DevTools.printLog('GithubLatestRelease 请求成功');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(response.toString()),
       );
     } else {
-      DevTools.printLog('[021] GithubLatestRelease 请求失败');
+      DevTools.printLog('GithubLatestRelease 请求失败');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(
           '{"tag_name": "${profileModel.profile.currentVersion}"}',
@@ -48,7 +48,7 @@ class MercuriusWebModel extends ChangeNotifier {
   }
 
   void init() {
-    DevTools.printLog('[017] GithubLatestRelease 初始化中');
+    DevTools.printLog('GithubLatestRelease 初始化中');
     _fetchGithubLatestRelease();
   }
 }

@@ -25,37 +25,21 @@ class Profile {
   String? token;
 
   /// 主题模式
-  ThemeMode? themeMode;
-
-  /// 缓存策略
-  CacheConfig? cache;
+  ThemeMode themeMode = ThemeMode.system;
 
   /// 最后登录于
   String? lastLogin;
 
   /// 数独难度
-  String? sudokuDifficulty = 'hard';
+  String sudokuDifficulty = 'hard';
 
   /// 当前版本
   String? currentVersion;
 
   /// 缓存的位置
-  CacheLocation? cacheLocation;
+  Cache cache = Cache();
 
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
   Map<String, dynamic> toJson() => _$ProfileToJson(this);
-}
-
-@JsonSerializable()
-class CacheLocation {
-  CacheLocation();
-
-  String? latitude;
-  String? longitude;
-  DateTime? cacheDateTime;
-
-  factory CacheLocation.fromJson(Map<String, dynamic> json) =>
-      _$CacheLocationFromJson(json);
-  Map<String, dynamic> toJson() => _$CacheLocationToJson(this);
 }

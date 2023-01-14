@@ -6,13 +6,13 @@ class PathModel extends ChangeNotifier {
   late String path;
 
   void init() async {
-    DevTools.printLog('[045] pathModel 初始化中');
+    DevTools.printLog('pathModel 初始化中');
 
     /// 可见于 Android/pers.cierra_runis.mercurius/files
     directory = getExternalStorageDirectory();
 
     directory.then((value) {
-      DevTools.printLog('[046] 获取 path 为 $value');
+      DevTools.printLog('获取 path 为 $value');
       path = value.toString();
     });
   }

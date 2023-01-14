@@ -16,12 +16,12 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
       child: Drawer(
         backgroundColor: Colors.transparent,
         child:
-            Consumer4<ProfileModel, MercuriusWebModel, LocationModel, LogModel>(
+            Consumer4<ProfileModel, MercuriusWebModel, PositionModel, LogModel>(
           builder: (
             context,
             profileModel,
             mercuriusWebModel,
-            locationModel,
+            positionModel,
             logModel,
             child,
           ) {
@@ -53,42 +53,6 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
                   ListTile(
                     title: Text(
                       jsonEncode(mercuriusWebModel.githubLatestRelease),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.weatherBody.daily?[0].textDay),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.weatherBody),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.geoBody),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(locationModel.position),
                       style: const TextStyle(
                         fontSize: 8,
                         fontFamily: 'Saira',

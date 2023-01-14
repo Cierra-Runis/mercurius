@@ -42,14 +42,14 @@ class _HomeRouteState extends State<HomeRoute> {
                 ),
               ),
               margin: const EdgeInsets.fromLTRB(60, 0, 60, 70),
-              barBlur: 4.0,
+              barBlur: 1.0,
               borderRadius: BorderRadius.circular(16),
               backgroundColor: Theme.of(context).brightness == Brightness.dark
                   ? const Color(0xFF303030).withAlpha(60)
                   : const Color(0xFFCFCFCF).withAlpha(60),
               boxShadows: const [
                 BoxShadow(
-                  color: Colors.black26,
+                  color: Colors.transparent,
                   blurRadius: 10.0,
                   spreadRadius: 4.0,
                   offset: Offset(0, 16),

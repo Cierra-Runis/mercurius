@@ -59,7 +59,8 @@ class _SudokuNumSelectorDialogWidgetState
   @override
   Widget build(BuildContext context) {
     DevTools.printLog(
-        '[012] SudokuNumSelectorDialog[${widget.row}][${widget.column}] 构建中');
+      'SudokuNumSelectorDialog[${widget.row}][${widget.column}] 构建中',
+    );
     return AlertDialog(
       title: Column(
         mainAxisSize: MainAxisSize.min,

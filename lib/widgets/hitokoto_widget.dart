@@ -82,11 +82,15 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
     try {
       response = await Dio().get(_url);
     } catch (e) {
-      return HiToKoTo.fromJson(jsonDecode(_connectErrorJsonString));
+      return HiToKoTo.fromJson(
+        jsonDecode(_connectErrorJsonString),
+      );
     }
 
     if (response.statusCode == 200) {
-      return HiToKoTo.fromJson(jsonDecode(response.toString()));
+      return HiToKoTo.fromJson(
+        jsonDecode(response.toString()),
+      );
     } else {
       return HiToKoTo.fromJson(
         jsonDecode(_responseErrorJsonString),

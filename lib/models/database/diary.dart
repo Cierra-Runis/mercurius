@@ -28,9 +28,6 @@ class Diary {
   /// 心情
   late String mood;
 
-  /// 所使用的日记图片
-  final diaryImages = IsarLinks<DiaryImage>();
-
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
 }

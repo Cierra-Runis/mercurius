@@ -182,7 +182,7 @@ def main_module() -> None:
                     input_str,
                 ),
             )
-        # 直至新版本号大于原版本号
+        # 直至新版本号合法
 
         # 写入新版本号至 pubspec.yaml 文件
         rewrite_current_version_str_in_pubspec_yaml(input_str)
@@ -191,10 +191,11 @@ def main_module() -> None:
         print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')
 
         # 修改版本号后自动构建
-        os.system('flutter build apk' + ' --obfuscate' +
-                  ' --split-debug-info=splitMap' +
-                  ' --target-platform android-arm,android-arm64,android-x64' +
-                  ' --split-per-abi')
+        os.system(
+            'flutter build apk' + ' --obfuscate' +
+            ' --split-debug-info=splitMap' +
+            ' --target-platform android-arm,android-arm64,android-x64' +
+            ' --split-per-abi', )
 
         # 并将 build 后的 apk 转移至 .release_tool/mercurius_warehouse
         copy_file(

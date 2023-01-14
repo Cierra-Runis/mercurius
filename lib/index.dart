@@ -42,3 +42,4 @@ export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:share_plus/share_plus.dart';
 export 'package:table_calendar/table_calendar.dart';
 export 'package:badges/badges.dart';
+export 'package:vibration/vibration.dart';

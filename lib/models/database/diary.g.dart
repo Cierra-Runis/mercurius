@@ -54,14 +54,7 @@ const DiarySchema = CollectionSchema(
   deserializeProp: _diaryDeserializeProp,
   idName: r'id',
   indexes: {},
-  links: {
-    r'diaryImages': LinkSchema(
-      id: -5839367867916445446,
-      name: r'diaryImages',
-      target: r'DiaryImage',
-      single: false,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _diaryGetId,
   getLinks: _diaryGetLinks,
@@ -152,13 +145,11 @@ Id _diaryGetId(Diary object) {
 }
 
 List<IsarLinkBase<dynamic>> _diaryGetLinks(Diary object) {
-  return [object.diaryImages];
+  return [];
 }
 
 void _diaryAttach(IsarCollection<dynamic> col, Id id, Diary object) {
   object.id = id;
-  object.diaryImages
-      .attach(col, col.isar.collection<DiaryImage>(), r'diaryImages', id);
 }
 
 extension DiaryQueryWhereSort on QueryBuilder<Diary, Diary, QWhere> {
@@ -967,64 +958,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
 
 extension DiaryQueryObject on QueryBuilder<Diary, Diary, QFilterCondition> {}
 
-extension DiaryQueryLinks on QueryBuilder<Diary, Diary, QFilterCondition> {
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> diaryImages(
-      FilterQuery<DiaryImage> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'diaryImages');
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> diaryImagesLengthEqualTo(
-      int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'diaryImages', length, true, length, true);
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> diaryImagesIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'diaryImages', 0, true, 0, true);
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> diaryImagesIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'diaryImages', 0, false, 999999, true);
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> diaryImagesLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'diaryImages', 0, true, length, include);
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition>
-      diaryImagesLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'diaryImages', length, include, 999999, true);
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> diaryImagesLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'diaryImages', lower, includeLower, upper, includeUpper);
-    });
-  }
-}
+extension DiaryQueryLinks on QueryBuilder<Diary, Diary, QFilterCondition> {}
 
 extension DiaryQuerySortBy on QueryBuilder<Diary, Diary, QSortBy> {
   QueryBuilder<Diary, Diary, QAfterSortBy> sortByContentJsonString() {

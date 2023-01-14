@@ -409,7 +409,7 @@ packages:
       name: flutter_quill
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.9"
+    version: "6.2.1"
   flutter_quill_extensions:
     dependency: "direct main"
     description:
@@ -1230,6 +1230,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  vibration:
+    dependency: "direct main"
+    description:
+      name: vibration
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.7.6"
   video_player:
     dependency: transitive
     description:
