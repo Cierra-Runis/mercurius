@@ -16,6 +16,7 @@ class _MorePageState extends State<MorePage> {
             return IconButton(
               icon: const Icon(UniconsLine.user_circle),
               onPressed: () {
+                Vibration.vibrate(duration: 50, amplitude: 255);
                 if (profileModel.profile.user == null) {
                   _loginDialog(context);
                 } else {

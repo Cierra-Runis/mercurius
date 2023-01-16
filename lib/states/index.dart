@@ -5,3 +5,4 @@ export 'position_change_notifier.dart';
 export 'path_change_notifier.dart';
 export 'log_change_notifier.dart';
 export 'diary_editor_change_notifier.dart';
+export 'diary_search_text_change_notifier.dart';

@@ -16,12 +16,13 @@ class IsarService {
     isar.writeTxnSync<int>(() => isar.diarys.putSync(newDiary));
   }
 
-  /// 创建 `Stream` 监听所有日记
-  Stream<List<Diary>> listenToDiaries() async* {
+  /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
+  Stream<List<Diary>> listenToDiariesContains(String contains) async* {
     final isar = await db;
     yield* isar.diarys
-        .where()
-        .sortByCreateDateTime()
+        .filter()
+        .contentJsonStringContains(contains)
+        .sortByCreateDateTimeDesc()
         .watch(fireImmediately: true);
   }
 
@@ -69,10 +70,15 @@ class IsarService {
         [DiarySchema],
         inspector: true,
         name: 'mercurius_database',
+        directory: pathModel.path,
+        compactOnLaunch: const CompactCondition(
+          /// 只要压缩能减小 1KB 及以上的体积就进行压缩
+          minBytes: 1024,
+        ),
       );
     }
 
-    DevTools.printLog('打开数据库 ${Isar.instanceNames} 完毕');
+    DevTools.printLog('数据库 ${Isar.instanceNames} 已被打开');
     return Future.value(Isar.getInstance('mercurius_database'));
   }
 }

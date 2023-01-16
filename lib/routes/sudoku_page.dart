@@ -42,7 +42,7 @@ class SudokuPageState extends State<SudokuPage> {
                 sudokuModel.sudokuList[rowIndex][columnIndex] != 0 ||
                         sudokuModel.showedAnswer ||
                         sudokuModel.won
-                    ? {}
+                    ? null
                     : _selectSudokuNumDialog(context, rowIndex, columnIndex),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(

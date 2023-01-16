@@ -138,7 +138,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
             ),
             onTap: () => launchUrlString(
               _url,
-              mode: LaunchMode.inAppWebView,
+              mode: LaunchMode.externalApplication,
             ),
           ),
           ListTile(

@@ -15,6 +15,7 @@ class _HomeRouteState extends State<HomeRoute> {
   ];
 
   void _onItemTapped(int index) {
+    Vibration.vibrate(duration: 50, amplitude: 255);
     setState(() {
       _selectedIndex = index;
     });

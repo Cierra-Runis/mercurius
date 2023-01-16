@@ -10,6 +10,10 @@ PositionModel positionModel = PositionModel();
 LogModel logModel = LogModel();
 PathModel pathModel = PathModel();
 DiaryEditorModel diaryEditorModel = DiaryEditorModel();
+DiarySearchTextModel diarySearchTextModel = DiarySearchTextModel();
+
+/// 数据库服务
+final isarService = IsarService();
 
 /// 因 `profileModel` 需要读取本地数据, 故先进入 `profileModel` 进行初始化
 void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
@@ -37,7 +41,8 @@ class _MercuriusAppState extends State<MercuriusApp> {
         ChangeNotifierProvider(create: (_) => positionModel),
         ChangeNotifierProvider(create: (_) => pathModel),
         ChangeNotifierProvider(create: (_) => logModel),
-        ChangeNotifierProvider(create: (_) => diaryEditorModel)
+        ChangeNotifierProvider(create: (_) => diaryEditorModel),
+        ChangeNotifierProvider(create: (_) => diarySearchTextModel),
       ],
       child: Consumer<ProfileModel>(
         builder: (context, profileModel, child) {

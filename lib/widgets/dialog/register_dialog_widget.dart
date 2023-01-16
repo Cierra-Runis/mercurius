@@ -62,7 +62,7 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
           InkWell(
             onTap: () => launchUrlString(
               _url,
-              mode: LaunchMode.inAppWebView,
+              mode: LaunchMode.externalApplication,
             ),
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,

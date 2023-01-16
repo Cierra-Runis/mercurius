@@ -37,7 +37,9 @@ class _ImportDeclarationDialogWidgetState
             data: DeclarationContentConstance.declarationContent,
             padding: const EdgeInsets.all(0),
             onTapLink: (text, href, title) => _licenseDialog(
-                context, DeclarationContentConstance.license[href]),
+              context,
+              DeclarationContentConstance.license[href],
+            ),
           ),
         ],
       ),

@@ -19,8 +19,6 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
   late Diary? futureDiary;
   late Diary? pastDiary;
 
-  final isarService = IsarService();
-
   @override
   void initState() {
     diaryEditorModel.init(widget.diary);
@@ -32,7 +30,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
     return Consumer<DiaryEditorModel>(
       builder: (context, diaryEditorModel, child) {
         return Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 18.0),
           child: SizedBox(
             child: Container(
               decoration: ShapeDecoration(
@@ -195,8 +193,12 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                             IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
+                                DevTools.printLog(
+                                  '${diaryEditorModel.diary.id!}',
+                                );
                                 isarService.deleteDiaryById(
-                                    diaryEditorModel.diary.id!);
+                                  diaryEditorModel.diary.id!,
+                                );
                               },
                               icon: const Icon(Icons.delete),
                             ),

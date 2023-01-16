@@ -12,8 +12,8 @@ class PathModel extends ChangeNotifier {
     directory = getExternalStorageDirectory();
 
     directory.then((value) {
-      DevTools.printLog('获取 path 为 $value');
-      path = value.toString();
+      DevTools.printLog('获取 path 为 ${value!.path}');
+      path = value.path;
     });
   }
 }

@@ -20,8 +20,6 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final ScrollController _scrollController = ScrollController();
 
-  final isarService = IsarService();
-
   @override
   void initState() {
     diaryEditorModel.init(widget.diary);
@@ -52,7 +50,10 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
         return Scaffold(
           appBar: AppBar(
             leading: TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Vibration.vibrate(duration: 50, amplitude: 255);
+                Navigator.of(context).pop();
+              },
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all<Size>(
                   const Size(56, 56),
@@ -72,18 +73,59 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  DevTools.printLog(
-                    jsonEncode(_controller.document.toDelta().toJson()),
+                  String plainText = jsonEncode(
+                    _controller.document
+                        .toPlainText()
+                        .replaceAll(RegExp(r'\n'), '')
+                        .replaceAll(RegExp(r' '), ''),
                   );
-                  diaryEditorModel.diary.contentJsonString =
-                      jsonEncode(_controller.document.toDelta().toJson());
-                  diaryEditorModel.saveDiary();
-                  isarService.saveDiary(
-                    diaryEditorModel.diary
-                      ..latestEditTime = DateTime.now()
-                      ..titleString = (_title.text == '' ? null : _title.text),
-                  );
-                  Navigator.of(context).pop();
+                  if (plainText != '""') {
+                    Vibration.vibrate(duration: 50, amplitude: 255);
+                    diaryEditorModel.diary.contentJsonString = jsonEncode(
+                      _controller.document.toDelta().toJson(),
+                    );
+                    diaryEditorModel.saveDiary();
+                    isarService.saveDiary(
+                      diaryEditorModel.diary
+                        ..latestEditTime = DateTime.now()
+                        ..titleString =
+                            (_title.text == '' ? null : _title.text),
+                    );
+                    Navigator.of(context).pop();
+                  } else {
+                    Vibration.vibrate(duration: 300, amplitude: 255);
+                    Flushbar(
+                      icon: const Icon(UniconsLine.confused),
+                      isDismissible: false,
+                      messageText: const Center(
+                        child: Text(
+                          '内容不能为空',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
+                      barBlur: 1.0,
+                      borderRadius: BorderRadius.circular(16),
+                      backgroundColor:
+                          Theme.of(context).brightness == Brightness.dark
+                              ? const Color(0xFF303030).withAlpha(60)
+                              : const Color(0xFFCFCFCF).withAlpha(60),
+                      boxShadows: const [
+                        BoxShadow(
+                          color: Colors.transparent,
+                          blurRadius: 10.0,
+                          spreadRadius: 4.0,
+                          offset: Offset(0, 16),
+                        ),
+                      ],
+                      duration: const Duration(
+                        milliseconds: 600,
+                      ),
+                      flushbarPosition: FlushbarPosition.TOP,
+                    ).show(context);
+                  }
                 },
                 style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all<Size>(
@@ -281,7 +323,10 @@ class _DiaryMoodSelectorDialogWidgetState
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            Vibration.vibrate(duration: 50, amplitude: 255);
+            Navigator.of(context).pop();
+          },
           child: const Text('返回'),
         ),
       ],

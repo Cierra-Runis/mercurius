@@ -8,8 +8,6 @@ class DiaryListViewWidget extends StatefulWidget {
 }
 
 class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
-  final isarService = IsarService();
-
   Widget _getDiaryListCards(List<Diary>? data) {
     List<Widget> diaryListCards = [];
     if (data == null || data.isEmpty) {
@@ -17,8 +15,6 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
         child: Text('无数据'),
       );
     }
-
-    data = data.reversed.toList();
 
     int year = data[0].createDateTime.year;
     int month = data[0].createDateTime.month;
@@ -55,6 +51,15 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
       diaryListCards.add(DiaryListCardWidget(diary: element));
     }
 
+    diaryListCards.add(
+      Center(
+        child: Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          child: const Text('没有更多了'),
+        ),
+      ),
+    );
+
     return Scrollbar(
       radius: const Radius.circular(2.0),
       child: ListView(children: diaryListCards.toList()),
@@ -63,27 +68,30 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Diary>>(
-      stream: isarService.listenToDiaries(),
-      builder: (
-        BuildContext context,
-        AsyncSnapshot<List<Diary>> snapshot,
-      ) {
-        if (snapshot.hasError) {
-          return Text('Steam 错误: ${snapshot.error}');
-        }
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-            return const Center(
-              child: Icon(UniconsLine.data_sharing),
-            );
-          case ConnectionState.waiting:
-            return Container();
-          case ConnectionState.active:
-            return _getDiaryListCards(snapshot.data);
-          case ConnectionState.done:
-            return const Text('Stream 已关闭');
-        }
+    return Consumer<DiarySearchTextModel>(
+      builder: (context, diarySearchTextModel, child) {
+        return StreamBuilder<List<Diary>>(
+          stream: isarService
+              .listenToDiariesContains(diarySearchTextModel.contains),
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<List<Diary>> snapshot,
+          ) {
+            if (snapshot.hasError) {
+              return Center(child: Text('Steam 错误: ${snapshot.error}'));
+            }
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Center(child: Icon(UniconsLine.data_sharing));
+              case ConnectionState.waiting:
+                return const Center(child: Text('读取中'));
+              case ConnectionState.active:
+                return _getDiaryListCards(snapshot.data);
+              case ConnectionState.done:
+                return const Center(child: Text('Stream 已关闭'));
+            }
+          },
+        );
       },
     );
   }

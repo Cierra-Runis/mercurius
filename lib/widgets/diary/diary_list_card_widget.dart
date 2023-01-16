@@ -15,8 +15,6 @@ class DiaryListCardWidget extends StatefulWidget {
 }
 
 class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
-  final isarService = IsarService();
-
   @override
   Widget build(BuildContext context) {
     return Container(

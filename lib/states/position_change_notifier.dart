@@ -71,7 +71,7 @@ class PositionModel extends ChangeNotifier {
   }
 
   /// 使用和风天气 api 获取天气
-  Future<void> _getQWeather(bool force) async {
+  Future<void> _getQWeather() async {
     Response response;
 
     weatherBody = WeatherBody.fromJson(jsonDecode(_qWeatherDefaultJsonString));
@@ -82,7 +82,10 @@ class PositionModel extends ChangeNotifier {
         '$_qWeatherUrl&location=${cachePosition.latitude},${cachePosition.longitude}',
       );
     } catch (e) {
+      weatherBody.now!.icon = '2028';
       DevTools.printLog('qWeather 连接失败');
+      notifyListeners();
+      super.notifyListeners();
       return;
     }
 
@@ -92,7 +95,10 @@ class PositionModel extends ChangeNotifier {
       weatherBody = WeatherBody.fromJson(jsonDecode(response.toString()));
       DevTools.printLog('获取 qWeather 成功，且为 ${jsonEncode(weatherBody)}');
     } else {
+      weatherBody.now!.icon = '2028';
       DevTools.printLog('获取 qWeather 失败');
+      notifyListeners();
+      super.notifyListeners();
       return;
     }
 
@@ -102,7 +108,7 @@ class PositionModel extends ChangeNotifier {
 
   /// 更新
   void update(bool force) {
-    _getPosition(force).then((value) => _getQWeather(force));
+    _getPosition(force).then((value) => _getQWeather());
     notifyListeners();
     super.notifyListeners();
   }

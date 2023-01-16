@@ -22,39 +22,27 @@ class _MercuriusTitleWidgetState extends State<MercuriusTitleWidget> {
               ),
             ),
             InkWell(
-              onTap: () {
-                positionModel.update(true);
-              },
-              child: Tooltip(
-                message: jsonEncode(positionModel.weatherBody),
-                preferBelow: true,
-                textStyle: TextStyle(
-                  fontSize: 6,
-                  color: Theme.of(context).brightness != Brightness.dark
-                      ? Colors.white54
-                      : Colors.black54,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      UniconsLine.location_arrow,
-                      size: 6,
+              onTap: () => positionModel.update(true),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    UniconsLine.location_arrow,
+                    size: 6,
+                  ),
+                  Text(
+                    " ${positionModel.cachePosition.latitude}N ${positionModel.cachePosition.longitude}E ",
+                    style: const TextStyle(
+                      fontSize: 8,
                     ),
-                    Text(
-                      " ${positionModel.cachePosition.latitude}N ${positionModel.cachePosition.longitude}E ",
-                      style: const TextStyle(
-                        fontSize: 8,
-                      ),
+                  ),
+                  Icon(
+                    QWeatherIcon.getIconById(
+                      int.parse(positionModel.weatherBody.now!.icon!),
                     ),
-                    Icon(
-                      QWeatherIcon.getIconById(
-                        int.parse(positionModel.weatherBody.now!.icon!),
-                      ),
-                      size: 6,
-                    ),
-                  ],
-                ),
+                    size: 6,
+                  ),
+                ],
               ),
             ),
             Text(

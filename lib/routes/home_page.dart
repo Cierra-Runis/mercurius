@@ -9,18 +9,30 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _currentListViewMode = true;
-
-  final isarService = IsarService();
+  bool _currentSearchBarMode = false;
 
   void _switchCurrentViewMode() {
+    Vibration.vibrate(duration: 50, amplitude: 255);
     DevTools.printLog('现在是否为列表视图 $_currentListViewMode 并开始切换');
     setState(() {
       _currentListViewMode = !_currentListViewMode;
+      _currentSearchBarMode = false;
     });
     DevTools.printLog('现在是否为列表视图 $_currentListViewMode 切换完毕');
   }
 
+  void _switchCurrentBarMode() {
+    Vibration.vibrate(duration: 50, amplitude: 255);
+    diarySearchTextModel.changeContains('');
+    DevTools.printLog('现在是否为搜索组件 $_currentSearchBarMode 并开始切换');
+    setState(() {
+      _currentSearchBarMode = !_currentSearchBarMode;
+    });
+    DevTools.printLog('现在是否为搜索组件 $_currentSearchBarMode 切换完毕');
+  }
+
   void _floatingButtonOnPressed() async {
+    Vibration.vibrate(duration: 50, amplitude: 255);
     var diary = await isarService.isDiaryExisted(DateTime.now());
     if (diary != null) {
       DevTools.printLog('进入修改模式');
@@ -49,6 +61,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _appBarLeftButtonOnPressed() {
+    Vibration.vibrate(duration: 50, amplitude: 255);
     if (profileModel.profile.user == null) {
       _loginDialog(context);
     } else {
@@ -73,13 +86,25 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
-        title: const MercuriusTitleWidget(),
+        title: _currentSearchBarMode
+            ? SizedBox(
+                width: 160,
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  autofocus: true,
+                  onChanged: (value) =>
+                      diarySearchTextModel.changeContains(value),
+                  decoration: const InputDecoration(
+                    hintText: '查找日记内容',
+                    border: InputBorder.none,
+                  ),
+                ),
+              )
+            : const MercuriusTitleWidget(),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-              /// TODO: 搜索功能
-            },
+            onPressed: _switchCurrentBarMode,
             icon: const Icon(Icons.search),
           ),
           IconButton(
