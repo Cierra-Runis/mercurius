@@ -6,3 +6,5 @@ export 'profile_page.dart';
 export 'splash_page.dart';
 export 'sudoku_page.dart';
 export 'github_latest_release_page.dart';
+export 'diary_editor_page.dart';
+export 'diary_statistic_page.dart';

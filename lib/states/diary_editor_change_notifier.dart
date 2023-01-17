@@ -13,6 +13,12 @@ class DiaryEditorModel extends ChangeNotifier {
     super.notifyListeners();
   }
 
+  void changeWeather(String weather) {
+    diary.weather = weather;
+    notifyListeners();
+    super.notifyListeners();
+  }
+
   void saveDiary() {
     notifyListeners();
     super.notifyListeners();

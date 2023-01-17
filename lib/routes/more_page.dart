@@ -37,32 +37,61 @@ class _MorePageState extends State<MorePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(8),
-            children: [
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('设定'),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SettingPage(),
-                  ),
-                ),
-              ),
-              const Divider(
-                height: 5,
-              ),
-              ListTile(
-                leading: const Icon(Icons.info_outline),
-                title: const Text('关于'),
-                onTap: () => _aboutDialog(context),
-              ),
-              const Divider(
-                height: 5,
-              ),
-            ],
+          Expanded(
+            child: PreferenceList(
+              children: [
+                PreferenceListSection(
+                  children: [
+                    PreferenceListItem(
+                      icon: const Icon(Icons.analytics),
+                      title: const Text(
+                        '统计数据',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                      accessoryView: const Icon(Icons.navigate_next),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DiaryStatisticPage(),
+                        ),
+                      ),
+                    ),
+                    PreferenceListItem(
+                      icon: const Icon(Icons.settings),
+                      title: const Text(
+                        '设定',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                      accessoryView: const Icon(Icons.navigate_next),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingPage(),
+                        ),
+                      ),
+                    ),
+                    PreferenceListItem(
+                      icon: const Icon(Icons.info_outline),
+                      title: const Text(
+                        '关于',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                      accessoryView: const Icon(Icons.navigate_next),
+                      onTap: () => _aboutDialog(context),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
           const Padding(
             padding: EdgeInsets.all(10),

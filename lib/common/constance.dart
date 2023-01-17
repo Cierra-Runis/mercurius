@@ -28,6 +28,32 @@ class DiaryConstance {
     '大哭': UniconsLine.sad_crying,
     '我死': UniconsLine.smile_dizzy,
   };
+
+  /// 将天气字符串如 `'100'` 映射为 `QWeatherIcon.code_100`
+  static const Map<String, IconData> weatherMap = {
+    '100': QWeatherIcon.code_100,
+    '101': QWeatherIcon.code_101,
+    '104': QWeatherIcon.code_104,
+    '303': QWeatherIcon.code_303,
+    '305': QWeatherIcon.code_305,
+    '307': QWeatherIcon.code_307,
+    '400': QWeatherIcon.code_400,
+    '402': QWeatherIcon.code_402,
+    '501': QWeatherIcon.code_501,
+  };
+
+  /// 将天气字符串如 `'100'` 映射为 `'晴'`
+  static const Map<String, String> weatherCommitMap = {
+    '100': '晴',
+    '101': '多云',
+    '104': '阴',
+    '303': '雷暴',
+    '305': '小雨',
+    '307': '大雨',
+    '400': '小雪',
+    '402': '大雪',
+    '501': '雾',
+  };
 }
 
 /// 数独相关常数

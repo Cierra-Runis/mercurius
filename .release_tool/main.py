@@ -12,7 +12,7 @@ REG_STR = {
     'version_str': r'(\d+)\.(\d+)\.(\d+)\+(\d+)',
     'pubspec_yaml': r'version: (\d+\.\d+\.\d+\+\d+)',
     'release_yml': r'tag: "v(.*)"',
-    'body_md': r'v(.*)'
+    'body_md': r'v(.*)',
 }
 
 FILE_DIR = {

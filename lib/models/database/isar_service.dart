@@ -26,6 +26,12 @@ class IsarService {
         .watch(fireImmediately: true);
   }
 
+  /// 获取所有日记
+  Future<List<Diary>> getAllDiaries() async {
+    final isar = await db;
+    return isar.diarys.filter().idIsNotNull().findAll();
+  }
+
   /// 清除数据库
   Future<void> cleanDb() async {
     final isar = await db;

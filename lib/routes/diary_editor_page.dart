@@ -203,7 +203,8 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                   showSmallButton: true,
                   showSearchButton: false,
                   showIndent: false,
-                  toolbarSectionSpacing: 14,
+                  showLink: false,
+                  toolbarSectionSpacing: 8,
                   iconTheme: flutter_quill.QuillIconTheme(
                     borderRadius: 12,
                     iconSelectedFillColor:
@@ -225,6 +226,20 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                         diaryEditorModel.diary,
                       ),
                     ),
+                    flutter_quill.QuillCustomButton(
+                      icon: Icons.cloud,
+                      onTap: () => _selectDiaryWeatherDialog(
+                        context,
+                        diaryEditorModel.diary,
+                      ),
+                    ),
+                    // flutter_quill.QuillCustomButton(
+                    //   icon: Icons.calendar_month,
+                    //   onTap: () => _selectDiaryDateDialog(
+                    //     context,
+                    //     diaryEditorModel.diary,
+                    //   ),
+                    // ),
                   ],
                   locale: const Locale('zh', 'cn'),
                 ),
@@ -241,6 +256,15 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
       context: context,
       builder: (BuildContext context) {
         return _DiaryMoodSelectorDialogWidget(diary: diary);
+      },
+    );
+  }
+
+  Future<void> _selectDiaryWeatherDialog(BuildContext context, Diary diary) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return _DiaryWeatherSelectorDialogWidget(diary: diary);
       },
     );
   }
@@ -316,6 +340,99 @@ class _DiaryMoodSelectorDialogWidgetState
               spacing: 16,
               direction: Axis.horizontal,
               children: _listAllMood(),
+            ),
+          ),
+        ],
+      ),
+      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Vibration.vibrate(duration: 50, amplitude: 255);
+            Navigator.of(context).pop();
+          },
+          child: const Text('返回'),
+        ),
+      ],
+    );
+  }
+}
+
+class _DiaryWeatherSelectorDialogWidget extends StatefulWidget {
+  /// 自定义组件
+  const _DiaryWeatherSelectorDialogWidget({
+    Key? key,
+    required this.diary,
+  }) : super(key: key);
+
+  final Diary diary;
+
+  @override
+  State<_DiaryWeatherSelectorDialogWidget> createState() =>
+      _DiaryWeatherSelectorDialogWidgetState();
+}
+
+class _DiaryWeatherSelectorDialogWidgetState
+    extends State<_DiaryWeatherSelectorDialogWidget> {
+  List<Widget> _listAllWeather() {
+    List<Widget> buttonList = [];
+    DiaryConstance.weatherMap.forEach(
+      (key, value) => buttonList.add(
+        Consumer<DiaryEditorModel>(
+          builder: (context, diaryEditorModel, child) {
+            return IconButton(
+              onPressed: () {
+                diaryEditorModel.changeWeather(key);
+                Navigator.of(context).pop();
+              },
+              icon: Column(
+                children: [
+                  Icon(value),
+                  Text(
+                    DiaryConstance.weatherCommitMap[key]!,
+                  )
+                ],
+              ),
+              color: diaryEditorModel.diary.weather != key
+                  ? null
+                  : Theme.of(context).brightness == Brightness.dark
+                      ? darkColorScheme.primary
+                      : lightColorScheme.primary,
+            );
+          },
+        ),
+      ),
+    );
+    return buttonList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('现在天气如何'),
+          Text(
+            '今日もいい天気',
+            style: TextStyle(
+              fontSize: 10,
+              color: (Theme.of(context).brightness == Brightness.dark)
+                  ? Colors.white54
+                  : Colors.black54,
+            ),
+          ),
+        ],
+      ),
+      content: ListView(
+        shrinkWrap: true,
+        children: [
+          Center(
+            child: Wrap(
+              spacing: 16,
+              direction: Axis.horizontal,
+              children: _listAllWeather(),
             ),
           ),
         ],

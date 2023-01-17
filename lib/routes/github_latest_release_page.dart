@@ -25,7 +25,8 @@ class _GithubLatestReleasePageState extends State<GithubLatestReleasePage> {
           ),
           body: Center(
             child: Markdown(
-              data: mercuriusWebModel.githubLatestRelease.body!,
+              data: mercuriusWebModel.githubLatestRelease.body ??
+                  '# 啊啦\n\n你好像来到了奇怪的地方，要不回去先刷新一下？\n',
             ),
           ),
           floatingActionButton: FloatingActionButton(
