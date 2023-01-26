@@ -124,7 +124,6 @@ class _HomePageState extends State<HomePage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
         ),
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         onPressed: _floatingButtonOnPressed,
         child: const Icon(UniconsLine.diary),
       ),

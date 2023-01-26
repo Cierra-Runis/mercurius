@@ -59,6 +59,24 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
                       ),
                     ),
                   ),
+                  ListTile(
+                    title: Text(
+                      jsonEncode(positionModel.weatherBody),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      jsonEncode(positionModel.cachePosition),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );

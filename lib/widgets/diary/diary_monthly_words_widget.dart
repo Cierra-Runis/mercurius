@@ -17,6 +17,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
 
   @override
   void initState() {
+    super.initState();
     _tooltipBehavior = TooltipBehavior(
       header: '',
       format: 'point.x point.y 字',
@@ -31,7 +32,6 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
       zoomMode: ZoomMode.x,
       enablePanning: true,
     );
-    super.initState();
   }
 
   Future<List<_DiaryWordsData>> _getDiaryWordsData() async {

@@ -29,9 +29,7 @@ class _SudokuDifficultySelectorDialogWidgetState
                   '空格数 $value',
                   style: TextStyle(
                     fontSize: 8,
-                    color: (Theme.of(context).brightness == Brightness.dark)
-                        ? Colors.white54
-                        : Colors.black54,
+                    color: Theme.of(context).colorScheme.outline,
                   ),
                 ),
               ],
@@ -62,9 +60,7 @@ class _SudokuDifficultySelectorDialogWidgetState
             '请选择难度',
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],

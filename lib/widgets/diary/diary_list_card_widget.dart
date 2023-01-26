@@ -17,20 +17,10 @@ class DiaryListCardWidget extends StatefulWidget {
 class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       margin: const EdgeInsets.all(10.0),
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
-        ),
-        color: Theme.of(context).colorScheme.background,
-        shadows: const [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10.0,
-            spreadRadius: 0.6,
-          ),
-        ],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(22),
       ),
       child: InkWell(
         onTap: () async {

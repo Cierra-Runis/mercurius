@@ -24,9 +24,7 @@ class _RegisterDialogWidgetState extends State<RegisterDialogWidget> {
             '欢迎来到 Mercurius',
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],

@@ -21,8 +21,8 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
 
   @override
   void initState() {
-    diaryEditorModel.init(widget.diary);
     super.initState();
+    diaryEditorModel.init(widget.diary);
   }
 
   @override
@@ -37,7 +37,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24.0),
                 ),
-                color: Theme.of(context).canvasColor,
+                color: Theme.of(context).colorScheme.background,
                 shadows: const [
                   BoxShadow(
                     color: Colors.black12,
@@ -168,7 +168,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
                               fontSize: 14,
                               height: 1.5,
                               color:
-                                  Theme.of(context).textTheme.bodyText1!.color,
+                                  Theme.of(context).colorScheme.inverseSurface,
                             ),
                             const Tuple2(0, 0),
                             const Tuple2(0, 0),

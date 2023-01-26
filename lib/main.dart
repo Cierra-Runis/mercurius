@@ -20,14 +20,9 @@ void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class MercuriusApp extends StatefulWidget {
+class MercuriusApp extends StatelessWidget {
   const MercuriusApp({super.key});
 
-  @override
-  State<MercuriusApp> createState() => _MercuriusAppState();
-}
-
-class _MercuriusAppState extends State<MercuriusApp> {
   @override
   Widget build(BuildContext context) {
     DevTools.printLog('MercuriusApp 构建中');

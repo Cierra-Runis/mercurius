@@ -1,5 +1,7 @@
 import 'package:mercurius/index.dart';
 
+import 'package:badges/badges.dart' as badge; // 小红点提示
+
 class HomeRoute extends StatefulWidget {
   const HomeRoute({super.key});
   @override
@@ -46,14 +48,11 @@ class _HomeRouteState extends State<HomeRoute> {
               margin: const EdgeInsets.fromLTRB(60, 0, 60, 70),
               barBlur: 1.0,
               borderRadius: BorderRadius.circular(16),
-              backgroundColor: Theme.of(context).brightness == Brightness.dark
-                  ? const Color(0xFF303030).withAlpha(60)
-                  : const Color(0xFFCFCFCF).withAlpha(60),
+              backgroundColor:
+                  Theme.of(context).colorScheme.outline.withAlpha(16),
               boxShadows: const [
                 BoxShadow(
                   color: Colors.transparent,
-                  blurRadius: 10.0,
-                  spreadRadius: 4.0,
                   offset: Offset(0, 16),
                 ),
               ],
@@ -66,9 +65,7 @@ class _HomeRouteState extends State<HomeRoute> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? darkColorScheme.onInverseSurface
-            : lightColorScheme.surface,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         items: [
           const BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -77,7 +74,7 @@ class _HomeRouteState extends State<HomeRoute> {
           BottomNavigationBarItem(
             icon: Consumer2<ProfileModel, MercuriusWebModel>(
               builder: (context, profileModel, mercuriusWebModel, child) =>
-                  Badge(
+                  badge.Badge(
                 showBadge: profileModel.profile.currentVersion !=
                     mercuriusWebModel.githubLatestRelease.tag_name,
                 child: const Icon(Icons.more_horiz),

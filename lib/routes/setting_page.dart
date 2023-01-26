@@ -1,12 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class SettingPage extends StatefulWidget {
+class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
-  @override
-  State<SettingPage> createState() => _SettingPageState();
-}
 
-class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +29,7 @@ class _SettingPageState extends State<SettingPage> {
                                 : '常亮模式',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white54
-                              : Colors.black54,
+                          color: Theme.of(context).colorScheme.outline,
                         ),
                       ),
                     ],
@@ -44,9 +38,6 @@ class _SettingPageState extends State<SettingPage> {
                   onTap: () => _themeSelectorDialog(context),
                 );
               },
-            ),
-            const Divider(
-              height: 5,
             ),
           ],
         ),

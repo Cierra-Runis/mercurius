@@ -1,13 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListViewWidget extends StatefulWidget {
+class DiaryListViewWidget extends StatelessWidget {
   const DiaryListViewWidget({super.key});
 
-  @override
-  State<DiaryListViewWidget> createState() => _DiaryListViewWidgetState();
-}
-
-class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
   Widget _getDiaryListCards(List<Diary>? data) {
     List<Widget> diaryListCards = [];
     if (data == null || data.isEmpty) {
@@ -84,7 +79,19 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
               case ConnectionState.none:
                 return const Center(child: Icon(UniconsLine.data_sharing));
               case ConnectionState.waiting:
-                return const Center(child: Text('读取中'));
+                return Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LoadingAnimationWidget.staggeredDotsWave(
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 16,
+                      ),
+                      const SizedBox(width: 20),
+                      const Text('读取中'),
+                    ],
+                  ),
+                );
               case ConnectionState.active:
                 return _getDiaryListCards(snapshot.data);
               case ConnectionState.done:

@@ -14,6 +14,7 @@ class _SplashPageState extends State<SplashPage>
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
@@ -32,7 +33,6 @@ class _SplashPageState extends State<SplashPage>
       },
     );
     _controller.forward();
-    super.initState();
   }
 
   @override

@@ -12,7 +12,6 @@ class DevTools {
   /// 调试用输出语句
   static void printLog(String message) {
     if (_showLog) {
-      message = '[${DateTime.now()}] $message';
       devtools.log(message);
       logModel.addLog('$message\n');
     }

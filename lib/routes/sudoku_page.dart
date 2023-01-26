@@ -10,6 +10,15 @@ class SudokuPage extends StatefulWidget {
 class SudokuPageState extends State<SudokuPage> {
   late ConfettiController _confettiController;
 
+  @override
+  void initState() {
+    /// 至数独界面再进行 sudokuModel 的初始化
+    super.initState();
+    sudokuModel.init();
+    _confettiController =
+        ConfettiController(duration: const Duration(milliseconds: 1500));
+  }
+
   /// 行列获取数独底色
   Color _buttonColor(BuildContext context, int rowIndex, int columnIndex) {
     Color color;
@@ -117,15 +126,6 @@ class SudokuPageState extends State<SudokuPage> {
     }
     path.close();
     return path;
-  }
-
-  @override
-  void initState() {
-    /// 至数独界面再进行 sudokuModel 的初始化
-    sudokuModel.init();
-    _confettiController =
-        ConfettiController(duration: const Duration(milliseconds: 1500));
-    super.initState();
   }
 
   @override

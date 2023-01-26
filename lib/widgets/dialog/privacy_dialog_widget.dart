@@ -1,13 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class PrivacyDialogWidget extends StatefulWidget {
+class PrivacyDialogWidget extends StatelessWidget {
   const PrivacyDialogWidget({super.key});
 
-  @override
-  State<PrivacyDialogWidget> createState() => _PrivacyDialogWidgetState();
-}
-
-class _PrivacyDialogWidgetState extends State<PrivacyDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -20,9 +15,7 @@ class _PrivacyDialogWidgetState extends State<PrivacyDialogWidget> {
             PrivacyContentConstance.privacyContentUpdateDate,
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],

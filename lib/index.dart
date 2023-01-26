@@ -36,10 +36,8 @@ export 'package:another_flushbar/flushbar.dart'; // 提示框
 export 'package:share_plus/share_plus.dart'; // 分享
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:table_calendar/table_calendar.dart'; // 日历
-export 'package:badges/badges.dart'; // 小红点提示
 export 'package:tuple/tuple.dart'; // tuple 类型支持
 export 'package:vibration/vibration.dart'; // 振动反馈
-export 'package:open_app_file/open_app_file.dart';
-export 'package:preference_list/preference_list.dart';
+export 'package:open_app_file/open_app_file.dart'; // 打开文件
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表
 export 'package:loading_animation_widget/loading_animation_widget.dart'; // 加载器组件

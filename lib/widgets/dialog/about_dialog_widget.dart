@@ -1,15 +1,12 @@
 import 'package:mercurius/index.dart';
 
+import 'package:badges/badges.dart' as badge; // 小红点提示
+
 const String _url = 'https://github.com/Cierra-Runis/';
 
-class AboutDialogWidget extends StatefulWidget {
+class AboutDialogWidget extends StatelessWidget {
   const AboutDialogWidget({super.key});
 
-  @override
-  State<AboutDialogWidget> createState() => _AboutDialogWidgetState();
-}
-
-class _AboutDialogWidgetState extends State<AboutDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -84,7 +81,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                                 minimumSize: const Size(20, 10),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                              child: Badge(
+                              child: badge.Badge(
                                 child: const Text(
                                   '更新至新版本',
                                   style: TextStyle(
@@ -95,6 +92,13 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                           : TextButton(
                               onPressed: () => mercuriusWebModel
                                   .refetchGithubLatestRelease(),
+                              onLongPress: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const GithubLatestReleasePage(),
+                                ),
+                              ),
                               style: TextButton.styleFrom(
                                 backgroundColor: Colors.green,
                                 padding: const EdgeInsets.all(1.5),
@@ -129,9 +133,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   _url,
                   style: TextStyle(
                     fontSize: 8,
-                    color: (Theme.of(context).brightness == Brightness.dark)
-                        ? Colors.white54
-                        : Colors.black54,
+                    color: Theme.of(context).colorScheme.outline,
                   ),
                 ),
               ],
@@ -152,9 +154,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   '字体、图标相关',
                   style: TextStyle(
                     fontSize: 8,
-                    color: (Theme.of(context).brightness == Brightness.dark)
-                        ? Colors.white54
-                        : Colors.black54,
+                    color: Theme.of(context).colorScheme.outline,
                   ),
                 )
               ],
@@ -172,9 +172,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   'Mercurius 隐私政策',
                   style: TextStyle(
                     fontSize: 8,
-                    color: (Theme.of(context).brightness == Brightness.dark)
-                        ? Colors.white54
-                        : Colors.black54,
+                    color: Theme.of(context).colorScheme.outline,
                   ),
                 ),
               ],
@@ -192,9 +190,7 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
                   'Mercurius 用户协议',
                   style: TextStyle(
                     fontSize: 8,
-                    color: (Theme.of(context).brightness == Brightness.dark)
-                        ? Colors.white54
-                        : Colors.black54,
+                    color: Theme.of(context).colorScheme.outline,
                   ),
                 ),
               ],
@@ -216,31 +212,31 @@ class _AboutDialogWidgetState extends State<AboutDialogWidget> {
       actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
     );
   }
-}
 
-Future<void> _importDeclarationDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const ImportDeclarationDialogWidget();
-    },
-  );
-}
+  Future<void> _importDeclarationDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const ImportDeclarationDialogWidget();
+      },
+    );
+  }
 
-Future<void> _privacyDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const PrivacyDialogWidget();
-    },
-  );
-}
+  Future<void> _privacyDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const PrivacyDialogWidget();
+      },
+    );
+  }
 
-Future<void> _agreementDialog(BuildContext context) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) {
-      return const AgreementDialogWidget();
-    },
-  );
+  Future<void> _agreementDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return const AgreementDialogWidget();
+      },
+    );
+  }
 }

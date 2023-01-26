@@ -1,13 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusTitleWidget extends StatefulWidget {
+class MercuriusTitleWidget extends StatelessWidget {
   const MercuriusTitleWidget({super.key});
 
-  @override
-  State<MercuriusTitleWidget> createState() => _MercuriusTitleWidgetState();
-}
-
-class _MercuriusTitleWidgetState extends State<MercuriusTitleWidget> {
   @override
   Widget build(BuildContext context) {
     return Consumer<PositionModel>(

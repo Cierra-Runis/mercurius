@@ -1,13 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class AgreementDialogWidget extends StatefulWidget {
+class AgreementDialogWidget extends StatelessWidget {
   const AgreementDialogWidget({super.key});
 
-  @override
-  State<AgreementDialogWidget> createState() => _AgreementDialogWidgetState();
-}
-
-class _AgreementDialogWidgetState extends State<AgreementDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -20,9 +15,7 @@ class _AgreementDialogWidgetState extends State<AgreementDialogWidget> {
             AgreementContentConstance.agreementContentUpdateDate,
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],

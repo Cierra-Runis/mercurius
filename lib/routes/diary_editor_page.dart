@@ -22,6 +22,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
 
   @override
   void initState() {
+    super.initState();
     diaryEditorModel.init(widget.diary);
     _controller = flutter_quill.QuillController(
       document: diaryEditorModel.diary.contentJsonString != null
@@ -32,8 +33,6 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
       selection: const TextSelection.collapsed(offset: 0),
     );
     _title.text = diaryEditorModel.diary.titleString ?? '';
-
-    super.initState();
   }
 
   @override
@@ -109,14 +108,10 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                       barBlur: 1.0,
                       borderRadius: BorderRadius.circular(16),
                       backgroundColor:
-                          Theme.of(context).brightness == Brightness.dark
-                              ? const Color(0xFF303030).withAlpha(60)
-                              : const Color(0xFFCFCFCF).withAlpha(60),
+                          Theme.of(context).colorScheme.outline.withAlpha(16),
                       boxShadows: const [
                         BoxShadow(
                           color: Colors.transparent,
-                          blurRadius: 10.0,
-                          spreadRadius: 4.0,
                           offset: Offset(0, 16),
                         ),
                       ],
@@ -170,7 +165,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                           fontFamily: 'Saira',
                           fontSize: 14,
                           height: 1.5,
-                          color: Theme.of(context).textTheme.bodyText1!.color,
+                          color: Theme.of(context).colorScheme.inverseSurface,
                         ),
                         const Tuple2(0, 0),
                         const Tuple2(0, 0),
@@ -209,8 +204,8 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                     borderRadius: 12,
                     iconSelectedFillColor:
                         Theme.of(context).brightness == Brightness.dark
-                            ? Theme.of(context).cardColor
-                            : Theme.of(context).backgroundColor,
+                            ? Theme.of(context).colorScheme.outlineVariant
+                            : Theme.of(context).colorScheme.primaryContainer,
                   ),
                   customButtons: [
                     flutter_quill.QuillCustomButton(
@@ -233,6 +228,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                         diaryEditorModel.diary,
                       ),
                     ),
+                    // TODO: 修改日期
                     // flutter_quill.QuillCustomButton(
                     //   icon: Icons.calendar_month,
                     //   onTap: () => _selectDiaryDateDialog(
@@ -302,9 +298,7 @@ class _DiaryMoodSelectorDialogWidgetState
               ),
               color: diaryEditorModel.diary.mood != key
                   ? null
-                  : Theme.of(context).brightness == Brightness.dark
-                      ? darkColorScheme.primary
-                      : lightColorScheme.primary,
+                  : Theme.of(context).colorScheme.primary,
             );
           },
         ),
@@ -325,9 +319,7 @@ class _DiaryMoodSelectorDialogWidgetState
             'ねぇ、今どんな気持ち',
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],
@@ -395,9 +387,7 @@ class _DiaryWeatherSelectorDialogWidgetState
               ),
               color: diaryEditorModel.diary.weather != key
                   ? null
-                  : Theme.of(context).brightness == Brightness.dark
-                      ? darkColorScheme.primary
-                      : lightColorScheme.primary,
+                  : Theme.of(context).colorScheme.primary,
             );
           },
         ),
@@ -418,9 +408,7 @@ class _DiaryWeatherSelectorDialogWidgetState
             '今日もいい天気',
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],

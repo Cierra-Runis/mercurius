@@ -1,13 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class ThemeSelectorWidget extends StatefulWidget {
+class ThemeSelectorWidget extends StatelessWidget {
   const ThemeSelectorWidget({super.key});
 
-  @override
-  State<ThemeSelectorWidget> createState() => _ThemeSelectorWidgetState();
-}
-
-class _ThemeSelectorWidgetState extends State<ThemeSelectorWidget> {
   @override
   Widget build(BuildContext context) {
     /// 利用 `provide` 包进行状态管理

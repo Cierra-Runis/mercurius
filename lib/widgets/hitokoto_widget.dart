@@ -22,7 +22,6 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
   @override
   void initState() {
     super.initState();
-
     _futureHiToKoTo = _fetchHiToKoTo();
     _timer = Timer.periodic(
       const Duration(seconds: 3),
@@ -34,8 +33,8 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
 
   @override
   void dispose() {
-    super.dispose();
     _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -56,9 +55,7 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
                 snapshot.data!.hitokoto,
                 style: TextStyle(
                   fontSize: 12,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white54
-                      : Colors.black54,
+                  color: Theme.of(context).colorScheme.outline,
                 ),
               ),
             ),
@@ -68,9 +65,7 @@ class _HiToKoToWidgetState extends State<HiToKoToWidget> {
           '正在获取「一言」',
           style: TextStyle(
             fontSize: 12,
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.white54
-                : Colors.black54,
+            color: Theme.of(context).colorScheme.outline,
           ),
         );
       }),

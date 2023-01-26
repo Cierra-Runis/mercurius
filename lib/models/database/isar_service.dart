@@ -19,6 +19,7 @@ class IsarService {
   /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
   Stream<List<Diary>> listenToDiariesContains(String contains) async* {
     final isar = await db;
+    await Future.delayed(const Duration(milliseconds: 500), () {});
     yield* isar.diarys
         .filter()
         .contentJsonStringContains(contains)

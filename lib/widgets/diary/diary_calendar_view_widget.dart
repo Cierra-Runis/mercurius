@@ -1,14 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class DiaryCalendarViewWidget extends StatefulWidget {
+class DiaryCalendarViewWidget extends StatelessWidget {
   const DiaryCalendarViewWidget({super.key});
 
-  @override
-  State<DiaryCalendarViewWidget> createState() =>
-      _DiaryCalendarViewWidgetState();
-}
-
-class _DiaryCalendarViewWidgetState extends State<DiaryCalendarViewWidget> {
   @override
   Widget build(BuildContext context) {
     return TableCalendar(

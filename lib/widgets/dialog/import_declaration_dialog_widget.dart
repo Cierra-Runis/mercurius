@@ -1,15 +1,8 @@
 import 'package:mercurius/index.dart';
 
-class ImportDeclarationDialogWidget extends StatefulWidget {
+class ImportDeclarationDialogWidget extends StatelessWidget {
   const ImportDeclarationDialogWidget({super.key});
 
-  @override
-  State<ImportDeclarationDialogWidget> createState() =>
-      _ImportDeclarationDialogWidgetState();
-}
-
-class _ImportDeclarationDialogWidgetState
-    extends State<ImportDeclarationDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -22,9 +15,7 @@ class _ImportDeclarationDialogWidgetState
             DeclarationContentConstance.declarationContentUpdateDate,
             style: TextStyle(
               fontSize: 10,
-              color: (Theme.of(context).brightness == Brightness.dark)
-                  ? Colors.white54
-                  : Colors.black54,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ],
