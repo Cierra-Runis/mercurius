@@ -47,10 +47,16 @@ class MercuriusApp extends StatelessWidget {
               useMaterial3: true,
               colorScheme: lightColorScheme,
               fontFamily: 'Saira',
+              pageTransitionsTheme: const PageTransitionsTheme(builders: {
+                TargetPlatform.android: CupertinoPageTransitionsBuilder()
+              }),
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
               colorScheme: darkColorScheme,
+              pageTransitionsTheme: const PageTransitionsTheme(builders: {
+                TargetPlatform.android: CupertinoPageTransitionsBuilder()
+              }),
               fontFamily: 'Saira',
             ),
             themeMode: profileModel.profile.themeMode,

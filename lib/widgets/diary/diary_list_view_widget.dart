@@ -1,7 +1,17 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListViewWidget extends StatelessWidget {
+import 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
+
+class DiaryListViewWidget extends StatefulWidget {
   const DiaryListViewWidget({super.key});
+
+  @override
+  State<DiaryListViewWidget> createState() => _DiaryListViewWidgetState();
+}
+
+class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
+  final RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
   Widget _getDiaryListCards(List<Diary>? data) {
     List<Widget> diaryListCards = [];
@@ -55,10 +65,7 @@ class DiaryListViewWidget extends StatelessWidget {
       ),
     );
 
-    return Scrollbar(
-      radius: const Radius.circular(2.0),
-      child: ListView(children: diaryListCards.toList()),
-    );
+    return ListView(children: diaryListCards);
   }
 
   @override
@@ -93,7 +100,19 @@ class DiaryListViewWidget extends StatelessWidget {
                   ),
                 );
               case ConnectionState.active:
-                return _getDiaryListCards(snapshot.data);
+                return Scrollbar(
+                  radius: const Radius.circular(2.0),
+                  child: SmartRefresher(
+                    onRefresh: () {
+                      diarySearchTextModel.changeContains(
+                        diarySearchTextModel.contains,
+                      );
+                      _refreshController.refreshCompleted();
+                    },
+                    controller: _refreshController,
+                    child: _getDiaryListCards(snapshot.data),
+                  ),
+                );
               case ConnectionState.done:
                 return const Center(child: Text('Stream 已关闭'));
             }

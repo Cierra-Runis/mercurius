@@ -38,10 +38,10 @@ const lightColorScheme = ColorScheme(
 /// 暗色模式下的颜色集
 const darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
-  primary: Color(0xFFFFB787),
+  primary: Color(0xFFFFB787), // 普通按钮前景色
   onPrimary: Color(0xFF502400),
-  primaryContainer: Color(0xFF723600),
-  onPrimaryContainer: Color(0xFFFFDCC7),
+  primaryContainer: Color(0xFF363636), // 浮动按钮背景色
+  onPrimaryContainer: Color(0xCCE1E1E1), // 浮动按钮前景色
   secondary: Color(0xFFE5BFA8),
   onSecondary: Color(0xFF422B1B),
   secondaryContainer: Color(0xFF5B4130),
@@ -54,18 +54,18 @@ const darkColorScheme = ColorScheme(
   errorContainer: Color(0xFF93000A),
   onError: Color(0xFF690005),
   onErrorContainer: Color(0xFFFFDAD6),
-  background: Color(0xFF181818),
+  background: Color(0xFF242424), // 主要容器背景色
   onBackground: Color(0xFFECE0DA),
-  surface: Color(0xFF201A17),
-  onSurface: Color(0xFFECE0DA),
+  surface: Color(0xFF303030), // 标题栏和卡片背景颜色
+  onSurface: Color(0xFFECE0DA), // 最基础字体色
   surfaceVariant: Color(0xFF52443C),
   onSurfaceVariant: Color(0xFFD7C3B8),
-  outline: Color(0x8AFFFFFF),
+  outline: Color(0x8AFFFFFF), // 下划线，选项小字，你记颜色
   onInverseSurface: Color(0xFF201A17),
   inverseSurface: Color(0xFFECE0DA),
   inversePrimary: Color(0xFF964900),
   shadow: Color(0xFF000000),
   surfaceTint: Color(0xFF181818),
-  outlineVariant: Color(0xFF52443C),
+  outlineVariant: Color(0xFF303030),
   scrim: Color(0xFF000000),
 );

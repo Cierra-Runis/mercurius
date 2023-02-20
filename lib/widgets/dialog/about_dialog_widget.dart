@@ -81,8 +81,8 @@ class AboutDialogWidget extends StatelessWidget {
                                 minimumSize: const Size(20, 10),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                              child: badge.Badge(
-                                child: const Text(
+                              child: const badge.Badge(
+                                child: Text(
                                   '更新至新版本',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 8),

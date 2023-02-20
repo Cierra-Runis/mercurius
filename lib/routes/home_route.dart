@@ -64,14 +64,19 @@ class _HomeRouteState extends State<HomeRoute> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: MercuriusBottomBarWidget(
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.outline,
         backgroundColor: Theme.of(context).colorScheme.surface,
         items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '主页',
+          MercuriusBottomBarItem(
+            icon: const Icon(Icons.home),
+            title: const Text(
+              '主页',
+              style: TextStyle(fontFamily: 'Saira'),
+            ),
           ),
-          BottomNavigationBarItem(
+          MercuriusBottomBarItem(
             icon: Consumer2<ProfileModel, MercuriusWebModel>(
               builder: (context, profileModel, mercuriusWebModel, child) =>
                   badge.Badge(
@@ -80,7 +85,10 @@ class _HomeRouteState extends State<HomeRoute> {
                 child: const Icon(Icons.more_horiz),
               ),
             ),
-            label: '更多',
+            title: const Text(
+              '更多',
+              style: TextStyle(fontFamily: 'Saira'),
+            ),
           ),
         ],
         currentIndex: _selectedIndex,

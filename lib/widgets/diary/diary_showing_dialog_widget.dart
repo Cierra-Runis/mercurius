@@ -30,7 +30,7 @@ class _DiaryShowingDialogWidgetState extends State<DiaryShowingDialogWidget> {
     return Consumer<DiaryEditorModel>(
       builder: (context, diaryEditorModel, child) {
         return Padding(
-          padding: const EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 18.0),
+          padding: const EdgeInsets.all(12.0),
           child: SizedBox(
             child: Container(
               decoration: ShapeDecoration(

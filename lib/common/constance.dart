@@ -58,20 +58,20 @@ class DiaryConstance {
 
 /// 数独相关常数
 class SudokuConstance {
-  /// 将字符串如 `'beginner'` 映射为 `Icons.child_friendly_rounded`
+  /// 将字符串如 `'初级'` 映射为 `Icons.child_friendly_rounded`
   static const Map difficultyIconMay = {
-    'beginner': Icons.child_friendly_rounded,
-    'easy': Icons.child_care_rounded,
-    'medium': Icons.school_rounded,
-    'hard': Icons.biotech_rounded,
+    '初级': Icons.child_friendly_rounded,
+    '中级': Icons.child_care_rounded,
+    '高级': Icons.school_rounded,
+    '大师级': Icons.biotech_rounded,
   };
 
-  /// 将字符串如 `'beginner'` 映射为数字 `18`
+  /// 将字符串如 `'初级'` 映射为数字 `18`
   static const Map difficultyMap = {
-    'beginner': 18,
-    'easy': 27,
-    'medium': 36,
-    'hard': 54,
+    '初级': 18,
+    '中级': 27,
+    '高级': 36,
+    '大师级': 54,
   };
 }
 

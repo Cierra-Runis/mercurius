@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: _switchCurrentBarMode,
+            onPressed: _currentListViewMode ? _switchCurrentBarMode : null,
             icon: const Icon(Icons.search),
           ),
           IconButton(

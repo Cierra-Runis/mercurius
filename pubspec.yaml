@@ -36,7 +36,7 @@ publish_to: "none"
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+24
+version: 0.0.1+25
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -74,6 +74,7 @@ dependencies:
   open_app_file: ^4.0.1 # 打开文件
   syncfusion_flutter_charts: ^20.4.43 # 图表
   loading_animation_widget: ^1.2.0+4 # 加载器组件
+  pull_to_refresh: ^2.0.0 # 下拉刷新
 
 dev_dependencies:
   flutter_test:

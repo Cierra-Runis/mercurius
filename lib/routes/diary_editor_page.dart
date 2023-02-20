@@ -66,6 +66,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
               controller: _title,
               decoration: const InputDecoration(
                 hintText: '无标题',
+                border: InputBorder.none,
               ),
             ),
             centerTitle: true,

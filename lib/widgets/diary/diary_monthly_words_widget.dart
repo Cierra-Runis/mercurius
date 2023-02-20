@@ -112,6 +112,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
               zoomPanBehavior: _zoomPanBehavior,
               series: <ColumnSeries<_DiaryWordsData, String>>[
                 ColumnSeries<_DiaryWordsData, String>(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.7),
                   dataSource: snapshot.data!,
                   xValueMapper: (_DiaryWordsData sales, _) =>
                       sales.dateTime.toString().substring(0, 7),
