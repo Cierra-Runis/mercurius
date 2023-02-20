@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   bool _currentSearchBarMode = false;
 
   void _switchCurrentViewMode() {
+    diarySearchTextModel.changeContains('');
     Vibration.vibrate(duration: 50, amplitude: 255);
     DevTools.printLog('现在是否为列表视图 $_currentListViewMode 并开始切换');
     setState(() {

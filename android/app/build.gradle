@@ -58,15 +58,13 @@ android {
             keyAlias 'key_alias'
             keyPassword 'key_alias_password'
             storeFile file('C:\\click\\key_alias.jks')
-            storePassword 'key_alias'
+            storePassword 'key_alias_password'
         }
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

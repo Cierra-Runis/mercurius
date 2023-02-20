@@ -36,7 +36,7 @@ publish_to: "none"
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.0.1+26
+version: 0.1.0+28
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
