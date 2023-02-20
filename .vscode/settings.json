@@ -15,5 +15,6 @@
         "unfocus",
         "Unicons",
         "vsync"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
