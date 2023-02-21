@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
       );
     } else {
       DevTools.printLog('进入创建模式');
+      // FIXME: 解决该问题
       // ignore: use_build_context_synchronously
       Navigator.push(
         context,

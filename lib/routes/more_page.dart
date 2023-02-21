@@ -34,53 +34,72 @@ class MorePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: ListView(
+            child: MercuriusList(
               children: [
-                ListTile(
-                  leading: const Icon(Icons.analytics),
-                  title: const Text(
-                    '统计数据',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Saira',
+                MercuriusListSection(
+                  children: [
+                    MercuriusListItem(
+                      icon: Icon(
+                        Icons.analytics,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.38),
+                      ),
+                      title: const Text(
+                        '统计数据',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DiaryStatisticPage(),
+                        ),
+                      ),
                     ),
-                  ),
-                  trailing: const Icon(Icons.navigate_next),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DiaryStatisticPage(),
+                    MercuriusListItem(
+                      icon: Icon(
+                        Icons.settings,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.38),
+                      ),
+                      title: const Text(
+                        '设定',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingPage(),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text(
-                    '设定',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Saira',
+                    MercuriusListItem(
+                      icon: Icon(
+                        Icons.info_outline,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.38),
+                      ),
+                      title: const Text(
+                        '关于',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Saira',
+                        ),
+                      ),
+                      onTap: () => _aboutDialog(context),
                     ),
-                  ),
-                  trailing: const Icon(Icons.navigate_next),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SettingPage(),
-                    ),
-                  ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.info_outline),
-                  title: const Text(
-                    '关于',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Saira',
-                    ),
-                  ),
-                  trailing: const Icon(Icons.navigate_next),
-                  onTap: () => _aboutDialog(context),
+                  ],
                 ),
               ],
             ),

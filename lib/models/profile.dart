@@ -31,7 +31,7 @@ class Profile {
   String? lastLogin;
 
   /// 数独难度
-  String sudokuDifficulty = 'hard';
+  String sudokuDifficulty = '大师级';
 
   /// 当前版本
   String? currentVersion;

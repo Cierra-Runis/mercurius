@@ -36,7 +36,7 @@ publish_to: "none"
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.1.0+28
+version: 0.1.0+29
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -49,7 +49,7 @@ dependencies:
   package_info_plus: ^3.0.1 # 包信息
   url_launcher: ^6.1.6 # 打开外部链接
   provider: ^6.0.4 # 状态管理
-  dio: ^4.0.6 # 网络请求
+  dio: ^5.0.0 # 网络请求
   json_serializable: ^6.5.3 # json 相关
   json_annotation: ^4.7.0 # json 相关
   shared_preferences: ^2.0.15 # 数据持久化
@@ -60,7 +60,7 @@ dependencies:
   isar: ^3.0.5 # 数据库
   isar_flutter_libs: ^3.0.5 # 数据库的库
   path_provider: ^2.0.11 # 路径获取
-  flutter_quill: ^6.2.1 # 富文本
+  flutter_quill: ^6.4.2 # 富文本
   flutter_quill_extensions: ^0.1.0 # 富文本扩展
   flutter_displaymode: ^0.5.0 # 高刷
   dart_date: ^1.1.1 # 转换时间工具
@@ -75,6 +75,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.4.43 # 图表
   loading_animation_widget: ^1.2.0+4 # 加载器组件
   pull_to_refresh: ^2.0.0 # 下拉刷新
+  preference_list: ^0.0.1 # 好看的列表
 
 dev_dependencies:
   flutter_test:
