@@ -5,8 +5,8 @@ class MercuriusTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PositionModel>(
-      builder: (context, positionModel, child) {
+    return Consumer<MercuriusPositionNotifier>(
+      builder: (context, mercuriusPositionNotifier, child) {
         return Column(
           children: [
             const Text(
@@ -17,7 +17,7 @@ class MercuriusTitleWidget extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => positionModel.update(true),
+              onTap: () => mercuriusPositionNotifier.update(true),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -26,14 +26,15 @@ class MercuriusTitleWidget extends StatelessWidget {
                     size: 6,
                   ),
                   Text(
-                    " ${positionModel.cachePosition.latitude}N ${positionModel.cachePosition.longitude}E ",
+                    " ${mercuriusPositionNotifier.cachePosition.latitude}N ${mercuriusPositionNotifier.cachePosition.longitude}E ",
                     style: const TextStyle(
                       fontSize: 8,
                     ),
                   ),
                   Icon(
                     QWeatherIcon.getIconById(
-                      int.parse(positionModel.weatherBody.now!.icon!),
+                      int.parse(
+                          mercuriusPositionNotifier.weatherBody.now!.icon!),
                     ),
                     size: 6,
                   ),
@@ -41,7 +42,7 @@ class MercuriusTitleWidget extends StatelessWidget {
               ),
             ),
             Text(
-              positionModel.cachePosition.city,
+              mercuriusPositionNotifier.cachePosition.city,
               style: const TextStyle(
                 fontSize: 8,
               ),

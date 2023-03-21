@@ -77,7 +77,7 @@ class IsarService {
         [DiarySchema],
         inspector: true,
         name: 'mercurius_database',
-        directory: pathModel.path,
+        directory: mercuriusPathNotifier.path,
         compactOnLaunch: const CompactCondition(
           /// 只要压缩能减小 1KB 及以上的体积就进行压缩
           minBytes: 1024,

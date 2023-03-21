@@ -3,20 +3,22 @@ import 'package:mercurius/index.dart';
 import 'package:flutter/cupertino.dart';
 
 /// 位于 `main.dart` 的 `changeNotifier` 们
-ProfileModel profileModel = ProfileModel();
-SudokuModel sudokuModel = SudokuModel();
-MercuriusWebModel mercuriusWebModel = MercuriusWebModel();
-PositionModel positionModel = PositionModel();
-LogModel logModel = LogModel();
-PathModel pathModel = PathModel();
-DiaryEditorModel diaryEditorModel = DiaryEditorModel();
-DiarySearchTextModel diarySearchTextModel = DiarySearchTextModel();
+MercuriusProfileNotifier mercuriusProfileNotifier = MercuriusProfileNotifier();
+MercuriusSudokuNotifier mercuriusSudokuNotifier = MercuriusSudokuNotifier();
+MercuriusWebNotifier mercuriusWebNotifier = MercuriusWebNotifier();
+MercuriusPositionNotifier mercuriusPositionNotifier =
+    MercuriusPositionNotifier();
+MercuriusLogNotifier mercuriusLogNotifier = MercuriusLogNotifier();
+MercuriusPathNotifier mercuriusPathNotifier = MercuriusPathNotifier();
+DiaryEditorNotifier diaryEditorNotifier = DiaryEditorNotifier();
+DiarySearchTextNotifier diarySearchTextNotifier = DiarySearchTextNotifier();
 
 /// 数据库服务
 final isarService = IsarService();
 
-/// 因 `profileModel` 需要读取本地数据, 故先进入 `profileModel` 进行初始化
-void main() => profileModel.init().then((e) => runApp(const MercuriusApp()));
+/// 因 `mercuriusProfileNotifier` 需要读取本地数据, 故先进入 `mercuriusProfileNotifier` 进行初始化
+void main() =>
+    mercuriusProfileNotifier.init().then((e) => runApp(const MercuriusApp()));
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -30,17 +32,17 @@ class MercuriusApp extends StatelessWidget {
     /// 利用 `provide` 包进行状态管理
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => profileModel),
-        ChangeNotifierProvider(create: (_) => sudokuModel),
-        ChangeNotifierProvider(create: (_) => mercuriusWebModel),
-        ChangeNotifierProvider(create: (_) => positionModel),
-        ChangeNotifierProvider(create: (_) => pathModel),
-        ChangeNotifierProvider(create: (_) => logModel),
-        ChangeNotifierProvider(create: (_) => diaryEditorModel),
-        ChangeNotifierProvider(create: (_) => diarySearchTextModel),
+        ChangeNotifierProvider(create: (_) => mercuriusProfileNotifier),
+        ChangeNotifierProvider(create: (_) => mercuriusSudokuNotifier),
+        ChangeNotifierProvider(create: (_) => mercuriusWebNotifier),
+        ChangeNotifierProvider(create: (_) => mercuriusPositionNotifier),
+        ChangeNotifierProvider(create: (_) => mercuriusPathNotifier),
+        ChangeNotifierProvider(create: (_) => mercuriusLogNotifier),
+        ChangeNotifierProvider(create: (_) => diaryEditorNotifier),
+        ChangeNotifierProvider(create: (_) => diarySearchTextNotifier),
       ],
-      child: Consumer<ProfileModel>(
-        builder: (context, profileModel, child) {
+      child: Consumer<MercuriusProfileNotifier>(
+        builder: (context, mercuriusProfileNotifier, child) {
           return MaterialApp(
             navigatorKey: navigatorKey,
             theme: ThemeData(
@@ -59,8 +61,8 @@ class MercuriusApp extends StatelessWidget {
               }),
               fontFamily: 'Saira',
             ),
-            themeMode: profileModel.profile.themeMode,
-            home: const SplashPage(),
+            themeMode: mercuriusProfileNotifier.profile.themeMode,
+            home: const MercuriusSplashPage(),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

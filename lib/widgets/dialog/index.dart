@@ -1,6 +1,6 @@
-export 'privacy_dialog_widget.dart';
-export 'agreement_dialog_widget.dart';
-export 'import_declaration_dialog_widget.dart';
-export 'login_dialog_widget.dart';
-export 'register_dialog_widget.dart';
-export 'about_dialog_widget.dart';
+export 'dialog_privacy_widget.dart';
+export 'dialog_agreement_widget.dart';
+export 'dialog_import_declaration_widget.dart';
+export 'dialog_login_widget.dart';
+export 'dialog_register_widget.dart';
+export 'dialog_about_widget.dart';

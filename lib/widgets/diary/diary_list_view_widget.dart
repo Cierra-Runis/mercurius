@@ -70,11 +70,11 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DiarySearchTextModel>(
-      builder: (context, diarySearchTextModel, child) {
+    return Consumer<DiarySearchTextNotifier>(
+      builder: (context, diarySearchTextNotifier, child) {
         return StreamBuilder<List<Diary>>(
           stream: isarService
-              .listenToDiariesContains(diarySearchTextModel.contains),
+              .listenToDiariesContains(diarySearchTextNotifier.contains),
           builder: (
             BuildContext context,
             AsyncSnapshot<List<Diary>> snapshot,
@@ -104,8 +104,8 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
                   radius: const Radius.circular(2.0),
                   child: SmartRefresher(
                     onRefresh: () {
-                      diarySearchTextModel.changeContains(
-                        diarySearchTextModel.contains,
+                      diarySearchTextNotifier.changeContains(
+                        diarySearchTextNotifier.contains,
                       );
                       _refreshController.refreshCompleted();
                     },

@@ -125,7 +125,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return DiaryShowingDialogWidget(diary: diary);
+        return DiaryPresentDialogWidget(diary: diary);
       },
     );
   }

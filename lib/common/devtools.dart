@@ -13,7 +13,7 @@ class DevTools {
   static void printLog(String message) {
     if (_showLog) {
       devtools.log(message);
-      logModel.addLog('$message\n');
+      mercuriusLogNotifier.addLog('$message\n');
     }
   }
 
