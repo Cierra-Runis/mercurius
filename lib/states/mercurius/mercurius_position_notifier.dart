@@ -1,3 +1,4 @@
+import 'package:dart_date/dart_date.dart';
 import 'package:mercurius/index.dart';
 
 String _aMapUrl =
@@ -117,7 +118,14 @@ class MercuriusPositionNotifier extends ChangeNotifier {
 
   void init() {
     DevTools.printLog('mercuriusPositionNotifier 初始化中');
-    update(false);
+    CachePosition? cachePosition =
+        mercuriusProfileNotifier.profile.cache.cachePosition;
+    if (cachePosition != null) {
+      Duration duration = DateTime.now().difference(cachePosition.dateTime);
+      update(duration.inDays > 5);
+    } else {
+      update(false);
+    }
     notifyListeners();
     super.notifyListeners();
   }

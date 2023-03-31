@@ -194,8 +194,7 @@ def main_module() -> None:
         os.system(
             'flutter build apk' + ' --obfuscate' +
             ' --split-debug-info=splitMap' +
-            ' --target-platform android-arm,android-arm64,android-x64' +
-            ' --split-per-abi', )
+            ' --target-platform android-arm64' + ' --split-per-abi', )
 
         # 并将 build 后的 apk 转移至 .release_tool/mercurius_warehouse
         copy_file(
