@@ -44,6 +44,9 @@ class MercuriusProfileNotifier extends ChangeNotifier {
 
     /// 实现高刷
     await FlutterDisplayMode.setHighRefreshRate();
+
+    /// 固定竖屏
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   void changeProfile(Profile profile) async {

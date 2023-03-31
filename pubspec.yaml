@@ -3,8 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-# 请使用 .release_tool/change_version_and_build.py 进行修改版本号
-# 简化自 https://www.jianshu.com/p/5058eb7505d3
+# 请使用 .release_tool/main.py 进行修改版本号, 简化自 https://www.jianshu.com/p/5058eb7505d3
 
 # Flutter 使用 android/app/build.gradle 来打包 apk, 且其引入了 flutter.gradle 如 D:/flutter/packages/flutter_tools/gradle/flutter.gradle
 
@@ -36,7 +35,7 @@ publish_to: "none"
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.1.1+31
+version: 0.1.2+32
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -47,32 +46,30 @@ dependencies:
   flutter_localizations: # 本地化
     sdk: flutter
   package_info_plus: ^3.0.1 # 包信息
-  url_launcher: ^6.1.6 # 打开外部链接
+  url_launcher: ^6.1.10 # 打开外部链接
   provider: ^6.0.4 # 状态管理
-  dio: ^5.0.0 # 网络请求
+  dio: ^5.1.1 # 网络请求
   json_serializable: ^6.5.3 # json 相关
   json_annotation: ^4.7.0 # json 相关
-  shared_preferences: ^2.0.15 # 数据持久化
+  shared_preferences: ^2.0.20 # 数据持久化
   sudoku_solver_generator: ^2.1.0+1 # 数独生成器
   confetti: ^0.7.0 # 彩纸效果
   flutter_markdown: ^0.6.13 # markdown
-  unicons: ^2.1.0 # 图标
+  unicons: ^2.1.1 # 图标
   isar: ^3.0.5 # 数据库
   isar_flutter_libs: ^3.0.5 # 数据库的库
   path_provider: ^2.0.11 # 路径获取
-  flutter_quill: ^6.4.2 # 富文本
-  flutter_quill_extensions: ^0.1.0 # 富文本扩展
+  flutter_quill: ^7.0.3 # 富文本
   flutter_displaymode: ^0.5.0 # 高刷
-  dart_date: ^1.1.1 # 转换时间工具
+  dart_date: ^1.2.1 # 转换时间工具
   double_back_to_close: ^2.0.0 # 二次退出确认
   another_flushbar: ^1.12.29 # 提示框
   share_plus: ^6.3.0 # 分享
   table_calendar: ^3.0.8 # 日历
-  badges: ^3.0.2 # 小红点提示
-  tuple: ^2.0.1 # tuple 类型支持
+  badges: ^3.0.3 # 小红点提示
   vibration: ^1.7.6 # 振动反馈
   open_app_file: ^4.0.1 # 打开文件
-  syncfusion_flutter_charts: ^20.4.43 # 图表
+  syncfusion_flutter_charts: ^21.1.37 # 图表
   loading_animation_widget: ^1.2.0+4 # 加载器组件
   pull_to_refresh: ^2.0.0 # 下拉刷新
   preference_list: ^0.0.1 # 好看的列表
@@ -82,7 +79,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   isar_generator: ^3.0.5 # 数据库代码生成工具
-  build_runner: ^2.3.2 # 代码生成用实用工具
+  build_runner: ^2.3.3 # 代码生成用实用工具
 
 flutter:
   uses-material-design: true

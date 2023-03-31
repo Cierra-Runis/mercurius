@@ -9,6 +9,7 @@ export 'main.dart';
 /// flutter 相关
 export 'package:flutter/material.dart';
 export 'package:flutter/rendering.dart';
+export 'package:flutter/services.dart';
 
 /// dart 相关
 export 'dart:async';
@@ -29,14 +30,12 @@ export 'package:flutter_markdown/flutter_markdown.dart'; // markdown
 export 'package:unicons/unicons.dart'; // 图标
 export 'package:isar/isar.dart'; // 数据库
 export 'package:path_provider/path_provider.dart'; // 路径获取
-export 'package:flutter_quill_extensions/flutter_quill_extensions.dart'; // 富文本扩展
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:double_back_to_close/double_back_to_close.dart'; // 二次退出确认
 export 'package:another_flushbar/flushbar.dart'; // 提示框
 export 'package:share_plus/share_plus.dart'; // 分享
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:table_calendar/table_calendar.dart'; // 日历
-export 'package:tuple/tuple.dart'; // tuple 类型支持
 export 'package:vibration/vibration.dart'; // 振动反馈
 export 'package:open_app_file/open_app_file.dart'; // 打开文件
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表

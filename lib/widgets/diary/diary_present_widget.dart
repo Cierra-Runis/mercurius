@@ -158,8 +158,8 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                               height: 1.5,
                               color: Colors.grey.withOpacity(0.6),
                             ),
-                            const Tuple2(0, 0),
-                            const Tuple2(0, 0),
+                            const flutter_quill.VerticalSpacing(0, 0),
+                            const flutter_quill.VerticalSpacing(0, 0),
                             null,
                           ),
                           paragraph: flutter_quill.DefaultTextBlockStyle(
@@ -170,8 +170,8 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                               color:
                                   Theme.of(context).colorScheme.inverseSurface,
                             ),
-                            const Tuple2(0, 0),
-                            const Tuple2(0, 0),
+                            const flutter_quill.VerticalSpacing(0, 0),
+                            const flutter_quill.VerticalSpacing(0, 0),
                             null,
                           ),
                         ),
