@@ -2,8 +2,9 @@
   <img id="mercurius_warehouse" width="96" alt="mercurius_warehouse" src="repository_icon/icon.svg">
   <p>『 Mercurius - 记点日记！』</p>
 </div>
-
 [📚 简介](#-简介)
+
+[📸 示例](#-示例)
 
 [📦 使用方式](#-使用方式)
 
@@ -19,9 +20,33 @@
 
 本软件是基于 [Flutter](https://flutter.dev/) 开发的一款日记软件
 
+# 📸 示例
+
+## 🌕️ 常暗模式
+
+<p float="left">
+<img src="./repository_icon/black_1.jpg" alt="black_1" style="zoom:25%;" />
+<img src="./repository_icon/black_2.jpg" alt="black_2" style="zoom:25%;" />
+<img src="./repository_icon/black_3.jpg" alt="black_3" style="zoom:25%;" />
+<img src="./repository_icon/black_4.jpg" alt="black_4" style="zoom:25%;" />
+<img src="./repository_icon/black_5.jpg" alt="black_5" style="zoom:25%;" />
+<img src="./repository_icon/black_6.jpg" alt="black_6" style="zoom:25%;" />
+</p>
+
+## 🌞️ 常亮模式
+
+<p float="left">
+<img src="./repository_icon/white_1.jpg" alt="white_1" style="zoom:25%;" />
+<img src="./repository_icon/white_2.jpg" alt="white_2" style="zoom:25%;" />
+<img src="./repository_icon/white_3.jpg" alt="white_3" style="zoom:25%;" />
+<img src="./repository_icon/white_4.jpg" alt="white_4" style="zoom:25%;" />
+<img src="./repository_icon/white_5.jpg" alt="white_5" style="zoom:25%;" />
+<img src="./repository_icon/white_6.jpg" alt="white_6" style="zoom:25%;" />
+</p>
+
 # 📦 使用方式
 
-请在 [Releases](https://github.com/Cierra-Runis/mercurius_warehouse/releases) 中下载安装即可
+请在 [Releases](https://github.com/Cierra-Runis/mercurius_warehouse/releases) 中选择下载安装最新版本的 `app-arm64-v8a-release.apk` 即可
 
 # ⏳ 进度
 
@@ -29,7 +54,7 @@
 
 # 📌 注意事项
 
-- 目前还是非正式版，可能会有一定风险
+- 目前还是非正式版，版本更新过程中可能会有一定的数据丢失风险，请及时主动备份日记数据
 
 # 🧑‍💻 贡献者
 
