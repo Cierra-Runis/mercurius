@@ -2,6 +2,7 @@
   <img id="mercurius_warehouse" width="96" alt="mercurius_warehouse" src="repository_icon/icon.svg">
   <p>『 Mercurius - 记点日记！』</p>
 </div>
+
 [📚 简介](#-简介)
 
 [📸 示例](#-示例)
