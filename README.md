@@ -26,23 +26,23 @@
 ## 🌕️ 常暗模式
 
 <p float="left">
-  <img width="300" src="./repository_icon/black_1.jpg" alt="black_1" />
-  <img width="300" src="./repository_icon/black_2.jpg" alt="black_2" />
-  <img width="300" src="./repository_icon/black_3.jpg" alt="black_3" />
-  <img width="300" src="./repository_icon/black_4.jpg" alt="black_4" />
-  <img width="300" src="./repository_icon/black_5.jpg" alt="black_5" />
-  <img width="300" src="./repository_icon/black_6.jpg" alt="black_6" />
+  <img width="400" src="./repository_icon/black_1.jpg" alt="black_1" />
+  <img width="400" src="./repository_icon/black_2.jpg" alt="black_2" />
+  <img width="400" src="./repository_icon/black_3.jpg" alt="black_3" />
+  <img width="400" src="./repository_icon/black_4.jpg" alt="black_4" />
+  <img width="400" src="./repository_icon/black_5.jpg" alt="black_5" />
+  <img width="400" src="./repository_icon/black_6.jpg" alt="black_6" />
 </p>
 
 ## 🌞️ 常亮模式
 
 <p float="left">
-  <img width="300" src="./repository_icon/white_1.jpg" alt="white_1" />
-  <img width="300" src="./repository_icon/white_2.jpg" alt="white_2" />
-  <img width="300" src="./repository_icon/white_3.jpg" alt="white_3" />
-  <img width="300" src="./repository_icon/white_4.jpg" alt="white_4" />
-  <img width="300" src="./repository_icon/white_5.jpg" alt="white_5" />
-  <img width="300" src="./repository_icon/white_6.jpg" alt="white_6" />
+  <img width="400" src="./repository_icon/white_1.jpg" alt="white_1" />
+  <img width="400" src="./repository_icon/white_2.jpg" alt="white_2" />
+  <img width="400" src="./repository_icon/white_3.jpg" alt="white_3" />
+  <img width="400" src="./repository_icon/white_4.jpg" alt="white_4" />
+  <img width="400" src="./repository_icon/white_5.jpg" alt="white_5" />
+  <img width="400" src="./repository_icon/white_6.jpg" alt="white_6" />
 </p>
 
 # 📦 使用方式
