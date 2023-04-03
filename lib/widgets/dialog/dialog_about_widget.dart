@@ -1,9 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:badges/badges.dart' as badge; // 小红点提示
-
-const String _url = 'https://github.com/Cierra-Runis/';
-
 class DialogAboutWidget extends StatelessWidget {
   const DialogAboutWidget({super.key});
 
@@ -82,9 +78,9 @@ class DialogAboutWidget extends StatelessWidget {
                                 minimumSize: const Size(20, 10),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                              child: const badge.Badge(
+                              child: const Badge(
                                 child: Text(
-                                  '更新至新版本',
+                                  '点此更新版本',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 8),
                                 ),
@@ -131,7 +127,7 @@ class DialogAboutWidget extends StatelessWidget {
               children: [
                 const Text('联系我们'),
                 Text(
-                  _url,
+                  MercuriusConstance.contactUrl,
                   style: TextStyle(
                     fontSize: 8,
                     color: Theme.of(context).colorScheme.outline,
@@ -140,7 +136,7 @@ class DialogAboutWidget extends StatelessWidget {
               ],
             ),
             onTap: () => launchUrlString(
-              _url,
+              MercuriusConstance.contactUrl,
               mode: LaunchMode.externalApplication,
             ),
           ),

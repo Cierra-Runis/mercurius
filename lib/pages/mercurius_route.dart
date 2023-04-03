@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:badges/badges.dart' as badge; // 小红点提示
-
 class MercuriusRoute extends StatefulWidget {
   const MercuriusRoute({super.key});
   @override
@@ -78,13 +76,18 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
           ),
           MercuriusBottomBarItem(
             icon: Consumer2<MercuriusProfileNotifier, MercuriusWebNotifier>(
-              builder: (context, mercuriusProfileNotifier, mercuriusWebNotifier,
-                      child) =>
-                  badge.Badge(
-                showBadge: mercuriusProfileNotifier.profile.currentVersion !=
-                    mercuriusWebNotifier.githubLatestRelease.tag_name,
-                child: const Icon(Icons.more_horiz),
-              ),
+              builder: (
+                context,
+                mercuriusProfileNotifier,
+                mercuriusWebNotifier,
+                child,
+              ) {
+                return Badge(
+                  showBadge: mercuriusProfileNotifier.profile.currentVersion !=
+                      mercuriusWebNotifier.githubLatestRelease.tag_name,
+                  child: const Icon(Icons.more_horiz),
+                );
+              },
             ),
             title: const Text(
               '更多',

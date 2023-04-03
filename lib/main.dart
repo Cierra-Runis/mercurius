@@ -1,26 +1,24 @@
 import 'package:mercurius/index.dart';
 
-import 'package:flutter/cupertino.dart';
-
 /// 位于 `main.dart` 的 `changeNotifier` 们
-MercuriusProfileNotifier mercuriusProfileNotifier = MercuriusProfileNotifier();
-MercuriusSudokuNotifier mercuriusSudokuNotifier = MercuriusSudokuNotifier();
-MercuriusWebNotifier mercuriusWebNotifier = MercuriusWebNotifier();
-MercuriusPositionNotifier mercuriusPositionNotifier =
-    MercuriusPositionNotifier();
-MercuriusLogNotifier mercuriusLogNotifier = MercuriusLogNotifier();
-MercuriusPathNotifier mercuriusPathNotifier = MercuriusPathNotifier();
-DiaryEditorNotifier diaryEditorNotifier = DiaryEditorNotifier();
-DiarySearchTextNotifier diarySearchTextNotifier = DiarySearchTextNotifier();
+final mercuriusProfileNotifier = MercuriusProfileNotifier();
+final mercuriusSudokuNotifier = MercuriusSudokuNotifier();
+final mercuriusWebNotifier = MercuriusWebNotifier();
+final mercuriusPositionNotifier = MercuriusPositionNotifier();
+final mercuriusPathNotifier = MercuriusPathNotifier();
+final mercuriusLogNotifier = MercuriusLogNotifier();
+final diaryEditorNotifier = DiaryEditorNotifier();
+final diarySearchTextNotifier = DiarySearchTextNotifier();
 
 /// 数据库服务
 final isarService = IsarService();
 
+/// 全局导航 key
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 /// 因 `mercuriusProfileNotifier` 需要读取本地数据, 故先进入 `mercuriusProfileNotifier` 进行初始化
 void main() =>
     mercuriusProfileNotifier.init().then((e) => runApp(const MercuriusApp()));
-
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class MercuriusApp extends StatelessWidget {
   const MercuriusApp({super.key});

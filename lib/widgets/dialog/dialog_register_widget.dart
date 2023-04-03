@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-const String _url = 'https://github.com/Cierra-Runis/';
-
 class DialogRegisterWidget extends StatefulWidget {
   const DialogRegisterWidget({super.key});
 
@@ -59,7 +57,7 @@ class _DialogRegisterWidgetState extends State<DialogRegisterWidget> {
           ),
           InkWell(
             onTap: () => launchUrlString(
-              _url,
+              MercuriusConstance.contactUrl,
               mode: LaunchMode.externalApplication,
             ),
             highlightColor: Colors.transparent,

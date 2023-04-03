@@ -34,47 +34,6 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
     );
   }
 
-  Future<List<_DiaryWordsData>> _getDiaryWordsData() async {
-    List<_DiaryWordsData> result = [];
-
-    Map<DateTime, int> data = {};
-
-    await Future.delayed(const Duration(seconds: 1), () {});
-
-    List<Diary> diaries = await isarService.getAllDiaries();
-
-    if (diaries.isEmpty) {
-      return result;
-    }
-
-    DateTime start = diaries[0].createDateTime;
-    start = DateTime(start.year, start.month, 1);
-    DateTime end = diaries[diaries.length - 1].createDateTime;
-
-    while (start.isBefore(end)) {
-      data.addAll({start: 0});
-      start = DateTime(start.year, start.month + 1);
-    }
-
-    data.forEach((key, _) {
-      for (var element in diaries) {
-        if (key.isSameYear(element.createDateTime) &&
-            key.isSameMonth(element.createDateTime)) {
-          data.update(
-            key,
-            (value) => value += flutter_quill.Document.fromJson(
-              jsonDecode(element.contentJsonString!),
-            ).toPlainText().replaceAll(RegExp(r'\n'), '').length,
-          );
-        }
-      }
-    });
-
-    data.forEach((key, value) => result.add(_DiaryWordsData(key, value)));
-
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -144,6 +103,47 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
         },
       ),
     );
+  }
+
+  Future<List<_DiaryWordsData>> _getDiaryWordsData() async {
+    List<_DiaryWordsData> result = [];
+
+    Map<DateTime, int> data = {};
+
+    await Future.delayed(const Duration(seconds: 1), () {});
+
+    List<Diary> diaries = await isarService.getAllDiaries();
+
+    if (diaries.isEmpty) {
+      return result;
+    }
+
+    DateTime start = diaries[0].createDateTime;
+    start = DateTime(start.year, start.month, 1);
+    DateTime end = diaries[diaries.length - 1].createDateTime;
+
+    while (start.isBefore(end)) {
+      data.addAll({start: 0});
+      start = DateTime(start.year, start.month + 1);
+    }
+
+    data.forEach((key, _) {
+      for (var element in diaries) {
+        if (key.isSameYear(element.createDateTime) &&
+            key.isSameMonth(element.createDateTime)) {
+          data.update(
+            key,
+            (value) => value += flutter_quill.Document.fromJson(
+              jsonDecode(element.contentJsonString!),
+            ).toPlainText().replaceAll(RegExp(r'\n'), '').length,
+          );
+        }
+      }
+    });
+
+    data.forEach((key, value) => result.add(_DiaryWordsData(key, value)));
+
+    return result;
   }
 }
 

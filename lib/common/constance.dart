@@ -1,7 +1,9 @@
 import 'package:mercurius/index.dart';
 
 /// 基础常数
-class MercuriusConstance {}
+class MercuriusConstance {
+  static const String contactUrl = 'https://github.com/Cierra-Runis/';
+}
 
 /// 日记相关常数
 class DiaryConstance {

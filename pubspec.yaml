@@ -35,7 +35,7 @@ publish_to: "none"
 #     (ARCH_X86_64)       : 0,
 # ]
 
-version: 0.1.2+32
+version: 0.1.2+33
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
@@ -51,7 +51,7 @@ dependencies:
   dio: ^5.1.1 # 网络请求
   json_serializable: ^6.5.3 # json 相关
   json_annotation: ^4.7.0 # json 相关
-  shared_preferences: ^2.0.20 # 数据持久化
+  shared_preferences: ^2.1.0 # 数据持久化
   sudoku_solver_generator: ^2.1.0+1 # 数独生成器
   confetti: ^0.7.0 # 彩纸效果
   flutter_markdown: ^0.6.13 # markdown
@@ -59,7 +59,7 @@ dependencies:
   isar: ^3.0.5 # 数据库
   isar_flutter_libs: ^3.0.5 # 数据库的库
   path_provider: ^2.0.11 # 路径获取
-  flutter_quill: ^7.0.3 # 富文本
+  flutter_quill: ^7.0.5 # 富文本
   flutter_displaymode: ^0.5.0 # 高刷
   dart_date: ^1.2.1 # 转换时间工具
   double_back_to_close: ^2.0.0 # 二次退出确认

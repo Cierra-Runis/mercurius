@@ -7,9 +7,11 @@ export 'common/index.dart';
 export 'main.dart';
 
 /// flutter 相关
-export 'package:flutter/material.dart';
+export 'package:flutter/material.dart'
+    hide Badge, RefreshIndicator, RefreshIndicatorState;
 export 'package:flutter/rendering.dart';
 export 'package:flutter/services.dart';
+export 'package:flutter/cupertino.dart' hide RefreshCallback;
 
 /// dart 相关
 export 'dart:async';
@@ -40,3 +42,6 @@ export 'package:vibration/vibration.dart'; // 振动反馈
 export 'package:open_app_file/open_app_file.dart'; // 打开文件
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表
 export 'package:loading_animation_widget/loading_animation_widget.dart'; // 加载器组件
+export 'package:badges/badges.dart'; // 小红点提示
+export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
+

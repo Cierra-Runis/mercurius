@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
-
 class DiaryListViewWidget extends StatefulWidget {
   const DiaryListViewWidget({super.key});
 

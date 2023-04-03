@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:flutter/cupertino.dart';
-
 class MercuriusListItem extends StatelessWidget {
   final EdgeInsets? padding;
   final Widget? icon;
