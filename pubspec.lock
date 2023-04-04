@@ -391,10 +391,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: "3c9ea8ca91ca7ba42230b6c13b457271c0c3c4fcf12da7fc9fd2467ff99db4bf"
+      sha256: f13068049412edb80929064e2f2f90deb6a98999bd0565e0ea91535822eab709
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.5"
+    version: "7.0.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -725,14 +725,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  preference_list:
-    dependency: "direct main"
-    description:
-      name: preference_list
-      sha256: d3419b2ec57a6ad2156bd682a46cf3194bf162b36bb013790c7b29e6438f107a
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
   process:
     dependency: transitive
     description:

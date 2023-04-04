@@ -3,86 +3,53 @@ description: For mercurius.
 
 publish_to: "none"
 
-# 请使用 .release_tool/main.py 进行修改版本号, 简化自 https://www.jianshu.com/p/5058eb7505d3
-
-# Flutter 使用 android/app/build.gradle 来打包 apk, 且其引入了 flutter.gradle 如 D:/flutter/packages/flutter_tools/gradle/flutter.gradle
-
-# 约在 flutter.gradle 的 810 行
-
-# def addFlutterDeps = { variant ->
-#     if (shouldSplitPerAbi()) {
-#         variant.outputs.each { output ->
-#             def abiVersionCode = ABI_VERSION.get(output.getFilter(OutputFile.ABI))
-#             if (abiVersionCode != null) {
-#                 output.versionCodeOverride =
-#                     abiVersionCode * 1000 + variant.versionCode
-#             }
-#         }
-#     }
-#     (...)
-# }
-
-# 我们知道 flutter 将判断是否使用了 'split-per-abi' 命令, 是则在 ABI_VERSION 选择一个版本 *1000 再加上构建号
-
-# 官方解释见 https://developer.android.com/studio/build/configure-apk-splits
-
-# 我们只需修改 ABI_VERSION map 如下
-
-# private static final Map ABI_VERSION = [
-#     (ARCH_ARM32)        : 0,
-#     (ARCH_ARM64)        : 0,
-#     (ARCH_X86)          : 0,
-#     (ARCH_X86_64)       : 0,
-# ]
-
-version: 0.1.2+33
+version: 0.1.2+34
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
-  flutter:
+  flutter: # Flutter 本体 [网址略]
     sdk: flutter
-  flutter_localizations: # 本地化
+  flutter_localizations: # Flutter [网址略]
     sdk: flutter
-  package_info_plus: ^3.0.1 # 包信息
-  url_launcher: ^6.1.10 # 打开外部链接
-  provider: ^6.0.4 # 状态管理
-  dio: ^5.1.1 # 网络请求
-  json_serializable: ^6.5.3 # json 相关
-  json_annotation: ^4.7.0 # json 相关
-  shared_preferences: ^2.1.0 # 数据持久化
-  sudoku_solver_generator: ^2.1.0+1 # 数独生成器
-  confetti: ^0.7.0 # 彩纸效果
-  flutter_markdown: ^0.6.13 # markdown
-  unicons: ^2.1.1 # 图标
-  isar: ^3.0.5 # 数据库
-  isar_flutter_libs: ^3.0.5 # 数据库的库
-  path_provider: ^2.0.11 # 路径获取
-  flutter_quill: ^7.0.5 # 富文本
-  flutter_displaymode: ^0.5.0 # 高刷
-  dart_date: ^1.2.1 # 转换时间工具
-  double_back_to_close: ^2.0.0 # 二次退出确认
-  another_flushbar: ^1.12.29 # 提示框
-  share_plus: ^6.3.0 # 分享
-  table_calendar: ^3.0.8 # 日历
-  badges: ^3.0.3 # 小红点提示
-  vibration: ^1.7.6 # 振动反馈
-  open_app_file: ^4.0.1 # 打开文件
-  syncfusion_flutter_charts: ^21.1.37 # 图表
-  loading_animation_widget: ^1.2.0+4 # 加载器组件
-  pull_to_refresh: ^2.0.0 # 下拉刷新
-  preference_list: ^0.0.1 # 好看的列表
+  another_flushbar: ^1.12.29 # 提示框 [https://pub.dev/packages/another_flushbar]
+  badges: ^3.0.3 # 小红点提示 [https://pub.dev/packages/badges]
+  confetti: ^0.7.0 # 彩纸效果 [https://pub.dev/packages/confetti]
+  dio: ^5.1.1 # 网络请求 [https://pub.dev/packages/dio]
+  dart_date: ^1.2.1 # 转换时间工具 [https://pub.dev/packages/dart_date]
+  double_back_to_close: ^2.0.0 # 二次退出确认 [https://pub.dev/packages/double_back_to_close]
+  flutter_displaymode: ^0.5.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
+  flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
+  flutter_quill: ^7.0.6 # 富文本 [https://pub.dev/packages/flutter_quill]
+  isar: ^3.0.5 # 数据库 [https://pub.dev/packages/isar]
+  isar_flutter_libs: ^3.0.5 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
+  json_annotation: ^4.7.0 # json 相关 [https://pub.dev/packages/json_annotation]
+  json_serializable: ^6.5.3 # json 相关 [https://pub.dev/packages/json_serializable]
+  loading_animation_widget: ^1.2.0+4 # 加载器组件 [https://pub.dev/packages/loading_animation_widget]
+  open_app_file: ^4.0.1 # 打开文件 [https://pub.dev/packages/open_app_file]
+  path_provider: ^2.0.14 # 路径获取 [https://pub.dev/packages/path_provider]
+  package_info_plus: ^3.0.3 # 包信息 [https://pub.dev/packages/package_info_plus]
+  provider: ^6.0.5 # 状态管理 [https://pub.dev/packages/provider]
+  pull_to_refresh: ^2.0.0 # 下拉刷新 [https://pub.dev/packages/pull_to_refresh]
+  share_plus: ^6.3.1 # 分享 [https://pub.dev/packages/share_plus]
+  shared_preferences: ^2.1.0 # 数据持久化 [https://pub.dev/packages/shared_preferences]
+  sudoku_solver_generator: ^2.1.0+1 # 数独生成器 [https://pub.dev/packages/sudoku_solver_generator]
+  syncfusion_flutter_charts: ^21.1.37 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]
+  url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
+  unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
+  vibration: ^1.7.6 # 振动反馈 https://pub.dev/packages/vibration
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  isar_generator: ^3.0.5 # 数据库代码生成工具
-  build_runner: ^2.3.3 # 代码生成用实用工具
+  build_runner: ^2.3.3 # 代码生成用实用工具 [https://pub.dev/packages/build_runner]
+  isar_generator: ^3.0.5 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
 
 flutter:
-  uses-material-design: true
+  uses-material-design: true # 启用 material3 设计
   fonts:
     - family: Saira
       fonts:

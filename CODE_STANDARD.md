@@ -1,10 +1,12 @@
 # CODE STANDARD - 代码规范
 
-## 1. 尽量不使用 StatefulWidget 而是 StatelessWidget
+[TOC]
 
-## 2. 使用 index.dart 简化导入
+## 1. 尽量不使用 `StatefulWidget` 而是 `StatelessWidget`
 
-## 3. 对 StatelessWidget 组件，其结构如下
+## 2. 使用 `index.dart` 简化导入
+
+## 3. 对 `StatelessWidget` 组件，其结构如下
 
 ```dart
 class MyWidget extends StatelessWidget {
@@ -25,7 +27,7 @@ class MyWidget extends StatelessWidget {
 }
 ```
 
-## 4. 对 StatefulWidget 组件，其结构如下
+## 4. 对 `StatefulWidget` 组件，其结构如下
 
 ```dart
 class MyWidget extends StatefulWidget {
@@ -68,15 +70,15 @@ class _MyWidgetState extends State<MyWidget> {
 
 ## 5. 项目结构
 
-### .release_tool 文件夹
+### `.release_tool` 文件夹
 
 该文件夹保有发布用工具，其中 `main.py` 用于构建新版本，并决定是否将 `mercurius_warehouse` 发布
 
-### assets 文件夹
+### `assets` 文件夹
 
 该文件夹保有字体和图片，其中 `assets\fonts\QWeather_Icons.ttf` 用于天气图标，`assets\fonts\Saira.ttf` 用于 `Mercurius` 的主要字体
 
-### lib 文件夹
+### `lib` 文件夹
 
 该文件夹保有程序的所有代码，`common` 下存放普通类，`models` 下存放需要使用代码生成的类，`pages` 下存放所有页面，`states` 下存放所有状态管理，`widgets` 下存放所有组件
 
