@@ -10,33 +10,34 @@ class DialogAboutWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
-              padding: EdgeInsets.zero,
-              onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MercuriusSudokuPage(),
-                    ),
-                  ),
-              icon: Container(
-                width: 48,
-                height: 48,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/icon/icon.png'),
-                  ),
-                  shadows: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 15.0,
-                      spreadRadius: 4.0,
-                    ),
-                  ],
+            padding: EdgeInsets.zero,
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MercuriusSudokuPage(),
+              ),
+            ),
+            icon: Container(
+              width: 48,
+              height: 48,
+              decoration: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-              )),
+                image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/icon/icon.png'),
+                ),
+                shadows: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 15.0,
+                    spreadRadius: 4.0,
+                  ),
+                ],
+              ),
+            ),
+          ),
           Column(
             children: [
               const Text(
@@ -116,85 +117,88 @@ class DialogAboutWidget extends StatelessWidget {
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: [
-          ListTile(
-            leading: const Icon(Icons.link),
-            title: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('联系我们'),
-                Text(
-                  MercuriusConstance.contactUrl,
-                  style: TextStyle(
-                    fontSize: 8,
-                    color: Theme.of(context).colorScheme.outline,
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.link),
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('联系我们'),
+                  Text(
+                    MercuriusConstance.contactUrl,
+                    style: TextStyle(
+                      fontSize: 8,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+              onTap: () => launchUrlString(
+                MercuriusConstance.contactUrl,
+                mode: LaunchMode.externalApplication,
+              ),
             ),
-            onTap: () => launchUrlString(
-              MercuriusConstance.contactUrl,
-              mode: LaunchMode.externalApplication,
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.import_contacts_rounded),
-            title: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('引用声明'),
-                Text(
-                  '字体、图标相关',
-                  style: TextStyle(
-                    fontSize: 8,
-                    color: Theme.of(context).colorScheme.outline,
+            ListTile(
+              leading: const Icon(Icons.import_contacts_rounded),
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('引用声明'),
+                  Text(
+                    '字体、图标相关',
+                    style: TextStyle(
+                      fontSize: 8,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
+              onTap: () => _importDeclarationDialog(context),
             ),
-            onTap: () => _importDeclarationDialog(context),
-          ),
-          ListTile(
-            leading: const Icon(Icons.privacy_tip_rounded),
-            title: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('隐私政策'),
-                Text(
-                  'Mercurius 隐私政策',
-                  style: TextStyle(
-                    fontSize: 8,
-                    color: Theme.of(context).colorScheme.outline,
+            ListTile(
+              leading: const Icon(Icons.privacy_tip_rounded),
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('隐私政策'),
+                  Text(
+                    'Mercurius 隐私政策',
+                    style: TextStyle(
+                      fontSize: 8,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+              onTap: () => _privacyDialog(context),
             ),
-            onTap: () => _privacyDialog(context),
-          ),
-          ListTile(
-            leading: const Icon(Icons.bookmark),
-            title: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('用户协议'),
-                Text(
-                  'Mercurius 用户协议',
-                  style: TextStyle(
-                    fontSize: 8,
-                    color: Theme.of(context).colorScheme.outline,
+            ListTile(
+              leading: const Icon(Icons.bookmark),
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('用户协议'),
+                  Text(
+                    'Mercurius 用户协议',
+                    style: TextStyle(
+                      fontSize: 8,
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+              onTap: () => _agreementDialog(context),
             ),
-            onTap: () => _agreementDialog(context),
-          ),
-        ],
+          ],
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [

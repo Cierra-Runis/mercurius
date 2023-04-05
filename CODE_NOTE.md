@@ -50,3 +50,22 @@ private static final Map ABI_VERSION = [
 2. 添加企业 QQ 号 `3002261823`（或通过 [官方网站](https://dev.vivo.com.cn/connectus/customerService?from=header) 联系）
 3. 提交相关问题和信息，要求一键授权自己的手机
 4. 等待授权成功后拨号盘输入 `*#*#112#*#*`，`“右上角按钮”->“更多”->“一键授权”` 即可
+
+## `AlertDialog` `content` 传入 `ListView` 时在调试模式下报错
+
+这是个怪问题，`release` 版本正常运行，解决方法如下：
+
+```dart
+AlertDialog(
+  title: (...),
+  content: SizedBox(
+    width: double.minPositive, // 可选 double.maxFinite 但建议为 double.minPositive,
+    child: ListView(
+      shrinkWrap: true,
+      children: (...),
+    ),
+  ),
+  contentPadding: (...),
+  actions: (...),
+);
+```

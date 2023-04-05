@@ -196,7 +196,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                     maximumSize: const Size(50, 50),
                     numberOfParticles: 1,
                   ),
-                )
+                ),
               ],
             );
           },

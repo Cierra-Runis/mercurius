@@ -325,17 +325,20 @@ class _DiaryMoodSelectorDialogWidgetState
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: [
-          Center(
-            child: Wrap(
-              spacing: 16,
-              direction: Axis.horizontal,
-              children: _listAllMood(),
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Center(
+              child: Wrap(
+                spacing: 16,
+                direction: Axis.horizontal,
+                children: _listAllMood(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
@@ -383,7 +386,7 @@ class _DiaryWeatherSelectorDialogWidgetState
                   Icon(value),
                   Text(
                     DiaryConstance.weatherCommitMap[key]!,
-                  )
+                  ),
                 ],
               ),
               color: diaryEditorNotifier.diary.weather != key
@@ -414,17 +417,20 @@ class _DiaryWeatherSelectorDialogWidgetState
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: [
-          Center(
-            child: Wrap(
-              spacing: 16,
-              direction: Axis.horizontal,
-              children: _listAllWeather(),
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Center(
+              child: Wrap(
+                spacing: 16,
+                direction: Axis.horizontal,
+                children: _listAllWeather(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [

@@ -75,9 +75,12 @@ class _SudokuNumSelectorWidgetState extends State<SudokuNumSelectorWidget> {
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: _createRows(),
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: _createRows(),
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [

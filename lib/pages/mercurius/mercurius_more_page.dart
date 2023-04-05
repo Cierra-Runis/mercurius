@@ -107,7 +107,7 @@ class MercuriusMorePage extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(10),
             child: HiToKoToWidget(),
-          )
+          ),
         ],
       ),
     );

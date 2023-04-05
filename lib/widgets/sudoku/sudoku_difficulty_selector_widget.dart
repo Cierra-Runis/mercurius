@@ -65,9 +65,12 @@ class _SudokuDifficultySelectorWidgetState
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: _createDifficultyList(context),
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: _createDifficultyList(context),
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [

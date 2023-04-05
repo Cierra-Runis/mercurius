@@ -20,19 +20,22 @@ class DialogImportDeclarationWidget extends StatelessWidget {
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: [
-          Markdown(
-            shrinkWrap: true,
-            data: DeclarationContentConstance.declarationContent,
-            padding: const EdgeInsets.all(0),
-            onTapLink: (text, href, title) => _licenseDialog(
-              context,
-              DeclarationContentConstance.license[href],
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Markdown(
+              shrinkWrap: true,
+              data: DeclarationContentConstance.declarationContent,
+              padding: const EdgeInsets.all(0),
+              onTapLink: (text, href, title) => _licenseDialog(
+                context,
+                DeclarationContentConstance.license[href],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       actions: [
         TextButton(
@@ -52,17 +55,20 @@ class DialogImportDeclarationWidget extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: ListView(
-            shrinkWrap: true,
-            children: [
-              Text(
-                license,
-                style: const TextStyle(
-                  fontFamily: 'Saira',
-                  fontSize: 6,
+          content: SizedBox(
+            width: double.minPositive,
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Text(
+                  license,
+                  style: const TextStyle(
+                    fontFamily: 'Saira',
+                    fontSize: 6,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
           actions: [

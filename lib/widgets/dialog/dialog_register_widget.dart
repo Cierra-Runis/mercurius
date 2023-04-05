@@ -27,52 +27,55 @@ class _DialogRegisterWidgetState extends State<DialogRegisterWidget> {
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: [
-          Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: '邮箱',
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: '邮箱',
+                    ),
                   ),
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: '密码',
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: '密码',
+                    ),
+                    obscureText: true,
                   ),
-                  obscureText: true,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: '确认密码',
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: '确认密码',
+                    ),
+                    obscureText: true,
                   ),
-                  obscureText: true,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          InkWell(
-            onTap: () => launchUrlString(
-              MercuriusConstance.contactUrl,
-              mode: LaunchMode.externalApplication,
-            ),
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            child: const Align(
-              heightFactor: 3,
-              child: Text(
-                '遇到问题？联系我们～',
-                style: TextStyle(
-                  fontSize: 10,
+            InkWell(
+              onTap: () => launchUrlString(
+                MercuriusConstance.contactUrl,
+                mode: LaunchMode.externalApplication,
+              ),
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              child: const Align(
+                heightFactor: 3,
+                child: Text(
+                  '遇到问题？联系我们～',
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
                 ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [

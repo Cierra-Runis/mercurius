@@ -46,17 +46,20 @@ class MercuriusApp extends StatelessWidget {
             theme: ThemeData(
               useMaterial3: true,
               colorScheme: lightColorScheme,
-              fontFamily: 'Saira',
+              platform: TargetPlatform.iOS,
               pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: CupertinoPageTransitionsBuilder()
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
               }),
+              fontFamily: 'Saira',
             ),
             darkTheme: ThemeData(
               useMaterial3: true,
               colorScheme: darkColorScheme,
+              platform: TargetPlatform.iOS,
               pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: CupertinoPageTransitionsBuilder()
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
               }),
+              appBarTheme: AppBarTheme(elevation: 1),
               fontFamily: 'Saira',
             ),
             themeMode: mercuriusProfileNotifier.profile.themeMode,

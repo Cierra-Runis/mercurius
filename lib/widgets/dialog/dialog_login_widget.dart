@@ -29,59 +29,62 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
           ),
         ],
       ),
-      content: ListView(
-        shrinkWrap: true,
-        children: [
-          Form(
-            key: _formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: _mercuriusId,
-                  decoration: const InputDecoration(
-                    hintText: 'Mercurius Id',
+      content: SizedBox(
+        width: double.minPositive,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Form(
+              key: _formKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    controller: _mercuriusId,
+                    decoration: const InputDecoration(
+                      hintText: 'Mercurius Id',
+                    ),
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
+                        return 'Mercurius Id 不能为空';
+                      }
+                      try {
+                        int.parse(value);
+                      } catch (e) {
+                        return '请仅输入数字';
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value!.trim().isEmpty) {
-                      return 'Mercurius Id 不能为空';
-                    }
-                    try {
-                      int.parse(value);
-                    } catch (e) {
-                      return '请仅输入数字';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _password,
-                  decoration: const InputDecoration(
-                    hintText: '密码',
+                  TextFormField(
+                    controller: _password,
+                    decoration: const InputDecoration(
+                      hintText: '密码',
+                    ),
+                    validator: (value) =>
+                        value!.trim().isNotEmpty ? null : '密码不能为空',
+                    obscureText: true,
                   ),
-                  validator: (value) =>
-                      value!.trim().isNotEmpty ? null : '密码不能为空',
-                  obscureText: true,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          InkWell(
-            onTap: () => _registerDialog(context),
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            child: const Align(
-              heightFactor: 3,
-              child: Text(
-                '没有帐号？点此注册～',
-                style: TextStyle(
-                  fontSize: 10,
+            InkWell(
+              onTap: () => _registerDialog(context),
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              child: const Align(
+                heightFactor: 3,
+                child: Text(
+                  '没有帐号？点此注册～',
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
                 ),
               ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [

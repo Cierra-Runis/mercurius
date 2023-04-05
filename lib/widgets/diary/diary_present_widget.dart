@@ -101,7 +101,7 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                                           DiaryConstance.moodMap['开心'],
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
@@ -193,9 +193,6 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                             IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
-                                DevTools.printLog(
-                                  '${diaryEditorNotifier.diary.id!}',
-                                );
                                 isarService.deleteDiaryById(
                                   diaryEditorNotifier.diary.id!,
                                 );
@@ -227,7 +224,7 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                               icon: const Icon(UniconsLine.share),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

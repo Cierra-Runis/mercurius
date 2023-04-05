@@ -48,7 +48,7 @@ class MercuriusSettingPage extends StatelessWidget {
                   },
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

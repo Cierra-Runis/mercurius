@@ -20,10 +20,13 @@ class DialogPrivacyWidget extends StatelessWidget {
           ),
         ],
       ),
-      content: const Markdown(
-        shrinkWrap: true,
-        data: PrivacyContentConstance.privacyContent,
-        padding: EdgeInsets.all(0),
+      content: const SizedBox(
+        width: double.minPositive,
+        child: Markdown(
+          shrinkWrap: true,
+          data: PrivacyContentConstance.privacyContent,
+          padding: EdgeInsets.all(0),
+        ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
