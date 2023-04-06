@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.1.3+35
+version: 0.1.3+36
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -18,10 +18,9 @@ dependencies:
   confetti: ^0.7.0 # 彩纸效果 [https://pub.dev/packages/confetti]
   dio: ^5.1.1 # 网络请求 [https://pub.dev/packages/dio]
   dart_date: ^1.2.1 # 转换时间工具 [https://pub.dev/packages/dart_date]
-  double_back_to_close: ^2.0.0 # 二次退出确认 [https://pub.dev/packages/double_back_to_close]
   flutter_displaymode: ^0.5.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.0.6 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.0.9 # 富文本 [https://pub.dev/packages/flutter_quill]
   isar: ^3.0.5 # 数据库 [https://pub.dev/packages/isar]
   isar_flutter_libs: ^3.0.5 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   json_annotation: ^4.7.0 # json 相关 [https://pub.dev/packages/json_annotation]
@@ -58,4 +57,4 @@ flutter:
       fonts:
         - asset: assets/fonts/QWeather_Icons.ttf
   assets:
-    - assets/icon/icon.png
+    - assets/icon/

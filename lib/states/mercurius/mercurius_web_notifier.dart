@@ -4,7 +4,8 @@ const String _url =
     'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
 
 class MercuriusWebNotifier extends ChangeNotifier {
-  GithubLatestRelease githubLatestRelease = GithubLatestRelease();
+  GithubLatestRelease githubLatestRelease = GithubLatestRelease()
+    ..tag_name = mercuriusProfileNotifier.profile.currentVersion;
 
   void _fetchGithubLatestRelease() async {
     Response response;

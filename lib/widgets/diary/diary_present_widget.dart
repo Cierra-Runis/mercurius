@@ -131,7 +131,7 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                       child: flutter_quill.QuillEditor(
-                        locale: const Locale('zh', 'cn'),
+                        locale: const Locale('zh', 'CN'),
                         focusNode: FocusNode(),
                         scrollController: ScrollController(),
                         scrollable: true,

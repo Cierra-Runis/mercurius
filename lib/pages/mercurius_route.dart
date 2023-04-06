@@ -26,39 +26,13 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: DoubleBack(
+        child: MercuriusDoubleBackWidget(
+          background: Theme.of(context).colorScheme.outline.withAlpha(16),
+          backgroundRadius: BorderRadius.circular(16),
           condition: _selectedIndex == 0,
           onConditionFail: () => setState(() {
             _selectedIndex = 0;
           }),
-          onFirstBackPress: (context) {
-            Flushbar(
-              icon: const Icon(UniconsLine.exit),
-              isDismissible: false,
-              messageText: const Center(
-                child: Text(
-                  '再次返回以退出',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              margin: const EdgeInsets.fromLTRB(60, 0, 60, 70),
-              barBlur: 1.0,
-              borderRadius: BorderRadius.circular(16),
-              backgroundColor:
-                  Theme.of(context).colorScheme.outline.withAlpha(16),
-              boxShadows: const [
-                BoxShadow(
-                  color: Colors.transparent,
-                  offset: Offset(0, 16),
-                ),
-              ],
-              duration: const Duration(
-                milliseconds: 600,
-              ),
-            ).show(context);
-          },
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),

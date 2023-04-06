@@ -83,7 +83,9 @@ class DialogAboutWidget extends StatelessWidget {
                                 child: Text(
                                   '点此更新版本',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 8),
+                                    color: Colors.white,
+                                    fontSize: 8,
+                                  ),
                                 ),
                               ),
                             )
@@ -105,8 +107,10 @@ class DialogAboutWidget extends StatelessWidget {
                               ),
                               child: const Text(
                                 '已是最新版本',
-                                style:
-                                    TextStyle(color: Colors.white, fontSize: 8),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 8,
+                                ),
                               ),
                             ),
                     ],

@@ -27,6 +27,26 @@ class MercuriusApp extends StatelessWidget {
   Widget build(BuildContext context) {
     DevTools.printLog('MercuriusApp 构建中');
 
+    ThemeData theme = ThemeData(
+      useMaterial3: true,
+      colorScheme: lightColorScheme,
+      platform: TargetPlatform.iOS,
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      }),
+      fontFamily: 'Saira',
+    );
+
+    ThemeData darkTheme = ThemeData(
+      useMaterial3: true,
+      colorScheme: darkColorScheme,
+      platform: TargetPlatform.iOS,
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      }),
+      fontFamily: 'Saira',
+    );
+
     /// 利用 `provide` 包进行状态管理
     return MultiProvider(
       providers: [
@@ -43,31 +63,14 @@ class MercuriusApp extends StatelessWidget {
         builder: (context, mercuriusProfileNotifier, child) {
           return MaterialApp(
             navigatorKey: navigatorKey,
-            theme: ThemeData(
-              useMaterial3: true,
-              colorScheme: lightColorScheme,
-              platform: TargetPlatform.iOS,
-              pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-              }),
-              fontFamily: 'Saira',
-            ),
-            darkTheme: ThemeData(
-              useMaterial3: true,
-              colorScheme: darkColorScheme,
-              platform: TargetPlatform.iOS,
-              pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-              }),
-              appBarTheme: AppBarTheme(elevation: 1),
-              fontFamily: 'Saira',
-            ),
+            theme: theme,
+            darkTheme: darkTheme,
             themeMode: mercuriusProfileNotifier.profile.themeMode,
             home: const MercuriusSplashPage(),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
-              DefaultCupertinoLocalizations.delegate
+              GlobalCupertinoLocalizations.delegate
             ],
             supportedLocales: const [
               Locale('zh', 'CN'),

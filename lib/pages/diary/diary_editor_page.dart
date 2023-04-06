@@ -41,7 +41,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
     super.dispose();
   }
 
-  /// 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017
+  /// TIPS: 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017
   @override
   Widget build(BuildContext context) {
     return Consumer<DiaryEditorNotifier>(
@@ -138,7 +138,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
               children: [
                 Expanded(
                   child: flutter_quill.QuillEditor(
-                    locale: const Locale('zh', 'cn'),
+                    locale: const Locale('zh', 'CN'),
                     focusNode: FocusNode(),
                     scrollController: _scrollController,
                     scrollable: true,
@@ -238,7 +238,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                     //   ),
                     // ),
                   ],
-                  locale: const Locale('zh', 'cn'),
+                  locale: const Locale('zh', 'CN'),
                 ),
               ],
             ),

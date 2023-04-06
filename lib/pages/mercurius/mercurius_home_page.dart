@@ -37,28 +37,29 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
     var diary = await isarService.isDiaryExisted(DateTime.now());
     if (diary != null) {
       DevTools.printLog('进入修改模式');
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DiaryEditorPage(diary: diary),
-        ),
-      );
+      if (context.mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DiaryEditorPage(diary: diary),
+          ),
+        );
+      }
     } else {
       DevTools.printLog('进入创建模式');
-      // FIXME: 解决该问题
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => DiaryEditorPage(
-            diary: Diary()
-              ..createDateTime = DateTime.now()
-              ..mood = '一般'
-              ..weather = '001',
+      if (context.mounted) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DiaryEditorPage(
+              diary: Diary()
+                ..createDateTime = DateTime.now()
+                ..mood = '一般'
+                ..weather = '001',
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
   }
 

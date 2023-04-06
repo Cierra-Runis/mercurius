@@ -249,14 +249,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
-  double_back_to_close:
-    dependency: "direct main"
-    description:
-      name: double_back_to_close
-      sha256: "87146341b36e9f04da54e8f5ffcaafa96b11cc09551c0fca2075eca51d32d6f9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   equatable:
     dependency: transitive
     description:
@@ -391,10 +383,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: f13068049412edb80929064e2f2f90deb6a98999bd0565e0ea91535822eab709
+      sha256: e4f6afbc1f03832dae3f28bb915c36c7565a365c3ba19b03c8b271731a9ef31e
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.6"
+    version: "7.0.9"
   flutter_test:
     dependency: "direct dev"
     description: flutter

@@ -19,6 +19,12 @@ class DiaryCalendarViewWidget extends StatelessWidget {
         leftChevronIcon: Icon(UniconsLine.angle_double_left),
         rightChevronIcon: Icon(UniconsLine.angle_double_right),
       ),
+      calendarStyle: CalendarStyle(
+        todayDecoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          shape: BoxShape.circle,
+        ),
+      ),
       locale: 'zh_CN',
     );
   }

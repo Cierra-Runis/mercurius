@@ -18,5 +18,17 @@
         "Unicons",
         "vsync"
     ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "files.exclude": {
+        ".dart_tool": true,
+        ".idea": true,
+        "build": true,
+        ".metadata": true,
+        "pubspec.lock": true,
+        "splitMap": true,
+        "mercurius.iml": true,
+        ".flutter-plugins": true,
+        ".flutter-plugins-dependencies": true
+    },
+    "explorerExclude.backup": {}
 }

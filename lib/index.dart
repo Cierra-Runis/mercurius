@@ -24,7 +24,6 @@ export 'package:another_flushbar/flushbar.dart'; // 提示框
 export 'package:badges/badges.dart'; // 小红点提示
 export 'package:confetti/confetti.dart'; // 彩纸效果
 export 'package:dio/dio.dart'; // 网络请求
-export 'package:double_back_to_close/double_back_to_close.dart'; // 二次退出确认
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:flutter_markdown/flutter_markdown.dart'; // markdown

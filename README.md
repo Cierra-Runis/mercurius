@@ -1,5 +1,5 @@
 <div align="center">
-  <img id="mercurius" width="96" alt="mercurius" src="repository_icon/icon.svg">
+  <img id="mercurius" width="96" alt="mercurius" src=".github/icon.svg">
   <p>『 Mercurius - 记点日记！』</p>
 </div>
 
