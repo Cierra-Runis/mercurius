@@ -133,7 +133,6 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
 
   @override
   Widget build(BuildContext context) {
-    DevTools.printLog('SudokuPage 构建中');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

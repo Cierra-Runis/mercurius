@@ -14,6 +14,7 @@ class MercuriusDoubleBackWidget extends StatefulWidget {
     this.onFirstBackPress,
     this.platform = TargetPlatform.android,
     this.textStyle = const TextStyle(fontWeight: FontWeight.bold),
+    this.waitForSecondBackPress = 2,
   }) : super(key: key);
 
   final Color background;
@@ -27,6 +28,7 @@ class MercuriusDoubleBackWidget extends StatefulWidget {
   final Function? onFirstBackPress;
   final TargetPlatform platform;
   final TextStyle textStyle;
+  final int waitForSecondBackPress;
 
   @override
   State<MercuriusDoubleBackWidget> createState() =>
@@ -35,6 +37,7 @@ class MercuriusDoubleBackWidget extends StatefulWidget {
 
 class _MercuriusDoubleBackWidgetState extends State<MercuriusDoubleBackWidget> {
   bool tapped = false;
+
   void resetBackTimeout() {
     tapped = false;
   }
@@ -49,7 +52,10 @@ class _MercuriusDoubleBackWidgetState extends State<MercuriusDoubleBackWidget> {
               return true;
             } else {
               tapped = true;
-              Timer(widget.duration, resetBackTimeout);
+              Timer(
+                Duration(seconds: widget.waitForSecondBackPress),
+                resetBackTimeout,
+              );
               if (widget.onFirstBackPress != null) {
                 widget.onFirstBackPress!(context);
               } else {

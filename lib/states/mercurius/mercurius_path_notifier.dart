@@ -12,8 +12,7 @@ class MercuriusPathNotifier extends ChangeNotifier {
     directory = getExternalStorageDirectory();
 
     directory.then((value) {
-      DevTools.printLog('获取 path 为 ${value!.path}');
-      path = value.path;
+      path = value!.path;
     });
   }
 }

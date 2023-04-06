@@ -14,29 +14,24 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
   void _switchCurrentViewMode() {
     diarySearchTextNotifier.changeContains('');
     Vibration.vibrate(duration: 50, amplitude: 255);
-    DevTools.printLog('现在是否为列表视图 $_currentListViewMode 并开始切换');
     setState(() {
       _currentListViewMode = !_currentListViewMode;
       _currentSearchBarMode = false;
     });
-    DevTools.printLog('现在是否为列表视图 $_currentListViewMode 切换完毕');
   }
 
   void _switchCurrentBarMode() {
     Vibration.vibrate(duration: 50, amplitude: 255);
     diarySearchTextNotifier.changeContains('');
-    DevTools.printLog('现在是否为搜索组件 $_currentSearchBarMode 并开始切换');
     setState(() {
       _currentSearchBarMode = !_currentSearchBarMode;
     });
-    DevTools.printLog('现在是否为搜索组件 $_currentSearchBarMode 切换完毕');
   }
 
   void _floatingButtonOnPressed() async {
     Vibration.vibrate(duration: 50, amplitude: 255);
     var diary = await isarService.isDiaryExisted(DateTime.now());
     if (diary != null) {
-      DevTools.printLog('进入修改模式');
       if (context.mounted) {
         Navigator.push(
           context,
@@ -46,7 +41,6 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
         );
       }
     } else {
-      DevTools.printLog('进入创建模式');
       if (context.mounted) {
         Navigator.push(
           context,

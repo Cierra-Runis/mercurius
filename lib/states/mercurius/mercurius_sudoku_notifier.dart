@@ -15,7 +15,6 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
   }
 
   void init() {
-    DevTools.printLog('数独初始化中');
     _sudokuGenerator = SudokuGenerator(
       emptySquares: SudokuConstance
           .difficultyMap[mercuriusProfileNotifier.profile.sudokuDifficulty],
@@ -28,14 +27,12 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
   }
 
   void changeSudoku(int rowIndex, int columnIndex, int value) {
-    DevTools.printLog('sudokuListCopy[$rowIndex,$columnIndex] 变更为 $value');
     sudokuListCopy[rowIndex][columnIndex] = value;
     notifyListeners();
     super.notifyListeners();
   }
 
   void backToSudokuList() {
-    DevTools.printLog('sudokuListCopy 重回');
     sudokuListCopy = _copyGrid(sudokuList);
     showedAnswer = false;
     won = false;
@@ -60,10 +57,8 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
   void checkAnswer() {
     if (mercuriusSudokuNotifier.sudokuListCopy.toString() ==
         mercuriusSudokuNotifier._sudokuListAnswer.toString()) {
-      DevTools.printLog("Game Over");
       won = true;
     } else {
-      DevTools.printLog("Game Keeping");
       won = false;
     }
     notifyListeners();

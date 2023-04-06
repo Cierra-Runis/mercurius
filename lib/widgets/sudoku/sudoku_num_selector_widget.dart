@@ -57,9 +57,6 @@ class _SudokuNumSelectorWidgetState extends State<SudokuNumSelectorWidget> {
 
   @override
   Widget build(BuildContext context) {
-    DevTools.printLog(
-      'SudokuNumSelectorDialog[${widget.row}][${widget.column}] 构建中',
-    );
     return AlertDialog(
       title: Column(
         mainAxisSize: MainAxisSize.min,
