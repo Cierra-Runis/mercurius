@@ -110,7 +110,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
 
     Map<DateTime, int> data = {};
 
-    await Future.delayed(const Duration(seconds: 1), () {});
+    await Future.delayed(const Duration(milliseconds: 1000), () {});
 
     List<Diary> diaries = await isarService.getAllDiaries();
 

@@ -2,6 +2,35 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
+class DiaryPresentWidget extends StatefulWidget {
+  const DiaryPresentWidget({
+    Key? key,
+    required this.diary,
+    required this.diaries,
+  }) : super(key: key);
+
+  final Diary diary;
+  final List<Diary> diaries;
+
+  @override
+  State<DiaryPresentWidget> createState() => _DiaryPresentWidgetState();
+}
+
+class _DiaryPresentWidgetState extends State<DiaryPresentWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      controller: PageController(
+        initialPage: widget.diaries.indexOf(widget.diary),
+      ),
+      children: [
+        for (Diary diary in widget.diaries)
+          DiaryPresentDialogWidget(diary: diary)
+      ],
+    );
+  }
+}
+
 class DiaryPresentDialogWidget extends StatefulWidget {
   const DiaryPresentDialogWidget({
     Key? key,
@@ -16,6 +45,7 @@ class DiaryPresentDialogWidget extends StatefulWidget {
 }
 
 class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
+  // TODO: 想办法不传入所有 diary
   late Diary? futureDiary;
   late Diary? pastDiary;
 
@@ -216,10 +246,17 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                             ),
                             IconButton(
                               onPressed: () => Share.share(
-                                flutter_quill.Document.fromJson(
-                                  jsonDecode(diaryEditorNotifier
-                                      .diary.contentJsonString!),
-                                ).toPlainText(),
+                                '${diaryEditorNotifier.diary.createDateTime.toString().substring(0, 10)}\n'
+                                '天气：${DiaryConstance.weatherCommitMap[diaryEditorNotifier.diary.weather] ?? '未记录'}\n'
+                                '标题：${diaryEditorNotifier.diary.titleString ?? '无标题'}\n'
+                                '心情：${diaryEditorNotifier.diary.mood}\n'
+                                '\n'
+                                '${flutter_quill.Document.fromJson(
+                                  jsonDecode(
+                                    diaryEditorNotifier
+                                        .diary.contentJsonString!,
+                                  ),
+                                ).toPlainText().trimRight()}',
                               ),
                               icon: const Icon(UniconsLine.share),
                             ),

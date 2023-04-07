@@ -11,16 +11,16 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
-  Widget _getDiaryListCards(List<Diary>? data) {
+  Widget _getDiaryListCards(List<Diary>? diaries) {
     List<Widget> diaryListCards = [];
-    if (data == null || data.isEmpty) {
+    if (diaries == null || diaries.isEmpty) {
       return const Center(
         child: Text('无数据'),
       );
     }
 
-    int year = data[0].createDateTime.year;
-    int month = data[0].createDateTime.month;
+    int year = diaries[0].createDateTime.year;
+    int month = diaries[0].createDateTime.month;
     diaryListCards.add(
       Container(
         margin: const EdgeInsets.fromLTRB(24, 10, 10, 0),
@@ -33,11 +33,11 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
         ),
       ),
     );
-    for (var element in data) {
-      if (element.createDateTime.month != month ||
-          element.createDateTime.year != year) {
-        month = element.createDateTime.month;
-        year = element.createDateTime.year;
+    for (var diary in diaries) {
+      if (diary.createDateTime.month != month ||
+          diary.createDateTime.year != year) {
+        month = diary.createDateTime.month;
+        year = diary.createDateTime.year;
         diaryListCards.add(
           Container(
             margin: const EdgeInsets.fromLTRB(24, 0, 10, 0),
@@ -51,7 +51,7 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
           ),
         );
       }
-      diaryListCards.add(DiaryListCardWidget(diary: element));
+      diaryListCards.add(DiaryListCardWidget(diary: diary, diaries: diaries));
     }
 
     diaryListCards.add(

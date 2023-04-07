@@ -72,7 +72,8 @@ class IsarService {
 
     if (Isar.instanceNames.isEmpty) {
       DevTools.printLog(
-          '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 mercurius_database 中');
+        '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 mercurius_database 中',
+      );
       return await Isar.open(
         [DiarySchema],
         inspector: true,

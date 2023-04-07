@@ -14,7 +14,7 @@ final diarySearchTextNotifier = DiarySearchTextNotifier();
 final isarService = IsarService();
 
 /// 全局导航 key
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+final navigatorKey = GlobalKey<NavigatorState>();
 
 /// 因 `mercuriusProfileNotifier` 需要读取本地数据, 故先进入 `mercuriusProfileNotifier` 进行初始化
 void main() =>

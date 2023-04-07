@@ -6,9 +6,11 @@ class DiaryListCardWidget extends StatefulWidget {
   const DiaryListCardWidget({
     Key? key,
     required this.diary,
+    required this.diaries,
   }) : super(key: key);
 
   final Diary diary;
+  final List<Diary> diaries;
 
   @override
   State<DiaryListCardWidget> createState() => _DiaryListCardWidgetState();
@@ -25,7 +27,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
       child: InkWell(
         onTap: () async {
           Vibration.vibrate(duration: 50, amplitude: 255);
-          _diaryShowingDialog(context, widget.diary);
+          _diaryShowingDialog(context, widget.diary, widget.diaries);
         },
         borderRadius: BorderRadius.circular(22),
         child: SizedBox(
@@ -121,11 +123,18 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
     );
   }
 
-  Future<void> _diaryShowingDialog(BuildContext context, Diary diary) {
+  Future<void> _diaryShowingDialog(
+    BuildContext context,
+    Diary diary,
+    List<Diary> diaries,
+  ) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return DiaryPresentDialogWidget(diary: diary);
+        return DiaryPresentWidget(
+          diary: diary,
+          diaries: diaries,
+        );
       },
     );
   }
