@@ -7,7 +7,6 @@ final mercuriusWebNotifier = MercuriusWebNotifier();
 final mercuriusPositionNotifier = MercuriusPositionNotifier();
 final mercuriusPathNotifier = MercuriusPathNotifier();
 final mercuriusLogNotifier = MercuriusLogNotifier();
-final diaryEditorNotifier = DiaryEditorNotifier();
 final diarySearchTextNotifier = DiarySearchTextNotifier();
 
 /// 数据库服务
@@ -54,7 +53,6 @@ class MercuriusApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => mercuriusPositionNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusPathNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusLogNotifier),
-        ChangeNotifierProvider(create: (_) => diaryEditorNotifier),
         ChangeNotifierProvider(create: (_) => diarySearchTextNotifier),
       ],
       child: Consumer<MercuriusProfileNotifier>(

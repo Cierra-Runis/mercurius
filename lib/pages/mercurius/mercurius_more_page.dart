@@ -14,7 +14,7 @@ class MercuriusMorePage extends StatelessWidget {
               onPressed: () {
                 Vibration.vibrate(duration: 50, amplitude: 255);
                 if (mercuriusProfileNotifier.profile.user == null) {
-                  _loginDialog(context);
+                  _showDialogLoginWidget(context);
                 } else {
                   Navigator.push(
                     context,
@@ -97,7 +97,7 @@ class MercuriusMorePage extends StatelessWidget {
                           fontFamily: 'Saira',
                         ),
                       ),
-                      onTap: () => _aboutDialog(context),
+                      onTap: () => _showDialogAboutWidget(context),
                     ),
                   ],
                 ),
@@ -113,7 +113,7 @@ class MercuriusMorePage extends StatelessWidget {
     );
   }
 
-  Future<void> _aboutDialog(BuildContext context) {
+  Future<void> _showDialogAboutWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -122,11 +122,11 @@ class MercuriusMorePage extends StatelessWidget {
     );
   }
 
-  Future<void> _loginDialog(BuildContext context) {
+  Future<void> _showDialogLoginWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return const LoginDialogWidget();
+        return const DialogLoginWidget();
       },
     );
   }

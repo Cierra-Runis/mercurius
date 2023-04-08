@@ -53,7 +53,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                     mercuriusSudokuNotifier.showedAnswer ||
                     mercuriusSudokuNotifier.won
                 ? null
-                : _selectSudokuNumDialog(context, rowIndex, columnIndex),
+                : _showSudokuNumSelectorWidget(context, rowIndex, columnIndex),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                 _buttonColor(context, rowIndex, columnIndex),
@@ -202,14 +202,14 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _optionMenu(context),
+        onPressed: () => _showOptionMenu(context),
         mini: true,
         child: const Icon(Icons.menu_rounded),
       ),
     );
   }
 
-  Future<void> _selectSudokuNumDialog(
+  Future<void> _showSudokuNumSelectorWidget(
       BuildContext context, int rowIndex, int columnIndex) {
     return showDialog<void>(
       context: context,
@@ -222,7 +222,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
     );
   }
 
-  Future<void> _optionMenu(BuildContext context) {
+  Future<void> _showOptionMenu(BuildContext context) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -261,7 +261,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                 leading: const Icon(Icons.handyman_sharp),
                 title: const Text('更改难度'),
                 trailing: const Icon(Icons.navigate_next),
-                onTap: () => _selectDifficultyDialog(context),
+                onTap: () => _showSudokuDifficultySelectorWidget(context),
               ),
             ],
           ),
@@ -270,7 +270,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
     );
   }
 
-  Future<void> _selectDifficultyDialog(BuildContext context) {
+  Future<void> _showSudokuDifficultySelectorWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

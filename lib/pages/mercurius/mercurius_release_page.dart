@@ -24,7 +24,7 @@ class MercuriusReleasePage extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => _optionMenu(context),
+            onPressed: () => _showOptionMenu(context),
             mini: true,
             child: const Icon(Icons.download_rounded),
           ),
@@ -33,7 +33,7 @@ class MercuriusReleasePage extends StatelessWidget {
     );
   }
 
-  Future<void> _optionMenu(BuildContext context) {
+  Future<void> _showOptionMenu(BuildContext context) {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {

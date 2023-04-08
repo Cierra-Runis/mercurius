@@ -17,6 +17,16 @@ class DiaryListCardWidget extends StatefulWidget {
 }
 
 class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
+  Diary _currentDiary = Diary();
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _currentDiary = widget.diary;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -27,7 +37,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
       child: InkWell(
         onTap: () async {
           Vibration.vibrate(duration: 50, amplitude: 255);
-          _diaryShowingDialog(context, widget.diary, widget.diaries);
+          _showDiaryPresentPageView(context, _currentDiary, widget.diaries);
         },
         borderRadius: BorderRadius.circular(22),
         child: SizedBox(
@@ -41,7 +51,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.diary.createDateTime.toString().substring(8, 10),
+                      _currentDiary.createDateTime.toString().substring(8, 10),
                       style: const TextStyle(
                         fontSize: 30,
                         fontFamily: 'Saira',
@@ -49,7 +59,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                     ),
                     Text(
                       DiaryConstance
-                          .weekdayMap[widget.diary.createDateTime.weekday]!,
+                          .weekdayMap[_currentDiary.createDateTime.weekday]!,
                       style: const TextStyle(
                         fontSize: 10,
                       ),
@@ -65,15 +75,15 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      widget.diary.latestEditTime.toString().substring(11, 19),
+                      _currentDiary.latestEditTime.toString().substring(11, 19),
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      widget.diary.titleString ??
-                          widget.diary.createDateTime
+                      _currentDiary.titleString ??
+                          _currentDiary.createDateTime
                               .toString()
                               .substring(0, 10),
                       maxLines: 1,
@@ -85,7 +95,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                     ),
                     Text(
                       flutter_quill.Document.fromJson(
-                        jsonDecode(widget.diary.contentJsonString!),
+                        jsonDecode(_currentDiary.contentJsonString!),
                       ).toPlainText(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -104,13 +114,13 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   children: [
                     Icon(
                       size: 18,
-                      DiaryConstance.moodMap[widget.diary.mood] ??
+                      DiaryConstance.moodMap[_currentDiary.mood] ??
                           DiaryConstance.moodMap['开心'],
                     ),
                     Icon(
                       size: 18,
                       QWeatherIcon.getIconById(
-                        int.parse(widget.diary.weather),
+                        int.parse(_currentDiary.weather),
                       ),
                     ),
                   ],
@@ -123,7 +133,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
     );
   }
 
-  Future<void> _diaryShowingDialog(
+  Future<void> _showDiaryPresentPageView(
     BuildContext context,
     Diary diary,
     List<Diary> diaries,
@@ -131,7 +141,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return DiaryPresentWidget(
+        return DiaryPresentPageView(
           diary: diary,
           diaries: diaries,
         );

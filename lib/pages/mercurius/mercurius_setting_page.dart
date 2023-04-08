@@ -43,7 +43,7 @@ class MercuriusSettingPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onTap: () => _themeSelectorDialog(context),
+                      onTap: () => _showThemeSelectorWidget(context),
                     );
                   },
                 ),
@@ -55,7 +55,7 @@ class MercuriusSettingPage extends StatelessWidget {
     );
   }
 
-  Future<void> _themeSelectorDialog(BuildContext context) {
+  Future<void> _showThemeSelectorWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

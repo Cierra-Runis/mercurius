@@ -163,7 +163,7 @@ class DialogAboutWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () => _importDeclarationDialog(context),
+              onTap: () => _showDialogImportDeclarationWidget(context),
             ),
             ListTile(
               leading: const Icon(Icons.privacy_tip_rounded),
@@ -181,7 +181,7 @@ class DialogAboutWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () => _privacyDialog(context),
+              onTap: () => _showDialogPrivacyWidget(context),
             ),
             ListTile(
               leading: const Icon(Icons.bookmark),
@@ -199,7 +199,7 @@ class DialogAboutWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              onTap: () => _agreementDialog(context),
+              onTap: () => _showDialogAgreementWidget(context),
             ),
           ],
         ),
@@ -218,7 +218,7 @@ class DialogAboutWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _importDeclarationDialog(BuildContext context) {
+  Future<void> _showDialogImportDeclarationWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -227,7 +227,7 @@ class DialogAboutWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _privacyDialog(BuildContext context) {
+  Future<void> _showDialogPrivacyWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -236,7 +236,7 @@ class DialogAboutWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _agreementDialog(BuildContext context) {
+  Future<void> _showDialogAgreementWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

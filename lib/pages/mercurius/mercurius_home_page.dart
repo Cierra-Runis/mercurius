@@ -60,7 +60,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
   void _appBarLeftButtonOnPressed() {
     Vibration.vibrate(duration: 50, amplitude: 255);
     if (mercuriusProfileNotifier.profile.user == null) {
-      _loginDialog(context);
+      _showLoginDialogWidget(context);
     } else {
       Navigator.push(
         context,
@@ -128,11 +128,11 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
     );
   }
 
-  Future<void> _loginDialog(BuildContext context) {
+  Future<void> _showLoginDialogWidget(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return const LoginDialogWidget();
+        return const DialogLoginWidget();
       },
     );
   }

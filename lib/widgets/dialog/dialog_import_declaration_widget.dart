@@ -29,7 +29,7 @@ class DialogImportDeclarationWidget extends StatelessWidget {
               shrinkWrap: true,
               data: DeclarationContentConstance.declarationContent,
               padding: const EdgeInsets.all(0),
-              onTapLink: (text, href, title) => _licenseDialog(
+              onTapLink: (text, href, title) => _showDialogLicenseWidget(
                 context,
                 DeclarationContentConstance.license[href],
               ),
@@ -50,7 +50,7 @@ class DialogImportDeclarationWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _licenseDialog(BuildContext context, String license) {
+  Future<void> _showDialogLicenseWidget(BuildContext context, String license) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {

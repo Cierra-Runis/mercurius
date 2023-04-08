@@ -1,13 +1,13 @@
 import 'package:mercurius/index.dart';
 
-class LoginDialogWidget extends StatefulWidget {
-  const LoginDialogWidget({super.key});
+class DialogLoginWidget extends StatefulWidget {
+  const DialogLoginWidget({super.key});
 
   @override
-  State<LoginDialogWidget> createState() => _LoginDialogWidgetState();
+  State<DialogLoginWidget> createState() => _DialogLoginWidgetState();
 }
 
-class _LoginDialogWidgetState extends State<LoginDialogWidget> {
+class _DialogLoginWidgetState extends State<DialogLoginWidget> {
   final TextEditingController _mercuriusId = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -70,7 +70,7 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
               ),
             ),
             InkWell(
-              onTap: () => _registerDialog(context),
+              onTap: () => _showDialogRegisterWidget(context),
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               child: const Align(
@@ -108,7 +108,7 @@ class _LoginDialogWidgetState extends State<LoginDialogWidget> {
     );
   }
 
-  Future<void> _registerDialog(BuildContext context) {
+  Future<void> _showDialogRegisterWidget(BuildContext context) {
     FocusManager.instance.primaryFocus?.unfocus();
     showDialog<void>(
       context: context,
