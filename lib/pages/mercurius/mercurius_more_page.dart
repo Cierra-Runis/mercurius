@@ -12,7 +12,7 @@ class MercuriusMorePage extends StatelessWidget {
             return IconButton(
               icon: const Icon(UniconsLine.user_circle),
               onPressed: () {
-                Vibration.vibrate(duration: 50, amplitude: 255);
+                MercuriusKit.vibration();
                 if (mercuriusProfileNotifier.profile.user == null) {
                   _showDialogLoginWidget(context);
                 } else {
@@ -39,20 +39,8 @@ class MercuriusMorePage extends StatelessWidget {
                 MercuriusListSection(
                   children: [
                     MercuriusListItem(
-                      icon: Icon(
-                        Icons.analytics,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.38),
-                      ),
-                      title: const Text(
-                        '统计数据',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Saira',
-                        ),
-                      ),
+                      iconData: Icons.analytics,
+                      titleText: '统计数据',
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -61,20 +49,8 @@ class MercuriusMorePage extends StatelessWidget {
                       ),
                     ),
                     MercuriusListItem(
-                      icon: Icon(
-                        Icons.settings,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.38),
-                      ),
-                      title: const Text(
-                        '设定',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Saira',
-                        ),
-                      ),
+                      iconData: Icons.settings,
+                      titleText: '设定',
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -83,20 +59,8 @@ class MercuriusMorePage extends StatelessWidget {
                       ),
                     ),
                     MercuriusListItem(
-                      icon: Icon(
-                        Icons.info_outline,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.38),
-                      ),
-                      title: const Text(
-                        '关于',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Saira',
-                        ),
-                      ),
+                      iconData: Icons.info_outline,
+                      titleText: '关于',
                       onTap: () => _showDialogAboutWidget(context),
                     ),
                   ],

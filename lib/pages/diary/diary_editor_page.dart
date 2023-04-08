@@ -52,7 +52,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
       appBar: AppBar(
         leading: TextButton(
           onPressed: () {
-            Vibration.vibrate(duration: 50, amplitude: 255);
+            MercuriusKit.vibration();
             Navigator.of(context).pop();
           },
           style: ButtonStyle(
@@ -82,7 +82,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                     .replaceAll(RegExp(r' '), ''),
               );
               if (plainText != '""') {
-                Vibration.vibrate(duration: 50, amplitude: 255);
+                MercuriusKit.vibration();
                 setState(() {
                   _currentDiary = _currentDiary
                     ..contentJsonString = jsonEncode(
@@ -96,7 +96,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 );
                 Navigator.of(context).pop(_currentDiary);
               } else {
-                Vibration.vibrate(duration: 300, amplitude: 255);
+                MercuriusKit.vibration(duration: 300);
                 Flushbar(
                   icon: const Icon(UniconsLine.confused),
                   isDismissible: false,
@@ -364,7 +364,7 @@ class _DiaryMoodSelectorDialogWidgetState
       actions: [
         TextButton(
           onPressed: () {
-            Vibration.vibrate(duration: 50, amplitude: 255);
+            MercuriusKit.vibration();
             Navigator.of(context).pop();
           },
           child: const Text('返回'),
@@ -460,7 +460,7 @@ class _DiaryWeatherSelectorDialogWidgetState
       actions: [
         TextButton(
           onPressed: () {
-            Vibration.vibrate(duration: 50, amplitude: 255);
+            MercuriusKit.vibration();
             Navigator.of(context).pop();
           },
           child: const Text('返回'),

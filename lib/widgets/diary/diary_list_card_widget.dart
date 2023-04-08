@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
-class DiaryListCardWidget extends StatefulWidget {
+class DiaryListCardWidget extends StatelessWidget {
   const DiaryListCardWidget({
     Key? key,
     required this.diary,
@@ -13,21 +13,6 @@ class DiaryListCardWidget extends StatefulWidget {
   final List<Diary> diaries;
 
   @override
-  State<DiaryListCardWidget> createState() => _DiaryListCardWidgetState();
-}
-
-class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
-  Diary _currentDiary = Diary();
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _currentDiary = widget.diary;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(10.0),
@@ -36,8 +21,8 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
       ),
       child: InkWell(
         onTap: () async {
-          Vibration.vibrate(duration: 50, amplitude: 255);
-          _showDiaryPresentPageView(context, _currentDiary, widget.diaries);
+          MercuriusKit.vibration();
+          _showDiaryPresentPageView(context, diary, diaries);
         },
         borderRadius: BorderRadius.circular(22),
         child: SizedBox(
@@ -51,15 +36,14 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      _currentDiary.createDateTime.toString().substring(8, 10),
+                      diary.createDateTime.toString().substring(8, 10),
                       style: const TextStyle(
                         fontSize: 30,
                         fontFamily: 'Saira',
                       ),
                     ),
                     Text(
-                      DiaryConstance
-                          .weekdayMap[_currentDiary.createDateTime.weekday]!,
+                      DiaryConstance.weekdayMap[diary.createDateTime.weekday]!,
                       style: const TextStyle(
                         fontSize: 10,
                       ),
@@ -75,17 +59,15 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      _currentDiary.latestEditTime.toString().substring(11, 19),
+                      diary.latestEditTime.toString().substring(11, 19),
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      _currentDiary.titleString ??
-                          _currentDiary.createDateTime
-                              .toString()
-                              .substring(0, 10),
+                      diary.titleString ??
+                          diary.createDateTime.toString().substring(0, 10),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -95,7 +77,7 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                     ),
                     Text(
                       flutter_quill.Document.fromJson(
-                        jsonDecode(_currentDiary.contentJsonString!),
+                        jsonDecode(diary.contentJsonString!),
                       ).toPlainText(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -114,13 +96,13 @@ class _DiaryListCardWidgetState extends State<DiaryListCardWidget> {
                   children: [
                     Icon(
                       size: 18,
-                      DiaryConstance.moodMap[_currentDiary.mood] ??
+                      DiaryConstance.moodMap[diary.mood] ??
                           DiaryConstance.moodMap['开心'],
                     ),
                     Icon(
                       size: 18,
                       QWeatherIcon.getIconById(
-                        int.parse(_currentDiary.weather),
+                        int.parse(diary.weather),
                       ),
                     ),
                   ],

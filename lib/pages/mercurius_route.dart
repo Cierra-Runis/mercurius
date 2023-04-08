@@ -15,7 +15,7 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
   ];
 
   void _onItemTapped(int index) {
-    Vibration.vibrate(duration: 50, amplitude: 255);
+    MercuriusKit.vibration();
     diarySearchTextNotifier.changeContains('');
     setState(() {
       _selectedIndex = index;

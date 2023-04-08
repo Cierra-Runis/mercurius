@@ -12,8 +12,9 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
   bool _currentSearchBarMode = false;
 
   void _switchCurrentViewMode() {
+    MercuriusKit.vibration();
     diarySearchTextNotifier.changeContains('');
-    Vibration.vibrate(duration: 50, amplitude: 255);
+
     setState(() {
       _currentListViewMode = !_currentListViewMode;
       _currentSearchBarMode = false;
@@ -21,15 +22,16 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
   }
 
   void _switchCurrentBarMode() {
-    Vibration.vibrate(duration: 50, amplitude: 255);
+    MercuriusKit.vibration();
     diarySearchTextNotifier.changeContains('');
+
     setState(() {
       _currentSearchBarMode = !_currentSearchBarMode;
     });
   }
 
   void _floatingButtonOnPressed() async {
-    Vibration.vibrate(duration: 50, amplitude: 255);
+    MercuriusKit.vibration();
     var diary = await isarService.isDiaryExisted(DateTime.now());
     if (diary != null) {
       if (context.mounted) {
@@ -58,7 +60,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
   }
 
   void _appBarLeftButtonOnPressed() {
-    Vibration.vibrate(duration: 50, amplitude: 255);
+    MercuriusKit.vibration();
     if (mercuriusProfileNotifier.profile.user == null) {
       _showLoginDialogWidget(context);
     } else {
@@ -84,19 +86,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
           },
         ),
         title: _currentSearchBarMode
-            ? SizedBox(
-                width: 160,
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  autofocus: true,
-                  onChanged: (value) =>
-                      diarySearchTextNotifier.changeContains(value),
-                  decoration: const InputDecoration(
-                    hintText: '查找日记内容',
-                    border: InputBorder.none,
-                  ),
-                ),
-              )
+            ? const DiarySearchBarWidget()
             : const MercuriusTitleWidget(),
         centerTitle: true,
         actions: [

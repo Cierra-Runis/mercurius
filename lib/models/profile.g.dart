@@ -11,16 +11,18 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile()
       ? null
       : User.fromJson(json['user'] as Map<String, dynamic>)
   ..token = json['token'] as String?
-  ..themeMode = $enumDecode(_$ThemeModeEnumMap, json['themeMode'])
+  ..themeMode = $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode'])
+  ..buttonVibration = json['buttonVibration'] as bool?
   ..lastLogin = json['lastLogin'] as String?
-  ..sudokuDifficulty = json['sudokuDifficulty'] as String
+  ..sudokuDifficulty = json['sudokuDifficulty'] as String?
   ..currentVersion = json['currentVersion'] as String?
   ..cache = Cache.fromJson(json['cache'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'user': instance.user,
       'token': instance.token,
-      'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
+      'themeMode': _$ThemeModeEnumMap[instance.themeMode],
+      'buttonVibration': instance.buttonVibration,
       'lastLogin': instance.lastLogin,
       'sudokuDifficulty': instance.sudokuDifficulty,
       'currentVersion': instance.currentVersion,

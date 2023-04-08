@@ -53,7 +53,7 @@ class DialogAboutWidget extends StatelessWidget {
                   return Row(
                     children: [
                       Text(
-                        mercuriusProfileNotifier.profile.currentVersion!,
+                        '${mercuriusProfileNotifier.profile.currentVersion}',
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,

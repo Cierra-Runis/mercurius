@@ -8,7 +8,9 @@ class Profile {
 
   /// 当 profile.dart 添加新数据时
   /// 为了版本的迭代, 在此添加的新数据格式应该为
-  /// <类型>? <变量名> [= <一般初始值>];
+  /// <类型>? <变量名> [= <初始值>];
+  /// 这里的初始值表明了他是不可为空但在旧版本数据为空
+
   /*
   语法	             含义
   纯文本	           纯文本，直接键入。
@@ -24,14 +26,17 @@ class Profile {
   /// 用户 `token`
   String? token;
 
-  /// 主题模式
-  ThemeMode themeMode = ThemeMode.system;
+  /// 主题模式 (不可为空)
+  ThemeMode? themeMode = ThemeMode.system;
+
+  /// 按钮振动 (不可为空)
+  bool? buttonVibration = true;
 
   /// 最后登录于
   String? lastLogin;
 
-  /// 数独难度
-  String sudokuDifficulty = '大师级';
+  /// 数独难度 (不可为空)
+  String? sudokuDifficulty = '大师级';
 
   /// 当前版本
   String? currentVersion;
@@ -42,4 +47,11 @@ class Profile {
   factory Profile.fromJson(Map<String, dynamic> json) =>
       _$ProfileFromJson(json);
   Map<String, dynamic> toJson() => _$ProfileToJson(this);
+
+  static Profile getSaveProfile(Profile profile) {
+    profile.themeMode ??= ThemeMode.system;
+    profile.buttonVibration ??= true;
+    profile.sudokuDifficulty ??= '大师级';
+    return profile;
+  }
 }
