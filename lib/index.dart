@@ -7,11 +7,14 @@ export 'widgets/index.dart';
 export 'main.dart';
 
 /// flutter 相关
+// [RefreshCallback] 和 `export 'package:flutter/material.dart'` 冲突，两者近似
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
-export 'package:flutter/material.dart'
-    hide Badge, RefreshIndicator, RefreshIndicatorState;
 export 'package:flutter/rendering.dart';
 export 'package:flutter/services.dart';
+// [Badge] 和 `export 'package:badges/badges.dart'; // 小红点提示` 冲突，我想用外部包
+// [RefreshIndicator] 和 [RefreshIndicatorState] 被 `export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新` 重写
+export 'package:flutter/material.dart'
+    hide Badge, RefreshIndicator, RefreshIndicatorState;
 
 /// dart 相关
 export 'dart:async';
@@ -43,3 +46,5 @@ export 'package:table_calendar/table_calendar.dart'; // 日历
 export 'package:url_launcher/url_launcher_string.dart'; // 打开外部链接
 export 'package:unicons/unicons.dart'; // 图标
 export 'package:vibration/vibration.dart'; // 振动反馈
+// [Interval] 和 `package:flutter/src/animation/curves.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
+export 'package:dart_date/dart_date.dart' hide Interval; // 日期工具

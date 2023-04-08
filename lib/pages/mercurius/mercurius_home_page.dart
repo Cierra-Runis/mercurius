@@ -32,30 +32,29 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
 
   void _floatingButtonOnPressed() async {
     MercuriusKit.vibration();
-    var diary = await isarService.isDiaryExisted(DateTime.now());
-    if (diary != null) {
-      if (context.mounted) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DiaryEditorPage(diary: diary),
+
+    DateTime? dateTime = await showDatePicker(
+      context: context,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1949, 10, 1),
+      lastDate: DateTime.now().add(
+        const Duration(days: 20000),
+      ),
+    );
+
+    if (context.mounted && dateTime != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DiaryEditorPage(
+            diary: Diary()
+              ..createDateTime = dateTime
+              ..mood = '一般'
+              ..weather = '100',
           ),
-        );
-      }
-    } else {
-      if (context.mounted) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DiaryEditorPage(
-              diary: Diary()
-                ..createDateTime = DateTime.now()
-                ..mood = '一般'
-                ..weather = '001',
-            ),
-          ),
-        );
-      }
+        ),
+      );
     }
   }
 

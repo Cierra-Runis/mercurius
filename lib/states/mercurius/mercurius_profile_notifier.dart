@@ -16,7 +16,7 @@ class MercuriusProfileNotifier extends ChangeNotifier {
 
     DevTools.printLog('程序初始化中');
 
-    // 进行调试工具的初始化
+    /// 进行调试工具的初始化
     DevTools.init();
 
     _preferences = await SharedPreferences.getInstance();
@@ -27,7 +27,7 @@ class MercuriusProfileNotifier extends ChangeNotifier {
 
     profile = Profile.fromJson(jsonDecode(_preferences.getString('profile')!));
 
-    // 保障版本升级的数据迁移
+    /// 保障版本升级的数据迁移
     profile = Profile.getSaveProfile(profile);
 
     _packageInfo = await PackageInfo.fromPlatform();

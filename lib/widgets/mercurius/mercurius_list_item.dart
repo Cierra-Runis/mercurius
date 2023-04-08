@@ -11,6 +11,10 @@ class MercuriusListItem extends StatelessWidget {
   final String? detailText;
   final TextStyle? detailTextStyle;
   final Widget? accessoryView;
+  final bool? showIconBadge;
+  final bool? showTitleTextBadge;
+  final bool? showDetailTextBadge;
+  final bool? showAccessoryViewBadge;
   final Widget? bottomView;
   final bool? disabled;
   final VoidCallback? onTap;
@@ -25,6 +29,10 @@ class MercuriusListItem extends StatelessWidget {
     this.summary,
     this.detailText,
     this.detailTextStyle,
+    this.showTitleTextBadge,
+    this.showIconBadge,
+    this.showDetailTextBadge,
+    this.showAccessoryViewBadge,
     this.accessoryView,
     this.bottomView,
     this.disabled = false,
@@ -38,26 +46,32 @@ class MercuriusListItem extends StatelessWidget {
   }
 
   Widget buildDetailText(BuildContext context) {
-    return detailText != null
-        ? Text(
-            detailText!,
-            style: detailTextStyle ??
-                TextStyle(
-                  fontSize: 12,
-                  color: Theme.of(context).colorScheme.outline,
-                ),
-          )
-        : Container();
+    return Badge(
+      showBadge: showDetailTextBadge ?? false,
+      child: detailText != null
+          ? Text(
+              detailText!,
+              style: detailTextStyle ??
+                  TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+            )
+          : Container(),
+    );
   }
 
-  Widget buildAccessoryView(BuildContext context) =>
-      accessoryView ??
-      Padding(
-        padding: const EdgeInsets.only(left: 4),
-        child: Icon(
-          Icons.navigate_next,
-          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.38),
-        ),
+  Widget buildAccessoryView(BuildContext context) => Badge(
+        showBadge: showAccessoryViewBadge ?? false,
+        child: accessoryView ??
+            Padding(
+              padding: const EdgeInsets.only(left: 4),
+              child: Icon(
+                Icons.navigate_next,
+                color:
+                    Theme.of(context).colorScheme.onSurface.withOpacity(0.38),
+              ),
+            ),
       );
 
   Widget buildBottomView(BuildContext context) => bottomView ?? Container();
@@ -83,17 +97,23 @@ class MercuriusListItem extends StatelessWidget {
                   if (icon != null)
                     Container(
                       margin: const EdgeInsets.only(right: 10),
-                      child: icon,
+                      child: Badge(
+                        showBadge: showIconBadge ?? false,
+                        child: icon,
+                      ),
                     )
                   else
                     Container(
                       margin: const EdgeInsets.only(right: 10),
-                      child: Icon(
-                        iconData,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withOpacity(0.38),
+                      child: Badge(
+                        showBadge: showIconBadge ?? false,
+                        child: Icon(
+                          iconData,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withOpacity(0.38),
+                        ),
                       ),
                     ),
                   if (titleText != null || summary != null)
@@ -103,13 +123,16 @@ class MercuriusListItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           if (titleText != null)
-                            Text(
-                              titleText ?? '',
-                              style: titleTextStyle ??
-                                  const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Saira',
-                                  ),
+                            Badge(
+                              showBadge: showTitleTextBadge ?? false,
+                              child: Text(
+                                titleText ?? '',
+                                style: titleTextStyle ??
+                                    const TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'Saira',
+                                    ),
+                              ),
                             ),
                           if (summary != null)
                             Padding(
@@ -131,56 +154,6 @@ class MercuriusListItem extends StatelessWidget {
     );
   }
 }
-
-// class MercuriusListRadioItem<T> extends MercuriusListItem {
-//   final T? value;
-//   final T? groupValue;
-//   final ValueChanged<T>? onChanged;
-
-//   const MercuriusListRadioItem({
-//     Key? key,
-//     Icon? icon,
-//     IconData? iconData,
-//     String? titleText,
-//     TextStyle? titleTextStyle,
-//     Widget? summary,
-//     String? detailText,
-//     TextStyle? detailTextStyle,
-//     Widget? accessoryView,
-//     VoidCallback? onTap,
-//     @required this.value,
-//     @required this.groupValue,
-//     @required this.onChanged,
-//   }) : super(
-//           key: key,
-//           icon: icon,
-//           iconData: iconData,
-//           titleText: titleText,
-//           titleTextStyle: titleTextStyle,
-//           summary: summary,
-//           detailText: detailText,
-//           detailTextStyle: detailTextStyle,
-//           accessoryView: accessoryView,
-//           onTap: onTap,
-//         );
-
-//   @override
-//   void _onTap() {
-//     onChanged!(value as T);
-//     super._onTap();
-//   }
-
-//   @override
-//   Widget buildAccessoryView(BuildContext context) {
-//     if (value != null && value == groupValue) {
-//       return Icon(
-//         Icons.add,
-//         size: 22,
-//       );
-//     }
-//     return Container();
-//   }
-// }
 
 /// 由 [MercuriusListItem] 衍生的组件，其右边被替换为开关
 class MercuriusListSwitchItem extends MercuriusListItem {

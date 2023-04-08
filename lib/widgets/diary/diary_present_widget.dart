@@ -6,8 +6,9 @@ class DiaryPresentPageView extends StatelessWidget {
   const DiaryPresentPageView({
     Key? key,
     required this.diary,
-    // TODO: 想办法不传入 diaries
-    // FIXME: 存在问题，各 DiaryListCardWidget 的 diaries 属性并不会同步修改
+
+    /// TODO: 想办法不传入 diaries
+    /// FIXME: 存在问题，各 DiaryListCardWidget 的 diaries 属性并不会同步修改
     required this.diaries,
   }) : super(key: key);
 
@@ -146,7 +147,6 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                 height: 0,
                 indent: 8,
                 endIndent: 8,
-                thickness: 1.2,
               ),
               Expanded(
                 child: Padding(
@@ -168,6 +168,12 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                       ),
                       selection: const TextSelection.collapsed(offset: 0),
                     ),
+                    onLaunchUrl: (url) {
+                      launchUrlString(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
                     readOnly: true,
                     scrollBottomInset: 10,
                     customStyles: flutter_quill.DefaultStyles(
@@ -201,7 +207,6 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                 height: 0,
                 indent: 8,
                 endIndent: 8,
-                thickness: 1.2,
               ),
               SizedBox(
                 child: Row(

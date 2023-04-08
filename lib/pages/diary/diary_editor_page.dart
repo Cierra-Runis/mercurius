@@ -46,6 +46,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   }
 
   /// TIPS: 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017
+  /// FIXME: 选至末尾问题 https://github.com/singerdmx/flutter-quill/issues/1098
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,6 +152,12 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 placeholder: '记些什么吧',
                 controller: _controller,
                 readOnly: false,
+                onLaunchUrl: (url) {
+                  launchUrlString(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
                 scrollBottomInset: 10,
                 customStyles: flutter_quill.DefaultStyles(
                   placeHolder: flutter_quill.DefaultTextBlockStyle(
@@ -178,10 +185,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 ),
               ),
             ),
-            const Divider(
-              height: 12,
-              thickness: 1.8,
-            ),
+            const Divider(),
             flutter_quill.QuillToolbar.basic(
               controller: _controller,
               showUndo: false,
@@ -203,7 +207,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
               showSearchButton: false,
               showIndent: false,
               showLink: false,
-              toolbarSectionSpacing: 8,
+              toolbarSectionSpacing: 4,
               iconTheme: flutter_quill.QuillIconTheme(
                 borderRadius: 12,
                 iconSelectedFillColor:
@@ -215,7 +219,18 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 flutter_quill.QuillCustomButton(
                   icon: UniconsLine.clock,
                   onTap: () {
-                    /// TODO: 插入时间
+                    String dateTimeString =
+                        '[${DateTime.now().format('y 年 M 月 d 日 EEEE HH:mm:ss', 'zh_CN')}]\n';
+                    int end = _controller.selection.end;
+                    _controller.document.insert(
+                      end,
+                      dateTimeString,
+                    );
+                    _controller.updateSelection(
+                        TextSelection.collapsed(
+                          offset: end + dateTimeString.length,
+                        ),
+                        flutter_quill.ChangeSource.LOCAL);
                   },
                 ),
                 flutter_quill.QuillCustomButton(
@@ -233,23 +248,33 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                   onTap: () async {
                     Diary? newDiary =
                         await _showDiaryWeatherSelectorDialogWidget(
-                            context, _currentDiary);
+                      context,
+                      _currentDiary,
+                    );
                     setState(() {
                       _currentDiary = newDiary ?? _currentDiary;
                     });
                   },
                 ),
-                // TODO: 修改日期
-                // flutter_quill.QuillCustomButton(
-                //   icon: Icons.cloud,
-                //   onTap: () async {
-                //     Diary? newDiary =
-                //         await _selectDiaryDateDialog(context, _diary);
-                //     setState(() {
-                //       _diary = newDiary ?? _diary;
-                //     });
-                //   },
-                // ),
+                flutter_quill.QuillCustomButton(
+                  icon: Icons.date_range_rounded,
+                  onTap: () async {
+                    DateTime? dateTime = await showDatePicker(
+                      context: context,
+                      initialEntryMode: DatePickerEntryMode.calendarOnly,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1949, 10, 1),
+                      lastDate: DateTime.now().add(
+                        const Duration(days: 20000),
+                      ),
+                    );
+                    if (dateTime != null) {
+                      setState(() {
+                        _currentDiary.createDateTime = dateTime;
+                      });
+                    }
+                  },
+                ),
               ],
               locale: const Locale('zh', 'CN'),
             ),

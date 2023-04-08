@@ -60,8 +60,8 @@ class MercuriusListSection extends StatelessWidget {
                                       if (i < children.length - 1)
                                         const Divider(
                                           height: 0,
-                                          indent: 12,
-                                          endIndent: 12,
+                                          indent: 8,
+                                          endIndent: 8,
                                         ),
                                     ],
                                   );

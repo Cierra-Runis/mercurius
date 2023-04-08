@@ -14,7 +14,7 @@ class _SudokuDifficultySelectorWidgetState
   List<ListTile> _createDifficultyList(BuildContext context) {
     List<ListTile> list = [];
 
-    /// 遍历
+    // 遍历
     SudokuConstance.difficultyMap.forEach(
       (key, value) {
         list.add(
@@ -36,8 +36,7 @@ class _SudokuDifficultySelectorWidgetState
             ),
             onTap: () {
               mercuriusSudokuNotifier.changeDifficulty(key);
-
-              /// 直接退回至数独界面
+              // 直接退回至数独界面
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },

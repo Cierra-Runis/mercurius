@@ -383,10 +383,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: e4f6afbc1f03832dae3f28bb915c36c7565a365c3ba19b03c8b271731a9ef31e
+      sha256: "0a6087c325ec4346a8be0ca7b02a427b40789c15b7cd6cf78e0a0dfaa150682d"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.9"
+    version: "7.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -942,18 +942,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: "629e5db5dd144f52f46e4bd850c2e1d07408f3fd57dc10c5bcb6990df45d4a58"
+      sha256: "5c22d394c4166ffe516b9d26a4b979ad49cd8c82a2d886b4dd1c63fed835b831"
       url: "https://pub.dev"
     source: hosted
-    version: "21.1.37"
+    version: "21.1.38"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: f23067e46b781d488abf8e22e5608ca9972b49562e95f9e46cb6134e968f721b
+      sha256: "5ade7463887e45e91df497a071fe3a77c0cebfad81304d47fc1e1b5e886df19f"
       url: "https://pub.dev"
     source: hosted
-    version: "21.1.37"
+    version: "21.1.38"
   table_calendar:
     dependency: "direct main"
     description:

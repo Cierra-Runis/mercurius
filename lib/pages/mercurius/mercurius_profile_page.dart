@@ -10,30 +10,26 @@ class MercuriusProfilePage extends StatelessWidget {
         title: const Text('个人界面'),
       ),
       body: Center(
-        child: ListView(
+        child: MercuriusList(
           padding: const EdgeInsets.all(8),
           children: [
             Consumer<MercuriusProfileNotifier>(
               builder: (context, mercuriusProfileNotifier, child) {
-                return ListTile(
-                  leading: const Icon(Icons.logout_rounded),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text('退出帐号'),
-                    ],
-                  ),
-                  onTap: () {
-                    mercuriusProfileNotifier.changeProfile(
-                      mercuriusProfileNotifier.profile..user = null,
-                    );
-                    Navigator.of(context).pop();
-                  },
+                return MercuriusListSection(
+                  children: [
+                    MercuriusListItem(
+                      iconData: Icons.logout_rounded,
+                      titleText: '退出帐号',
+                      onTap: () {
+                        mercuriusProfileNotifier.changeProfile(
+                          mercuriusProfileNotifier.profile..user = null,
+                        );
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
                 );
               },
-            ),
-            const Divider(
-              height: 5,
             ),
           ],
         ),

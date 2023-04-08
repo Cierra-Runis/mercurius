@@ -35,7 +35,7 @@ class MercuriusPositionNotifier extends ChangeNotifier {
     Response response;
     CachePosition newCachePosition = CachePosition();
 
-    /// 尝试连接 aMap 获取位置
+    // 尝试连接 aMap 获取位置
     try {
       response = await Dio().get(_aMapUrl);
     } catch (e) {
@@ -78,7 +78,7 @@ class MercuriusPositionNotifier extends ChangeNotifier {
 
     weatherBody = WeatherBody.fromJson(jsonDecode(_qWeatherDefaultJsonString));
 
-    /// 尝试连接 qWeather 获取天气
+    // 尝试连接 qWeather 获取天气
     try {
       response = await Dio().get(
         '$_qWeatherUrl&location=${cachePosition.latitude},${cachePosition.longitude}',

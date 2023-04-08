@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:dart_date/dart_date.dart';
-
 class IsarService {
   late Future<Isar> db;
 
@@ -37,23 +35,6 @@ class IsarService {
   Future<void> cleanDb() async {
     final isar = await db;
     await isar.writeTxn(() => isar.clear());
-  }
-
-  /// 在 `dateTime` 是否含有日记, 有则返回 `diary`, 反之返回 `null`
-  Future<Diary?> isDiaryExisted(DateTime dateTime) async {
-    final isar = await db;
-
-    List<Diary> diaries = isar.diarys.where().findAllSync();
-    for (var diary in diaries) {
-      if (diary.createDateTime.isSameDay(dateTime)) {
-        DevTools.printLog(
-          '创建时间 ${diary.createDateTime} 与 点击按钮时间 $dateTime 已显示，已有日记',
-        );
-        return diary;
-      }
-    }
-    DevTools.printLog('$dateTime 不含日记');
-    return null;
   }
 
   /// 根据 `id` 删除日记

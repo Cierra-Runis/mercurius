@@ -58,10 +58,22 @@ class MercuriusMorePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    MercuriusListItem(
-                      iconData: Icons.info_outline,
-                      titleText: '关于',
-                      onTap: () => _showDialogAboutWidget(context),
+                    Consumer2<MercuriusProfileNotifier, MercuriusWebNotifier>(
+                      builder: (
+                        context,
+                        mercuriusProfileNotifier,
+                        mercuriusWebNotifier,
+                        child,
+                      ) {
+                        return MercuriusListItem(
+                          iconData: Icons.info_outline,
+                          showAccessoryViewBadge: mercuriusProfileNotifier
+                                  .profile.currentVersion !=
+                              mercuriusWebNotifier.githubLatestRelease.tag_name,
+                          titleText: '关于',
+                          onTap: () => _showDialogAboutWidget(context),
+                        );
+                      },
                     ),
                   ],
                 ),

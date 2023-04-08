@@ -1,6 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:dart_date/dart_date.dart';
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
 class DiaryMonthlyWordsWidget extends StatefulWidget {

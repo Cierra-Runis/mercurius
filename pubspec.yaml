@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.1.4+40
+version: 0.1.5+41
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -20,7 +20,7 @@ dependencies:
   dart_date: ^1.2.1 # 转换时间工具 [https://pub.dev/packages/dart_date]
   flutter_displaymode: ^0.5.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.0.9 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.1.2 # 富文本 [https://pub.dev/packages/flutter_quill]
   isar: ^3.0.5 # 数据库 [https://pub.dev/packages/isar]
   isar_flutter_libs: ^3.0.5 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   json_annotation: ^4.7.0 # json 相关 [https://pub.dev/packages/json_annotation]
@@ -34,7 +34,7 @@ dependencies:
   share_plus: ^6.3.1 # 分享 [https://pub.dev/packages/share_plus]
   shared_preferences: ^2.1.0 # 数据持久化 [https://pub.dev/packages/shared_preferences]
   sudoku_solver_generator: ^2.1.0+1 # 数独生成器 [https://pub.dev/packages/sudoku_solver_generator]
-  syncfusion_flutter_charts: ^21.1.37 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  syncfusion_flutter_charts: ^21.1.38 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]
   url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
