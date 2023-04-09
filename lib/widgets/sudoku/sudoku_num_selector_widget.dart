@@ -33,7 +33,7 @@ class _SudokuNumSelectorWidgetState extends State<SudokuNumSelectorWidget> {
               Navigator.of(context).pop();
               mercuriusSudokuNotifier.checkAnswer();
             },
-            child: Text("${3 * rowIndex + columnIndex + 1}"),
+            child: Text('${3 * rowIndex + columnIndex + 1}'),
           ),
         ),
       );

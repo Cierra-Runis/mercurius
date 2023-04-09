@@ -71,6 +71,7 @@ class _VibrationSelectListItem extends StatelessWidget {
               mercuriusProfileNotifier.profile.buttonVibration! ? '开启' : '关闭',
           value: mercuriusProfileNotifier.profile.buttonVibration!,
           onChanged: (value) {
+            MercuriusKit.vibration();
             mercuriusProfileNotifier.changeProfile(
               mercuriusProfileNotifier.profile
                 ..buttonVibration =

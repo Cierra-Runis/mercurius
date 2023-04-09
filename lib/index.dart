@@ -48,3 +48,4 @@ export 'package:unicons/unicons.dart'; // 图标
 export 'package:vibration/vibration.dart'; // 振动反馈
 // [Interval] 和 `package:flutter/src/animation/curves.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
 export 'package:dart_date/dart_date.dart' hide Interval; // 日期工具
+export 'package:keframe/keframe.dart'; // 列表优化

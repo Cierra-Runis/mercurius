@@ -21,7 +21,7 @@ class DialogImportDeclarationWidget extends StatelessWidget {
         ],
       ),
       content: SizedBox(
-        width: double.minPositive,
+        width: double.maxFinite,
         child: ListView(
           shrinkWrap: true,
           children: [
@@ -56,7 +56,7 @@ class DialogImportDeclarationWidget extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           content: SizedBox(
-            width: double.minPositive,
+            width: double.maxFinite,
             child: ListView(
               shrinkWrap: true,
               children: [

@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.1.5+41
+version: 0.1.5+42
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -25,6 +25,7 @@ dependencies:
   isar_flutter_libs: ^3.0.5 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   json_annotation: ^4.7.0 # json 相关 [https://pub.dev/packages/json_annotation]
   json_serializable: ^6.5.3 # json 相关 [https://pub.dev/packages/json_serializable]
+  keframe: ^3.0.0 # 列表优化 [https://pub.dev/packages/keframe]
   loading_animation_widget: ^1.2.0+4 # 加载器组件 [https://pub.dev/packages/loading_animation_widget]
   open_app_file: ^4.0.1 # 打开文件 [https://pub.dev/packages/open_app_file]
   path_provider: ^2.0.14 # 路径获取 [https://pub.dev/packages/path_provider]
@@ -38,7 +39,7 @@ dependencies:
   table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]
   url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
-  vibration: ^1.7.6 # 振动反馈 https://pub.dev/packages/vibration
+  vibration: ^1.7.6 # 振动反馈 [https://pub.dev/packages/vibration]
 
 dev_dependencies:
   flutter_test:

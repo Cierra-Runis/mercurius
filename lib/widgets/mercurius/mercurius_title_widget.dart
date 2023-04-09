@@ -26,7 +26,7 @@ class MercuriusTitleWidget extends StatelessWidget {
                     size: 6,
                   ),
                   Text(
-                    " ${mercuriusPositionNotifier.cachePosition.latitude}N ${mercuriusPositionNotifier.cachePosition.longitude}E ",
+                    ' ${mercuriusPositionNotifier.cachePosition.latitude}N ${mercuriusPositionNotifier.cachePosition.longitude}E ',
                     style: const TextStyle(
                       fontSize: 8,
                     ),
@@ -34,7 +34,9 @@ class MercuriusTitleWidget extends StatelessWidget {
                   Icon(
                     QWeatherIcon.getIconById(
                       int.parse(
-                          mercuriusPositionNotifier.weatherBody.now!.icon!),
+                        mercuriusPositionNotifier.weatherBody.now?.icon ??
+                            '100',
+                      ),
                     ),
                     size: 6,
                   ),

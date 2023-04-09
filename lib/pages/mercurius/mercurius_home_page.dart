@@ -48,10 +48,12 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
         context,
         MaterialPageRoute(
           builder: (context) => DiaryEditorPage(
-            diary: Diary()
-              ..createDateTime = dateTime
-              ..mood = '一般'
-              ..weather = '100',
+            diary: Diary(
+              createDateTime: dateTime,
+              latestEditTime: dateTime,
+              mood: '一般',
+              weather: '100',
+            ),
           ),
         ),
       );

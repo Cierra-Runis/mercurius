@@ -14,7 +14,6 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
-        backgroundColor: Colors.transparent,
         child: Consumer4<MercuriusProfileNotifier, MercuriusWebNotifier,
             MercuriusPositionNotifier, MercuriusLogNotifier>(
           builder: (

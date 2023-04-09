@@ -9,7 +9,7 @@ class MercuriusDoubleBackWidget extends StatefulWidget {
     this.condition = true,
     this.duration = const Duration(milliseconds: 600),
     this.margin = const EdgeInsets.fromLTRB(60, 0, 60, 70),
-    this.message = "再次返回以退出",
+    this.message = '再次返回以退出',
     this.onConditionFail,
     this.onFirstBackPress,
     this.platform = TargetPlatform.android,

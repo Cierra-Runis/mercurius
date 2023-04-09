@@ -11,6 +11,26 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
+  Widget _getFooterChild(LoadStatus? mode) {
+    switch (mode) {
+      case LoadStatus.idle:
+        return const Text('上拉获取');
+      case LoadStatus.loading:
+        return LoadingAnimationWidget.staggeredDotsWave(
+          color: Theme.of(context).colorScheme.primary,
+          size: 16,
+        );
+      case LoadStatus.failed:
+        return const Text('获取失败');
+      case LoadStatus.canLoading:
+        return const Text('松手获取');
+      case LoadStatus.noMore:
+        return const Text('没有更多了');
+      default:
+        return const Text('没有更多了');
+    }
+  }
+
   Widget _getDiaryListCards(List<Diary>? diaries) {
     List<Widget> diaryListCards = [];
     if (diaries == null || diaries.isEmpty) {
@@ -19,38 +39,7 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
       );
     }
 
-    int year = diaries[0].createDateTime.year;
-    int month = diaries[0].createDateTime.month;
-    diaryListCards.add(
-      Container(
-        margin: const EdgeInsets.fromLTRB(24, 10, 10, 0),
-        child: Text(
-          '$year年$month月',
-          style: const TextStyle(
-            fontSize: 20.0,
-            fontFamily: 'Saira',
-          ),
-        ),
-      ),
-    );
     for (var diary in diaries) {
-      if (diary.createDateTime.month != month ||
-          diary.createDateTime.year != year) {
-        month = diary.createDateTime.month;
-        year = diary.createDateTime.year;
-        diaryListCards.add(
-          Container(
-            margin: const EdgeInsets.fromLTRB(24, 0, 10, 0),
-            child: Text(
-              '$year年$month月',
-              style: const TextStyle(
-                fontSize: 20.0,
-                fontFamily: 'Saira',
-              ),
-            ),
-          ),
-        );
-      }
       diaryListCards.add(DiaryListCardWidget(diary: diary, diaries: diaries));
     }
 
@@ -98,18 +87,46 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
                   ),
                 );
               case ConnectionState.active:
-                return Scrollbar(
-                  radius: const Radius.circular(2.0),
-                  child: SmartRefresher(
-                    onRefresh: () {
-                      diarySearchTextNotifier.changeContains(
-                        diarySearchTextNotifier.contains,
+                return SmartRefresher(
+                  onRefresh: () {
+                    diarySearchTextNotifier.changeContains(
+                      diarySearchTextNotifier.contains,
+                    );
+                    _refreshController.refreshCompleted();
+                  },
+                  onLoading: () {
+                    _refreshController.loadComplete();
+                  },
+                  footer: CustomFooter(
+                    loadStyle: LoadStyle.ShowWhenLoading,
+                    builder: (context, mode) {
+                      return Container(
+                        alignment: Alignment.center,
+                        height: 60,
+                        child: _getFooterChild(mode),
                       );
-                      _refreshController.refreshCompleted();
                     },
-                    controller: _refreshController,
-                    child: _getDiaryListCards(snapshot.data),
                   ),
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  child: snapshot.data == null || snapshot.data!.isEmpty
+                      ? const Center(
+                          child: Text('无数据'),
+                        )
+                      : ListView.builder(
+                          cacheExtent: 1000,
+                          itemCount: snapshot.data!.length,
+                          itemExtent: 96,
+                          itemBuilder: (context, index) => FrameSeparateWidget(
+                            index: index,
+                            placeHolder:
+                                DiaryListCardWidget.getPlaceHolder(context),
+                            child: DiaryListCardWidget(
+                              diary: snapshot.data![index],
+                              diaries: snapshot.data!,
+                            ),
+                          ),
+                        ),
                 );
               case ConnectionState.done:
                 return const Center(child: Text('Stream 已关闭'));

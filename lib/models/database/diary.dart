@@ -5,29 +5,57 @@ part 'diary.g.dart';
 @collection
 @JsonSerializable()
 class Diary {
-  Diary();
+  const Diary({
+    this.id,
+    this.createDateTime,
+    this.latestEditTime,
+    this.titleString,
+    this.contentJsonString,
+    this.mood = '一般',
+    this.weather = '100',
+  });
 
   /// 日记 `id`
-  Id? id;
+  final Id? id;
 
   /// 创建时间
-  late DateTime createDateTime;
+  final DateTime? createDateTime;
 
   /// 最后编辑时间
-  late DateTime latestEditTime;
+  final DateTime? latestEditTime;
 
   /// 标题串
-  String? titleString;
+  final String? titleString;
 
   /// 内容 json 串
-  String? contentJsonString;
+  final String? contentJsonString;
 
   /// 天气
-  late String weather;
+  final String weather;
 
   /// 心情
-  late String mood;
+  final String mood;
 
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
+
+  factory Diary.copyFrom(
+    Diary diary, {
+    Id? id,
+    DateTime? createDateTime,
+    DateTime? latestEditTime,
+    String? titleString,
+    String? contentJsonString,
+    String? weather,
+    String? mood,
+  }) =>
+      Diary(
+        id: id ?? diary.id,
+        createDateTime: createDateTime ?? diary.createDateTime,
+        latestEditTime: latestEditTime ?? diary.latestEditTime,
+        titleString: titleString ?? diary.titleString,
+        contentJsonString: contentJsonString ?? diary.contentJsonString,
+        weather: weather ?? diary.weather,
+        mood: mood ?? diary.mood,
+      );
 }

@@ -105,14 +105,15 @@ Diary _diaryDeserialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = Diary();
-  object.contentJsonString = reader.readStringOrNull(offsets[0]);
-  object.createDateTime = reader.readDateTime(offsets[1]);
-  object.id = id;
-  object.latestEditTime = reader.readDateTime(offsets[2]);
-  object.mood = reader.readString(offsets[3]);
-  object.titleString = reader.readStringOrNull(offsets[4]);
-  object.weather = reader.readString(offsets[5]);
+  final object = Diary(
+    contentJsonString: reader.readStringOrNull(offsets[0]),
+    createDateTime: reader.readDateTimeOrNull(offsets[1]),
+    id: id,
+    latestEditTime: reader.readDateTimeOrNull(offsets[2]),
+    mood: reader.readStringOrNull(offsets[3]) ?? '一般',
+    titleString: reader.readStringOrNull(offsets[4]),
+    weather: reader.readStringOrNull(offsets[5]) ?? '100',
+  );
   return object;
 }
 
@@ -126,15 +127,15 @@ P _diaryDeserializeProp<P>(
     case 0:
       return (reader.readStringOrNull(offset)) as P;
     case 1:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 2:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? '一般') as P;
     case 4:
       return (reader.readStringOrNull(offset)) as P;
     case 5:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? '100') as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -148,9 +149,7 @@ List<IsarLinkBase<dynamic>> _diaryGetLinks(Diary object) {
   return [];
 }
 
-void _diaryAttach(IsarCollection<dynamic> col, Id id, Diary object) {
-  object.id = id;
-}
+void _diaryAttach(IsarCollection<dynamic> col, Id id, Diary object) {}
 
 extension DiaryQueryWhereSort on QueryBuilder<Diary, Diary, QWhere> {
   QueryBuilder<Diary, Diary, QAfterWhere> anyId() {
@@ -377,8 +376,24 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'createDateTime',
+      ));
+    });
+  }
+
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'createDateTime',
+      ));
+    });
+  }
+
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeEqualTo(
-      DateTime value) {
+      DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'createDateTime',
@@ -388,7 +403,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeGreaterThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -401,7 +416,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeLessThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -414,8 +429,8 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> createDateTimeBetween(
-    DateTime lower,
-    DateTime upper, {
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -498,8 +513,24 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
     });
   }
 
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'latestEditTime',
+      ));
+    });
+  }
+
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'latestEditTime',
+      ));
+    });
+  }
+
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeEqualTo(
-      DateTime value) {
+      DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'latestEditTime',
@@ -509,7 +540,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeGreaterThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -522,7 +553,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeLessThan(
-    DateTime value, {
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -535,8 +566,8 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> latestEditTimeBetween(
-    DateTime lower,
-    DateTime upper, {
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1176,13 +1207,13 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Diary, DateTime, QQueryOperations> createDateTimeProperty() {
+  QueryBuilder<Diary, DateTime?, QQueryOperations> createDateTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'createDateTime');
     });
   }
 
-  QueryBuilder<Diary, DateTime, QQueryOperations> latestEditTimeProperty() {
+  QueryBuilder<Diary, DateTime?, QQueryOperations> latestEditTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'latestEditTime');
     });
@@ -1211,19 +1242,24 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary()
-  ..id = json['id'] as int?
-  ..createDateTime = DateTime.parse(json['createDateTime'] as String)
-  ..latestEditTime = DateTime.parse(json['latestEditTime'] as String)
-  ..titleString = json['titleString'] as String?
-  ..contentJsonString = json['contentJsonString'] as String?
-  ..weather = json['weather'] as String
-  ..mood = json['mood'] as String;
+Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary(
+      id: json['id'] as int?,
+      createDateTime: json['createDateTime'] == null
+          ? null
+          : DateTime.parse(json['createDateTime'] as String),
+      latestEditTime: json['latestEditTime'] == null
+          ? null
+          : DateTime.parse(json['latestEditTime'] as String),
+      titleString: json['titleString'] as String?,
+      contentJsonString: json['contentJsonString'] as String?,
+      mood: json['mood'] as String? ?? '一般',
+      weather: json['weather'] as String? ?? '100',
+    );
 
 Map<String, dynamic> _$DiaryToJson(Diary instance) => <String, dynamic>{
       'id': instance.id,
-      'createDateTime': instance.createDateTime.toIso8601String(),
-      'latestEditTime': instance.latestEditTime.toIso8601String(),
+      'createDateTime': instance.createDateTime?.toIso8601String(),
+      'latestEditTime': instance.latestEditTime?.toIso8601String(),
       'titleString': instance.titleString,
       'contentJsonString': instance.contentJsonString,
       'weather': instance.weather,

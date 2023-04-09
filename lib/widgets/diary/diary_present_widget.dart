@@ -13,13 +13,15 @@ class DiaryPresentPageView extends StatelessWidget {
   }) : super(key: key);
 
   final Diary diary;
+
+  /// TIPS: 这里的 diaries 只有通过点击日记卡片才会更新
   final List<Diary> diaries;
 
   @override
   Widget build(BuildContext context) {
     return PageView(
       controller: PageController(
-        initialPage: diaries.indexOf(diary),
+        initialPage: diaries.indexWhere((element) => element.id == diary.id),
       ),
       children: [
         for (Diary diary in diaries) DiaryPresentDialogWidget(diary: diary),
@@ -42,7 +44,7 @@ class DiaryPresentDialogWidget extends StatefulWidget {
 }
 
 class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
-  Diary _currentDiary = Diary();
+  late Diary _currentDiary;
   late Diary? futureDiary;
   late Diary? pastDiary;
 
@@ -73,14 +75,14 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
           ),
           child: Column(
             children: [
-              SizedBox(
-                height: 134,
+              SizedOverflowBox(
+                size: const Size.fromHeight(134),
                 child: Flex(
                   direction: Axis.horizontal,
                   children: [
                     Expanded(flex: 1, child: Container()),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -112,7 +114,7 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                                   ),
                                 ),
                                 Text(
-                                  '${DiaryConstance.weekdayMap[_currentDiary.createDateTime.weekday]!} ${_currentDiary.latestEditTime.toString().substring(11, 19)}',
+                                  '${DiaryConstance.weekdayMap[_currentDiary.createDateTime!.weekday]!} ${_currentDiary.latestEditTime.toString().substring(11, 19)}',
                                   style: const TextStyle(
                                     fontSize: 12,
                                   ),
@@ -130,14 +132,16 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                     ),
                     Expanded(
                       flex: 1,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          IconButton(
-                            onPressed: () => Navigator.pop(context),
-                            icon: const Icon(Icons.close),
-                          ),
-                        ],
+                      child: Container(
+                        height: 134 * 0.8,
+                        alignment: Alignment.topCenter,
+                        child: IconButton(
+                          onPressed: () {
+                            MercuriusKit.vibration();
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.close),
+                        ),
                       ),
                     ),
                   ],
@@ -216,6 +220,7 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                       children: [
                         IconButton(
                           onPressed: () {
+                            MercuriusKit.vibration();
                             Navigator.pop(context);
                             isarService.deleteDiaryById(
                               _currentDiary.id!,
@@ -229,6 +234,7 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                       children: [
                         IconButton(
                           onPressed: () async {
+                            MercuriusKit.vibration();
                             Diary? editedDiary = await _showDiaryEditorPage(
                               context,
                               _currentDiary,
@@ -240,16 +246,19 @@ class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
                           icon: const Icon(Icons.edit),
                         ),
                         IconButton(
-                          onPressed: () => Share.share(
-                            '${_currentDiary.createDateTime.toString().substring(0, 10)}\n'
-                            '天气：${DiaryConstance.weatherCommitMap[_currentDiary.weather] ?? '未记录'}\n'
-                            '标题：${_currentDiary.titleString ?? '无标题'}\n'
-                            '心情：${_currentDiary.mood}\n'
-                            '\n'
-                            '${flutter_quill.Document.fromJson(
-                              jsonDecode(_currentDiary.contentJsonString!),
-                            ).toPlainText().trimRight()}',
-                          ),
+                          onPressed: () {
+                            MercuriusKit.vibration();
+                            Share.share(
+                              '${_currentDiary.createDateTime.toString().substring(0, 10)}\n'
+                              '天气：${DiaryConstance.weatherCommitMap[_currentDiary.weather] ?? '未记录'}\n'
+                              '标题：${_currentDiary.titleString ?? '无标题'}\n'
+                              '心情：${_currentDiary.mood}\n'
+                              '\n'
+                              '${flutter_quill.Document.fromJson(
+                                jsonDecode(_currentDiary.contentJsonString!),
+                              ).toPlainText().trimRight()}',
+                            );
+                          },
                           icon: const Icon(UniconsLine.share),
                         ),
                       ],

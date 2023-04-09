@@ -73,7 +73,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
             ),
             child: Text(
               mercuriusSudokuNotifier.sudokuListCopy[rowIndex][columnIndex] == 0
-                  ? ""
+                  ? ''
                   : mercuriusSudokuNotifier.sudokuListCopy[rowIndex]
                           [columnIndex]
                       .toString(),

@@ -21,7 +21,7 @@ class DialogAgreementWidget extends StatelessWidget {
         ],
       ),
       content: const SizedBox(
-        width: double.minPositive,
+        width: double.maxFinite,
         child: Markdown(
           shrinkWrap: true,
           data: AgreementContentConstance.agreementContent,

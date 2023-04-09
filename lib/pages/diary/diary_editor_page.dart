@@ -20,7 +20,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final ScrollController _scrollController = ScrollController();
 
-  Diary _currentDiary = Diary();
+  late Diary _currentDiary;
 
   @override
   void initState() {
@@ -85,15 +85,19 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
               if (plainText != '""') {
                 MercuriusKit.vibration();
                 setState(() {
-                  _currentDiary = _currentDiary
-                    ..contentJsonString = jsonEncode(
+                  _currentDiary = Diary.copyFrom(
+                    _currentDiary,
+                    contentJsonString: jsonEncode(
                       _controller.document.toDelta().toJson(),
-                    );
+                    ),
+                  );
                 });
                 isarService.saveDiary(
-                  _currentDiary
-                    ..latestEditTime = DateTime.now()
-                    ..titleString = (_title.text == '' ? null : _title.text),
+                  _currentDiary = Diary.copyFrom(
+                    _currentDiary,
+                    latestEditTime: DateTime.now(),
+                    titleString: _title.text == '' ? null : _title.text,
+                  ),
                 );
                 Navigator.of(context).pop(_currentDiary);
               } else {
@@ -270,7 +274,10 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                     );
                     if (dateTime != null) {
                       setState(() {
-                        _currentDiary.createDateTime = dateTime;
+                        _currentDiary = Diary.copyFrom(
+                          _currentDiary,
+                          createDateTime: dateTime,
+                        );
                       });
                     }
                   },
@@ -325,7 +332,7 @@ class _DiaryMoodSelectorDialogWidget extends StatefulWidget {
 
 class _DiaryMoodSelectorDialogWidgetState
     extends State<_DiaryMoodSelectorDialogWidget> {
-  Diary _currentDiary = Diary();
+  late Diary _currentDiary;
 
   @override
   void initState() {
@@ -340,7 +347,9 @@ class _DiaryMoodSelectorDialogWidgetState
     DiaryConstance.moodMap.forEach(
       (key, value) => buttonList.add(
         IconButton(
-          onPressed: () => Navigator.of(context).pop(_currentDiary..mood = key),
+          onPressed: () => Navigator.of(context).pop(
+            Diary.copyFrom(_currentDiary, mood: key),
+          ),
           icon: Column(
             children: [Icon(value), Text(key)],
           ),
@@ -415,7 +424,7 @@ class _DiaryWeatherSelectorDialogWidget extends StatefulWidget {
 
 class _DiaryWeatherSelectorDialogWidgetState
     extends State<_DiaryWeatherSelectorDialogWidget> {
-  Diary _currentDiary = Diary();
+  late Diary _currentDiary;
 
   @override
   void initState() {
@@ -430,12 +439,14 @@ class _DiaryWeatherSelectorDialogWidgetState
     DiaryConstance.weatherMap.forEach(
       (key, value) => buttonList.add(
         IconButton(
-          onPressed: () =>
-              Navigator.of(context).pop(_currentDiary..weather = key),
+          onPressed: () => Navigator.of(context).pop(
+            Diary.copyFrom(_currentDiary, weather: key),
+          ),
           icon: Column(
             children: [
               Icon(value),
               Text(
+                /// TIPS: 这里可以使用 ! 的原因是 DiaryConstance.weatherMap 和 DiaryConstance.weatherCommitMap 的 key 相同
                 DiaryConstance.weatherCommitMap[key]!,
               ),
             ],
