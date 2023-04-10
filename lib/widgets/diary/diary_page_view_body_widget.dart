@@ -2,36 +2,8 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
-class DiaryPresentPageView extends StatelessWidget {
-  const DiaryPresentPageView({
-    Key? key,
-    required this.diary,
-
-    /// TODO: 想办法不传入 diaries
-    /// FIXME: 存在问题，各 DiaryListCardWidget 的 diaries 属性并不会同步修改
-    required this.diaries,
-  }) : super(key: key);
-
-  final Diary diary;
-
-  /// TIPS: 这里的 diaries 只有通过点击日记卡片才会更新
-  final List<Diary> diaries;
-
-  @override
-  Widget build(BuildContext context) {
-    return PageView(
-      controller: PageController(
-        initialPage: diaries.indexWhere((element) => element.id == diary.id),
-      ),
-      children: [
-        for (Diary diary in diaries) DiaryPresentDialogWidget(diary: diary),
-      ],
-    );
-  }
-}
-
-class DiaryPresentDialogWidget extends StatefulWidget {
-  const DiaryPresentDialogWidget({
+class DiaryPageViewBodyWidget extends StatefulWidget {
+  const DiaryPageViewBodyWidget({
     Key? key,
     required this.diary,
   }) : super(key: key);
@@ -39,14 +11,12 @@ class DiaryPresentDialogWidget extends StatefulWidget {
   final Diary diary;
 
   @override
-  State<DiaryPresentDialogWidget> createState() =>
-      _DiaryPresentDialogWidgetState();
+  State<DiaryPageViewBodyWidget> createState() =>
+      _DiaryPageViewBodyWidgetState();
 }
 
-class _DiaryPresentDialogWidgetState extends State<DiaryPresentDialogWidget> {
+class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
   late Diary _currentDiary;
-  late Diary? futureDiary;
-  late Diary? pastDiary;
 
   @override
   void initState() {

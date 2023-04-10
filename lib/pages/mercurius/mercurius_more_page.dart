@@ -27,18 +27,18 @@ class MercuriusMorePage extends StatelessWidget {
             );
           },
         ),
-        title: const MercuriusTitleWidget(),
+        title: const MercuriusOriginalTitleWidget(),
         centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: MercuriusList(
+            child: MercuriusModifiedList(
               children: [
-                MercuriusListSection(
+                MercuriusModifiedListSection(
                   children: [
-                    MercuriusListItem(
+                    MercuriusModifiedListItem(
                       iconData: Icons.analytics,
                       titleText: '统计数据',
                       onTap: () => Navigator.push(
@@ -48,7 +48,7 @@ class MercuriusMorePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    MercuriusListItem(
+                    MercuriusModifiedListItem(
                       iconData: Icons.settings,
                       titleText: '设定',
                       onTap: () => Navigator.push(
@@ -65,7 +65,7 @@ class MercuriusMorePage extends StatelessWidget {
                         mercuriusWebNotifier,
                         child,
                       ) {
-                        return MercuriusListItem(
+                        return MercuriusModifiedListItem(
                           iconData: Icons.info_outline,
                           showAccessoryViewBadge: mercuriusProfileNotifier
                                   .profile.currentVersion !=
@@ -82,7 +82,7 @@ class MercuriusMorePage extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.all(10),
-            child: HiToKoToWidget(),
+            child: MercuriusOriginalHiToKoToWidget(),
           ),
         ],
       ),

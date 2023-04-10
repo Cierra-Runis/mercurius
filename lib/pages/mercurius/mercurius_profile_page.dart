@@ -10,14 +10,14 @@ class MercuriusProfilePage extends StatelessWidget {
         title: const Text('个人界面'),
       ),
       body: Center(
-        child: MercuriusList(
+        child: MercuriusModifiedList(
           padding: const EdgeInsets.all(8),
           children: [
             Consumer<MercuriusProfileNotifier>(
               builder: (context, mercuriusProfileNotifier, child) {
-                return MercuriusListSection(
+                return MercuriusModifiedListSection(
                   children: [
-                    MercuriusListItem(
+                    MercuriusModifiedListItem(
                       iconData: Icons.logout_rounded,
                       titleText: '退出帐号',
                       onTap: () {

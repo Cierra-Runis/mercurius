@@ -47,9 +47,8 @@ class DialogAboutWidget extends StatelessWidget {
                   fontFamily: 'Saira',
                 ),
               ),
-              Consumer2<MercuriusWebNotifier, MercuriusProfileNotifier>(
-                builder: (context, mercuriusWebNotifier,
-                    mercuriusProfileNotifier, child) {
+              Consumer<MercuriusProfileNotifier>(
+                builder: (context, mercuriusProfileNotifier, child) {
                   return Row(
                     children: [
                       Text(
@@ -60,59 +59,8 @@ class DialogAboutWidget extends StatelessWidget {
                           fontFamily: 'Saira',
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.all(2),
-                      ),
-                      mercuriusProfileNotifier.profile.currentVersion !=
-                              mercuriusWebNotifier.githubLatestRelease.tag_name
-                          ? TextButton(
-                              onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const MercuriusReleasePage(),
-                                ),
-                              ),
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.red,
-                                padding: const EdgeInsets.all(1.5),
-                                minimumSize: const Size(20, 10),
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              child: const Badge(
-                                child: Text(
-                                  '点此更新版本',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 8,
-                                  ),
-                                ),
-                              ),
-                            )
-                          : TextButton(
-                              onPressed: () => mercuriusWebNotifier
-                                  .refetchGithubLatestRelease(),
-                              onLongPress: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const MercuriusReleasePage(),
-                                ),
-                              ),
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.green,
-                                padding: const EdgeInsets.all(1.5),
-                                minimumSize: const Size(20, 10),
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              child: const Text(
-                                '已是最新版本',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 8,
-                                ),
-                              ),
-                            ),
+                      const Padding(padding: EdgeInsets.all(2)),
+                      const MercuriusOriginalVersionNoticeWidget(),
                     ],
                   );
                 },
@@ -123,84 +71,50 @@ class DialogAboutWidget extends StatelessWidget {
       ),
       content: SizedBox(
         width: double.minPositive,
-        child: ListView(
+        child: MercuriusModifiedList(
           shrinkWrap: true,
           children: [
-            ListTile(
-              leading: const Icon(Icons.link),
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('联系我们'),
-                  Text(
+            MercuriusModifiedListSection(
+              margin: EdgeInsets.zero,
+              children: [
+                MercuriusModifiedListItem(
+                  iconData: Icons.link,
+                  titleText: '联系我们',
+                  summaryText: MercuriusConstance.contactUrl,
+                  onTap: () => launchUrlString(
                     MercuriusConstance.contactUrl,
-                    style: TextStyle(
-                      fontSize: 8,
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
+                    mode: LaunchMode.externalApplication,
                   ),
-                ],
-              ),
-              onTap: () => launchUrlString(
-                MercuriusConstance.contactUrl,
-                mode: LaunchMode.externalApplication,
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.import_contacts_rounded),
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('引用声明'),
-                  Text(
-                    '字体、图标相关',
-                    style: TextStyle(
-                      fontSize: 8,
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
+                ),
+                MercuriusModifiedListItem(
+                  iconData: Icons.import_contacts_rounded,
+                  titleText: '引用声明',
+                  summaryText: '字体、图标相关',
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => const DialogImportDeclarationWidget(),
                   ),
-                ],
-              ),
-              onTap: () => _showDialogImportDeclarationWidget(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.privacy_tip_rounded),
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('隐私政策'),
-                  Text(
-                    'Mercurius 隐私政策',
-                    style: TextStyle(
-                      fontSize: 8,
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
+                ),
+                MercuriusModifiedListItem(
+                  iconData: Icons.privacy_tip_rounded,
+                  titleText: '隐私政策',
+                  summaryText: 'Mercurius 隐私政策',
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => const DialogPrivacyWidget(),
                   ),
-                ],
-              ),
-              onTap: () => _showDialogPrivacyWidget(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.bookmark),
-              title: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('用户协议'),
-                  Text(
-                    'Mercurius 用户协议',
-                    style: TextStyle(
-                      fontSize: 8,
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
+                ),
+                MercuriusModifiedListItem(
+                  iconData: Icons.bookmark,
+                  titleText: '用户协议',
+                  summaryText: 'Mercurius 用户协议',
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => const DialogAgreementWidget(),
                   ),
-                ],
-              ),
-              onTap: () => _showDialogAgreementWidget(context),
-            ),
+                ),
+              ],
+            )
           ],
         ),
       ),
@@ -215,33 +129,6 @@ class DialogAboutWidget extends StatelessWidget {
         ),
       ],
       actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-    );
-  }
-
-  Future<void> _showDialogImportDeclarationWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const DialogImportDeclarationWidget();
-      },
-    );
-  }
-
-  Future<void> _showDialogPrivacyWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const DialogPrivacyWidget();
-      },
-    );
-  }
-
-  Future<void> _showDialogAgreementWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const DialogAgreementWidget();
-      },
     );
   }
 }

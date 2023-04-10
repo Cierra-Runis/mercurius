@@ -1,31 +1,31 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListViewWidget extends StatefulWidget {
-  const DiaryListViewWidget({super.key});
+class DiaryPageViewWidget extends StatefulWidget {
+  const DiaryPageViewWidget({
+    Key? key,
+    required this.diary,
+  }) : super(key: key);
+
+  final Diary diary;
 
   @override
-  State<DiaryListViewWidget> createState() => _DiaryListViewWidgetState();
+  State<DiaryPageViewWidget> createState() => _DiaryPageViewWidgetState();
 }
 
-class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+class _DiaryPageViewWidgetState extends State<DiaryPageViewWidget> {
+  Widget _getCardBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) {
+    List<Diary> diaries = snapshot.data!;
 
-  Widget _getCardBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) =>
-      snapshot.data == null || snapshot.data!.isEmpty
-          ? const Center(child: Text('无数据'))
-          : ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemExtent: 100,
-              shrinkWrap: true,
-              itemBuilder: (context, index) => FrameSeparateWidget(
-                index: index,
-                placeHolder: DiaryListViewCardWidget.getPlaceHolder(context),
-                child: DiaryListViewCardWidget(
-                  diary: snapshot.data![index],
-                ),
-              ),
-            );
+    return PageView(
+      controller: PageController(
+        initialPage:
+            diaries.indexWhere((element) => element.id == widget.diary.id),
+      ),
+      children: [
+        for (Diary diary in diaries) DiaryPageViewBodyWidget(diary: diary),
+      ],
+    );
+  }
 
   Widget _getBodyBySnapshotState(AsyncSnapshot<List<Diary>> snapshot) {
     if (snapshot.hasError) {
@@ -49,16 +49,7 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
           ),
         );
       case ConnectionState.active:
-        return SmartRefresher(
-            onRefresh: () async {
-              await Future.delayed(const Duration(milliseconds: 500), () {});
-              diarySearchTextNotifier.changeContains(
-                diarySearchTextNotifier.contains,
-              );
-              _refreshController.refreshCompleted();
-            },
-            controller: _refreshController,
-            child: _getCardBySnapshotData(snapshot));
+        return _getCardBySnapshotData(snapshot);
       case ConnectionState.done:
         return const Center(child: Text('Stream 已关闭'));
     }

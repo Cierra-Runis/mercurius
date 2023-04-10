@@ -26,7 +26,7 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: MercuriusDoubleBackWidget(
+        child: MercuriusModifiedDoubleBackWidget(
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _selectedIndex == 0,
@@ -36,7 +36,7 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
-      bottomNavigationBar: MercuriusBottomBarWidget(
+      bottomNavigationBar: MercuriusModifiedBottomBarWidget(
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Theme.of(context).colorScheme.outline,
         backgroundColor: Theme.of(context).colorScheme.surface,

@@ -10,23 +10,32 @@ class MercuriusReleasePage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: Text(
-              '更新至 ${mercuriusWebNotifier.githubLatestRelease.tag_name}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+            title: const Text(
+              '更新页',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           body: Center(
             child: Markdown(
               data: mercuriusWebNotifier.githubLatestRelease.body ??
-                  '# 啊啦\n\n你好像来到了奇怪的地方，要不回去先刷新一下？\n',
+                  '##### 啊啦\n\n你好像来到了奇怪的地方，要不回去先刷新一下？\n',
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => _showOptionMenu(context),
-            mini: true,
-            child: const Icon(Icons.download_rounded),
+          floatingActionButton: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FloatingActionButton(
+                onPressed: () =>
+                    mercuriusWebNotifier.refetchGithubLatestRelease(),
+                mini: true,
+                child: const Icon(Icons.refresh_rounded),
+              ),
+              FloatingActionButton(
+                onPressed: () => _showOptionMenu(context),
+                mini: true,
+                child: const Icon(Icons.download_rounded),
+              ),
+            ],
           ),
         );
       },

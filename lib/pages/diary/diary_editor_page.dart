@@ -46,7 +46,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   }
 
   /// TIPS: 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017
-  /// FIXME: 选至末尾问题 https://github.com/singerdmx/flutter-quill/issues/1098
+  /// TIPS: 选至末尾问题 https://github.com/singerdmx/flutter-quill/issues/1098
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -446,7 +446,6 @@ class _DiaryWeatherSelectorDialogWidgetState
             children: [
               Icon(value),
               Text(
-                /// TIPS: 这里可以使用 ! 的原因是 DiaryConstance.weatherMap 和 DiaryConstance.weatherCommitMap 的 key 相同
                 DiaryConstance.weatherCommitMap[key]!,
               ),
             ],

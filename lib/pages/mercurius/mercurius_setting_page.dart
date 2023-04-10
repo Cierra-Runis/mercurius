@@ -10,9 +10,9 @@ class MercuriusSettingPage extends StatelessWidget {
         title: const Text('设定'),
       ),
       body: const Center(
-        child: MercuriusList(
+        child: MercuriusModifiedList(
           children: [
-            MercuriusListSection(
+            MercuriusModifiedListSection(
               children: [
                 _ThemeSelectListItem(),
                 _VibrationSelectListItem(),
@@ -32,7 +32,7 @@ class _ThemeSelectListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<MercuriusProfileNotifier>(
       builder: (context, mercuriusProfileNotifier, child) {
-        return MercuriusListItem(
+        return MercuriusModifiedListItem(
           iconData: Icons.dark_mode_rounded,
           titleText: '深色模式',
           detailText: mercuriusProfileNotifier.profile.themeMode! ==
@@ -51,7 +51,7 @@ class _ThemeSelectListItem extends StatelessWidget {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return const ThemeSelectorWidget();
+        return const MercuriusOriginalThemeSelectorWidget();
       },
     );
   }
@@ -71,12 +71,10 @@ class _VibrationSelectListItem extends StatelessWidget {
               mercuriusProfileNotifier.profile.buttonVibration! ? '开启' : '关闭',
           value: mercuriusProfileNotifier.profile.buttonVibration!,
           onChanged: (value) {
-            MercuriusKit.vibration();
             mercuriusProfileNotifier.changeProfile(
-              mercuriusProfileNotifier.profile
-                ..buttonVibration =
-                    !mercuriusProfileNotifier.profile.buttonVibration!,
+              mercuriusProfileNotifier.profile..buttonVibration = value,
             );
+            MercuriusKit.vibration();
           },
         );
       },

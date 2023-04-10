@@ -2,11 +2,10 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
-class DiaryListCardWidget extends StatelessWidget {
-  const DiaryListCardWidget({
+class DiaryListViewCardWidget extends StatelessWidget {
+  const DiaryListViewCardWidget({
     Key? key,
     required this.diary,
-    required this.diaries,
     this.dayWidget,
     this.weekdayWidget,
     this.latestEditTimeWidget,
@@ -18,8 +17,6 @@ class DiaryListCardWidget extends StatelessWidget {
   }) : super(key: key);
 
   final Diary diary;
-  final List<Diary> diaries;
-
   final Widget? dayWidget;
   final Widget? weekdayWidget;
   final Widget? latestEditTimeWidget;
@@ -34,18 +31,23 @@ class DiaryListCardWidget extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.all(10.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(24.0),
       ),
       child: InkWell(
         onTap: enable
             ? () async {
                 MercuriusKit.vibration();
-                _showDiaryPresentPageView(context, diary, diaries);
+                await showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) => DiaryPageViewWidget(
+                    diary: diary,
+                  ),
+                );
               }
             : null,
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(24.0),
         child: SizedBox(
-          height: 76,
+          height: 80,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -144,82 +146,58 @@ class DiaryListCardWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _showDiaryPresentPageView(
-    BuildContext context,
-    Diary diary,
-    List<Diary> diaries,
-  ) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return DiaryPresentPageView(
-          diary: diary,
-          diaries: diaries,
-        );
-      },
-    );
-  }
+  factory DiaryListViewCardWidget.getPlaceHolder(BuildContext context) {
+    Color highlightColor =
+        Theme.of(context).colorScheme.outline.withOpacity(0.38);
+    Color baseColor = Theme.of(context).colorScheme.surface;
 
-  static DiaryListCardWidget getPlaceHolder(BuildContext context) {
-    Color highlightColor = Theme.of(context).brightness == Brightness.dark
-        ? Theme.of(context).colorScheme.outline
-        : Theme.of(context).colorScheme.outlineVariant;
-    Color baseColor = Theme.of(context).brightness == Brightness.dark
-        ? Theme.of(context).colorScheme.outlineVariant
-        : Theme.of(context).colorScheme.outline;
-
-    return DiaryListCardWidget(
+    return DiaryListViewCardWidget(
       diary: const Diary(),
-      dayWidget: MercuriusFadeShimmerWidget(
+      dayWidget: MercuriusModifiedFadeShimmerWidget(
         width: 24,
         height: 20,
         radius: 6,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      weatherWidget: MercuriusFadeShimmerWidget(
-        width: 16,
-        height: 16,
-        radius: 8,
+      weatherWidget: MercuriusModifiedFadeShimmerWidget.round(
+        size: 16,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      weekdayWidget: MercuriusFadeShimmerWidget(
+      weekdayWidget: MercuriusModifiedFadeShimmerWidget(
         width: 30,
         height: 10,
         radius: 5,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      moodWidget: MercuriusFadeShimmerWidget(
-        width: 16,
-        height: 16,
-        radius: 8,
+      moodWidget: MercuriusModifiedFadeShimmerWidget.round(
+        size: 16,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      createDateTimeWidget: MercuriusFadeShimmerWidget(
+      createDateTimeWidget: MercuriusModifiedFadeShimmerWidget(
         width: 72,
         height: 16,
         radius: 8,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      latestEditTimeWidget: MercuriusFadeShimmerWidget(
+      latestEditTimeWidget: MercuriusModifiedFadeShimmerWidget(
         width: 32,
         height: 10,
         radius: 5,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      contentJsonStringWidget: MercuriusFadeShimmerWidget(
+      contentJsonStringWidget: MercuriusModifiedFadeShimmerWidget(
         width: 160,
         height: 12,
         radius: 6,
         highlightColor: highlightColor,
         baseColor: baseColor,
       ),
-      diaries: const [],
       enable: false,
     );
   }

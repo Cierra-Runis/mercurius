@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class ThemeSelectorWidget extends StatelessWidget {
-  const ThemeSelectorWidget({super.key});
+class MercuriusOriginalThemeSelectorWidget extends StatelessWidget {
+  const MercuriusOriginalThemeSelectorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

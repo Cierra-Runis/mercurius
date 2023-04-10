@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusBottomBarWidget extends StatelessWidget {
-  const MercuriusBottomBarWidget({
+class MercuriusModifiedBottomBarWidget extends StatelessWidget {
+  const MercuriusModifiedBottomBarWidget({
     Key? key,
     required this.items,
     this.currentIndex = 0,
@@ -165,7 +165,7 @@ class MercuriusBottomBarWidget extends StatelessWidget {
   }
 }
 
-/// A tab to display in a [MercuriusBottomBarWidget]
+/// A tab to display in a [MercuriusModifiedBottomBarWidget]
 class MercuriusBottomBarItem {
   /// An icon to display.
   final Widget icon;

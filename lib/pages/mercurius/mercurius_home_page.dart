@@ -88,7 +88,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
         ),
         title: _currentSearchBarMode
             ? const DiarySearchBarWidget()
-            : const MercuriusTitleWidget(),
+            : const MercuriusOriginalTitleWidget(),
         centerTitle: true,
         actions: [
           IconButton(

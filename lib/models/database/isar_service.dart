@@ -17,7 +17,7 @@ class IsarService {
   /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
   Stream<List<Diary>> listenToDiariesContains(
     String contains, {
-    int delayed = 500,
+    int delayed = 300,
   }) async* {
     final isar = await db;
     await Future.delayed(Duration(milliseconds: delayed), () {});
@@ -26,25 +26,6 @@ class IsarService {
         .contentJsonStringContains(contains)
         .sortByCreateDateTimeDesc()
         .watch(fireImmediately: true);
-  }
-
-  /// 获取比 `dateTime` 久远的 `limit` 个含有 `contains` 字符串的日记
-  Future<List<Diary>> getDiariesContainsOlderThan(
-    String contains,
-    DateTime dateTime, {
-    int limit = 20,
-    int delayed = 500,
-  }) async {
-    final isar = await db;
-    await Future.delayed(Duration(milliseconds: delayed), () {});
-    return isar.diarys
-        .filter()
-        .contentJsonStringContains(contains)
-        .and()
-        .createDateTimeLessThan(dateTime)
-        .sortByCreateDateTimeDesc()
-        .limit(limit)
-        .findAll();
   }
 
   /// 获取所有日记

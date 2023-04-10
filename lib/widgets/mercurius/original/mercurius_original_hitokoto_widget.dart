@@ -8,14 +8,16 @@ const String _connectErrorJsonString =
 const String _responseErrorJsonString =
     '{"id":8035,"uuid":"d4ea5c57-bd64-4b9c-81a1-3035bc059b43","hitokoto":"没有BUG的代码是不完美的！[请求失败]","type":"l","from":"Sodium_Sulfate","from_who":"Sodium_Sulfate","creator":"Sodium_Sulfate","creator_uid":12666,"reviewer":1,"commit_from":"web","created_at":"1658485841","length":14}';
 
-class HiToKoToWidget extends StatefulWidget {
-  const HiToKoToWidget({super.key});
+class MercuriusOriginalHiToKoToWidget extends StatefulWidget {
+  const MercuriusOriginalHiToKoToWidget({super.key});
 
   @override
-  State<HiToKoToWidget> createState() => _HiToKoToWidgetState();
+  State<MercuriusOriginalHiToKoToWidget> createState() =>
+      _MercuriusOriginalHiToKoToWidgetState();
 }
 
-class _HiToKoToWidgetState extends State<HiToKoToWidget> {
+class _MercuriusOriginalHiToKoToWidgetState
+    extends State<MercuriusOriginalHiToKoToWidget> {
   late Future<HiToKoTo> _futureHiToKoTo;
   late Timer _timer;
 

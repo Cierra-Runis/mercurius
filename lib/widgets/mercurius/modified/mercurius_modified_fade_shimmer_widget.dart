@@ -2,7 +2,20 @@ import 'package:mercurius/index.dart';
 
 enum FadeTheme { light, dark }
 
-class MercuriusFadeShimmerWidget extends StatefulWidget {
+class MercuriusModifiedFadeShimmerWidget extends StatefulWidget {
+  const MercuriusModifiedFadeShimmerWidget({
+    Key? key,
+    this.millisecondsDelay = 0,
+    this.radius = 0,
+    this.fadeTheme,
+    this.highlightColor,
+    this.baseColor,
+    required this.width,
+    required this.height,
+  })  : assert(
+            (highlightColor != null && baseColor != null) || fadeTheme != null),
+        super(key: key);
+
   final Color? highlightColor;
   final Color? baseColor;
   final double radius;
@@ -16,27 +29,15 @@ class MercuriusFadeShimmerWidget extends StatefulWidget {
   /// delay time before update the color, use this to make loading items animate follow each other instead of parallel, check the example for demo.
   final int millisecondsDelay;
 
-  const MercuriusFadeShimmerWidget(
-      {Key? key,
-      this.millisecondsDelay = 0,
-      this.radius = 0,
-      this.fadeTheme,
-      this.highlightColor,
-      this.baseColor,
-      required this.width,
-      required this.height})
-      : assert(
-            (highlightColor != null && baseColor != null) || fadeTheme != null),
-        super(key: key);
-
   /// use this to create a round loading widget
-  factory MercuriusFadeShimmerWidget.round(
-          {required double size,
-          Color? highlightColor,
-          int millisecondsDelay = 0,
-          Color? baseColor,
-          FadeTheme? fadeTheme}) =>
-      MercuriusFadeShimmerWidget(
+  factory MercuriusModifiedFadeShimmerWidget.round({
+    required double size,
+    Color? highlightColor,
+    int millisecondsDelay = 0,
+    Color? baseColor,
+    FadeTheme? fadeTheme,
+  }) =>
+      MercuriusModifiedFadeShimmerWidget(
         height: size,
         width: size,
         radius: size / 2,
@@ -47,16 +48,18 @@ class MercuriusFadeShimmerWidget extends StatefulWidget {
       );
 
   @override
-  State<MercuriusFadeShimmerWidget> createState() =>
-      _MercuriusFadeShimmerWidgetState();
+  State<MercuriusModifiedFadeShimmerWidget> createState() =>
+      _MercuriusModifiedFadeShimmerWidgetState();
 }
 
-class _MercuriusFadeShimmerWidgetState
-    extends State<MercuriusFadeShimmerWidget> {
-  static final isHighLightStream =
-      Stream<bool>.periodic(const Duration(seconds: 1), (x) => x % 2 == 0)
-          .asBroadcastStream();
-  bool isHighLight = true;
+class _MercuriusModifiedFadeShimmerWidgetState
+    extends State<MercuriusModifiedFadeShimmerWidget> {
+  static final isHighLightStream = Stream<bool>.periodic(
+    const Duration(seconds: 1),
+    (x) => x % 2 == 0,
+  ).asBroadcastStream();
+
+  bool _isHighLight = true;
   late StreamSubscription sub;
 
   Color get highLightColor {
@@ -102,17 +105,19 @@ class _MercuriusFadeShimmerWidgetState
   @override
   void initState() {
     super.initState();
-    sub = isHighLightStream.listen((_isHighLight) {
-      if (widget.millisecondsDelay != 0) {
-        Future.delayed(Duration(milliseconds: widget.millisecondsDelay), () {
-          isHighLight = _isHighLight;
-          safeSetState();
-        });
-      } else {
-        isHighLight = _isHighLight;
+    sub = isHighLightStream.listen(
+      (isHighLight) {
+        if (widget.millisecondsDelay != 0) {
+          Future.delayed(Duration(milliseconds: widget.millisecondsDelay), () {
+            _isHighLight = isHighLight;
+          });
+        } else {
+          _isHighLight = isHighLight;
+        }
+
         safeSetState();
-      }
-    });
+      },
+    );
   }
 
   @override
@@ -123,7 +128,7 @@ class _MercuriusFadeShimmerWidgetState
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
-        color: isHighLight ? highLightColor : baseColor,
+        color: _isHighLight ? highLightColor : baseColor,
         borderRadius: BorderRadius.circular(widget.radius),
       ),
     );
