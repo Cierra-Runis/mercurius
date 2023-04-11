@@ -25,7 +25,7 @@
 
 ## 🌕️ 常暗模式
 
-<p float="left">
+<p>
   <img width="400" src="./repository_icon/black_1.jpg" alt="black_1" />
   <img width="400" src="./repository_icon/black_2.jpg" alt="black_2" />
   <img width="400" src="./repository_icon/black_3.jpg" alt="black_3" />
@@ -36,7 +36,7 @@
 
 ## 🌞️ 常亮模式
 
-<p float="left">
+<p>
   <img width="400" src="./repository_icon/white_1.jpg" alt="white_1" />
   <img width="400" src="./repository_icon/white_2.jpg" alt="white_2" />
   <img width="400" src="./repository_icon/white_3.jpg" alt="white_3" />
