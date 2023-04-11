@@ -5,7 +5,6 @@ class MercuriusOriginalThemeSelectorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// 利用 `provide` 包进行状态管理
     return Consumer<MercuriusProfileNotifier>(
       builder: (_, mercuriusProfileNotifier, child) {
         return AlertDialog(

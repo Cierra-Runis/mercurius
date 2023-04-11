@@ -53,7 +53,15 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                     mercuriusSudokuNotifier.showedAnswer ||
                     mercuriusSudokuNotifier.won
                 ? null
-                : _showSudokuNumSelectorWidget(context, rowIndex, columnIndex),
+                : showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SudokuNumSelectorWidget(
+                        row: rowIndex,
+                        column: columnIndex,
+                      );
+                    },
+                  ),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                 _buttonColor(context, rowIndex, columnIndex),
@@ -209,19 +217,6 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
     );
   }
 
-  Future<void> _showSudokuNumSelectorWidget(
-      BuildContext context, int rowIndex, int columnIndex) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return SudokuNumSelectorWidget(
-          row: rowIndex,
-          column: columnIndex,
-        );
-      },
-    );
-  }
-
   Future<void> _showOptionMenu(BuildContext context) {
     return showModalBottomSheet<void>(
       context: context,
@@ -261,20 +256,16 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                 leading: const Icon(Icons.handyman_sharp),
                 title: const Text('更改难度'),
                 trailing: const Icon(Icons.navigate_next),
-                onTap: () => _showSudokuDifficultySelectorWidget(context),
+                onTap: () => showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const SudokuDifficultySelectorWidget();
+                  },
+                ),
               ),
             ],
           ),
         );
-      },
-    );
-  }
-
-  Future<void> _showSudokuDifficultySelectorWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const SudokuDifficultySelectorWidget();
       },
     );
   }

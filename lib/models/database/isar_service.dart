@@ -46,16 +46,16 @@ class IsarService {
 
     await isar.writeTxn(() async {
       final success = await isar.diarys.delete(id);
-      DevTools.printLog('日记删除情况 $success');
+      MercuriusKit.printLog('日记删除情况 $success');
     });
   }
 
   /// 打开数据库
   Future<Isar> openDB() async {
-    DevTools.printLog('打开数据库中');
+    MercuriusKit.printLog('打开数据库中');
 
     if (Isar.instanceNames.isEmpty) {
-      DevTools.printLog(
+      MercuriusKit.printLog(
         '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 mercurius_database 中',
       );
       return await Isar.open(
@@ -70,7 +70,7 @@ class IsarService {
       );
     }
 
-    DevTools.printLog('数据库 ${Isar.instanceNames} 已被打开');
+    MercuriusKit.printLog('数据库 ${Isar.instanceNames} 已被打开');
     return Future.value(Isar.getInstance('mercurius_database'));
   }
 }

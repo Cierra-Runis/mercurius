@@ -14,7 +14,12 @@ class MercuriusMorePage extends StatelessWidget {
               onPressed: () {
                 MercuriusKit.vibration();
                 if (mercuriusProfileNotifier.profile.user == null) {
-                  _showDialogLoginWidget(context);
+                  showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const DialogLoginWidget();
+                    },
+                  );
                 } else {
                   Navigator.push(
                     context,
@@ -71,7 +76,12 @@ class MercuriusMorePage extends StatelessWidget {
                                   .profile.currentVersion !=
                               mercuriusWebNotifier.githubLatestRelease.tag_name,
                           titleText: '关于',
-                          onTap: () => _showDialogAboutWidget(context),
+                          onTap: () => showDialog<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const DialogAboutWidget();
+                            },
+                          ),
                         );
                       },
                     ),
@@ -86,24 +96,6 @@ class MercuriusMorePage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Future<void> _showDialogAboutWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const DialogAboutWidget();
-      },
-    );
-  }
-
-  Future<void> _showDialogLoginWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const DialogLoginWidget();
-      },
     );
   }
 }

@@ -7,12 +7,17 @@ class MercuriusWebNotifier extends ChangeNotifier {
   GithubLatestRelease githubLatestRelease = GithubLatestRelease()
     ..tag_name = mercuriusProfileNotifier.profile.currentVersion;
 
+  void init() {
+    MercuriusKit.printLog('GithubLatestRelease 初始化中');
+    _fetchGithubLatestRelease();
+  }
+
   void _fetchGithubLatestRelease() async {
     Response response;
     try {
       response = await Dio().get(_url);
     } catch (e) {
-      DevTools.printLog('GithubLatestRelease 连接失败');
+      MercuriusKit.printLog('GithubLatestRelease 连接失败');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(
           '{"tag_name": "${mercuriusProfileNotifier.profile.currentVersion}"}',
@@ -23,15 +28,15 @@ class MercuriusWebNotifier extends ChangeNotifier {
       return;
     }
 
-    DevTools.printLog('GithubLatestRelease 连接成功');
+    MercuriusKit.printLog('GithubLatestRelease 连接成功');
 
     if (response.statusCode == 200) {
-      DevTools.printLog('GithubLatestRelease 请求成功');
+      MercuriusKit.printLog('GithubLatestRelease 请求成功');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(response.toString()),
       );
     } else {
-      DevTools.printLog('GithubLatestRelease 请求失败');
+      MercuriusKit.printLog('GithubLatestRelease 请求失败');
       githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(
           '{"tag_name": "${mercuriusProfileNotifier.profile.currentVersion}"}',
@@ -46,10 +51,5 @@ class MercuriusWebNotifier extends ChangeNotifier {
     _fetchGithubLatestRelease();
     notifyListeners();
     super.notifyListeners();
-  }
-
-  void init() {
-    DevTools.printLog('GithubLatestRelease 初始化中');
-    _fetchGithubLatestRelease();
   }
 }

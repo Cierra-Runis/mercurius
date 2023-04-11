@@ -14,15 +14,15 @@ class MercuriusProfileNotifier extends ChangeNotifier {
   Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    DevTools.printLog('程序初始化中');
+    MercuriusKit.printLog('程序初始化中');
 
     /// 进行调试工具的初始化
-    DevTools.init();
+    MercuriusKit.init();
 
     _preferences = await SharedPreferences.getInstance();
     if (_preferences.getString('profile') == null) {
       _preferences.setString('profile', jsonEncode(profile));
-      DevTools.printLog('程序完全初次运行，创建 profile 为 ${jsonEncode(profile)}');
+      MercuriusKit.printLog('程序完全初次运行，创建 profile 为 ${jsonEncode(profile)}');
     }
 
     profile = Profile.fromJson(jsonDecode(_preferences.getString('profile')!));
@@ -34,7 +34,7 @@ class MercuriusProfileNotifier extends ChangeNotifier {
     profile.currentVersion =
         'v${_packageInfo.version}+${_packageInfo.buildNumber}';
 
-    DevTools.printLog('程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
+    MercuriusKit.printLog('程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
     _saveProfile();
 
     /// 进入 `mercuriusWebNotifier` 的初始化
@@ -62,6 +62,6 @@ class MercuriusProfileNotifier extends ChangeNotifier {
 
   void _saveProfile() async {
     _preferences.setString('profile', jsonEncode(profile));
-    DevTools.printLog('保存 profile 为 ${jsonEncode(profile)}');
+    MercuriusKit.printLog('保存 profile 为 ${jsonEncode(profile)}');
   }
 }

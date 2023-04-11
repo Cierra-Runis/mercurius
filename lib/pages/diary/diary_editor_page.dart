@@ -240,8 +240,14 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 flutter_quill.QuillCustomButton(
                   icon: Icons.mood,
                   onTap: () async {
-                    Diary? newDiary = await _showDiaryMoodSelectorDialogWidget(
-                        context, _currentDiary);
+                    Diary? newDiary = await showDialog<Diary>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return DiaryMoodSelectorWidget(
+                          diary: _currentDiary,
+                        );
+                      },
+                    );
                     setState(() {
                       _currentDiary = newDiary ?? _currentDiary;
                     });
@@ -250,10 +256,13 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
                 flutter_quill.QuillCustomButton(
                   icon: Icons.cloud,
                   onTap: () async {
-                    Diary? newDiary =
-                        await _showDiaryWeatherSelectorDialogWidget(
-                      context,
-                      _currentDiary,
+                    Diary? newDiary = await showDialog<Diary>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return DiaryWeatherSelectorDialogWidget(
+                          diary: _currentDiary,
+                        );
+                      },
                     );
                     setState(() {
                       _currentDiary = newDiary ?? _currentDiary;
@@ -288,219 +297,6 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Future<Diary?> _showDiaryMoodSelectorDialogWidget(
-    BuildContext context,
-    Diary diary,
-  ) {
-    return showDialog<Diary>(
-      context: context,
-      builder: (BuildContext context) {
-        return _DiaryMoodSelectorDialogWidget(diary: diary);
-      },
-    );
-  }
-
-  Future<Diary?> _showDiaryWeatherSelectorDialogWidget(
-    BuildContext context,
-    Diary diary,
-  ) {
-    return showDialog<Diary>(
-      context: context,
-      builder: (BuildContext context) {
-        return _DiaryWeatherSelectorDialogWidget(diary: diary);
-      },
-    );
-  }
-}
-
-class _DiaryMoodSelectorDialogWidget extends StatefulWidget {
-  /// 自定义组件
-  const _DiaryMoodSelectorDialogWidget({
-    Key? key,
-    required this.diary,
-  }) : super(key: key);
-
-  final Diary diary;
-
-  @override
-  State<_DiaryMoodSelectorDialogWidget> createState() =>
-      _DiaryMoodSelectorDialogWidgetState();
-}
-
-class _DiaryMoodSelectorDialogWidgetState
-    extends State<_DiaryMoodSelectorDialogWidget> {
-  late Diary _currentDiary;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _currentDiary = widget.diary;
-    });
-  }
-
-  List<Widget> _listAllMood() {
-    List<Widget> buttonList = [];
-    DiaryConstance.moodMap.forEach(
-      (key, value) => buttonList.add(
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(
-            Diary.copyFrom(_currentDiary, mood: key),
-          ),
-          icon: Column(
-            children: [Icon(value), Text(key)],
-          ),
-          color: _currentDiary.mood != key
-              ? null
-              : Theme.of(context).colorScheme.primary,
-        ),
-      ),
-    );
-    return buttonList;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('现在心情如何'),
-          Text(
-            'ねぇ、今どんな気持ち',
-            style: TextStyle(
-              fontSize: 10,
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-        ],
-      ),
-      content: SizedBox(
-        width: double.minPositive,
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Center(
-              child: Wrap(
-                spacing: 16,
-                direction: Axis.horizontal,
-                children: _listAllMood(),
-              ),
-            ),
-          ],
-        ),
-      ),
-      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-      actions: [
-        TextButton(
-          onPressed: () {
-            MercuriusKit.vibration();
-            Navigator.of(context).pop();
-          },
-          child: const Text('返回'),
-        ),
-      ],
-    );
-  }
-}
-
-class _DiaryWeatherSelectorDialogWidget extends StatefulWidget {
-  /// 自定义组件
-  const _DiaryWeatherSelectorDialogWidget({
-    Key? key,
-    required this.diary,
-  }) : super(key: key);
-
-  final Diary diary;
-
-  @override
-  State<_DiaryWeatherSelectorDialogWidget> createState() =>
-      _DiaryWeatherSelectorDialogWidgetState();
-}
-
-class _DiaryWeatherSelectorDialogWidgetState
-    extends State<_DiaryWeatherSelectorDialogWidget> {
-  late Diary _currentDiary;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _currentDiary = widget.diary;
-    });
-  }
-
-  List<Widget> _listAllWeather() {
-    List<Widget> buttonList = [];
-    DiaryConstance.weatherMap.forEach(
-      (key, value) => buttonList.add(
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(
-            Diary.copyFrom(_currentDiary, weather: key),
-          ),
-          icon: Column(
-            children: [
-              Icon(value),
-              Text(
-                DiaryConstance.weatherCommitMap[key]!,
-              ),
-            ],
-          ),
-          color: _currentDiary.weather != key
-              ? null
-              : Theme.of(context).colorScheme.primary,
-        ),
-      ),
-    );
-    return buttonList;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('现在天气如何'),
-          Text(
-            '今日もいい天気',
-            style: TextStyle(
-              fontSize: 10,
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-        ],
-      ),
-      content: SizedBox(
-        width: double.minPositive,
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Center(
-              child: Wrap(
-                spacing: 16,
-                direction: Axis.horizontal,
-                children: _listAllWeather(),
-              ),
-            ),
-          ],
-        ),
-      ),
-      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-      actions: [
-        TextButton(
-          onPressed: () {
-            MercuriusKit.vibration();
-            Navigator.of(context).pop();
-          },
-          child: const Text('返回'),
-        ),
-      ],
     );
   }
 }

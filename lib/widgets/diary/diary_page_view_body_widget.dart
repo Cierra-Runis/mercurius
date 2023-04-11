@@ -79,7 +79,7 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                               children: [
                                 Icon(
                                   size: 8,
-                                  QWeatherIcon.getIconById(
+                                  QWeatherIcon.getIconDataById(
                                     int.parse(_currentDiary.weather),
                                   ),
                                 ),

@@ -13,6 +13,28 @@ class MercuriusPositionNotifier extends ChangeNotifier {
   CachePosition cachePosition = CachePosition();
   WeatherBody weatherBody = WeatherBody();
 
+  /// 初始化
+  void init() {
+    MercuriusKit.printLog('mercuriusPositionNotifier 初始化中');
+    CachePosition? cachePosition =
+        mercuriusProfileNotifier.profile.cache.cachePosition;
+    if (cachePosition != null) {
+      Duration duration = DateTime.now().difference(cachePosition.dateTime);
+      update(duration.inDays > 5);
+    } else {
+      update(false);
+    }
+    notifyListeners();
+    super.notifyListeners();
+  }
+
+  /// 更新
+  void update(bool force) {
+    _getPosition(force).then((value) => _getQWeather());
+    notifyListeners();
+    super.notifyListeners();
+  }
+
   /// 获取当前位置
   Future<void> _getPosition(bool force) async {
     if (mercuriusProfileNotifier.profile.cache.cachePosition != null &&
@@ -39,11 +61,11 @@ class MercuriusPositionNotifier extends ChangeNotifier {
     try {
       response = await Dio().get(_aMapUrl);
     } catch (e) {
-      DevTools.printLog('aMap 连接失败');
+      MercuriusKit.printLog('aMap 连接失败');
       return newCachePosition;
     }
 
-    DevTools.printLog('aMap 连接成功');
+    MercuriusKit.printLog('aMap 连接成功');
 
     dynamic data;
     if (response.statusCode == 200) {
@@ -51,13 +73,13 @@ class MercuriusPositionNotifier extends ChangeNotifier {
       if (data['province'] == null ||
           data['city'] == null ||
           data['rectangle'] == null) {
-        DevTools.printLog('获取 aMap 失败');
+        MercuriusKit.printLog('获取 aMap 失败');
         return newCachePosition;
       } else {
-        DevTools.printLog('获取 aMap 成功，且为 ${jsonEncode(data)}');
+        MercuriusKit.printLog('获取 aMap 成功，且为 ${jsonEncode(data)}');
       }
     } else {
-      DevTools.printLog('获取 aMap 失败');
+      MercuriusKit.printLog('获取 aMap 失败');
       return newCachePosition;
     }
 
@@ -85,46 +107,25 @@ class MercuriusPositionNotifier extends ChangeNotifier {
       );
     } catch (e) {
       weatherBody.now!.icon = '2028';
-      DevTools.printLog('qWeather 连接失败');
+      MercuriusKit.printLog('qWeather 连接失败');
       notifyListeners();
       super.notifyListeners();
       return;
     }
 
-    DevTools.printLog('qWeather 连接成功');
+    MercuriusKit.printLog('qWeather 连接成功');
 
     if (response.statusCode == 200) {
       weatherBody = WeatherBody.fromJson(jsonDecode(response.toString()));
-      DevTools.printLog('获取 qWeather 成功，且为 ${jsonEncode(weatherBody)}');
+      MercuriusKit.printLog('获取 qWeather 成功，且为 ${jsonEncode(weatherBody)}');
     } else {
       weatherBody.now!.icon = '2028';
-      DevTools.printLog('获取 qWeather 失败');
+      MercuriusKit.printLog('获取 qWeather 失败');
       notifyListeners();
       super.notifyListeners();
       return;
     }
 
-    notifyListeners();
-    super.notifyListeners();
-  }
-
-  /// 更新
-  void update(bool force) {
-    _getPosition(force).then((value) => _getQWeather());
-    notifyListeners();
-    super.notifyListeners();
-  }
-
-  void init() {
-    DevTools.printLog('mercuriusPositionNotifier 初始化中');
-    CachePosition? cachePosition =
-        mercuriusProfileNotifier.profile.cache.cachePosition;
-    if (cachePosition != null) {
-      Duration duration = DateTime.now().difference(cachePosition.dateTime);
-      update(duration.inDays > 5);
-    } else {
-      update(false);
-    }
     notifyListeners();
     super.notifyListeners();
   }

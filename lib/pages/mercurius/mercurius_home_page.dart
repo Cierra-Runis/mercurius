@@ -63,7 +63,12 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
   void _appBarLeftButtonOnPressed() {
     MercuriusKit.vibration();
     if (mercuriusProfileNotifier.profile.user == null) {
-      _showLoginDialogWidget(context);
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return const DialogLoginWidget();
+        },
+      );
     } else {
       Navigator.push(
         context,
@@ -116,15 +121,6 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
         child: const Icon(UniconsLine.diary),
       ),
       drawer: const DevLogDrawerWidget(),
-    );
-  }
-
-  Future<void> _showLoginDialogWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const DialogLoginWidget();
-      },
     );
   }
 }

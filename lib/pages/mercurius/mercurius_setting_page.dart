@@ -41,17 +41,13 @@ class _ThemeSelectListItem extends StatelessWidget {
               : mercuriusProfileNotifier.profile.themeMode! == ThemeMode.dark
                   ? '常暗模式'
                   : '常亮模式',
-          onTap: () => _showThemeSelectorWidget(context),
+          onTap: () => showDialog<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return const MercuriusOriginalThemeSelectorWidget();
+            },
+          ),
         );
-      },
-    );
-  }
-
-  Future<void> _showThemeSelectorWidget(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return const MercuriusOriginalThemeSelectorWidget();
       },
     );
   }

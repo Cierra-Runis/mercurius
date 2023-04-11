@@ -1,8 +1,79 @@
 import 'package:mercurius/index.dart';
 
-/// 基础常数
+/// Mercurius 基础常数
 class MercuriusConstance {
+  /// 联系 url
   static const String contactUrl = 'https://github.com/Cierra-Runis/';
+
+  /// 亮色模式下的颜色集
+  static const lightColorScheme = ColorScheme(
+    brightness: Brightness.light,
+    primary: Color(0xFF0061A2), // 普通按钮前景色
+    onPrimary: Color(0xFFFFFFFF),
+    primaryContainer: Color(0xFFD1E4FF), // 浮动按钮背景色
+    onPrimaryContainer: Color(0xFF001D36),
+    secondary: Color(0xFF535F70),
+    onSecondary: Color(0xFFFFFFFF),
+    secondaryContainer: Color(0xFFD6E4F7),
+    onSecondaryContainer: Color(0xFF0F1C2B),
+    tertiary: Color(0xFF6A5778),
+    onTertiary: Color(0xFFFFFFFF),
+    tertiaryContainer: Color(0xFFF2DAFF),
+    onTertiaryContainer: Color(0xFF251432),
+    error: Color(0xFFBA1A1A),
+    errorContainer: Color(0xFFFFDAD6),
+    onError: Color(0xFFFFFFFF),
+    onErrorContainer: Color(0xFF410002),
+    background: Color(0xFFFDFCFF), // 主要容器背景色
+    onBackground: Color(0xFF1A1C1E),
+    surface: Color(0xFFFDFCFF), // 标题栏和卡片背景颜色
+    onSurface: Color(0xFF1A1C1E), // 最基础字体色
+    surfaceVariant: Color(0xFFDFE2EB),
+    onSurfaceVariant: Color(0xFF42474E),
+    outline: Color(0x8A000000), // 下划线，选项小字，你记颜色
+    onInverseSurface: Color(0xFFF1F0F4),
+    inverseSurface: Color(0xFF2F3033),
+    inversePrimary: Color(0xFF9DCAFF),
+    shadow: Color(0xFF000000),
+    surfaceTint: Color(0xFFFDFCFF),
+    outlineVariant: Color(0xFFC3C7CF),
+    scrim: Color(0xFF000000),
+  );
+
+  /// 暗色模式下的颜色集
+  static const darkColorScheme = ColorScheme(
+    brightness: Brightness.dark,
+    primary: Color(0xFFFFB787), // 普通按钮前景色
+    onPrimary: Color(0xFF502400),
+    primaryContainer: Color(0xFF363636), // 浮动按钮背景色
+    onPrimaryContainer: Color(0xCCE1E1E1), // 浮动按钮前景色
+    secondary: Color(0xFFE5BFA8),
+    onSecondary: Color(0xFF422B1B),
+    secondaryContainer: Color(0xFF5B4130),
+    onSecondaryContainer: Color(0xFFFFDCC7),
+    tertiary: Color(0xFFCACA93),
+    onTertiary: Color(0xFF31320A),
+    tertiaryContainer: Color(0xFF48491F),
+    onTertiaryContainer: Color(0xFFE6E6AD),
+    error: Color(0xFFFFB4AB),
+    errorContainer: Color(0xFF93000A),
+    onError: Color(0xFF690005),
+    onErrorContainer: Color(0xFFFFDAD6),
+    background: Color(0xFF242424), // 主要容器背景色
+    onBackground: Color(0xFFECE0DA),
+    surface: Color(0xFF303030), // 标题栏和卡片背景颜色
+    onSurface: Color(0xFFECE0DA), // 最基础字体色
+    surfaceVariant: Color(0xFF52443C),
+    onSurfaceVariant: Color(0xFFD7C3B8),
+    outline: Color(0x8AFFFFFF), // 下划线，选项小字，你记颜色
+    onInverseSurface: Color(0xFF201A17),
+    inverseSurface: Color(0xFFECE0DA),
+    inversePrimary: Color(0xFF964900),
+    shadow: Color(0xFF000000),
+    surfaceTint: Color(0xFF181818),
+    outlineVariant: Color(0xFF303030),
+    scrim: Color(0xFF000000),
+  );
 }
 
 /// 日记相关常数
@@ -77,10 +148,21 @@ class SudokuConstance {
   };
 }
 
+/// `API` 所需的 `key`
+class ApiKeyConstance {
+  /// 和风天气 `api` 所需开发者 `key`
+  static const String qWeatherKey = 'a13fc8e191d14cc0930bc07c6660d900';
+
+  /// 高德 `api` 所需开发者 `key`
+  static const String aMapKey = 'eb5254d31736ca5298ad4d68fae76c09';
+}
+
 /// 用户协议相关常数
 class AgreementContentConstance {
+  /// 协议更新时间
   static const String agreementContentUpdateDate = '更新于 2022 年 11 月 18 日';
 
+  /// 协议内容
   static const String agreementContent = '''
 欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。
 
@@ -173,8 +255,10 @@ class AgreementContentConstance {
 
 /// 引入声明相关常数
 class DeclarationContentConstance {
+  /// 协议更新时间
   static const String declarationContentUpdateDate = '更新于 2023 年 1 月 14 日';
 
+  /// 协议内容
   static const String declarationContent = '''
 欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。
 
@@ -188,6 +272,7 @@ class DeclarationContentConstance {
 2. Mercurius 引入了 unicons 作为 Mercurius 的次要图标。[License](unicons)
 ''';
 
+  /// 协议明细
   static const Map license = {
     'Saira': '''
 Copyright 2020 The Saira Project Authors (https://github.com/Omnibus-Type/Saira)
@@ -285,13 +370,13 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 ''',
     'Material_Icons': '''
-   Apache License
-   Version 2.0, January 2004
-   http://www.apache.org/licenses/
+    Apache License
+    Version 2.0, January 2004
+    http://www.apache.org/licenses/
 
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
-   1. Definitions.
+    1. Definitions.
 
       "License" shall mean the terms and conditions for use, reproduction,
       and distribution as defined by Sections 1 through 9 of this document.
@@ -350,14 +435,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       on behalf of whom a Contribution has been received by Licensor and
       subsequently incorporated within the Work.
 
-   2. Grant of Copyright License. Subject to the terms and conditions of
+    2. Grant of Copyright License. Subject to the terms and conditions of
       this License, each Contributor hereby grants to You a perpetual,
       worldwide, non-exclusive, no-charge, royalty-free, irrevocable
       copyright license to reproduce, prepare Derivative Works of,
       publicly display, publicly perform, sublicense, and distribute the
       Work and such Derivative Works in Source or Object form.
 
-   3. Grant of Patent License. Subject to the terms and conditions of
+    3. Grant of Patent License. Subject to the terms and conditions of
       this License, each Contributor hereby grants to You a perpetual,
       worldwide, non-exclusive, no-charge, royalty-free, irrevocable
       (except as stated in this section) patent license to make, have made,
@@ -373,7 +458,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       granted to You under this License for that Work shall terminate
       as of the date such litigation is filed.
 
-   4. Redistribution. You may reproduce and distribute copies of the
+    4. Redistribution. You may reproduce and distribute copies of the
       Work or Derivative Works thereof in any medium, with or without
       modifications, and in Source or Object form, provided that You
       meet the following conditions:
@@ -422,12 +507,12 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       the terms of any separate license agreement you may have executed
       with Licensor regarding such Contributions.
 
-   6. Trademarks. This License does not grant permission to use the trade
+    6. Trademarks. This License does not grant permission to use the trade
       names, trademarks, service marks, or product names of the Licensor,
       except as required for reasonable and customary use in describing the
       origin of the Work and reproducing the content of the NOTICE file.
 
-   7. Disclaimer of Warranty. Unless required by applicable law or
+    7. Disclaimer of Warranty. Unless required by applicable law or
       agreed to in writing, Licensor provides the Work (and each
       Contributor provides its Contributions) on an "AS IS" BASIS,
       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
@@ -437,7 +522,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       appropriateness of using or redistributing the Work and assume any
       risks associated with Your exercise of permissions under this License.
 
-   8. Limitation of Liability. In no event and under no legal theory,
+    8. Limitation of Liability. In no event and under no legal theory,
       whether in tort (including negligence), contract, or otherwise,
       unless required by applicable law (such as deliberate and grossly
       negligent acts) or agreed to in writing, shall any Contributor be
@@ -449,7 +534,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       other commercial damages or losses), even if such Contributor
       has been advised of the possibility of such damages.
 
-   9. Accepting Warranty or Additional Liability. While redistributing
+    9. Accepting Warranty or Additional Liability. While redistributing
       the Work or Derivative Works thereof, You may choose to offer,
       and charge a fee for, acceptance of support, warranty, indemnity,
       or other liability obligations and/or rights consistent with this
@@ -460,9 +545,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
 
-   END OF TERMS AND CONDITIONS
+    END OF TERMS AND CONDITIONS
 
-   APPENDIX: How to apply the Apache License to your work.
+    APPENDIX: How to apply the Apache License to your work.
 
       To apply the Apache License to your work, attach the following
       boilerplate notice, with the fields enclosed by brackets "[]"
@@ -473,19 +558,19 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [yyyy] [name of copyright owner]
+    Copyright [yyyy] [name of copyright owner]
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 ''',
     'unicons': '''
 BSD 3-Clause License
@@ -497,15 +582,15 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
 1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+    list of conditions and the following disclaimer.
 
 2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
 
 3. Neither the name of the copyright holder nor the names of its
-   contributors may be used to endorse or promote products derived from
-   this software without specific prior written permission.
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -523,8 +608,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /// 隐私政策相关常数
 class PrivacyContentConstance {
+  /// 协议更新时间
   static const String privacyContentUpdateDate = '更新于 2022 年 11 月 18 日';
 
+  /// 协议内容
   static const String privacyContent = '''
 欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。
 
@@ -663,13 +750,4 @@ class PrivacyContentConstance {
 - 法律法规等规定的其他情形。
 - 对社会可能会造成不良影响的。
 ''';
-}
-
-/// `API` 所需的 `key`
-class ApiKeyConstance {
-  /// 和风天气 `api` 所需开发者 `key`
-  static const String qWeatherKey = 'a13fc8e191d14cc0930bc07c6660d900';
-
-  /// 高德 `api` 所需开发者 `key`
-  static const String aMapKey = 'eb5254d31736ca5298ad4d68fae76c09';
 }

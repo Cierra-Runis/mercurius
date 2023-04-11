@@ -32,5 +32,6 @@
         ".flutter-plugins": true,
         ".flutter-plugins-dependencies": true
     },
-    "explorerExclude.backup": {}
+    "explorerExclude.backup": {},
+    "commentTranslate.multiLineMerge": true
 }

@@ -1,7 +1,6 @@
 import 'package:mercurius/index.dart';
 
 class SudokuNumSelectorWidget extends StatefulWidget {
-  /// 数独数字选择组件
   const SudokuNumSelectorWidget({
     Key? key,
     required this.row,

@@ -131,7 +131,7 @@ class DiaryListViewCardWidget extends StatelessWidget {
                     weatherWidget ??
                         Icon(
                           size: 18,
-                          QWeatherIcon.getIconById(
+                          QWeatherIcon.getIconDataById(
                             int.parse(diary.weather),
                           ),
                         ),

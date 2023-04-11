@@ -88,4 +88,4 @@ class _MyWidgetState extends State<MyWidget> {
 -
 - `states` 文件夹下按用处分类，除 `index.dart` 外，所有文件名最前面都为子文件夹名称，最后面都是 `notifier` 结尾，如 `diary` 子文件夹下的 `diary_editor_notifier.dart`，且其中保有的类按大写无下划线的形式命名，如 `class DiaryEditorNotifier extends ChangeNotifier`
 -
-- `widgets` 文件夹下按用处和是否为 `Dialog` 分类，除 `index.dart` 外，所有文件名最前面都为子文件夹名称，最后面都是 `widget` 结尾，如 `sudoku` 子文件夹下的 `sudoku_num_selector_widget.dart`，且其中保有的类按大写无下划线的形式命名，如 `class SudokuNumSelectorWidget extends StatefulWidget`。**注意若按用处分类了，则无视该类是否为 `Dialog`，就如此处的 `SudokuNumSelectorWidget` 实际上是一个 `Dialog`**
+- `widgets` 文件夹下按用处和是否为 `Dialog` 分类，除 `index.dart` 外，所有文件名最前面都为子文件夹名称，最后面都是 `widget` 结尾，如 `sudoku` 子文件夹下的 `sudoku_num_selector_widget.dart`，且其中保有的类按大写无下划线的形式命名，如 `class SudokuNumSelectorWidget extends StatefulWidget`。***注意若按用处分类了，则无视该类是否为 `Dialog`，就如此处的 `SudokuNumSelectorWidget` 实际上是一个 `Dialog`***

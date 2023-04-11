@@ -40,6 +40,8 @@ private static final Map ABI_VERSION = [
 ]
 ```
 
+***注意若进行了 `Flutter` 版本更新，应重新修改该 `flutter.gradle` 文件***
+
 ## `vivo` 系手机无法调试 `Flutter` 程序
 
 `vivo` 系列手机升至 `Origin3` 后发现调试 `Flutter` 应用卡在启动页，并且没有任何报错，详见 [github issue](https://github.com/flutter/flutter/issues/117019)，简化自 [此链接](https://blog.csdn.net/qq910689331/article/details/128790897)

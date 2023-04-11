@@ -32,7 +32,7 @@ class MercuriusOriginalTitleWidget extends StatelessWidget {
                     ),
                   ),
                   Icon(
-                    QWeatherIcon.getIconById(
+                    QWeatherIcon.getIconDataById(
                       int.parse(
                         mercuriusPositionNotifier.weatherBody.now?.icon ??
                             '100',

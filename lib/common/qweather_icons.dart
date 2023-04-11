@@ -2,8 +2,11 @@
 
 import 'package:mercurius/index.dart';
 
+/// [QWeatherIcon] contains all icons in `QWeather`
 class QWeatherIcon {
   QWeatherIcon._();
+
+  /// QWeather Icon fontFamily name
   static const _fontFam = 'QWeather_Icon';
 
   /// QWeather Icon with code `100`
@@ -1741,7 +1744,10 @@ class QWeatherIcon {
     9999: code_9999,
   };
 
-  static IconData? getIconById(int id) {
+  /// [getIconDataById] returns [IconData] match with `id`
+  ///
+  /// when there's not match, it returns `null`
+  static IconData? getIconDataById(int id) {
     return _iconMap[id];
   }
 }

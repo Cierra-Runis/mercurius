@@ -9,11 +9,6 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
   late bool showedAnswer;
   late bool won;
 
-  /// 深复制
-  static List<List<int>> _copyGrid(List<List<int>> grid) {
-    return grid.map((rowIndex) => [...rowIndex]).toList();
-  }
-
   void init() {
     _sudokuGenerator = SudokuGenerator(
       emptySquares: SudokuConstance
@@ -24,6 +19,11 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
     sudokuList = _sudokuGenerator.newSudoku;
     sudokuListCopy = _copyGrid(sudokuList);
     _sudokuListAnswer = SudokuSolver.solve(sudokuList);
+  }
+
+  /// 深复制
+  static List<List<int>> _copyGrid(List<List<int>> grid) {
+    return grid.map((rowIndex) => [...rowIndex]).toList();
   }
 
   void changeSudoku(int rowIndex, int columnIndex, int value) {

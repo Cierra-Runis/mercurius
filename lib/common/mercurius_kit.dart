@@ -1,5 +1,8 @@
 import 'package:mercurius/index.dart';
 
+import 'dart:developer' as devtools show log;
+
+/// [MercuriusKit] 是为简便操作而创建的类
 class MercuriusKit {
   /// [MercuriusKit] 的振动方法
   static void vibration({
@@ -28,5 +31,24 @@ class MercuriusKit {
         amplitude: amplitude,
       );
     }
+  }
+
+  /// 是否显示日志
+  static const _showLog = true;
+
+  /// 是否显示边界
+  static const _showDebugPaintSizeEnabled = false;
+
+  /// [MercuriusKit] 调试用输出语句
+  static void printLog(String message) {
+    if (_showLog) {
+      devtools.log(message);
+      mercuriusLogNotifier.addLog('$message\n');
+    }
+  }
+
+  /// 初始化 [MercuriusKit]
+  static void init() {
+    debugPaintSizeEnabled = MercuriusKit._showDebugPaintSizeEnabled;
   }
 }

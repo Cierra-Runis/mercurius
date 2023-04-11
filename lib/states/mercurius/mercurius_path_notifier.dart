@@ -6,7 +6,7 @@ class MercuriusPathNotifier extends ChangeNotifier {
   late String path;
 
   void init() async {
-    DevTools.printLog('mercuriusPathNotifier 初始化中');
+    MercuriusKit.printLog('mercuriusPathNotifier 初始化中');
 
     /// 可见于 Android/pers.cierra_runis.mercurius/files
     directory = getExternalStorageDirectory();

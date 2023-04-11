@@ -26,7 +26,7 @@ class MercuriusApp extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData theme = ThemeData(
       useMaterial3: true,
-      colorScheme: lightColorScheme,
+      colorScheme: MercuriusConstance.lightColorScheme,
       platform: TargetPlatform.iOS,
       pageTransitionsTheme: const PageTransitionsTheme(builders: {
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
@@ -36,7 +36,7 @@ class MercuriusApp extends StatelessWidget {
 
     ThemeData darkTheme = ThemeData(
       useMaterial3: true,
-      colorScheme: darkColorScheme,
+      colorScheme: MercuriusConstance.darkColorScheme,
       platform: TargetPlatform.iOS,
       pageTransitionsTheme: const PageTransitionsTheme(builders: {
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),

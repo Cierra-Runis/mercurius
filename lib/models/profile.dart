@@ -6,10 +6,12 @@ part 'profile.g.dart';
 class Profile {
   Profile();
 
-  /// 当 profile.dart 添加新数据时
-  /// 为了版本的迭代, 在此添加的新数据格式应该为
-  /// <类型>? <变量名> [= <初始值>];
-  /// 这里的初始值表明了他是不可为空但在旧版本数据为空
+  /*
+  当 profile.dart 添加新数据时
+  为了版本的迭代, 在此添加的新数据格式应该为
+  <类型>? <变量名> [= <初始值>];
+  这里的初始值表明了他是不可为空但在旧版本数据为空
+  */
 
   /*
   语法	             含义
@@ -41,7 +43,7 @@ class Profile {
   /// 当前版本
   String? currentVersion;
 
-  /// 缓存的位置
+  /// 缓存
   Cache cache = Cache();
 
   factory Profile.fromJson(Map<String, dynamic> json) =>

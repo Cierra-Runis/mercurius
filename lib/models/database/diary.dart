@@ -39,6 +39,7 @@ class Diary {
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
 
+  /// 转换用工厂函数
   factory Diary.copyFrom(
     Diary diary, {
     Id? id,
