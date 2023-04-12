@@ -25,6 +25,7 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DevLogDrawerWidget(),
       body: Center(
         child: MercuriusModifiedDoubleBackWidget(
           background: Theme.of(context).colorScheme.outline.withAlpha(16),

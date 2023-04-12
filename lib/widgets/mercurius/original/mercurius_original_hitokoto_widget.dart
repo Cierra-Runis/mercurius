@@ -21,15 +21,18 @@ class _MercuriusOriginalHiToKoToWidgetState
   late Future<HiToKoTo> _futureHiToKoTo;
   late Timer _timer;
 
+  /// FIXME: 当组件被挡住时仍然进行刷新
   @override
   void initState() {
     super.initState();
     _futureHiToKoTo = _fetchHiToKoTo();
     _timer = Timer.periodic(
       const Duration(seconds: 3),
-      (_) => setState(() {
-        _futureHiToKoTo = _fetchHiToKoTo();
-      }),
+      (_) {
+        setState(() {
+          _futureHiToKoTo = _fetchHiToKoTo();
+        });
+      },
     );
   }
 
@@ -44,30 +47,25 @@ class _MercuriusOriginalHiToKoToWidgetState
     return FutureBuilder<HiToKoTo>(
       future: _futureHiToKoTo,
       builder: ((context, snapshot) {
-        if (snapshot.hasData) {
-          return InkWell(
-            onTap: () => launchUrlString(
-              'https://hitokoto.cn/?uuid=${snapshot.data!.uuid!}',
-              mode: LaunchMode.externalApplication,
-            ),
-            child: Tooltip(
-              message: '该服务由 Hitokoto「一言」 提供',
-              preferBelow: false,
+        return InkWell(
+          onTap: () => launchUrlString(
+            'https://hitokoto.cn/?uuid=${snapshot.data!.uuid!}',
+            mode: LaunchMode.externalApplication,
+          ),
+          child: Tooltip(
+            message: '该服务由 Hitokoto「一言」 提供',
+            preferBelow: false,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 1000),
               child: Text(
-                snapshot.data!.hitokoto,
+                snapshot.hasData ? snapshot.data!.hitokoto : '正在获取「一言」',
                 style: TextStyle(
                   fontSize: 12,
                   color: Theme.of(context).colorScheme.outline,
                 ),
+                key: Key(snapshot.data?.hitokoto ?? '正在获取「一言」'),
               ),
             ),
-          );
-        }
-        return Text(
-          '正在获取「一言」',
-          style: TextStyle(
-            fontSize: 12,
-            color: Theme.of(context).colorScheme.outline,
           ),
         );
       }),

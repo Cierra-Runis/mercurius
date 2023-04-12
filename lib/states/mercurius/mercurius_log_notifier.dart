@@ -1,4 +1,3 @@
-
 import 'package:mercurius/index.dart';
 
 class MercuriusLogNotifier extends ChangeNotifier {

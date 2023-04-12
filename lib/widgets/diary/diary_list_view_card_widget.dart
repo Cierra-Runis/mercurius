@@ -2,29 +2,158 @@ import 'package:mercurius/index.dart';
 
 import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
 
-class DiaryListViewCardWidget extends StatelessWidget {
+class DiaryListViewCardWidget extends StatefulWidget {
   const DiaryListViewCardWidget({
     Key? key,
-    required this.diary,
-    this.dayWidget,
-    this.weekdayWidget,
-    this.latestEditTimeWidget,
-    this.createDateTimeWidget,
-    this.contentJsonStringWidget,
-    this.moodWidget,
-    this.weatherWidget,
-    this.enable = true,
+    this.diary,
+    required this.context,
   }) : super(key: key);
 
-  final Diary diary;
-  final Widget? dayWidget;
-  final Widget? weekdayWidget;
-  final Widget? latestEditTimeWidget;
-  final Widget? createDateTimeWidget;
-  final Widget? contentJsonStringWidget;
-  final Widget? moodWidget;
-  final Widget? weatherWidget;
-  final bool enable;
+  final Diary? diary;
+  final BuildContext context;
+
+  @override
+  State<DiaryListViewCardWidget> createState() =>
+      _DiaryListViewCardWidgetState();
+}
+
+class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
+  late Diary? _diary;
+  bool get _enable => widget.diary != null;
+
+  late Color _baseColor;
+  late Color _highLightColor;
+  late Widget _dayWidget;
+  late Widget _weatherWidget;
+  late Widget _weekdayWidget;
+  late Widget _moodWidget;
+  late Widget _createDateTimeWidget;
+  late Widget _latestEditTimeWidget;
+  late Widget _contentJsonStringWidget;
+
+  final Duration _duration = const Duration(milliseconds: 1200);
+
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _diary = widget.diary;
+
+    _baseColor = Theme.of(widget.context).colorScheme.outline.withOpacity(0.1);
+    _highLightColor =
+        Theme.of(widget.context).colorScheme.outline.withOpacity(0.4);
+    _dayWidget = MercuriusModifiedFadeShimmerWidget(
+      width: 24,
+      height: 20,
+      radius: 6,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+    _weatherWidget = MercuriusModifiedFadeShimmerWidget.round(
+      size: 16,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+    _weekdayWidget = MercuriusModifiedFadeShimmerWidget(
+      width: 30,
+      height: 10,
+      radius: 5,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+    _moodWidget = MercuriusModifiedFadeShimmerWidget.round(
+      size: 16,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+    _createDateTimeWidget = MercuriusModifiedFadeShimmerWidget(
+      width: 72,
+      height: 16,
+      radius: 8,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+    _latestEditTimeWidget = MercuriusModifiedFadeShimmerWidget(
+      width: 32,
+      height: 10,
+      radius: 5,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+    _contentJsonStringWidget = MercuriusModifiedFadeShimmerWidget(
+      width: 160,
+      height: 12,
+      radius: 6,
+      highlightColor: _highLightColor,
+      baseColor: _baseColor,
+    );
+
+    if (_enable) {
+      _timer = Timer.periodic(
+        _duration,
+        (timer) {
+          if (timer.tick > 0 && mounted) {
+            setState(() {
+              _dayWidget = Text(
+                _diary!.createDateTime.toString().substring(8, 10),
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'Saira',
+                ),
+              );
+              _weekdayWidget = Text(
+                DiaryConstance.weekdayMap[_diary!.createDateTime!.weekday]!,
+                style: const TextStyle(
+                  fontSize: 10,
+                ),
+              );
+              _latestEditTimeWidget = Text(
+                _diary!.latestEditTime.toString().substring(11, 19),
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+              _createDateTimeWidget = Text(
+                _diary!.titleString ??
+                    _diary!.createDateTime.toString().substring(0, 10),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+              _contentJsonStringWidget = Text(
+                flutter_quill.Document.fromJson(
+                  jsonDecode(_diary!.contentJsonString!),
+                ).toPlainText().replaceAll(RegExp('\n'), ''),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              );
+              _moodWidget = Icon(
+                size: 18,
+                DiaryConstance.moodMap[_diary!.mood] ??
+                    DiaryConstance.moodMap['开心'],
+              );
+              _weatherWidget = Icon(
+                size: 18,
+                QWeatherIcon.getIconDataById(
+                  int.parse(_diary!.weather),
+                ),
+              );
+            });
+            _timer.cancel();
+          }
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +163,13 @@ class DiaryListViewCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(24.0),
       ),
       child: InkWell(
-        onTap: enable
+        onTap: _enable
             ? () async {
                 MercuriusKit.vibration();
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) => DiaryPageViewWidget(
-                    diary: diary,
+                    diary: _diary!,
                   ),
                 );
               }
@@ -58,22 +187,14 @@ class DiaryListViewCardWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    dayWidget ??
-                        Text(
-                          diary.createDateTime.toString().substring(8, 10),
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'Saira',
-                          ),
-                        ),
-                    weekdayWidget ??
-                        Text(
-                          DiaryConstance
-                              .weekdayMap[diary.createDateTime!.weekday]!,
-                          style: const TextStyle(
-                            fontSize: 10,
-                          ),
-                        ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _dayWidget,
+                    ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _weekdayWidget,
+                    ),
                   ],
                 ),
               ),
@@ -83,37 +204,18 @@ class DiaryListViewCardWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    latestEditTimeWidget ??
-                        Text(
-                          diary.latestEditTime.toString().substring(11, 19),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                    createDateTimeWidget ??
-                        Text(
-                          diary.titleString ??
-                              diary.createDateTime.toString().substring(0, 10),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                    contentJsonStringWidget ??
-                        Text(
-                          flutter_quill.Document.fromJson(
-                            jsonDecode(diary.contentJsonString!),
-                          ).toPlainText().replaceAll(RegExp('\n'), ''),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _latestEditTimeWidget,
+                    ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _createDateTimeWidget,
+                    ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _contentJsonStringWidget,
+                    ),
                   ],
                 ),
               ),
@@ -122,19 +224,14 @@ class DiaryListViewCardWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    moodWidget ??
-                        Icon(
-                          size: 18,
-                          DiaryConstance.moodMap[diary.mood] ??
-                              DiaryConstance.moodMap['开心'],
-                        ),
-                    weatherWidget ??
-                        Icon(
-                          size: 18,
-                          QWeatherIcon.getIconDataById(
-                            int.parse(diary.weather),
-                          ),
-                        ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _moodWidget,
+                    ),
+                    AnimatedSwitcher(
+                      duration: _duration,
+                      child: _weatherWidget,
+                    )
                   ],
                 ),
               ),
@@ -143,62 +240,6 @@ class DiaryListViewCardWidget extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  factory DiaryListViewCardWidget.getPlaceHolder(BuildContext context) {
-    Color highlightColor =
-        Theme.of(context).colorScheme.outline.withOpacity(0.38);
-    Color baseColor = Theme.of(context).colorScheme.surface;
-
-    return DiaryListViewCardWidget(
-      diary: const Diary(),
-      dayWidget: MercuriusModifiedFadeShimmerWidget(
-        width: 24,
-        height: 20,
-        radius: 6,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      weatherWidget: MercuriusModifiedFadeShimmerWidget.round(
-        size: 16,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      weekdayWidget: MercuriusModifiedFadeShimmerWidget(
-        width: 30,
-        height: 10,
-        radius: 5,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      moodWidget: MercuriusModifiedFadeShimmerWidget.round(
-        size: 16,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      createDateTimeWidget: MercuriusModifiedFadeShimmerWidget(
-        width: 72,
-        height: 16,
-        radius: 8,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      latestEditTimeWidget: MercuriusModifiedFadeShimmerWidget(
-        width: 32,
-        height: 10,
-        radius: 5,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      contentJsonStringWidget: MercuriusModifiedFadeShimmerWidget(
-        width: 160,
-        height: 12,
-        radius: 6,
-        highlightColor: highlightColor,
-        baseColor: baseColor,
-      ),
-      enable: false,
     );
   }
 }

@@ -17,12 +17,15 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
           : ListView.builder(
               itemCount: snapshot.data!.length,
               itemExtent: 100,
+              cacheExtent: 800,
               shrinkWrap: true,
               itemBuilder: (context, index) => FrameSeparateWidget(
                 index: index,
-                placeHolder: DiaryListViewCardWidget.getPlaceHolder(context),
+                placeHolder: DiaryListViewCardWidget(context: context),
                 child: DiaryListViewCardWidget(
                   diary: snapshot.data![index],
+                  key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+                  context: context,
                 ),
               ),
             );
@@ -50,15 +53,16 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
         );
       case ConnectionState.active:
         return SmartRefresher(
-            onRefresh: () async {
-              await Future.delayed(const Duration(milliseconds: 500), () {});
-              diarySearchTextNotifier.changeContains(
-                diarySearchTextNotifier.contains,
-              );
-              _refreshController.refreshCompleted();
-            },
-            controller: _refreshController,
-            child: _getCardBySnapshotData(snapshot));
+          onRefresh: () async {
+            await Future.delayed(const Duration(milliseconds: 500), () {});
+            diarySearchTextNotifier.changeContains(
+              diarySearchTextNotifier.contains,
+            );
+            _refreshController.refreshCompleted();
+          },
+          controller: _refreshController,
+          child: _getCardBySnapshotData(snapshot),
+        );
       case ConnectionState.done:
         return const Center(child: Text('Stream 已关闭'));
     }

@@ -13,7 +13,8 @@ class MercuriusModifiedFadeShimmerWidget extends StatefulWidget {
     required this.width,
     required this.height,
   })  : assert(
-            (highlightColor != null && baseColor != null) || fadeTheme != null),
+          (highlightColor != null && baseColor != null) || fadeTheme != null,
+        ),
         super(key: key);
 
   final Color? highlightColor;
@@ -91,33 +92,29 @@ class _MercuriusModifiedFadeShimmerWidgetState
   }
 
   @override
-  void dispose() {
-    sub.cancel();
-    super.dispose();
-  }
-
-  void safeSetState() {
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  @override
   void initState() {
     super.initState();
     sub = isHighLightStream.listen(
       (isHighLight) {
         if (widget.millisecondsDelay != 0) {
-          Future.delayed(Duration(milliseconds: widget.millisecondsDelay), () {
-            _isHighLight = isHighLight;
-          });
+          Future.delayed(
+            Duration(milliseconds: widget.millisecondsDelay),
+            () => _isHighLight = isHighLight,
+          );
         } else {
           _isHighLight = isHighLight;
         }
-
-        safeSetState();
+        if (mounted) {
+          setState(() {});
+        }
       },
     );
+  }
+
+  @override
+  void dispose() {
+    sub.cancel();
+    super.dispose();
   }
 
   @override

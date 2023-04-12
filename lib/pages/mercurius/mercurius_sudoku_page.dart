@@ -10,13 +10,43 @@ class MercuriusSudokuPage extends StatefulWidget {
 class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
   late ConfettiController _confettiController;
 
+  /// TODO: 完善计时器功能
+  late Timer _timer;
+  int _passed = 0;
+
+  // late SudokuGenerator _sudokuGenerator;
+  // late List<List<int>> _sudokuListAnswer;
+  // late List<List<int>> _sudokuList;
+  // late List<List<int>> _sudokuListCopy;
+  // bool _showedAnswer = false;
+  // bool _won = false;
+
   @override
   void initState() {
-    /// 至数独界面再进行 mercuriusSudokuNotifier 的初始化
     super.initState();
+
     mercuriusSudokuNotifier.init();
-    _confettiController =
-        ConfettiController(duration: const Duration(milliseconds: 1500));
+
+    /// 彩纸
+    _confettiController = ConfettiController(
+      duration: const Duration(milliseconds: 1500),
+    );
+
+    /// 计时器
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) {
+        setState(() {
+          _passed += 1;
+        });
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   /// 行列获取数独底色
@@ -152,61 +182,76 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
         ),
       ),
       body: Center(
-        child: Consumer<MercuriusSudokuNotifier>(
-          builder: (context, mercuriusSudokuNotifier, child) {
-            return Stack(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: _createRows(context),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 500),
+                        child: Text(
+                          '已经过 $_passed 秒',
+                          key: ValueKey<int>(_passed),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: ConfettiWidget(
-                    confettiController: mercuriusSudokuNotifier.won
-                        ? (_confettiController..play())
-                        : (_confettiController..stop()),
-                    blastDirection: 0, // radial value - RIGHT
-                    colors: const [
-                      Colors.green,
-                      Colors.blue,
-                      Colors.pink,
-                      Colors.orange,
-                      Colors.purple
-                    ],
-                    createParticlePath: _drawStar,
-                    emissionFrequency: 0.3,
-                    minimumSize: const Size(10, 10),
-                    maximumSize: const Size(50, 50),
-                    numberOfParticles: 1,
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: _createRows(context),
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: ConfettiWidget(
-                    confettiController: mercuriusSudokuNotifier.won
-                        ? (_confettiController..play())
-                        : (_confettiController..stop()),
-                    colors: const [
-                      Colors.green,
-                      Colors.blue,
-                      Colors.pink,
-                      Colors.orange,
-                      Colors.purple
-                    ],
-                    createParticlePath: _drawStar,
-                    emissionFrequency: 0.3,
-                    minimumSize: const Size(10, 10),
-                    maximumSize: const Size(50, 50),
-                    numberOfParticles: 1,
-                  ),
-                ),
-              ],
-            );
-          },
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: ConfettiWidget(
+                confettiController: mercuriusSudokuNotifier.won
+                    ? (_confettiController..play())
+                    : (_confettiController..stop()),
+                blastDirection: 0, // radial value - RIGHT
+                colors: const [
+                  Colors.green,
+                  Colors.blue,
+                  Colors.pink,
+                  Colors.orange,
+                  Colors.purple
+                ],
+                createParticlePath: _drawStar,
+                emissionFrequency: 0.3,
+                minimumSize: const Size(10, 10),
+                maximumSize: const Size(50, 50),
+                numberOfParticles: 1,
+              ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: ConfettiWidget(
+                confettiController: mercuriusSudokuNotifier.won
+                    ? (_confettiController..play())
+                    : (_confettiController..stop()),
+                colors: const [
+                  Colors.green,
+                  Colors.blue,
+                  Colors.pink,
+                  Colors.orange,
+                  Colors.purple
+                ],
+                createParticlePath: _drawStar,
+                emissionFrequency: 0.3,
+                minimumSize: const Size(10, 10),
+                maximumSize: const Size(50, 50),
+                numberOfParticles: 1,
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

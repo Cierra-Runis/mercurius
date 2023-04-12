@@ -120,7 +120,6 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
         onPressed: _floatingButtonOnPressed,
         child: const Icon(UniconsLine.diary),
       ),
-      drawer: const DevLogDrawerWidget(),
     );
   }
 }

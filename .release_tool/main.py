@@ -8,29 +8,33 @@ import re
 import shutil
 import yaml
 
-REG_STR = {
-    'version_str': r'(\d+)\.(\d+)\.(\d+)\+(\d+)',
-    'pubspec_yaml': r'version: (\d+\.\d+\.\d+\+\d+)',
-    'release_yml': r'tag: "v(.*)"',
-    'body_md': r'v(.*)',
-}
 
-FILE_DIR = {
-    'pubspec_yaml': r'pubspec.yaml',
-    'release_yml':
-    r'.release_tool\mercurius_warehouse\.github\workflows\releases.yml',
-    'body_md': r'.release_tool\mercurius_warehouse\body.md',
-    'app-arm64-v8a-release_apk':
-    r'build\app\outputs\apk\release\app-arm64-v8a-release.apk',
-    'mercurius_warehouse_dir': r'.release_tool\mercurius_warehouse',
-}
+class RegStr():
+    '''
+    reg str
+    '''
+    version_str: str = r'(\d+)\.(\d+)\.(\d+)\+(\d+)'
+    pubspec_yaml: str = r'version: (\d+\.\d+\.\d+\+\d+)'
+    release_yml: str = r'tag: "v(.*)"'
+    body_md: str = r'v(.*)'
+
+
+class FileStr():
+    '''
+    file str
+    '''
+    pubspec_yaml: str = r'pubspec.yaml'
+    release_yml: str = r'.release_tool\mercurius_warehouse\.github\workflows\releases.yml'
+    body_md: str = r'.release_tool\mercurius_warehouse\body.md'
+    app_arm64_v8a_release_apk: str = r'build\app\outputs\apk\release\app-arm64-v8a-release.apk'
+    mercurius_warehouse_dir: str = r'.release_tool\mercurius_warehouse'
 
 
 def get_version_from_pubspec_yaml() -> str:
     '''
     从 pubspec.yaml 文件中获取当前版本的字符串
     '''
-    file = open(FILE_DIR['pubspec_yaml'], encoding='utf-8')
+    file = open(FileStr.pubspec_yaml, encoding='utf-8')
     data = yaml.load(file, Loader=yaml.FullLoader)
     result = data['version']
     file.close()
@@ -54,8 +58,8 @@ def rewrite_current_version_str_in_pubspec_yaml(new_version: str) -> None:
     修改 pubspec.yaml 文件中的版本号
     '''
     rewrite_tool(
-        file_dir=FILE_DIR['pubspec_yaml'],
-        reg=REG_STR['pubspec_yaml'],
+        file_dir=FileStr.pubspec_yaml,
+        reg=RegStr.pubspec_yaml,
         repl=f'version: {new_version}',
     )
 
@@ -66,13 +70,13 @@ def rewrite_release_version(new_version: str) -> None:
     '''
 
     rewrite_tool(
-        file_dir=FILE_DIR['release_yml'],
-        reg=REG_STR['release_yml'],
+        file_dir=FileStr.release_yml,
+        reg=RegStr.release_yml,
         repl=f'tag: "v{new_version}"',
     )
     rewrite_tool(
-        file_dir=FILE_DIR['body_md'],
-        reg=REG_STR['body_md'],
+        file_dir=FileStr.body_md,
+        reg=RegStr.body_md,
         repl=f'v{new_version}',
     )
 
@@ -81,8 +85,8 @@ def is_new_version_legal(current_version: str, new_version: str) -> bool:
     '''
     比较版本号大小, 两字符串格式类似 1.0.0+1
     '''
-    current = re.match(REG_STR['version_str'], current_version)
-    new = re.match(REG_STR['version_str'], new_version)
+    current = re.match(RegStr.version_str, current_version)
+    new = re.match(RegStr.version_str, new_version)
 
     if int(new[4]) < int(current[4]):
         print(f'> 新构建号 {new[4]} 应该不小于 {current[4]}')
@@ -164,7 +168,7 @@ def main_module() -> None:
             rule='',
             error_message='请确认版本号格式',
             rule_function=lambda input_str: re.search(
-                REG_STR['version_str'],
+                RegStr.version_str,
                 input_str,
             ),
         )
@@ -178,7 +182,7 @@ def main_module() -> None:
                 rule='',
                 error_message='请确认版本号格式',
                 rule_function=lambda input_str: re.search(
-                    REG_STR['version_str'],
+                    RegStr.version_str,
                     input_str,
                 ),
             )
@@ -198,8 +202,8 @@ def main_module() -> None:
 
         # 并将 build 后的 apk 转移至 .release_tool/mercurius_warehouse
         copy_file(
-            src_file=FILE_DIR['app-arm64-v8a-release_apk'],
-            dst_path=FILE_DIR['mercurius_warehouse_dir'],
+            src_file=FileStr.app_arm64_v8a_release_apk,
+            dst_path=FileStr.mercurius_warehouse_dir,
         )
 
     else:
@@ -227,7 +231,7 @@ def release_module() -> None:
         rewrite_release_version(current_version_str)
         # 打开 body.md 文件进行修改
         print('> 已为你打开 body.md 文件')
-        os.startfile(FILE_DIR['body_md'])
+        os.startfile(FileStr.body_md)
 
         # 打开文件后询问是否完成
         input_str = input_tool(
@@ -243,7 +247,7 @@ def release_module() -> None:
         # 一般流程为 1 -> 1 -> 1 -> 2 即多次修改版本号后发布, 无异常
         # 最后一步, 进入 release.bat
         # 提交 release
-        os.system(FILE_DIR['mercurius_warehouse_dir'] + r'\release.bat')
+        os.system(FileStr.mercurius_warehouse_dir + r'\release.bat')
 
     else:
         # 反之输入的不是 'y'
