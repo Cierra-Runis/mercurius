@@ -24,7 +24,7 @@ class _MercuriusSplashPageState extends State<MercuriusSplashPage>
       (status) {
         if (status == AnimationStatus.completed) {
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
+            CupertinoPageRoute(
               builder: (context) => const MercuriusRoute(),
             ),
             (route) => false,

@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
-
 class DiaryPageViewBodyWidget extends StatefulWidget {
   const DiaryPageViewBodyWidget({
     Key? key,
@@ -125,54 +123,14 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-                  child: flutter_quill.QuillEditor(
-                    locale: const Locale('zh', 'CN'),
-                    focusNode: FocusNode(),
+                  child: DiaryEditorBodyWidget(
+                    readOnly: true,
                     scrollController: ScrollController(),
-                    scrollable: true,
-                    expands: false,
-                    padding: const EdgeInsets.all(4.0),
-                    autoFocus: false,
-                    showCursor: false,
-                    enableInteractiveSelection: false,
-                    enableSelectionToolbar: false,
-                    controller: flutter_quill.QuillController(
-                      document: flutter_quill.Document.fromJson(
+                    controller: QuillController(
+                      document: Document.fromJson(
                         jsonDecode(_currentDiary.contentJsonString!),
                       ),
                       selection: const TextSelection.collapsed(offset: 0),
-                    ),
-                    onLaunchUrl: (url) {
-                      launchUrlString(
-                        url,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    },
-                    readOnly: true,
-                    scrollBottomInset: 10,
-                    customStyles: flutter_quill.DefaultStyles(
-                      placeHolder: flutter_quill.DefaultTextBlockStyle(
-                        TextStyle(
-                          fontFamily: 'Saira',
-                          fontSize: 14,
-                          height: 1.5,
-                          color: Colors.grey.withOpacity(0.6),
-                        ),
-                        const flutter_quill.VerticalSpacing(0, 0),
-                        const flutter_quill.VerticalSpacing(0, 0),
-                        null,
-                      ),
-                      paragraph: flutter_quill.DefaultTextBlockStyle(
-                        TextStyle(
-                          fontFamily: 'Saira',
-                          fontSize: 14,
-                          height: 1.5,
-                          color: Theme.of(context).colorScheme.inverseSurface,
-                        ),
-                        const flutter_quill.VerticalSpacing(0, 0),
-                        const flutter_quill.VerticalSpacing(0, 0),
-                        null,
-                      ),
                     ),
                   ),
                 ),
@@ -209,9 +167,11 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                               context,
                               _currentDiary,
                             );
-                            setState(() {
-                              _currentDiary = editedDiary ?? _currentDiary;
-                            });
+                            if (mounted) {
+                              setState(() {
+                                _currentDiary = editedDiary ?? _currentDiary;
+                              });
+                            }
                           },
                           icon: const Icon(Icons.edit),
                         ),
@@ -224,7 +184,7 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                               '标题：${_currentDiary.titleString ?? '无标题'}\n'
                               '心情：${_currentDiary.mood}\n'
                               '\n'
-                              '${flutter_quill.Document.fromJson(
+                              '${Document.fromJson(
                                 jsonDecode(_currentDiary.contentJsonString!),
                               ).toPlainText().trimRight()}',
                             );
@@ -246,7 +206,7 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
   Future<Diary?> _showDiaryEditorPage(BuildContext context, Diary diary) {
     return Navigator.push(
       context,
-      MaterialPageRoute(
+      CupertinoPageRoute(
         builder: (context) => DiaryEditorPage(
           diary: diary,
         ),

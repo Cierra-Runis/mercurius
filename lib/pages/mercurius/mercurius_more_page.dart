@@ -23,7 +23,7 @@ class MercuriusMorePage extends StatelessWidget {
                 } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context) => const MercuriusProfilePage(),
                     ),
                   );
@@ -48,8 +48,31 @@ class MercuriusMorePage extends StatelessWidget {
                       titleText: '统计数据',
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        CupertinoPageRoute(
                           builder: (context) => const DiaryStatisticPage(),
+                        ),
+                      ),
+                    ),
+                    MercuriusModifiedListItem(
+                      iconData: Icons.image_rounded,
+                      titleText: '图片库',
+                      summaryText: '暂未完成',
+                      onTap: () => Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const Scaffold(),
+                        ),
+                      ),
+                    ),
+                    // TODO: 写逻辑
+                    MercuriusModifiedListItem(
+                      iconData: Icons.import_export_rounded,
+                      titleText: '导入导出',
+                      summaryText: '暂未完成',
+                      onTap: () => Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const MercuriusIoPage(),
                         ),
                       ),
                     ),
@@ -58,7 +81,7 @@ class MercuriusMorePage extends StatelessWidget {
                       titleText: '设定',
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
+                        CupertinoPageRoute(
                           builder: (context) => const MercuriusSettingPage(),
                         ),
                       ),

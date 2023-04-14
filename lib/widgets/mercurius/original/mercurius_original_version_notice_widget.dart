@@ -6,12 +6,16 @@ class MercuriusOriginalVersionNoticeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer2<MercuriusWebNotifier, MercuriusProfileNotifier>(
-      builder:
-          (context, mercuriusWebNotifier, mercuriusProfileNotifier, child) {
+      builder: (
+        context,
+        mercuriusWebNotifier,
+        mercuriusProfileNotifier,
+        child,
+      ) {
         return TextButton(
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(
+            CupertinoPageRoute(
               builder: (context) => const MercuriusReleasePage(),
             ),
           ),

@@ -64,8 +64,9 @@ class IsarService {
         name: 'mercurius_database',
         directory: mercuriusPathNotifier.path,
         compactOnLaunch: const CompactCondition(
-          /// 只要压缩能减小 1KB 及以上的体积就进行压缩
+          /// 压缩能减小 1KB 及以上，且达到了 1KB 的体积就进行压缩
           minBytes: 1024,
+          minFileSize: 1024,
         ),
       );
     }

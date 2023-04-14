@@ -23,11 +23,14 @@ class MercuriusModifiedFadeShimmerWidget extends StatefulWidget {
   final double width;
   final double height;
 
-  /// light or dark with predefined highlightColor and baseColor
-  /// need to pass this or highlightColor and baseColor
+  /// 使用预定义的 highlightColor 和 baseColor 亮或暗
+  ///
+  /// 需要传递这个或者 highlightColor 和 baseColor
   final FadeTheme? fadeTheme;
 
-  /// delay time before update the color, use this to make loading items animate follow each other instead of parallel, check the example for demo.
+  /// 在更新颜色之前延迟时间，使用它来使加载项目动画跟随彼此而不是平行
+  ///
+  /// 检查示例以获取演示
   final int millisecondsDelay;
 
   /// use this to create a round loading widget

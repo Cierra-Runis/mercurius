@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
-
 class DiaryMonthlyWordsWidget extends StatefulWidget {
   const DiaryMonthlyWordsWidget({super.key});
 
@@ -140,7 +138,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
             key.isSameMonth(diary.createDateTime!)) {
           data.update(
             key,
-            (value) => value += flutter_quill.Document.fromJson(
+            (value) => value += Document.fromJson(
               jsonDecode(diary.contentJsonString!),
             ).toPlainText().replaceAll(RegExp(r'\n'), '').length,
           );

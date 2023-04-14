@@ -16,8 +16,10 @@ final isarService = IsarService();
 final navigatorKey = GlobalKey<NavigatorState>();
 
 /// 因 `mercuriusProfileNotifier` 需要读取本地数据, 故先进入 `mercuriusProfileNotifier` 进行初始化
-void main() =>
-    mercuriusProfileNotifier.init().then((e) => runApp(const MercuriusApp()));
+Future<void> main() async {
+  await mercuriusProfileNotifier.init();
+  runApp(const MercuriusApp());
+}
 
 class MercuriusApp extends StatelessWidget {
   const MercuriusApp({super.key});
@@ -28,9 +30,6 @@ class MercuriusApp extends StatelessWidget {
       useMaterial3: true,
       colorScheme: MercuriusConstance.lightColorScheme,
       platform: TargetPlatform.iOS,
-      pageTransitionsTheme: const PageTransitionsTheme(builders: {
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      }),
       fontFamily: 'Saira',
     );
 
@@ -38,9 +37,6 @@ class MercuriusApp extends StatelessWidget {
       useMaterial3: true,
       colorScheme: MercuriusConstance.darkColorScheme,
       platform: TargetPlatform.iOS,
-      pageTransitionsTheme: const PageTransitionsTheme(builders: {
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      }),
       fontFamily: 'Saira',
     );
 

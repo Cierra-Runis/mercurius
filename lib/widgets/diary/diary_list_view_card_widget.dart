@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import 'package:flutter_quill/flutter_quill.dart' as flutter_quill;
-
 class DiaryListViewCardWidget extends StatefulWidget {
   const DiaryListViewCardWidget({
     Key? key,
@@ -126,7 +124,7 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
                 ),
               );
               _contentJsonStringWidget = Text(
-                flutter_quill.Document.fromJson(
+                Document.fromJson(
                   jsonDecode(_diary!.contentJsonString!),
                 ).toPlainText().replaceAll(RegExp('\n'), ''),
                 maxLines: 1,

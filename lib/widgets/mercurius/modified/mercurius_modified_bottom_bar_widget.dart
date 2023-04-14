@@ -17,40 +17,40 @@ class MercuriusModifiedBottomBarWidget extends StatelessWidget {
     this.backgroundColor,
   }) : super(key: key);
 
-  /// A list of tabs to display, ie `Home`, `Likes`, etc
+  /// 要显示的选项卡列表，即 `Home` `Likes` 等
   final List<MercuriusBottomBarItem> items;
 
-  /// The tab to display.
+  /// 要显示的选项卡
   final int currentIndex;
 
-  /// Returns the index of the tab that was tapped.
+  /// 返回被点击的选项卡的索引
   final Function(int)? onTap;
 
-  /// The color of the icon and text when the item is selected.
+  /// 选择项目时图标和文本的颜色
   final Color? selectedItemColor;
 
-  /// The color of the icon and text when the item is not selected.
+  /// 未选中项目时图标和文本的颜色
   final Color? unselectedItemColor;
 
-  /// The opacity of color of the touchable background when the item is selected.
+  /// 选择项目时可触摸背景颜色的不透明度
   final double? selectedColorOpacity;
 
-  /// The border shape of each item.
+  /// 每个项目的边框形状
   final ShapeBorder itemShape;
 
-  /// A convenience field for the margin surrounding the entire widget.
+  /// 整个小部件周围的边距的便利字段
   final EdgeInsets margin;
 
-  /// The padding of each item.
+  /// 每个项目的填充
   final EdgeInsets itemPadding;
 
-  /// The transition duration
+  /// 过渡持续时间
   final Duration duration;
 
-  /// The transition curve
+  /// 过渡曲线
   final Curve curve;
 
-  /// The background color
+  /// 背景色
   final Color? backgroundColor;
 
   @override
@@ -71,8 +71,7 @@ class MercuriusModifiedBottomBarWidget extends StatelessWidget {
       child: SafeArea(
         minimum: margin,
         child: Row(
-          /// Using a different alignment when there are 2 items or less
-          /// so it behaves the same as BottomNavigationBar.
+          // 当有 2 个或更少的项目时使用不同的对齐方式，因此它的行为与 `BottomNavigationBar` 相同
           mainAxisAlignment: items.length <= 2
               ? MainAxisAlignment.spaceEvenly
               : MainAxisAlignment.spaceBetween,
@@ -165,21 +164,21 @@ class MercuriusModifiedBottomBarWidget extends StatelessWidget {
   }
 }
 
-/// A tab to display in a [MercuriusModifiedBottomBarWidget]
+/// 在 [MercuriusModifiedBottomBarWidget] 中显示的选项卡
 class MercuriusBottomBarItem {
-  /// An icon to display.
+  /// 要显示的图标
   final Widget icon;
 
-  /// An icon to display when this tab bar is active.
+  /// 此选项卡栏处于活动状态时显示的图标
   final Widget? activeIcon;
 
-  /// Text to display, ie `Home`
+  /// 要显示的文本，如 `'Home'`
   final Widget title;
 
-  /// A primary color to use for this tab.
+  /// 用于此选项卡的原色
   final Color? selectedColor;
 
-  /// The color to display when this tab is not selected.
+  /// 未选择此选项卡时显示的颜色
   final Color? unselectedColor;
 
   MercuriusBottomBarItem({

@@ -29,8 +29,9 @@ class MercuriusPositionNotifier extends ChangeNotifier {
   }
 
   /// 更新
-  void update(bool force) {
-    _getPosition(force).then((value) => _getQWeather());
+  void update(bool force) async {
+    await _getPosition(force);
+    await _getQWeather();
     notifyListeners();
     super.notifyListeners();
   }

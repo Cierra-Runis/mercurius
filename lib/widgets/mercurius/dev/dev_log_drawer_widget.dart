@@ -1,7 +1,4 @@
-
 import 'package:mercurius/index.dart';
-
-import 'dart:ui';
 
 class DevLogDrawerWidget extends StatefulWidget {
   const DevLogDrawerWidget({super.key});
@@ -16,14 +13,19 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
     return SafeArea(
       child: Drawer(
         backgroundColor: Colors.transparent,
-        child: Consumer4<MercuriusProfileNotifier, MercuriusWebNotifier,
-            MercuriusPositionNotifier, MercuriusLogNotifier>(
+        child: Consumer5<
+            MercuriusProfileNotifier,
+            MercuriusWebNotifier,
+            MercuriusPositionNotifier,
+            MercuriusLogNotifier,
+            MercuriusPathNotifier>(
           builder: (
             context,
             mercuriusProfileNotifier,
             mercuriusWebNotifier,
             mercuriusPositionNotifier,
             mercuriusLogNotifier,
+            mercuriusPathNotifier,
             child,
           ) {
             return BackdropFilter(
@@ -78,6 +80,15 @@ class _DevLogDrawerWidgetState extends State<DevLogDrawerWidget> {
                       ),
                     ),
                   ),
+                  ListTile(
+                    title: Text(
+                      jsonEncode(mercuriusPathNotifier.path),
+                      style: const TextStyle(
+                        fontSize: 8,
+                        fontFamily: 'Saira',
+                      ),
+                    ),
+                  )
                 ],
               ),
             );

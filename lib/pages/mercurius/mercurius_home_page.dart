@@ -46,7 +46,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
     if (context.mounted && dateTime != null) {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        CupertinoPageRoute(
           builder: (context) => DiaryEditorPage(
             diary: Diary(
               createDateTime: dateTime,
@@ -72,7 +72,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(
+        CupertinoPageRoute(
           builder: (context) => const MercuriusProfilePage(),
         ),
       );
@@ -91,9 +91,12 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
             );
           },
         ),
-        title: _currentSearchBarMode
-            ? const DiarySearchBarWidget()
-            : const MercuriusOriginalTitleWidget(),
+        title: AnimatedSwitcher(
+          duration: const Duration(seconds: 1),
+          child: _currentSearchBarMode
+              ? const DiarySearchBarWidget()
+              : const MercuriusOriginalTitleWidget(),
+        ),
         centerTitle: true,
         actions: [
           IconButton(

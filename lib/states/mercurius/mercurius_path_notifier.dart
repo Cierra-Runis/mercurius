@@ -8,11 +8,8 @@ class MercuriusPathNotifier extends ChangeNotifier {
   void init() async {
     MercuriusKit.printLog('mercuriusPathNotifier 初始化中');
 
-    /// 可见于 Android/pers.cierra_runis.mercurius/files
-    directory = getExternalStorageDirectory();
-
-    directory.then((value) {
-      path = value!.path;
-    });
+    /// TIPS: 即 /storage/emulated/0/Android/data/pers.cierra_runis.mercurius/files
+    Directory? directory = await getExternalStorageDirectory();
+    path = directory!.path;
   }
 }

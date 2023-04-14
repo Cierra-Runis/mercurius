@@ -13,7 +13,7 @@ class DialogAboutWidget extends StatelessWidget {
             padding: EdgeInsets.zero,
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(
+              CupertinoPageRoute(
                 builder: (context) => const MercuriusSudokuPage(),
               ),
             ),
