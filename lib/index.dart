@@ -29,12 +29,12 @@ export 'package:badges/badges.dart'; // 小红点提示
 export 'package:confetti/confetti.dart'; // 彩纸效果
 export 'package:cross_file/cross_file.dart'; // 文件操作
 export 'package:dio/dio.dart'; // 网络请求
+export 'package:file_picker/file_picker.dart'; // 文件选择
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:flutter_markdown/flutter_markdown.dart'; // markdown
 // [Text] 和 `export 'package:flutter/material.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
 export 'package:flutter_quill/flutter_quill.dart' hide Text; // 富文本
-export 'package:flutter_quill_extensions/flutter_quill_extensions.dart'; // 富文本扩展
 export 'package:image_picker/image_picker.dart'; // 图片选择
 export 'package:isar/isar.dart'; // 数据库
 export 'package:json_annotation/json_annotation.dart'; // json 相关

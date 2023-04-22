@@ -50,6 +50,29 @@ class IsarService {
     });
   }
 
+  /// 导入 `json` 数据
+  Future<void> importJsonWith(String path) async {
+    final isar = await db;
+    final bytes = await File(path).readAsBytes();
+
+    try {
+      await isar.writeTxn(() async {
+        await isar.diarys.where().deleteAll();
+        await isar.diarys.importJsonRaw(bytes);
+      });
+    } catch (e) {
+      MercuriusKit.printLog('$e');
+    }
+  }
+
+  /// 导出 `json` 数据
+  Future<void> exportJsonWith(String path) async {
+    final isar = await db;
+    isar.diarys.where().exportJsonRaw((bytes) {
+      File(path).writeAsBytes(bytes);
+    });
+  }
+
   /// 打开数据库
   Future<Isar> openDB() async {
     MercuriusKit.printLog('打开数据库中');

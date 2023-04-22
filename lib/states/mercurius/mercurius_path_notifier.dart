@@ -11,5 +11,9 @@ class MercuriusPathNotifier extends ChangeNotifier {
     /// TIPS: 即 /storage/emulated/0/Android/data/pers.cierra_runis.mercurius/files
     Directory? directory = await getExternalStorageDirectory();
     path = directory!.path;
+
+    Directory imageDirectory =
+        Directory('${mercuriusPathNotifier.path}/image/');
+    if (!imageDirectory.existsSync()) imageDirectory.create();
   }
 }

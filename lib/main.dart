@@ -29,14 +29,12 @@ class MercuriusApp extends StatelessWidget {
     ThemeData theme = ThemeData(
       useMaterial3: true,
       colorScheme: MercuriusConstance.lightColorScheme,
-      platform: TargetPlatform.iOS,
       fontFamily: 'Saira',
     );
 
     ThemeData darkTheme = ThemeData(
       useMaterial3: true,
       colorScheme: MercuriusConstance.darkColorScheme,
-      platform: TargetPlatform.iOS,
       fontFamily: 'Saira',
     );
 
@@ -54,6 +52,7 @@ class MercuriusApp extends StatelessWidget {
       child: Consumer<MercuriusProfileNotifier>(
         builder: (context, mercuriusProfileNotifier, child) {
           return MaterialApp(
+            scrollBehavior: const CupertinoScrollBehavior(),
             navigatorKey: navigatorKey,
             theme: theme,
             darkTheme: darkTheme,

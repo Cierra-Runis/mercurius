@@ -6,6 +6,8 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     Key? key,
   }) : super(
           key: key,
+          size: 18 * 1.77,
+          borderRadius: 12,
           onPressed: () async {
             /// TIPS: 这里返还的是图片地址
             /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
@@ -20,7 +22,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
 
             if (pickedFile != null) {
               String copyFilePath =
-                  '${mercuriusPathNotifier.path}/${pickedFile.name}';
+                  '${mercuriusPathNotifier.path}/image/${pickedFile.name}';
               await XFile(pickedFile.path).saveTo(copyFilePath);
 
               controller.document

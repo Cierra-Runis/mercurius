@@ -6,3 +6,4 @@ export 'mercurius_splash_page.dart';
 export 'mercurius_sudoku_page.dart';
 export 'mercurius_release_page.dart';
 export 'mercurius_io_page.dart';
+export 'mercurius_gallery_page.dart';

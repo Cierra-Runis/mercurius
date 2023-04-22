@@ -27,7 +27,7 @@ class DiaryEditorToolbarWidget extends StatelessWidget {
     );
 
     List<EmbedButtonBuilder> embedButtons = [
-      (controller, a, b, c) {
+      (controller, _, __, ___) {
         return DiaryEditorToolbarImageButtonWidget(
           controller: controller,
         );

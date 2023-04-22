@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.1.8+47
+version: 0.1.9+48
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -14,18 +14,18 @@ dependencies:
   flutter_localizations: # Flutter [网址略]
     sdk: flutter
   another_flushbar: ^1.12.29 # 提示框 [https://pub.dev/packages/another_flushbar]
-  badges: ^3.1.0 # 小红点提示 [https://pub.dev/packages/badges]
+  badges: ^3.1.1 # 小红点提示 [https://pub.dev/packages/badges]
   confetti: ^0.7.0 # 彩纸效果 [https://pub.dev/packages/confetti]
   cross_file: ^0.3.3+4 # 文件操作 [https://pub.dev/packages/cross_file]
   dio: ^5.1.1 # 网络请求 [https://pub.dev/packages/dio]
   dart_date: ^1.2.1 # 转换时间工具 [https://pub.dev/packages/dart_date]
-  flutter_displaymode: ^0.5.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
+  file_picker: ^5.2.10 # 文件选择 [https://pub.dev/packages/file_picker]
+  flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.1.4 # 富文本 [https://pub.dev/packages/flutter_quill]
-  flutter_quill_extensions: ^0.2.0 # 富文本扩展 [https://pub.dev/packages/flutter_quill_extensions]
-  image_picker: ^0.8.7+2 # 图片选择 [https://pub.dev/packages/image_picker]
-  isar: ^3.0.5 # 数据库 [https://pub.dev/packages/isar]
-  isar_flutter_libs: ^3.0.5 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
+  flutter_quill: ^7.1.10 # 富文本 [https://pub.dev/packages/flutter_quill]
+  image_picker: ^0.8.7+4 # 图片选择 [https://pub.dev/packages/image_picker]
+  isar: ^3.1.0 # 数据库 [https://pub.dev/packages/isar]
+  isar_flutter_libs: ^3.1.0 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   json_annotation: ^4.7.0 # json 相关 [https://pub.dev/packages/json_annotation]
   json_serializable: ^6.5.3 # json 相关 [https://pub.dev/packages/json_serializable]
   keframe: ^3.0.0 # 列表优化 [https://pub.dev/packages/keframe]
@@ -38,7 +38,7 @@ dependencies:
   share_plus: ^6.3.1 # 分享 [https://pub.dev/packages/share_plus]
   shared_preferences: ^2.1.0 # 数据持久化 [https://pub.dev/packages/shared_preferences]
   sudoku_solver_generator: ^2.1.0+1 # 数独生成器 [https://pub.dev/packages/sudoku_solver_generator]
-  syncfusion_flutter_charts: ^21.1.38 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  syncfusion_flutter_charts: ^21.1.41 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]
   url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
@@ -49,7 +49,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3 # 代码生成用实用工具 [https://pub.dev/packages/build_runner]
-  isar_generator: ^3.0.5 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
+  isar_generator: ^3.1.0 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
 
 flutter:
   uses-material-design: true # 启用 material3 设计

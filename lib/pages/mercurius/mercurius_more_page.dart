@@ -60,7 +60,7 @@ class MercuriusMorePage extends StatelessWidget {
                       onTap: () => Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => const Scaffold(),
+                          builder: (context) => const MercuriusGalleryPage(),
                         ),
                       ),
                     ),
@@ -68,11 +68,10 @@ class MercuriusMorePage extends StatelessWidget {
                     MercuriusModifiedListItem(
                       iconData: Icons.import_export_rounded,
                       titleText: '导入导出',
-                      summaryText: '暂未完成',
                       onTap: () => Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => const MercuriusIoPage(),
+                          builder: (context) => const MercuriusIOPage(),
                         ),
                       ),
                     ),
