@@ -15,7 +15,7 @@ class MercuriusModifiedListSection extends StatelessWidget {
   final Widget? summary;
   final Widget? leading;
   final Widget? description;
-  final EdgeInsets? margin;
+  final EdgeInsets margin;
   final List<Widget> children;
 
   @override

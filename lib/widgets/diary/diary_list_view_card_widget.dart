@@ -155,86 +155,105 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(10.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24.0),
-      ),
-      child: InkWell(
-        onTap: _enable
-            ? () async {
-                MercuriusKit.vibration();
-                await showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) => DiaryPageViewWidget(
-                    diary: _diary!,
+    return Dismissible(
+      key: UniqueKey(),
+      onDismissed:
+          _enable ? (_) => isarService.deleteDiaryById(_diary!.id!) : null,
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.endToStart) {
+          bool? confirm = await showDialog<bool>(
+            context: context,
+            builder: (BuildContext context) {
+              return const MercuriusOriginalConfirmDialogWidget(
+                itemName: '这篇日记',
+              );
+            },
+          );
+          return confirm == true;
+        }
+        return false;
+      },
+      child: Card(
+        margin: const EdgeInsets.all(10.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        child: InkWell(
+          onTap: _enable
+              ? () async {
+                  MercuriusKit.vibration();
+                  await showDialog<void>(
+                    context: context,
+                    builder: (BuildContext context) => DiaryPageViewWidget(
+                      diary: _diary!,
+                    ),
+                  );
+                }
+              : null,
+          borderRadius: BorderRadius.circular(24.0),
+          child: SizedBox(
+            height: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(flex: 18, child: Container()),
+                Expanded(
+                  flex: 40,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _dayWidget,
+                      ),
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _weekdayWidget,
+                      ),
+                    ],
                   ),
-                );
-              }
-            : null,
-        borderRadius: BorderRadius.circular(24.0),
-        child: SizedBox(
-          height: 80,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(flex: 18, child: Container()),
-              Expanded(
-                flex: 40,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _dayWidget,
-                    ),
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _weekdayWidget,
-                    ),
-                  ],
                 ),
-              ),
-              Expanded(
-                flex: 142,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _latestEditTimeWidget,
-                    ),
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _createDateTimeWidget,
-                    ),
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _contentJsonStringWidget,
-                    ),
-                  ],
+                Expanded(
+                  flex: 142,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _latestEditTimeWidget,
+                      ),
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _createDateTimeWidget,
+                      ),
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _contentJsonStringWidget,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 50,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _moodWidget,
-                    ),
-                    AnimatedSwitcher(
-                      duration: _duration,
-                      child: _weatherWidget,
-                    )
-                  ],
+                Expanded(
+                  flex: 50,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _moodWidget,
+                      ),
+                      AnimatedSwitcher(
+                        duration: _duration,
+                        child: _weatherWidget,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(flex: 9, child: Container()),
-            ],
+                Expanded(flex: 9, child: Container()),
+              ],
+            ),
           ),
         ),
       ),

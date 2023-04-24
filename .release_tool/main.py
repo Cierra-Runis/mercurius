@@ -53,7 +53,7 @@ def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
     file.close()
 
 
-def rewrite_current_version_str_in_pubspec_yaml(new_version: str) -> None:
+def rewrite_current_version_in_pubspec_yaml(new_version: str) -> None:
     '''
     修改 pubspec.yaml 文件中的版本号
     '''
@@ -189,7 +189,7 @@ def main_module() -> None:
         # 直至新版本号合法
 
         # 写入新版本号至 pubspec.yaml 文件
-        rewrite_current_version_str_in_pubspec_yaml(input_str)
+        rewrite_current_version_in_pubspec_yaml(input_str)
 
         # 版本号已修改
         print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')

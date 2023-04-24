@@ -10,10 +10,16 @@ class DiaryPageViewImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// TODO: 写界面
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(imageUrl.split('/').last),
+      ),
       body: Center(
-        child: Text('这里将用于显示图片'),
+        child: PhotoView(
+          enableRotation: true,
+          backgroundDecoration: const BoxDecoration(),
+          imageProvider: FileImage(File(imageUrl)),
+        ),
       ),
     );
   }

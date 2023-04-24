@@ -11,24 +11,29 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
-  Widget _getCardBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) =>
-      snapshot.data == null || snapshot.data!.isEmpty
-          ? const Center(child: Text('无数据'))
-          : ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemExtent: 100,
-              cacheExtent: 800,
-              shrinkWrap: true,
-              itemBuilder: (context, index) => FrameSeparateWidget(
-                index: index,
-                placeHolder: DiaryListViewCardWidget(context: context),
-                child: DiaryListViewCardWidget(
-                  diary: snapshot.data![index],
-                  key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
-                  context: context,
-                ),
-              ),
-            );
+  Widget _getCardBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) {
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
+      return const Center(child: Text('无数据'));
+    }
+
+    List<Diary> diaries = snapshot.data!;
+
+    return ListView.builder(
+      itemCount: diaries.length,
+      itemExtent: 100,
+      cacheExtent: 800,
+      shrinkWrap: true,
+      itemBuilder: (context, index) => FrameSeparateWidget(
+        index: index,
+        placeHolder: DiaryListViewCardWidget(context: context),
+        child: DiaryListViewCardWidget(
+          key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+          diary: diaries[index],
+          context: context,
+        ),
+      ),
+    );
+  }
 
   Widget _getBodyBySnapshotState(AsyncSnapshot<List<Diary>> snapshot) {
     if (snapshot.hasError) {

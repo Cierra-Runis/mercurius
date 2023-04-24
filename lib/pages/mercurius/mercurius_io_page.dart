@@ -24,6 +24,7 @@ class MercuriusIOPage extends StatelessWidget {
                     isarService.importJsonWith(result.files.single.path!);
                   }
                   if (context.mounted) {
+                    MercuriusKit.vibration(duration: 300);
                     Flushbar(
                       icon: const Icon(UniconsLine.smile),
                       isDismissible: false,
@@ -57,6 +58,7 @@ class MercuriusIOPage extends StatelessWidget {
               const MercuriusModifiedListItem(
                 iconData: Icons.nfc_rounded,
                 titleText: '导入 NFC 数据',
+                // TODO: 写逻辑
                 summaryText: '暂未完成',
               ),
             ],
@@ -76,6 +78,7 @@ class MercuriusIOPage extends StatelessWidget {
               const MercuriusModifiedListItem(
                 iconData: Icons.nfc_rounded,
                 titleText: '导出 NFC 数据',
+                // TODO: 写逻辑
                 summaryText: '暂未完成',
               ),
             ],

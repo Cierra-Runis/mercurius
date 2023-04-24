@@ -1,4 +1,3 @@
-
 import 'package:mercurius/index.dart';
 
 class DiaryImageBlockEmbed extends BlockEmbed {
@@ -26,33 +25,51 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
     bool readOnly,
     bool inline,
   ) {
-    String imageUrl = node.value.data;
-    File file = File(imageUrl);
-
-    Widget image = file.existsSync()
-        ? Image.file(file, alignment: Alignment.center)
-        : const Placeholder(
+    Widget getInkWellChild(File file) {
+      if (file.existsSync()) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(16.0),
+          child: Image.file(file, alignment: Alignment.center),
+        );
+      } else {
+        return SizedBox(
+          height: 200,
+          child: Placeholder(
+            strokeWidth: 0.5,
+            color: Theme.of(context).colorScheme.error,
             child: Center(
-              heightFactor: 12,
-              child: Text('图片缺失'),
+              child: Text(
+                '位于\n${file.path}\n的图片缺失}',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 8.0,
+                ),
+              ),
             ),
-          );
+          ),
+        );
+      }
+    }
+
+    void onInkWellTap(File file, bool readOnly) {
+      if (file.existsSync() && readOnly) {
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => DiaryPageViewImageWidget(
+              imageUrl: file.path,
+            ),
+          ),
+        );
+      }
+    }
+
+    File file = File(node.value.data);
 
     return Material(
       child: InkWell(
-        onTap: readOnly
-            ? () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => DiaryPageViewImageWidget(
-                      imageUrl: imageUrl,
-                    ),
-                  ),
-                );
-              }
-            : null,
-        child: image,
+        onTap: () => onInkWellTap(file, readOnly),
+        child: getInkWellChild(file),
       ),
     );
   }

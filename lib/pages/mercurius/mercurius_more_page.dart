@@ -56,7 +56,6 @@ class MercuriusMorePage extends StatelessWidget {
                     MercuriusModifiedListItem(
                       iconData: Icons.image_rounded,
                       titleText: '图片库',
-                      summaryText: '暂未完成',
                       onTap: () => Navigator.push(
                         context,
                         CupertinoPageRoute(
@@ -64,7 +63,6 @@ class MercuriusMorePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // TODO: 写逻辑
                     MercuriusModifiedListItem(
                       iconData: Icons.import_export_rounded,
                       titleText: '导入导出',

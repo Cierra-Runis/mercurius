@@ -13,17 +13,25 @@ class DiaryPageViewWidget extends StatefulWidget {
 }
 
 class _DiaryPageViewWidgetState extends State<DiaryPageViewWidget> {
-  Widget _getCardBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) {
+  Widget _getPageBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) {
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
+      Navigator.pop(context);
+    }
+
     List<Diary> diaries = snapshot.data!;
 
-    return PageView(
+    return PageView.builder(
+      itemCount: diaries.length,
       controller: PageController(
-        initialPage:
-            diaries.indexWhere((element) => element.id == widget.diary.id),
+        initialPage: diaries.indexWhere((e) => e.id == widget.diary.id),
       ),
-      children: [
-        for (Diary diary in diaries) DiaryPageViewBodyWidget(diary: diary),
-      ],
+      onPageChanged: (value) {
+        MercuriusKit.printLog('$value');
+      },
+      itemBuilder: (context, index) => DiaryPageViewBodyWidget(
+        key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+        diary: diaries[index],
+      ),
     );
   }
 
@@ -49,7 +57,7 @@ class _DiaryPageViewWidgetState extends State<DiaryPageViewWidget> {
           ),
         );
       case ConnectionState.active:
-        return _getCardBySnapshotData(snapshot);
+        return _getPageBySnapshotData(snapshot);
       case ConnectionState.done:
         return const Center(child: Text('Stream 已关闭'));
     }

@@ -38,13 +38,12 @@ class MercuriusModifiedListItem extends StatelessWidget {
   final bool? showDetailTextBadge;
   final bool? showAccessoryViewBadge;
   final Widget? bottomView;
-  final bool? disabled;
+  final bool disabled;
   final VoidCallback? onTap;
 
   void _onTap() {
-    if (onTap != null) {
-      onTap!();
-    }
+    MercuriusKit.vibration();
+    if (onTap != null) onTap!();
   }
 
   Widget buildDetailText(BuildContext context) {
@@ -82,7 +81,7 @@ class MercuriusModifiedListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: disabled! ? null : _onTap,
+      onTap: disabled ? null : _onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

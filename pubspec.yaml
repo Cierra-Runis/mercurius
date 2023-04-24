@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.1.9+48
+version: 0.2.0+49
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -33,6 +33,7 @@ dependencies:
   open_app_file: ^4.0.1 # 打开文件 [https://pub.dev/packages/open_app_file]
   path_provider: ^2.0.14 # 路径获取 [https://pub.dev/packages/path_provider]
   package_info_plus: ^3.0.3 # 包信息 [https://pub.dev/packages/package_info_plus]
+  photo_view: ^0.14.0 # 图片视图 [https://pub.dev/packages/photo_view]
   provider: ^6.0.5 # 状态管理 [https://pub.dev/packages/provider]
   pull_to_refresh: ^2.0.0 # 下拉刷新 [https://pub.dev/packages/pull_to_refresh]
   share_plus: ^6.3.1 # 分享 [https://pub.dev/packages/share_plus]
@@ -43,6 +44,7 @@ dependencies:
   url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.7.6 # 振动反馈 [https://pub.dev/packages/vibration]
+  waterfall_flow: ^3.0.2 # 图片网格流 [https://pub.dev/packages/waterfall_flow]
 
 dev_dependencies:
   flutter_test:

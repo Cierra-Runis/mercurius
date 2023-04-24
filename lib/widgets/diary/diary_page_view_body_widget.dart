@@ -24,8 +24,11 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
+    return Card(
+      margin: const EdgeInsets.all(10.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24.0),
+      ),
       child: SizedBox(
         child: Container(
           decoration: ShapeDecoration(
@@ -149,7 +152,6 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                         IconButton(
                           onPressed: () {
                             MercuriusKit.vibration();
-                            Navigator.pop(context);
                             isarService.deleteDiaryById(
                               _currentDiary.id!,
                             );
