@@ -1,27 +1,18 @@
 import 'package:mercurius/index.dart';
 
-class DiarySearchBarWidget extends StatefulWidget {
+class DiarySearchBarWidget extends ConsumerWidget {
   const DiarySearchBarWidget({super.key});
 
   @override
-  State<DiarySearchBarWidget> createState() => _DiarySearchBarWidgetState();
-}
-
-class _DiarySearchBarWidgetState extends State<DiarySearchBarWidget> {
-  @override
-  void dispose() {
-    diarySearchTextNotifier.contains = '';
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: 160,
       child: TextField(
         autofocus: true,
         textAlign: TextAlign.center,
-        onChanged: (value) => diarySearchTextNotifier.changeContains(value),
+        onChanged: (value) => ref
+            .watch(diarySearchTextProvider.notifier)
+            .change(newString: value),
         decoration: const InputDecoration(
           hintText: '查找日记内容',
           border: InputBorder.none,

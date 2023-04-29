@@ -1,19 +1,19 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusHomePage extends StatefulWidget {
+class MercuriusHomePage extends ConsumerStatefulWidget {
   const MercuriusHomePage({super.key});
 
   @override
-  State<MercuriusHomePage> createState() => _MercuriusHomePageState();
+  ConsumerState<MercuriusHomePage> createState() => _MercuriusHomePageState();
 }
 
-class _MercuriusHomePageState extends State<MercuriusHomePage> {
+class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   bool _currentListViewMode = true;
   bool _currentSearchBarMode = false;
 
   void _switchCurrentViewMode() {
     MercuriusKit.vibration();
-    diarySearchTextNotifier.changeContains('');
+    ref.watch(diarySearchTextProvider.notifier).change();
 
     setState(() {
       _currentListViewMode = !_currentListViewMode;
@@ -23,7 +23,7 @@ class _MercuriusHomePageState extends State<MercuriusHomePage> {
 
   void _switchCurrentBarMode() {
     MercuriusKit.vibration();
-    diarySearchTextNotifier.changeContains('');
+    ref.watch(diarySearchTextProvider.notifier).change();
 
     setState(() {
       _currentSearchBarMode = !_currentSearchBarMode;

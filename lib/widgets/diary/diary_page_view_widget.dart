@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryPageViewWidget extends StatefulWidget {
+class DiaryPageViewWidget extends ConsumerStatefulWidget {
   const DiaryPageViewWidget({
     Key? key,
     required this.diary,
@@ -9,10 +9,11 @@ class DiaryPageViewWidget extends StatefulWidget {
   final Diary diary;
 
   @override
-  State<DiaryPageViewWidget> createState() => _DiaryPageViewWidgetState();
+  ConsumerState<DiaryPageViewWidget> createState() =>
+      _DiaryPageViewWidgetState();
 }
 
-class _DiaryPageViewWidgetState extends State<DiaryPageViewWidget> {
+class _DiaryPageViewWidgetState extends ConsumerState<DiaryPageViewWidget> {
   Widget _getPageBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) {
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       Navigator.pop(context);
@@ -65,18 +66,14 @@ class _DiaryPageViewWidgetState extends State<DiaryPageViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DiarySearchTextNotifier>(
-      builder: (context, diarySearchTextNotifier, child) {
-        return StreamBuilder<List<Diary>>(
-          stream: isarService
-              .listenToDiariesContains(diarySearchTextNotifier.contains),
-          builder: (
-            BuildContext context,
-            AsyncSnapshot<List<Diary>> snapshot,
-          ) =>
-              _getBodyBySnapshotState(snapshot),
-        );
-      },
+    return StreamBuilder<List<Diary>>(
+      stream: isarService
+          .listenToDiariesContains(ref.watch(diarySearchTextProvider)),
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<List<Diary>> snapshot,
+      ) =>
+          _getBodyBySnapshotState(snapshot),
     );
   }
 }

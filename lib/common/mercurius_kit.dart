@@ -40,10 +40,9 @@ class MercuriusKit {
   static const _showDebugPaintSizeEnabled = false;
 
   /// [MercuriusKit] 调试用输出语句
-  static void printLog(String message) {
+  static void printLog(String newLog) {
     if (_showLog) {
-      devtools.log(message);
-      mercuriusLogNotifier.addLog('$message\n');
+      devtools.log(newLog);
     }
   }
 

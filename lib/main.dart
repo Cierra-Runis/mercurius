@@ -6,8 +6,6 @@ final mercuriusSudokuNotifier = MercuriusSudokuNotifier();
 final mercuriusWebNotifier = MercuriusWebNotifier();
 final mercuriusPositionNotifier = MercuriusPositionNotifier();
 final mercuriusPathNotifier = MercuriusPathNotifier();
-final mercuriusLogNotifier = MercuriusLogNotifier();
-final diarySearchTextNotifier = DiarySearchTextNotifier();
 
 /// 数据库服务
 final isarService = IsarService();
@@ -18,7 +16,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 /// 因 `mercuriusProfileNotifier` 需要读取本地数据, 故先进入 `mercuriusProfileNotifier` 进行初始化
 Future<void> main() async {
   await mercuriusProfileNotifier.init();
-  runApp(const MercuriusApp());
+  runApp(const ProviderScope(child: MercuriusApp()));
 }
 
 class MercuriusApp extends StatelessWidget {
@@ -46,8 +44,6 @@ class MercuriusApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => mercuriusWebNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusPositionNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusPathNotifier),
-        ChangeNotifierProvider(create: (_) => mercuriusLogNotifier),
-        ChangeNotifierProvider(create: (_) => diarySearchTextNotifier),
       ],
       child: Consumer<MercuriusProfileNotifier>(
         builder: (context, mercuriusProfileNotifier, child) {

@@ -1,13 +1,13 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListViewWidget extends StatefulWidget {
+class DiaryListViewWidget extends ConsumerStatefulWidget {
   const DiaryListViewWidget({super.key});
-
   @override
-  State<DiaryListViewWidget> createState() => _DiaryListViewWidgetState();
+  ConsumerState<DiaryListViewWidget> createState() =>
+      _DiaryListViewWidgetState();
 }
 
-class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
+class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -60,9 +60,7 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
         return SmartRefresher(
           onRefresh: () async {
             await Future.delayed(const Duration(milliseconds: 500), () {});
-            diarySearchTextNotifier.changeContains(
-              diarySearchTextNotifier.contains,
-            );
+            ref.watch(diarySearchTextProvider.notifier).change();
             _refreshController.refreshCompleted();
           },
           controller: _refreshController,
@@ -75,18 +73,14 @@ class _DiaryListViewWidgetState extends State<DiaryListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DiarySearchTextNotifier>(
-      builder: (context, diarySearchTextNotifier, child) {
-        return StreamBuilder<List<Diary>>(
-          stream: isarService
-              .listenToDiariesContains(diarySearchTextNotifier.contains),
-          builder: (
-            BuildContext context,
-            AsyncSnapshot<List<Diary>> snapshot,
-          ) =>
-              _getBodyBySnapshotState(snapshot),
-        );
-      },
+    return StreamBuilder<List<Diary>>(
+      stream: isarService
+          .listenToDiariesContains(ref.watch(diarySearchTextProvider)),
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<List<Diary>> snapshot,
+      ) =>
+          _getBodyBySnapshotState(snapshot),
     );
   }
 }

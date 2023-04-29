@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusRoute extends StatefulWidget {
+class MercuriusRoute extends ConsumerStatefulWidget {
   const MercuriusRoute({super.key});
   @override
-  State<MercuriusRoute> createState() => _MercuriusRouteState();
+  ConsumerState<MercuriusRoute> createState() => _MercuriusRouteState();
 }
 
-class _MercuriusRouteState extends State<MercuriusRoute> {
+class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = [
@@ -16,7 +16,7 @@ class _MercuriusRouteState extends State<MercuriusRoute> {
 
   void _onItemTapped(int index) {
     MercuriusKit.vibration();
-    diarySearchTextNotifier.changeContains('');
+    ref.watch(diarySearchTextProvider.notifier).change();
     setState(() {
       _selectedIndex = index;
     });
