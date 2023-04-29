@@ -33,7 +33,7 @@ class MercuriusWebNotifier extends ChangeNotifier {
     if (response.statusCode == 200) {
       MercuriusKit.printLog('GithubLatestRelease 请求成功');
       githubLatestRelease = GithubLatestRelease.fromJson(
-        jsonDecode(response.toString()),
+        jsonDecode('$response'),
       );
     } else {
       MercuriusKit.printLog('GithubLatestRelease 请求失败');

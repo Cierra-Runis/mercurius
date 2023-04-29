@@ -94,7 +94,7 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
           if (timer.tick > 0 && mounted) {
             setState(() {
               _dayWidget = Text(
-                _diary!.createDateTime.toString().substring(8, 10),
+                '${_diary!.createDateTime}'.substring(8, 10),
                 style: const TextStyle(
                   fontSize: 24,
                   fontFamily: 'Saira',
@@ -107,7 +107,7 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
                 ),
               );
               _latestEditTimeWidget = Text(
-                _diary!.latestEditTime.toString().substring(11, 19),
+                '${_diary!.latestEditTime}'.substring(11, 19),
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -115,7 +115,7 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
               );
               _createDateTimeWidget = Text(
                 _diary!.titleString ??
-                    _diary!.createDateTime.toString().substring(0, 10),
+                    '${_diary!.createDateTime}'.substring(0, 10),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(

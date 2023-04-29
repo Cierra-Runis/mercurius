@@ -77,7 +77,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
                           .withOpacity(0.7),
                       dataSource: snapshot.data!,
                       xValueMapper: (_DiaryWordsData sales, _) =>
-                          sales.dateTime.toString().substring(0, 7),
+                          '${sales.dateTime}'.substring(0, 7),
                       yValueMapper: (_DiaryWordsData sales, _) => sales.sales,
                       dataLabelSettings: const DataLabelSettings(
                         isVisible: true,

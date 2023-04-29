@@ -70,7 +70,7 @@ class MercuriusPositionNotifier extends ChangeNotifier {
 
     dynamic data;
     if (response.statusCode == 200) {
-      data = jsonDecode(response.toString());
+      data = jsonDecode('$response');
       if (data['province'] == null ||
           data['city'] == null ||
           data['rectangle'] == null) {
@@ -87,8 +87,8 @@ class MercuriusPositionNotifier extends ChangeNotifier {
     var match = RegExp(r'(.*),(.*);').firstMatch(data['rectangle']);
 
     newCachePosition = CachePosition()
-      ..latitude = double.parse(match![1].toString()).toStringAsFixed(2)
-      ..longitude = double.parse(match[2].toString()).toStringAsFixed(2)
+      ..latitude = double.parse('${match![1]}').toStringAsFixed(2)
+      ..longitude = double.parse('${match[2]}').toStringAsFixed(2)
       ..city = data['city']
       ..dateTime = DateTime.now();
 
@@ -117,7 +117,7 @@ class MercuriusPositionNotifier extends ChangeNotifier {
     MercuriusKit.printLog('qWeather 连接成功');
 
     if (response.statusCode == 200) {
-      weatherBody = WeatherBody.fromJson(jsonDecode(response.toString()));
+      weatherBody = WeatherBody.fromJson(jsonDecode('$response'));
       MercuriusKit.printLog('获取 qWeather 成功，且为 ${jsonEncode(weatherBody)}');
     } else {
       weatherBody.now!.icon = '2028';

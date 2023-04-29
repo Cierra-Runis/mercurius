@@ -1,4 +1,4 @@
-import 'package:mercurius/index.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'diary_search_text.g.dart';
 
 @riverpod

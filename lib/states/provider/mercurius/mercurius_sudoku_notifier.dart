@@ -55,8 +55,8 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
   }
 
   void checkAnswer() {
-    if (mercuriusSudokuNotifier.sudokuListCopy.toString() ==
-        mercuriusSudokuNotifier._sudokuListAnswer.toString()) {
+    if ('${mercuriusSudokuNotifier.sudokuListCopy}' ==
+        '${mercuriusSudokuNotifier._sudokuListAnswer}') {
       won = true;
     } else {
       won = false;

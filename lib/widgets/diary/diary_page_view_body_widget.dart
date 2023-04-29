@@ -66,8 +66,7 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                               ),
                             ),
                             Text(
-                              _currentDiary.createDateTime
-                                  .toString()
+                              '${_currentDiary.createDateTime}'
                                   .substring(8, 10),
                               style: const TextStyle(
                                 fontSize: 60,

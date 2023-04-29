@@ -84,7 +84,7 @@ class _MercuriusOriginalHiToKoToWidgetState
 
     if (response.statusCode == 200) {
       return HiToKoTo.fromJson(
-        jsonDecode(response.toString()),
+        jsonDecode('$response'),
       );
     } else {
       return HiToKoTo.fromJson(

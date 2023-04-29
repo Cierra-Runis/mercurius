@@ -42,7 +42,7 @@ class MercuriusKit {
   /// [MercuriusKit] 调试用输出语句
   static void printLog(String newLog) {
     if (_showLog) {
-      devtools.log(newLog);
+      devtools.log('[Mercurius] $newLog');
     }
   }
 

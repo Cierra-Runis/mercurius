@@ -30,7 +30,9 @@ export 'package:confetti/confetti.dart'; // 彩纸效果
 export 'package:cross_file/cross_file.dart'; // 文件操作
 export 'package:dio/dio.dart'; // 网络请求
 // [Interval] 和 `package:flutter/src/animation/curves.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
-export 'package:dart_date/dart_date.dart' hide Interval; // 日期工具
+export 'package:dart_date/dart_date.dart' // 日期工具
+    hide
+        Interval;
 export 'package:file_picker/file_picker.dart'; // 文件选择
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
@@ -50,23 +52,13 @@ export 'package:open_app_file/open_app_file.dart'; // 打开文件
 export 'package:path_provider/path_provider.dart'; // 路径获取
 export 'package:package_info_plus/package_info_plus.dart'; // 包信息
 export 'package:photo_view/photo_view.dart'; // 图片视图
-export 'package:provider/provider.dart'
-    hide StreamProvider, Provider, Locator, FutureProvider; // 状态管理
-export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
-export 'package:riverpod_annotation/riverpod_annotation.dart'
+export 'package:provider/provider.dart' // 状态管理
     hide
-        BuildlessAutoDisposeAsyncNotifier,
-        BuildlessStreamNotifier,
-        NotifierProviderImpl,
-        StreamNotifierProviderImpl,
-        BuildlessAutoDisposeStreamNotifier,
-        BuildlessAutoDisposeNotifier,
-        AsyncNotifierProviderImpl,
-        AutoDisposeAsyncNotifierProviderImpl,
-        BuildlessNotifier,
-        AutoDisposeNotifierProviderImpl,
-        BuildlessAsyncNotifier,
-        AutoDisposeStreamNotifierProviderImpl; // 状态管理相关
+        StreamProvider,
+        Provider,
+        Locator,
+        FutureProvider;
+export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
 export 'package:share_plus/share_plus.dart'; // 分享
 export 'package:shared_preferences/shared_preferences.dart'; // 数据持久化
 export 'package:sudoku_solver_generator/sudoku_solver_generator.dart'; // 数独生成器
@@ -75,5 +67,6 @@ export 'package:table_calendar/table_calendar.dart'; // 日历
 export 'package:url_launcher/url_launcher_string.dart'; // 打开外部链接
 export 'package:unicons/unicons.dart'; // 图标
 export 'package:vibration/vibration.dart'; // 振动反馈
-export 'package:waterfall_flow/waterfall_flow.dart'
-    hide ViewportBuilder; // 图片网格流
+export 'package:waterfall_flow/waterfall_flow.dart' // 图片网格流
+    hide
+        ViewportBuilder;

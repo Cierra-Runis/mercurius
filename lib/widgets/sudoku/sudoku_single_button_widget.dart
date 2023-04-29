@@ -64,7 +64,7 @@ class _SudokuSingleButtonWidgetState extends State<SudokuSingleButtonWidget> {
             ),
           ),
           child: Text(
-            widget.disable ? widget.showNum.toString() : '',
+            widget.disable ? '${widget.showNum}' : '',
             style: widget.disable
                 ? TextStyle(
                     color: Theme.of(context).brightness == Brightness.dark
