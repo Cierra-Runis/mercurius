@@ -60,14 +60,15 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '${_currentDiary.createDateTime.toString().substring(0, 4)}年，${_currentDiary.createDateTime.toString().substring(5, 7)}月',
+                              _currentDiary.createDateTime
+                                  .format('y 年，M 月', 'zh_CN'),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              '${_currentDiary.createDateTime}'
-                                  .substring(8, 10),
+                              _currentDiary.createDateTime
+                                  .format('dd', 'zh_CN'),
                               style: const TextStyle(
                                 fontSize: 60,
                                 fontFamily: 'Saira',
@@ -84,7 +85,8 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                                   ),
                                 ),
                                 Text(
-                                  '${DiaryConstance.weekdayMap[_currentDiary.createDateTime!.weekday]!} ${_currentDiary.latestEditTime.toString().substring(11, 19)}',
+                                  _currentDiary.latestEditTime
+                                      .format('EEEE HH:mm:ss', 'zh_CN'),
                                   style: const TextStyle(
                                     fontSize: 12,
                                   ),
@@ -180,7 +182,7 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                           onPressed: () {
                             MercuriusKit.vibration();
                             Share.share(
-                              '${_currentDiary.createDateTime.toString().substring(0, 10)}\n'
+                              '${_currentDiary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
                               '天气：${DiaryConstance.weatherCommitMap[_currentDiary.weather] ?? '未记录'}\n'
                               '标题：${_currentDiary.titleString ?? '无标题'}\n'
                               '心情：${_currentDiary.mood}\n'

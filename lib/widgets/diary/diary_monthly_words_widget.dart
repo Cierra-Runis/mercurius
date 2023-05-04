@@ -123,9 +123,9 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
       return result;
     }
 
-    DateTime start = diaries[0].createDateTime!;
+    DateTime start = diaries[0].createDateTime;
     start = DateTime(start.year, start.month, 1);
-    DateTime end = diaries[diaries.length - 1].createDateTime!;
+    DateTime end = diaries[diaries.length - 1].createDateTime;
 
     while (start.isBefore(end)) {
       data.addAll({start: 0});
@@ -134,8 +134,8 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
 
     data.forEach((key, _) {
       for (Diary diary in diaries) {
-        if (key.isSameYear(diary.createDateTime!) &&
-            key.isSameMonth(diary.createDateTime!)) {
+        if (key.isSameYear(diary.createDateTime) &&
+            key.isSameMonth(diary.createDateTime)) {
           data.update(
             key,
             (value) => value += Document.fromJson(

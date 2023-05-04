@@ -7,8 +7,8 @@ part 'diary.g.dart';
 class Diary {
   const Diary({
     this.id,
-    this.createDateTime,
-    this.latestEditTime,
+    required this.createDateTime,
+    required this.latestEditTime,
     this.titleString,
     this.contentJsonString,
     this.mood = '一般',
@@ -19,10 +19,10 @@ class Diary {
   final Id? id;
 
   /// 创建时间
-  final DateTime? createDateTime;
+  final DateTime createDateTime;
 
   /// 最后编辑时间
-  final DateTime? latestEditTime;
+  final DateTime latestEditTime;
 
   /// 标题串
   final String? titleString;

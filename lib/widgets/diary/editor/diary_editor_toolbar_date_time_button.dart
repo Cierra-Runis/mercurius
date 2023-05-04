@@ -19,7 +19,7 @@ class DiaryEditorToolbarDateTimeButtonWidget extends QuillCustomButton {
         DateTime? dateTime = await showDatePicker(
           context: context,
           initialEntryMode: DatePickerEntryMode.calendarOnly,
-          initialDate: currentDiary.createDateTime!,
+          initialDate: currentDiary.createDateTime,
           firstDate: DateTime(1949, 10, 1),
           lastDate: DateTime.now().add(
             const Duration(days: 20000),

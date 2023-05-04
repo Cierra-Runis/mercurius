@@ -19,17 +19,17 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
     List<_DiaryListViewSection> sections = [];
     List<Diary> diaries = snapshot.data!;
 
-    int year = diaries[0].createDateTime!.year;
-    int month = diaries[0].createDateTime!.month;
+    int year = diaries[0].createDateTime.year;
+    int month = diaries[0].createDateTime.month;
     sections.add(_DiaryListViewSection()..header = '$year年$month月');
 
     for (Diary diary in diaries) {
-      if (diary.createDateTime!.month == month &&
-          diary.createDateTime!.year == year) {
+      if (diary.createDateTime.month == month &&
+          diary.createDateTime.year == year) {
         sections.last.items.add(diary);
       } else {
-        month = diary.createDateTime!.month;
-        year = diary.createDateTime!.year;
+        month = diary.createDateTime.month;
+        year = diary.createDateTime.year;
         sections.add(
           _DiaryListViewSection()
             ..header = '$year年$month月'
@@ -61,11 +61,12 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
         itemBuilder: (context, sectionIndex, itemIndex, index) {
           return FrameSeparateWidget(
             index: index,
-            placeHolder: DiaryListViewCardWidget(context: context),
+            placeHolder: DiaryListViewCardPlaceHolderWidget(
+              key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+            ),
             child: DiaryListViewCardWidget(
               key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
               diary: sections[sectionIndex].items[itemIndex],
-              context: context,
             ),
           );
         },

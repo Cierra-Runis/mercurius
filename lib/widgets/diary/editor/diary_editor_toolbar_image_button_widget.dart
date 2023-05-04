@@ -12,18 +12,23 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
             /// TIPS: 这里返还的是图片地址
             /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
             /// TIPS: 而不是可见于 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/cache/` 下
-            /// TIPS: 如 `/data/user/0/pers.cierra_runis.mercurius/cache/3155b28b-e9b8-4883-815f-624fa5e6694b/Screenshot_20230412_204800.jpg`
             /// TIPS: 这会导致用户清除缓存后图片无法加载的问题
             /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
+            /// TIPS: 并删除所需的中间缓存图片
 
             XFile? pickedFile = await ImagePicker().pickImage(
               source: ImageSource.gallery,
             );
 
             if (pickedFile != null) {
-              String copyFilePath =
+              String sourceFilePath = pickedFile.path;
+              String targetFilePath =
                   '${mercuriusPathNotifier.path}/image/${pickedFile.name}';
-              await XFile(pickedFile.path).saveTo(copyFilePath);
+
+              MercuriusKit.printLog('$sourceFilePath, $targetFilePath');
+
+              await XFile(sourceFilePath).saveTo(targetFilePath);
+              await File(sourceFilePath).delete();
 
               controller.document
                   .insert(controller.selection.extentOffset, '\n');
@@ -45,7 +50,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
 
               controller.document.insert(
                 controller.selection.extentOffset,
-                DiaryImageBlockEmbed(copyFilePath),
+                DiaryImageBlockEmbed(targetFilePath),
               );
 
               controller.updateSelection(

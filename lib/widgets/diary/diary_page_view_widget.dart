@@ -21,18 +21,20 @@ class _DiaryPageViewWidgetState extends ConsumerState<DiaryPageViewWidget> {
 
     List<Diary> diaries = snapshot.data!;
 
+    /// FIXME: 问题见 https://github.com/flutter/flutter/issues/45632
     return PageView.builder(
       itemCount: diaries.length,
       controller: PageController(
         initialPage: diaries.indexWhere((e) => e.id == widget.diary.id),
       ),
-      onPageChanged: (value) {
-        MercuriusKit.printLog('$value');
+      allowImplicitScrolling: true,
+      itemBuilder: (context, index) {
+        MercuriusKit.printLog('$index');
+        return DiaryPageViewBodyWidget(
+          key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+          diary: diaries[index],
+        );
       },
-      itemBuilder: (context, index) => DiaryPageViewBodyWidget(
-        key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
-        diary: diaries[index],
-      ),
     );
   }
 
