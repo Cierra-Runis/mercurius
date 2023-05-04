@@ -91,11 +91,13 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
             );
           },
         ),
-        title: AnimatedSwitcher(
-          duration: const Duration(seconds: 1),
-          child: _currentSearchBarMode
-              ? const DiarySearchBarWidget()
-              : const MercuriusOriginalTitleWidget(),
+        title: AnimatedCrossFade(
+          crossFadeState: _currentSearchBarMode
+              ? CrossFadeState.showFirst
+              : CrossFadeState.showSecond,
+          duration: const Duration(milliseconds: 500),
+          firstChild: const DiarySearchBarWidget(),
+          secondChild: const MercuriusOriginalTitleWidget(),
         ),
         centerTitle: true,
         actions: [

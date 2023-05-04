@@ -1114,6 +1114,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2+1"
+  sticky_and_expandable_list:
+    dependency: "direct main"
+    description:
+      name: sticky_and_expandable_list
+      sha256: eef5080ea848e17e82674566709b41d28becb9f7ac223d7255b27c004a01de69
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   stream_channel:
     dependency: transitive
     description:

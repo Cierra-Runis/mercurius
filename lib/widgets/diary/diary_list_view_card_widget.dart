@@ -31,8 +31,6 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
 
   final Duration _duration = const Duration(milliseconds: 1200);
 
-  late Timer _timer;
-
   @override
   void initState() {
     super.initState();
@@ -88,67 +86,55 @@ class _DiaryListViewCardWidgetState extends State<DiaryListViewCardWidget> {
     );
 
     if (_enable) {
-      _timer = Timer.periodic(
-        _duration,
-        (timer) {
-          if (timer.tick > 0 && mounted) {
-            setState(() {
-              _dayWidget = Text(
-                '${_diary!.createDateTime}'.substring(8, 10),
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontFamily: 'Saira',
-                ),
-              );
-              _weekdayWidget = Text(
-                DiaryConstance.weekdayMap[_diary!.createDateTime!.weekday]!,
-                style: const TextStyle(
-                  fontSize: 10,
-                ),
-              );
-              _latestEditTimeWidget = Text(
-                '${_diary!.latestEditTime}'.substring(11, 19),
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              );
-              _createDateTimeWidget = Text(
-                _diary!.titleString ??
-                    '${_diary!.createDateTime}'.substring(0, 10),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              );
-              _contentJsonStringWidget = Text(
-                Document.fromJson(
-                  jsonDecode(_diary!.contentJsonString!),
-                ).toPlainText().replaceAll(RegExp('\n'), ''),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
-              );
-              _moodWidget = Icon(
-                size: 18,
-                DiaryConstance.moodMap[_diary!.mood] ??
-                    DiaryConstance.moodMap['开心'],
-              );
-              _weatherWidget = Icon(
-                size: 18,
-                QWeatherIcon.getIconDataById(
-                  int.parse(_diary!.weather),
-                ),
-              );
-            });
-            _timer.cancel();
-          }
-        },
+      _dayWidget = Text(
+        '${_diary!.createDateTime}'.substring(8, 10),
+        style: const TextStyle(
+          fontSize: 24,
+          fontFamily: 'Saira',
+        ),
+      );
+      _weekdayWidget = Text(
+        DiaryConstance.weekdayMap[_diary!.createDateTime!.weekday]!,
+        style: const TextStyle(
+          fontSize: 10,
+        ),
+      );
+      _latestEditTimeWidget = Text(
+        '${_diary!.latestEditTime}'.substring(11, 19),
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+      _createDateTimeWidget = Text(
+        _diary!.titleString ?? '${_diary!.createDateTime}'.substring(0, 10),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+      _contentJsonStringWidget = Text(
+        Document.fromJson(
+          jsonDecode(_diary!.contentJsonString!),
+        ).toPlainText().replaceAll(RegExp('\n'), ''),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+        ),
+      );
+      _moodWidget = Icon(
+        size: 18,
+        DiaryConstance.moodMap[_diary!.mood] ?? DiaryConstance.moodMap['开心'],
+      );
+      _weatherWidget = Icon(
+        size: 18,
+        QWeatherIcon.getIconDataById(
+          int.parse(_diary!.weather),
+        ),
       );
     }
   }

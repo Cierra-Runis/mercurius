@@ -27,23 +27,48 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
 
               controller.document
                   .insert(controller.selection.extentOffset, '\n');
+              controller.updateSelection(
+                TextSelection.collapsed(
+                  offset: controller.selection.extentOffset + 1,
+                ),
+                ChangeSource.LOCAL,
+              );
 
-              int length = controller.document.length;
+              controller.document
+                  .insert(controller.selection.extentOffset, ' ');
+              controller.updateSelection(
+                TextSelection.collapsed(
+                  offset: controller.selection.extentOffset + 1,
+                ),
+                ChangeSource.LOCAL,
+              );
 
               controller.document.insert(
                 controller.selection.extentOffset,
                 DiaryImageBlockEmbed(copyFilePath),
               );
 
-              controller.document
-                  .insert(controller.selection.extentOffset, '\n');
-
-              int newLength = controller.document.length;
-
               controller.updateSelection(
                 TextSelection.collapsed(
-                  offset:
-                      controller.selection.extentOffset + newLength - length,
+                  offset: controller.selection.extentOffset + 1,
+                ),
+                ChangeSource.LOCAL,
+              );
+
+              controller.document
+                  .insert(controller.selection.extentOffset, ' ');
+              controller.updateSelection(
+                TextSelection.collapsed(
+                  offset: controller.selection.extentOffset + 1,
+                ),
+                ChangeSource.LOCAL,
+              );
+
+              controller.document
+                  .insert(controller.selection.extentOffset, '\n');
+              controller.updateSelection(
+                TextSelection.collapsed(
+                  offset: controller.selection.extentOffset + 1,
                 ),
                 ChangeSource.LOCAL,
               );

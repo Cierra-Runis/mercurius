@@ -55,60 +55,29 @@ class DiaryEditorToolbarWidget extends StatelessWidget {
       showSearchButton: false,
       showIndent: false,
       showLink: false,
-      toolbarSectionSpacing: 4,
+      showSubscript: false,
+      showSuperscript: false,
+      toolbarSectionSpacing: 2,
       iconTheme: quillIconTheme,
       embedButtons: embedButtons,
       customButtons: [
-        DiaryEditorToolbarTimestampButtonWidget(controller: controller),
-        QuillCustomButton(
-          icon: Icons.mood,
-          onTap: () async {
-            Diary? newDiary = await showDialog<Diary>(
-              context: context,
-              builder: (BuildContext context) {
-                return DiaryMoodSelectorWidget(
-                  diary: currentDiary,
-                );
-              },
-            );
-            handleToolbarChangeDiary(newDiary);
-          },
+        DiaryEditorToolbarTimestampButtonWidget(
+          controller: controller,
         ),
-        QuillCustomButton(
-          icon: Icons.cloud,
-          onTap: () async {
-            Diary? newDiary = await showDialog<Diary>(
-              context: context,
-              builder: (BuildContext context) {
-                return DiaryWeatherSelectorDialogWidget(
-                  diary: currentDiary,
-                );
-              },
-            );
-            handleToolbarChangeDiary(newDiary);
-          },
+        DiaryEditorToolbarMoodButtonWidget(
+          context: context,
+          currentDiary: currentDiary,
+          handleToolbarChangeDiary: handleToolbarChangeDiary,
         ),
-        QuillCustomButton(
-          icon: Icons.date_range_rounded,
-          onTap: () async {
-            DateTime? dateTime = await showDatePicker(
-              context: context,
-              initialEntryMode: DatePickerEntryMode.calendarOnly,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(1949, 10, 1),
-              lastDate: DateTime.now().add(
-                const Duration(days: 20000),
-              ),
-            );
-            if (dateTime != null) {
-              handleToolbarChangeDiary(
-                Diary.copyFrom(
-                  currentDiary,
-                  createDateTime: dateTime,
-                ),
-              );
-            }
-          },
+        DiaryEditorToolbarWeatherButtonWidget(
+          context: context,
+          currentDiary: currentDiary,
+          handleToolbarChangeDiary: handleToolbarChangeDiary,
+        ),
+        DiaryEditorToolbarDateTimeButtonWidget(
+          currentDiary: currentDiary,
+          context: context,
+          handleToolbarChangeDiary: handleToolbarChangeDiary,
         ),
       ],
       locale: const Locale('zh', 'CN'),

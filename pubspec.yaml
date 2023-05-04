@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.2.0+51
+version: 0.2.1+52
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -40,6 +40,7 @@ dependencies:
   riverpod_annotation: ^2.0.1 # 状态管理相关 [https://pub.dev/packages/riverpod]
   share_plus: ^6.3.4 # 分享 [https://pub.dev/packages/share_plus]
   shared_preferences: ^2.1.0 # 数据持久化 [https://pub.dev/packages/shared_preferences]
+  sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
   sudoku_solver_generator: ^2.1.0+1 # 数独生成器 [https://pub.dev/packages/sudoku_solver_generator]
   syncfusion_flutter_charts: ^21.1.41 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]

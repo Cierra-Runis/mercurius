@@ -16,21 +16,59 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
       return const Center(child: Text('无数据'));
     }
 
+    List<_DiaryListViewSection> sections = [];
     List<Diary> diaries = snapshot.data!;
 
-    return ListView.builder(
-      itemCount: diaries.length,
-      itemExtent: 100,
-      cacheExtent: 800,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => FrameSeparateWidget(
-        index: index,
-        placeHolder: DiaryListViewCardWidget(context: context),
-        child: DiaryListViewCardWidget(
-          key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
-          diary: diaries[index],
-          context: context,
-        ),
+    int year = diaries[0].createDateTime!.year;
+    int month = diaries[0].createDateTime!.month;
+    sections.add(_DiaryListViewSection()..header = '$year年$month月');
+
+    for (Diary diary in diaries) {
+      if (diary.createDateTime!.month == month &&
+          diary.createDateTime!.year == year) {
+        sections.last.items.add(diary);
+      } else {
+        month = diary.createDateTime!.month;
+        year = diary.createDateTime!.year;
+        sections.add(
+          _DiaryListViewSection()
+            ..header = '$year年$month月'
+            ..items.add(diary),
+        );
+      }
+    }
+
+    return ExpandableListView(
+      cacheExtent: 1000,
+      builder: SliverExpandableChildDelegate<Diary, _DiaryListViewSection>(
+        sectionList: sections,
+        headerBuilder: (context, sectionIndex, index) {
+          return Container(
+            color: Theme.of(context).colorScheme.background,
+            child: MercuriusModifiedListItem(
+              iconData: Icons.directions_subway,
+              titleText: sections[sectionIndex].header,
+              accessoryView: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  '共 ${sections[sectionIndex].items.length} 篇',
+                ),
+              ),
+              disabled: true,
+            ),
+          );
+        },
+        itemBuilder: (context, sectionIndex, itemIndex, index) {
+          return FrameSeparateWidget(
+            index: index,
+            placeHolder: DiaryListViewCardWidget(context: context),
+            child: DiaryListViewCardWidget(
+              key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+              diary: sections[sectionIndex].items[itemIndex],
+              context: context,
+            ),
+          );
+        },
       ),
     );
   }
@@ -83,4 +121,18 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
           _getBodyBySnapshotState(snapshot),
     );
   }
+}
+
+class _DiaryListViewSection implements ExpandableListSection<Diary> {
+  late String header;
+  List<Diary> items = [];
+
+  @override
+  List<Diary> getItems() => items;
+
+  @override
+  bool isSectionExpanded() => true;
+
+  @override
+  void setSectionExpanded(bool expanded) {}
 }

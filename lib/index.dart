@@ -61,6 +61,7 @@ export 'package:provider/provider.dart' // 状态管理
 export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
 export 'package:share_plus/share_plus.dart'; // 分享
 export 'package:shared_preferences/shared_preferences.dart'; // 数据持久化
+export 'package:sticky_and_expandable_list/sticky_and_expandable_list.dart'; // 粘性头部与分组列表
 export 'package:sudoku_solver_generator/sudoku_solver_generator.dart'; // 数独生成器
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表
 export 'package:table_calendar/table_calendar.dart'; // 日历
