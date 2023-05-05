@@ -1747,7 +1747,5 @@ class QWeatherIcon {
   /// [getIconDataById] returns [IconData] match with `id`
   ///
   /// when there's not match, it returns `null`
-  static IconData? getIconDataById(int id) {
-    return _iconMap[id];
-  }
+  static IconData? getIconDataById(int id) => _iconMap[id];
 }

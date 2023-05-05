@@ -8,29 +8,25 @@ class MercuriusMorePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: Consumer<MercuriusProfileNotifier>(
-          builder: (context, value, child) {
-            return IconButton(
-              icon: const Icon(UniconsLine.user_circle),
-              onPressed: () {
-                MercuriusKit.vibration();
-                if (mercuriusProfileNotifier.profile.user == null) {
-                  showDialog<void>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const DialogLoginWidget();
-                    },
-                  );
-                } else {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => const MercuriusProfilePage(),
-                    ),
-                  );
-                }
-              },
-            );
-          },
+          builder: (context, value, child) => IconButton(
+            icon: const Icon(UniconsLine.user_circle),
+            onPressed: () {
+              MercuriusKit.vibration();
+              if (mercuriusProfileNotifier.profile.user == null) {
+                showDialog<void>(
+                  context: context,
+                  builder: (context) => const DialogLoginWidget(),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => const MercuriusProfilePage(),
+                  ),
+                );
+              }
+            },
+          ),
         ),
         title: const MercuriusOriginalTitleWidget(),
         centerTitle: true,
@@ -89,21 +85,20 @@ class MercuriusMorePage extends StatelessWidget {
                         mercuriusProfileNotifier,
                         mercuriusWebNotifier,
                         child,
-                      ) {
-                        return MercuriusModifiedListItem(
-                          iconData: Icons.info_outline,
-                          showAccessoryViewBadge: mercuriusProfileNotifier
-                                  .profile.currentVersion !=
-                              mercuriusWebNotifier.githubLatestRelease.tag_name,
-                          titleText: '关于',
-                          onTap: () => showDialog<void>(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const DialogAboutWidget();
-                            },
-                          ),
-                        );
-                      },
+                      ) =>
+                          MercuriusModifiedListItem(
+                        iconData: Icons.info_outline,
+                        showAccessoryViewBadge: mercuriusProfileNotifier
+                                .profile.currentVersion !=
+                            mercuriusWebNotifier.githubLatestRelease.tag_name,
+                        titleText: '关于',
+                        onTap: () => showDialog<void>(
+                          context: context,
+                          builder: (context) {
+                            return const DialogAboutWidget();
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),

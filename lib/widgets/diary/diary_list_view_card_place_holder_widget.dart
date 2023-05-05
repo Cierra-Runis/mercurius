@@ -8,51 +8,51 @@ class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseColor = Theme.of(context).colorScheme.outline.withOpacity(0.1);
-    final highLightColor =
+    final highlightColor =
         Theme.of(context).colorScheme.outline.withOpacity(0.4);
     final dayWidget = MercuriusModifiedFadeShimmerWidget(
       width: 24,
       height: 20,
       radius: 6,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
     final weatherWidget = MercuriusModifiedFadeShimmerWidget.round(
       size: 16,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
     final weekdayWidget = MercuriusModifiedFadeShimmerWidget(
       width: 30,
       height: 10,
       radius: 5,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
     final moodWidget = MercuriusModifiedFadeShimmerWidget.round(
       size: 16,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
     final createDateTimeWidget = MercuriusModifiedFadeShimmerWidget(
       width: 72,
       height: 16,
       radius: 8,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
     final latestEditTimeWidget = MercuriusModifiedFadeShimmerWidget(
       width: 32,
       height: 10,
       radius: 5,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
     final contentJsonStringWidget = MercuriusModifiedFadeShimmerWidget(
       width: 160,
       height: 12,
       radius: 6,
-      highlightColor: highLightColor,
+      highlightColor: highlightColor,
       baseColor: baseColor,
     );
 

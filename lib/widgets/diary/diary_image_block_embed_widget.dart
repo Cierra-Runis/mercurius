@@ -32,19 +32,18 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
           child: Image.file(file, alignment: Alignment.center),
         );
       } else {
-        return SizedBox(
+        return MercuriusModifiedFadeShimmerWidget(
+          baseColor: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+          highlightColor:
+              Theme.of(context).colorScheme.outline.withOpacity(0.4),
+          radius: 16,
+          width: double.maxFinite,
           height: 200,
-          child: Placeholder(
-            strokeWidth: 0.5,
-            color: Theme.of(context).colorScheme.error,
-            child: Center(
-              child: Text(
-                '位于\n${file.path}\n的图片缺失}',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 8.0,
-                ),
-              ),
+          child: Text(
+            '位于\n${file.path}\n的图片缺失\n请重新插入图片',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 16.0,
             ),
           ),
         );
@@ -53,12 +52,10 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
 
     void onInkWellTap(File file, bool readOnly) {
       if (file.existsSync() && readOnly) {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => DiaryPageViewImageWidget(
-              imageUrl: file.path,
-            ),
+        showDialog(
+          context: context,
+          builder: (context) => DiaryImageViewWidget(
+            imageUrl: file.path,
           ),
         );
       }

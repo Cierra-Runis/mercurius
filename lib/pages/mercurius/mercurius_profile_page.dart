@@ -14,22 +14,21 @@ class MercuriusProfilePage extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           children: [
             Consumer<MercuriusProfileNotifier>(
-              builder: (context, mercuriusProfileNotifier, child) {
-                return MercuriusModifiedListSection(
-                  children: [
-                    MercuriusModifiedListItem(
-                      iconData: Icons.logout_rounded,
-                      titleText: '退出帐号',
-                      onTap: () {
-                        mercuriusProfileNotifier.changeProfile(
-                          mercuriusProfileNotifier.profile..user = null,
-                        );
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                );
-              },
+              builder: (context, mercuriusProfileNotifier, child) =>
+                  MercuriusModifiedListSection(
+                children: [
+                  MercuriusModifiedListItem(
+                    iconData: Icons.logout_rounded,
+                    titleText: '退出帐号',
+                    onTap: () {
+                      mercuriusProfileNotifier.changeProfile(
+                        mercuriusProfileNotifier.profile..user = null,
+                      );
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
             ),
           ],
         ),

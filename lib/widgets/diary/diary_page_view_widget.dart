@@ -28,13 +28,10 @@ class _DiaryPageViewWidgetState extends ConsumerState<DiaryPageViewWidget> {
         initialPage: diaries.indexWhere((e) => e.id == widget.diary.id),
       ),
       allowImplicitScrolling: true,
-      itemBuilder: (context, index) {
-        MercuriusKit.printLog('$index');
-        return DiaryPageViewBodyWidget(
-          key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
-          diary: diaries[index],
-        );
-      },
+      itemBuilder: (context, index) => DiaryPageViewBodyWidget(
+        key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+        diary: diaries[index],
+      ),
     );
   }
 

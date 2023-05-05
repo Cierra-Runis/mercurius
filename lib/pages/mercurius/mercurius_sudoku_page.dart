@@ -116,7 +116,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                                     ? null
                                     : showDialog<void>(
                                         context: context,
-                                        builder: (BuildContext context) {
+                                        builder: (context) {
                                           return SudokuNumSelectorWidget(
                                             row: rowIndex,
                                             column: columnIndex,
@@ -225,7 +225,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
   Future<void> _showOptionMenu(BuildContext context) {
     return showModalBottomSheet<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return SizedBox(
           height: 230,
           child: ListView(
@@ -263,7 +263,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                 trailing: const Icon(Icons.navigate_next),
                 onTap: () => showDialog<void>(
                   context: context,
-                  builder: (BuildContext context) {
+                  builder: (context) {
                     return const SudokuDifficultySelectorWidget();
                   },
                 ),

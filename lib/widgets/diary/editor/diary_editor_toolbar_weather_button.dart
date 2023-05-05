@@ -18,7 +18,7 @@ class DiaryEditorToolbarWeatherButtonWidget extends QuillCustomButton {
   VoidCallback? get onTap => () async {
         Diary? newDiary = await showDialog<Diary>(
           context: context,
-          builder: (BuildContext context) => DiaryWeatherSelectorDialogWidget(
+          builder: (context) => DiaryWeatherSelectorDialogWidget(
             diary: currentDiary,
           ),
         );

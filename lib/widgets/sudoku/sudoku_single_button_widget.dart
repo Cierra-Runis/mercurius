@@ -37,7 +37,7 @@ class _SudokuSingleButtonWidgetState extends State<SudokuSingleButtonWidget> {
               : () async {
                   int? selectedNum = await showDialog<int>(
                     context: context,
-                    builder: (BuildContext context) {
+                    builder: (context) {
                       return SudokuNumSelectorWidget(
                         row: widget.rowIndex,
                         column: widget.columnIndex,

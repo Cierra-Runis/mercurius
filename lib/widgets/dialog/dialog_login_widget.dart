@@ -112,21 +112,15 @@ class _DialogLoginWidgetState extends State<DialogLoginWidget> {
     FocusManager.instance.primaryFocus?.unfocus();
     showDialog<void>(
       context: context,
-      builder: (BuildContext context) {
-        return const DialogRegisterWidget();
-      },
+      builder: (context) => const DialogRegisterWidget(),
     );
     showDialog<void>(
       context: context,
-      builder: (BuildContext context) {
-        return const DialogPrivacyWidget();
-      },
+      builder: (context) => const DialogPrivacyWidget(),
     );
     return showDialog<void>(
       context: context,
-      builder: (BuildContext context) {
-        return const DialogAgreementWidget();
-      },
+      builder: (context) => const DialogAgreementWidget(),
     );
   }
 

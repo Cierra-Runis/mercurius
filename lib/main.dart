@@ -46,24 +46,22 @@ class MercuriusApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => mercuriusPathNotifier),
       ],
       child: Consumer<MercuriusProfileNotifier>(
-        builder: (context, mercuriusProfileNotifier, child) {
-          return MaterialApp(
-            scrollBehavior: const CupertinoScrollBehavior(),
-            navigatorKey: navigatorKey,
-            theme: theme,
-            darkTheme: darkTheme,
-            themeMode: mercuriusProfileNotifier.profile.themeMode,
-            home: const MercuriusSplashPage(),
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate
-            ],
-            supportedLocales: const [
-              Locale('zh', 'CN'),
-            ],
-          );
-        },
+        builder: (context, mercuriusProfileNotifier, child) => MaterialApp(
+          scrollBehavior: const CupertinoScrollBehavior(),
+          navigatorKey: navigatorKey,
+          theme: theme,
+          darkTheme: darkTheme,
+          themeMode: mercuriusProfileNotifier.profile.themeMode,
+          home: const MercuriusSplashPage(),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          supportedLocales: const [
+            Locale('zh', 'CN'),
+          ],
+        ),
       ),
     );
   }

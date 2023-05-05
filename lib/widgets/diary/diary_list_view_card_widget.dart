@@ -68,7 +68,7 @@ class DiaryListViewCardWidget extends StatelessWidget {
         if (direction == DismissDirection.endToStart) {
           bool? confirm = await showDialog<bool>(
             context: context,
-            builder: (BuildContext context) {
+            builder: (context) {
               return const MercuriusOriginalConfirmDialogWidget(
                 itemName: '这篇日记',
               );
@@ -88,7 +88,7 @@ class DiaryListViewCardWidget extends StatelessWidget {
             MercuriusKit.vibration();
             await showDialog<void>(
               context: context,
-              builder: (BuildContext context) => DiaryPageViewWidget(
+              builder: (context) => DiaryPageViewWidget(
                 diary: diary,
               ),
             );

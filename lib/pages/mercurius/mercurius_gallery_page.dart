@@ -31,12 +31,10 @@ class _MercuriusGalleryPageState extends State<MercuriusGalleryPage> {
       itemBuilder: (context, index) => Card(
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: () => Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => DiaryPageViewImageWidget(
-                imageUrl: fileSystemEntity[index].path,
-              ),
+          onTap: () async => await showDialog(
+            context: context,
+            builder: (context) => DiaryImageViewWidget(
+              imageUrl: fileSystemEntity[index].path,
             ),
           ),
           child: Column(
@@ -60,9 +58,8 @@ class _MercuriusGalleryPageState extends State<MercuriusGalleryPage> {
                     onPressed: () async {
                       bool? confirm = await showDialog<bool>(
                         context: context,
-                        builder: (BuildContext context) {
-                          return const MercuriusOriginalConfirmDialogWidget();
-                        },
+                        builder: (context) =>
+                            const MercuriusOriginalConfirmDialogWidget(),
                       );
                       if (confirm == true) {
                         fileSystemEntity[index].deleteSync();

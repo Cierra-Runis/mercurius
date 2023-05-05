@@ -53,7 +53,7 @@ class DialogImportDeclarationWidget extends StatelessWidget {
   Future<void> _showDialogLicenseWidget(BuildContext context, String license) {
     return showDialog<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return AlertDialog(
           content: SizedBox(
             width: double.maxFinite,

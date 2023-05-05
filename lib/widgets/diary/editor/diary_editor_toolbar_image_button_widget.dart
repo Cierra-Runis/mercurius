@@ -39,15 +39,6 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
                 ChangeSource.LOCAL,
               );
 
-              controller.document
-                  .insert(controller.selection.extentOffset, ' ');
-              controller.updateSelection(
-                TextSelection.collapsed(
-                  offset: controller.selection.extentOffset + 1,
-                ),
-                ChangeSource.LOCAL,
-              );
-
               controller.document.insert(
                 controller.selection.extentOffset,
                 DiaryImageBlockEmbed(targetFilePath),

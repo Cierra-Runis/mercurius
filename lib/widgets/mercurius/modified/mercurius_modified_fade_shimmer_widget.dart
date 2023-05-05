@@ -10,6 +10,8 @@ class MercuriusModifiedFadeShimmerWidget extends StatefulWidget {
     this.fadeTheme,
     this.highlightColor,
     this.baseColor,
+    this.child,
+    this.childAlignment = Alignment.center,
     required this.width,
     required this.height,
   })  : assert(
@@ -22,6 +24,8 @@ class MercuriusModifiedFadeShimmerWidget extends StatefulWidget {
   final double radius;
   final double width;
   final double height;
+  final Widget? child;
+  final AlignmentGeometry? childAlignment;
 
   /// 使用预定义的 highlightColor 和 baseColor 亮或暗
   ///
@@ -131,6 +135,8 @@ class _MercuriusModifiedFadeShimmerWidgetState
         color: _isHighLight ? highLightColor : baseColor,
         borderRadius: BorderRadius.circular(widget.radius),
       ),
+      alignment: widget.childAlignment,
+      child: widget.child,
     );
   }
 }

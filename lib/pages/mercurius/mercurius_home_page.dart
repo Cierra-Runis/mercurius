@@ -65,9 +65,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
     if (mercuriusProfileNotifier.profile.user == null) {
       showDialog<void>(
         context: context,
-        builder: (BuildContext context) {
-          return const DialogLoginWidget();
-        },
+        builder: (context) => const DialogLoginWidget(),
       );
     } else {
       Navigator.push(
@@ -84,12 +82,10 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: Consumer<MercuriusProfileNotifier>(
-          builder: (context, value, child) {
-            return IconButton(
-              icon: const Icon(UniconsLine.user_circle),
-              onPressed: _appBarLeftButtonOnPressed,
-            );
-          },
+          builder: (context, value, child) => IconButton(
+            icon: const Icon(UniconsLine.user_circle),
+            onPressed: _appBarLeftButtonOnPressed,
+          ),
         ),
         title: AnimatedCrossFade(
           crossFadeState: _currentSearchBarMode

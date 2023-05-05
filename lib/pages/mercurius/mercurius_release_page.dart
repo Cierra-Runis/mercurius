@@ -45,7 +45,7 @@ class MercuriusReleasePage extends StatelessWidget {
   Future<void> _showOptionMenu(BuildContext context) {
     return showModalBottomSheet<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return SizedBox(
           height: 115,
           child: ListView(

@@ -43,7 +43,7 @@ class _ThemeSelectListItem extends StatelessWidget {
                   : '常亮模式',
           onTap: () => showDialog<void>(
             context: context,
-            builder: (BuildContext context) {
+            builder: (context) {
               return const MercuriusOriginalThemeSelectorWidget();
             },
           ),
