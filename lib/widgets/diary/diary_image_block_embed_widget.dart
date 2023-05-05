@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryImageBlockEmbed extends BlockEmbed {
+class DiaryImageBlockEmbed extends Embeddable {
   const DiaryImageBlockEmbed(
     String value,
   ) : super(mercuriusImageType, value);
