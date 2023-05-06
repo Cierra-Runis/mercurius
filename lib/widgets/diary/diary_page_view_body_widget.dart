@@ -14,12 +14,12 @@ class DiaryPageViewBodyWidget extends StatefulWidget {
 }
 
 class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
-  late Diary _currentDiary;
+  late Diary _diary;
 
   @override
   void initState() {
     super.initState();
-    _currentDiary = widget.diary;
+    _diary = widget.diary;
   }
 
   @override
@@ -62,15 +62,14 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  _currentDiary.createDateTime
+                                  _diary.createDateTime
                                       .format('y 年，M 月', 'zh_CN'),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  _currentDiary.createDateTime
-                                      .format('dd', 'zh_CN'),
+                                  _diary.createDateTime.format('dd', 'zh_CN'),
                                   style: const TextStyle(
                                     fontSize: 60,
                                     fontFamily: 'Saira',
@@ -81,25 +80,15 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Icon(
-                                      size: 8,
-                                      QWeatherIcon.getIconDataById(
-                                        int.parse(_currentDiary.weather),
-                                      ),
-                                    ),
+                                    Icon(size: 8, _diary.weatherType.iconData),
                                     Text(
-                                      _currentDiary.latestEditTime
+                                      _diary.latestEditTime
                                           .format('EEEE HH:mm:ss', 'zh_CN'),
                                       style: const TextStyle(
                                         fontSize: 12,
                                       ),
                                     ),
-                                    Icon(
-                                      size: 9,
-                                      DiaryConstance
-                                              .moodMap[_currentDiary.mood] ??
-                                          DiaryConstance.moodMap['开心'],
-                                    ),
+                                    Icon(size: 9, _diary.moodType.iconData),
                                   ],
                                 ),
                               ],
@@ -123,7 +112,7 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                         scrollController: ScrollController(),
                         controller: QuillController(
                           document: Document.fromJson(
-                            jsonDecode(_currentDiary.contentJsonString!),
+                            jsonDecode(_diary.contentJsonString!),
                           ),
                           selection: const TextSelection.collapsed(offset: 0),
                         ),
@@ -144,16 +133,13 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                             IconButton(
                               onPressed: () async {
                                 MercuriusKit.vibration();
-                                bool? confirm = await showDialog<bool>(
+                                bool? confirm =
+                                    await MercuriusOriginalConfirmDialogWidget(
                                   context: context,
-                                  builder: (context) =>
-                                      const MercuriusOriginalConfirmDialogWidget(
-                                    itemName: '这篇日记',
-                                  ),
-                                );
+                                ).confirm;
                                 if (confirm == true) {
                                   isarService.deleteDiaryById(
-                                    _currentDiary.id!,
+                                    _diary.id!,
                                   );
                                 }
                               },
@@ -168,12 +154,11 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                                 MercuriusKit.vibration();
                                 Diary? editedDiary = await _showDiaryEditorPage(
                                   context,
-                                  _currentDiary,
+                                  _diary,
                                 );
                                 if (mounted) {
                                   setState(() {
-                                    _currentDiary =
-                                        editedDiary ?? _currentDiary;
+                                    _diary = editedDiary ?? _diary;
                                   });
                                 }
                               },
@@ -183,14 +168,13 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                               onPressed: () {
                                 MercuriusKit.vibration();
                                 Share.share(
-                                  '${_currentDiary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
-                                  '天气：${DiaryConstance.weatherCommitMap[_currentDiary.weather] ?? '未记录'}\n'
-                                  '标题：${_currentDiary.titleString ?? '无标题'}\n'
-                                  '心情：${_currentDiary.mood}\n'
+                                  '${_diary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
+                                  '天气：${_diary.weatherType.weather}}\n'
+                                  '标题：${_diary.titleString ?? '无标题'}\n'
+                                  '心情：${_diary.moodType.mood}\n'
                                   '\n'
                                   '${Document.fromJson(
-                                    jsonDecode(
-                                        _currentDiary.contentJsonString!),
+                                    jsonDecode(_diary.contentJsonString!),
                                   ).toPlainText().trimRight()}',
                                 );
                               },

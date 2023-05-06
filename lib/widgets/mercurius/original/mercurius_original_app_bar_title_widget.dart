@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusOriginalTitleWidget extends StatelessWidget {
-  const MercuriusOriginalTitleWidget({super.key});
+class MercuriusOriginalAppBarTitleWidget extends StatelessWidget {
+  const MercuriusOriginalAppBarTitleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

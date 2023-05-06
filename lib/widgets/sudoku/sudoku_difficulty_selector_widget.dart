@@ -15,35 +15,33 @@ class _SudokuDifficultySelectorWidgetState
     List<ListTile> list = [];
 
     // 遍历
-    SudokuConstance.difficultyMap.forEach(
-      (key, value) {
-        list.add(
-          ListTile(
-            leading: Icon(SudokuConstance.difficultyIconMay[key]),
-            title: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(key),
-                Text(
-                  '空格数 $value',
-                  style: TextStyle(
-                    fontSize: 8,
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
+    for (var element in SudokuDifficultyType.values) {
+      list.add(
+        ListTile(
+          leading: Icon(element.iconData),
+          title: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(element.difficulty),
+              Text(
+                '空格数 ${element.emptySquares}',
+                style: TextStyle(
+                  fontSize: 8,
+                  color: Theme.of(context).colorScheme.outline,
                 ),
-              ],
-            ),
-            onTap: () {
-              mercuriusSudokuNotifier.changeDifficulty(key);
-              // 直接退回至数独界面
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
+              ),
+            ],
           ),
-        );
-      },
-    );
+          onTap: () {
+            mercuriusSudokuNotifier.changeDifficulty(element);
+            // 直接退回至数独界面
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    }
     return list;
   }
 

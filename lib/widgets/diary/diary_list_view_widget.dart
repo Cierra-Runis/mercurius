@@ -82,23 +82,11 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
       case ConnectionState.none:
         return const Center(child: Icon(UniconsLine.data_sharing));
       case ConnectionState.waiting:
-        return Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LoadingAnimationWidget.staggeredDotsWave(
-                color: Theme.of(context).colorScheme.primary,
-                size: 16,
-              ),
-              const SizedBox(width: 20),
-              const Text('读取中'),
-            ],
-          ),
-        );
+        return const MercuriusOriginalLoadingWidget();
       case ConnectionState.active:
         return SmartRefresher(
           onRefresh: () async {
-            await Future.delayed(const Duration(milliseconds: 500), () {});
+            await Future.delayed(const Duration(milliseconds: 500));
             ref.watch(diarySearchTextProvider.notifier).change();
             _refreshController.refreshCompleted();
           },

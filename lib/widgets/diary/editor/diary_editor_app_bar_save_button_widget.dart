@@ -26,7 +26,7 @@ class DiaryEditorAppBarSaveButtonWidget extends StatelessWidget {
         );
         if (plainText != '""') {
           MercuriusKit.vibration();
-          Diary newDiary = Diary.copyFrom(
+          Diary newDiary = Diary.copyWith(
             currentDiary,
             contentJsonString: jsonEncode(
               controller.document.toDelta().toJson(),

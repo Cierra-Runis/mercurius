@@ -7,53 +7,36 @@ class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseColor = Theme.of(context).colorScheme.outline.withOpacity(0.1);
-    final highlightColor =
-        Theme.of(context).colorScheme.outline.withOpacity(0.4);
-    final dayWidget = MercuriusModifiedFadeShimmerWidget(
+    const dayWidget = MercuriusModifiedFadeShimmerWidget(
       width: 24,
       height: 20,
       radius: 6,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
-    final weatherWidget = MercuriusModifiedFadeShimmerWidget.round(
+    const weatherWidget = MercuriusModifiedFadeShimmerWidget.round(
       size: 16,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
-    final weekdayWidget = MercuriusModifiedFadeShimmerWidget(
+    const weekdayWidget = MercuriusModifiedFadeShimmerWidget(
       width: 30,
       height: 10,
       radius: 5,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
-    final moodWidget = MercuriusModifiedFadeShimmerWidget.round(
+    const moodWidget = MercuriusModifiedFadeShimmerWidget.round(
       size: 16,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
-    final createDateTimeWidget = MercuriusModifiedFadeShimmerWidget(
+    const createDateTimeWidget = MercuriusModifiedFadeShimmerWidget(
       width: 72,
       height: 16,
       radius: 8,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
-    final latestEditTimeWidget = MercuriusModifiedFadeShimmerWidget(
+    const latestEditTimeWidget = MercuriusModifiedFadeShimmerWidget(
       width: 32,
       height: 10,
       radius: 5,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
-    final contentJsonStringWidget = MercuriusModifiedFadeShimmerWidget(
+    const contentJsonStringWidget = MercuriusModifiedFadeShimmerWidget(
       width: 160,
       height: 12,
       radius: 6,
-      highlightColor: highlightColor,
-      baseColor: baseColor,
     );
 
     return Card(
@@ -74,7 +57,7 @@ class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [dayWidget, weekdayWidget],
+                  children: const [dayWidget, weekdayWidget],
                 ),
               ),
               Expanded(
@@ -82,7 +65,7 @@ class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     latestEditTimeWidget,
                     createDateTimeWidget,
                     contentJsonStringWidget,
@@ -93,7 +76,7 @@ class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
                 flex: 50,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [moodWidget, weatherWidget],
+                  children: const [moodWidget, weatherWidget],
                 ),
               ),
               Expanded(flex: 9, child: Container()),

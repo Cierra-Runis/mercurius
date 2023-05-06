@@ -21,7 +21,7 @@ class _DialogLoginWidgetState extends State<DialogLoginWidget> {
         children: [
           const Text('登录'),
           Text(
-            '欢迎来到 Mercurius',
+            '欢迎来到 ${MercuriusConstance.name}',
             style: TextStyle(
               fontSize: 10,
               color: Theme.of(context).colorScheme.outline,
@@ -43,11 +43,11 @@ class _DialogLoginWidgetState extends State<DialogLoginWidget> {
                   TextFormField(
                     controller: _mercuriusId,
                     decoration: const InputDecoration(
-                      hintText: 'Mercurius Id',
+                      hintText: '${MercuriusConstance.name} Id',
                     ),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Mercurius Id 不能为空';
+                        return '${MercuriusConstance.name} Id 不能为空';
                       }
                       try {
                         int.parse(value);

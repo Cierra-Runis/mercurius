@@ -18,23 +18,23 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final ScrollController _scrollController = ScrollController();
 
-  late Diary _currentDiary;
+  late Diary _diary;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      _currentDiary = widget.diary;
+      _diary = widget.diary;
     });
     _controller = QuillController(
-      document: _currentDiary.contentJsonString != null
+      document: _diary.contentJsonString != null
           ? Document.fromJson(
-              jsonDecode(_currentDiary.contentJsonString!),
+              jsonDecode(_diary.contentJsonString!),
             )
           : Document(),
       selection: const TextSelection.collapsed(offset: 0),
     );
-    _title.text = _currentDiary.titleString ?? '';
+    _title.text = _diary.titleString ?? '';
   }
 
   @override
@@ -45,7 +45,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
 
   void _handleChangeDiary(Diary? newDiary) {
     setState(() {
-      _currentDiary = newDiary ?? _currentDiary;
+      _diary = newDiary ?? _diary;
     });
   }
 
@@ -74,7 +74,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
         centerTitle: true,
         actions: [
           DiaryEditorAppBarSaveButtonWidget(
-            currentDiary: _currentDiary,
+            currentDiary: _diary,
             controller: _controller,
             handleAppBarChangeDiary: _handleChangeDiary,
             title: _title,
@@ -94,7 +94,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
             ),
             const Divider(),
             DiaryEditorToolbarWidget(
-              currentDiary: _currentDiary,
+              currentDiary: _diary,
               scrollController: _scrollController,
               controller: _controller,
               handleToolbarChangeDiary: _handleChangeDiary,

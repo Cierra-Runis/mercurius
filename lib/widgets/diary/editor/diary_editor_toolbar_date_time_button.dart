@@ -27,7 +27,7 @@ class DiaryEditorToolbarDateTimeButtonWidget extends QuillCustomButton {
         );
         if (dateTime != null) {
           handleToolbarChangeDiary(
-            Diary.copyFrom(
+            Diary.copyWith(
               currentDiary,
               createDateTime: dateTime,
             ),

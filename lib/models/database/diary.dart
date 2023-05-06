@@ -11,8 +11,8 @@ class Diary {
     required this.latestEditTime,
     this.titleString,
     this.contentJsonString,
-    this.mood = '一般',
-    this.weather = '100',
+    this.moodType = DiaryMoodType.defaultType,
+    this.weatherType = DiaryWeatherType.defaultType,
   });
 
   /// 日记 `id`
@@ -30,25 +30,27 @@ class Diary {
   /// 内容 json 串
   final String? contentJsonString;
 
-  /// 天气
-  final String weather;
+  /// 枚举类型 [DiaryWeatherType]
+  @enumerated
+  final DiaryWeatherType weatherType;
 
-  /// 心情
-  final String mood;
+  /// 枚举类型 [DiaryMoodType]
+  @enumerated
+  final DiaryMoodType moodType;
 
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
 
   /// 转换用工厂函数
-  factory Diary.copyFrom(
+  factory Diary.copyWith(
     Diary diary, {
     Id? id,
     DateTime? createDateTime,
     DateTime? latestEditTime,
     String? titleString,
     String? contentJsonString,
-    String? weather,
-    String? mood,
+    DiaryWeatherType? weatherType,
+    DiaryMoodType? moodType,
   }) =>
       Diary(
         id: id ?? diary.id,
@@ -56,7 +58,7 @@ class Diary {
         latestEditTime: latestEditTime ?? diary.latestEditTime,
         titleString: titleString ?? diary.titleString,
         contentJsonString: contentJsonString ?? diary.contentJsonString,
-        weather: weather ?? diary.weather,
-        mood: mood ?? diary.mood,
+        weatherType: weatherType ?? diary.weatherType,
+        moodType: moodType ?? diary.moodType,
       );
 }

@@ -90,18 +90,8 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
                   ],
                 );
               }
-              return Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LoadingAnimationWidget.staggeredDotsWave(
-                      color: Theme.of(context).colorScheme.primary,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 20),
-                    const Text('统计中'),
-                  ],
-                ),
+              return const MercuriusOriginalLoadingWidget(
+                notice: '统计中',
               );
             },
           ),
@@ -115,7 +105,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
 
     Map<DateTime, int> data = {};
 
-    await Future.delayed(const Duration(milliseconds: 1000), () {});
+    await Future.delayed(const Duration(milliseconds: 1000));
 
     List<Diary> diaries = await isarService.getAllDiaries();
 

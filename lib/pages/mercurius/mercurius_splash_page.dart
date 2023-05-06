@@ -72,7 +72,7 @@ class _MercuriusSplashPageState extends State<MercuriusSplashPage>
                 mainAxisSize: MainAxisSize.min,
                 children: const [
                   Text(
-                    'Mercurius',
+                    MercuriusConstance.name,
                     style: TextStyle(
                       fontSize: 42,
                       fontWeight: FontWeight.bold,

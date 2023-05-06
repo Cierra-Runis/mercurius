@@ -46,56 +46,32 @@ class MercuriusReleasePage extends StatelessWidget {
     return showModalBottomSheet<void>(
       context: context,
       builder: (context) {
-        return SizedBox(
-          height: 115,
-          child: ListView(
-            children: [
-              ListTile(
-                leading: const Icon(UniconsLine.github),
-                title: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('从 Github 下载'),
-                    Text(
-                      '推荐源，但国内速度较慢',
-                      style: TextStyle(
-                        fontSize: 8,
-                        color: Theme.of(context).colorScheme.outline,
-                      ),
-                    ),
-                  ],
+        return MercuriusModifiedList(
+          shrinkWrap: true,
+          children: [
+            MercuriusModifiedListSection(
+              children: [
+                MercuriusModifiedListItem(
+                  iconData: UniconsLine.github,
+                  titleText: '从 Github 下载',
+                  summaryText: '推荐源，但国内速度较慢',
+                  onTap: () => launchUrlString(
+                    mercuriusWebNotifier
+                        .githubLatestRelease.assets![0].browser_download_url!,
+                    mode: LaunchMode.externalApplication,
+                  ),
                 ),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () => launchUrlString(
-                  mercuriusWebNotifier
-                      .githubLatestRelease.assets![0].browser_download_url!,
-                  mode: LaunchMode.externalApplication,
+                MercuriusModifiedListItem(
+                  iconData: UniconsLine.cloud,
+                  titleText: '从 其他 下载',
+                  summaryText: '其他源，暂未开放',
+                  onTap: () {
+                    /// TODO: 那样的其他源
+                  },
                 ),
-              ),
-              ListTile(
-                leading: const Icon(UniconsLine.cloud),
-                title: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('从 其他 下载'),
-                    Text(
-                      '其他源，暂未开放',
-                      style: TextStyle(
-                        fontSize: 8,
-                        color: Theme.of(context).colorScheme.outline,
-                      ),
-                    ),
-                  ],
-                ),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {
-                  /// TODO: 那样的其他源
-                },
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         );
       },
     );

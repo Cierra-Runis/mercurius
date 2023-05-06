@@ -19,7 +19,7 @@ class _DialogRegisterWidgetState extends State<DialogRegisterWidget> {
         children: [
           const Text('注册'),
           Text(
-            '欢迎来到 Mercurius',
+            '欢迎来到 ${MercuriusConstance.name}',
             style: TextStyle(
               fontSize: 10,
               color: Theme.of(context).colorScheme.outline,

@@ -15,38 +15,36 @@ class DiaryWeatherSelectorDialogWidget extends StatefulWidget {
 
 class DiaryWeatherSelectorDialogWidgetState
     extends State<DiaryWeatherSelectorDialogWidget> {
-  late Diary _currentDiary;
+  late Diary _diary;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      _currentDiary = widget.diary;
+      _diary = widget.diary;
     });
   }
 
   List<Widget> _listAllWeather() {
     List<Widget> buttonList = [];
-    DiaryConstance.weatherMap.forEach(
-      (key, value) => buttonList.add(
+    for (var element in DiaryWeatherType.values) {
+      buttonList.add(
         IconButton(
           onPressed: () => Navigator.of(context).pop(
-            Diary.copyFrom(_currentDiary, weather: key),
+            Diary.copyWith(_diary, weatherType: element),
           ),
           icon: Column(
             children: [
-              Icon(value),
-              Text(
-                DiaryConstance.weatherCommitMap[key]!,
-              ),
+              Icon(element.iconData),
+              Text(element.weather),
             ],
           ),
-          color: _currentDiary.weather != key
+          color: _diary.weatherType != element
               ? null
               : Theme.of(context).colorScheme.primary,
         ),
-      ),
-    );
+      );
+    }
     return buttonList;
   }
 

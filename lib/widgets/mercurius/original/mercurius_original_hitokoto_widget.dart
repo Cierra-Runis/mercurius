@@ -46,7 +46,7 @@ class _MercuriusOriginalHiToKoToWidgetState
   Widget build(BuildContext context) {
     return FutureBuilder<HiToKoTo>(
       future: _futureHiToKoTo,
-      builder: ((context, snapshot) {
+      builder: (context, snapshot) {
         return InkWell(
           onTap: () => launchUrlString(
             'https://hitokoto.cn/?uuid=${snapshot.data!.uuid!}',
@@ -68,7 +68,7 @@ class _MercuriusOriginalHiToKoToWidgetState
             ),
           ),
         );
-      }),
+      },
     );
   }
 

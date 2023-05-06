@@ -20,7 +20,7 @@ class IsarService {
     int delayed = 300,
   }) async* {
     final isar = await db;
-    await Future.delayed(Duration(milliseconds: delayed), () {});
+    await Future.delayed(Duration(milliseconds: delayed));
     yield* isar.diarys
         .filter()
         .contentJsonStringContains(contains)
@@ -57,7 +57,7 @@ class IsarService {
 
     try {
       await isar.writeTxn(() async {
-        await isar.diarys.where().deleteAll();
+        await isar.diarys.clear();
         await isar.diarys.importJsonRaw(bytes);
       });
     } catch (e) {
@@ -68,9 +68,9 @@ class IsarService {
   /// 导出 `json` 数据
   Future<void> exportJsonWith(String path) async {
     final isar = await db;
-    isar.diarys.where().exportJsonRaw((bytes) {
-      File(path).writeAsBytes(bytes);
-    });
+    List<Map<String, dynamic>> data = await isar.diarys.where().exportJson();
+    File file = await File(path).create();
+    await file.writeAsString(data.toString());
   }
 
   /// 打开数据库
@@ -79,12 +79,12 @@ class IsarService {
 
     if (Isar.instanceNames.isEmpty) {
       MercuriusKit.printLog(
-        '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 mercurius_database 中',
+        '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 ${MercuriusConstance.database} 中',
       );
       return await Isar.open(
         [DiarySchema],
         inspector: true,
-        name: 'mercurius_database',
+        name: MercuriusConstance.database,
         directory: mercuriusPathNotifier.path,
         compactOnLaunch: const CompactCondition(
           /// 压缩能减小 1KB 及以上，且达到了 1KB 的体积就进行压缩
@@ -95,6 +95,6 @@ class IsarService {
     }
 
     MercuriusKit.printLog('数据库 ${Isar.instanceNames} 已被打开');
-    return Future.value(Isar.getInstance('mercurius_database'));
+    return Future.value(Isar.getInstance(MercuriusConstance.database));
   }
 }

@@ -226,50 +226,49 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
     return showModalBottomSheet<void>(
       context: context,
       builder: (context) {
-        return SizedBox(
-          height: 230,
-          child: ListView(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.restart_alt_rounded),
-                title: const Text('回到初始'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {
-                  mercuriusSudokuNotifier.backToSudokuList();
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.add),
-                title: const Text('重开一局'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {
-                  mercuriusSudokuNotifier.newSudoku();
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.question_answer_rounded),
-                title: const Text('显示答案'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {
-                  mercuriusSudokuNotifier.getAnswer();
-                  Navigator.of(context).pop();
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.handyman_sharp),
-                title: const Text('更改难度'),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () => showDialog<void>(
-                  context: context,
-                  builder: (context) {
-                    return const SudokuDifficultySelectorWidget();
+        /// TODO: 修该
+        return MercuriusModifiedList(
+          shrinkWrap: true,
+          children: [
+            MercuriusModifiedListSection(
+              children: [
+                MercuriusModifiedListItem(
+                  iconData: Icons.restart_alt_rounded,
+                  titleText: '回到初始',
+                  onTap: () {
+                    mercuriusSudokuNotifier.backToSudokuList();
+                    Navigator.of(context).pop();
                   },
                 ),
-              ),
-            ],
-          ),
+                MercuriusModifiedListItem(
+                  iconData: Icons.add,
+                  titleText: '重开一局',
+                  onTap: () {
+                    mercuriusSudokuNotifier.newSudoku();
+                    Navigator.of(context).pop();
+                  },
+                ),
+                MercuriusModifiedListItem(
+                  iconData: Icons.question_answer_rounded,
+                  titleText: '显示答案',
+                  onTap: () {
+                    mercuriusSudokuNotifier.getAnswer();
+                    Navigator.of(context).pop();
+                  },
+                ),
+                MercuriusModifiedListItem(
+                  iconData: Icons.handyman_sharp,
+                  titleText: '更改难度',
+                  onTap: () => showDialog<void>(
+                    context: context,
+                    builder: (context) {
+                      return const SudokuDifficultySelectorWidget();
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
         );
       },
     );

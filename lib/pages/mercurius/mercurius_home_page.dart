@@ -51,27 +51,8 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
             diary: Diary(
               createDateTime: dateTime,
               latestEditTime: dateTime,
-              mood: '一般',
-              weather: '100',
             ),
           ),
-        ),
-      );
-    }
-  }
-
-  void _appBarLeftButtonOnPressed() {
-    MercuriusKit.vibration();
-    if (mercuriusProfileNotifier.profile.user == null) {
-      showDialog<void>(
-        context: context,
-        builder: (context) => const DialogLoginWidget(),
-      );
-    } else {
-      Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (context) => const MercuriusProfilePage(),
         ),
       );
     }
@@ -81,19 +62,14 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Consumer<MercuriusProfileNotifier>(
-          builder: (context, value, child) => IconButton(
-            icon: const Icon(UniconsLine.user_circle),
-            onPressed: _appBarLeftButtonOnPressed,
-          ),
-        ),
+        leading: const MercuriusOriginalAppBarUserIconWidget(),
         title: AnimatedCrossFade(
           crossFadeState: _currentSearchBarMode
               ? CrossFadeState.showFirst
               : CrossFadeState.showSecond,
           duration: const Duration(milliseconds: 500),
           firstChild: const DiarySearchBarWidget(),
-          secondChild: const MercuriusOriginalTitleWidget(),
+          secondChild: const MercuriusOriginalAppBarTitleWidget(),
         ),
         centerTitle: true,
         actions: [

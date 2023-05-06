@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.2.3+55
+version: 0.3.0+56
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -82,3 +82,4 @@ flutter:
         - asset: assets/fonts/QWeather_Icons.ttf
   assets:
     - assets/icon/
+    - assets/json/

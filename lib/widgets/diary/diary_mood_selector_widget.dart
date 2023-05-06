@@ -15,33 +15,33 @@ class DiaryMoodSelectorWidget extends StatefulWidget {
 }
 
 class _DiaryMoodSelectorWidgetState extends State<DiaryMoodSelectorWidget> {
-  late Diary _currentDiary;
+  late Diary _diary;
 
   @override
   void initState() {
     super.initState();
     setState(() {
-      _currentDiary = widget.diary;
+      _diary = widget.diary;
     });
   }
 
   List<Widget> _listAllMood() {
     List<Widget> buttonList = [];
-    DiaryConstance.moodMap.forEach(
-      (key, value) => buttonList.add(
+    for (var element in DiaryMoodType.values) {
+      buttonList.add(
         IconButton(
           onPressed: () => Navigator.of(context).pop(
-            Diary.copyFrom(_currentDiary, mood: key),
+            Diary.copyWith(_diary, moodType: element),
           ),
           icon: Column(
-            children: [Icon(value), Text(key)],
+            children: [Icon(element.iconData), Text(element.mood)],
           ),
-          color: _currentDiary.mood != key
+          color: _diary.moodType != element
               ? null
               : Theme.of(context).colorScheme.primary,
         ),
-      ),
-    );
+      );
+    }
     return buttonList;
   }
 

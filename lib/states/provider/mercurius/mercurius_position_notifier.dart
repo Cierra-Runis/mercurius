@@ -1,14 +1,5 @@
 import 'package:mercurius/index.dart';
 
-String _aMapUrl =
-    'https://restapi.amap.com/v3/ip?&output=json&key=${ApiKeyConstance.aMapKey}';
-
-String _qWeatherUrl =
-    'https://devapi.qweather.com/v7/weather/now?&key=${ApiKeyConstance.qWeatherKey}';
-
-String _qWeatherDefaultJsonString =
-    '{"code":"200","updateTime":"2023-01-15T00:02+08:00","fxLink":"http://hfx.link/1tjp1","now":{"obsTime":"2023-01-14T23:56+08:00","temp":"-7","feelsLike":"-15","icon":"1031","text":"晴","wind360":"31","windDir":"东北风","windScale":"2","windSpeed":"7","humidity":"26","precip":"0.0","pressure":"1032","vis":"30","cloud":"10","dew":"-25"},"refer":{"sources":["QWeather","NMC","ECMWF"],"license":["CC BY-SA 4.0"]}}';
-
 class MercuriusPositionNotifier extends ChangeNotifier {
   CachePosition cachePosition = CachePosition();
   WeatherBody weatherBody = WeatherBody();
@@ -58,9 +49,22 @@ class MercuriusPositionNotifier extends ChangeNotifier {
     Response response;
     CachePosition newCachePosition = CachePosition();
 
+    List<dynamic> apiList = jsonDecode(
+      await rootBundle.loadString('assets/json/api_key.json'),
+    );
+
+    Map<String, dynamic> api =
+        apiList.firstWhere((element) => element['apiName'] == 'aMap');
+
     // 尝试连接 aMap 获取位置
     try {
-      response = await Dio().get(_aMapUrl);
+      response = await Dio().get(
+        api['apiUrl'],
+        queryParameters: {
+          'key': api['apiKey'],
+          'output': 'json',
+        },
+      );
     } catch (e) {
       MercuriusKit.printLog('aMap 连接失败');
       return newCachePosition;
@@ -99,12 +103,23 @@ class MercuriusPositionNotifier extends ChangeNotifier {
   Future<void> _getQWeather() async {
     Response response;
 
-    weatherBody = WeatherBody.fromJson(jsonDecode(_qWeatherDefaultJsonString));
+    List<dynamic> apiList = jsonDecode(
+      await rootBundle.loadString('assets/json/api_key.json'),
+    );
+
+    Map<String, dynamic> api =
+        apiList.firstWhere((element) => element['apiName'] == 'qWeather');
+
+    weatherBody = WeatherBody.fromJson(jsonDecode(api['defaultJsonString']));
 
     // 尝试连接 qWeather 获取天气
     try {
       response = await Dio().get(
-        '$_qWeatherUrl&location=${cachePosition.latitude},${cachePosition.longitude}',
+        api['apiUrl'],
+        queryParameters: {
+          'key': api['apiKey'],
+          'location': '${cachePosition.latitude},${cachePosition.longitude}',
+        },
       );
     } catch (e) {
       weatherBody.now!.icon = '2028';

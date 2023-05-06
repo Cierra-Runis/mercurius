@@ -1,86 +1,50 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusGalleryPage extends StatefulWidget {
-  const MercuriusGalleryPage({Key? key}) : super(key: key);
+class MercuriusGalleryPage extends StatelessWidget {
+  const MercuriusGalleryPage({
+    Key? key,
+    this.readOnly = false,
+  }) : super(key: key);
 
-  @override
-  State<MercuriusGalleryPage> createState() => _MercuriusGalleryPageState();
-}
+  final bool readOnly;
 
-class _MercuriusGalleryPageState extends State<MercuriusGalleryPage> {
   Stream<List<FileSystemEntity>> listenToImageFile() {
+    /// TIPS: 这里只排除了文件夹，而未排除所有 `Image` 不支持的文件
     return Stream.periodic(
       const Duration(milliseconds: 100),
-      (_) => Directory('${mercuriusPathNotifier.path}/image/').listSync(),
+      (_) => Directory('${mercuriusPathNotifier.path}/image/').listSync().where(
+        (file) {
+          return file.statSync().type == FileSystemEntityType.file;
+        },
+      ).toList(),
     );
   }
 
-  Widget getGridBySnapshotData(AsyncSnapshot<List<FileSystemEntity>> snapshot) {
+  Widget getGridBySnapshotData(
+    AsyncSnapshot<List<FileSystemEntity>> snapshot,
+  ) {
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return const Center(child: Text('无数据'));
     }
 
-    List<FileSystemEntity> fileSystemEntity = snapshot.data!;
+    List<FileSystemEntity> fileSystemEntities = snapshot.data!;
 
     return WaterfallFlow.builder(
       gridDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),
       padding: const EdgeInsets.all(12.0),
-      itemCount: fileSystemEntity.length,
-      itemBuilder: (context, index) => Card(
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: () async => await showDialog(
-            context: context,
-            builder: (context) => DiaryImageViewWidget(
-              imageUrl: fileSystemEntity[index].path,
-            ),
-          ),
-          child: Column(
-            children: [
-              Image.file(
-                File(fileSystemEntity[index].path),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: Text(
-                        fileSystemEntity[index].path.split('/').last,
-                        style: const TextStyle(fontSize: 10.0),
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () async {
-                      bool? confirm = await showDialog<bool>(
-                        context: context,
-                        builder: (context) =>
-                            const MercuriusOriginalConfirmDialogWidget(),
-                      );
-                      if (confirm == true) {
-                        fileSystemEntity[index].deleteSync();
-                      }
-                    },
-                    icon: const Icon(
-                      Icons.delete_outline_rounded,
-                      size: 12,
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
+      itemCount: fileSystemEntities.length,
+      itemBuilder: (context, index) => MercuriusOriginalGalleryCardWidget(
+        readOnly: readOnly,
+        fileSystemEntity: fileSystemEntities[index],
       ),
     );
   }
 
   Widget getBodyBySnapshotState(
-      AsyncSnapshot<List<FileSystemEntity>> snapshot) {
+    AsyncSnapshot<List<FileSystemEntity>> snapshot,
+  ) {
     if (snapshot.hasError) {
       return Center(child: Text('Steam 错误: ${snapshot.error}'));
     }
@@ -88,19 +52,7 @@ class _MercuriusGalleryPageState extends State<MercuriusGalleryPage> {
       case ConnectionState.none:
         return const Center(child: Icon(UniconsLine.data_sharing));
       case ConnectionState.waiting:
-        return Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LoadingAnimationWidget.staggeredDotsWave(
-                color: Theme.of(context).colorScheme.primary,
-                size: 16,
-              ),
-              const SizedBox(width: 20),
-              const Text('读取中'),
-            ],
-          ),
-        );
+        return const MercuriusOriginalLoadingWidget();
       case ConnectionState.active:
         return getGridBySnapshotData(snapshot);
       case ConnectionState.done:

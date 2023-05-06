@@ -57,12 +57,13 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
                 mercuriusProfileNotifier,
                 mercuriusWebNotifier,
                 child,
-              ) =>
-                  Badge(
-                showBadge: mercuriusProfileNotifier.profile.currentVersion !=
-                    mercuriusWebNotifier.githubLatestRelease.tag_name,
-                child: const Icon(Icons.more_horiz),
-              ),
+              ) {
+                return Badge(
+                  showBadge: mercuriusProfileNotifier.profile.currentVersion !=
+                      mercuriusWebNotifier.githubLatestRelease.tag_name,
+                  child: const Icon(Icons.more_horiz),
+                );
+              },
             ),
             title: const Text(
               '更多',

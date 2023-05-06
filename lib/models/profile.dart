@@ -38,7 +38,7 @@ class Profile {
   String? lastLogin;
 
   /// 数独难度 (不可为空)
-  String? sudokuDifficulty = '大师级';
+  SudokuDifficultyType? sudokuDifficultyType = SudokuDifficultyType.defaultType;
 
   /// 当前版本
   String? currentVersion;
@@ -53,7 +53,7 @@ class Profile {
   static Profile getSaveProfile(Profile profile) {
     profile.themeMode ??= ThemeMode.system;
     profile.buttonVibration ??= true;
-    profile.sudokuDifficulty ??= '大师级';
+    profile.sudokuDifficultyType ??= SudokuDifficultyType.defaultType;
     return profile;
   }
 }

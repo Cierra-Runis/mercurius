@@ -3,10 +3,18 @@ import 'package:mercurius/index.dart';
 class MercuriusOriginalConfirmDialogWidget extends StatelessWidget {
   const MercuriusOriginalConfirmDialogWidget({
     Key? key,
-    this.itemName = '这张照片',
+    this.title = '确认吗？',
+    this.summary = '请再三思考哦～',
+    this.falseString = '取消',
+    this.trueString = '确认',
+    required this.context,
   }) : super(key: key);
 
-  final String itemName;
+  final String title;
+  final String summary;
+  final String falseString;
+  final String trueString;
+  final BuildContext context;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +23,9 @@ class MercuriusOriginalConfirmDialogWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('确认删除吗？'),
+          Text(title),
           Text(
-            '抛弃$itemName？',
+            summary,
             style: TextStyle(
               fontSize: 10,
               color: Theme.of(context).colorScheme.outline,
@@ -27,16 +35,22 @@ class MercuriusOriginalConfirmDialogWidget extends StatelessWidget {
       ),
       actions: [
         TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text('取消')),
+          onPressed: () {
+            Navigator.of(context).pop(false);
+          },
+          child: Text(falseString),
+        ),
         TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: const Text('确认'))
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+          child: Text(trueString),
+        )
       ],
     );
+  }
+
+  Future<bool?> get confirm async {
+    return await showDialog<bool?>(context: context, builder: (_) => this);
   }
 }

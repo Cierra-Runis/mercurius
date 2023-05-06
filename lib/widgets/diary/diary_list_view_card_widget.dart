@@ -50,31 +50,19 @@ class DiaryListViewCardWidget extends StatelessWidget {
         fontWeight: FontWeight.normal,
       ),
     );
-    final moodWidget = Icon(
-      size: 18,
-      DiaryConstance.moodMap[diary.mood] ?? DiaryConstance.moodMap['开心'],
-    );
-    final weatherWidget = Icon(
-      size: 18,
-      QWeatherIcon.getIconDataById(
-        int.parse(diary.weather),
-      ),
-    );
+    final moodWidget = Icon(size: 18, diary.moodType.iconData);
+    final weatherWidget = Icon(size: 18, diary.weatherType.iconData);
 
     return Dismissible(
       key: key!,
       onDismissed: (_) => isarService.deleteDiaryById(diary.id!),
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.endToStart) {
-          bool? confirm = await showDialog<bool>(
+          return await MercuriusOriginalConfirmDialogWidget(
             context: context,
-            builder: (context) {
-              return const MercuriusOriginalConfirmDialogWidget(
-                itemName: '这篇日记',
-              );
-            },
-          );
-          return confirm == true;
+            title: '确认删除吗？',
+            summary: '抛弃这篇日记',
+          ).confirm;
         }
         return false;
       },

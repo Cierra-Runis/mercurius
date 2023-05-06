@@ -11,8 +11,8 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
 
   void init() {
     _sudokuGenerator = SudokuGenerator(
-      emptySquares: SudokuConstance
-          .difficultyMap[mercuriusProfileNotifier.profile.sudokuDifficulty],
+      emptySquares:
+          mercuriusProfileNotifier.profile.sudokuDifficultyType!.emptySquares,
     );
     showedAnswer = false;
     won = false;
@@ -65,9 +65,11 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
     super.notifyListeners();
   }
 
-  void changeDifficulty(String newDifficulty) {
+  void changeDifficulty(SudokuDifficultyType newSudokuDifficultyType) {
     mercuriusProfileNotifier.changeProfile(
-        mercuriusProfileNotifier.profile..sudokuDifficulty = newDifficulty);
+      mercuriusProfileNotifier.profile
+        ..sudokuDifficultyType = newSudokuDifficultyType,
+    );
     newSudoku();
   }
 }

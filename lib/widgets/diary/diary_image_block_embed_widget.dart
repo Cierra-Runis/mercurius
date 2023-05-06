@@ -29,13 +29,27 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
       if (file.existsSync()) {
         return ClipRRect(
           borderRadius: BorderRadius.circular(16.0),
-          child: Image.file(file, alignment: Alignment.center),
+          child: Image.file(
+            file,
+            alignment: Alignment.center,
+            errorBuilder: (context, error, stackTrace) {
+              return const MercuriusModifiedFadeShimmerWidget(
+                radius: 16,
+                width: double.maxFinite,
+                height: 200,
+                child: Text(
+                  '错误的图片格式\n请重新插入',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              );
+            },
+          ),
         );
       } else {
         return MercuriusModifiedFadeShimmerWidget(
-          baseColor: Theme.of(context).colorScheme.outline.withOpacity(0.1),
-          highlightColor:
-              Theme.of(context).colorScheme.outline.withOpacity(0.4),
           radius: 16,
           width: double.maxFinite,
           height: 200,

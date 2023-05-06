@@ -30,6 +30,7 @@ class DiaryEditorToolbarWidget extends StatelessWidget {
       (controller, _, __, ___) {
         return DiaryEditorToolbarImageButtonWidget(
           controller: controller,
+          context: context,
         );
       }
     ];

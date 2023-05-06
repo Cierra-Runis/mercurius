@@ -14,7 +14,8 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) => Profile()
   ..themeMode = $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode'])
   ..buttonVibration = json['buttonVibration'] as bool?
   ..lastLogin = json['lastLogin'] as String?
-  ..sudokuDifficulty = json['sudokuDifficulty'] as String?
+  ..sudokuDifficultyType = $enumDecodeNullable(
+      _$SudokuDifficultyTypeEnumMap, json['sudokuDifficultyType'])
   ..currentVersion = json['currentVersion'] as String?
   ..cache = Cache.fromJson(json['cache'] as Map<String, dynamic>);
 
@@ -24,7 +25,8 @@ Map<String, dynamic> _$ProfileToJson(Profile instance) => <String, dynamic>{
       'themeMode': _$ThemeModeEnumMap[instance.themeMode],
       'buttonVibration': instance.buttonVibration,
       'lastLogin': instance.lastLogin,
-      'sudokuDifficulty': instance.sudokuDifficulty,
+      'sudokuDifficultyType':
+          _$SudokuDifficultyTypeEnumMap[instance.sudokuDifficultyType],
       'currentVersion': instance.currentVersion,
       'cache': instance.cache,
     };
@@ -33,4 +35,11 @@ const _$ThemeModeEnumMap = {
   ThemeMode.system: 'system',
   ThemeMode.light: 'light',
   ThemeMode.dark: 'dark',
+};
+
+const _$SudokuDifficultyTypeEnumMap = {
+  SudokuDifficultyType.easy: 'easy',
+  SudokuDifficultyType.normal: 'normal',
+  SudokuDifficultyType.insane: 'insane',
+  SudokuDifficultyType.defaultType: 'defaultType',
 };

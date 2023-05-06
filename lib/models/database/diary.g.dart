@@ -32,20 +32,22 @@ const DiarySchema = CollectionSchema(
       name: r'latestEditTime',
       type: IsarType.dateTime,
     ),
-    r'mood': PropertySchema(
+    r'moodType': PropertySchema(
       id: 3,
-      name: r'mood',
-      type: IsarType.string,
+      name: r'moodType',
+      type: IsarType.byte,
+      enumMap: _DiarymoodTypeEnumValueMap,
     ),
     r'titleString': PropertySchema(
       id: 4,
       name: r'titleString',
       type: IsarType.string,
     ),
-    r'weather': PropertySchema(
+    r'weatherType': PropertySchema(
       id: 5,
-      name: r'weather',
-      type: IsarType.string,
+      name: r'weatherType',
+      type: IsarType.byte,
+      enumMap: _DiaryweatherTypeEnumValueMap,
     )
   },
   estimateSize: _diaryEstimateSize,
@@ -74,14 +76,12 @@ int _diaryEstimateSize(
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.mood.length * 3;
   {
     final value = object.titleString;
     if (value != null) {
       bytesCount += 3 + value.length * 3;
     }
   }
-  bytesCount += 3 + object.weather.length * 3;
   return bytesCount;
 }
 
@@ -94,9 +94,9 @@ void _diarySerialize(
   writer.writeString(offsets[0], object.contentJsonString);
   writer.writeDateTime(offsets[1], object.createDateTime);
   writer.writeDateTime(offsets[2], object.latestEditTime);
-  writer.writeString(offsets[3], object.mood);
+  writer.writeByte(offsets[3], object.moodType.index);
   writer.writeString(offsets[4], object.titleString);
-  writer.writeString(offsets[5], object.weather);
+  writer.writeByte(offsets[5], object.weatherType.index);
 }
 
 Diary _diaryDeserialize(
@@ -110,9 +110,12 @@ Diary _diaryDeserialize(
     createDateTime: reader.readDateTime(offsets[1]),
     id: id,
     latestEditTime: reader.readDateTime(offsets[2]),
-    mood: reader.readStringOrNull(offsets[3]) ?? '一般',
+    moodType: _DiarymoodTypeValueEnumMap[reader.readByteOrNull(offsets[3])] ??
+        DiaryMoodType.defaultType,
     titleString: reader.readStringOrNull(offsets[4]),
-    weather: reader.readStringOrNull(offsets[5]) ?? '100',
+    weatherType:
+        _DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offsets[5])] ??
+            DiaryWeatherType.defaultType,
   );
   return object;
 }
@@ -131,15 +134,62 @@ P _diaryDeserializeProp<P>(
     case 2:
       return (reader.readDateTime(offset)) as P;
     case 3:
-      return (reader.readStringOrNull(offset) ?? '一般') as P;
+      return (_DiarymoodTypeValueEnumMap[reader.readByteOrNull(offset)] ??
+          DiaryMoodType.defaultType) as P;
     case 4:
       return (reader.readStringOrNull(offset)) as P;
     case 5:
-      return (reader.readStringOrNull(offset) ?? '100') as P;
+      return (_DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offset)] ??
+          DiaryWeatherType.defaultType) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
+
+const _DiarymoodTypeEnumValueMap = {
+  'defaultType': 0,
+  'angry': 1,
+  'confused': 2,
+  'frown': 3,
+  'laughing': 4,
+  'silentSquint': 5,
+  'sadCrying': 6,
+  'smileDizzy': 7,
+  'mehClosedEye': 8,
+};
+const _DiarymoodTypeValueEnumMap = {
+  0: DiaryMoodType.defaultType,
+  1: DiaryMoodType.angry,
+  2: DiaryMoodType.confused,
+  3: DiaryMoodType.frown,
+  4: DiaryMoodType.laughing,
+  5: DiaryMoodType.silentSquint,
+  6: DiaryMoodType.sadCrying,
+  7: DiaryMoodType.smileDizzy,
+  8: DiaryMoodType.mehClosedEye,
+};
+const _DiaryweatherTypeEnumValueMap = {
+  'defaultType': 0,
+  'cloudy': 1,
+  'fewClouds': 2,
+  'heavyThunderstorm': 3,
+  'lightRain': 4,
+  'heavyRain': 5,
+  'lightSnow': 6,
+  'heavySnow': 7,
+  'foggy': 8,
+};
+const _DiaryweatherTypeValueEnumMap = {
+  0: DiaryWeatherType.defaultType,
+  1: DiaryWeatherType.cloudy,
+  2: DiaryWeatherType.fewClouds,
+  3: DiaryWeatherType.heavyThunderstorm,
+  4: DiaryWeatherType.lightRain,
+  5: DiaryWeatherType.heavyRain,
+  6: DiaryWeatherType.lightSnow,
+  7: DiaryWeatherType.heavySnow,
+  8: DiaryWeatherType.foggy,
+};
 
 Id _diaryGetId(Diary object) {
   return object.id ?? Isar.autoIncrement;
@@ -550,130 +600,55 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodTypeEqualTo(
+      DiaryMoodType value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'mood',
+        property: r'moodType',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodGreaterThan(
-    String value, {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodTypeGreaterThan(
+    DiaryMoodType value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'mood',
+        property: r'moodType',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodLessThan(
-    String value, {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodTypeLessThan(
+    DiaryMoodType value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'mood',
+        property: r'moodType',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodBetween(
-    String lower,
-    String upper, {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodTypeBetween(
+    DiaryMoodType lower,
+    DiaryMoodType upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'mood',
+        property: r'moodType',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'mood',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'mood',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodContains(String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'mood',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodMatches(String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'mood',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'mood',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> moodIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'mood',
-        value: '',
       ));
     });
   }
@@ -824,132 +799,55 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherTypeEqualTo(
+      DiaryWeatherType value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'weather',
+        property: r'weatherType',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherGreaterThan(
-    String value, {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherTypeGreaterThan(
+    DiaryWeatherType value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'weather',
+        property: r'weatherType',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherLessThan(
-    String value, {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherTypeLessThan(
+    DiaryWeatherType value, {
     bool include = false,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'weather',
+        property: r'weatherType',
         value: value,
-        caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherBetween(
-    String lower,
-    String upper, {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherTypeBetween(
+    DiaryWeatherType lower,
+    DiaryWeatherType upper, {
     bool includeLower = true,
     bool includeUpper = true,
-    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'weather',
+        property: r'weatherType',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'weather',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'weather',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'weather',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'weather',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'weather',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> weatherIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'weather',
-        value: '',
       ));
     });
   }
@@ -996,15 +894,15 @@ extension DiaryQuerySortBy on QueryBuilder<Diary, Diary, QSortBy> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> sortByMood() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> sortByMoodType() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'mood', Sort.asc);
+      return query.addSortBy(r'moodType', Sort.asc);
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> sortByMoodDesc() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> sortByMoodTypeDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'mood', Sort.desc);
+      return query.addSortBy(r'moodType', Sort.desc);
     });
   }
 
@@ -1020,15 +918,15 @@ extension DiaryQuerySortBy on QueryBuilder<Diary, Diary, QSortBy> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> sortByWeather() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> sortByWeatherType() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'weather', Sort.asc);
+      return query.addSortBy(r'weatherType', Sort.asc);
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> sortByWeatherDesc() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> sortByWeatherTypeDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'weather', Sort.desc);
+      return query.addSortBy(r'weatherType', Sort.desc);
     });
   }
 }
@@ -1082,15 +980,15 @@ extension DiaryQuerySortThenBy on QueryBuilder<Diary, Diary, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> thenByMood() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> thenByMoodType() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'mood', Sort.asc);
+      return query.addSortBy(r'moodType', Sort.asc);
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> thenByMoodDesc() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> thenByMoodTypeDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'mood', Sort.desc);
+      return query.addSortBy(r'moodType', Sort.desc);
     });
   }
 
@@ -1106,15 +1004,15 @@ extension DiaryQuerySortThenBy on QueryBuilder<Diary, Diary, QSortThenBy> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> thenByWeather() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> thenByWeatherType() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'weather', Sort.asc);
+      return query.addSortBy(r'weatherType', Sort.asc);
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterSortBy> thenByWeatherDesc() {
+  QueryBuilder<Diary, Diary, QAfterSortBy> thenByWeatherTypeDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'weather', Sort.desc);
+      return query.addSortBy(r'weatherType', Sort.desc);
     });
   }
 }
@@ -1140,10 +1038,9 @@ extension DiaryQueryWhereDistinct on QueryBuilder<Diary, Diary, QDistinct> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QDistinct> distinctByMood(
-      {bool caseSensitive = true}) {
+  QueryBuilder<Diary, Diary, QDistinct> distinctByMoodType() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'mood', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'moodType');
     });
   }
 
@@ -1154,10 +1051,9 @@ extension DiaryQueryWhereDistinct on QueryBuilder<Diary, Diary, QDistinct> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QDistinct> distinctByWeather(
-      {bool caseSensitive = true}) {
+  QueryBuilder<Diary, Diary, QDistinct> distinctByWeatherType() {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'weather', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'weatherType');
     });
   }
 }
@@ -1187,9 +1083,9 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Diary, String, QQueryOperations> moodProperty() {
+  QueryBuilder<Diary, DiaryMoodType, QQueryOperations> moodTypeProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'mood');
+      return query.addPropertyName(r'moodType');
     });
   }
 
@@ -1199,9 +1095,10 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Diary, String, QQueryOperations> weatherProperty() {
+  QueryBuilder<Diary, DiaryWeatherType, QQueryOperations>
+      weatherTypeProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'weather');
+      return query.addPropertyName(r'weatherType');
     });
   }
 }
@@ -1216,8 +1113,11 @@ Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary(
       latestEditTime: DateTime.parse(json['latestEditTime'] as String),
       titleString: json['titleString'] as String?,
       contentJsonString: json['contentJsonString'] as String?,
-      mood: json['mood'] as String? ?? '一般',
-      weather: json['weather'] as String? ?? '100',
+      moodType: $enumDecodeNullable(_$DiaryMoodTypeEnumMap, json['moodType']) ??
+          DiaryMoodType.defaultType,
+      weatherType:
+          $enumDecodeNullable(_$DiaryWeatherTypeEnumMap, json['weatherType']) ??
+              DiaryWeatherType.defaultType,
     );
 
 Map<String, dynamic> _$DiaryToJson(Diary instance) => <String, dynamic>{
@@ -1226,6 +1126,30 @@ Map<String, dynamic> _$DiaryToJson(Diary instance) => <String, dynamic>{
       'latestEditTime': instance.latestEditTime.toIso8601String(),
       'titleString': instance.titleString,
       'contentJsonString': instance.contentJsonString,
-      'weather': instance.weather,
-      'mood': instance.mood,
+      'weatherType': _$DiaryWeatherTypeEnumMap[instance.weatherType]!,
+      'moodType': _$DiaryMoodTypeEnumMap[instance.moodType]!,
     };
+
+const _$DiaryMoodTypeEnumMap = {
+  DiaryMoodType.defaultType: 'defaultType',
+  DiaryMoodType.angry: 'angry',
+  DiaryMoodType.confused: 'confused',
+  DiaryMoodType.frown: 'frown',
+  DiaryMoodType.laughing: 'laughing',
+  DiaryMoodType.silentSquint: 'silentSquint',
+  DiaryMoodType.sadCrying: 'sadCrying',
+  DiaryMoodType.smileDizzy: 'smileDizzy',
+  DiaryMoodType.mehClosedEye: 'mehClosedEye',
+};
+
+const _$DiaryWeatherTypeEnumMap = {
+  DiaryWeatherType.defaultType: 'defaultType',
+  DiaryWeatherType.cloudy: 'cloudy',
+  DiaryWeatherType.fewClouds: 'fewClouds',
+  DiaryWeatherType.heavyThunderstorm: 'heavyThunderstorm',
+  DiaryWeatherType.lightRain: 'lightRain',
+  DiaryWeatherType.heavyRain: 'heavyRain',
+  DiaryWeatherType.lightSnow: 'lightSnow',
+  DiaryWeatherType.heavySnow: 'heavySnow',
+  DiaryWeatherType.foggy: 'foggy',
+};
