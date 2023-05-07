@@ -1,22 +1,20 @@
 ###### 最新版本
-v0.3.0+56
+v0.3.0+57
 
 ###### 更新内容
 
-### ⚠️破坏性更新⚠️本次改动会失去所有数据，请手动移动数据
+修改📖 & 添加功能🌍
 
-修改📖 & 添加功能🌍 & 破坏性升级⚠️
+1. 版本号进行至 0.3.0+57
+2. 使用 riverpod 重写 MercuriusWebNotifier 并将其改为 githubLatestReleaseProvider
 
-1. 版本号进行至 0.3.0+56
-2. 使用 `json` 文件而不是原先的类保存长数据和 `apiKey`
-3. 规范所有程序名称和数据库名都指向 `MercuriusConstance`
-4. 使用枚举类型规范日记心情、天气及数独难度的类型，该改动为破坏性升级
-5. 进行了大量组件拆分、复用及变量的规范命名
-6. 现在位于数独页、升级页的底部 sheet 是自适应高度的
-7. 现在插入图片时能选择原先就在库里的图片了
-8. 现在插入新图片的格式错误时会用 shimmer 占位符占位提示
-9. `MercuriusModifiedFadeShimmerWidget` 变的更加简洁了
+###### 破坏性更新版本列表
 
-###### 补充内容
+- `v0.3.0+56`
+- 使用枚举类型规范日记心情、天气及数独难度的类型
+	
+- 会失去所有数据，请手动移动数据
 
-历史更新记录见 https://github.com/Cierra-Runis/mercurius_warehouse/releases
+###### 历史更新
+
+- 见 https://github.com/Cierra-Runis/mercurius_warehouse/releases
