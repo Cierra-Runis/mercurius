@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryPageViewBodyWidget extends StatefulWidget {
+class DiaryPageViewBodyWidget extends ConsumerStatefulWidget {
   const DiaryPageViewBodyWidget({
     Key? key,
     required this.diary,
@@ -9,11 +9,12 @@ class DiaryPageViewBodyWidget extends StatefulWidget {
   final Diary diary;
 
   @override
-  State<DiaryPageViewBodyWidget> createState() =>
+  ConsumerState<DiaryPageViewBodyWidget> createState() =>
       _DiaryPageViewBodyWidgetState();
 }
 
-class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
+class _DiaryPageViewBodyWidgetState
+    extends ConsumerState<DiaryPageViewBodyWidget> {
   late Diary _diary;
 
   @override
@@ -138,9 +139,9 @@ class _DiaryPageViewBodyWidgetState extends State<DiaryPageViewBodyWidget> {
                                   context: context,
                                 ).confirm;
                                 if (confirm == true) {
-                                  isarService.deleteDiaryById(
-                                    _diary.id!,
-                                  );
+                                  ref
+                                      .watch(isarServiceProvider.notifier)
+                                      .deleteDiaryById(_diary.id!);
                                 }
                               },
                               icon: const Icon(Icons.delete_outline_rounded),

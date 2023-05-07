@@ -1,56 +1,57 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusOriginalThemeSelectorWidget extends StatelessWidget {
+class MercuriusOriginalThemeSelectorWidget extends ConsumerWidget {
   const MercuriusOriginalThemeSelectorWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<MercuriusProfileNotifier>(
-      builder: (_, mercuriusProfileNotifier, child) {
-        return AlertDialog(
-          actionsAlignment: MainAxisAlignment.center,
-          actionsPadding: const EdgeInsets.all(0),
-          actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('跟随系统'),
-              onPressed: () {
-                mercuriusProfileNotifier.changeProfile(
-                  mercuriusProfileNotifier.profile
-                    ..themeMode = ThemeMode.system,
-                );
-                Navigator.of(context).pop();
-              },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+
+    return mercuriusProfile.when(
+      loading: () => const MercuriusOriginalLoadingWidget(),
+      error: (error, stackTrace) => Container(),
+      data: (profile) => AlertDialog(
+        actionsAlignment: MainAxisAlignment.center,
+        actionsPadding: const EdgeInsets.all(0),
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('常暗模式'),
-              onPressed: () {
-                mercuriusProfileNotifier.changeProfile(
-                  mercuriusProfileNotifier.profile..themeMode = ThemeMode.dark,
-                );
-                Navigator.of(context).pop();
-              },
+            child: const Text('跟随系统'),
+            onPressed: () {
+              ref.watch(mercuriusProfileProvider.notifier).changeProfile(
+                    profile..themeMode = ThemeMode.system,
+                  );
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('常亮模式'),
-              onPressed: () {
-                mercuriusProfileNotifier.changeProfile(
-                  mercuriusProfileNotifier.profile..themeMode = ThemeMode.light,
-                );
-                Navigator.of(context).pop();
-              },
+            child: const Text('常暗模式'),
+            onPressed: () {
+              ref.watch(mercuriusProfileProvider.notifier).changeProfile(
+                    profile..themeMode = ThemeMode.dark,
+                  );
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
             ),
-          ],
-        );
-      },
+            child: const Text('常亮模式'),
+            onPressed: () {
+              ref.watch(mercuriusProfileProvider.notifier).changeProfile(
+                    profile..themeMode = ThemeMode.light,
+                  );
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
     );
   }
 }

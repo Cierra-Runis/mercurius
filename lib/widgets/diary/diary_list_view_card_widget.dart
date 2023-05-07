@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListViewCardWidget extends StatelessWidget {
+class DiaryListViewCardWidget extends ConsumerWidget {
   const DiaryListViewCardWidget({
     required key,
     required this.diary,
@@ -9,7 +9,7 @@ class DiaryListViewCardWidget extends StatelessWidget {
   final Diary diary;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final dayWidget = Text(
       diary.createDateTime.format('dd', 'zh_CN'),
       style: const TextStyle(
@@ -55,7 +55,8 @@ class DiaryListViewCardWidget extends StatelessWidget {
 
     return Dismissible(
       key: key!,
-      onDismissed: (_) => isarService.deleteDiaryById(diary.id!),
+      onDismissed: (_) =>
+          ref.watch(isarServiceProvider.notifier).deleteDiaryById(diary.id!),
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.endToStart) {
           return await MercuriusOriginalConfirmDialogWidget(

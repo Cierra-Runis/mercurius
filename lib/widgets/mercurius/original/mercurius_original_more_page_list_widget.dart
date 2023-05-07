@@ -11,6 +11,7 @@ class MercuriusOriginalMorePageListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
 
     List<List<dynamic>> data = [
       [Icons.analytics, '统计数据', const DiaryStatisticPage()],
@@ -33,36 +34,31 @@ class MercuriusOriginalMorePageListWidget extends ConsumerWidget {
       );
     }
 
-    return githubLatestRelease.when(
-      loading: () => const MercuriusOriginalLoadingWidget(),
-      error: (error, stackTrace) => Container(),
-      data: (data) => MercuriusModifiedList(
-        children: [
-          MercuriusModifiedListSection(children: [
+    return MercuriusModifiedList(
+      children: [
+        MercuriusModifiedListSection(
+          children: [
             ...list,
-            Consumer<MercuriusProfileNotifier>(
-              builder: (
-                context,
-                mercuriusProfileNotifier,
-                // mercuriusWebNotifier,
-                child,
-              ) {
-                return MercuriusModifiedListItem(
-                  iconData: Icons.info_outline,
-                  showAccessoryViewBadge:
-                      mercuriusProfileNotifier.profile.currentVersion !=
-                          data.tag_name,
-                  titleText: '关于',
-                  onTap: () => showDialog<void>(
-                    context: context,
-                    builder: (context) => const DialogAboutWidget(),
-                  ),
-                );
-              },
-            ),
-          ])
-        ],
-      ),
+            MercuriusModifiedListItem(
+              iconData: Icons.info_outline,
+              showAccessoryViewBadge: githubLatestRelease.when(
+                loading: () => false,
+                error: (error, stackTrace) => false,
+                data: (github) => mercuriusProfile.when(
+                  loading: () => false,
+                  error: (error, stackTrace) => false,
+                  data: (profile) => profile.currentVersion != github.tag_name,
+                ),
+              ),
+              titleText: '关于',
+              onTap: () => showDialog<void>(
+                context: context,
+                builder: (context) => const DialogAboutWidget(),
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }

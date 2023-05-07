@@ -162,11 +162,11 @@ class MercuriusModifiedListItem extends StatelessWidget {
 }
 
 /// 由 [MercuriusModifiedListItem] 衍生的组件，其右边被替换为开关
-class MercuriusListSwitchItem extends MercuriusModifiedListItem {
+class MercuriusModifiedListSwitchItem extends MercuriusModifiedListItem {
   final bool? value;
   final ValueChanged<bool>? onChanged;
 
-  const MercuriusListSwitchItem({
+  const MercuriusModifiedListSwitchItem({
     Key? key,
     Icon? icon,
     IconData? iconData,
@@ -213,13 +213,13 @@ class MercuriusListSwitchItem extends MercuriusModifiedListItem {
 }
 
 /// 由 [MercuriusModifiedListItem] 衍生的组件，其中部被替换为 [TextField] 输入框
-class MercuriusListTextFieldItem extends MercuriusModifiedListItem {
+class MercuriusModifiedListTextFieldItem extends MercuriusModifiedListItem {
   final String? hintText;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onSubmitted;
 
-  const MercuriusListTextFieldItem({
+  const MercuriusModifiedListTextFieldItem({
     Key? key,
     Icon? icon,
     IconData? iconData,

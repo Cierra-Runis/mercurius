@@ -4,8 +4,11 @@ class MercuriusOriginalLoadingWidget extends StatelessWidget {
   const MercuriusOriginalLoadingWidget({
     Key? key,
     this.notice = '读取中',
+    this.withText = true,
   }) : super(key: key);
+
   final String notice;
+  final bool withText;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class MercuriusOriginalLoadingWidget extends StatelessWidget {
             size: 16,
           ),
           const SizedBox(width: 20),
-          Text(notice),
+          if (withText) Text(notice),
         ],
       ),
     );

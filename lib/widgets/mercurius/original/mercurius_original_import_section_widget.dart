@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusOriginalImportSectionWidget extends StatelessWidget {
+class MercuriusOriginalImportSectionWidget extends ConsumerWidget {
   const MercuriusOriginalImportSectionWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MercuriusModifiedListSection(
       title: const Text('导入'),
       children: [
@@ -18,7 +18,9 @@ class MercuriusOriginalImportSectionWidget extends StatelessWidget {
             await FilePicker.platform.clearTemporaryFiles();
             FilePickerResult? result = await FilePicker.platform.pickFiles();
             if (result != null) {
-              isarService.importJsonWith(result.files.single.path!);
+              ref
+                  .watch(isarServiceProvider.notifier)
+                  .importJsonWith(result.files.single.path!);
             }
             if (context.mounted) {
               MercuriusKit.vibration(duration: 300);

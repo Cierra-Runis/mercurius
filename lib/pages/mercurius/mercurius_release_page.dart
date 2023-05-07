@@ -20,10 +20,14 @@ class MercuriusReleasePage extends ConsumerWidget {
         body: Center(
           child: Markdown(
             data: data.body ?? '##### 啊啦\n\n你好像来到了奇怪的地方，要不回去先刷新一下？\n',
-            onTapLink: (text, href, title) => launchUrlString(
-              text,
-              mode: LaunchMode.externalApplication,
-            ),
+            onTapLink: (text, href, title) {
+              if (href != null) {
+                launchUrlString(
+                  href,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
+            },
           ),
         ),
         floatingActionButton: Column(

@@ -5,11 +5,12 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     Key? key,
     required this.controller,
     required this.context,
+    required String path,
   }) : super(
           key: key,
           size: 18 * 1.77,
           borderRadius: 12,
-          onPressed: () => _onPressed(controller, context),
+          onPressed: () => _onPressed(controller, context, path),
         );
 
   final BuildContext context;
@@ -21,6 +22,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
   static void _onPressed(
     QuillController controller,
     BuildContext context,
+    String path,
   ) async {
     bool? newImage = await MercuriusOriginalConfirmDialogWidget(
       context: context,
@@ -46,8 +48,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
 
         if (pickedFile != null) {
           String sourceFilePath = pickedFile.path;
-          String targetFilePath =
-              '${mercuriusPathNotifier.path}/image/${pickedFile.name}';
+          String targetFilePath = '$path/image/${pickedFile.name}';
 
           await XFile(sourceFilePath).saveTo(targetFilePath);
           await File(sourceFilePath).delete();

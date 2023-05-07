@@ -76,22 +76,19 @@ class _MercuriusBottomBarMorePageItemIconWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    return githubLatestRelease.when(
-      loading: () => const MercuriusOriginalLoadingWidget(),
-      error: (error, stackTrace) => Container(),
-      data: (data) => Consumer<MercuriusProfileNotifier>(
-        builder: (
-          context,
-          mercuriusProfileNotifier,
-          child,
-        ) {
-          return Badge(
-            showBadge: mercuriusProfileNotifier.profile.currentVersion !=
-                data.tag_name,
-            child: const Icon(Icons.more_horiz),
-          );
-        },
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+    return Badge(
+      showBadge: githubLatestRelease.when(
+        loading: () => false,
+        error: (error, stackTrace) => false,
+        data: (githubLatestRelease) => mercuriusProfile.when(
+          loading: () => false,
+          error: (error, stackTrace) => false,
+          data: (profile) =>
+              profile.currentVersion != githubLatestRelease.tag_name,
+        ),
       ),
+      child: const Icon(Icons.more_horiz),
     );
   }
 }

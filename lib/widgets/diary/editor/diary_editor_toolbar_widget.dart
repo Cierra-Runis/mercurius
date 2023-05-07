@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryEditorToolbarWidget extends StatelessWidget {
+class DiaryEditorToolbarWidget extends ConsumerWidget {
   const DiaryEditorToolbarWidget({
     Key? key,
     required this.currentDiary,
@@ -15,7 +15,7 @@ class DiaryEditorToolbarWidget extends StatelessWidget {
   final ValueChanged<Diary?> handleToolbarChangeDiary;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final iconSelectedFillColor =
         Theme.of(context).brightness == Brightness.dark
             ? Theme.of(context).colorScheme.outlineVariant
@@ -26,11 +26,18 @@ class DiaryEditorToolbarWidget extends StatelessWidget {
       iconSelectedFillColor: iconSelectedFillColor,
     );
 
+    final path = ref.watch(mercuriusPathProvider);
+
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
-        return DiaryEditorToolbarImageButtonWidget(
-          controller: controller,
-          context: context,
+        return path.when(
+          loading: () => const MercuriusOriginalLoadingWidget(withText: false),
+          error: (error, stackTrace) => Container(),
+          data: (data) => DiaryEditorToolbarImageButtonWidget(
+            controller: controller,
+            context: context,
+            path: data,
+          ),
         );
       }
     ];

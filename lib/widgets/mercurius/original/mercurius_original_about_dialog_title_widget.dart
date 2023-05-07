@@ -1,12 +1,14 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusOriginalAboutDialogTitleWidget extends StatelessWidget {
+class MercuriusOriginalAboutDialogTitleWidget extends ConsumerWidget {
   const MercuriusOriginalAboutDialogTitleWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+
     return Column(
       children: [
         const Text(
@@ -16,24 +18,24 @@ class MercuriusOriginalAboutDialogTitleWidget extends StatelessWidget {
             fontFamily: 'Saira',
           ),
         ),
-        Consumer<MercuriusProfileNotifier>(
-          builder: (context, mercuriusProfileNotifier, child) {
-            return Row(
-              children: [
-                Text(
-                  '${mercuriusProfileNotifier.profile.currentVersion}',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Saira',
-                  ),
-                ),
-                const Padding(padding: EdgeInsets.all(2)),
-                const MercuriusOriginalVersionNoticeWidget(),
-              ],
-            );
-          },
-        ),
+        Row(
+          children: [
+            Text(
+              mercuriusProfile.when(
+                loading: () => '未知版本',
+                error: (error, stackTrace) => '版本获取失败',
+                data: (profile) => '${profile.currentVersion}',
+              ),
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Saira',
+              ),
+            ),
+            const Padding(padding: EdgeInsets.all(2)),
+            const MercuriusOriginalVersionNoticeWidget(),
+          ],
+        )
       ],
     );
   }

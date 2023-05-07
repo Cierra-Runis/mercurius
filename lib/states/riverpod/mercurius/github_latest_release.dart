@@ -9,8 +9,10 @@ Future<GithubLatestRelease> githubLatestRelease(Ref ref) async {
   const String url =
       'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
 
+  final profile = await ref.read(mercuriusProfileProvider.future);
+
   GithubLatestRelease githubLatestRelease = GithubLatestRelease()
-    ..tag_name = mercuriusProfileNotifier.profile.currentVersion;
+    ..tag_name = profile.currentVersion;
 
   Response response;
   try {
@@ -19,7 +21,7 @@ Future<GithubLatestRelease> githubLatestRelease(Ref ref) async {
     MercuriusKit.printLog('GithubLatestRelease 连接失败');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode(
-        '{"tag_name": "${mercuriusProfileNotifier.profile.currentVersion}"}',
+        '{"tag_name": "${profile.currentVersion}"}',
       ),
     );
     return githubLatestRelease;
@@ -36,7 +38,7 @@ Future<GithubLatestRelease> githubLatestRelease(Ref ref) async {
     MercuriusKit.printLog('GithubLatestRelease 请求失败');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode(
-        '{"tag_name": "${mercuriusProfileNotifier.profile.currentVersion}"}',
+        '{"tag_name": "${profile.currentVersion}"}',
       ),
     );
   }

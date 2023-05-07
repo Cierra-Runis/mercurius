@@ -1,10 +1,12 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusProfilePage extends StatelessWidget {
+class MercuriusProfilePage extends ConsumerWidget {
   const MercuriusProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('个人界面'),
@@ -13,22 +15,23 @@ class MercuriusProfilePage extends StatelessWidget {
         child: MercuriusModifiedList(
           padding: const EdgeInsets.all(8),
           children: [
-            Consumer<MercuriusProfileNotifier>(
-              builder: (context, mercuriusProfileNotifier, child) =>
-                  MercuriusModifiedListSection(
-                children: [
-                  MercuriusModifiedListItem(
-                    iconData: Icons.logout_rounded,
-                    titleText: '退出帐号',
-                    onTap: () {
-                      mercuriusProfileNotifier.changeProfile(
-                        mercuriusProfileNotifier.profile..user = null,
-                      );
+            MercuriusModifiedListSection(
+              children: [
+                MercuriusModifiedListItem(
+                  iconData: Icons.logout_rounded,
+                  titleText: '退出帐号',
+                  onTap: mercuriusProfile.when(
+                    loading: () => null,
+                    error: (error, stackTrace) => null,
+                    data: (profile) => () {
+                      ref
+                          .watch(mercuriusProfileProvider.notifier)
+                          .changeProfile(profile..user = null);
                       Navigator.of(context).pop();
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

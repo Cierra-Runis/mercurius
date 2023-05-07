@@ -54,7 +54,8 @@ class _DiaryPageViewWidgetState extends ConsumerState<DiaryPageViewWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Diary>>(
-      stream: isarService
+      stream: ref
+          .watch(isarServiceProvider.notifier)
           .listenToDiariesContains(ref.watch(diarySearchTextProvider)),
       builder: (
         BuildContext context,

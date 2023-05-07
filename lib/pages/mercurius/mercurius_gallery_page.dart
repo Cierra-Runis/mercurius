@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusGalleryPage extends StatelessWidget {
+class MercuriusGalleryPage extends ConsumerWidget {
   const MercuriusGalleryPage({
     Key? key,
     this.readOnly = false,
@@ -8,11 +8,11 @@ class MercuriusGalleryPage extends StatelessWidget {
 
   final bool readOnly;
 
-  Stream<List<FileSystemEntity>> listenToImageFile() {
+  Stream<List<FileSystemEntity>> listenToImageFile(String path) {
     /// TIPS: 这里只排除了文件夹，而未排除所有 `Image` 不支持的文件
     return Stream.periodic(
       const Duration(milliseconds: 100),
-      (_) => Directory('${mercuriusPathNotifier.path}/image/').listSync().where(
+      (_) => Directory('$path/image/').listSync().where(
         (file) {
           return file.statSync().type == FileSystemEntityType.file;
         },
@@ -61,14 +61,22 @@ class MercuriusGalleryPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final path = ref.watch(mercuriusPathProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('图片库'),
       ),
-      body: StreamBuilder(
-        stream: listenToImageFile().distinct(),
-        builder: (context, snapshot) => getBodyBySnapshotState(snapshot),
+      body: path.when(
+        loading: () => const MercuriusOriginalLoadingWidget(),
+
+        /// TODO: 这里应该提示错误
+        error: (error, stackTrace) => Container(),
+        data: (data) => StreamBuilder(
+          stream: listenToImageFile(data).distinct(),
+          builder: (context, snapshot) => getBodyBySnapshotState(snapshot),
+        ),
       ),
     );
   }

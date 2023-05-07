@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryEditorAppBarSaveButtonWidget extends StatelessWidget {
+class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
   const DiaryEditorAppBarSaveButtonWidget({
     Key? key,
     required this.currentDiary,
@@ -15,7 +15,7 @@ class DiaryEditorAppBarSaveButtonWidget extends StatelessWidget {
   final TextEditingController title;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return TextButton(
       onPressed: () {
         String plainText = jsonEncode(
@@ -35,7 +35,7 @@ class DiaryEditorAppBarSaveButtonWidget extends StatelessWidget {
             titleString: title.text == '' ? null : title.text,
           );
           handleAppBarChangeDiary(newDiary);
-          isarService.saveDiary(newDiary);
+          ref.watch(isarServiceProvider.notifier).saveDiary(newDiary);
           Navigator.of(context).pop(newDiary);
         } else {
           MercuriusKit.vibration(duration: 300);

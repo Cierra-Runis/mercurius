@@ -1,10 +1,15 @@
 import 'package:mercurius/index.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'isar_service.g.dart';
 
-class IsarService {
+@riverpod
+class IsarService extends _$IsarService {
   late Future<Isar> db;
 
   /// 创建一个 `IsarService`
-  IsarService() {
+
+  @override
+  void build() {
     db = openDB();
   }
 
@@ -81,11 +86,12 @@ class IsarService {
       MercuriusKit.printLog(
         '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 ${MercuriusConstance.database} 中',
       );
+      final path = await ref.watch(mercuriusPathProvider.future);
       return await Isar.open(
         [DiarySchema],
         inspector: true,
         name: MercuriusConstance.database,
-        directory: mercuriusPathNotifier.path,
+        directory: path,
         compactOnLaunch: const CompactCondition(
           /// 压缩能减小 1KB 及以上，且达到了 1KB 的体积就进行压缩
           minBytes: 1024,

@@ -1,14 +1,15 @@
 import 'package:mercurius/index.dart';
 
-class DiaryMonthlyWordsWidget extends StatefulWidget {
+class DiaryMonthlyWordsWidget extends ConsumerStatefulWidget {
   const DiaryMonthlyWordsWidget({super.key});
 
   @override
-  State<DiaryMonthlyWordsWidget> createState() =>
+  ConsumerState<DiaryMonthlyWordsWidget> createState() =>
       _DiaryMonthlyWordsWidgetState();
 }
 
-class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
+class _DiaryMonthlyWordsWidgetState
+    extends ConsumerState<DiaryMonthlyWordsWidget> {
   TooltipBehavior? _tooltipBehavior;
   ZoomPanBehavior? _zoomPanBehavior;
 
@@ -45,7 +46,7 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
         SizedBox(
           height: 220,
           child: FutureBuilder<List<_DiaryWordsData>>(
-            future: _getDiaryWordsData(),
+            future: _getDiaryWordsData(ref),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return SfCartesianChart(
@@ -100,14 +101,15 @@ class _DiaryMonthlyWordsWidgetState extends State<DiaryMonthlyWordsWidget> {
     );
   }
 
-  Future<List<_DiaryWordsData>> _getDiaryWordsData() async {
+  Future<List<_DiaryWordsData>> _getDiaryWordsData(WidgetRef ref) async {
     List<_DiaryWordsData> result = [];
 
     Map<DateTime, int> data = {};
 
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    List<Diary> diaries = await isarService.getAllDiaries();
+    List<Diary> diaries =
+        await ref.watch(isarServiceProvider.notifier).getAllDiaries();
 
     if (diaries.isEmpty) {
       return result;

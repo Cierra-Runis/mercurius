@@ -12,8 +12,8 @@ class MercuriusKit {
     List<int> intensities = const [],
     int amplitude = -1,
   }) async {
-    bool buttonVibration =
-        mercuriusProfileNotifier.profile.buttonVibration ?? false;
+    /// TODO: vibration
+    bool buttonVibration = true ?? false;
     bool hasVibrator = await Vibration.hasVibrator() ?? false;
     bool hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
     bool hasCustomVibrationsSupport =

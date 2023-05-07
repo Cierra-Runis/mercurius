@@ -10,10 +10,11 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
   late bool won;
 
   void init() {
-    _sudokuGenerator = SudokuGenerator(
-      emptySquares:
-          mercuriusProfileNotifier.profile.sudokuDifficultyType!.emptySquares,
-    );
+    _sudokuGenerator = SudokuGenerator(emptySquares: 54
+
+        /// TODO: sudoku
+        // mercuriusProfileNotifier.profile.sudokuDifficultyType!.emptySquares,
+        );
     showedAnswer = false;
     won = false;
     sudokuList = _sudokuGenerator.newSudoku;
@@ -65,11 +66,12 @@ class MercuriusSudokuNotifier extends ChangeNotifier {
     super.notifyListeners();
   }
 
-  void changeDifficulty(SudokuDifficultyType newSudokuDifficultyType) {
-    mercuriusProfileNotifier.changeProfile(
-      mercuriusProfileNotifier.profile
-        ..sudokuDifficultyType = newSudokuDifficultyType,
-    );
-    newSudoku();
-  }
+  /// TODO: sudoku
+  // void changeDifficulty(SudokuDifficultyType newSudokuDifficultyType) {
+  //   mercuriusProfileNotifier.changeProfile(
+  //     mercuriusProfileNotifier.profile
+  //       ..sudokuDifficultyType = newSudokuDifficultyType,
+  //   );
+  //   newSudoku();
+  // }
 }

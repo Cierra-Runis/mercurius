@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusOriginalExportSectionWidget extends StatelessWidget {
+class MercuriusOriginalExportSectionWidget extends ConsumerWidget {
   const MercuriusOriginalExportSectionWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MercuriusModifiedListSection(
       title: const Text('导出'),
       children: [
@@ -14,8 +14,9 @@ class MercuriusOriginalExportSectionWidget extends StatelessWidget {
           iconData: Icons.data_object_rounded,
           titleText: '导出 json 文件',
           onTap: () async {
-            String path = '${mercuriusPathNotifier.path}/export.json';
-            isarService.exportJsonWith(path);
+            String path =
+                '${await ref.watch(mercuriusPathProvider.future)}/export.json';
+            ref.watch(isarServiceProvider.notifier).exportJsonWith(path);
             Share.shareXFiles([XFile(path)]);
           },
         ),

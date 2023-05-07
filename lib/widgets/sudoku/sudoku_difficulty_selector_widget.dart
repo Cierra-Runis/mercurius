@@ -34,7 +34,8 @@ class _SudokuDifficultySelectorWidgetState
             ],
           ),
           onTap: () {
-            mercuriusSudokuNotifier.changeDifficulty(element);
+            /// TODO: sudoku
+            // mercuriusSudokuNotifier.changeDifficulty(element);
             // 直接退回至数独界面
             Navigator.of(context).pop();
             Navigator.of(context).pop();

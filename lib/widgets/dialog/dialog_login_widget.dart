@@ -1,19 +1,20 @@
 import 'package:mercurius/index.dart';
 
-class DialogLoginWidget extends StatefulWidget {
+class DialogLoginWidget extends ConsumerStatefulWidget {
   const DialogLoginWidget({super.key});
 
   @override
-  State<DialogLoginWidget> createState() => _DialogLoginWidgetState();
+  ConsumerState<DialogLoginWidget> createState() => _DialogLoginWidgetState();
 }
 
-class _DialogLoginWidgetState extends State<DialogLoginWidget> {
+class _DialogLoginWidgetState extends ConsumerState<DialogLoginWidget> {
   final TextEditingController _mercuriusId = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
     return AlertDialog(
       title: Column(
         mainAxisSize: MainAxisSize.min,
@@ -88,21 +89,22 @@ class _DialogLoginWidgetState extends State<DialogLoginWidget> {
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
-        Consumer<MercuriusProfileNotifier>(
-          builder: (context, mercuriusProfileNotifier, childe) {
-            return TextButton(
-              onPressed: () {
-                if ((_formKey.currentState as FormState).validate()) {
-                  _fetchUser(
-                    int.parse(_mercuriusId.text),
-                    _password.text,
-                    context,
-                  );
-                }
-              },
-              child: const Text('确认'),
-            );
-          },
+        TextButton(
+          onPressed: mercuriusProfile.when(
+            loading: () => null,
+            error: (error, stackTrace) => null,
+            data: (profile) => () {
+              if ((_formKey.currentState as FormState).validate()) {
+                _fetchUser(
+                  mercuriusId: int.parse(_mercuriusId.text),
+                  password: _password.text,
+                  profile: profile,
+                  context: context,
+                );
+              }
+            },
+          ),
+          child: const Text('确认'),
         ),
       ],
     );
@@ -124,17 +126,19 @@ class _DialogLoginWidgetState extends State<DialogLoginWidget> {
     );
   }
 
-  Future<void> _fetchUser(
-    num mercuriusId,
-    String password,
-    BuildContext context,
-  ) async {
+  Future<void> _fetchUser({
+    required int mercuriusId,
+    required String password,
+    required Profile profile,
+    required BuildContext context,
+  }) async {
     User newUser = User()
       ..mercuriusId = mercuriusId
       ..username = '田所浩二'
       ..email = 'byrdsaron@gmail.com';
-    mercuriusProfileNotifier
-        .changeProfile(mercuriusProfileNotifier.profile..user = newUser);
+    ref
+        .watch(mercuriusProfileProvider.notifier)
+        .changeProfile(profile..user = newUser);
     Navigator.of(context).pop();
   }
 }

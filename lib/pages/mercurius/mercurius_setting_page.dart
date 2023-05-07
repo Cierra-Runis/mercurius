@@ -25,50 +25,55 @@ class MercuriusSettingPage extends StatelessWidget {
   }
 }
 
-class _ThemeSelectListItem extends StatelessWidget {
+class _ThemeSelectListItem extends ConsumerWidget {
   const _ThemeSelectListItem();
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<MercuriusProfileNotifier>(
-      builder: (context, mercuriusProfileNotifier, child) {
-        return MercuriusModifiedListItem(
-          iconData: Icons.dark_mode_rounded,
-          titleText: '深色模式',
-          detailText: mercuriusProfileNotifier.profile.themeMode! ==
-                  ThemeMode.system
-              ? '跟随系统'
-              : mercuriusProfileNotifier.profile.themeMode! == ThemeMode.dark
-                  ? '常暗模式'
-                  : '常亮模式',
-          onTap: () => showDialog<void>(
-            context: context,
-            builder: (context) {
-              return const MercuriusOriginalThemeSelectorWidget();
-            },
-          ),
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+
+    return MercuriusModifiedListItem(
+      iconData: Icons.dark_mode_rounded,
+      titleText: '深色模式',
+      detailText: mercuriusProfile.when(
+        loading: () => '跟随系统',
+        error: (error, stackTrace) => '跟随系统',
+        data: (profile) => profile.themeMode! == ThemeMode.system
+            ? '跟随系统'
+            : profile.themeMode! == ThemeMode.dark
+                ? '常暗模式'
+                : '常亮模式',
+      ),
+      onTap: () => showDialog<void>(
+        context: context,
+        builder: (context) {
+          return const MercuriusOriginalThemeSelectorWidget();
+        },
+      ),
     );
   }
 }
 
-class _VibrationSelectListItem extends StatelessWidget {
+class _VibrationSelectListItem extends ConsumerWidget {
   const _VibrationSelectListItem();
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<MercuriusProfileNotifier>(
-      builder: (context, mercuriusProfileNotifier, child) {
-        return MercuriusListSwitchItem(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+
+    return mercuriusProfile.when(
+      loading: () => const MercuriusModifiedListItem(),
+      error: (error, stackTrace) => Container(),
+      data: (profile) {
+        return MercuriusModifiedListSwitchItem(
           iconData: Icons.vibration,
           titleText: '按钮振动',
-          detailText:
-              mercuriusProfileNotifier.profile.buttonVibration! ? '开启' : '关闭',
-          value: mercuriusProfileNotifier.profile.buttonVibration!,
-          onChanged: (value) => mercuriusProfileNotifier.changeProfile(
-            mercuriusProfileNotifier.profile..buttonVibration = value,
-          ),
+          detailText: profile.buttonVibration! ? '开启' : '关闭',
+          value: profile.buttonVibration!,
+          onChanged: (value) =>
+              ref.watch(mercuriusProfileProvider.notifier).changeProfile(
+                    profile..buttonVibration = value,
+                  ),
         );
       },
     );

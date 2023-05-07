@@ -1,13 +1,14 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusSplashPage extends StatefulWidget {
+class MercuriusSplashPage extends ConsumerStatefulWidget {
   const MercuriusSplashPage({super.key});
 
   @override
-  State<MercuriusSplashPage> createState() => _MercuriusSplashPageState();
+  ConsumerState<MercuriusSplashPage> createState() =>
+      _MercuriusSplashPageState();
 }
 
-class _MercuriusSplashPageState extends State<MercuriusSplashPage>
+class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -23,6 +24,7 @@ class _MercuriusSplashPageState extends State<MercuriusSplashPage>
     _animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.completed) {
+          MercuriusKit.printLog('进入主页面');
           Navigator.of(context).pushAndRemoveUntil(
             CupertinoPageRoute(
               builder: (context) => const MercuriusRoute(),
@@ -37,6 +39,12 @@ class _MercuriusSplashPageState extends State<MercuriusSplashPage>
 
   @override
   Widget build(BuildContext context) {
+    MercuriusKit.printLog('正在构建 $this');
+
+    ref.watch(githubLatestReleaseProvider);
+    ref.watch(isarServiceProvider);
+    ref.watch(mercuriusPositionProvider);
+
     return FadeTransition(
       opacity: _animation,
       child: Scaffold(
