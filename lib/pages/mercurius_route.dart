@@ -42,37 +42,55 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
         selectedItemColor: Theme.of(context).colorScheme.primary,
         unselectedItemColor: Theme.of(context).colorScheme.outline,
         backgroundColor: Theme.of(context).colorScheme.surface,
-        items: [
+        items: const [
           MercuriusBottomBarItem(
-            icon: const Icon(Icons.home),
-            title: const Text(
+            icon: Icon(Icons.home),
+            title: Text(
               '主页',
               style: TextStyle(fontFamily: 'Saira'),
             ),
           ),
-          MercuriusBottomBarItem(
-            icon: Consumer2<MercuriusProfileNotifier, MercuriusWebNotifier>(
-              builder: (
-                context,
-                mercuriusProfileNotifier,
-                mercuriusWebNotifier,
-                child,
-              ) {
-                return Badge(
-                  showBadge: mercuriusProfileNotifier.profile.currentVersion !=
-                      mercuriusWebNotifier.githubLatestRelease.tag_name,
-                  child: const Icon(Icons.more_horiz),
-                );
-              },
-            ),
-            title: const Text(
-              '更多',
-              style: TextStyle(fontFamily: 'Saira'),
-            ),
-          ),
+          _MercuriusBottomBarMorePageItem(),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class _MercuriusBottomBarMorePageItem extends MercuriusBottomBarItem {
+  const _MercuriusBottomBarMorePageItem()
+      : super(
+          icon: const _MercuriusBottomBarMorePageItemIconWidget(),
+          title: const Text(
+            '更多',
+            style: TextStyle(fontFamily: 'Saira'),
+          ),
+        );
+}
+
+class _MercuriusBottomBarMorePageItemIconWidget extends ConsumerWidget {
+  const _MercuriusBottomBarMorePageItemIconWidget();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+    return githubLatestRelease.when(
+      loading: () => const MercuriusOriginalLoadingWidget(),
+      error: (error, stackTrace) => Container(),
+      data: (data) => Consumer<MercuriusProfileNotifier>(
+        builder: (
+          context,
+          mercuriusProfileNotifier,
+          child,
+        ) {
+          return Badge(
+            showBadge: mercuriusProfileNotifier.profile.currentVersion !=
+                data.tag_name,
+            child: const Icon(Icons.more_horiz),
+          );
+        },
       ),
     );
   }

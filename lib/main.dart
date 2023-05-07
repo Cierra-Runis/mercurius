@@ -3,7 +3,6 @@ import 'package:mercurius/index.dart';
 /// 位于 `main.dart` 的 `changeNotifier` 们
 final mercuriusProfileNotifier = MercuriusProfileNotifier();
 final mercuriusSudokuNotifier = MercuriusSudokuNotifier();
-final mercuriusWebNotifier = MercuriusWebNotifier();
 final mercuriusPositionNotifier = MercuriusPositionNotifier();
 final mercuriusPathNotifier = MercuriusPathNotifier();
 
@@ -19,11 +18,14 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MercuriusApp()));
 }
 
-class MercuriusApp extends StatelessWidget {
+class MercuriusApp extends ConsumerWidget {
   const MercuriusApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    MercuriusKit.printLog('正在构建 MercuriusApp');
+    ref.watch(githubLatestReleaseProvider);
+
     ThemeData theme = ThemeData(
       useMaterial3: true,
       colorScheme: MercuriusConstance.lightColorScheme,
@@ -41,7 +43,6 @@ class MercuriusApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => mercuriusProfileNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusSudokuNotifier),
-        ChangeNotifierProvider(create: (_) => mercuriusWebNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusPositionNotifier),
         ChangeNotifierProvider(create: (_) => mercuriusPathNotifier),
       ],

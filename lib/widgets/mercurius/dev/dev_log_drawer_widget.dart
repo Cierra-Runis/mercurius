@@ -8,12 +8,11 @@ class DevLogDrawerWidget extends StatelessWidget {
     return SafeArea(
       child: Drawer(
         backgroundColor: Colors.transparent,
-        child: Consumer4<MercuriusProfileNotifier, MercuriusWebNotifier,
-            MercuriusPositionNotifier, MercuriusPathNotifier>(
+        child: Consumer3<MercuriusProfileNotifier, MercuriusPositionNotifier,
+            MercuriusPathNotifier>(
           builder: (
             context,
             mercuriusProfileNotifier,
-            mercuriusWebNotifier,
             mercuriusPositionNotifier,
             mercuriusPathNotifier,
             child,
@@ -25,15 +24,6 @@ class DevLogDrawerWidget extends StatelessWidget {
                   ListTile(
                     title: Text(
                       jsonEncode(mercuriusProfileNotifier.profile),
-                      style: const TextStyle(
-                        fontSize: 8,
-                        fontFamily: 'Saira',
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      jsonEncode(mercuriusWebNotifier.githubLatestRelease),
                       style: const TextStyle(
                         fontSize: 8,
                         fontFamily: 'Saira',

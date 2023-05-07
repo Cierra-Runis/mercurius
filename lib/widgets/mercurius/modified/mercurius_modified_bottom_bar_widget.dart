@@ -186,7 +186,7 @@ class MercuriusBottomBarItem {
   /// 未选择此选项卡时显示的颜色
   final Color? unselectedColor;
 
-  MercuriusBottomBarItem({
+  const MercuriusBottomBarItem({
     required this.icon,
     required this.title,
     this.selectedColor,

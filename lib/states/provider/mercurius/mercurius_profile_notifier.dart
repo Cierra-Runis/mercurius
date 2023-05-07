@@ -37,9 +37,6 @@ class MercuriusProfileNotifier extends ChangeNotifier {
     MercuriusKit.printLog('程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
     _saveProfile();
 
-    /// 进入 `mercuriusWebNotifier` 的初始化
-    mercuriusWebNotifier.init();
-
     /// 进入 `mercuriusPositionNotifier` 的初始化
     mercuriusPositionNotifier.init();
 

@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusOriginalMorePageListWidget extends StatelessWidget {
+class MercuriusOriginalMorePageListWidget extends ConsumerWidget {
   const MercuriusOriginalMorePageListWidget({
     super.key,
     required this.context,
@@ -9,7 +9,9 @@ class MercuriusOriginalMorePageListWidget extends StatelessWidget {
   final BuildContext context;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+
     List<List<dynamic>> data = [
       [Icons.analytics, '统计数据', const DiaryStatisticPage()],
       [Icons.image_rounded, '图片库', const MercuriusGalleryPage()],
@@ -31,32 +33,36 @@ class MercuriusOriginalMorePageListWidget extends StatelessWidget {
       );
     }
 
-    return MercuriusModifiedList(
-      children: [
-        MercuriusModifiedListSection(children: [
-          ...list,
-          Consumer2<MercuriusProfileNotifier, MercuriusWebNotifier>(
-            builder: (
-              context,
-              mercuriusProfileNotifier,
-              mercuriusWebNotifier,
-              child,
-            ) {
-              return MercuriusModifiedListItem(
-                iconData: Icons.info_outline,
-                showAccessoryViewBadge:
-                    mercuriusProfileNotifier.profile.currentVersion !=
-                        mercuriusWebNotifier.githubLatestRelease.tag_name,
-                titleText: '关于',
-                onTap: () => showDialog<void>(
-                  context: context,
-                  builder: (context) => const DialogAboutWidget(),
-                ),
-              );
-            },
-          ),
-        ])
-      ],
+    return githubLatestRelease.when(
+      loading: () => const MercuriusOriginalLoadingWidget(),
+      error: (error, stackTrace) => Container(),
+      data: (data) => MercuriusModifiedList(
+        children: [
+          MercuriusModifiedListSection(children: [
+            ...list,
+            Consumer<MercuriusProfileNotifier>(
+              builder: (
+                context,
+                mercuriusProfileNotifier,
+                // mercuriusWebNotifier,
+                child,
+              ) {
+                return MercuriusModifiedListItem(
+                  iconData: Icons.info_outline,
+                  showAccessoryViewBadge:
+                      mercuriusProfileNotifier.profile.currentVersion !=
+                          data.tag_name,
+                  titleText: '关于',
+                  onTap: () => showDialog<void>(
+                    context: context,
+                    builder: (context) => const DialogAboutWidget(),
+                  ),
+                );
+              },
+            ),
+          ])
+        ],
+      ),
     );
   }
 }
