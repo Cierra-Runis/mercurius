@@ -1,13 +1,11 @@
 ###### 最新版本
-v0.3.0+59
+v0.3.0+60
 
 ###### 更新内容
 
-修改📖 & 添加功能🌍
-1. 版本号进行至 0.3.0+59
-2. 使用 riverpod 重写 mercuriusProfileNotifier，mercuriusPathNotifier
-3. 使用 riverpod 重写 mercuriusPositionNotifier 的位置部分
-4. 暂时无法关闭振动
+修改📖 & 计划🚀
+1. 版本号进行至 0.3.0+60
+2. 计划改进亮色模式下的“加载中”组件的文字对比度
 
 ###### 破坏性更新版本列表
 
