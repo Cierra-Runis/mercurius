@@ -26,7 +26,6 @@
         "Unicons",
         "vsync"
     ],
-    "java.configuration.updateBuildConfiguration": "automatic",
     "files.exclude": {
         ".dart_tool": true,
         ".idea": true,
@@ -38,6 +37,7 @@
         ".flutter-plugins": true,
         ".flutter-plugins-dependencies": true
     },
-    "explorerExclude.backup": {},
+    "commentTranslate.hover.string": true,
+    "commentTranslate.hover.variable": true,
     "commentTranslate.multiLineMerge": true
 }

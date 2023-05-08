@@ -218,7 +218,7 @@ packages:
     source: hosted
     version: "3.0.3"
   custom_lint:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: custom_lint
       sha256: e87176016465263daf10c209df1f50a52e9e46e7612fab7462da1e6d984638f6
@@ -455,10 +455,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: "803d39a210f5aaa7b9d1a999ef1dac5fef4931916483f23a196fcc6e5cd75ee1"
+      sha256: "7a0414baa40bc722c5b2d9cfa5718ccee2a403bd9b3d8146209d07a93cb31785"
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.14"
+    version: "7.1.16"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -646,7 +646,7 @@ packages:
     source: hosted
     version: "4.8.1"
   json_serializable:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: json_serializable
       sha256: "43793352f90efa5d8b251893a63d767b2f7c833120e3cc02adad55eefec04dc7"
@@ -1318,10 +1318,10 @@ packages:
     dependency: "direct main"
     description:
       name: vibration
-      sha256: "1dc9d1a0d62b12f1276eb7146b21585db5fe01771b8ca0234fefdf74ba51f963"
+      sha256: "2938d4bf4ecfdb1cdac6b8f20f40cd3e7b7783edd6ca551a46d144a134473626"
       url: "https://pub.dev"
     source: hosted
-    version: "1.7.6"
+    version: "1.7.7"
   vm_service:
     dependency: transitive
     description:

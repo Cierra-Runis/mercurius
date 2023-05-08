@@ -16,6 +16,8 @@ class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
   @override
   void initState() {
     super.initState();
+    MercuriusKit.printLog('正在初始化 $this');
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
@@ -35,6 +37,12 @@ class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
       },
     );
     _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    MercuriusKit.printLog('$this 死了');
+    super.dispose();
   }
 
   @override

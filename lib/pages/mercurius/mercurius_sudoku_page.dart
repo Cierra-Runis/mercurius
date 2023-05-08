@@ -24,7 +24,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
 
   /// 行列获取数独底色
   Color _buttonColor(BuildContext context, int rowIndex, int columnIndex) {
-    int index = (rowIndex / 3).floor() + (columnIndex / 3).floor();
+    int index = rowIndex ~/ 3 + columnIndex ~/ 3;
 
     Color color;
     if (index % 2 != 0) {
@@ -100,7 +100,7 @@ class MercuriusSudokuPageState extends State<MercuriusSudokuPage> {
                         ),
                         itemCount: 9 * 9,
                         itemBuilder: (context, index) {
-                          int rowIndex = (index / 9).floor();
+                          int rowIndex = index ~/ 9;
                           int columnIndex = index % 9;
                           return SizedBox(
                             height: 30,

@@ -11,6 +11,7 @@ class MercuriusConstance {
   /// 联系 url
   static const String contactUrl = 'https://github.com/Cierra-Runis/';
 
+  /// TODO: 计划改进亮色模式下的“加载中”组件的文字对比度
   /// 亮色模式下的颜色集
   static const lightColorScheme = ColorScheme(
     brightness: Brightness.light,

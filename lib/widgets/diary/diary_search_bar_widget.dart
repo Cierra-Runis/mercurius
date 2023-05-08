@@ -10,9 +10,8 @@ class DiarySearchBarWidget extends ConsumerWidget {
       child: TextField(
         autofocus: true,
         textAlign: TextAlign.center,
-        onChanged: (value) => ref
-            .watch(diarySearchTextProvider.notifier)
-            .change(newString: value),
+        onChanged: (value) =>
+            ref.watch(diarySearchTextProvider.notifier).change(value),
         decoration: const InputDecoration(
           hintText: '查找日记内容',
           border: InputBorder.none,

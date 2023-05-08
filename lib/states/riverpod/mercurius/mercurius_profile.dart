@@ -4,8 +4,6 @@ part 'mercurius_profile.g.dart';
 
 @riverpod
 class MercuriusProfile extends _$MercuriusProfile {
-  late SharedPreferences _preferences;
-
   @override
   Future<Profile> build() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -17,8 +15,9 @@ class MercuriusProfile extends _$MercuriusProfile {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     Profile profile = Profile();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    MercuriusKit.printLog('程序初始化中');
+    MercuriusKit.printLog('MercuriusProfile 初始化中');
     PackageInfo packageInfo = PackageInfo(
       appName: 'Unknown',
       packageName: 'Unknown',
@@ -26,16 +25,14 @@ class MercuriusProfile extends _$MercuriusProfile {
       buildNumber: 'Unknown',
     );
 
-    /// 进行调试工具的初始化
-    MercuriusKit.init();
-
-    _preferences = await SharedPreferences.getInstance();
-    if (_preferences.getString('profile') == null) {
-      _preferences.setString('profile', jsonEncode(profile));
-      MercuriusKit.printLog('程序完全初次运行，创建 profile 为 ${jsonEncode(profile)}');
+    preferences = await SharedPreferences.getInstance();
+    if (preferences.getString('profile') == null) {
+      preferences.setString('profile', jsonEncode(profile));
+      MercuriusKit.printLog(
+          'MercuriusProfile 完全初次运行，创建 profile 为 ${jsonEncode(profile)}');
     }
 
-    profile = Profile.fromJson(jsonDecode(_preferences.getString('profile')!));
+    profile = Profile.fromJson(jsonDecode(preferences.getString('profile')!));
 
     /// 保障版本升级的数据迁移
     profile = Profile.getSaveProfile(profile);
@@ -44,7 +41,13 @@ class MercuriusProfile extends _$MercuriusProfile {
     profile.currentVersion =
         'v${packageInfo.version}+${packageInfo.buildNumber}';
 
-    MercuriusKit.printLog('程序初始化完毕，且 profile 为 ${jsonEncode(profile)}');
+    MercuriusKit.printLog(
+      'MercuriusProfile 初始化完毕，且 profile 为 ${jsonEncode(profile)}',
+    );
+
+    /// TIPS: 启用这里的 10s 延迟会有很多 “有趣的事情” 发生
+    /// TIPS: 这要求我们读取 profile 的速度要足够快
+    // await Future.delayed(const Duration(seconds: 10));
 
     return profile;
   }
@@ -56,7 +59,8 @@ class MercuriusProfile extends _$MercuriusProfile {
   }
 
   Future<void> _saveProfile(Profile profile) async {
-    _preferences.setString('profile', jsonEncode(profile));
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('profile', jsonEncode(profile));
     MercuriusKit.printLog('保存 profile 为 ${jsonEncode(profile)}');
   }
 }

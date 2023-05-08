@@ -1,28 +1,29 @@
-'''
+"""
 自动化 python 脚本
 main.py
-'''
+"""
 
 import os
 import re
 import shutil
+from enum import Enum
 import yaml
 
 
-class RegStr():
-    '''
+class RegStr(Enum):
+    """
     reg str
-    '''
+    """
     version_str: str = r'(\d+)\.(\d+)\.(\d+)\+(\d+)'
     pubspec_yaml: str = r'version: (\d+\.\d+\.\d+\+\d+)'
     release_yml: str = r'tag: "v(.*)"'
     body_md: str = r'v(.*)'
 
 
-class FileStr():
-    '''
+class FileStr(Enum):
+    """
     file str
-    '''
+    """
     pubspec_yaml: str = r'pubspec.yaml'
     release_yml: str = r'.release_tool\mercurius_warehouse\.github\workflows\releases.yml'
     body_md: str = r'.release_tool\mercurius_warehouse\body.md'
@@ -31,10 +32,10 @@ class FileStr():
 
 
 def get_version_from_pubspec_yaml() -> str:
-    '''
+    """
     从 pubspec.yaml 文件中获取当前版本的字符串
-    '''
-    file = open(FileStr.pubspec_yaml, encoding='utf-8')
+    """
+    file = open(FileStr.pubspec_yaml.value, encoding='utf-8')
     data = yaml.load(file, Loader=yaml.FullLoader)
     result = data['version']
     file.close()
@@ -42,9 +43,9 @@ def get_version_from_pubspec_yaml() -> str:
 
 
 def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
-    '''
+    """
     改写用辅助函数
-    '''
+    """
     file = open(file_dir, 'r+', encoding='utf-8')
     text = file.read()
     file.seek(0, 0)
@@ -54,39 +55,39 @@ def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
 
 
 def rewrite_current_version_in_pubspec_yaml(new_version: str) -> None:
-    '''
+    """
     修改 pubspec.yaml 文件中的版本号
-    '''
+    """
     rewrite_tool(
-        file_dir=FileStr.pubspec_yaml,
-        reg=RegStr.pubspec_yaml,
+        file_dir=FileStr.pubspec_yaml.value,
+        reg=RegStr.pubspec_yaml.value,
         repl=f'version: {new_version}',
     )
 
 
 def rewrite_release_version(new_version: str) -> None:
-    '''
+    """
     修改 release.yml 和 body.md 文件中的版本号
-    '''
+    """
 
     rewrite_tool(
-        file_dir=FileStr.release_yml,
-        reg=RegStr.release_yml,
+        file_dir=FileStr.release_yml.value,
+        reg=RegStr.release_yml.value,
         repl=f'tag: "v{new_version}"',
     )
     rewrite_tool(
-        file_dir=FileStr.body_md,
-        reg=RegStr.body_md,
+        file_dir=FileStr.body_md.value,
+        reg=RegStr.body_md.value,
         repl=f'v{new_version}',
     )
 
 
 def is_new_version_legal(current_version: str, new_version: str) -> bool:
-    '''
+    """
     比较版本号大小, 两字符串格式类似 1.0.0+1
-    '''
-    current = re.match(RegStr.version_str, current_version)
-    new = re.match(RegStr.version_str, new_version)
+    """
+    current = re.match(RegStr.version_str.value, current_version)
+    new = re.match(RegStr.version_str.value, new_version)
 
     if int(new[4]) < int(current[4]):
         print(f'> 新构建号 {new[4]} 应该不小于 {current[4]}')
@@ -112,9 +113,9 @@ def input_tool(
     error_message: str,
     rule_function: any,
 ) -> str:
-    '''
+    """
     根据 rule_function 获取合法的值
-    '''
+    """
     # 提醒
     print(f'> {first_message} {rule}: ', end='')
     # 第一次输入
@@ -131,9 +132,9 @@ def input_tool(
 
 
 def copy_file(src_file: str, dst_path: str) -> None:
-    '''
+    """
     复制 src_file 文件至 dst_path 目录下, 且要求 dst_path 后不接 '/'
-    '''
+    """
     if not os.path.isfile(src_file):
         print(f'> 所复制 {src_file} 不存在')
     else:
@@ -145,9 +146,9 @@ def copy_file(src_file: str, dst_path: str) -> None:
 
 
 def main_module() -> None:
-    '''
+    """
     主模块
-    '''
+    """
     # 程序开始
     print('-- main.py --')
     current_version_str = get_version_from_pubspec_yaml()
@@ -168,7 +169,7 @@ def main_module() -> None:
             rule='',
             error_message='请确认版本号格式',
             rule_function=lambda input_str: re.search(
-                RegStr.version_str,
+                RegStr.version_str.value,
                 input_str,
             ),
         )
@@ -182,7 +183,7 @@ def main_module() -> None:
                 rule='',
                 error_message='请确认版本号格式',
                 rule_function=lambda input_str: re.search(
-                    RegStr.version_str,
+                    RegStr.version_str.value,
                     input_str,
                 ),
             )
@@ -202,8 +203,8 @@ def main_module() -> None:
 
         # 并将 build 后的 apk 转移至 .release_tool/mercurius_warehouse
         copy_file(
-            src_file=FileStr.app_arm64_v8a_release_apk,
-            dst_path=FileStr.mercurius_warehouse_dir,
+            src_file=FileStr.app_arm64_v8a_release_apk.value,
+            dst_path=FileStr.mercurius_warehouse_dir.value,
         )
 
     else:
@@ -212,9 +213,9 @@ def main_module() -> None:
 
 
 def release_module() -> None:
-    '''
+    """
     发布模块
-    '''
+    """
     current_version_str = get_version_from_pubspec_yaml()
     input_str = ''
 
@@ -231,7 +232,7 @@ def release_module() -> None:
         rewrite_release_version(current_version_str)
         # 打开 body.md 文件进行修改
         print('> 已为你打开 body.md 文件')
-        os.startfile(FileStr.body_md)
+        os.startfile(FileStr.body_md.value)
 
         # 打开文件后询问是否完成
         input_str = input_tool(
@@ -247,7 +248,7 @@ def release_module() -> None:
         # 一般流程为 1 -> 1 -> 1 -> 2 即多次修改版本号后发布, 无异常
         # 最后一步, 进入 release.bat
         # 提交 release
-        os.system(FileStr.mercurius_warehouse_dir + r'\release.bat')
+        os.system(FileStr.mercurius_warehouse_dir.value + r'\release.bat')
 
     else:
         # 反之输入的不是 'y'

@@ -20,7 +20,7 @@ class MercuriusOriginalLoadingWidget extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
             size: 16,
           ),
-          const SizedBox(width: 20),
+          if (withText) const SizedBox(width: 20),
           if (withText) Text(notice),
         ],
       ),

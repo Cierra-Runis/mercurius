@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.3.0+59
+version: 0.3.0+60
 
 environment:
   sdk: ">=2.19.0 <3.0.0"
@@ -30,18 +30,17 @@ dependencies:
   # git:
   #   url: https://github.com/spaznuski/dart_date.git
   dart_date: ^1.2.1
-  # TIPS: 要升级 file_picker 的前提是 share_plus 不用急了
+  # TIPS: 要升级 file_picker 的前提是 share_plus，不用急了
   # TIPS: https://github.com/fluttercommunity/plus_plugins/commit/963686572d80d98d488b688108ca3899ef30d6e4 在修了
   file_picker: ^5.2.10 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.1.14 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.1.16 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.1 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^0.8.7+4 # 图片选择 [https://pub.dev/packages/image_picker]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
   isar_flutter_libs: ^3.1.0+1 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   json_annotation: ^4.8.1 # json 相关 [https://pub.dev/packages/json_annotation]
-  json_serializable: ^6.6.2 # json 相关 [https://pub.dev/packages/json_serializable]
   keframe: ^3.0.0 # 列表优化 [https://pub.dev/packages/keframe]
   loading_animation_widget: ^1.2.0+4 # 加载器组件 [https://pub.dev/packages/loading_animation_widget]
   open_app_file: ^4.0.1 # 打开文件 [https://pub.dev/packages/open_app_file]
@@ -59,7 +58,7 @@ dependencies:
   table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]
   url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
-  vibration: ^1.7.6 # 振动反馈 [https://pub.dev/packages/vibration]
+  vibration: ^1.7.7 # 振动反馈 [https://pub.dev/packages/vibration]
   waterfall_flow: ^3.0.2 # 图片网格流 [https://pub.dev/packages/waterfall_flow]
 
 dev_dependencies:
@@ -67,7 +66,9 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3 # 代码生成用实用工具 [https://pub.dev/packages/build_runner]
+  custom_lint: ^0.3.4 # 自定义 lint [https://pub.dev/packages/custom_lint]
   isar_generator: ^3.1.0+1 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
+  json_serializable: ^6.6.2 # json 相关 [https://pub.dev/packages/json_serializable]
   riverpod_generator: ^2.1.3 # riverpod 代码生成工具 [https://pub.dev/packages/riverpod]
   riverpod_lint: ^1.1.5 # riverpod 代码检查 [https://pub.dev/packages/riverpod]
 

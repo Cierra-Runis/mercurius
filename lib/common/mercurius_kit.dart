@@ -33,21 +33,8 @@ class MercuriusKit {
     }
   }
 
-  /// 是否显示日志
-  static const _showLog = true;
-
-  /// 是否显示边界
-  static const _showDebugPaintSizeEnabled = false;
-
   /// [MercuriusKit] 调试用输出语句
   static void printLog(String newLog) {
-    if (_showLog) {
-      devtools.log('[${MercuriusConstance.name}] $newLog');
-    }
-  }
-
-  /// 初始化 [MercuriusKit]
-  static void init() {
-    debugPaintSizeEnabled = MercuriusKit._showDebugPaintSizeEnabled;
+    devtools.log('[${MercuriusConstance.name}] $newLog');
   }
 }

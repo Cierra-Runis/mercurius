@@ -6,19 +6,19 @@ class MercuriusReleasePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    return githubLatestRelease.when(
-      loading: () => const MercuriusOriginalLoadingWidget(),
-      error: (error, stackTrace) => Container(),
-      data: (data) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            '更新页',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          '更新页',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        body: Center(
-          child: Markdown(
+      ),
+      body: Center(
+        child: githubLatestRelease.when(
+          loading: () => const MercuriusOriginalLoadingWidget(),
+          error: (error, stackTrace) => Container(),
+          data: (data) => Markdown(
             data: data.body ?? '##### 啊啦\n\n你好像来到了奇怪的地方，要不回去先刷新一下？\n',
             onTapLink: (text, href, title) {
               if (href != null) {
@@ -30,21 +30,25 @@ class MercuriusReleasePage extends ConsumerWidget {
             },
           ),
         ),
-        floatingActionButton: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FloatingActionButton(
-              onPressed: () => ref.refresh(githubLatestReleaseProvider),
-              mini: true,
-              child: const Icon(Icons.refresh_rounded),
+      ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            onPressed: () => ref.refresh(githubLatestReleaseProvider),
+            mini: true,
+            child: const Icon(Icons.refresh_rounded),
+          ),
+          FloatingActionButton(
+            onPressed: githubLatestRelease.when(
+              loading: () => null,
+              error: (error, stackTrace) => null,
+              data: (data) => () => _showOptionMenu(context, data),
             ),
-            FloatingActionButton(
-              onPressed: () => _showOptionMenu(context, data),
-              mini: true,
-              child: const Icon(Icons.download_rounded),
-            ),
-          ],
-        ),
+            mini: true,
+            child: const Icon(Icons.download_rounded),
+          ),
+        ],
       ),
     );
   }

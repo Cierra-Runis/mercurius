@@ -6,7 +6,7 @@ class DiarySearchText extends _$DiarySearchText {
   @override
   String build() => '\\n';
 
-  void change({String? newString}) {
+  void change([String? newString]) {
     newString ??= '\\n';
     state = newString == '' ? '\\n' : newString;
   }

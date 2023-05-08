@@ -6,7 +6,7 @@ part 'mercurius_position.g.dart';
 class MercuriusPosition extends _$MercuriusPosition {
   @override
   Future<CachePosition> build() async {
-    MercuriusKit.printLog('mercuriusPositionNotifier 初始化中');
+    MercuriusKit.printLog('MercuriusPosition 初始化中');
 
     final profile = await ref.watch(mercuriusProfileProvider.future);
     CachePosition position;
@@ -14,21 +14,25 @@ class MercuriusPosition extends _$MercuriusPosition {
 
     if (cachePosition != null) {
       int days = DateTime.now().difference(cachePosition.dateTime).inDays;
-      position = days > 5 ? await _getAMap() : cachePosition;
+      position = days > 5 ? await _getAMap(profile) : cachePosition;
     } else {
-      position = await _getAMap();
+      position = await _getAMap(profile);
     }
+
+    /// TIPS: 启用这里的 10s 延迟会有很多 “有趣的事情” 发生
+    // await Future.delayed(const Duration(seconds: 10));
 
     return position;
   }
 
   void refreshPosition() async {
+    final profile = await ref.watch(mercuriusProfileProvider.future);
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() => _getAMap());
+    state = await AsyncValue.guard(() => _getAMap(profile));
   }
 
   /// 使用高德 api 获取位置
-  Future<CachePosition> _getAMap() async {
+  Future<CachePosition> _getAMap(Profile profile) async {
     Response response;
     CachePosition newCachePosition = CachePosition();
 
@@ -78,6 +82,10 @@ class MercuriusPosition extends _$MercuriusPosition {
       ..longitude = double.parse('${match[2]}').toStringAsFixed(2)
       ..city = data['city']
       ..dateTime = DateTime.now();
+
+    ref
+        .watch(mercuriusProfileProvider.notifier)
+        .changeProfile(profile..cache.cachePosition = newCachePosition);
 
     return newCachePosition;
   }

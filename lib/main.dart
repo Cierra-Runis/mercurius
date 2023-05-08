@@ -40,9 +40,15 @@ class MercuriusApp extends ConsumerWidget {
         theme: theme,
         darkTheme: darkTheme,
         themeMode: mercuriusProfile.when(
-          loading: () => ThemeMode.system,
+          loading: () {
+            MercuriusKit.printLog('正在读取 MercuriusProfile 中的 themeMode');
+            return ThemeMode.system;
+          },
           error: (error, stackTrace) => ThemeMode.system,
-          data: (data) => data.themeMode,
+          data: (data) {
+            MercuriusKit.printLog('读取完毕 MercuriusProfile 中的 themeMode');
+            return data.themeMode;
+          },
         ),
         home: const MercuriusSplashPage(),
         localizationsDelegates: const [
