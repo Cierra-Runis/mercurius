@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryMoodSelectorWidget extends StatefulWidget {
+class DiaryMoodSelectorWidget extends StatelessWidget {
   /// 自定义组件
   const DiaryMoodSelectorWidget({
     Key? key,
@@ -9,34 +9,18 @@ class DiaryMoodSelectorWidget extends StatefulWidget {
 
   final Diary diary;
 
-  @override
-  State<DiaryMoodSelectorWidget> createState() =>
-      _DiaryMoodSelectorWidgetState();
-}
-
-class _DiaryMoodSelectorWidgetState extends State<DiaryMoodSelectorWidget> {
-  late Diary _diary;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _diary = widget.diary;
-    });
-  }
-
-  List<Widget> _listAllMood() {
+  List<Widget> _listAllMood(BuildContext context) {
     List<Widget> buttonList = [];
     for (var element in DiaryMoodType.values) {
       buttonList.add(
         IconButton(
           onPressed: () => Navigator.of(context).pop(
-            Diary.copyWith(_diary, moodType: element),
+            Diary.copyWith(diary, moodType: element),
           ),
           icon: Column(
             children: [Icon(element.iconData), Text(element.mood)],
           ),
-          color: _diary.moodType != element
+          color: diary.moodType != element
               ? null
               : Theme.of(context).colorScheme.primary,
         ),
@@ -71,7 +55,7 @@ class _DiaryMoodSelectorWidgetState extends State<DiaryMoodSelectorWidget> {
               child: Wrap(
                 spacing: 16,
                 direction: Axis.horizontal,
-                children: _listAllMood(),
+                children: _listAllMood(context),
               ),
             ),
           ],

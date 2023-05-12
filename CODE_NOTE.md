@@ -71,3 +71,7 @@ AlertDialog(
   actions: (...),
 );
 ```
+
+## QWeather_Icons
+
+目前使用自己所写的 [最新版本](https://pub.dev/packages/qweather_icons) 的图标包

@@ -33,7 +33,7 @@ class IsarService extends _$IsarService {
   /// 获取所有日记
   Future<List<Diary>> getAllDiaries() async {
     final isar = await _db;
-    return isar.diarys.filter().idIsNotNull().findAll();
+    return isar.diarys.where().findAll();
   }
 
   /// 清除数据库

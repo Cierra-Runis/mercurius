@@ -1,8 +1,5 @@
 import 'package:mercurius/index.dart';
 
-/// 位于 `main.dart` 的 `changeNotifier` 们
-final mercuriusSudokuNotifier = MercuriusSudokuNotifier();
-
 /// 全局导航 key
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -29,37 +26,31 @@ class MercuriusApp extends ConsumerWidget {
       fontFamily: 'Saira',
     );
 
-    /// 利用 `provide` 包进行状态管理
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => mercuriusSudokuNotifier),
-      ],
-      child: MaterialApp(
-        scrollBehavior: const CupertinoScrollBehavior(),
-        navigatorKey: navigatorKey,
-        theme: theme,
-        darkTheme: darkTheme,
-        themeMode: mercuriusProfile.when(
-          loading: () {
-            MercuriusKit.printLog('正在读取 MercuriusProfile 中的 themeMode');
-            return ThemeMode.system;
-          },
-          error: (error, stackTrace) => ThemeMode.system,
-          data: (data) {
-            MercuriusKit.printLog('读取完毕 MercuriusProfile 中的 themeMode');
-            return data.themeMode;
-          },
-        ),
-        home: const MercuriusSplashPage(),
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
-        ],
-        supportedLocales: const [
-          Locale('zh', 'CN'),
-        ],
+    return MaterialApp(
+      scrollBehavior: const CupertinoScrollBehavior(),
+      navigatorKey: navigatorKey,
+      theme: theme,
+      darkTheme: darkTheme,
+      themeMode: mercuriusProfile.when(
+        loading: () {
+          MercuriusKit.printLog('正在读取 MercuriusProfile 中的 themeMode');
+          return ThemeMode.system;
+        },
+        error: (error, stackTrace) => ThemeMode.system,
+        data: (data) {
+          MercuriusKit.printLog('读取完毕 MercuriusProfile 中的 themeMode');
+          return data.themeMode;
+        },
       ),
+      home: const MercuriusSplashPage(),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: const [
+        Locale('zh', 'CN'),
+      ],
     );
   }
 }

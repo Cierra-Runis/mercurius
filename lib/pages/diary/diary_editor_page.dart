@@ -23,9 +23,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      _diary = widget.diary;
-    });
+    _diary = widget.diary;
     _controller = QuillController(
       document: _diary.contentJsonString != null
           ? Document.fromJson(
@@ -44,9 +42,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
   }
 
   void _handleChangeDiary(Diary? newDiary) {
-    setState(() {
-      _diary = newDiary ?? _diary;
-    });
+    setState(() => _diary = newDiary ?? _diary);
   }
 
   /// TIPS: 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017

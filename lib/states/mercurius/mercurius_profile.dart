@@ -45,10 +45,6 @@ class MercuriusProfile extends _$MercuriusProfile {
       'MercuriusProfile 初始化完毕，且 profile 为 ${jsonEncode(profile)}',
     );
 
-    /// TIPS: 启用这里的 10s 延迟会有很多 “有趣的事情” 发生
-    /// TIPS: 这要求我们读取 profile 的速度要足够快
-    // await Future.delayed(const Duration(seconds: 10));
-
     return profile;
   }
 

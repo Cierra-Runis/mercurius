@@ -3,60 +3,47 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.3.0+60
+version: 0.4.0+61
 
 environment:
-  sdk: ">=2.19.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter: # Flutter 本体 [网址略]
     sdk: flutter
   flutter_localizations: # Flutter [网址略]
     sdk: flutter
-  another_flushbar: ^1.12.29 # 提示框 [https://pub.dev/packages/another_flushbar]
+  another_flushbar: ^1.12.30 # 提示框 [https://pub.dev/packages/another_flushbar]
   badges: ^3.1.1 # 小红点提示 [https://pub.dev/packages/badges]
   confetti: ^0.7.0 # 彩纸效果 [https://pub.dev/packages/confetti]
   cross_file: ^0.3.3+4 # 文件操作 [https://pub.dev/packages/cross_file]
-  dio: ^5.1.1 # 网络请求 [https://pub.dev/packages/dio]
-  # TIPS: 搞笑的是，我想升级 基于 intl ^0.18.0 的 table_calendar，但 dart_date 需要 intl ^0.17.0
-  # TIPS: 而 dart_date 最新包还没合并提交，故尝试 git 源
-  # TIPS: 遇到了 https://juejin.cn/post/6844903960625561613 里的问题后成功使用了 git
-  # TIPS: 但 flutter_localizations 又是需要 intl 0.17.0 的
-  # TIPS: 所以找包找到了 https://pub.dev/packages/flutter_localization 这个包
-  # TIPS: 但那是别人写的名字差一个 `s` 的库，https://github.com/channdara/flutter_localization/issues/2 里也被搞晕了
-  # TIPS: 最后找到了官方的 issue 见 https://github.com/dart-lang/i18n/issues/458
-  # TIPS: 2022-12-17 就有的问题，现在都 2023-05-05 了，139 天了还没更新，非常坏官方😡
-  # 转换时间工具 [https://pub.dev/packages/dart_date]
-  # git:
-  #   url: https://github.com/spaznuski/dart_date.git
-  dart_date: ^1.2.1
-  # TIPS: 要升级 file_picker 的前提是 share_plus，不用急了
-  # TIPS: https://github.com/fluttercommunity/plus_plugins/commit/963686572d80d98d488b688108ca3899ef30d6e4 在修了
-  file_picker: ^5.2.10 # 文件选择 [https://pub.dev/packages/file_picker]
+  dio: ^5.1.2 # 网络请求 [https://pub.dev/packages/dio]
+  dart_date: ^1.2.1 # 转换时间工具 [https://pub.dev/packages/dart_date]
+  file_picker: ^5.3.0 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.1.16 # 富文本 [https://pub.dev/packages/flutter_quill]
-  flutter_riverpod: ^2.3.1 # 状态管理 [https://pub.dev/packages/riverpod]
-  image_picker: ^0.8.7+4 # 图片选择 [https://pub.dev/packages/image_picker]
+  flutter_quill: ^7.1.18 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
+  image_picker: ^0.8.7+5 # 图片选择 [https://pub.dev/packages/image_picker]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
   isar_flutter_libs: ^3.1.0+1 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   json_annotation: ^4.8.1 # json 相关 [https://pub.dev/packages/json_annotation]
   keframe: ^3.0.0 # 列表优化 [https://pub.dev/packages/keframe]
   loading_animation_widget: ^1.2.0+4 # 加载器组件 [https://pub.dev/packages/loading_animation_widget]
   open_app_file: ^4.0.1 # 打开文件 [https://pub.dev/packages/open_app_file]
-  path_provider: ^2.0.14 # 路径获取 [https://pub.dev/packages/path_provider]
-  package_info_plus: ^3.1.2 # 包信息 [https://pub.dev/packages/package_info_plus]
+  path_provider: ^2.0.15 # 路径获取 [https://pub.dev/packages/path_provider]
+  package_info_plus: ^4.0.0 # 包信息 [https://pub.dev/packages/package_info_plus]
   photo_view: ^0.14.0 # 图片视图 [https://pub.dev/packages/photo_view]
   provider: ^6.0.5 # 状态管理 [https://pub.dev/packages/provider]
   pull_to_refresh: ^2.0.0 # 下拉刷新 [https://pub.dev/packages/pull_to_refresh]
-  riverpod_annotation: ^2.0.1 # 状态管理相关 [https://pub.dev/packages/riverpod]
-  share_plus: ^6.3.4 # 分享 [https://pub.dev/packages/share_plus]
-  shared_preferences: ^2.1.0 # 数据持久化 [https://pub.dev/packages/shared_preferences]
+  qweather_icons: ^0.0.7 # QWeather 图标 [https://pub.dev/packages/qweather_icons]
+  riverpod_annotation: ^2.1.1 # 状态管理相关 [https://pub.dev/packages/riverpod_annotation]
+  share_plus: ^7.0.0 # 分享 [https://pub.dev/packages/share_plus]
+  shared_preferences: ^2.1.1 # 数据持久化 [https://pub.dev/packages/shared_preferences]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
-  sudoku_solver_generator: ^2.1.0+1 # 数独生成器 [https://pub.dev/packages/sudoku_solver_generator]
-  syncfusion_flutter_charts: ^21.2.3 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
-  table_calendar: ^3.0.8 # 日历 [https://pub.dev/packages/table_calendar]
-  url_launcher: ^6.1.10 # 打开外部链接 [https://pub.dev/packages/url_launcher]
+  syncfusion_flutter_charts: ^21.2.4 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  table_calendar: ^3.0.9 # 日历 [https://pub.dev/packages/table_calendar]
+  url_launcher: ^6.1.11 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.7.7 # 振动反馈 [https://pub.dev/packages/vibration]
   waterfall_flow: ^3.0.2 # 图片网格流 [https://pub.dev/packages/waterfall_flow]
@@ -65,12 +52,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  build_runner: ^2.3.3 # 代码生成用实用工具 [https://pub.dev/packages/build_runner]
-  custom_lint: ^0.3.4 # 自定义 lint [https://pub.dev/packages/custom_lint]
+  build_runner: ^2.4.2 # 代码生成用实用工具 [https://pub.dev/packages/build_runner]
+  custom_lint: ^0.4.0 # 自定义 lint [https://pub.dev/packages/custom_lint]
   isar_generator: ^3.1.0+1 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
   json_serializable: ^6.6.2 # json 相关 [https://pub.dev/packages/json_serializable]
-  riverpod_generator: ^2.1.3 # riverpod 代码生成工具 [https://pub.dev/packages/riverpod]
-  riverpod_lint: ^1.1.5 # riverpod 代码检查 [https://pub.dev/packages/riverpod]
+  riverpod_generator: ^2.2.3 # riverpod 代码生成工具 [https://pub.dev/packages/riverpod]
+  riverpod_lint: ^1.3.2 # riverpod 代码检查 [https://pub.dev/packages/riverpod_lint]
+
+dependency_overrides:
+  intl: ^0.17.0
 
 flutter:
   uses-material-design: true # 启用 material3 设计

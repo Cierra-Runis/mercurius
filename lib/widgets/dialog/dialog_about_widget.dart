@@ -6,9 +6,9 @@ class DialogAboutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Row(
+      title: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: const [
+        children: [
           MercuriusOriginalAppIconWidget(),
           MercuriusOriginalAboutDialogTitleWidget(),
         ],

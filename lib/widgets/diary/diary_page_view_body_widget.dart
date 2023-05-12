@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryPageViewBodyWidget extends ConsumerStatefulWidget {
+class DiaryPageViewBodyWidget extends ConsumerWidget {
   const DiaryPageViewBodyWidget({
     Key? key,
     required this.diary,
@@ -9,22 +9,7 @@ class DiaryPageViewBodyWidget extends ConsumerStatefulWidget {
   final Diary diary;
 
   @override
-  ConsumerState<DiaryPageViewBodyWidget> createState() =>
-      _DiaryPageViewBodyWidgetState();
-}
-
-class _DiaryPageViewBodyWidgetState
-    extends ConsumerState<DiaryPageViewBodyWidget> {
-  late Diary _diary;
-
-  @override
-  void initState() {
-    super.initState();
-    _diary = widget.diary;
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       children: [
         Card(
@@ -63,14 +48,14 @@ class _DiaryPageViewBodyWidgetState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  _diary.createDateTime
+                                  diary.createDateTime
                                       .format('y 年，M 月', 'zh_CN'),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  _diary.createDateTime.format('dd', 'zh_CN'),
+                                  diary.createDateTime.format('dd', 'zh_CN'),
                                   style: const TextStyle(
                                     fontSize: 60,
                                     fontFamily: 'Saira',
@@ -81,15 +66,18 @@ class _DiaryPageViewBodyWidgetState
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Icon(size: 8, _diary.weatherType.iconData),
+                                    Icon(
+                                      size: 8,
+                                      diary.weatherType.qweatherIcons.iconData,
+                                    ),
                                     Text(
-                                      _diary.latestEditTime
+                                      diary.latestEditTime
                                           .format('EEEE HH:mm:ss', 'zh_CN'),
                                       style: const TextStyle(
                                         fontSize: 12,
                                       ),
                                     ),
-                                    Icon(size: 9, _diary.moodType.iconData),
+                                    Icon(size: 9, diary.moodType.iconData),
                                   ],
                                 ),
                               ],
@@ -113,7 +101,7 @@ class _DiaryPageViewBodyWidgetState
                         scrollController: ScrollController(),
                         controller: QuillController(
                           document: Document.fromJson(
-                            jsonDecode(_diary.contentJsonString!),
+                            jsonDecode(diary.contentJsonString!),
                           ),
                           selection: const TextSelection.collapsed(offset: 0),
                         ),
@@ -141,7 +129,7 @@ class _DiaryPageViewBodyWidgetState
                                 if (confirm == true) {
                                   ref
                                       .watch(isarServiceProvider.notifier)
-                                      .deleteDiaryById(_diary.id!);
+                                      .deleteDiaryById(diary.id);
                                 }
                               },
                               icon: const Icon(Icons.delete_outline_rounded),
@@ -153,15 +141,10 @@ class _DiaryPageViewBodyWidgetState
                             IconButton(
                               onPressed: () async {
                                 MercuriusKit.vibration();
-                                Diary? editedDiary = await _showDiaryEditorPage(
+                                await _showDiaryEditorPage(
                                   context,
-                                  _diary,
+                                  diary,
                                 );
-                                if (mounted) {
-                                  setState(() {
-                                    _diary = editedDiary ?? _diary;
-                                  });
-                                }
                               },
                               icon: const Icon(Icons.edit),
                             ),
@@ -169,13 +152,13 @@ class _DiaryPageViewBodyWidgetState
                               onPressed: () {
                                 MercuriusKit.vibration();
                                 Share.share(
-                                  '${_diary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
-                                  '天气：${_diary.weatherType.weather}}\n'
-                                  '标题：${_diary.titleString ?? '无标题'}\n'
-                                  '心情：${_diary.moodType.mood}\n'
+                                  '${diary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
+                                  '天气：${diary.weatherType.weather}\n'
+                                  '标题：${diary.titleString ?? '无标题'}\n'
+                                  '心情：${diary.moodType.mood}\n'
                                   '\n'
                                   '${Document.fromJson(
-                                    jsonDecode(_diary.contentJsonString!),
+                                    jsonDecode(diary.contentJsonString!),
                                   ).toPlainText().trimRight()}',
                                 );
                               },
@@ -207,7 +190,7 @@ class _DiaryPageViewBodyWidgetState
     );
   }
 
-  Future<Diary?> _showDiaryEditorPage(BuildContext context, Diary diary) {
+  Future<void> _showDiaryEditorPage(BuildContext context, Diary diary) {
     return Navigator.push(
       context,
       CupertinoPageRoute(

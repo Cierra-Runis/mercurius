@@ -51,12 +51,13 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       ),
     );
     final moodWidget = Icon(size: 18, diary.moodType.iconData);
-    final weatherWidget = Icon(size: 18, diary.weatherType.iconData);
+    final weatherWidget =
+        Icon(size: 18, diary.weatherType.qweatherIcons.iconData);
 
     return Dismissible(
       key: key!,
       onDismissed: (_) =>
-          ref.watch(isarServiceProvider.notifier).deleteDiaryById(diary.id!),
+          ref.watch(isarServiceProvider.notifier).deleteDiaryById(diary.id),
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.endToStart) {
           return await MercuriusOriginalConfirmDialogWidget(

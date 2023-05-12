@@ -192,7 +192,7 @@ const _DiaryweatherTypeValueEnumMap = {
 };
 
 Id _diaryGetId(Diary object) {
-  return object.id ?? Isar.autoIncrement;
+  return object.id;
 }
 
 List<IsarLinkBase<dynamic>> _diaryGetLinks(Diary object) {
@@ -479,23 +479,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> idIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'id',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> idIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'id',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> idEqualTo(Id? value) {
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -505,7 +489,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> idGreaterThan(
-    Id? value, {
+    Id value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -518,7 +502,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> idLessThan(
-    Id? value, {
+    Id value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -531,8 +515,8 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> idBetween(
-    Id? lower,
-    Id? upper, {
+    Id lower,
+    Id upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1108,7 +1092,7 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
 // **************************************************************************
 
 Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary(
-      id: json['id'] as int?,
+      id: json['id'] as int,
       createDateTime: DateTime.parse(json['createDateTime'] as String),
       latestEditTime: DateTime.parse(json['latestEditTime'] as String),
       titleString: json['titleString'] as String?,

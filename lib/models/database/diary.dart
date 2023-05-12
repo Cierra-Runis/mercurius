@@ -6,7 +6,7 @@ part 'diary.g.dart';
 @JsonSerializable()
 class Diary {
   const Diary({
-    this.id,
+    required this.id,
     required this.createDateTime,
     required this.latestEditTime,
     this.titleString,
@@ -16,7 +16,7 @@ class Diary {
   });
 
   /// 日记 `id`
-  final Id? id;
+  final Id id;
 
   /// 创建时间
   final DateTime createDateTime;

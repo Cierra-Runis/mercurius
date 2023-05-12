@@ -24,10 +24,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   void _switchCurrentBarMode() {
     MercuriusKit.vibration();
     ref.watch(diarySearchTextProvider.notifier).change();
-
-    setState(() {
-      _currentSearchBarMode = !_currentSearchBarMode;
-    });
+    setState(() => _currentSearchBarMode = !_currentSearchBarMode);
   }
 
   void _floatingButtonOnPressed() async {
@@ -49,6 +46,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
         CupertinoPageRoute(
           builder: (context) => DiaryEditorPage(
             diary: Diary(
+              id: Isar.autoIncrement,
               createDateTime: dateTime,
               latestEditTime: dateTime,
             ),

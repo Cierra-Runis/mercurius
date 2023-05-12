@@ -39,13 +39,9 @@ class MercuriusOriginalAppBarTitleWidget extends ConsumerWidget {
                 ),
               ),
               Icon(
-                QWeatherIcon.getIconDataById(
-                  int.parse(
-                    /// TODO: weather
-                    // cachePosition.weatherBody.now?.icon ??
-                    '100',
-                  ),
-                ),
+                /// TODO: weather
+                // cachePosition.weatherBody.now?.icon ??
+                QWeatherIcons.tag_qweather_fill.iconData,
                 size: 6,
               ),
             ],

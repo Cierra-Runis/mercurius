@@ -84,9 +84,9 @@ class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
                   ),
                 ),
               ),
-              Column(
+              const Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   Text(
                     MercuriusConstance.name,
                     style: TextStyle(

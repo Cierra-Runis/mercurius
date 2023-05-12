@@ -16,6 +16,7 @@
         "LTRB",
         "mercurius",
         "pubspec",
+        "qweather",
         "riverpod",
         "Saira",
         "salomon",
@@ -27,17 +28,24 @@
         "vsync"
     ],
     "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
         ".dart_tool": true,
         ".idea": true,
         "build": true,
         ".metadata": true,
-        "pubspec.lock": true,
         "splitMap": true,
         "mercurius.iml": true,
         ".flutter-plugins": true,
-        ".flutter-plugins-dependencies": true
+        ".flutter-plugins-dependencies": true,
+        "custom_lint.log": true
     },
     "commentTranslate.hover.string": true,
     "commentTranslate.hover.variable": true,
-    "commentTranslate.multiLineMerge": true
+    "commentTranslate.multiLineMerge": true,
+    "explorerExclude.backup": {}
 }

@@ -1,45 +1,27 @@
 import 'package:mercurius/index.dart';
 
-class DiaryWeatherSelectorDialogWidget extends StatefulWidget {
+class DiaryWeatherSelectorDialogWidget extends StatelessWidget {
   const DiaryWeatherSelectorDialogWidget({
     Key? key,
     required this.diary,
   }) : super(key: key);
 
   final Diary diary;
-
-  @override
-  State<DiaryWeatherSelectorDialogWidget> createState() =>
-      DiaryWeatherSelectorDialogWidgetState();
-}
-
-class DiaryWeatherSelectorDialogWidgetState
-    extends State<DiaryWeatherSelectorDialogWidget> {
-  late Diary _diary;
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      _diary = widget.diary;
-    });
-  }
-
-  List<Widget> _listAllWeather() {
+  List<Widget> _listAllWeather(BuildContext context) {
     List<Widget> buttonList = [];
     for (var element in DiaryWeatherType.values) {
       buttonList.add(
         IconButton(
           onPressed: () => Navigator.of(context).pop(
-            Diary.copyWith(_diary, weatherType: element),
+            Diary.copyWith(diary, weatherType: element),
           ),
           icon: Column(
             children: [
-              Icon(element.iconData),
+              Icon(element.qweatherIcons.iconData),
               Text(element.weather),
             ],
           ),
-          color: _diary.weatherType != element
+          color: diary.weatherType != element
               ? null
               : Theme.of(context).colorScheme.primary,
         ),
@@ -74,7 +56,7 @@ class DiaryWeatherSelectorDialogWidgetState
               child: Wrap(
                 spacing: 16,
                 direction: Axis.horizontal,
-                children: _listAllWeather(),
+                children: _listAllWeather(context),
               ),
             ),
           ],

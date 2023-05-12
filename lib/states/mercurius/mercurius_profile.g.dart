@@ -1,27 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'github_latest_release.dart';
+part of 'mercurius_profile.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$githubLatestReleaseHash() =>
-    r'4114bf149d092da32775385ca0a2937db8223193';
+String _$mercuriusProfileHash() => r'fd5092bb5883541a88384144cf443746167198f5';
 
-/// See also [githubLatestRelease].
-@ProviderFor(githubLatestRelease)
-final githubLatestReleaseProvider =
-    AutoDisposeFutureProvider<GithubLatestRelease>.internal(
-  githubLatestRelease,
-  name: r'githubLatestReleaseProvider',
+/// See also [MercuriusProfile].
+@ProviderFor(MercuriusProfile)
+final mercuriusProfileProvider =
+    AutoDisposeAsyncNotifierProvider<MercuriusProfile, Profile>.internal(
+  MercuriusProfile.new,
+  name: r'mercuriusProfileProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$githubLatestReleaseHash,
+      : _$mercuriusProfileHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef GithubLatestReleaseRef
-    = AutoDisposeFutureProviderRef<GithubLatestRelease>;
+typedef _$MercuriusProfile = AutoDisposeAsyncNotifier<Profile>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

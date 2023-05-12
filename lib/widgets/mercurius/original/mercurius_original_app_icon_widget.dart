@@ -12,12 +12,6 @@ class MercuriusOriginalAppIconWidget extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         borderRadius: BorderRadius.circular(16.0),
-        onTap: () => Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => const MercuriusSudokuPage(),
-          ),
-        ),
         child: Image.asset(
           'assets/icon/icon.png',
           height: 48,

@@ -17,9 +17,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   void _onItemTapped(int index) {
     MercuriusKit.vibration();
     ref.watch(diarySearchTextProvider.notifier).change();
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(() => _selectedIndex = index);
   }
 
   @override
@@ -32,9 +30,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _selectedIndex == 0,
-          onConditionFail: () => setState(() {
-            _selectedIndex = 0;
-          }),
+          onConditionFail: () => setState(() => _selectedIndex = 0),
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),

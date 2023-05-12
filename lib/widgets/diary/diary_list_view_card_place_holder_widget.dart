@@ -52,31 +52,31 @@ class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(flex: 18, child: Container()),
-              Expanded(
+              const Expanded(
                 flex: 40,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [dayWidget, weekdayWidget],
+                  children: [dayWidget, weekdayWidget],
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 142,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     latestEditTimeWidget,
                     createDateTimeWidget,
                     contentJsonStringWidget,
                   ],
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 50,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [moodWidget, weatherWidget],
+                  children: [moodWidget, weatherWidget],
                 ),
               ),
               Expanded(flex: 9, child: Container()),

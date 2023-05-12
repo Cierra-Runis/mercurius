@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mercurius_position.dart';
+part of 'mercurius_path.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mercuriusPositionHash() => r'c2cbfaf865cb416a2c25852840b61ae54f66508f';
+String _$mercuriusPathHash() => r'e92da1444e488a426de828325b786c7a855bde78';
 
-/// See also [MercuriusPosition].
-@ProviderFor(MercuriusPosition)
-final mercuriusPositionProvider =
-    AutoDisposeAsyncNotifierProvider<MercuriusPosition, CachePosition>.internal(
-  MercuriusPosition.new,
-  name: r'mercuriusPositionProvider',
+/// See also [mercuriusPath].
+@ProviderFor(mercuriusPath)
+final mercuriusPathProvider = AutoDisposeFutureProvider<String>.internal(
+  mercuriusPath,
+  name: r'mercuriusPathProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$mercuriusPositionHash,
+      : _$mercuriusPathHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$MercuriusPosition = AutoDisposeAsyncNotifier<CachePosition>;
+typedef MercuriusPathRef = AutoDisposeFutureProviderRef<String>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
