@@ -12,12 +12,12 @@ class MercuriusProfilePage extends ConsumerWidget {
         title: const Text('个人界面'),
       ),
       body: Center(
-        child: MercuriusModifiedList(
+        child: MercuriusListWidget(
           padding: const EdgeInsets.all(8),
           children: [
-            MercuriusModifiedListSection(
+            MercuriusListSectionWidget(
               children: [
-                MercuriusModifiedListItem(
+                MercuriusListItemWidget(
                   iconData: Icons.logout_rounded,
                   titleText: '退出帐号',
                   onTap: mercuriusProfile.when(

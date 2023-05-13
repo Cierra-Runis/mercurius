@@ -19,9 +19,6 @@ class MercuriusPosition extends _$MercuriusPosition {
       position = await _getAMap(profile);
     }
 
-    /// TIPS: 启用这里的 10s 延迟会有很多 “有趣的事情” 发生
-    // await Future.delayed(const Duration(seconds: 10));
-
     return position;
   }
 
@@ -36,19 +33,12 @@ class MercuriusPosition extends _$MercuriusPosition {
     Response response;
     CachePosition newCachePosition = CachePosition();
 
-    List<dynamic> apiList = jsonDecode(
-      await rootBundle.loadString('assets/json/api_key.json'),
-    );
-
-    Map<String, dynamic> api =
-        apiList.firstWhere((element) => element['apiName'] == 'aMap');
-
     // 尝试连接 aMap 获取位置
     try {
       response = await Dio().get(
-        api['apiUrl'],
+        MercuriusApi.aMap.apiUrl,
         queryParameters: {
-          'key': api['apiKey'],
+          'key': MercuriusApi.aMap.apiKey,
           'output': 'json',
         },
       );

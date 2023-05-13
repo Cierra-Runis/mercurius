@@ -34,7 +34,7 @@ class _DiaryMonthlyWordsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return MercuriusModifiedListSection(
+    return MercuriusListSectionWidget(
       title: const Text(
         '月度字数统计',
         style: TextStyle(
@@ -91,7 +91,7 @@ class _DiaryMonthlyWordsWidgetState
                   ],
                 );
               }
-              return const MercuriusOriginalLoadingWidget(
+              return const MercuriusLoadingWidget(
                 notice: '统计中',
               );
             },

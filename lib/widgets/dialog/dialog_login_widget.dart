@@ -118,11 +118,15 @@ class _DialogLoginWidgetState extends ConsumerState<DialogLoginWidget> {
     );
     showDialog<void>(
       context: context,
-      builder: (context) => const DialogPrivacyWidget(),
+      builder: (context) => const MercuriusJsonToDialogWidget(
+        jsonPath: 'assets/json/privacy.json',
+      ),
     );
     return showDialog<void>(
       context: context,
-      builder: (context) => const DialogAgreementWidget(),
+      builder: (context) => const MercuriusJsonToDialogWidget(
+        jsonPath: 'assets/json/agreement.json',
+      ),
     );
   }
 

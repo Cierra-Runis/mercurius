@@ -15,7 +15,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   ];
 
   void _onItemTapped(int index) {
-    MercuriusKit.vibration();
+    MercuriusKit.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
     setState(() => _selectedIndex = index);
   }
@@ -26,7 +26,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
       drawer: const DevLogDrawerWidget(),
       drawerEdgeDragWidth: 120,
       body: Center(
-        child: MercuriusModifiedDoubleBackWidget(
+        child: MercuriusDoubleBackWidget(
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _selectedIndex == 0,
@@ -34,17 +34,12 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
       ),
-      bottomNavigationBar: MercuriusModifiedBottomBarWidget(
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.outline,
-        backgroundColor: Theme.of(context).colorScheme.surface,
+      bottomNavigationBar: MercuriusBottomBarWidget(
+        colorScheme: Theme.of(context).colorScheme,
         items: const [
           MercuriusBottomBarItem(
             icon: Icon(Icons.home),
-            title: Text(
-              '主页',
-              style: TextStyle(fontFamily: 'Saira'),
-            ),
+            title: Text('主页', style: TextStyle(fontFamily: 'Saira')),
           ),
           _MercuriusBottomBarMorePageItem(),
         ],

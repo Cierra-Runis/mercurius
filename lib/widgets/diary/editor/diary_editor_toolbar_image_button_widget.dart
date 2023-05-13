@@ -24,7 +24,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     BuildContext context,
     String path,
   ) async {
-    bool? newImage = await MercuriusOriginalConfirmDialogWidget(
+    bool? newImage = await MercuriusConfirmDialogWidget(
       context: context,
       title: '从何处插入？',
       summary: '已有图片库还是系统文件呢？',

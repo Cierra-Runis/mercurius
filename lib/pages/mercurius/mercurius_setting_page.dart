@@ -10,9 +10,9 @@ class MercuriusSettingPage extends StatelessWidget {
         title: const Text('设定'),
       ),
       body: const Center(
-        child: MercuriusModifiedList(
+        child: MercuriusListWidget(
           children: [
-            MercuriusModifiedListSection(
+            MercuriusListSectionWidget(
               children: [
                 _ThemeSelectListItem(),
                 _VibrationSelectListItem(),
@@ -32,7 +32,7 @@ class _ThemeSelectListItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final mercuriusProfile = ref.watch(mercuriusProfileProvider);
 
-    return MercuriusModifiedListItem(
+    return MercuriusListItemWidget(
       iconData: Icons.dark_mode_rounded,
       titleText: '深色模式',
       detailText: mercuriusProfile.when(
@@ -47,7 +47,7 @@ class _ThemeSelectListItem extends ConsumerWidget {
       onTap: () => showDialog<void>(
         context: context,
         builder: (context) {
-          return const MercuriusOriginalThemeSelectorWidget();
+          return const MercuriusThemeSelectorWidget();
         },
       ),
     );
@@ -62,7 +62,7 @@ class _VibrationSelectListItem extends ConsumerWidget {
     final mercuriusProfile = ref.watch(mercuriusProfileProvider);
 
     return mercuriusProfile.when(
-      loading: () => const MercuriusModifiedListItem(),
+      loading: () => const MercuriusListItemWidget(),
       error: (error, stackTrace) => Container(),
       data: (profile) {
         return MercuriusModifiedListSwitchItem(

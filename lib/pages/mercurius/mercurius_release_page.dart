@@ -16,7 +16,7 @@ class MercuriusReleasePage extends ConsumerWidget {
       ),
       body: Center(
         child: githubLatestRelease.when(
-          loading: () => const MercuriusOriginalLoadingWidget(),
+          loading: () => const MercuriusLoadingWidget(),
           error: (error, stackTrace) => Container(),
           data: (data) => Markdown(
             data: data.body ?? '##### 啊啦\n\n你好像来到了奇怪的地方，要不回去先刷新一下？\n',
@@ -60,12 +60,12 @@ class MercuriusReleasePage extends ConsumerWidget {
     return showModalBottomSheet<void>(
       context: context,
       builder: (context) {
-        return MercuriusModifiedList(
+        return MercuriusListWidget(
           shrinkWrap: true,
           children: [
-            MercuriusModifiedListSection(
+            MercuriusListSectionWidget(
               children: [
-                MercuriusModifiedListItem(
+                MercuriusListItemWidget(
                   iconData: UniconsLine.github,
                   titleText: '从 Github 下载',
                   summaryText: '推荐源，但国内速度较慢',
@@ -74,7 +74,7 @@ class MercuriusReleasePage extends ConsumerWidget {
                     mode: LaunchMode.externalApplication,
                   ),
                 ),
-                MercuriusModifiedListItem(
+                MercuriusListItemWidget(
                   iconData: UniconsLine.cloud,
                   titleText: '从 其他 下载',
                   summaryText: '其他源，暂未开放',

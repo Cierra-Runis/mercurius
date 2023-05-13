@@ -35,7 +35,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
       ),
       padding: const EdgeInsets.all(12.0),
       itemCount: fileSystemEntities.length,
-      itemBuilder: (context, index) => MercuriusOriginalGalleryCardWidget(
+      itemBuilder: (context, index) => MercuriusGalleryCardWidget(
         readOnly: readOnly,
         fileSystemEntity: fileSystemEntities[index],
       ),
@@ -52,7 +52,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
       case ConnectionState.none:
         return const Center(child: Icon(UniconsLine.data_sharing));
       case ConnectionState.waiting:
-        return const MercuriusOriginalLoadingWidget();
+        return const MercuriusLoadingWidget();
       case ConnectionState.active:
         return getGridBySnapshotData(snapshot);
       case ConnectionState.done:
@@ -69,7 +69,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
         title: const Text('图片库'),
       ),
       body: path.when(
-        loading: () => const MercuriusOriginalLoadingWidget(),
+        loading: () => const MercuriusLoadingWidget(),
 
         /// TODO: 这里应该提示错误
         error: (error, stackTrace) => Container(),

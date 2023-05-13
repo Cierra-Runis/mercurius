@@ -9,10 +9,10 @@ class MercuriusIOPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('导入导出'),
       ),
-      body: const MercuriusModifiedList(
+      body: const MercuriusListWidget(
         children: [
-          MercuriusOriginalImportSectionWidget(),
-          MercuriusOriginalExportSectionWidget(),
+          MercuriusImportSectionWidget(),
+          MercuriusExportSectionWidget(),
         ],
       ),
     );

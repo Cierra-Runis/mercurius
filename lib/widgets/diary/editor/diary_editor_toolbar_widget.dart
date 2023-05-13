@@ -31,7 +31,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
         return path.when(
-          loading: () => const MercuriusOriginalLoadingWidget(withText: false),
+          loading: () => const MercuriusLoadingWidget(withText: false),
           error: (error, stackTrace) => Container(),
           data: (data) => DiaryEditorToolbarImageButtonWidget(
             controller: controller,

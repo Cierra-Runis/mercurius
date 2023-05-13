@@ -12,7 +12,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   bool _currentSearchBarMode = false;
 
   void _switchCurrentViewMode() {
-    MercuriusKit.vibration();
+    MercuriusKit.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
 
     setState(() {
@@ -22,13 +22,13 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   }
 
   void _switchCurrentBarMode() {
-    MercuriusKit.vibration();
+    MercuriusKit.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
     setState(() => _currentSearchBarMode = !_currentSearchBarMode);
   }
 
   void _floatingButtonOnPressed() async {
-    MercuriusKit.vibration();
+    MercuriusKit.vibration(ref: ref);
 
     DateTime? dateTime = await showDatePicker(
       context: context,
@@ -60,14 +60,14 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const MercuriusOriginalAppBarUserIconWidget(),
+        leading: const MercuriusAppBarUserIconWidget(),
         title: AnimatedCrossFade(
           crossFadeState: _currentSearchBarMode
               ? CrossFadeState.showFirst
               : CrossFadeState.showSecond,
           duration: const Duration(milliseconds: 500),
           firstChild: const DiarySearchBarWidget(),
-          secondChild: const MercuriusOriginalAppBarTitleWidget(),
+          secondChild: const MercuriusAppBarTitleWidget(),
         ),
         centerTitle: true,
         actions: [

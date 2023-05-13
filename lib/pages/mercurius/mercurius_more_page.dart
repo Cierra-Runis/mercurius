@@ -7,19 +7,19 @@ class MercuriusMorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const MercuriusOriginalAppBarUserIconWidget(),
-        title: const MercuriusOriginalAppBarTitleWidget(),
+        leading: const MercuriusAppBarUserIconWidget(),
+        title: const MercuriusAppBarTitleWidget(),
         centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: MercuriusOriginalMorePageListWidget(context: context),
+            child: MercuriusMorePageListWidget(context: context),
           ),
           const Padding(
             padding: EdgeInsets.all(10),
-            child: MercuriusOriginalHiToKoToWidget(),
+            child: MercuriusHiToKoToWidget(),
           ),
         ],
       ),

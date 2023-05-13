@@ -6,7 +6,7 @@ part of 'mercurius_position.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mercuriusPositionHash() => r'ed74b3148162e711385ad2a69106a2e0a128d83d';
+String _$mercuriusPositionHash() => r'f06abbfb2d2c24010a8a0b31bc97d7eaf23e0331';
 
 /// See also [MercuriusPosition].
 @ProviderFor(MercuriusPosition)

@@ -4,7 +4,8 @@ part 'github_latest_release.g.dart';
 
 @riverpod
 Future<GithubLatestRelease> githubLatestRelease(
-    GithubLatestReleaseRef ref) async {
+  GithubLatestReleaseRef ref,
+) async {
   MercuriusKit.printLog('GithubLatestRelease 初始化中');
 
   const String url =
@@ -43,9 +44,6 @@ Future<GithubLatestRelease> githubLatestRelease(
       ),
     );
   }
-
-  /// TIPS: 启用这里的 10s 延迟会有很多 “有趣的事情” 发生
-  // await Future.delayed(const Duration(seconds: 10));
 
   return githubLatestRelease;
 }

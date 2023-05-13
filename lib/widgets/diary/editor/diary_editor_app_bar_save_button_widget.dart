@@ -25,7 +25,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
               .replaceAll(RegExp(r' '), ''),
         );
         if (plainText != '""') {
-          MercuriusKit.vibration();
+          MercuriusKit.vibration(ref: ref);
           Diary newDiary = Diary.copyWith(
             currentDiary,
             contentJsonString: jsonEncode(
@@ -38,7 +38,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
           ref.watch(isarServiceProvider.notifier).saveDiary(newDiary);
           Navigator.of(context).pop(newDiary);
         } else {
-          MercuriusKit.vibration(duration: 300);
+          MercuriusKit.vibration(ref: ref, duration: 300);
           Flushbar(
             icon: const Icon(UniconsLine.confused),
             isDismissible: false,

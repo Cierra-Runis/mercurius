@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryEditorPage extends StatefulWidget {
+class DiaryEditorPage extends ConsumerStatefulWidget {
   const DiaryEditorPage({
     Key? key,
     required this.diary,
@@ -9,10 +9,10 @@ class DiaryEditorPage extends StatefulWidget {
   final Diary diary;
 
   @override
-  State<DiaryEditorPage> createState() => _DiaryEditorPageState();
+  ConsumerState<DiaryEditorPage> createState() => _DiaryEditorPageState();
 }
 
-class _DiaryEditorPageState extends State<DiaryEditorPage> {
+class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
   late final QuillController _controller;
   final TextEditingController _title = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -53,7 +53,7 @@ class _DiaryEditorPageState extends State<DiaryEditorPage> {
       appBar: AppBar(
         leading: TextButton(
           onPressed: () {
-            MercuriusKit.vibration();
+            MercuriusKit.vibration(ref: ref);
             Navigator.of(context).pop();
           },
           child: const Text('取消'),

@@ -9,7 +9,7 @@ class DiaryStatisticPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('统计数据'),
       ),
-      body: const MercuriusModifiedList(
+      body: const MercuriusListWidget(
         children: [
           DiaryMonthlyWordsWidget(),
         ],
