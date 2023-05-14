@@ -13,6 +13,9 @@ Future<String> mercuriusPath(MercuriusPathRef ref) async {
   Directory imageDirectory = Directory('$path/image/');
   if (!imageDirectory.existsSync()) imageDirectory.create();
 
+  /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
+  await FilePicker.platform.clearTemporaryFiles();
+
   MercuriusKit.printLog('MercuriusPath 初始化为 $path');
 
   return path;

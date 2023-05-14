@@ -2,14 +2,14 @@ import 'package:mercurius/index.dart';
 
 class MercuriusListSectionWidget extends StatelessWidget {
   const MercuriusListSectionWidget({
-    Key? key,
+    super.key,
     this.title,
     this.summary,
     this.leading,
     this.description,
     this.margin = const EdgeInsets.all(12.0),
     this.children = const <Widget>[],
-  }) : super(key: key);
+  });
 
   final Widget? title;
   final Widget? summary;

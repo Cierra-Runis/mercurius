@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class DiaryPageViewWidget extends ConsumerWidget {
   const DiaryPageViewWidget({
-    Key? key,
+    super.key,
     required this.diary,
-  }) : super(key: key);
+  });
 
   final Diary diary;
 
@@ -28,7 +28,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
       itemBuilder: (context, index) {
         MercuriusKit.printLog(diaries[index].id.toString());
         return DiaryPageViewCardWidget(
-          key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
+          key: ValueKey(diaries[index].id),
           diary: diaries[index],
         );
       },

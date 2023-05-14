@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
 class DialogAboutContentWidget extends StatelessWidget {
-  const DialogAboutContentWidget({Key? key}) : super(key: key);
+  const DialogAboutContentWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

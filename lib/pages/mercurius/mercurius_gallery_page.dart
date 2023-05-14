@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class MercuriusGalleryPage extends ConsumerWidget {
   const MercuriusGalleryPage({
-    Key? key,
+    super.key,
     this.readOnly = false,
-  }) : super(key: key);
+  });
 
   final bool readOnly;
 

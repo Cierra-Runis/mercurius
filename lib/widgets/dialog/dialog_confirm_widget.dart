@@ -2,13 +2,13 @@ import 'package:mercurius/index.dart';
 
 class MercuriusConfirmDialogWidget extends StatelessWidget {
   const MercuriusConfirmDialogWidget({
-    Key? key,
+    super.key,
     this.title = '确认吗？',
     this.summary = '请再三思考哦～',
     this.falseString = '取消',
     this.trueString = '确认',
     required this.context,
-  }) : super(key: key);
+  });
 
   final String title;
   final String summary;

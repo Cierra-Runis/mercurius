@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class DiaryListViewCardWidget extends ConsumerWidget {
   const DiaryListViewCardWidget({
-    required key,
+    super.key,
     required this.diary,
-  }) : super(key: key);
+  });
 
   final Diary diary;
 
@@ -31,7 +31,9 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       ),
     );
     final createDateTimeWidget = Text(
-      diary.titleString ?? diary.createDateTime.format('y-M-d', 'zh_CN'),
+      diary.titleString == ''
+          ? diary.createDateTime.format('y-M-d', 'zh_CN')
+          : diary.titleString,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
@@ -40,9 +42,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       ),
     );
     final contentJsonStringWidget = Text(
-      Document.fromJson(
-        jsonDecode(diary.contentJsonString!),
-      ).toPlainText().replaceAll(RegExp('\n'), ''),
+      diary.document.toPlainText().replaceAll(RegExp('\n'), ' '),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
@@ -55,19 +55,15 @@ class DiaryListViewCardWidget extends ConsumerWidget {
         Icon(size: 18, diary.weatherType.qweatherIcons.iconData);
 
     return Dismissible(
-      key: key!,
+      key: ValueKey(diary.id),
+      direction: DismissDirection.endToStart,
       onDismissed: (_) =>
           ref.watch(isarServiceProvider.notifier).deleteDiaryById(diary.id),
-      confirmDismiss: (direction) async {
-        if (direction == DismissDirection.endToStart) {
-          return await MercuriusConfirmDialogWidget(
-            context: context,
-            title: '确认删除吗？',
-            summary: '抛弃这篇日记',
-          ).confirm;
-        }
-        return false;
-      },
+      confirmDismiss: (_) => MercuriusConfirmDialogWidget(
+        context: context,
+        title: '确认删除吗？',
+        summary: '抛弃这篇日记',
+      ).confirm,
       child: Card(
         margin: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(

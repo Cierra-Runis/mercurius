@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class DiaryPageViewCardWidget extends ConsumerWidget {
   const DiaryPageViewCardWidget({
-    Key? key,
+    super.key,
     required this.diary,
-  }) : super(key: key);
+  });
 
   final Diary diary;
 
@@ -100,9 +100,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                         readOnly: true,
                         scrollController: ScrollController(),
                         controller: QuillController(
-                          document: Document.fromJson(
-                            jsonDecode(diary.contentJsonString!),
-                          ),
+                          document: diary.document,
                           selection: const TextSelection.collapsed(offset: 0),
                         ),
                       ),
@@ -154,12 +152,10 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                                 Share.share(
                                   '${diary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
                                   '天气：${diary.weatherType.weather}\n'
-                                  '标题：${diary.titleString ?? '无标题'}\n'
+                                  '标题：${diary.titleString == '' ? '无标题' : diary.titleString}\n'
                                   '心情：${diary.moodType.mood}\n'
                                   '\n'
-                                  '${Document.fromJson(
-                                    jsonDecode(diary.contentJsonString!),
-                                  ).toPlainText().trimRight()}',
+                                  '${diary.document.toPlainText().trimRight()}',
                                 );
                               },
                               icon: const Icon(UniconsLine.share),

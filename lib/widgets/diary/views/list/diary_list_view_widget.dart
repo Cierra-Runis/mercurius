@@ -61,11 +61,8 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
         itemBuilder: (context, sectionIndex, itemIndex, index) {
           return FrameSeparateWidget(
             index: index,
-            placeHolder: DiaryListViewCardPlaceHolderWidget(
-              key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
-            ),
+            placeHolder: const DiaryListViewCardPlaceHolderWidget(),
             child: DiaryListViewCardWidget(
-              key: UniqueKey(), // TIPS: 这里一定要是 `UniqueKey()`
               diary: sections[sectionIndex].items[itemIndex],
             ),
           );

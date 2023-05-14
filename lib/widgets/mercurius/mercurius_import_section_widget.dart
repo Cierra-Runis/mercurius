@@ -12,8 +12,6 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
           iconData: Icons.data_object_rounded,
           titleText: '导入 json 文件',
           onTap: () async {
-            /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
-            await FilePicker.platform.clearTemporaryFiles();
             FilePickerResult? result = await FilePicker.platform.pickFiles();
             if (result != null) {
               ref

@@ -63,26 +63,22 @@ class MercuriusReleasePage extends ConsumerWidget {
         return MercuriusListWidget(
           shrinkWrap: true,
           children: [
-            MercuriusListSectionWidget(
-              children: [
-                MercuriusListItemWidget(
-                  iconData: UniconsLine.github,
-                  titleText: '从 Github 下载',
-                  summaryText: '推荐源，但国内速度较慢',
-                  onTap: () => launchUrlString(
-                    githubLatestRelease.assets![0].browser_download_url!,
-                    mode: LaunchMode.externalApplication,
-                  ),
-                ),
-                MercuriusListItemWidget(
-                  iconData: UniconsLine.cloud,
-                  titleText: '从 其他 下载',
-                  summaryText: '其他源，暂未开放',
-                  onTap: () {
-                    /// TODO: 那样的其他源
-                  },
-                ),
-              ],
+            MercuriusListItemWidget(
+              iconData: UniconsLine.github,
+              titleText: '从 Github 下载',
+              summaryText: '推荐源，但国内速度较慢',
+              onTap: () => launchUrlString(
+                githubLatestRelease.assets![0].browser_download_url!,
+                mode: LaunchMode.externalApplication,
+              ),
+            ),
+            MercuriusListItemWidget(
+              iconData: UniconsLine.cloud,
+              titleText: '从 其他 下载',
+              summaryText: '其他源，暂未开放',
+              onTap: () {
+                /// TODO: 那样的其他源
+              },
             ),
           ],
         );

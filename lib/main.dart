@@ -17,12 +17,18 @@ class MercuriusApp extends ConsumerWidget {
     ThemeData theme = ThemeData(
       useMaterial3: true,
       colorScheme: MercuriusConstance.lightColorScheme,
+      datePickerTheme: const DatePickerThemeData(
+        dayStyle: TextStyle(fontSize: 12),
+      ),
       fontFamily: 'Saira',
     );
 
     ThemeData darkTheme = ThemeData(
       useMaterial3: true,
       colorScheme: MercuriusConstance.darkColorScheme,
+      datePickerTheme: const DatePickerThemeData(
+        dayStyle: TextStyle(fontSize: 12),
+      ),
       fontFamily: 'Saira',
     );
 

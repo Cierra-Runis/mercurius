@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class DiaryWeatherSelectorDialogWidget extends ConsumerWidget {
   const DiaryWeatherSelectorDialogWidget({
-    Key? key,
+    super.key,
     required this.diary,
-  }) : super(key: key);
+  });
 
   final Diary diary;
   List<Widget> _listAllWeather(BuildContext context) {

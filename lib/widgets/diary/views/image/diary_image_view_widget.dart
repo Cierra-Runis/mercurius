@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class DiaryImageViewWidget extends ConsumerWidget {
   const DiaryImageViewWidget({
-    Key? key,
+    super.key,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
 

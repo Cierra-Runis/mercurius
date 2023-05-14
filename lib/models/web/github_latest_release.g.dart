@@ -25,7 +25,7 @@ Map<String, dynamic> _$GithubLatestReleaseToJson(
       'name': instance.name,
       'draft': instance.draft,
       'prerelease': instance.prerelease,
-      'assets': instance.assets?.map((e) => e.toJson()).toList(),
+      'assets': instance.assets,
       'body': instance.body,
     };
 

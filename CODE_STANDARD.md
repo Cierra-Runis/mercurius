@@ -3,7 +3,8 @@
 1. 尽可能使用 `''` 而不是 `""` 来表示字符串
 2. 尽量不使用 `StatefulWidget / ConsumerStatefulWidget` 而是 `StatelessWidget / ConsumerWidget`
 3. 使用 `index.dart` 简化导入
-4. 对 `StatelessWidget / ConsumerWidget` 组件，其结构如下
+4. 尽量不要使用 `const MyWidget({Key? key}) : super(key: key);` 而是 `const MyWidget({super.key});`，对于其他变量也是如此
+5. 对 `StatelessWidget / ConsumerWidget` 组件，其结构如下
 
     ```dart
     class MyWidget extends StatelessWidget {
@@ -43,7 +44,7 @@
     }
     ```
 
-5. 对 `StatefulWidget / ConsumerStatefulWidget` 组件，其结构如下
+6. 对 `StatefulWidget / ConsumerStatefulWidget` 组件，其结构如下
 
     ```dart
     class MyWidget extends StatefulWidget {
@@ -123,26 +124,23 @@
     }
     ```
 
-6. 项目结构
+7. 项目结构
 
     - `.release_tool` 文件夹
         - 该文件夹保有发布用工具，其中 `main.py` 用于构建新版本，并决定是否将 `mercurius_warehouse` 发布
     - `assets` 文件夹
-        - 该文件夹保有字体和图片，其中 `assets\fonts\QWeather_Icons.ttf` 用于天气图标，`assets\fonts\Saira.ttf` 用于 `Mercurius` 的主要字体
+        - 该文件夹保有字体和图片，`assets\fonts\Saira.ttf` 用于 `Mercurius` 的主要字体
     - `lib` 文件夹
         - 该文件夹保有程序的所有代码，`common` 下存放普通类，`models` 下存放需要使用代码生成的类，`pages` 下存放所有页面，`states` 下存放所有状态管理，`widgets` 下存放所有组件，且命名规则如下：
             - `pages` 文件夹下按用处分类，除 `index.dart` 和 `mercurius_route.dart` 外，所有文件名最前面都为所在子文件夹名称，最后面都是 `page` 结尾
                 - 如 `mercurius` 子文件夹下的 `mercurius_home_page.dart`，且其中保有的类按大写无下划线的形式命名，如 `class MercuriusHomePage extends ConsumerStatefulWidget`
             -
-            - `states` 文件夹下按使用的是 `provider` 包还是 `package:riverpod` 包进行分类，再在子文件夹里按用处分类，除 `index.dart` 外，所有文件名最前面都为所在子文件夹名称，`provider` 文件夹下最后面都是 `notifier` 结尾，`riverpod` 文件夹下则不需要多余的 `provider` 后缀
-                - 如 `provider/mercurius` 子文件夹下的 `mercurius_profile_notifier.dart`，且其中保有的类按大写无下划线的形式命名，如 `class MercuriusProfileNotifier extends ChangeNotifier`
-                - 再如 `riverpod/diary` 子文件夹下的 `diary_search_text.dart`，且其中保有的类按大写无下划线的形式命名，如 `class DiarySearchText extends _$DiarySearchText`，最后其生成的变量为 `final diarySearchTextProvider`
+            - `states` 文件夹下按用处分类，除 `index.dart` 外，所有文件名最前面都为所在子文件夹名称，不需要多余的 `provider` 后缀
+                - 如 `diary` 子文件夹下的 `diary_search_text.dart`，且其中保有的类按大写无下划线的形式命名，如 `class DiarySearchText extends _$DiarySearchText`，最后其生成的变量为 `final diarySearchTextProvider`
             -
-            - `widgets` 文件夹下按用处和是否为 `Dialog` 分类，除 `index.dart` 外，所有文件名最前面都为所在子文件夹名称，最后面都是 `widget` 结尾
-                - 如 `sudoku` 子文件夹下的 `sudoku_num_selector_widget.dart`，且其中保有的类按大写无下划线的形式命名，如 `class SudokuNumSelectorWidget extends StatefulWidget`
-                - ***注意若按用处分类了，则无视该类是否为 `Dialog`，就如此处的 `SudokuNumSelectorWidget` 实际上是一个 `Dialog`***
+            - `widgets` 文件夹下暂无通用规律
 
-7. 程序入口
+8. 程序入口
 
     1. `void main() => runApp(const ProviderScope(child: MercuriusApp()));`
         - `package:riverpod` 提供给所有 `provider` 的储存位 `ProviderScope` 包裹着 `MercuriusApp`
@@ -159,7 +157,7 @@
         这会触发 `githubLatestReleaseProvider` `isarServiceProvider` `mercuriusPositionProvider` 的 [生命周期](https://docs-v2.riverpod.dev/zh-Hans/docs/concepts/provider_lifecycles)
 
     5. 因为 `githubLatestReleaseProvider` 是异步的，故无视其返回时间，但一般情况下都能在 `进入主页面` 前返回，不行的话得益于 `package:riverpod` 的 `when(...)` 方法对应其状态处理 `UI` 等数据依赖项
-    6. `isarServiceProvider` 不是异步的，它只是保存了一个异步的 `Future<Isar> _db` 内部属性，但同事具有无视返回时间的特性；而 `isarServiceProvider` 依赖 `mercuriusPathProvider`，故初始化 `mercuriusPathProvider`，其也是异步的
+    6. `isarServiceProvider` 不是异步的，它只是保存了一个异步的 `Future<Isar> _db` 内部属性，但同是具有无视返回时间的特性；而 `isarServiceProvider` 依赖 `mercuriusPathProvider`，故初始化 `mercuriusPathProvider`，其也是异步的
     7. `mercuriusPositionProvider` 是异步的，相关介绍略
     8. 至此有 `mercuriusProfile` `githubLatestReleaseProvider` `mercuriusPathProvider` `mercuriusPositionProvider` 四者处于异步的状态
     9. 接下来各者完成的顺序 ***严格来说*** 是没有规律的，但它们遵守着以下规则
@@ -171,7 +169,7 @@
 
     - 正常网络
 
-        ```log
+        ```dart
         [log] [Mercurius] 正在构建 MercuriusApp
         [log] [Mercurius] 正在读取 MercuriusProfile 中的 themeMode
         [log] [Mercurius] 正在初始化 _MercuriusSplashPageState#27c04(lifecycle state: created)
@@ -197,7 +195,7 @@
 
     - 无网络
 
-        ```log
+        ```dart
         [log] [Mercurius] 正在构建 MercuriusApp
         [log] [Mercurius] 正在读取 MercuriusProfile 中的 themeMode
         [log] [Mercurius] 正在初始化 _MercuriusSplashPageState#426c5(lifecycle state: created)

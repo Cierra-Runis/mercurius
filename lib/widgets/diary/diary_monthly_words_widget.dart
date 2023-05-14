@@ -91,9 +91,7 @@ class _DiaryMonthlyWordsWidgetState
                   ],
                 );
               }
-              return const MercuriusLoadingWidget(
-                notice: '统计中',
-              );
+              return const MercuriusLoadingWidget();
             },
           ),
         ),
@@ -130,9 +128,7 @@ class _DiaryMonthlyWordsWidgetState
             key.isSameMonth(diary.createDateTime)) {
           data.update(
             key,
-            (value) => value += Document.fromJson(
-              jsonDecode(diary.contentJsonString!),
-            ).toPlainText().replaceAll(RegExp(r'\n'), '').length,
+            (value) => value += diary.document.toPlainText().length,
           );
         }
       }

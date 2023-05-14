@@ -1,9 +1,7 @@
 import 'package:mercurius/index.dart';
 
 class DiaryListViewCardPlaceHolderWidget extends StatelessWidget {
-  const DiaryListViewCardPlaceHolderWidget({
-    required key,
-  }) : super(key: key);
+  const DiaryListViewCardPlaceHolderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

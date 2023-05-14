@@ -4,7 +4,7 @@ import 'package:mercurius/index.dart';
 
 part 'github_latest_release.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GithubLatestRelease {
   GithubLatestRelease();
 
@@ -20,7 +20,7 @@ class GithubLatestRelease {
   Map<String, dynamic> toJson() => _$GithubLatestReleaseToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GithubLatestReleaseAsset {
   GithubLatestReleaseAsset();
 

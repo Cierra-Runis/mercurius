@@ -2,12 +2,12 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
   const DiaryEditorAppBarSaveButtonWidget({
-    Key? key,
+    super.key,
     required this.currentDiary,
     required this.controller,
     required this.handleAppBarChangeDiary,
     required this.title,
-  }) : super(key: key);
+  });
 
   final Diary currentDiary;
   final QuillController controller;
@@ -18,26 +18,11 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextButton(
       onPressed: () {
-        String plainText = jsonEncode(
-          controller.document
-              .toPlainText()
-              .replaceAll(RegExp(r'\n'), '')
-              .replaceAll(RegExp(r' '), ''),
-        );
-        if (plainText != '""') {
-          MercuriusKit.vibration(ref: ref);
-          Diary newDiary = Diary.copyWith(
-            currentDiary,
-            contentJsonString: jsonEncode(
-              controller.document.toDelta().toJson(),
-            ),
-            latestEditTime: DateTime.now(),
-            titleString: title.text == '' ? null : title.text,
-          );
-          handleAppBarChangeDiary(newDiary);
-          ref.watch(isarServiceProvider.notifier).saveDiary(newDiary);
-          Navigator.of(context).pop(newDiary);
-        } else {
+        String plainText = controller.document
+            .toPlainText()
+            .replaceAll(RegExp(r'\n'), '')
+            .replaceAll(RegExp(r' '), '');
+        if (plainText == '') {
           MercuriusKit.vibration(ref: ref, duration: 300);
           Flushbar(
             icon: const Icon(UniconsLine.confused),
@@ -66,6 +51,19 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
             ),
             flushbarPosition: FlushbarPosition.TOP,
           ).show(context);
+        } else {
+          MercuriusKit.vibration(ref: ref);
+          Diary newDiary = Diary.copyWith(
+            currentDiary,
+            contentJsonString: jsonEncode(
+              controller.document.toDelta().toJson(),
+            ),
+            latestEditTime: DateTime.now(),
+            titleString: title.text,
+          );
+          handleAppBarChangeDiary(newDiary);
+          ref.watch(isarServiceProvider.notifier).saveDiary(newDiary);
+          Navigator.of(context).pop(newDiary);
         }
       },
       style: ButtonStyle(

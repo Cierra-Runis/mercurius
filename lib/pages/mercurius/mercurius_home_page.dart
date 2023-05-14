@@ -49,6 +49,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
               id: Isar.autoIncrement,
               createDateTime: dateTime,
               latestEditTime: dateTime,
+              contentJsonString: jsonEncode(Document().toDelta().toJson()),
             ),
           ),
         ),

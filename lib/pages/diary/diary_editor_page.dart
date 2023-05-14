@@ -2,9 +2,9 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorPage extends ConsumerStatefulWidget {
   const DiaryEditorPage({
-    Key? key,
+    super.key,
     required this.diary,
-  }) : super(key: key);
+  });
 
   final Diary diary;
 
@@ -25,14 +25,10 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
     super.initState();
     _diary = widget.diary;
     _controller = QuillController(
-      document: _diary.contentJsonString != null
-          ? Document.fromJson(
-              jsonDecode(_diary.contentJsonString!),
-            )
-          : Document(),
+      document: _diary.document,
       selection: const TextSelection.collapsed(offset: 0),
     );
-    _title.text = _diary.titleString ?? '';
+    _title.text = _diary.titleString;
   }
 
   @override

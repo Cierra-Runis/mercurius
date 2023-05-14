@@ -70,18 +70,8 @@ int _diaryEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  {
-    final value = object.contentJsonString;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
-  {
-    final value = object.titleString;
-    if (value != null) {
-      bytesCount += 3 + value.length * 3;
-    }
-  }
+  bytesCount += 3 + object.contentJsonString.length * 3;
+  bytesCount += 3 + object.titleString.length * 3;
   return bytesCount;
 }
 
@@ -106,13 +96,13 @@ Diary _diaryDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = Diary(
-    contentJsonString: reader.readStringOrNull(offsets[0]),
+    contentJsonString: reader.readString(offsets[0]),
     createDateTime: reader.readDateTime(offsets[1]),
     id: id,
     latestEditTime: reader.readDateTime(offsets[2]),
     moodType: _DiarymoodTypeValueEnumMap[reader.readByteOrNull(offsets[3])] ??
         DiaryMoodType.defaultType,
-    titleString: reader.readStringOrNull(offsets[4]),
+    titleString: reader.readStringOrNull(offsets[4]) ?? '',
     weatherType:
         _DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offsets[5])] ??
             DiaryWeatherType.defaultType,
@@ -128,7 +118,7 @@ P _diaryDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 1:
       return (reader.readDateTime(offset)) as P;
     case 2:
@@ -137,7 +127,7 @@ P _diaryDeserializeProp<P>(
       return (_DiarymoodTypeValueEnumMap[reader.readByteOrNull(offset)] ??
           DiaryMoodType.defaultType) as P;
     case 4:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readStringOrNull(offset) ?? '') as P;
     case 5:
       return (_DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offset)] ??
           DiaryWeatherType.defaultType) as P;
@@ -277,25 +267,8 @@ extension DiaryQueryWhere on QueryBuilder<Diary, Diary, QWhereClause> {
 }
 
 extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> contentJsonStringIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'contentJsonString',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition>
-      contentJsonStringIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'contentJsonString',
-      ));
-    });
-  }
-
   QueryBuilder<Diary, Diary, QAfterFilterCondition> contentJsonStringEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -309,7 +282,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition>
       contentJsonStringGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -324,7 +297,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> contentJsonStringLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -339,8 +312,8 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> contentJsonStringBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -637,24 +610,8 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> titleStringIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'titleString',
-      ));
-    });
-  }
-
-  QueryBuilder<Diary, Diary, QAfterFilterCondition> titleStringIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'titleString',
-      ));
-    });
-  }
-
   QueryBuilder<Diary, Diary, QAfterFilterCondition> titleStringEqualTo(
-    String? value, {
+    String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -667,7 +624,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> titleStringGreaterThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -682,7 +639,7 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> titleStringLessThan(
-    String? value, {
+    String value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -697,8 +654,8 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
   }
 
   QueryBuilder<Diary, Diary, QAfterFilterCondition> titleStringBetween(
-    String? lower,
-    String? upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1049,7 +1006,7 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Diary, String?, QQueryOperations> contentJsonStringProperty() {
+  QueryBuilder<Diary, String, QQueryOperations> contentJsonStringProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'contentJsonString');
     });
@@ -1073,7 +1030,7 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Diary, String?, QQueryOperations> titleStringProperty() {
+  QueryBuilder<Diary, String, QQueryOperations> titleStringProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'titleString');
     });
@@ -1095,8 +1052,8 @@ Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary(
       id: json['id'] as int,
       createDateTime: DateTime.parse(json['createDateTime'] as String),
       latestEditTime: DateTime.parse(json['latestEditTime'] as String),
-      titleString: json['titleString'] as String?,
-      contentJsonString: json['contentJsonString'] as String?,
+      contentJsonString: json['contentJsonString'] as String,
+      titleString: json['titleString'] as String? ?? '',
       moodType: $enumDecodeNullable(_$DiaryMoodTypeEnumMap, json['moodType']) ??
           DiaryMoodType.defaultType,
       weatherType:

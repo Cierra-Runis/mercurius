@@ -2,12 +2,12 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorToolbarWidget extends ConsumerWidget {
   const DiaryEditorToolbarWidget({
-    Key? key,
+    super.key,
     required this.currentDiary,
     required this.scrollController,
     required this.controller,
     required this.handleToolbarChangeDiary,
-  }) : super(key: key);
+  });
 
   final Diary currentDiary;
   final ScrollController scrollController;
@@ -31,7 +31,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
         return path.when(
-          loading: () => const MercuriusLoadingWidget(withText: false),
+          loading: () => const MercuriusLoadingWidget(),
           error: (error, stackTrace) => Container(),
           data: (data) => DiaryEditorToolbarImageButtonWidget(
             controller: controller,

@@ -3,7 +3,7 @@ import 'package:mercurius/index.dart';
 /// [MercuriusListItemWidget] 是由 [ConsumerWidget] 衍生出的列表系列组件的基类
 class MercuriusListItemWidget extends ConsumerWidget {
   const MercuriusListItemWidget({
-    Key? key,
+    super.key,
     this.padding,
     this.icon,
     this.iconData,
@@ -21,7 +21,7 @@ class MercuriusListItemWidget extends ConsumerWidget {
     this.bottomView,
     this.disabled = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final EdgeInsets? padding;
   final Icon? icon;
@@ -167,32 +167,20 @@ class MercuriusModifiedListSwitchItem extends MercuriusListItemWidget {
   final ValueChanged<bool>? onChanged;
 
   const MercuriusModifiedListSwitchItem({
-    Key? key,
-    Icon? icon,
-    IconData? iconData,
-    String? titleText,
-    TextStyle? titleTextStyle,
-    String? summaryText,
-    TextStyle? summaryTextStyle,
-    String? detailText,
-    TextStyle? detailTextStyle,
-    Widget? accessoryView,
-    VoidCallback? onTap,
-    @required this.value,
-    @required this.onChanged,
-  }) : super(
-          key: key,
-          icon: icon,
-          iconData: iconData,
-          titleText: titleText,
-          titleTextStyle: titleTextStyle,
-          summaryText: summaryText,
-          summaryTextStyle: summaryTextStyle,
-          detailText: detailText,
-          detailTextStyle: detailTextStyle,
-          accessoryView: accessoryView,
-          onTap: onTap,
-        );
+    required this.value,
+    required this.onChanged,
+    super.key,
+    super.icon,
+    super.iconData,
+    super.titleText,
+    super.titleTextStyle,
+    super.summaryText,
+    super.summaryTextStyle,
+    super.detailText,
+    super.detailTextStyle,
+    super.accessoryView,
+    super.onTap,
+  });
 
   @override
   void _onTap(WidgetRef ref) {
@@ -220,33 +208,23 @@ class MercuriusModifiedListTextFieldItem extends MercuriusListItemWidget {
   final ValueChanged<String>? onSubmitted;
 
   const MercuriusModifiedListTextFieldItem({
-    Key? key,
-    Icon? icon,
-    IconData? iconData,
-    String? titleText,
-    TextStyle? titleTextStyle,
-    String? summaryText,
-    TextStyle? summaryTextStyle,
-    Widget? accessoryView = const Padding(
+    super.key,
+    super.icon,
+    super.iconData,
+    super.titleText,
+    super.titleTextStyle,
+    super.summaryText,
+    super.summaryTextStyle,
+    super.accessoryView = const Padding(
       padding: EdgeInsets.only(left: 4),
       child: Icon(null),
     ),
-    VoidCallback? onTap,
+    super.onTap,
     this.hintText,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
-  }) : super(
-          key: key,
-          icon: icon,
-          iconData: iconData,
-          titleText: titleText,
-          titleTextStyle: titleTextStyle,
-          summaryText: summaryText,
-          summaryTextStyle: summaryTextStyle,
-          accessoryView: accessoryView,
-          onTap: onTap,
-        );
+  });
 
   @override
   bool get disabled => true;

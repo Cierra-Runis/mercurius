@@ -2,14 +2,14 @@ import 'package:mercurius/index.dart';
 
 class MercuriusFadeShimmerWidget extends StatefulWidget {
   const MercuriusFadeShimmerWidget({
-    Key? key,
+    super.key,
     this.millisecondsDelay = 0,
     this.radius = 0,
     this.child,
     this.childAlignment = Alignment.center,
     required this.width,
     required this.height,
-  }) : super(key: key);
+  });
 
   final double radius;
   final double width;

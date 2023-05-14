@@ -101,10 +101,10 @@ packages:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: "87e06c939450b9b94e3e1bb2d46e0e9780adbff5500d3969f2ba2de6bbb860cb"
+      sha256: "220ae4553e50d7c21a17c051afc7b183d28a24a420502e842f303f8e4e6edced"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.2"
+    version: "2.4.4"
   build_runner_core:
     dependency: transitive
     description:
@@ -929,10 +929,10 @@ packages:
     dependency: "direct main"
     description:
       name: qweather_icons
-      sha256: "6fc191fd1013850b1f5227bcdee1c7e387953b17ce89edbaf195f5d3e301989f"
+      sha256: "47e75ac13207d1ea7eb79ddbd82a477af3bf694ad4f8464d43276ba66dcf1975"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.8"
+    version: "0.0.9"
   riverpod:
     dependency: transitive
     description:

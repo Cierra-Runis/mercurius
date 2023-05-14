@@ -24,7 +24,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const DevLogDrawerWidget(),
-      drawerEdgeDragWidth: 120,
+      drawerEdgeDragWidth: MediaQuery.of(context).size.width / 3,
       body: Center(
         child: MercuriusDoubleBackWidget(
           background: Theme.of(context).colorScheme.outline.withAlpha(16),

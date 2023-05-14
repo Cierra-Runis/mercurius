@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
 class MercuriusIOPage extends StatelessWidget {
-  const MercuriusIOPage({Key? key}) : super(key: key);
+  const MercuriusIOPage({super.key});
 
   @override
   Widget build(BuildContext context) {

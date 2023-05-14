@@ -11,13 +11,12 @@ class MercuriusConstance {
   /// 联系 url
   static const String contactUrl = 'https://github.com/Cierra-Runis/';
 
-  /// TODO: 计划改进亮色模式下的“加载中”组件的文字对比度
   /// 亮色模式下的颜色集
   static const lightColorScheme = ColorScheme(
     brightness: Brightness.light,
     primary: Color(0xFF0061A2), // 普通按钮前景色
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFD1E4FF), // 浮动按钮背景色
+    primaryContainer: Color(0xFFADCFFF), // 浮动按钮背景色
     onPrimaryContainer: Color(0xFF001D36),
     secondary: Color(0xFF535F70),
     onSecondary: Color(0xFFFFFFFF),

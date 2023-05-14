@@ -3,9 +3,9 @@ import 'package:mercurius/index.dart';
 class DiaryMoodSelectorWidget extends ConsumerWidget {
   /// 自定义组件
   const DiaryMoodSelectorWidget({
-    Key? key,
+    super.key,
     required this.diary,
-  }) : super(key: key);
+  });
 
   final Diary diary;
 

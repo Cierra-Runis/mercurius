@@ -2,12 +2,11 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
   DiaryEditorToolbarImageButtonWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.context,
     required String path,
   }) : super(
-          key: key,
           size: 18 * 1.77,
           borderRadius: 12,
           onPressed: () => _onPressed(controller, context, path),

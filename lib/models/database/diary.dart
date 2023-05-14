@@ -9,8 +9,8 @@ class Diary {
     required this.id,
     required this.createDateTime,
     required this.latestEditTime,
-    this.titleString,
-    this.contentJsonString,
+    required this.contentJsonString,
+    this.titleString = '',
     this.moodType = DiaryMoodType.defaultType,
     this.weatherType = DiaryWeatherType.defaultType,
   });
@@ -25,10 +25,10 @@ class Diary {
   final DateTime latestEditTime;
 
   /// 标题串
-  final String? titleString;
+  final String titleString;
 
   /// 内容 json 串
-  final String? contentJsonString;
+  final String contentJsonString;
 
   /// 枚举类型 [DiaryWeatherType]
   @enumerated
@@ -37,6 +37,9 @@ class Diary {
   /// 枚举类型 [DiaryMoodType]
   @enumerated
   final DiaryMoodType moodType;
+
+  @ignore
+  Document get document => Document.fromJson(jsonDecode(contentJsonString));
 
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);

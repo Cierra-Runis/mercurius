@@ -68,7 +68,7 @@ class IsarService extends _$IsarService {
     final isar = await _db;
     List<Map<String, dynamic>> data = await isar.diarys.where().exportJson();
     File file = await File(path).create();
-    await file.writeAsString(data.toString());
+    await file.writeAsString(jsonEncode(data));
   }
 
   /// 打开数据库

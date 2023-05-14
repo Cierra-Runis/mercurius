@@ -2,11 +2,11 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorBodyWidget extends StatelessWidget {
   const DiaryEditorBodyWidget({
-    Key? key,
+    super.key,
     required this.scrollController,
     required this.controller,
     required this.readOnly,
-  }) : super(key: key);
+  });
 
   final ScrollController scrollController;
   final QuillController controller;

@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 class MercuriusBottomBarWidget extends StatelessWidget {
   const MercuriusBottomBarWidget({
-    Key? key,
+    super.key,
     required this.items,
     required this.colorScheme,
     this.currentIndex = 0,
@@ -13,7 +13,7 @@ class MercuriusBottomBarWidget extends StatelessWidget {
     this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.easeOutQuint,
-  }) : super(key: key);
+  });
 
   /// 要显示的选项卡列表，即 `Home` `Likes` 等
   final List<MercuriusBottomBarItem> items;

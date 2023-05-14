@@ -6,11 +6,11 @@ class MercuriusListWidget extends StatelessWidget {
   final bool shrinkWrap;
 
   const MercuriusListWidget({
-    Key? key,
+    super.key,
     this.padding,
     this.children = const <Widget>[],
     this.shrinkWrap = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
