@@ -1,4 +1,3 @@
-export 'database/index.dart';
 export 'web/index.dart';
 
 export 'profile.dart';

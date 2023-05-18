@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.4.2+63
+version: 0.4.3+64
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -18,11 +18,11 @@ dependencies:
   confetti: ^0.7.0 # 彩纸效果 [https://pub.dev/packages/confetti]
   cross_file: ^0.3.3+4 # 文件操作 [https://pub.dev/packages/cross_file]
   dio: ^5.1.2 # 网络请求 [https://pub.dev/packages/dio]
-  dart_date: ^1.2.1 # 转换时间工具 [https://pub.dev/packages/dart_date]
+  dart_date: ^1.2.2 # 转换时间工具 [https://pub.dev/packages/dart_date]
   file_picker: ^5.3.0 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.1.18 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.1.19 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^0.8.7+5 # 图片选择 [https://pub.dev/packages/image_picker]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
@@ -41,8 +41,7 @@ dependencies:
   share_plus: ^7.0.0 # 分享 [https://pub.dev/packages/share_plus]
   shared_preferences: ^2.1.1 # 数据持久化 [https://pub.dev/packages/shared_preferences]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
-  syncfusion_flutter_charts: ^21.2.4 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
-  table_calendar: ^3.0.9 # 日历 [https://pub.dev/packages/table_calendar]
+  syncfusion_flutter_charts: ^21.2.5 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   url_launcher: ^6.1.11 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.7.7 # 振动反馈 [https://pub.dev/packages/vibration]
@@ -55,12 +54,9 @@ dev_dependencies:
   build_runner: ^2.4.4 # 代码生成用实用工具 [https://pub.dev/packages/build_runner]
   custom_lint: ^0.4.0 # 自定义 lint [https://pub.dev/packages/custom_lint]
   isar_generator: ^3.1.0+1 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
-  json_serializable: ^6.6.2 # json 相关 [https://pub.dev/packages/json_serializable]
+  json_serializable: ^6.7.0 # json 相关 [https://pub.dev/packages/json_serializable]
   riverpod_generator: ^2.2.3 # riverpod 代码生成工具 [https://pub.dev/packages/riverpod]
   riverpod_lint: ^1.3.2 # riverpod 代码检查 [https://pub.dev/packages/riverpod_lint]
-
-dependency_overrides:
-  intl: ^0.17.0
 
 flutter:
   uses-material-design: true # 启用 material3 设计

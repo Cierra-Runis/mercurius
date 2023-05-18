@@ -55,7 +55,6 @@ export 'package:share_plus/share_plus.dart'; // 分享
 export 'package:shared_preferences/shared_preferences.dart'; // 数据持久化
 export 'package:sticky_and_expandable_list/sticky_and_expandable_list.dart'; // 粘性头部与分组列表
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表
-export 'package:table_calendar/table_calendar.dart'; // 日历
 export 'package:url_launcher/url_launcher_string.dart'; // 打开外部链接
 export 'package:unicons/unicons.dart'; // 图标
 export 'package:vibration/vibration.dart'; // 振动反馈

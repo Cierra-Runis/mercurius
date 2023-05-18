@@ -22,12 +22,6 @@ class MercuriusPosition extends _$MercuriusPosition {
     return position;
   }
 
-  void refreshPosition() async {
-    final profile = await ref.watch(mercuriusProfileProvider.future);
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() => _getAMap(profile));
-  }
-
   /// 使用高德 api 获取位置
   Future<CachePosition> _getAMap(Profile profile) async {
     Response response;

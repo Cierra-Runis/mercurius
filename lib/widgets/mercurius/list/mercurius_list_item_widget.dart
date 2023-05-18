@@ -24,7 +24,7 @@ class MercuriusListItemWidget extends ConsumerWidget {
   });
 
   final EdgeInsets? padding;
-  final Icon? icon;
+  final Widget? icon;
   final IconData? iconData;
   final String? titleText;
   final TextStyle? titleTextStyle;

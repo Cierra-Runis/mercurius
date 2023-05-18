@@ -8,18 +8,7 @@ class MercuriusHomePage extends ConsumerStatefulWidget {
 }
 
 class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
-  bool _currentListViewMode = true;
   bool _currentSearchBarMode = false;
-
-  void _switchCurrentViewMode() {
-    MercuriusKit.vibration(ref: ref);
-    ref.watch(diarySearchTextProvider.notifier).change();
-
-    setState(() {
-      _currentListViewMode = !_currentListViewMode;
-      _currentSearchBarMode = false;
-    });
-  }
 
   void _switchCurrentBarMode() {
     MercuriusKit.vibration(ref: ref);
@@ -62,33 +51,21 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: const MercuriusAppBarUserIconWidget(),
-        title: AnimatedCrossFade(
-          crossFadeState: _currentSearchBarMode
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
+        title: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          firstChild: const DiarySearchBarWidget(),
-          secondChild: const MercuriusAppBarTitleWidget(),
+          child: _currentSearchBarMode
+              ? const DiarySearchBarWidget()
+              : const MercuriusAppBarTitleWidget(),
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: _currentListViewMode ? _switchCurrentBarMode : null,
+            onPressed: _switchCurrentBarMode,
             icon: const Icon(Icons.search),
           ),
-          IconButton(
-            onPressed: _switchCurrentViewMode,
-            icon: Icon(
-              _currentListViewMode
-                  ? Icons.calendar_month_rounded
-                  : Icons.list_alt_rounded,
-            ),
-          )
         ],
       ),
-      body: _currentListViewMode
-          ? const DiaryListViewWidget()
-          : const DiaryCalendarViewWidget(),
+      body: const DiaryListViewWidget(),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),

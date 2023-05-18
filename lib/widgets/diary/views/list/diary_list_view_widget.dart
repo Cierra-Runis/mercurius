@@ -46,7 +46,7 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
           return Container(
             color: Theme.of(context).colorScheme.background,
             child: MercuriusListItemWidget(
-              iconData: Icons.directions_subway,
+              icon: const MercuriusAppIconWidget(size: 28),
               titleText: sections[sectionIndex].header,
               accessoryView: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
