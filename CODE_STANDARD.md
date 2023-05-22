@@ -127,7 +127,7 @@
 7. 项目结构
 
     - `.release_tool` 文件夹
-        - 该文件夹保有发布用工具，其中 `main.py` 用于构建新版本，并决定是否将 `mercurius_warehouse` 发布
+        - 该文件夹保有发布用工具，其中 `main.py` 用于构建新版本，并决定是否将 `mercurius` 发布
     - `assets` 文件夹
         - 该文件夹保有字体和图片，`assets\fonts\Saira.ttf` 用于 `Mercurius` 的主要字体
     - `lib` 文件夹

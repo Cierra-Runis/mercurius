@@ -201,7 +201,7 @@ def main_module() -> None:
             ' --split-debug-info=splitMap' +
             ' --target-platform android-arm64' + ' --split-per-abi', )
 
-        # 并将 build 后的 apk 转移至 .release_tool/mercurius_warehouse
+        # 并将 build 后的 apk 转移至 .release_tool/
         copy_file(
             src_file=FileStr.app_arm64_v8a_release_apk.value,
             dst_path=FileStr.release_tool_dir.value,
