@@ -16,7 +16,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "app-arm64-v8a-release.apk"
-          tag: "v0.4.3+64"
+          tag: "v0.5.0+65"
           bodyFile: "body.md"
           skipIfReleaseExists: true
           token: ${{ secrets.WAREHOUSE_TOKEN }}
