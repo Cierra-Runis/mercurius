@@ -64,14 +64,11 @@ class _VibrationSelectListItem extends ConsumerWidget {
         return MercuriusModifiedListSwitchItem(
           iconData: Icons.vibration,
           titleText: '按钮振动',
-          value: false,
-          onChanged: (value) {},
-          // detailText: profile.buttonVibration! ? '开启' : '关闭',
-          // value: profile.buttonVibration!,
-          // onChanged: (value) =>
-          //     ref.watch(mercuriusProfileProvider.notifier).changeProfile(
-          //           profile..buttonVibration = value,
-          //         ),
+          detailText: snapshot.data!.buttonVibration ? '开启' : '关闭',
+          value: snapshot.data!.buttonVibration,
+          onChanged: (value) => isarService.saveConfig(
+            snapshot.data!..buttonVibration = !snapshot.data!.buttonVibration,
+          ),
         );
       },
     );
