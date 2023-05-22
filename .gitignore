@@ -1,5 +1,46 @@
-app-armeabi-v7a-release.apk
-app-debug.apk
-app-x86_64-release.apk
-app.apk
-app.apk.sha1
+# 杂七杂八
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ 相关
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter/Dart/Pub 相关
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# 符号相关d
+app.*.symbols
+
+# 混淆相关
+app.*.map.json
+
+# Android Studio 构建
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# 子仓库
+.release_tool/mercurius_warehouse/
+
+# api 私有 key
+
+lib/common/mercurius_key.dart
