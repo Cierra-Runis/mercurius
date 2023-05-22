@@ -75,7 +75,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
   }
 
   static void _insertImage(QuillController controller, String targetFilePath) {
-    MercuriusKit.printLog(targetFilePath);
+    Mercurius.printLog(targetFilePath);
 
     controller.document.insert(controller.selection.extentOffset, '\n');
     controller.updateSelection(

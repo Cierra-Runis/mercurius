@@ -8,14 +8,12 @@ part 'github_latest_release.g.dart';
 Future<GithubLatestRelease> githubLatestRelease(
   GithubLatestReleaseRef ref,
 ) async {
-  MercuriusKit.printLog('GithubLatestRelease 初始化中');
+  Mercurius.printLog('GithubLatestRelease 初始化中');
 
   const String url =
       'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
 
-  String? currentVersion = await ref.watch(
-    mercuriusProfileProvider.selectAsync((data) => data.currentVersion),
-  );
+  String currentVersion = await ref.watch(currentVersionProvider.future);
 
   GithubLatestRelease githubLatestRelease = GithubLatestRelease()
     ..tag_name = currentVersion;
@@ -24,7 +22,7 @@ Future<GithubLatestRelease> githubLatestRelease(
   try {
     response = await Dio().get(url);
   } catch (e) {
-    MercuriusKit.printLog('GithubLatestRelease 连接失败');
+    Mercurius.printLog('GithubLatestRelease 连接失败');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode(
         '{"tag_name": "$currentVersion"}',
@@ -33,15 +31,15 @@ Future<GithubLatestRelease> githubLatestRelease(
     return githubLatestRelease;
   }
 
-  MercuriusKit.printLog('GithubLatestRelease 连接成功');
+  Mercurius.printLog('GithubLatestRelease 连接成功');
 
   if (response.statusCode == 200) {
-    MercuriusKit.printLog('GithubLatestRelease 请求成功');
+    Mercurius.printLog('GithubLatestRelease 请求成功');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode('$response'),
     );
   } else {
-    MercuriusKit.printLog('GithubLatestRelease 请求失败');
+    Mercurius.printLog('GithubLatestRelease 请求失败');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode(
         '{"tag_name": "$currentVersion"}',

@@ -1,6 +1,5 @@
 /// 各路由下的 index.dart
 export 'common/index.dart';
-export 'models/index.dart';
 export 'pages/index.dart';
 export 'states/index.dart';
 export 'widgets/index.dart';
@@ -52,7 +51,6 @@ export 'package:photo_view/photo_view.dart'; // 图片视图
 export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
 export 'package:qweather_icons/qweather_icons.dart'; // QWeather 图标
 export 'package:share_plus/share_plus.dart'; // 分享
-export 'package:shared_preferences/shared_preferences.dart'; // 数据持久化
 export 'package:sticky_and_expandable_list/sticky_and_expandable_list.dart'; // 粘性头部与分组列表
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表
 export 'package:url_launcher/url_launcher_string.dart'; // 打开外部链接

@@ -1,5 +1,4 @@
 import 'package:mercurius/index.dart';
-
 part 'diary.g.dart';
 
 @collection

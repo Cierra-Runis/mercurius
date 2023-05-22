@@ -6,7 +6,7 @@ part of 'mercurius_path.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mercuriusPathHash() => r'e92da1444e488a426de828325b786c7a855bde78';
+String _$mercuriusPathHash() => r'ab96926293c533f4fe2cd368f127a90c2e0eaf21';
 
 /// See also [mercuriusPath].
 @ProviderFor(mercuriusPath)

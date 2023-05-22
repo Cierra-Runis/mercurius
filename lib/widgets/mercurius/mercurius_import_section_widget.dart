@@ -16,12 +16,10 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
             await FilePicker.platform.clearTemporaryFiles();
             FilePickerResult? result = await FilePicker.platform.pickFiles();
             if (result != null) {
-              ref
-                  .watch(isarServiceProvider.notifier)
-                  .importJsonWith(result.files.single.path!);
+              isarService.importJsonWith(result.files.single.path!);
             }
             if (context.mounted) {
-              MercuriusKit.vibration(ref: ref, duration: 300);
+              Mercurius.vibration(ref: ref, duration: 300);
               Flushbar(
                 icon: const Icon(UniconsLine.smile),
                 isDismissible: false,

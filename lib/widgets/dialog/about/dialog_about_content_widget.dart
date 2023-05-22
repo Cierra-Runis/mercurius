@@ -19,13 +19,13 @@ class DialogAboutContentWidget extends StatelessWidget {
       [
         Icons.privacy_tip_rounded,
         '隐私政策',
-        '${MercuriusConstance.name} 隐私政策',
+        '${Mercurius.name} 隐私政策',
         const MercuriusJsonToDialogWidget(jsonPath: 'assets/json/privacy.json')
       ],
       [
         Icons.bookmark,
         '用户协议',
-        '${MercuriusConstance.name} 用户协议',
+        '${Mercurius.name} 用户协议',
         const MercuriusJsonToDialogWidget(
           jsonPath: 'assets/json/agreement.json',
         ),
@@ -55,9 +55,9 @@ class DialogAboutContentWidget extends StatelessWidget {
             MercuriusListItemWidget(
               iconData: Icons.link,
               titleText: '联系我们',
-              summaryText: MercuriusConstance.contactUrl,
+              summaryText: Mercurius.contactUrl,
               onTap: () => launchUrlString(
-                MercuriusConstance.contactUrl,
+                Mercurius.contactUrl,
                 mode: LaunchMode.externalApplication,
               ),
             ),

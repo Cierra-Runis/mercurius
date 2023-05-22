@@ -11,13 +11,13 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   bool _currentSearchBarMode = false;
 
   void _switchCurrentBarMode() {
-    MercuriusKit.vibration(ref: ref);
+    Mercurius.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
     setState(() => _currentSearchBarMode = !_currentSearchBarMode);
   }
 
   void _floatingButtonOnPressed() async {
-    MercuriusKit.vibration(ref: ref);
+    Mercurius.vibration(ref: ref);
 
     DateTime? dateTime = await showDatePicker(
       context: context,
@@ -50,7 +50,10 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const MercuriusAppBarUserIconWidget(),
+        leading: const IconButton(
+          icon: Icon(UniconsLine.user_circle),
+          onPressed: null,
+        ),
         title: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           child: _currentSearchBarMode

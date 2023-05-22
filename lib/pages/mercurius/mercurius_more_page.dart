@@ -7,7 +7,6 @@ class MercuriusMorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const MercuriusAppBarUserIconWidget(),
         title: const MercuriusAppBarTitleWidget(),
         centerTitle: true,
       ),
@@ -16,10 +15,6 @@ class MercuriusMorePage extends StatelessWidget {
         children: [
           Expanded(
             child: MercuriusMorePageListWidget(context: context),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(10),
-            child: MercuriusHiToKoToWidget(),
           ),
         ],
       ),

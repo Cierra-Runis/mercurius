@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mercurius_profile.dart';
+part of 'current_version.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mercuriusProfileHash() => r'fd5092bb5883541a88384144cf443746167198f5';
+String _$currentVersionHash() => r'c100f26f76f6fd80204097d6e53b26af1d7cafb0';
 
-/// See also [MercuriusProfile].
-@ProviderFor(MercuriusProfile)
-final mercuriusProfileProvider =
-    AutoDisposeAsyncNotifierProvider<MercuriusProfile, Profile>.internal(
-  MercuriusProfile.new,
-  name: r'mercuriusProfileProvider',
+/// See also [currentVersion].
+@ProviderFor(currentVersion)
+final currentVersionProvider = AutoDisposeFutureProvider<String>.internal(
+  currentVersion,
+  name: r'currentVersionProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$mercuriusProfileHash,
+      : _$currentVersionHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$MercuriusProfile = AutoDisposeAsyncNotifier<Profile>;
+typedef CurrentVersionRef = AutoDisposeFutureProviderRef<String>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

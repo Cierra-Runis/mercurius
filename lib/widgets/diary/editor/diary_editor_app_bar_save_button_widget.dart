@@ -23,7 +23,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
             .replaceAll(RegExp(r'\n'), '')
             .replaceAll(RegExp(r' '), '');
         if (plainText == '') {
-          MercuriusKit.vibration(ref: ref, duration: 300);
+          Mercurius.vibration(ref: ref, duration: 300);
           Flushbar(
             icon: const Icon(UniconsLine.confused),
             isDismissible: false,
@@ -52,7 +52,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
             flushbarPosition: FlushbarPosition.TOP,
           ).show(context);
         } else {
-          MercuriusKit.vibration(ref: ref);
+          Mercurius.vibration(ref: ref);
           Diary newDiary = Diary.copyWith(
             currentDiary,
             contentJsonString: jsonEncode(
@@ -62,7 +62,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
             titleString: title.text,
           );
           handleAppBarChangeDiary(newDiary);
-          ref.watch(isarServiceProvider.notifier).saveDiary(newDiary);
+          isarService.saveDiary(newDiary);
           Navigator.of(context).pop(newDiary);
         }
       },

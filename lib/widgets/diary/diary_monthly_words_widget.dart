@@ -106,8 +106,7 @@ class _DiaryMonthlyWordsWidgetState
 
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    List<Diary> diaries =
-        await ref.watch(isarServiceProvider.notifier).getAllDiaries();
+    List<Diary> diaries = await isarService.getAllDiaries();
 
     if (diaries.isEmpty) {
       return result;

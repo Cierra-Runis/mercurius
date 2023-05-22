@@ -57,8 +57,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
     return Dismissible(
       key: ValueKey(diary.id),
       direction: DismissDirection.endToStart,
-      onDismissed: (_) =>
-          ref.watch(isarServiceProvider.notifier).deleteDiaryById(diary.id),
+      onDismissed: (_) => isarService.deleteDiaryById(diary.id),
       confirmDismiss: (_) => MercuriusConfirmDialogWidget(
         context: context,
         title: '确认删除吗？',
@@ -71,7 +70,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
         ),
         child: InkWell(
           onTap: () async {
-            MercuriusKit.vibration(ref: ref);
+            Mercurius.vibration(ref: ref);
             await showDialog<void>(
               context: context,
               builder: (context) => DiaryPageViewWidget(

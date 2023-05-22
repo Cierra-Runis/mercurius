@@ -16,6 +16,7 @@ class MercuriusReleasePage extends ConsumerWidget {
       ),
       body: Center(
         child: githubLatestRelease.when(
+          skipLoadingOnRefresh: false,
           loading: () => const MercuriusLoadingWidget(),
           error: (error, stackTrace) => Container(),
           data: (data) => Markdown(

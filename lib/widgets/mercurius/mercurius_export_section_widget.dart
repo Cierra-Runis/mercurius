@@ -14,7 +14,7 @@ class MercuriusExportSectionWidget extends ConsumerWidget {
           onTap: () async {
             String path =
                 '${await ref.watch(mercuriusPathProvider.future)}/export.json';
-            ref.watch(isarServiceProvider.notifier).exportJsonWith(path);
+            isarService.exportJsonWith(path);
             Share.shareXFiles([XFile(path)]);
           },
         ),

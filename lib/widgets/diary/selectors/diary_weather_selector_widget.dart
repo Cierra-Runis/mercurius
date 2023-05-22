@@ -66,7 +66,7 @@ class DiaryWeatherSelectorDialogWidget extends ConsumerWidget {
       actions: [
         TextButton(
           onPressed: () {
-            MercuriusKit.vibration(ref: ref);
+            Mercurius.vibration(ref: ref);
             Navigator.of(context).pop();
           },
           child: const Text('返回'),

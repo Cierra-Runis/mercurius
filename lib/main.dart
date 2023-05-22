@@ -3,20 +3,21 @@ import 'package:mercurius/index.dart';
 /// 全局导航 key
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() => runApp(const ProviderScope(child: MercuriusApp()));
+/// isar 数据库
+final isarService = IsarService();
 
-class MercuriusApp extends ConsumerWidget {
+void main() => Mercurius.run();
+
+class MercuriusApp extends StatelessWidget {
   const MercuriusApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    MercuriusKit.printLog('正在构建 $this');
-
-    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+  Widget build(BuildContext context) {
+    Mercurius.printLog('正在构建 $this');
 
     ThemeData theme = ThemeData(
       useMaterial3: true,
-      colorScheme: MercuriusConstance.lightColorScheme,
+      colorScheme: Mercurius.lightColorScheme,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
@@ -25,38 +26,33 @@ class MercuriusApp extends ConsumerWidget {
 
     ThemeData darkTheme = ThemeData(
       useMaterial3: true,
-      colorScheme: MercuriusConstance.darkColorScheme,
+      colorScheme: Mercurius.darkColorScheme,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
       fontFamily: 'Saira',
     );
 
-    return MaterialApp(
-      scrollBehavior: const CupertinoScrollBehavior(),
-      navigatorKey: navigatorKey,
-      theme: theme,
-      darkTheme: darkTheme,
-      themeMode: mercuriusProfile.when(
-        loading: () {
-          MercuriusKit.printLog('正在读取 MercuriusProfile 中的 themeMode');
-          return ThemeMode.system;
-        },
-        error: (error, stackTrace) => ThemeMode.system,
-        data: (data) {
-          MercuriusKit.printLog('读取完毕 MercuriusProfile 中的 themeMode');
-          return data.themeMode;
-        },
-      ),
-      home: const MercuriusSplashPage(),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      supportedLocales: const [
-        Locale('zh', 'CN'),
-      ],
+    return StreamBuilder(
+      stream: isarService.listenToConfig(),
+      builder: (context, snapshot) {
+        return MaterialApp(
+          scrollBehavior: const CupertinoScrollBehavior(),
+          navigatorKey: navigatorKey,
+          theme: theme,
+          darkTheme: darkTheme,
+          themeMode: snapshot.data?.themeMode,
+          home: const MercuriusSplashPage(),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          supportedLocales: const [
+            Locale('zh', 'CN'),
+          ],
+        );
+      },
     );
   }
 }

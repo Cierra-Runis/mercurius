@@ -16,7 +16,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
 
     List<Diary> diaries = snapshot.data!;
 
-    MercuriusKit.printLog(diary.id.toString());
+    Mercurius.printLog(diary.id.toString());
 
     /// FIXME: 问题见 https://github.com/flutter/flutter/issues/45632
     return PageView.builder(
@@ -26,7 +26,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
       ),
       allowImplicitScrolling: true,
       itemBuilder: (context, index) {
-        MercuriusKit.printLog(diaries[index].id.toString());
+        Mercurius.printLog(diaries[index].id.toString());
         return DiaryPageViewCardWidget(
           key: ValueKey(diaries[index].id),
           diary: diaries[index],
@@ -55,8 +55,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return StreamBuilder<List<Diary>>(
-      stream: ref
-          .watch(isarServiceProvider.notifier)
+      stream: isarService
           .listenToDiariesContains(ref.watch(diarySearchTextProvider)),
       builder: (
         BuildContext context,

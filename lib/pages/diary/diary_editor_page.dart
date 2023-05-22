@@ -49,7 +49,7 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
       appBar: AppBar(
         leading: TextButton(
           onPressed: () {
-            MercuriusKit.vibration(ref: ref);
+            Mercurius.vibration(ref: ref);
             Navigator.of(context).pop();
           },
           child: const Text('取消'),

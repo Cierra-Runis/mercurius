@@ -24,7 +24,7 @@ class DiaryImageViewWidget extends ConsumerWidget {
           alignment: Alignment.topRight,
           child: CloseButton(
             onPressed: () {
-              MercuriusKit.vibration(ref: ref);
+              Mercurius.vibration(ref: ref);
               Navigator.of(context).pop();
             },
           ),

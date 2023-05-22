@@ -6,7 +6,7 @@ part of 'qweather_now.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QWeather _$QWeatherFromJson(Map<String, dynamic> json) => QWeather()
+_QWeather _$QWeatherFromJson(Map<String, dynamic> json) => _QWeather()
   ..code = json['code'] as String?
   ..updateTime = json['updateTime'] as String?
   ..fxLink = json['fxLink'] as String?
@@ -17,7 +17,7 @@ QWeather _$QWeatherFromJson(Map<String, dynamic> json) => QWeather()
       ? null
       : QWeatherRefer.fromJson(json['refer'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$QWeatherToJson(QWeather instance) => <String, dynamic>{
+Map<String, dynamic> _$QWeatherToJson(_QWeather instance) => <String, dynamic>{
       'code': instance.code,
       'updateTime': instance.updateTime,
       'fxLink': instance.fxLink,
@@ -79,7 +79,7 @@ Map<String, dynamic> _$QWeatherReferToJson(QWeatherRefer instance) =>
 // RiverpodGenerator
 // **************************************************************************
 
-String _$qWeatherNowHash() => r'9edd6d1ba917a450d2a414609726c5b639ad67fc';
+String _$qWeatherNowHash() => r'3ea3cc4e71bd3b259d5f6c0beafb38e2fa72291c';
 
 /// See also [qWeatherNow].
 @ProviderFor(qWeatherNow)

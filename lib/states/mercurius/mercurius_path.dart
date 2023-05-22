@@ -4,7 +4,7 @@ part 'mercurius_path.g.dart';
 
 @riverpod
 Future<String> mercuriusPath(MercuriusPathRef ref) async {
-  MercuriusKit.printLog('MercuriusPath 初始化中');
+  Mercurius.printLog('MercuriusPath 初始化中');
 
   /// TIPS: 即 /storage/emulated/0/Android/data/pers.cierra_runis.mercurius/files
   Directory? directory = await getExternalStorageDirectory();
@@ -13,7 +13,7 @@ Future<String> mercuriusPath(MercuriusPathRef ref) async {
   Directory imageDirectory = Directory('$path/image/');
   if (!imageDirectory.existsSync()) imageDirectory.create();
 
-  MercuriusKit.printLog('MercuriusPath 初始化为 $path');
+  Mercurius.printLog('MercuriusPath 初始化为 $path');
 
   return path;
 }

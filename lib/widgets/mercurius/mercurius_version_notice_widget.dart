@@ -6,7 +6,7 @@ class MercuriusVersionNoticeWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+    final currentVersion = ref.watch(currentVersionProvider);
 
     return TextButton(
       onPressed: () => Navigator.push(
@@ -19,10 +19,10 @@ class MercuriusVersionNoticeWidget extends ConsumerWidget {
         backgroundColor: githubLatestRelease.when(
           loading: () => false,
           error: (error, stackTrace) => false,
-          data: (github) => mercuriusProfile.when(
+          data: (github) => currentVersion.when(
             loading: () => false,
             error: (error, stackTrace) => false,
-            data: (profile) => profile.currentVersion != github.tag_name,
+            data: (currentVersion) => currentVersion != github.tag_name,
           ),
         )
             ? Colors.red
@@ -35,20 +35,20 @@ class MercuriusVersionNoticeWidget extends ConsumerWidget {
         showBadge: githubLatestRelease.when(
           loading: () => false,
           error: (error, stackTrace) => false,
-          data: (github) => mercuriusProfile.when(
+          data: (github) => currentVersion.when(
             loading: () => false,
             error: (error, stackTrace) => false,
-            data: (profile) => profile.currentVersion != github.tag_name,
+            data: (currentVersion) => currentVersion != github.tag_name,
           ),
         ),
         child: Text(
           githubLatestRelease.when(
             loading: () => false,
             error: (error, stackTrace) => false,
-            data: (github) => mercuriusProfile.when(
+            data: (github) => currentVersion.when(
               loading: () => false,
               error: (error, stackTrace) => false,
-              data: (profile) => profile.currentVersion != github.tag_name,
+              data: (currentVersion) => currentVersion != github.tag_name,
             ),
           )
               ? '点此更新版本'

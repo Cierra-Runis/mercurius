@@ -9,7 +9,7 @@ void main() {
       GithubLatestRelease githubLatestRelease = GithubLatestRelease.fromJson(
         jsonDecode(''),
       );
-      MercuriusKit.printLog('${githubLatestRelease.toJson()}');
+      Mercurius.printLog('${githubLatestRelease.toJson()}');
     },
   );
 }

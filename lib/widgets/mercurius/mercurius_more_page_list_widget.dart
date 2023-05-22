@@ -11,7 +11,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+    final currentVersion = ref.watch(currentVersionProvider);
 
     List<List<dynamic>> data = [
       [Icons.analytics, '统计数据', const DiaryStatisticPage()],
@@ -44,10 +44,10 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
               showAccessoryViewBadge: githubLatestRelease.when(
                 loading: () => false,
                 error: (error, stackTrace) => false,
-                data: (github) => mercuriusProfile.when(
+                data: (github) => currentVersion.when(
                   loading: () => false,
                   error: (error, stackTrace) => false,
-                  data: (profile) => profile.currentVersion != github.tag_name,
+                  data: (currentVersion) => currentVersion != github.tag_name,
                 ),
               ),
               titleText: '关于',

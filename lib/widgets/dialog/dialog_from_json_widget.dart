@@ -33,7 +33,7 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('${MercuriusConstance.name} $title'),
+                Text('${Mercurius.name} $title'),
                 Text(
                   updateDate,
                   style: TextStyle(

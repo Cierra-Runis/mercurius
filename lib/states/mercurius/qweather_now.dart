@@ -7,17 +7,16 @@ Future<QWeatherNow> qWeatherNow(
   QWeatherNowRef ref,
 ) async {
   ref.keepAlive();
-
-  CachePosition cachePosition =
-      await ref.watch(mercuriusPositionProvider.future);
+  CurrentPosition currentPosition =
+      await ref.watch(currentPositionProvider.future);
 
   String apiName = MercuriusApi.qWeather.apiName;
   String apiUrl = MercuriusApi.qWeather.apiUrl;
   String aqiKey = MercuriusApi.qWeather.apiKey;
 
-  MercuriusKit.printLog('$apiName 初始化中');
+  Mercurius.printLog('$apiName 初始化中');
 
-  QWeather qWeather = QWeather();
+  _QWeather qWeather = _QWeather();
   QWeatherNow qWeatherNow = QWeatherNow();
 
   Response response;
@@ -26,31 +25,31 @@ Future<QWeatherNow> qWeatherNow(
       apiUrl,
       queryParameters: {
         'key': aqiKey,
-        'location': '${cachePosition.latitude},${cachePosition.longitude}',
+        'location': '${currentPosition.latitude},${currentPosition.longitude}',
       },
     );
   } catch (e) {
-    MercuriusKit.printLog('$apiName 连接失败');
+    Mercurius.printLog('$apiName 连接失败');
     return qWeatherNow;
   }
 
-  MercuriusKit.printLog('$apiName 连接成功');
+  Mercurius.printLog('$apiName 连接成功');
 
   if (response.statusCode == 200) {
-    MercuriusKit.printLog('$apiName 请求成功 $response');
-    qWeather = QWeather.fromJson(
+    Mercurius.printLog('$apiName 请求成功 $response');
+    qWeather = _QWeather.fromJson(
       jsonDecode('$response'),
     );
   } else {
-    MercuriusKit.printLog('$apiName 请求失败');
+    Mercurius.printLog('$apiName 请求失败');
   }
 
   return qWeather.now ?? qWeatherNow;
 }
 
 @JsonSerializable()
-class QWeather {
-  QWeather();
+class _QWeather {
+  _QWeather();
 
   String? code;
   String? updateTime;
@@ -58,7 +57,7 @@ class QWeather {
   QWeatherNow? now;
   QWeatherRefer? refer;
 
-  factory QWeather.fromJson(Map<String, dynamic> json) =>
+  factory _QWeather.fromJson(Map<String, dynamic> json) =>
       _$QWeatherFromJson(json);
   Map<String, dynamic> toJson() => _$QWeatherToJson(this);
 }

@@ -5,12 +5,12 @@ class DialogAboutTitleWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+    final currentVersion = ref.watch(currentVersionProvider);
 
     return Column(
       children: [
         const Text(
-          MercuriusConstance.name,
+          Mercurius.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontFamily: 'Saira',
@@ -19,10 +19,10 @@ class DialogAboutTitleWidget extends ConsumerWidget {
         Row(
           children: [
             Text(
-              mercuriusProfile.when(
+              currentVersion.when(
                 loading: () => '未知版本',
                 error: (error, stackTrace) => '版本获取失败',
-                data: (profile) => '${profile.currentVersion}',
+                data: (data) => data,
               ),
               style: const TextStyle(
                 fontSize: 12,

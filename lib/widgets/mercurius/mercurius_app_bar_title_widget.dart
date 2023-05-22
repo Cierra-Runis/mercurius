@@ -5,7 +5,7 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mercuriusPosition = ref.watch(mercuriusPositionProvider);
+    final currentPosition = ref.watch(currentPositionProvider);
 
     return Column(
       children: [
@@ -24,12 +24,10 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
               size: 6,
             ),
             Text(
-              mercuriusPosition.when(
-                loading: () =>
-                    ' ${CachePosition().latitude}N ${CachePosition().longitude}E ',
+              currentPosition.when(
+                loading: () => ' ${CurrentPosition().humanFormat} ',
                 error: (error, stackTrace) => '错误',
-                data: (cachePosition) =>
-                    ' ${cachePosition.latitude}N ${cachePosition.longitude}E ',
+                data: (data) => ' ${data.humanFormat} ',
               ),
               style: const TextStyle(
                 fontSize: 8,
@@ -49,8 +47,8 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
           ],
         ),
         Text(
-          mercuriusPosition.when(
-            loading: () => CachePosition().city,
+          currentPosition.when(
+            loading: () => CurrentPosition().city,
             error: (error, stackTrace) => '获取中',
             data: (cachePosition) => cachePosition.city,
           ),

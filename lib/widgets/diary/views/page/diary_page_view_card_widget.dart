@@ -119,15 +119,13 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                           children: [
                             IconButton(
                               onPressed: () async {
-                                MercuriusKit.vibration(ref: ref);
+                                Mercurius.vibration(ref: ref);
                                 bool? confirm =
                                     await MercuriusConfirmDialogWidget(
                                   context: context,
                                 ).confirm;
                                 if (confirm == true) {
-                                  ref
-                                      .watch(isarServiceProvider.notifier)
-                                      .deleteDiaryById(diary.id);
+                                  isarService.deleteDiaryById(diary.id);
                                 }
                               },
                               icon: const Icon(Icons.delete_outline_rounded),
@@ -138,7 +136,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                           children: [
                             IconButton(
                               onPressed: () async {
-                                MercuriusKit.vibration(ref: ref);
+                                Mercurius.vibration(ref: ref);
                                 await _showDiaryEditorPage(
                                   context,
                                   diary,
@@ -148,7 +146,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                             ),
                             IconButton(
                               onPressed: () {
-                                MercuriusKit.vibration(ref: ref);
+                                Mercurius.vibration(ref: ref);
                                 Share.share(
                                   '${diary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
                                   '天气：${diary.weatherType.weather}\n'
@@ -176,7 +174,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
             padding: const EdgeInsets.all(16.0),
             child: CloseButton(
               onPressed: () {
-                MercuriusKit.vibration(ref: ref);
+                Mercurius.vibration(ref: ref);
                 Navigator.pop(context);
               },
             ),

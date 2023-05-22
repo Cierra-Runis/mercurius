@@ -15,7 +15,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   ];
 
   void _onItemTapped(int index) {
-    MercuriusKit.vibration(ref: ref);
+    Mercurius.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
     setState(() => _selectedIndex = index);
   }
@@ -23,7 +23,6 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const DevLogDrawerWidget(),
       drawerEdgeDragWidth: MediaQuery.of(context).size.width / 3,
       body: Center(
         child: MercuriusDoubleBackWidget(
@@ -67,16 +66,16 @@ class _MercuriusBottomBarMorePageItemIconWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final mercuriusProfile = ref.watch(mercuriusProfileProvider);
+    final currentVersion = ref.watch(currentVersionProvider);
     return Badge(
       showBadge: githubLatestRelease.when(
         loading: () => false,
         error: (error, stackTrace) => false,
-        data: (githubLatestRelease) => mercuriusProfile.when(
+        data: (githubLatestRelease) => currentVersion.when(
           loading: () => false,
           error: (error, stackTrace) => false,
-          data: (profile) =>
-              profile.currentVersion != githubLatestRelease.tag_name,
+          data: (currentVersion) =>
+              currentVersion != githubLatestRelease.tag_name,
         ),
       ),
       child: const Icon(Icons.more_horiz),
