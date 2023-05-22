@@ -1,0 +1,10 @@
+# https://dart.cn/guides/language/analysis-options
+
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  plugins:
+    - custom_lint
+
+linter:
+  rules:
