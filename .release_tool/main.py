@@ -246,7 +246,6 @@ def release_module() -> None:
         # 1. 通过脚本修改版本号则保证 pubspec.yaml 和 apk 版本一致
         # 2. 通过脚本发布软件保证 pubspec.yaml 和 body.md , tag.md 的版本一致
         # 一般流程为 1 -> 1 -> 1 -> 2 即多次修改版本号后发布, 无异常
-        # 最后一步, 进入 release.bat
         # 提交 release
         print('-- release.py --')
         release_version_str = get_version_from_pubspec_yaml()
