@@ -1,5 +1,5 @@
 <div align="center">
-  <img id="mercurius_warehouse" width="96" alt="mercurius_warehouse" src=".github/image/icon.svg">
+  <img id="mercurius" width="96" alt="mercurius" src=".github/image/icon.svg">
   <p>『 Mercurius - 记点日记！』</p>
 </div>
 
@@ -59,7 +59,7 @@
 
 # 📦 使用方式
 
-请在 [Releases](https://github.com/Cierra-Runis/mercurius_warehouse/releases) 中选择下载安装最新版本的 `app-arm64-v8a-release.apk` 即可
+请在 [Releases](https://github.com/Cierra-Runis/mercurius/releases) 中选择下载安装最新版本的 `app-arm64-v8a-release.apk` 即可
 
 # ⏳ 进度
 
@@ -71,8 +71,8 @@
 
 # 🧑‍💻 贡献者
 
-<a href="https://github.com/Cierra-Runis/mercurius_warehouse/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius_warehouse" />
+<a href="https://github.com/Cierra-Runis/mercurius/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" />
 </a>
 
 # 🔦 声明

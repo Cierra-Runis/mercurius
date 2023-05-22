@@ -11,7 +11,7 @@ Future<GithubLatestRelease> githubLatestRelease(
   Mercurius.printLog('GithubLatestRelease 初始化中');
 
   const String url =
-      'https://api.github.com/repos/Cierra-Runis/mercurius_warehouse/releases/latest';
+      'https://api.github.com/repos/Cierra-Runis/mercurius/releases/latest';
 
   String currentVersion = await ref.watch(currentVersionProvider.future);
 

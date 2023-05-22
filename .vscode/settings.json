@@ -42,7 +42,8 @@
         "mercurius.iml": true,
         ".flutter-plugins": true,
         ".flutter-plugins-dependencies": true,
-        "custom_lint.log": true
+        "custom_lint.log": true,
+        "android": true
     },
     "commentTranslate.hover.string": true,
     "commentTranslate.hover.variable": true,
