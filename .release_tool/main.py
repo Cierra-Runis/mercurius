@@ -25,10 +25,10 @@ class FileStr(Enum):
     file str
     """
     pubspec_yaml: str = r'pubspec.yaml'
-    release_yml: str = r'.release_tool\mercurius_warehouse\.github\workflows\releases.yml'
-    body_md: str = r'.release_tool\mercurius_warehouse\body.md'
+    release_yml: str = r'.github\workflows\releases.yml'
+    body_md: str = r'.release_tool\body.md'
     app_arm64_v8a_release_apk: str = r'build\app\outputs\apk\release\app-arm64-v8a-release.apk'
-    mercurius_warehouse_dir: str = r'.release_tool\mercurius_warehouse'
+    release_tool_dir: str = r'.release_tool'
 
 
 def get_version_from_pubspec_yaml() -> str:
@@ -204,7 +204,7 @@ def main_module() -> None:
         # 并将 build 后的 apk 转移至 .release_tool/mercurius_warehouse
         copy_file(
             src_file=FileStr.app_arm64_v8a_release_apk.value,
-            dst_path=FileStr.mercurius_warehouse_dir.value,
+            dst_path=FileStr.release_tool_dir.value,
         )
 
     else:
@@ -248,7 +248,15 @@ def release_module() -> None:
         # 一般流程为 1 -> 1 -> 1 -> 2 即多次修改版本号后发布, 无异常
         # 最后一步, 进入 release.bat
         # 提交 release
-        os.system(FileStr.mercurius_warehouse_dir.value + r'\release.bat')
+        print('-- release.py --')
+        release_version_str = get_version_from_pubspec_yaml()
+        print(f'> 正在发布 v{release_version_str}')
+        os.system('git add .')
+        os.system(f'git commit -m "v{release_version_str}"')
+        os.system('git push')
+        os.system(f'git tag v{release_version_str}')
+        os.system('git push --tags')
+        print(f'> 已发布 v{release_version_str}')
 
     else:
         # 反之输入的不是 'y'
