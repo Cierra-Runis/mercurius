@@ -111,7 +111,8 @@ class Mercurius {
     List<int> intensities = const [],
     int amplitude = -1,
   }) async {
-    bool buttonVibration = true;
+    Config config = await isarService.getConfig();
+    bool buttonVibration = config.buttonVibration;
     bool hasVibrator = await Vibration.hasVibrator() ?? false;
     bool hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
     bool hasCustomVibrationsSupport =

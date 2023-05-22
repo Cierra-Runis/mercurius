@@ -65,9 +65,21 @@ class IsarService {
 
   ////////
   ///
+  Future<Config> getConfig() async {
+    final isar = await _db;
+    if (await isar.configs.count() == 0) {
+      await isar.writeTxn(() => isar.configs.put(Config()));
+    }
+    return isar.configs.getSync(0)!;
+  }
+
+  ///
   ///
   Stream<Config?> listenToConfig() async* {
     final isar = await _db;
+    if (await isar.configs.count() == 0) {
+      await isar.writeTxn(() => isar.configs.put(Config()));
+    }
     yield* isar.configs.watchObject(0, fireImmediately: true);
   }
 

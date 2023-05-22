@@ -33,21 +33,25 @@ class _ThemeSelectListItem extends ConsumerWidget {
     return StreamBuilder(
       stream: isarService.listenToConfig(),
       builder: (context, snapshot) {
-        return MercuriusListItemWidget(
-          iconData: Icons.dark_mode_rounded,
-          titleText: '深色模式',
-          detailText: snapshot.data?.themeMode == ThemeMode.system
-              ? '跟随系统'
-              : snapshot.data?.themeMode == ThemeMode.dark
-                  ? '常暗模式'
-                  : '常亮模式',
-          onTap: () => showDialog<void>(
-            context: context,
-            builder: (context) {
-              return const MercuriusThemeSelectorWidget();
-            },
-          ),
-        );
+        if (snapshot.hasData) {
+          Config config = snapshot.data!;
+          return MercuriusListItemWidget(
+            iconData: Icons.dark_mode_rounded,
+            titleText: '深色模式',
+            detailText: config.themeMode == ThemeMode.system
+                ? '跟随系统'
+                : snapshot.data?.themeMode == ThemeMode.dark
+                    ? '常暗模式'
+                    : '常亮模式',
+            onTap: () => showDialog<void>(
+              context: context,
+              builder: (context) {
+                return const MercuriusThemeSelectorWidget();
+              },
+            ),
+          );
+        }
+        return const MercuriusLoadingWidget();
       },
     );
   }
@@ -61,15 +65,19 @@ class _VibrationSelectListItem extends ConsumerWidget {
     return StreamBuilder(
       stream: isarService.listenToConfig(),
       builder: (context, snapshot) {
-        return MercuriusModifiedListSwitchItem(
-          iconData: Icons.vibration,
-          titleText: '按钮振动',
-          detailText: snapshot.data!.buttonVibration ? '开启' : '关闭',
-          value: snapshot.data!.buttonVibration,
-          onChanged: (value) => isarService.saveConfig(
-            snapshot.data!..buttonVibration = !snapshot.data!.buttonVibration,
-          ),
-        );
+        if (snapshot.hasData) {
+          Config config = snapshot.data!;
+          return MercuriusModifiedListSwitchItem(
+            iconData: Icons.vibration,
+            titleText: '按钮振动',
+            detailText: config.buttonVibration ? '开启' : '关闭',
+            value: config.buttonVibration,
+            onChanged: (value) => isarService.saveConfig(
+              config..buttonVibration = !config.buttonVibration,
+            ),
+          );
+        }
+        return const MercuriusLoadingWidget();
       },
     );
   }
