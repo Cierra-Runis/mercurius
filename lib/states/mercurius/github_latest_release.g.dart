@@ -59,7 +59,7 @@ Map<String, dynamic> _$GithubLatestReleaseAssetToJson(
 // **************************************************************************
 
 String _$githubLatestReleaseHash() =>
-    r'cd2be2f1ee55c6599c4b63ee69615072bdc17953';
+    r'dcf7f7f88ea991c240442ab7b8de85afc8266478';
 
 /// See also [githubLatestRelease].
 @ProviderFor(githubLatestRelease)

@@ -16,6 +16,10 @@ class MercuriusMorePage extends StatelessWidget {
           Expanded(
             child: MercuriusMorePageListWidget(context: context),
           ),
+          const Padding(
+            padding: EdgeInsets.all(10),
+            child: MercuriusHiToKoToWidget(),
+          ),
         ],
       ),
     );
