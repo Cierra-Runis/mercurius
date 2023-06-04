@@ -25,13 +25,10 @@ class DiaryPageViewWidget extends ConsumerWidget {
         initialPage: diaries.indexWhere((e) => e.id == diary.id),
       ),
       allowImplicitScrolling: true,
-      itemBuilder: (context, index) {
-        Mercurius.printLog(diaries[index].id.toString());
-        return DiaryPageViewCardWidget(
-          key: ValueKey(diaries[index].id),
-          diary: diaries[index],
-        );
-      },
+      itemBuilder: (context, index) => DiaryPageViewCardWidget(
+        key: ValueKey(diaries[index].id),
+        diary: diaries[index],
+      ),
     );
   }
 

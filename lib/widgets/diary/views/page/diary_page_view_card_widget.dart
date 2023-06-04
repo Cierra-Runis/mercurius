@@ -34,57 +34,55 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
               ),
               child: Column(
                 children: [
-                  SizedOverflowBox(
-                    size: const Size.fromHeight(134),
-                    child: Flex(
-                      direction: Axis.horizontal,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 30.0,
+                      horizontal: 24.0,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Expanded(flex: 1, child: Container()),
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  diary.createDateTime
-                                      .format('y 年，M 月', 'zh_CN'),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  diary.createDateTime.format('dd', 'zh_CN'),
-                                  style: const TextStyle(
-                                    fontSize: 60,
-                                    fontFamily: 'Saira',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(
-                                      size: 8,
-                                      diary.weatherType.qweatherIcons.iconData,
-                                    ),
-                                    Text(
-                                      diary.latestEditTime
-                                          .format('EEEE HH:mm:ss', 'zh_CN'),
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Icon(size: 9, diary.moodType.iconData),
-                                  ],
-                                ),
-                              ],
-                            ),
+                        Text(
+                          diary.createDateTime.format('dd', 'zh_CN'),
+                          style: const TextStyle(
+                            fontSize: 60,
+                            fontFamily: 'Saira',
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Expanded(flex: 1, child: Container()),
+                        Column(
+                          children: [
+                            Text(
+                              diary.createDateTime.format('y 年，M 月', 'zh_CN'),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              diary.latestEditTime
+                                  .format('EEEE HH:mm:ss', 'zh_CN'),
+                              style: const TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Chip(
+                              label: Text(diary.moodType.mood),
+                              labelPadding: EdgeInsets.zero,
+                            ),
+                            Chip(
+                              label: Text(diary.weatherType.weather),
+                              labelPadding: EdgeInsets.zero,
+                            ),
+                            Chip(
+                              label: Text('${diary.words} 字'),
+                              labelPadding: EdgeInsets.zero,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

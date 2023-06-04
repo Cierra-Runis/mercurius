@@ -113,7 +113,10 @@ class MercuriusBottomBarWidget extends StatelessWidget {
                                       t),
                                   fontWeight: FontWeight.w600,
                                 ),
-                                child: item.title,
+                                child: Text(
+                                  item.title,
+                                  style: const TextStyle(fontFamily: 'Saira'),
+                                ),
                               ),
                             ),
                           ),
@@ -170,7 +173,7 @@ class MercuriusBottomBarItem {
   final Widget? activeIcon;
 
   /// 要显示的文本，如 `'Home'`
-  final Widget title;
+  final String title;
 
   /// 用于此选项卡的原色
   final Color? selectedColor;
