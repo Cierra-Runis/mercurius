@@ -26,7 +26,6 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
           String title = map['title'];
           String updateDate = map['updateDate'];
           String content = map['content'];
-          Map<String, dynamic> link = map['link'];
 
           return AlertDialog(
             title: Column(
@@ -49,9 +48,14 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
                 shrinkWrap: true,
                 data: content,
                 padding: const EdgeInsets.all(0),
-                onTapLink: onTapLink != null
-                    ? (text, href, title) => onTapLink!(text, link, href, title)
-                    : null,
+                onTapLink: (text, href, title) {
+                  if (href != null) {
+                    launchUrlString(
+                      href,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
+                },
               ),
             ),
             actions: [

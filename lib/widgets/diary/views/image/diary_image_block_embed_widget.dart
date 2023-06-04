@@ -24,6 +24,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
     Embed node,
     bool readOnly,
     bool inline,
+    TextStyle textStyle,
   ) {
     Widget getInkWellChild(File file) {
       if (file.existsSync()) {

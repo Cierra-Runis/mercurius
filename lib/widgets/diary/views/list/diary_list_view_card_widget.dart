@@ -42,7 +42,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       ),
     );
     final contentJsonStringWidget = Text(
-      diary.document.toPlainText().replaceAll(RegExp('\n'), ' '),
+      diary.plainText,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(

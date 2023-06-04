@@ -9,26 +9,18 @@ class DialogAboutContentWidget extends StatelessWidget {
       [
         Icons.import_contacts_rounded,
         '引用声明',
-        '字体、图标相关',
-        MercuriusJsonToDialogWidget(
+        '字体、图标、天气服务相关',
+        const MercuriusJsonToDialogWidget(
           jsonPath: 'assets/json/declaration.json',
-          onTapLink: (_, link, href, __) =>
-              _showDialogLicenseWidget(context, link[href]),
         ),
       ],
       [
         Icons.privacy_tip_rounded,
         '隐私政策',
         '${Mercurius.name} 隐私政策',
-        const MercuriusJsonToDialogWidget(jsonPath: 'assets/json/privacy.json')
-      ],
-      [
-        Icons.bookmark,
-        '用户协议',
-        '${Mercurius.name} 用户协议',
         const MercuriusJsonToDialogWidget(
-          jsonPath: 'assets/json/agreement.json',
-        ),
+          jsonPath: 'assets/json/privacy.json',
+        )
       ],
     ];
 
@@ -75,17 +67,20 @@ class DialogAboutContentWidget extends StatelessWidget {
         return AlertDialog(
           content: SizedBox(
             width: double.maxFinite,
-            child: ListView(
+            child: Markdown(
+              data: license,
               shrinkWrap: true,
-              children: [
-                Text(
-                  license,
-                  style: const TextStyle(
-                    fontFamily: 'Saira',
-                    fontSize: 6,
-                  ),
-                ),
-              ],
+              onTapLink: (text, href, title) {
+                if (href != null) {
+                  launchUrlString(
+                    href,
+                    mode: LaunchMode.externalApplication,
+                  );
+                }
+              },
+              styleSheet: MarkdownStyleSheet(
+                textScaleFactor: 0.5,
+              ),
             ),
           ),
           contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),

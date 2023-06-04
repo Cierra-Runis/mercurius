@@ -40,6 +40,15 @@ class Diary {
   @ignore
   Document get document => Document.fromJson(jsonDecode(contentJsonString));
 
+  @ignore
+  String get plainText => document
+      .toPlainText()
+      .replaceAll(RegExp(r'\n'), '')
+      .replaceAll(RegExp(r' '), '');
+
+  @ignore
+  int get words => plainText.length;
+
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
 

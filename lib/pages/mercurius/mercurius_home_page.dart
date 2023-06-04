@@ -50,10 +50,6 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const IconButton(
-          icon: Icon(UniconsLine.user_circle),
-          onPressed: null,
-        ),
         title: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           child: _currentSearchBarMode

@@ -63,8 +63,7 @@ class IsarService {
     await file.writeAsString(jsonEncode(data));
   }
 
-  ////////
-  ///
+  /// 获取 config
   Future<Config> getConfig() async {
     final isar = await _db;
     if (await isar.configs.count() == 0) {
@@ -73,8 +72,7 @@ class IsarService {
     return isar.configs.getSync(0)!;
   }
 
-  ///
-  ///
+  /// 监听 config
   Stream<Config?> listenToConfig() async* {
     final isar = await _db;
     if (await isar.configs.count() == 0) {

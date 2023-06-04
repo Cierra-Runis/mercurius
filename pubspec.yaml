@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 0.5.3+69
+version: 0.5.4+70
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -15,14 +15,13 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.12.30 # 提示框 [https://pub.dev/packages/another_flushbar]
   badges: ^3.1.1 # 小红点提示 [https://pub.dev/packages/badges]
-  confetti: ^0.7.0 # 彩纸效果 [https://pub.dev/packages/confetti]
   cross_file: ^0.3.3+4 # 文件操作 [https://pub.dev/packages/cross_file]
   dio: ^5.1.2 # 网络请求 [https://pub.dev/packages/dio]
   dart_date: ^1.2.2 # 转换时间工具 [https://pub.dev/packages/dart_date]
-  file_picker: ^5.3.0 # 文件选择 [https://pub.dev/packages/file_picker]
+  file_picker: ^5.3.1 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
-  flutter_markdown: ^0.6.14 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.1.19 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_markdown: ^0.6.15 # markdown [https://pub.dev/packages/flutter_markdown]
+  flutter_quill: ^7.2.1 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^0.8.7+5 # 图片选择 [https://pub.dev/packages/image_picker]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
@@ -30,17 +29,15 @@ dependencies:
   json_annotation: ^4.8.1 # json 相关 [https://pub.dev/packages/json_annotation]
   keframe: ^3.0.0 # 列表优化 [https://pub.dev/packages/keframe]
   loading_animation_widget: ^1.2.0+4 # 加载器组件 [https://pub.dev/packages/loading_animation_widget]
-  open_app_file: ^4.0.1 # 打开文件 [https://pub.dev/packages/open_app_file]
   path_provider: ^2.0.15 # 路径获取 [https://pub.dev/packages/path_provider]
-  package_info_plus: ^4.0.1 # 包信息 [https://pub.dev/packages/package_info_plus]
+  package_info_plus: ^4.0.2 # 包信息 [https://pub.dev/packages/package_info_plus]
   photo_view: ^0.14.0 # 图片视图 [https://pub.dev/packages/photo_view]
-  provider: ^6.0.5 # 状态管理 [https://pub.dev/packages/provider]
   pull_to_refresh: ^2.0.0 # 下拉刷新 [https://pub.dev/packages/pull_to_refresh]
-  qweather_icons: ^0.0.10 # QWeather 图标 [https://pub.dev/packages/qweather_icons]
+  qweather_icons: ^0.0.11 # QWeather 图标 [https://pub.dev/packages/qweather_icons]
   riverpod_annotation: ^2.1.1 # 状态管理相关 [https://pub.dev/packages/riverpod_annotation]
-  share_plus: ^7.0.1 # 分享 [https://pub.dev/packages/share_plus]
+  share_plus: ^7.0.2 # 分享 [https://pub.dev/packages/share_plus]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
-  syncfusion_flutter_charts: ^21.2.5 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  syncfusion_flutter_charts: ^21.2.8 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   url_launcher: ^6.1.11 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.7.7 # 振动反馈 [https://pub.dev/packages/vibration]

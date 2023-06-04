@@ -9,9 +9,17 @@ class MercuriusRoute extends ConsumerStatefulWidget {
 class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = [
+  static const List<Widget> _bodyWidgets = [
     MercuriusHomePage(),
     MercuriusMorePage(),
+  ];
+
+  static const _bottomWidgets = [
+    MercuriusBottomBarItem(icon: Icon(Icons.home), title: '主页'),
+    MercuriusBottomBarItem(
+      icon: _MercuriusBottomBarMorePageIconWidget(),
+      title: '更多',
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -23,25 +31,18 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawerEdgeDragWidth: MediaQuery.of(context).size.width / 3,
       body: Center(
         child: MercuriusDoubleBackWidget(
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _selectedIndex == 0,
           onConditionFail: () => setState(() => _selectedIndex = 0),
-          child: _widgetOptions.elementAt(_selectedIndex),
+          child: _bodyWidgets[_selectedIndex],
         ),
       ),
       bottomNavigationBar: MercuriusBottomBarWidget(
         colorScheme: Theme.of(context).colorScheme,
-        items: const [
-          MercuriusBottomBarItem(
-            icon: Icon(Icons.home),
-            title: Text('主页', style: TextStyle(fontFamily: 'Saira')),
-          ),
-          _MercuriusBottomBarMorePageItem(),
-        ],
+        items: _bottomWidgets,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
@@ -49,19 +50,8 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
   }
 }
 
-class _MercuriusBottomBarMorePageItem extends MercuriusBottomBarItem {
-  const _MercuriusBottomBarMorePageItem()
-      : super(
-          icon: const _MercuriusBottomBarMorePageItemIconWidget(),
-          title: const Text(
-            '更多',
-            style: TextStyle(fontFamily: 'Saira'),
-          ),
-        );
-}
-
-class _MercuriusBottomBarMorePageItemIconWidget extends ConsumerWidget {
-  const _MercuriusBottomBarMorePageItemIconWidget();
+class _MercuriusBottomBarMorePageIconWidget extends ConsumerWidget {
+  const _MercuriusBottomBarMorePageIconWidget();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

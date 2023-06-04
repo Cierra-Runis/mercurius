@@ -125,10 +125,7 @@ class _DiaryMonthlyWordsWidgetState
       for (Diary diary in diaries) {
         if (key.isSameYear(diary.createDateTime) &&
             key.isSameMonth(diary.createDateTime)) {
-          data.update(
-            key,
-            (value) => value += diary.document.toPlainText().length,
-          );
+          data.update(key, (value) => value += diary.words);
         }
       }
     });
