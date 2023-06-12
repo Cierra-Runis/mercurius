@@ -9,7 +9,6 @@ export 'main.dart';
 /// flutter 相关
 // [RefreshCallback] 和 `export 'package:flutter/material.dart'` 冲突，两者近似
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
-export 'package:flutter/rendering.dart';
 export 'package:flutter/services.dart';
 // [Badge] 和 `export 'package:badges/badges.dart'; // 小红点提示` 冲突，我想用外部包
 // [RefreshIndicator] 和 [RefreshIndicatorState] 被 `export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新` 重写

@@ -41,7 +41,7 @@ class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
 
   @override
   void dispose() {
-    Mercurius.printLog('$this 死了');
+    _controller.dispose();
     super.dispose();
   }
 

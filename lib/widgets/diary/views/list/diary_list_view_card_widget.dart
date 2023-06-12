@@ -57,6 +57,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
     return Dismissible(
       key: ValueKey(diary.id),
       direction: DismissDirection.endToStart,
+      movementDuration: const Duration(milliseconds: 400),
       onDismissed: (_) => isarService.deleteDiaryById(diary.id),
       confirmDismiss: (_) => MercuriusConfirmDialogWidget(
         context: context,
