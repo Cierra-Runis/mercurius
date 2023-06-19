@@ -3,6 +3,7 @@ import 'package:mercurius/index.dart';
 class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
   DiaryEditorToolbarImageButtonWidget({
     super.key,
+    required super.tooltip,
     required this.controller,
     required this.context,
     required String path,
@@ -23,12 +24,14 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     BuildContext context,
     String path,
   ) async {
+    final S localizations = S.of(context);
+
     bool? newImage = await MercuriusConfirmDialogWidget(
       context: context,
       title: '从何处插入？',
-      summary: '已有图片库还是系统文件呢？',
+      summary: '图片库还是系统文件呢？',
       trueString: '系统文件',
-      falseString: '图片库',
+      falseString: localizations.imageGallery,
     ).confirm;
 
     switch (newImage) {

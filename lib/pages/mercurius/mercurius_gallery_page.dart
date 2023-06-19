@@ -46,7 +46,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
     AsyncSnapshot<List<FileSystemEntity>> snapshot,
   ) {
     if (snapshot.hasError) {
-      return Center(child: Text('Steam 错误: ${snapshot.error}'));
+      return Center(child: Text('Steam error: ${snapshot.error}'));
     }
     switch (snapshot.connectionState) {
       case ConnectionState.none:
@@ -56,7 +56,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
       case ConnectionState.active:
         return getGridBySnapshotData(snapshot);
       case ConnectionState.done:
-        return const Center(child: Text('Stream 已关闭'));
+        return const Center(child: Text('Stream closed'));
     }
   }
 
@@ -64,14 +64,16 @@ class MercuriusGalleryPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final path = ref.watch(mercuriusPathProvider);
 
+    final S localizations = S.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('图片库'),
+        title: Text(localizations.imageGallery),
       ),
       body: path.when(
         loading: () => const MercuriusLoadingWidget(),
 
-        /// TODO: 这里应该提示错误
+        /// TODO: 这里应该提示 error
         error: (error, stackTrace) => Container(),
         data: (data) => StreamBuilder(
           stream: listenToImageFile(data).distinct(),

@@ -26,7 +26,7 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
             Text(
               currentPosition.when(
                 loading: () => ' ${CurrentPosition().humanFormat} ',
-                error: (error, stackTrace) => '错误',
+                error: (error, stackTrace) => 'error',
                 data: (data) => ' ${data.humanFormat} ',
               ),
               style: const TextStyle(

@@ -3,16 +3,16 @@ import 'package:mercurius/index.dart';
 class DiaryEditorToolbarWidget extends ConsumerWidget {
   const DiaryEditorToolbarWidget({
     super.key,
-    required this.currentDiary,
+    required this.diary,
     required this.scrollController,
-    required this.controller,
-    required this.handleToolbarChangeDiary,
+    required this.quillController,
+    required this.handleChangeDiary,
   });
 
-  final Diary currentDiary;
+  final Diary diary;
   final ScrollController scrollController;
-  final QuillController controller;
-  final ValueChanged<Diary?> handleToolbarChangeDiary;
+  final QuillController quillController;
+  final ValueChanged<Diary?> handleChangeDiary;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,12 +28,15 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
 
     final path = ref.watch(mercuriusPathProvider);
 
+    final S localizations = S.of(context);
+
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
         return path.when(
           loading: () => const MercuriusLoadingWidget(),
           error: (error, stackTrace) => Container(),
           data: (data) => DiaryEditorToolbarImageButtonWidget(
+            tooltip: localizations.insertImage,
             controller: controller,
             context: context,
             path: data,
@@ -43,7 +46,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
     ];
 
     return QuillToolbar.basic(
-      controller: controller,
+      controller: quillController,
       showUndo: false,
       showRedo: false,
       showFontFamily: false,
@@ -70,25 +73,29 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
       embedButtons: embedButtons,
       customButtons: [
         DiaryEditorToolbarTimestampButtonWidget(
-          controller: controller,
+          controller: quillController,
+          tooltip: localizations.insertTime,
         ),
         DiaryEditorToolbarMoodButtonWidget(
           context: context,
-          currentDiary: currentDiary,
-          handleToolbarChangeDiary: handleToolbarChangeDiary,
+          currentDiary: diary,
+          handleToolbarChangeDiary: handleChangeDiary,
+          tooltip: localizations.changeMood,
         ),
         DiaryEditorToolbarWeatherButtonWidget(
           context: context,
-          currentDiary: currentDiary,
-          handleToolbarChangeDiary: handleToolbarChangeDiary,
+          currentDiary: diary,
+          handleToolbarChangeDiary: handleChangeDiary,
+          tooltip: localizations.changeWeather,
         ),
         DiaryEditorToolbarDateTimeButtonWidget(
-          currentDiary: currentDiary,
+          currentDiary: diary,
           context: context,
-          handleToolbarChangeDiary: handleToolbarChangeDiary,
+          handleToolbarChangeDiary: handleChangeDiary,
+          tooltip: localizations.changeDate,
         ),
       ],
-      locale: const Locale('zh', 'CN'),
+      locale: Localizations.localeOf(context),
     );
   }
 }

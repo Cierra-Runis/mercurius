@@ -13,9 +13,8 @@ class DiaryEditorPage extends ConsumerStatefulWidget {
 }
 
 class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
-  late final QuillController _controller;
-  final TextEditingController _title = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  late final QuillController _quillController;
+  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
   late Diary _diary;
@@ -24,11 +23,11 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
   void initState() {
     super.initState();
     _diary = widget.diary;
-    _controller = QuillController(
+    _quillController = QuillController(
       document: _diary.document,
       selection: const TextSelection.collapsed(offset: 0),
     );
-    _title.text = _diary.titleString;
+    _textEditingController.text = _diary.titleString;
   }
 
   @override
@@ -41,37 +40,14 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
     setState(() => _diary = newDiary ?? _diary);
   }
 
-  /// TIPS: 遮挡问题 https://github.com/singerdmx/flutter-quill/issues/1017
-  /// TIPS: 选至末尾问题 https://github.com/singerdmx/flutter-quill/issues/1098
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: TextButton(
-          onPressed: () {
-            Mercurius.vibration(ref: ref);
-            Navigator.of(context).pop();
-          },
-          child: const Text('取消'),
-        ),
-        title: TextField(
-          textAlign: TextAlign.center,
-          key: _formKey,
-          controller: _title,
-          decoration: const InputDecoration(
-            hintText: '无标题',
-            border: InputBorder.none,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          DiaryEditorAppBarSaveButtonWidget(
-            currentDiary: _diary,
-            controller: _controller,
-            handleAppBarChangeDiary: _handleChangeDiary,
-            title: _title,
-          ),
-        ],
+      appBar: DiaryEditorAppBarWidget(
+        diary: _diary,
+        quillController: _quillController,
+        textEditingController: _textEditingController,
+        handleChangeDiary: _handleChangeDiary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -81,15 +57,15 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
               child: DiaryEditorBodyWidget(
                 readOnly: false,
                 scrollController: _scrollController,
-                controller: _controller,
+                quillController: _quillController,
               ),
             ),
             const Divider(),
             DiaryEditorToolbarWidget(
-              currentDiary: _diary,
+              diary: _diary,
               scrollController: _scrollController,
-              controller: _controller,
-              handleToolbarChangeDiary: _handleChangeDiary,
+              quillController: _quillController,
+              handleChangeDiary: _handleChangeDiary,
             ),
           ],
         ),

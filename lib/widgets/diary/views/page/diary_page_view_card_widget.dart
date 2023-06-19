@@ -10,6 +10,9 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+    final String lang = Localizations.localeOf(context).toLanguageTag();
+
     return Stack(
       children: [
         Card(
@@ -43,7 +46,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          diary.createDateTime.format('dd', 'zh_CN'),
+                          diary.createDateTime.format('dd'),
                           style: const TextStyle(
                             fontSize: 60,
                             fontFamily: 'Saira',
@@ -53,14 +56,15 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                         Column(
                           children: [
                             Text(
-                              diary.createDateTime.format('y 年，M 月', 'zh_CN'),
+                              diary.createDateTime
+                                  .format(DateFormat.YEAR_ABBR_MONTH, lang),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
                               diary.latestEditTime
-                                  .format('EEEE HH:mm:ss', 'zh_CN'),
+                                  .format('EEEE HH:mm:ss', lang),
                               style: const TextStyle(
                                 fontSize: 12,
                               ),
@@ -78,7 +82,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                               labelPadding: EdgeInsets.zero,
                             ),
                             Chip(
-                              label: Text('${diary.words} 字'),
+                              label: Text(localizations.wordCount(diary.words)),
                               labelPadding: EdgeInsets.zero,
                             ),
                           ],
@@ -97,7 +101,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                       child: DiaryEditorBodyWidget(
                         readOnly: true,
                         scrollController: ScrollController(),
-                        controller: QuillController(
+                        quillController: QuillController(
                           document: diary.document,
                           selection: const TextSelection.collapsed(offset: 0),
                         ),

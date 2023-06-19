@@ -13,11 +13,29 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final currentVersion = ref.watch(currentVersionProvider);
 
-    List<List<dynamic>> data = [
-      [Icons.analytics, '统计数据', const DiaryStatisticPage()],
-      [Icons.image_rounded, '图片库', const MercuriusGalleryPage()],
-      [Icons.import_export_rounded, '导入导出', const MercuriusIOPage()],
-      [Icons.settings_rounded, '设定', const MercuriusSettingPage()],
+    final S localizations = S.of(context);
+
+    final List<List<dynamic>> data = [
+      [
+        Icons.analytics,
+        localizations.statistics,
+        const DiaryStatisticPage(),
+      ],
+      [
+        Icons.image_rounded,
+        localizations.imageGallery,
+        const MercuriusGalleryPage(),
+      ],
+      [
+        Icons.import_export_rounded,
+        localizations.importAndExport,
+        const MercuriusIOPage(),
+      ],
+      [
+        Icons.settings_rounded,
+        localizations.settings,
+        const MercuriusSettingPage(),
+      ],
     ];
 
     List<Widget> list = [];
@@ -50,7 +68,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
                   data: (currentVersion) => currentVersion != github.tag_name,
                 ),
               ),
-              titleText: '关于',
+              titleText: localizations.aboutUs,
               onTap: () => showDialog<void>(
                 context: context,
                 builder: (context) => const DialogAboutWidget(),

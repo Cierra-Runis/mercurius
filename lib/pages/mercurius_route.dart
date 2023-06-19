@@ -7,44 +7,49 @@ class MercuriusRoute extends ConsumerStatefulWidget {
 }
 
 class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
-  int _selectedIndex = 0;
+  int _currentIndex = 0;
 
   static const List<Widget> _bodyWidgets = [
     MercuriusHomePage(),
     MercuriusMorePage(),
   ];
 
-  static const _bottomWidgets = [
-    MercuriusBottomBarItem(icon: Icon(Icons.home), title: '主页'),
-    MercuriusBottomBarItem(
-      icon: _MercuriusBottomBarMorePageIconWidget(),
-      title: '更多',
-    ),
-  ];
-
   void _onItemTapped(int index) {
     Mercurius.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
-    setState(() => _selectedIndex = index);
+    setState(() => _currentIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
+    final List<MercuriusBottomBarItem> bottomWidgets = [
+      MercuriusBottomBarItem(
+        icon: const Icon(Icons.home),
+        title: localizations.homePage,
+      ),
+      MercuriusBottomBarItem(
+        icon: const _MercuriusBottomBarMorePageIconWidget(),
+        title: localizations.morePage,
+      ),
+    ];
+
     return Scaffold(
       body: Center(
         child: MercuriusDoubleBackWidget(
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
-          condition: _selectedIndex == 0,
-          onConditionFail: () => setState(() => _selectedIndex = 0),
-          child: _bodyWidgets[_selectedIndex],
+          condition: _currentIndex == 0,
+          onConditionFail: () => setState(() => _currentIndex = 0),
+          child: _bodyWidgets[_currentIndex],
         ),
       ),
       bottomNavigationBar: MercuriusBottomBarWidget(
         colorScheme: Theme.of(context).colorScheme,
-        items: _bottomWidgets,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        bottomWidgets: bottomWidgets,
+        currentIndex: _currentIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

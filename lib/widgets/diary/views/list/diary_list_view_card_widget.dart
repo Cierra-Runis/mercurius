@@ -10,21 +10,23 @@ class DiaryListViewCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    String lang = Localizations.localeOf(context).toLanguageTag();
+
     final dayWidget = Text(
-      diary.createDateTime.format('dd', 'zh_CN'),
+      diary.createDateTime.format('dd'),
       style: const TextStyle(
         fontSize: 24,
         fontFamily: 'Saira',
       ),
     );
     final weekdayWidget = Text(
-      diary.createDateTime.format('EEEE', 'zh_CN'),
+      diary.createDateTime.format(DateFormat.WEEKDAY, lang),
       style: const TextStyle(
         fontSize: 10,
       ),
     );
     final latestEditTimeWidget = Text(
-      diary.latestEditTime.format('HH:mm:ss', 'zh_CN'),
+      diary.latestEditTime.format('HH:mm:ss'),
       style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.bold,
@@ -32,7 +34,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
     );
     final createDateTimeWidget = Text(
       diary.titleString == ''
-          ? diary.createDateTime.format('y-M-d', 'zh_CN')
+          ? diary.createDateTime.format('y-M-d')
           : diary.titleString,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,

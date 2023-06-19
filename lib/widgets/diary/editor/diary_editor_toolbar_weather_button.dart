@@ -2,6 +2,7 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorToolbarWeatherButtonWidget extends QuillCustomButton {
   const DiaryEditorToolbarWeatherButtonWidget({
+    required super.tooltip,
     required this.currentDiary,
     required this.context,
     required this.handleToolbarChangeDiary,

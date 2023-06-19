@@ -59,45 +59,4 @@ class DialogAboutContentWidget extends StatelessWidget {
       ],
     );
   }
-
-  Future<void> _showDialogLicenseWidget(BuildContext context, String license) {
-    return showDialog<void>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: SizedBox(
-            width: double.maxFinite,
-            child: Markdown(
-              data: license,
-              shrinkWrap: true,
-              onTapLink: (text, href, title) {
-                if (href != null) {
-                  launchUrlString(
-                    href,
-                    mode: LaunchMode.externalApplication,
-                  );
-                }
-              },
-              styleSheet: MarkdownStyleSheet(
-                textScaleFactor: 0.5,
-              ),
-            ),
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-          actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('确认'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-          actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-        );
-      },
-    );
-  }
 }

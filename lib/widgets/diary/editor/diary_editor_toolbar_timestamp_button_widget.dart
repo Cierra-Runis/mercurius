@@ -2,6 +2,7 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorToolbarTimestampButtonWidget extends QuillCustomButton {
   const DiaryEditorToolbarTimestampButtonWidget({
+    required super.tooltip,
     required this.controller,
   });
 
@@ -12,8 +13,7 @@ class DiaryEditorToolbarTimestampButtonWidget extends QuillCustomButton {
 
   @override
   VoidCallback? get onTap => () {
-        String dateTimeString =
-            '[${DateTime.now().format('y 年 M 月 d 日 EEEE HH:mm:ss', 'zh_CN')}]\n';
+        String dateTimeString = '[${DateTime.now().toHumanString()}]\n';
         int extentOffset = controller.selection.extentOffset;
         controller.document.insert(
           extentOffset,

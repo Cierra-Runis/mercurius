@@ -41,10 +41,7 @@ class Diary {
   Document get document => Document.fromJson(jsonDecode(contentJsonString));
 
   @ignore
-  String get plainText => document
-      .toPlainText()
-      .replaceAll(RegExp(r'\n'), '')
-      .replaceAll(RegExp(r' '), '');
+  String get plainText => document.toPlainText().replaceAll(RegExp(r'\n'), '');
 
   @ignore
   int get words => plainText.length;

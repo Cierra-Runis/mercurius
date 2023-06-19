@@ -18,7 +18,7 @@ class _DiaryMonthlyWordsWidgetState
     super.initState();
     _tooltipBehavior = TooltipBehavior(
       header: '',
-      format: 'point.x point.y 字',
+      format: 'point.x point.y',
       enable: true,
       textStyle: const TextStyle(
         fontFamily: 'Saira',
@@ -34,10 +34,13 @@ class _DiaryMonthlyWordsWidgetState
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+    final String lang = Localizations.localeOf(context).toLanguageTag();
+
     return MercuriusListSectionWidget(
-      title: const Text(
-        '月度字数统计',
-        style: TextStyle(
+      title: Text(
+        localizations.monthlyWordCountStatistics,
+        style: const TextStyle(
           fontFamily: 'Saira',
           fontSize: 18,
         ),
@@ -77,9 +80,9 @@ class _DiaryMonthlyWordsWidgetState
                           .primary
                           .withOpacity(0.7),
                       dataSource: snapshot.data!,
-                      xValueMapper: (_DiaryWordsData sales, _) =>
-                          '${sales.dateTime}'.substring(0, 7),
-                      yValueMapper: (_DiaryWordsData sales, _) => sales.sales,
+                      xValueMapper: (_DiaryWordsData data, _) => data.dateTime
+                          .format(DateFormat.YEAR_ABBR_MONTH, lang),
+                      yValueMapper: (_DiaryWordsData sales, _) => sales.words,
                       dataLabelSettings: const DataLabelSettings(
                         isVisible: true,
                         textStyle: TextStyle(
@@ -137,7 +140,7 @@ class _DiaryMonthlyWordsWidgetState
 }
 
 class _DiaryWordsData {
-  _DiaryWordsData(this.dateTime, this.sales);
+  _DiaryWordsData(this.dateTime, this.words);
   final DateTime dateTime;
-  int sales;
+  int words;
 }
