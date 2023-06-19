@@ -5,9 +5,11 @@ class MercuriusSettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('设定'),
+        title: Text(localizations.settings),
       ),
       body: const Center(
         child: MercuriusListWidget(
@@ -30,6 +32,8 @@ class _ThemeSelectListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return StreamBuilder(
       stream: isarService.listenToConfig(),
       builder: (context, snapshot) {
@@ -37,12 +41,12 @@ class _ThemeSelectListItem extends ConsumerWidget {
           Config config = snapshot.data!;
           return MercuriusListItemWidget(
             iconData: Icons.dark_mode_rounded,
-            titleText: '深色模式',
+            titleText: localizations.darkMode,
             detailText: config.themeMode == ThemeMode.system
-                ? '跟随系统'
+                ? localizations.followTheSystem
                 : snapshot.data?.themeMode == ThemeMode.dark
-                    ? '常暗模式'
-                    : '常亮模式',
+                    ? localizations.alwaysDark
+                    : localizations.alwaysBright,
             onTap: () => showDialog<void>(
               context: context,
               builder: (context) {
@@ -62,6 +66,8 @@ class _VibrationSelectListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return StreamBuilder(
       stream: isarService.listenToConfig(),
       builder: (context, snapshot) {
@@ -69,8 +75,10 @@ class _VibrationSelectListItem extends ConsumerWidget {
           Config config = snapshot.data!;
           return MercuriusModifiedListSwitchItem(
             iconData: Icons.vibration,
-            titleText: '按钮振动',
-            detailText: config.buttonVibration ? '开启' : '关闭',
+            titleText: localizations.buttonVibration,
+            detailText: config.buttonVibration
+                ? localizations.enabled
+                : localizations.disabled,
             value: config.buttonVibration,
             onChanged: (value) => isarService.saveConfig(
               config..buttonVibration = !config.buttonVibration,

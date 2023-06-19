@@ -28,9 +28,9 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
 
     bool? newImage = await MercuriusConfirmDialogWidget(
       context: context,
-      title: '从何处插入？',
-      summary: '图片库还是系统文件呢？',
-      trueString: '系统文件',
+      title: localizations.insertTheImageFrom,
+      summary: '${localizations.imageGallery}？${localizations.systemFile}？',
+      trueString: localizations.systemFile,
       falseString: localizations.imageGallery,
     ).confirm;
 

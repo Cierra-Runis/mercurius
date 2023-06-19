@@ -29,6 +29,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
     final path = ref.watch(mercuriusPathProvider);
 
     final S localizations = S.of(context);
+    final String lang = Localizations.localeOf(context).toLanguageTag();
 
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
@@ -75,6 +76,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
         DiaryEditorToolbarTimestampButtonWidget(
           controller: quillController,
           tooltip: localizations.insertTime,
+          lang: lang,
         ),
         DiaryEditorToolbarMoodButtonWidget(
           context: context,

@@ -5,6 +5,8 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return StreamBuilder(
         stream: isarService.listenToConfig(),
         builder: (context, snapshot) {
@@ -16,7 +18,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
                 ),
-                child: const Text('跟随系统'),
+                child: Text(localizations.followTheSystem),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isarService
@@ -27,7 +29,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
                 ),
-                child: const Text('常暗模式'),
+                child: Text(localizations.alwaysDark),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isarService
@@ -38,7 +40,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
                 ),
-                child: const Text('常亮模式'),
+                child: Text(localizations.alwaysBright),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isarService

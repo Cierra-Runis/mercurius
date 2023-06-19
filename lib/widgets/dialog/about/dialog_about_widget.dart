@@ -5,6 +5,8 @@ class DialogAboutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
     return AlertDialog(
       title: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -23,7 +25,7 @@ class DialogAboutWidget extends StatelessWidget {
           style: TextButton.styleFrom(
             textStyle: Theme.of(context).textTheme.labelLarge,
           ),
-          child: const Text('返回'),
+          child: Text(localizations.back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ],

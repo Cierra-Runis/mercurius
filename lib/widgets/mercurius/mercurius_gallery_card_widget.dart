@@ -12,6 +12,8 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -30,14 +32,14 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
             Image.file(
               File(fileSystemEntity.path),
               errorBuilder: (context, error, stackTrace) {
-                return const MercuriusFadeShimmerWidget(
+                return MercuriusFadeShimmerWidget(
                   radius: 16,
                   width: double.maxFinite,
                   height: 100,
                   child: Text(
-                    '错误的图片格式\n请重新插入',
+                    localizations.unsupportedImageFormat,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 8.0,
                     ),
                   ),
@@ -61,6 +63,9 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                       ? null
                       : () async {
                           bool? confirm = await MercuriusConfirmDialogWidget(
+                            title: localizations.areYouSureToDeleteTheImage,
+                            summary: localizations
+                                .pleaseThinkTwiceAboutDeletingTheImage,
                             context: context,
                           ).confirm;
                           if (confirm == true) {

@@ -9,7 +9,6 @@ class MercuriusGalleryPage extends ConsumerWidget {
   final bool readOnly;
 
   Stream<List<FileSystemEntity>> listenToImageFile(String path) {
-    /// TIPS: 这里只排除了文件夹，而未排除所有 `Image` 不支持的文件
     return Stream.periodic(
       const Duration(milliseconds: 100),
       (_) => Directory('$path/image/').listSync().where(
@@ -21,10 +20,13 @@ class MercuriusGalleryPage extends ConsumerWidget {
   }
 
   Widget getGridBySnapshotData(
+    BuildContext context,
     AsyncSnapshot<List<FileSystemEntity>> snapshot,
   ) {
+    final S localizations = S.of(context);
+
     if (snapshot.data == null || snapshot.data!.isEmpty) {
-      return const Center(child: Text('无数据'));
+      return Center(child: Text(localizations.noData));
     }
 
     List<FileSystemEntity> fileSystemEntities = snapshot.data!;
@@ -43,6 +45,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
   }
 
   Widget getBodyBySnapshotState(
+    BuildContext context,
     AsyncSnapshot<List<FileSystemEntity>> snapshot,
   ) {
     if (snapshot.hasError) {
@@ -54,7 +57,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
       case ConnectionState.waiting:
         return const MercuriusLoadingWidget();
       case ConnectionState.active:
-        return getGridBySnapshotData(snapshot);
+        return getGridBySnapshotData(context, snapshot);
       case ConnectionState.done:
         return const Center(child: Text('Stream closed'));
     }
@@ -77,7 +80,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
         error: (error, stackTrace) => Container(),
         data: (data) => StreamBuilder(
           stream: listenToImageFile(data).distinct(),
-          builder: (context, snapshot) => getBodyBySnapshotState(snapshot),
+          builder: getBodyBySnapshotState,
         ),
       ),
     );

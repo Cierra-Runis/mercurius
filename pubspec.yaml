@@ -63,7 +63,6 @@ flutter:
         - asset: assets/fonts/Saira.ttf
   assets:
     - assets/icon/
-    - assets/json/
 
 flutter_intl:
   enabled: true # 启用国际化

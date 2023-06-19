@@ -7,6 +7,7 @@ class MercuriusVersionNoticeWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final currentVersion = ref.watch(currentVersionProvider);
+    final S localizations = S.of(context);
 
     return TextButton(
       onPressed: () => Navigator.push(
@@ -51,8 +52,8 @@ class MercuriusVersionNoticeWidget extends ConsumerWidget {
               data: (currentVersion) => currentVersion != github.tag_name,
             ),
           )
-              ? '点此更新版本'
-              : '已是最新版本',
+              ? localizations.clickHereToUpgrade
+              : localizations.alreadyTheLatestVersion,
           style: const TextStyle(
             color: Colors.white,
             fontSize: 8,

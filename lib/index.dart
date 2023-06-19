@@ -11,7 +11,7 @@ export 'main.dart';
 /// [RefreshCallback] 和 `export 'package:flutter/material.dart'` 冲突，两者近似
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
 export 'package:flutter/services.dart'
-    show rootBundle, DeviceOrientation, SystemChrome; // 设备服务
+    show DeviceOrientation, SystemChrome; // 设备服务
 /// [Badge] 和 `export 'package:badges/badges.dart'; // 小红点提示` 冲突，我想用外部包
 /// [RefreshIndicator] 和 [RefreshIndicatorState] 被 `export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新` 重写
 export 'package:flutter/material.dart'

@@ -3,7 +3,14 @@
   "@@locale": "zh_CN",
   "back": "返回",
   "save": "保存",
+  "cancel": "取消",
+  "confirm": "确认",
+  "enabled": "已启用",
+  "disabled": "已禁用",
+  "title": "标题",
   "untitled": "无标题",
+  "content": "内容",
+  "noData": "无数据",
   "writingSomethingHere": "写些什么吧……",
   "insertImage": "插入图片",
   "insertTime": "插入时间",
@@ -12,13 +19,38 @@
   "changeDate": "修改日期",
   "statistics": "统计数据",
   "imageGallery": "图片库",
+  "import": "导入",
+  "export": "导出",
   "importAndExport": "导入导出",
+  "importJsonFile": "导入 json 文件",
+  "importNfcData": "导入 NFC 数据",
+  "exportJsonFile": "导出 json 文件",
+  "exportNfcData": "导出 NFC 数据",
+  "pleaseBackToHomePage": "请回到主页",
+  "notYetCompleted": "暂未完成",
   "settings": "设定",
+  "darkMode": "深色模式",
+  "buttonVibration": "按钮振动",
+  "followTheSystem": "跟随系统",
+  "alwaysDark": "常暗模式",
+  "alwaysBright": "常亮模式",
   "aboutUs": "关于",
+  "clickHereToUpgrade": "点此更新",
+  "alreadyTheLatestVersion": "已是最新",
   "contentCannotBeEmpty": "内容不能为空",
   "homePage": "主页",
   "morePage": "更多",
+  "releasePage": "更新页",
   "createNewDiary": "创建新日记",
+  "releasePageOops": "我超！请刷新页面！",
+  "contactUs": "联系我们",
+  "importDeclaration": "引用说明",
+  "importDeclarationDescription": "字体、图标、天气服务相关",
+  "importDeclarationContentUpdateTime": "更新于 2023 年 6 月 4 日",
+  "importDeclarationContent": "欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。\n\n本次 Cierra_Runis 编写了《Mercurius 引入声明》（以下简称「本声明」）。\n\n一、字体声明\n1. Mercurius 引入了 Saira 字体作为 Mercurius 的主要字体。[License](https://github.com/Omnibus-Type/Saira/blob/master/OFL.txt)\n\n二、图标声明\n1. Mercurius 引入了 Material Icons 作为 Mercurius 的主要图标。[License](https://github.com/qwd/Icons/blob/main/LICENSE)\n2. Mercurius 引入了 unicons 作为 Mercurius 的次要图标。[License](https://github.com/pedrolemoz/unicons-flutter/blob/master/LICENSE)\n\n三、天气服务声明\n1. Mercurius 引入了 [和风天气](https://www.qweather.com) 驱动 Mercurius 的天气服务。",
+  "privacyStatement": "隐私政策",
+  "privacyStatementContentUpdateTime": "更新于 2023 年 6 月 4 日",
+  "privacyStatementContent": "欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。\n\n为了更好的保护您的个人信息，请您仔细阅读本政策。\n\n如您对本政策有任何异议或疑问，您可通过本政策第五条中公布的联系方式与 Cierra_Runis 沟通。\n\n一、引言\n1. 本政策适用于 Mercurius 安卓端应用程序。\n2. 请您在使用 Mercurius 的服务前仔细阅读并充分理解本政策的全部内容。一旦您继续使用 Mercurius 软件及服务，即表示您已经同意 Cierra_Runis 按照本政策使用和处理您的相关信息。\n3. Cierra_Runis 会根据相关的法律法规不定时更新本政策，本政策在更新变动后，请确认本政策的新增内容。\n4. 请您同意并且理解只有您确认变更后的本政策，Cierra_Runis 才会依据更新变动后的本政策来收集、使用、储存、处理您的个人信息；您有权拒绝更新变更后的本政策。但请您知悉，一旦拒绝同意变更后的本政策将会导致您不能继续完整使用 Mercurius 相关服务和功能。\n\n二、关于 Cierra_Runis\n1. Mercurius 由 Cierra_Runis 个人提供软件服务。\n2. Cierra_Runis 的基本信息如下：个人网站为 [https://github.com/Cierra-Runis](https://github.com/Cierra-Runis) 。\n\n三、Mercurius 的信息策略\n1. Mercurius 产生的所有数据均在本地进行储存，不会上传任何由 Mercurius 产生的数据，这包括你的日记和图片。\n\n四、适用范围\n1. Cierra_Runis 所有的服务都适用于本政策。若本政策与特定服务的隐私指引或声明有不一致之处，请以本政策为准。\n\n五、联系 Cierra_Runis\n1. 如您对本政策的内容或使用 Cierra_Runis 的服务时遇到的与隐私保护相关的事宜有任何疑问或进行咨询或投诉时，您均可以通过如下任一方式与 Cierra_Runis 取得联系：\n- 您可在 Mercurius 关于界面联系我们\n- 您可以写邮件至 [byrdsaron@gmail.com](byrdsaron@gmail.com)",
   "monthlyWordCountStatistics": "月度字数统计",
   "wordCount": "{count} 字",
   "@wordCount": {
@@ -37,5 +69,43 @@
         "type": "int"
       }
     }
-  }
+  },
+  "unknownVersion": "未知版本",
+  "failedToGetVersion": "获取版本失败",
+  "areYouSureToDeleteTheDiary": "确定删除日记吗？",
+  "pleaseThinkTwiceAboutDeletingTheDiary": "请再三思考是否删除日记",
+  "areYouSureToDeleteTheImage": "确定删除图片吗？",
+  "pleaseThinkTwiceAboutDeletingTheImage": "再三思考是否删除图片",
+  "insertTheImageFrom": "从何处插入图片？",
+  "systemFile": "系统文件",
+  "mood": "心情",
+  "moodText": "{mood, select, other{Unknown Mood} smile{开心} angry{生气} confused{困惑} frown{难过} laughing{大笑} silentSquint{难受} sadCrying{大哭} smileDizzy{我死} normal{一般}}",
+  "@moodText": {
+    "description": "Get mood text by mood in [DiaryMoodType]",
+    "placeholders": {
+      "mood": {
+        "type": "String"
+      }
+    }
+  },
+  "howIsYourMoodNow": "现在心情如何？",
+  "howIsYourMoodNowDescription": "ねぇ、今どんな気持ち",
+  "weather": "天气",
+  "weatherText": "{weather, select, other{未知} sunny{晴} cloudy{多云} fewClouds{少云} heavyThunderstorm{雷暴} lightRain{小雨} heavyRain{大雨} lightSnow{小雪} heavySnow{大雪} foggy{雾}}",
+  "@weatherText": {
+    "description": "Get weather text by weather in [DiaryWeatherType]",
+    "placeholders": {
+      "weather": {
+        "type": "String"
+      }
+    }
+  },
+  "whatIsTheWeatherNow": "现在天气如何？",
+  "whatIsTheWeatherNowDescription": "今日もいい天気",
+  "unsupportedImageFormat": "不支持的图片格式",
+  "imageMissing": "图片缺失",
+  "searchDiaryContent": "查找日记内容",
+  "backAgainToExit": "再次返回以退出",
+  "hiToKoToProvider": "该服务由 Hitokoto「一言」 提供",
+  "hiToKoToFetching": "正在获取「一言」"
 }

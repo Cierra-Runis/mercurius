@@ -5,9 +5,11 @@ class MercuriusIOPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('导入导出'),
+        title: Text(localizations.importAndExport),
       ),
       body: const MercuriusListWidget(
         children: [

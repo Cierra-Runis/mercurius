@@ -9,36 +9,18 @@ class DiaryMoodSelectorWidget extends ConsumerWidget {
 
   final Diary diary;
 
-  List<Widget> _listAllMood(BuildContext context) {
-    List<Widget> buttonList = [];
-    for (var element in DiaryMoodType.values) {
-      buttonList.add(
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(
-            Diary.copyWith(diary, moodType: element),
-          ),
-          icon: Column(
-            children: [Icon(element.iconData), Text(element.mood)],
-          ),
-          color: diary.moodType != element
-              ? null
-              : Theme.of(context).colorScheme.primary,
-        ),
-      );
-    }
-    return buttonList;
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return AlertDialog(
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('现在心情如何'),
+          Text(localizations.howIsYourMoodNow),
           Text(
-            'ねぇ、今どんな気持ち',
+            localizations.howIsYourMoodNowDescription,
             style: TextStyle(
               fontSize: 10,
               color: Theme.of(context).colorScheme.outline,
@@ -48,17 +30,30 @@ class DiaryMoodSelectorWidget extends ConsumerWidget {
       ),
       content: SizedBox(
         width: double.minPositive,
-        child: ListView(
+        child: GridView.builder(
           shrinkWrap: true,
-          children: [
-            Center(
-              child: Wrap(
-                spacing: 16,
-                direction: Axis.horizontal,
-                children: _listAllMood(context),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemCount: DiaryMoodType.values.length,
+          itemBuilder: (context, index) {
+            DiaryMoodType moodType = DiaryMoodType.values[index];
+            return IconButton(
+              onPressed: () => Navigator.of(context).pop(
+                Diary.copyWith(diary, moodType: moodType),
               ),
-            ),
-          ],
+              icon: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(moodType.iconData),
+                  Text(localizations.moodText(moodType.mood)),
+                ],
+              ),
+              color: diary.moodType != moodType
+                  ? null
+                  : Theme.of(context).colorScheme.primary,
+            );
+          },
         ),
       ),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
@@ -68,7 +63,7 @@ class DiaryMoodSelectorWidget extends ConsumerWidget {
             Mercurius.vibration(ref: ref);
             Navigator.of(context).pop();
           },
-          child: const Text('返回'),
+          child: Text(localizations.back),
         ),
       ],
     );

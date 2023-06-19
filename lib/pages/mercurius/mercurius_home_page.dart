@@ -8,12 +8,12 @@ class MercuriusHomePage extends ConsumerStatefulWidget {
 }
 
 class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
-  bool _currentSearchBarMode = false;
+  bool _searchBarMode = false;
 
   void _switchCurrentBarMode() {
     Mercurius.vibration(ref: ref);
     ref.watch(diarySearchTextProvider.notifier).change();
-    setState(() => _currentSearchBarMode = !_currentSearchBarMode);
+    setState(() => _searchBarMode = !_searchBarMode);
   }
 
   @override
@@ -22,7 +22,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
       appBar: AppBar(
         title: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: _currentSearchBarMode
+          child: _searchBarMode
               ? const DiarySearchBarWidget()
               : const MercuriusAppBarTitleWidget(),
         ),

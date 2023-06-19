@@ -5,38 +5,7 @@ class DialogAboutContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<List<dynamic>> data = [
-      [
-        Icons.import_contacts_rounded,
-        '引用声明',
-        '字体、图标、天气服务相关',
-        const MercuriusJsonToDialogWidget(
-          jsonPath: 'assets/json/declaration.json',
-        ),
-      ],
-      [
-        Icons.privacy_tip_rounded,
-        '隐私政策',
-        '${Mercurius.name} 隐私政策',
-        const MercuriusJsonToDialogWidget(
-          jsonPath: 'assets/json/privacy.json',
-        )
-      ],
-    ];
-
-    List<Widget> list = [];
-    for (List<dynamic> element in data) {
-      list.add(
-        MercuriusListItemWidget(
-          iconData: element[0],
-          titleText: element[1],
-          summaryText: element[2],
-          onTap: () {
-            showDialog(context: context, builder: (context) => element[3]);
-          },
-        ),
-      );
-    }
+    final S localizations = S.of(context);
 
     return MercuriusListWidget(
       shrinkWrap: true,
@@ -46,14 +15,40 @@ class DialogAboutContentWidget extends StatelessWidget {
           children: [
             MercuriusListItemWidget(
               iconData: Icons.link,
-              titleText: '联系我们',
+              titleText: localizations.contactUs,
               summaryText: Mercurius.contactUrl,
               onTap: () => launchUrlString(
                 Mercurius.contactUrl,
                 mode: LaunchMode.externalApplication,
               ),
             ),
-            ...list,
+            MercuriusListItemWidget(
+              iconData: Icons.import_contacts_rounded,
+              titleText: localizations.importDeclaration,
+              summaryText: localizations.importDeclarationDescription,
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => MercuriusJsonToDialogWidget(
+                  title: localizations.importDeclaration,
+                  updateTime: localizations.importDeclarationContentUpdateTime,
+                  content: localizations.importDeclarationContent,
+                ),
+              ),
+            ),
+            MercuriusListItemWidget(
+              iconData: Icons.privacy_tip_rounded,
+              titleText: localizations.privacyStatement,
+              summaryText:
+                  '${Mercurius.name} ${localizations.privacyStatement}',
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => MercuriusJsonToDialogWidget(
+                  title: localizations.privacyStatement,
+                  updateTime: localizations.privacyStatementContentUpdateTime,
+                  content: localizations.privacyStatementContent,
+                ),
+              ),
+            ),
           ],
         )
       ],

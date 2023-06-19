@@ -41,17 +41,18 @@ class IsarService {
   }
 
   /// 导入 `json` 数据
-  Future<void> importJsonWith(String path) async {
-    final isar = await _db;
-    final bytes = await File(path).readAsBytes();
-
+  Future<bool> importJsonWith(String path) async {
     try {
+      final isar = await _db;
+      final bytes = await File(path).readAsBytes();
       await isar.writeTxn(() async {
         await isar.diarys.clear();
         await isar.diarys.importJsonRaw(bytes);
       });
+      return true;
     } catch (e) {
       Mercurius.printLog('导入 json 文件出错：$e');
+      return false;
     }
   }
 
