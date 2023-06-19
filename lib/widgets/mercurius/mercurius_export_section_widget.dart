@@ -5,24 +5,28 @@ class MercuriusExportSectionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return MercuriusListSectionWidget(
-      title: const Text('导出'),
+      title: Text(localizations.export),
       children: [
         MercuriusListItemWidget(
           iconData: Icons.data_object_rounded,
-          titleText: '导出 json 文件',
+          titleText: localizations.exportJsonFile,
           onTap: () async {
-            String path =
-                '${await ref.watch(mercuriusPathProvider.future)}/export.json';
-            isarService.exportJsonWith(path);
-            Share.shareXFiles([XFile(path)]);
+            String dir = await ref.watch(mercuriusPathProvider.future);
+            String path = '$dir/export.json';
+            await isarService.exportJsonWith(path);
+
+            /// FIXME: https://github.com/fluttercommunity/plus_plugins/issues/1351
+            await Share.shareFiles([path]);
           },
         ),
-        const MercuriusListItemWidget(
+        MercuriusListItemWidget(
           iconData: Icons.nfc_rounded,
-          titleText: '导出 NFC 数据',
+          titleText: localizations.exportNfcData,
           // TODO: 写逻辑
-          summaryText: '暂未完成',
+          summaryText: localizations.notYetCompleted,
         ),
       ],
     );

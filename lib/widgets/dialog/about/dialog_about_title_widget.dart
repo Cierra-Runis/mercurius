@@ -6,6 +6,7 @@ class DialogAboutTitleWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentVersion = ref.watch(currentVersionProvider);
+    final S localizations = S.of(context);
 
     return Column(
       children: [
@@ -20,8 +21,8 @@ class DialogAboutTitleWidget extends ConsumerWidget {
           children: [
             Text(
               currentVersion.when(
-                loading: () => '未知版本',
-                error: (error, stackTrace) => '版本获取失败',
+                loading: () => localizations.unknownVersion,
+                error: (error, stackTrace) => localizations.failedToGetVersion,
                 data: (data) => data,
               ),
               style: const TextStyle(

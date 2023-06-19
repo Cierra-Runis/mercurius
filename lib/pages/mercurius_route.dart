@@ -38,6 +38,7 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
     return Scaffold(
       body: Center(
         child: MercuriusDoubleBackWidget(
+          message: localizations.backAgainToExit,
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _currentIndex == 0,

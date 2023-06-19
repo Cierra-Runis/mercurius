@@ -1,5 +1,0 @@
-{
-    "title": "引用声明",
-    "updateDate": "更新于 2023 年 06 月 04 日",
-    "content": "欢迎使用 Cierra_Runis 提供的 Mercurius 软件及服务。\n\n本次 Cierra_Runis 编写了《Mercurius 引入声明》（以下简称「本声明」）。\n\n一、字体声明\n1. Mercurius 引入了 Saira 字体作为 Mercurius 的主要字体。[License](https://github.com/Omnibus-Type/Saira/blob/master/OFL.txt)\n\n二、图标声明\n1. Mercurius 引入了 Material Icons 作为 Mercurius 的主要图标。[License](https://github.com/qwd/Icons/blob/main/LICENSE)\n2. Mercurius 引入了 unicons 作为 Mercurius 的次要图标。[License](https://github.com/pedrolemoz/unicons-flutter/blob/master/LICENSE)\n\n三、天气服务声明\n1. Mercurius 引入了 [和风天气](https://www.qweather.com) 驱动 Mercurius 的天气服务。"
-}

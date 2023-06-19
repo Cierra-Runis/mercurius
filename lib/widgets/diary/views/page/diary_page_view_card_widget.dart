@@ -74,11 +74,19 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                         Row(
                           children: [
                             Chip(
-                              label: Text(diary.moodType.mood),
+                              label: Text(
+                                localizations.moodText(
+                                  diary.moodType.mood,
+                                ),
+                              ),
                               labelPadding: EdgeInsets.zero,
                             ),
                             Chip(
-                              label: Text(diary.weatherType.weather),
+                              label: Text(
+                                localizations.weatherText(
+                                  diary.weatherType.weather,
+                                ),
+                              ),
                               labelPadding: EdgeInsets.zero,
                             ),
                             Chip(
@@ -124,6 +132,10 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                                 Mercurius.vibration(ref: ref);
                                 bool? confirm =
                                     await MercuriusConfirmDialogWidget(
+                                  title:
+                                      localizations.areYouSureToDeleteTheDiary,
+                                  summary: localizations
+                                      .pleaseThinkTwiceAboutDeletingTheDiary,
                                   context: context,
                                 ).confirm;
                                 if (confirm == true) {
@@ -139,26 +151,15 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                             IconButton(
                               onPressed: () async {
                                 Mercurius.vibration(ref: ref);
-                                await _showDiaryEditorPage(
-                                  context,
-                                  diary,
-                                );
+                                await _showDiaryEditorPage(context, diary);
                               },
                               icon: const Icon(Icons.edit),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                Mercurius.vibration(ref: ref);
-                                Share.share(
-                                  '${diary.createDateTime.format('y 年 M 月 d 日 EEEE', 'zh_CN')}\n'
-                                  '天气：${diary.weatherType.weather}\n'
-                                  '标题：${diary.titleString == '' ? '无标题' : diary.titleString}\n'
-                                  '心情：${diary.moodType.mood}\n'
-                                  '\n'
-                                  '${diary.document.toPlainText().trimRight()}',
-                                );
-                              },
-                              icon: const Icon(UniconsLine.share),
+                            DiaryPageViewShareButtonWidget(
+                              ref: ref,
+                              diary: diary,
+                              lang: lang,
+                              localizations: localizations,
                             ),
                           ],
                         ),

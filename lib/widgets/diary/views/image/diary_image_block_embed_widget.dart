@@ -26,6 +26,8 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
     bool inline,
     TextStyle textStyle,
   ) {
+    final S localizations = S.of(context);
+
     Widget getInkWellChild(File file) {
       if (file.existsSync()) {
         return ClipRRect(
@@ -34,14 +36,14 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
             file,
             alignment: Alignment.center,
             errorBuilder: (context, error, stackTrace) {
-              return const MercuriusFadeShimmerWidget(
+              return MercuriusFadeShimmerWidget(
                 radius: 16,
                 width: double.maxFinite,
                 height: 200,
                 child: Text(
-                  '错误的图片格式\n请重新插入',
+                  localizations.unsupportedImageFormat,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                   ),
                 ),
@@ -55,7 +57,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
           width: double.maxFinite,
           height: 200,
           child: Text(
-            '位于\n${file.path}\n的图片缺失\n请重新插入图片',
+            localizations.imageMissing,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16.0,

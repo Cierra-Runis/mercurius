@@ -10,7 +10,7 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
     return Column(
       children: [
         const Text(
-          'Mercurius',
+          Mercurius.name,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontFamily: 'Saira',
@@ -49,7 +49,7 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
         Text(
           currentPosition.when(
             loading: () => CurrentPosition().city,
-            error: (error, stackTrace) => '获取中',
+            error: (error, stackTrace) => 'error',
             data: (cachePosition) => cachePosition.city,
           ),
           style: const TextStyle(

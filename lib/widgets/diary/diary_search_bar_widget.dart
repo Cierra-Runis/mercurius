@@ -5,6 +5,8 @@ class DiarySearchBarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return SizedBox(
       width: 160,
       child: TextField(
@@ -12,8 +14,8 @@ class DiarySearchBarWidget extends ConsumerWidget {
         textAlign: TextAlign.center,
         onChanged: (value) =>
             ref.watch(diarySearchTextProvider.notifier).change(value),
-        decoration: const InputDecoration(
-          hintText: '查找日记内容',
+        decoration: InputDecoration(
+          hintText: localizations.searchDiaryContent,
           border: InputBorder.none,
         ),
       ),

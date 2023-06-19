@@ -12,13 +12,16 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
       RefreshController(initialRefresh: false);
 
   Widget _getCardBySnapshotData(
-      BuildContext context, AsyncSnapshot<List<Diary>> snapshot) {
-    if (snapshot.data == null || snapshot.data!.isEmpty) {
-      return const Center(child: Text('无数据'));
-    }
-
-    final String lang = Localizations.localeOf(context).toLanguageTag();
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
     final S localizations = S.of(context);
+    final String lang = Localizations.localeOf(context).toLanguageTag();
+
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
+      final S localizations = S.of(context);
+      return Center(child: Text(localizations.noData));
+    }
 
     List<_DiaryListViewSection> sections = [];
     List<Diary> diaries = snapshot.data!;
@@ -81,7 +84,9 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
   }
 
   Widget _getBodyBySnapshotState(
-      BuildContext context, AsyncSnapshot<List<Diary>> snapshot) {
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
     if (snapshot.hasError) {
       return Center(child: Text('Steam error: ${snapshot.error}'));
     }
