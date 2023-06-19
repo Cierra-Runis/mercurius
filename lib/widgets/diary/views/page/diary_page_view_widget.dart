@@ -9,7 +9,9 @@ class DiaryPageViewWidget extends ConsumerWidget {
   final Diary diary;
 
   Widget _getPageBySnapshotData(
-      BuildContext context, AsyncSnapshot<List<Diary>> snapshot) {
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       Navigator.pop(context);
     }
@@ -33,9 +35,11 @@ class DiaryPageViewWidget extends ConsumerWidget {
   }
 
   Widget _getBodyBySnapshotState(
-      BuildContext context, AsyncSnapshot<List<Diary>> snapshot) {
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
     if (snapshot.hasError) {
-      return Center(child: Text('Steam 错误: ${snapshot.error}'));
+      return Center(child: Text('Steam error: ${snapshot.error}'));
     }
     switch (snapshot.connectionState) {
       case ConnectionState.none:
@@ -45,7 +49,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
       case ConnectionState.active:
         return _getPageBySnapshotData(context, snapshot);
       case ConnectionState.done:
-        return const Center(child: Text('Stream 已关闭'));
+        return const Center(child: Text('Stream closed'));
     }
   }
 

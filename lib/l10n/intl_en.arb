@@ -1,0 +1,41 @@
+{
+  "@@last_modified": "2023-06-19T16:53:25+08:00",
+  "@@locale": "en",
+  "back": "Back",
+  "save": "Save",
+  "untitled": "Untitled",
+  "writingSomethingHere": "Writing Something Here...",
+  "insertImage": "Insert Image",
+  "insertTime": "Insert Time",
+  "changeMood": "Change Mood",
+  "changeWeather": "Change Weather",
+  "changeDate": "Change Date",
+  "statistics": "Statistics",
+  "imageGallery": "Gallery",
+  "importAndExport": "Import & Export",
+  "settings": "Settings",
+  "aboutUs": "About Us",
+  "contentCannotBeEmpty": "Content cannot be empty",
+  "homePage": "Home",
+  "morePage": "More",
+  "createNewDiary": "Create New Diary",
+  "monthlyWordCountStatistics": "Monthly word count statistics",
+  "wordCount": "{count, plural, =1{{count} word} other{{count} words}}",
+  "@wordCount": {
+    "description": "Word count of a diary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diaryCount": "{count, plural, =1{{count} diary} other{{count} diaries}}",
+  "@diaryCount": {
+    "description": "Diary count in a certain time period",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

@@ -46,10 +46,13 @@ class MercuriusApp extends StatelessWidget {
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate
+            GlobalCupertinoLocalizations.delegate,
+            S.delegate,
           ],
           supportedLocales: const [
+            Locale('en'),
             Locale('zh', 'CN'),
+            Locale('ja'),
           ],
         );
       },

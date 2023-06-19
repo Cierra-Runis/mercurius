@@ -1,0 +1,41 @@
+{
+  "@@last_modified": "2023-06-19T16:53:53+08:00",
+  "@@locale": "zh_CN",
+  "back": "返回",
+  "save": "保存",
+  "untitled": "无标题",
+  "writingSomethingHere": "写些什么吧……",
+  "insertImage": "插入图片",
+  "insertTime": "插入时间",
+  "changeMood": "修改心情",
+  "changeWeather": "修改天气",
+  "changeDate": "修改日期",
+  "statistics": "统计数据",
+  "imageGallery": "图片库",
+  "importAndExport": "导入导出",
+  "settings": "设定",
+  "aboutUs": "关于",
+  "contentCannotBeEmpty": "内容不能为空",
+  "homePage": "主页",
+  "morePage": "更多",
+  "createNewDiary": "创建新日记",
+  "monthlyWordCountStatistics": "月度字数统计",
+  "wordCount": "{count} 字",
+  "@wordCount": {
+    "description": "日记字数",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diaryCount": "共 {count} 篇",
+  "@diaryCount": {
+    "description": "某时间段内的日记数",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

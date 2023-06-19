@@ -2,6 +2,7 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorToolbarDateTimeButtonWidget extends QuillCustomButton {
   const DiaryEditorToolbarDateTimeButtonWidget({
+    required super.tooltip,
     required this.currentDiary,
     required this.context,
     required this.handleToolbarChangeDiary,

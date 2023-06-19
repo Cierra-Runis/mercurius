@@ -16,16 +16,17 @@ dependencies:
   another_flushbar: ^1.12.30 # 提示框 [https://pub.dev/packages/another_flushbar]
   badges: ^3.1.1 # 小红点提示 [https://pub.dev/packages/badges]
   cross_file: ^0.3.3+4 # 文件操作 [https://pub.dev/packages/cross_file]
-  dio: ^5.2.1 # 网络请求 [https://pub.dev/packages/dio]
+  dio: ^5.2.1+1 # 网络请求 [https://pub.dev/packages/dio]
   dart_date: ^1.2.2 # 转换时间工具 [https://pub.dev/packages/dart_date]
   file_picker: ^5.3.2 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.15 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.2.3 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.2.7 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
-  image_picker: ^0.8.8 # 图片选择 [https://pub.dev/packages/image_picker]
+  image_picker: ^0.8.9 # 图片选择 [https://pub.dev/packages/image_picker]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
   isar_flutter_libs: ^3.1.0+1 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
+  intl: ^0.18.0 # 国际化 [[https://pub.dev/packages/intl]
   json_annotation: ^4.8.1 # json 相关 [https://pub.dev/packages/json_annotation]
   keframe: ^3.0.0 # 列表优化 [https://pub.dev/packages/keframe]
   loading_animation_widget: ^1.2.0+4 # 加载器组件 [https://pub.dev/packages/loading_animation_widget]
@@ -37,7 +38,7 @@ dependencies:
   riverpod_annotation: ^2.1.1 # 状态管理相关 [https://pub.dev/packages/riverpod_annotation]
   share_plus: ^7.0.2 # 分享 [https://pub.dev/packages/share_plus]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
-  syncfusion_flutter_charts: ^21.2.9 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  syncfusion_flutter_charts: ^21.2.10 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   url_launcher: ^6.1.11 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.7.7 # 振动反馈 [https://pub.dev/packages/vibration]
@@ -63,3 +64,6 @@ flutter:
   assets:
     - assets/icon/
     - assets/json/
+
+flutter_intl:
+  enabled: true # 启用国际化

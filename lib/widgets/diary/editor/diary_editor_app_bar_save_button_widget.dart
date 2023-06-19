@@ -3,34 +3,35 @@ import 'package:mercurius/index.dart';
 class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
   const DiaryEditorAppBarSaveButtonWidget({
     super.key,
-    required this.currentDiary,
-    required this.controller,
-    required this.handleAppBarChangeDiary,
-    required this.title,
+    required this.diary,
+    required this.quillController,
+    required this.handleChangeDiary,
+    required this.textEditingController,
   });
 
-  final Diary currentDiary;
-  final QuillController controller;
-  final ValueChanged<Diary?> handleAppBarChangeDiary;
-  final TextEditingController title;
+  final Diary diary;
+  final QuillController quillController;
+  final ValueChanged<Diary?> handleChangeDiary;
+  final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final S localizations = S.of(context);
+
     return TextButton(
       onPressed: () {
-        String plainText = controller.document
+        String plainText = quillController.document
             .toPlainText()
-            .replaceAll(RegExp(r'\n'), '')
-            .replaceAll(RegExp(r' '), '');
+            .replaceAll(RegExp(r'\n'), '');
         if (plainText == '') {
           Mercurius.vibration(ref: ref, duration: 300);
           Flushbar(
             icon: const Icon(UniconsLine.confused),
             isDismissible: false,
-            messageText: const Center(
+            messageText: Center(
               child: Text(
-                '内容不能为空',
-                style: TextStyle(
+                localizations.contentCannotBeEmpty,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -54,14 +55,14 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
         } else {
           Mercurius.vibration(ref: ref);
           Diary newDiary = Diary.copyWith(
-            currentDiary,
+            diary,
             contentJsonString: jsonEncode(
-              controller.document.toDelta().toJson(),
+              quillController.document.toDelta().toJson(),
             ),
             latestEditTime: DateTime.now(),
-            titleString: title.text,
+            titleString: textEditingController.text,
           );
-          handleAppBarChangeDiary(newDiary);
+          handleChangeDiary(newDiary);
           isarService.saveDiary(newDiary);
           Navigator.of(context).pop(newDiary);
         }
@@ -71,7 +72,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
           const Size(56, 56),
         ),
       ),
-      child: const Text('保存'),
+      child: Text(localizations.save),
     );
   }
 }

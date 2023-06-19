@@ -11,17 +11,25 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
-  Widget _getCardBySnapshotData(AsyncSnapshot<List<Diary>> snapshot) {
+  Widget _getCardBySnapshotData(
+      BuildContext context, AsyncSnapshot<List<Diary>> snapshot) {
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return const Center(child: Text('无数据'));
     }
+
+    final String lang = Localizations.localeOf(context).toLanguageTag();
+    final S localizations = S.of(context);
 
     List<_DiaryListViewSection> sections = [];
     List<Diary> diaries = snapshot.data!;
 
     int year = diaries[0].createDateTime.year;
     int month = diaries[0].createDateTime.month;
-    sections.add(_DiaryListViewSection()..header = '$year年$month月');
+    sections.add(
+      _DiaryListViewSection()
+        ..header =
+            diaries[0].createDateTime.format(DateFormat.YEAR_ABBR_MONTH, lang),
+    );
 
     for (Diary diary in diaries) {
       if (diary.createDateTime.month == month &&
@@ -32,7 +40,8 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
         year = diary.createDateTime.year;
         sections.add(
           _DiaryListViewSection()
-            ..header = '$year年$month月'
+            ..header =
+                diary.createDateTime.format(DateFormat.YEAR_ABBR_MONTH, lang)
             ..items.add(diary),
         );
       }
@@ -51,7 +60,7 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
               accessoryView: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
-                  '共 ${sections[sectionIndex].items.length} 篇',
+                  localizations.diaryCount(sections[sectionIndex].items.length),
                 ),
               ),
               disabled: true,
@@ -71,9 +80,10 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
     );
   }
 
-  Widget _getBodyBySnapshotState(AsyncSnapshot<List<Diary>> snapshot) {
+  Widget _getBodyBySnapshotState(
+      BuildContext context, AsyncSnapshot<List<Diary>> snapshot) {
     if (snapshot.hasError) {
-      return Center(child: Text('Steam 错误: ${snapshot.error}'));
+      return Center(child: Text('Steam error: ${snapshot.error}'));
     }
     switch (snapshot.connectionState) {
       case ConnectionState.none:
@@ -88,10 +98,10 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
             _refreshController.refreshCompleted();
           },
           controller: _refreshController,
-          child: _getCardBySnapshotData(snapshot),
+          child: _getCardBySnapshotData(context, snapshot),
         );
       case ConnectionState.done:
-        return const Center(child: Text('Stream 已关闭'));
+        return const Center(child: Text('Stream closed'));
     }
   }
 
@@ -104,7 +114,7 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
         BuildContext context,
         AsyncSnapshot<List<Diary>> snapshot,
       ) =>
-          _getBodyBySnapshotState(snapshot),
+          _getBodyBySnapshotState(context, snapshot),
     );
   }
 }

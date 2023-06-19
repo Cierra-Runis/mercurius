@@ -75,6 +75,7 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
     );
   }
 
+  /// FIXME: 不再读取本地 json，而是读取国际化数据
   Future<String> _loadAsset() async {
     await Future.delayed(const Duration(milliseconds: 500));
     return rootBundle.loadString(jsonPath);

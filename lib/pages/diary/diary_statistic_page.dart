@@ -5,9 +5,11 @@ class DiaryStatisticPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('统计数据'),
+        title: Text(localizations.statistics),
       ),
       body: const MercuriusListWidget(
         children: [

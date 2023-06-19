@@ -75,3 +75,7 @@ AlertDialog(
 ## QWeather_Icons
 
 目前使用自己所写的 [最新版本](https://pub.dev/packages/qweather_icons) 的图标包
+
+## ard 语法
+
+详见 [此页面](https://my.oschina.net/lemos/blog/5559979)

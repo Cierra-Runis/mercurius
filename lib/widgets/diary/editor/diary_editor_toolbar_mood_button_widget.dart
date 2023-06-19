@@ -2,6 +2,7 @@ import 'package:mercurius/index.dart';
 
 class DiaryEditorToolbarMoodButtonWidget extends QuillCustomButton {
   const DiaryEditorToolbarMoodButtonWidget({
+    required super.tooltip,
     required this.currentDiary,
     required this.context,
     required this.handleToolbarChangeDiary,

@@ -13,3 +13,4 @@ export 'mercurius_export_section_widget.dart';
 export 'mercurius_more_page_list_widget.dart';
 export 'mercurius_app_icon_widget.dart';
 export 'mercurius_hitokoto_widget.dart';
+export 'mercurius_floating_diary_button_widget.dart';

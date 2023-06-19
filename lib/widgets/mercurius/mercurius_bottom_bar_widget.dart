@@ -3,10 +3,10 @@ import 'package:mercurius/index.dart';
 class MercuriusBottomBarWidget extends StatelessWidget {
   const MercuriusBottomBarWidget({
     super.key,
-    required this.items,
+    required this.bottomWidgets,
     required this.colorScheme,
     this.currentIndex = 0,
-    this.onTap,
+    this.onItemTapped,
     this.selectedColorOpacity,
     this.itemShape = const StadiumBorder(),
     this.margin = const EdgeInsets.all(8),
@@ -16,13 +16,13 @@ class MercuriusBottomBarWidget extends StatelessWidget {
   });
 
   /// 要显示的选项卡列表，即 `Home` `Likes` 等
-  final List<MercuriusBottomBarItem> items;
+  final List<MercuriusBottomBarItem> bottomWidgets;
 
   /// 要显示的选项卡
   final int currentIndex;
 
   /// 返回被点击的选项卡的索引
-  final Function(int)? onTap;
+  final Function(int)? onItemTapped;
 
   /// Material ColorScheme
   final ColorScheme colorScheme;
@@ -51,11 +51,11 @@ class MercuriusBottomBarWidget extends StatelessWidget {
 
     List<TweenAnimationBuilder<double>> children = [];
 
-    for (final item in items) {
+    for (final item in bottomWidgets) {
       children.add(
         TweenAnimationBuilder<double>(
           tween: Tween(
-            end: items.indexOf(item) == currentIndex ? 1.0 : 0.0,
+            end: bottomWidgets.indexOf(item) == currentIndex ? 1.0 : 0.0,
           ),
           curve: curve,
           duration: duration,
@@ -67,7 +67,7 @@ class MercuriusBottomBarWidget extends StatelessWidget {
                   selectedColor.withOpacity(selectedColorOpacity ?? 0.1), t),
               shape: itemShape,
               child: InkWell(
-                onTap: () => onTap?.call(items.indexOf(item)),
+                onTap: () => onItemTapped?.call(bottomWidgets.indexOf(item)),
                 customBorder: itemShape,
                 focusColor: selectedColor.withOpacity(0.1),
                 highlightColor: selectedColor.withOpacity(0.1),
@@ -85,7 +85,7 @@ class MercuriusBottomBarWidget extends StatelessWidget {
                           color: Color.lerp(unselectedColor, selectedColor, t),
                           size: 24,
                         ),
-                        child: items.indexOf(item) == currentIndex
+                        child: bottomWidgets.indexOf(item) == currentIndex
                             ? item.activeIcon ?? item.icon
                             : item.icon,
                       ),
@@ -154,7 +154,7 @@ class MercuriusBottomBarWidget extends StatelessWidget {
         minimum: margin,
         child: Row(
           // 当有 2 个或更少的项目时使用不同的对齐方式，因此它的行为与 `BottomNavigationBar` 相同
-          mainAxisAlignment: items.length <= 2
+          mainAxisAlignment: bottomWidgets.length <= 2
               ? MainAxisAlignment.spaceEvenly
               : MainAxisAlignment.spaceBetween,
           children: getChildren(),

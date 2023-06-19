@@ -4,12 +4,12 @@ class DiaryEditorBodyWidget extends StatelessWidget {
   const DiaryEditorBodyWidget({
     super.key,
     required this.scrollController,
-    required this.controller,
+    required this.quillController,
     required this.readOnly,
   });
 
   final ScrollController scrollController;
-  final QuillController controller;
+  final QuillController quillController;
   final bool readOnly;
   bool get autoFocus => !readOnly;
   bool get showCursor => !readOnly;
@@ -18,8 +18,10 @@ class DiaryEditorBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S localizations = S.of(context);
+
     return QuillEditor(
-      locale: const Locale('zh', 'CN'),
+      locale: Localizations.localeOf(context),
       focusNode: FocusNode(),
       scrollController: scrollController,
       scrollable: true,
@@ -29,8 +31,8 @@ class DiaryEditorBodyWidget extends StatelessWidget {
       expands: false,
       padding: const EdgeInsets.all(2.0),
       autoFocus: autoFocus,
-      placeholder: '记些什么吧',
-      controller: controller,
+      placeholder: localizations.writingSomethingHere,
+      controller: quillController,
       readOnly: readOnly,
       onLaunchUrl: (url) {
         launchUrlString(
