@@ -77,4 +77,8 @@
 
 # 🔦 声明
 
-- 更多详细信息已在软件内标注
+[![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE)
+
+该项目采用 `GPL-3.0` 许可协议，查看 [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) 以获得更多信息
+
+- 更多信息见 Mercurius 软件内的 `关于` 页面
