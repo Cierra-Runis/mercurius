@@ -41,5 +41,3 @@ app.*.map.json
 # api 私有 key
 lib/common/mercurius_key.dart
 
-# release_tool
-githubLatestVersion
