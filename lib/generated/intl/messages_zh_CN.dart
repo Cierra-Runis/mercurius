@@ -53,7 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutUs": MessageLookupByLibrary.simpleMessage("关于"),
-        "alreadyTheLatestVersion": MessageLookupByLibrary.simpleMessage("已是最新"),
+        "alreadyTheLatestVersion":
+            MessageLookupByLibrary.simpleMessage("已是最新版本"),
         "alwaysBright": MessageLookupByLibrary.simpleMessage("常亮模式"),
         "alwaysDark": MessageLookupByLibrary.simpleMessage("常暗模式"),
         "areYouSureToDeleteTheDiary":
@@ -67,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeDate": MessageLookupByLibrary.simpleMessage("修改日期"),
         "changeMood": MessageLookupByLibrary.simpleMessage("修改心情"),
         "changeWeather": MessageLookupByLibrary.simpleMessage("修改天气"),
-        "clickHereToUpgrade": MessageLookupByLibrary.simpleMessage("点此更新"),
+        "clickHereToUpgrade": MessageLookupByLibrary.simpleMessage("点此更新版本"),
         "confirm": MessageLookupByLibrary.simpleMessage("确认"),
         "contactUs": MessageLookupByLibrary.simpleMessage("联系我们"),
         "content": MessageLookupByLibrary.simpleMessage("内容"),
