@@ -1,75 +1,69 @@
 ###### Latest Version / 最新版本 / 最新バージョン
 
-v1.1.0+73
+v1.1.1+74
 
 ###### What's updated / 更新内容 / 更新内容
 
-Revise📖 & Plan🚀
+Revise📖 & Fix issue🔧
 
-1. 📖Added the `intl` package, updated some packages
-2. 📖Initially added partial translations in English, Chinese, and Japanese
-3. 🚀Plan to improve all translations
-4. 🚀Plan to deprecate `rootBundle`
-5. 📖Organized part of the code and standardized variable naming
-6. 📖Add more tooltips for widgets
+1. 📖Improved all translations
+2. 📖Deprecate `rootBundle`
+3. 🔧Fixed issue when sharing `export.json` by using deprecated API
+4. 📖Add more tooltips for widgets
 
 ---
 
-修改📖 & 计划🚀
+修改📖 & 修复问题🔧
 
-1. 📖添加 `intl` 包，更新部分包
-2. 📖初步增加了英文、中文、日文的部分翻译
-3. 🚀计划改进所有翻译
-4. 🚀计划弃用 `rootBundle`
-5. 📖整理了部分代码，规范了变量命名
-6. 📖为小部件添加更多提示
+1. 📖改进所有翻译
+2. 📖弃用 `rootBundle`
+3. 🔧使用废弃 API 修复分享 `export.json` 时的问题
+4. 📖为小部件添加更多工具提示
 
 ---
 
-変更📖 & 計画🚀
+変更 📖 & バグ修正🔧
 
-1. 📖` intl ` パッケージを追加し、一部のパッケージを更新する
-2. 📖英語、中国語、日本語の部分翻訳が初歩的に増加した
-3. 🚀すべての翻訳を改善する計画
-4. 🚀計画廃棄 `rootBundle`
-5. 📖一部のコードを整理し、変数の命名を規範化しました
-6. 📖ウィジェットの追加に関するヒント
+1. 📖すべての翻訳を改善する
+2. 📖`rootBundle` を非推奨にする
+3. 🔧非推奨の API を使用して `export.json` を共有するときの問題を修正
+4. 📖ウィジェットのツールチップを追加する
 
 ###### Changelog / 历史更新 / 更新歴史
 
-- Check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
+- [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.0.0+72...v1.1.0+73), for further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
 ---
 
-- 见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
+- [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.0.0+72...v1.1.0+73)，有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
 ---
 
-- [Github Releases ページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
+- [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.0.0+72...v1.1.0+73)、以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ###### Breaking changes list / 破坏性更新版本列表 / 破壊的変更バージョンのリスト
 
-- `0.5.0+65 version`
+- `v0.5.0+65`
   - The storage location of the isar database is modified, and the diaries needs to be re-imported using the export function
 
-- `0.3.0+59 version`
+- `v0.3.0+59`
   - Use enumerated types to standardize diary mood, weather and Sudoku difficulty types
   - All data will be lost, please move data manually
 
 ---
 
-- `0.5.0+65 版本`
+- `v0.5.0+65`
   - isar 数据库存放位置修改，需要使用导出功能重新导入日记
 
-- `0.3.0+59 版本`
+- `v0.3.0+59`
   - 使用枚举类型规范日记心情、天气及数独难度的类型
   - 会失去所有数据，请手动移动数据
 
 ---
 
-- `0.5.0+65 バージョン`
+- `v0.5.0+65`
   - isar データベースの保存場所が変更され、エクスポート機能を使用してログを再インポートする必要があります
 
-- `0.3.0+59 バージョン`
+- `v0.3.0+59`
   - 列挙型を使用して日記の気分、天気、数独の難易度タイプを標準化する
   - すべてのデータが失われます。手動でデータを移動してください。
