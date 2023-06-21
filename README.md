@@ -115,4 +115,4 @@ Official version has been released
 
 This project is licensed under the terms of the `GPL-3.0` license. See [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) for more details
 
-For information about the open source library introduced by Mercurius, see the About page in Mercurius
+For information about the open source library introduced by Mercurius, see the `About` page in Mercurius
