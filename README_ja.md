@@ -87,6 +87,6 @@
 
 [![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE)
 
-このプロジェクトは`GPL-3.0`ライセンス契約を採用しています、詳細は [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) をご覧ください
+このプロジェクトは `GPL-3.0` ライセンス契約を採用しています、詳細は [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) をご覧ください
 
 Mercurius が導入したオープンソースライブラリなどの情報については、Mercurius ソフトウェア内の `アプリについて` ページを参照してください
