@@ -106,7 +106,7 @@ Official version has been released
 # 🧑‍💻 Contributor
 
 <a href="https://github.com/Cierra-Runis/repository_template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Cierra-Runis/repository_template" />
+  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" />
 </a>
 
 # 🔦 Declaration
