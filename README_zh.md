@@ -1,7 +1,14 @@
 <div align="center">
+
   <img id="mercurius" width="96" alt="mercurius" src=".github/image/icon.svg">
+
   <p>『 Mercurius - 记点日记！』</p>
+
+  <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
+
 </div>
+
+`最后更新于：2023-06-22 03:20:00`
 
 [📚 简介](#-简介)
 
