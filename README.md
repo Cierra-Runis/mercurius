@@ -50,7 +50,7 @@
 
 - Support diary data statistics
 
-- Looking forward to more functions...
+- Please look forward to more functions...
 
 # 📸 Screenshots
 
