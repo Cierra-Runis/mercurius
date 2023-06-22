@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "aboutUs": MessageLookupByLibrary.simpleMessage("アバウト"),
+        "aboutApp": MessageLookupByLibrary.simpleMessage("アプリについて"),
         "alreadyTheLatestVersion":
             MessageLookupByLibrary.simpleMessage("すでに最新"),
         "alwaysBright": MessageLookupByLibrary.simpleMessage("常に明るい"),

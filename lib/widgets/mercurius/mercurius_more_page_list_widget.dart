@@ -68,7 +68,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
                   data: (currentVersion) => currentVersion != github.tag_name,
                 ),
               ),
-              titleText: l10n.aboutUs,
+              titleText: l10n.aboutApp,
               onTap: () => showDialog<void>(
                 context: context,
                 builder: (context) => const DialogAboutWidget(),

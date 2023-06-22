@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "aboutUs": MessageLookupByLibrary.simpleMessage("关于"),
+        "aboutApp": MessageLookupByLibrary.simpleMessage("关于"),
         "alreadyTheLatestVersion":
             MessageLookupByLibrary.simpleMessage("已是最新版本"),
         "alwaysBright": MessageLookupByLibrary.simpleMessage("常亮模式"),

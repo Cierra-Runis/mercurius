@@ -380,11 +380,11 @@ class MercuriusL10N {
     );
   }
 
-  /// `About Us`
-  String get aboutUs {
+  /// `About App`
+  String get aboutApp {
     return Intl.message(
-      'About Us',
-      name: 'aboutUs',
+      'About App',
+      name: 'aboutApp',
       desc: '',
       args: [],
     );
