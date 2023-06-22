@@ -1,84 +1,118 @@
 <div align="center">
+
   <img id="mercurius" width="96" alt="mercurius" src=".github/image/icon.svg">
-  <p>『 Mercurius - 记点日记！』</p>
+
+  <p>『 Mercurius - Write Some Diaries!』</p>
+
+  <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
+
 </div>
 
-[📚 简介](#-简介)
+`Latest update: 2023-06-22 03:00:00`
 
-[📸 示例](#-示例)
+[📚 Introduction](#-Introduction)
 
-[📦 使用方式](#-使用方式)
+[📸 Screenshots](#-Screenshots)
 
-[⏳ 进度](#-进度)
+[📦 How to use](#-How-to-use)
 
-[📌 注意事项](#-注意事项)
+[⏳ Rate of progress](#-Rate-of-progress)
 
-[🧑‍💻 贡献者](#-贡献者)
+[📌 Cautions](#-Cautions)
 
-[🔦 声明](#-声明)
+[🧑‍💻 Contributor](#-Contributor)
 
-# 📚 简介
+[🔦 Declaration](#-Declaration)
 
-本软件是基于 [Flutter](https://flutter.dev/) 开发的一款日记软件，已实现的部分功能如下：
+---
 
-- 支持一日多日记共存
-- 支持富文本编辑
-  1. 支持粗体、斜体、小字号、下划线、删除线等文字属性
-  2. 支持左对齐、居中对齐、右对齐等文字对齐方式
-  3. 支持大、中、小三级标题和普通文字
-  4. 支持插入引言、图片、时间标签功能
-  5. 支持修改日记心情、天气、归属日期等属性
-- 支持全文搜索
-- 支持导入导出日记为 `json` 格式
-- 支持日记数据统计
-- 更多功能尽情期待
+# 📚 Introduction
 
-# 📸 示例
+`Mercurius` is a diary application developed based on [Flutter](https://flutter.dev/), and some of the realized functions are as follows:
 
-## 🌕️ 常暗模式
+- Support the coexistence of diary in one day
+
+- Support rich text editing
+
+  1. Support text attributes such as bold, italic, small font size, underline, delete line, etc
+
+  2. Support left alignment, center alignment, right alignment and other text alignment methods
+
+  3. Support large, medium and small three-level titles and ordinary characters
+
+  4. Support the function of inserting refers, images and time tags
+
+  5. Support to modify diary mood, weather, date and other attributes.
+
+- Support full-text search
+
+- Support import and export diary in `json` format
+
+- Support diary data statistics
+
+- Please look forward to more functions...
+
+# 📸 Screenshots
+
+## 🌕️ Dark Mode
 
 <p>
+
   <img width="400" src=".github/image/black_1.jpg" alt="black_1" />
+
   <img width="400" src=".github/image/black_2.jpg" alt="black_2" />
+
   <img width="400" src=".github/image/black_3.jpg" alt="black_3" />
+
   <img width="400" src=".github/image/black_4.jpg" alt="black_4" />
+
   <img width="400" src=".github/image/black_5.jpg" alt="black_5" />
+
   <img width="400" src=".github/image/black_6.jpg" alt="black_6" />
+
 </p>
 
-## 🌞️ 常亮模式
+## 🌞️ Bright Mode
 
 <p>
+
   <img width="400" src=".github/image/white_1.jpg" alt="white_1" />
+
   <img width="400" src=".github/image/white_2.jpg" alt="white_2" />
+
   <img width="400" src=".github/image/white_3.jpg" alt="white_3" />
+
   <img width="400" src=".github/image/white_4.jpg" alt="white_4" />
+
   <img width="400" src=".github/image/white_5.jpg" alt="white_5" />
+
   <img width="400" src=".github/image/white_6.jpg" alt="white_6" />
+
 </p>
 
-# 📦 使用方式
+# 📦 How to use
 
-请在 [Releases](https://github.com/Cierra-Runis/mercurius/releases) 中选择下载安装最新版本的 `app-arm64-v8a-release.apk` 即可
+Go [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) and select the latest version of `app-arm64-v8a-release.apk` to download and install it
 
-# ⏳ 进度
+# ⏳ Rate of progress
 
-已进入正式版
+Official version has been released
 
-# 📌 注意事项
+# 📌 Cautions
 
-- 请留意更新页的破获性更新版本列表所标注的相关信息，及时主动使用 `导入导出` 功能备份日记数据，以防升级版本后数据丢失
+- Please pay attention to the relevant information marked in the list of breaking updated versions on the update page
+- and actively use the `import and export` function to back up diary data in time to prevent data loss after upgrading the version
 
-# 🧑‍💻 贡献者
+# 🧑‍💻 Contributor
 
-<a href="https://github.com/Cierra-Runis/mercurius/graphs/contributors">
+<a href="https://github.com/Cierra-Runis/repository_template/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" />
 </a>
 
-# 🔦 声明
+# 🔦 Declaration
 
 [![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE)
 
-该项目采用 `GPL-3.0` 许可协议，查看 [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) 以获得更多信息
+This project is licensed under the terms of the `GPL-3.0` license. See [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) for more details
 
-有关 Mercurius 引入的开源库等信息，见 Mercurius 软件内的 `关于` 页面
+For information about the open source library introduced by Mercurius, see the `About` page in Mercurius
