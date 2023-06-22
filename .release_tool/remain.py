@@ -1,12 +1,14 @@
 """
 自动化 python 脚本
-main.py
+remain.py
 """
 
+from enum import Enum
 import os
 import re
 import shutil
-from enum import Enum
+import zipfile
+
 import yaml
 
 
@@ -15,9 +17,6 @@ class RegStr(Enum):
     reg str
     """
     version_str: str = r'(\d+)\.(\d+)\.(\d+)\+(\d+)'
-    pubspec_yaml: str = r'version: (\d+\.\d+\.\d+\+\d+)'
-    release_yml: str = r'tag: "v(.*)"'
-    body_md: str = r'v(.*)'
 
 
 class FileStr(Enum):
@@ -25,10 +24,9 @@ class FileStr(Enum):
     file str
     """
     pubspec_yaml: str = r'pubspec.yaml'
-    release_yml: str = r'.github\workflows\releases.yml'
-    body_md: str = r'.release_tool\body.md'
     app_arm64_v8a_release_apk: str = r'build\app\outputs\apk\release\app-arm64-v8a-release.apk'
     release_tool_dir: str = r'.release_tool'
+    release_dir: str = r'build\windows\runner\Release'
 
 
 def get_version_from_pubspec_yaml() -> str:
@@ -37,49 +35,22 @@ def get_version_from_pubspec_yaml() -> str:
     """
     file = open(FileStr.pubspec_yaml.value, encoding='utf-8')
     data = yaml.load(file, Loader=yaml.FullLoader)
+    print(data)
     result = data['version']
     file.close()
     return result
 
 
-def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
-    """
-    改写用辅助函数
-    """
-    file = open(file_dir, 'r+', encoding='utf-8')
-    text = file.read()
-    file.seek(0, 0)
-    text = re.sub(reg, repl, text)
-    file.write(text)
-    file.close()
-
-
+# TODO: 处理注释丢失的问题
 def rewrite_current_version_in_pubspec_yaml(new_version: str) -> None:
     """
     修改 pubspec.yaml 文件中的版本号
     """
-    rewrite_tool(
-        file_dir=FileStr.pubspec_yaml.value,
-        reg=RegStr.pubspec_yaml.value,
-        repl=f'version: {new_version}',
-    )
-
-
-def rewrite_release_version(new_version: str) -> None:
-    """
-    修改 release.yml 和 body.md 文件中的版本号
-    """
-
-    rewrite_tool(
-        file_dir=FileStr.release_yml.value,
-        reg=RegStr.release_yml.value,
-        repl=f'tag: "v{new_version}"',
-    )
-    rewrite_tool(
-        file_dir=FileStr.body_md.value,
-        reg=RegStr.body_md.value,
-        repl=f'v{new_version}',
-    )
+    with open(FileStr.pubspec_yaml.value, 'r', encoding='utf-8') as f:
+        data = yaml.load(f, Loader=yaml.FullLoader)
+    data['version'] = new_version
+    with open(FileStr.pubspec_yaml.value, 'w', encoding='utf-8') as f:
+        f.write(yaml.dump(data))
 
 
 def is_new_version_legal(current_version: str, new_version: str) -> bool:
@@ -129,6 +100,35 @@ def input_tool(
         input_str = input()
     # 直至输入合法
     return input_str
+
+
+def copy_tree(src_path: str, dst_path: str) -> None:
+    '''
+    复制 src_path 文件夹至 dst_path 目录下, 且要求俩者后不接 '/'
+    '''
+    if not os.path.isdir(src_path):
+        print(f'> 所复制 {src_path} 不存在')
+    else:
+        if os.path.isdir(dst_path):
+            shutil.rmtree(dst_path)
+        shutil.copytree(src_path, dst_path)
+        print(f'> 已复制 {src_path} 至 {dst_path} 下')
+
+
+def zip_file(src_dir):
+    '''
+    压缩 src_dir 文件夹
+    '''
+    zip_name = src_dir + '.zip'
+    zip_files = zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED)
+    for dirpath, _, filenames in os.walk(src_dir):
+        fpath = dirpath.replace(src_dir, '')
+        fpath = fpath and fpath + os.sep or ''
+        for filename in filenames:
+            zip_files.write(os.path.join(dirpath, filename), fpath + filename)
+
+    zip_files.close()
+    print(f'> 已压缩 {src_dir}.zip')
 
 
 def copy_file(src_file: str, dst_path: str) -> None:
@@ -195,7 +195,7 @@ def main_module() -> None:
         # 版本号已修改
         print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')
 
-        # 修改版本号后自动构建
+        # 修改版本号后自动构建 apk
         os.system(
             'flutter build apk' + ' --obfuscate' +
             ' --split-debug-info=splitMap' +
@@ -207,59 +207,28 @@ def main_module() -> None:
             dst_path=FileStr.release_tool_dir.value,
         )
 
+        # 修改版本号后自动构建 exe
+        os.system(
+            'flutter build windows' +
+            ' --obfuscate --split-debug-info=splitMap', )
+
+        # 并将 build 后的 Release 文件夹转移至 .release_tool/
+        copy_tree(
+            src_path=FileStr.release_dir.value,
+            dst_path=f'{FileStr.release_tool_dir.value}/Mercurius for Windows',
+        )
+
+        # 并进行压缩和打包
+        zip_file(f"{FileStr.release_tool_dir.value}/Mercurius for Windows")
+
     else:
         # 反之输入的不是 'y'
         print('> 已取消更改版本号')
 
 
-def release_module() -> None:
-    """
-    发布模块
-    """
-    current_version_str = get_version_from_pubspec_yaml()
-    input_str = ''
-
-    input_str = input_tool(
-        first_message=f'是否发布当前版本 {current_version_str}',
-        rule='(y/n)',
-        error_message='请只输入 y 或 n',
-        rule_function=lambda input_str: input_str == 'y' or input_str == 'n',
-    )
-
-    # 若输入的是 'y'
-    if input_str == 'y':
-        # 修改发布版本
-        # rewrite_release_version(current_version_str)
-        # # 打开 body.md 文件进行修改
-        # print('> 已为你打开 body.md 文件')
-        # os.startfile(FileStr.body_md.value)
-
-        # # 打开文件后询问是否完成
-        # input_str = input_tool(
-        #     first_message='是否完成修改',
-        #     rule='(y)',
-        #     error_message='请输入 y 以确认修改完成',
-        #     rule_function=lambda input_str: input_str == 'y',
-        # )
-
-        # 梳理逻辑, 本脚本分为两个模块
-        # 1. 通过脚本修改版本号则保证 pubspec.yaml 和 apk 版本一致
-        # 2. 通过脚本发布软件保证 pubspec.yaml 和 body.md , tag.md 的版本一致
-        # 一般流程为 1 -> 1 -> 1 -> 2 即多次修改版本号后发布, 无异常
-        # 提交 release
-        print('-- release.py --')
-        release_version_str = get_version_from_pubspec_yaml()
-        print(f'> 正在发布 v{release_version_str}')
-        os.system('git add .')
-        os.system(f'git commit -m "🎉 Release v{release_version_str} 🎉"')
-        os.system('git push')
-        os.system(f'git tag v{release_version_str}')
-        os.system('git push --tags')
-        print(f'> 已发布 v{release_version_str}')
-
-    else:
-        # 反之输入的不是 'y'
-        print('> 已取消发布 apk')
+def release_module():
+    '''
+    '''
 
 
 if __name__ == '__main__':
