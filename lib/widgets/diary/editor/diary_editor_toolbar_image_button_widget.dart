@@ -24,14 +24,14 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     BuildContext context,
     String path,
   ) async {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     bool? newImage = await MercuriusConfirmDialogWidget(
       context: context,
-      title: localizations.insertTheImageFrom,
-      summary: '${localizations.imageGallery}？${localizations.systemFile}？',
-      trueString: localizations.systemFile,
-      falseString: localizations.imageGallery,
+      title: l10n.insertTheImageFrom,
+      summary: '${l10n.imageGallery}？${l10n.systemFile}？',
+      trueString: l10n.systemFile,
+      falseString: l10n.imageGallery,
     ).confirm;
 
     switch (newImage) {

@@ -5,14 +5,14 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return MercuriusListSectionWidget(
-      title: Text(localizations.import),
+      title: Text(l10n.import),
       children: [
         MercuriusListItemWidget(
           iconData: Icons.data_object_rounded,
-          titleText: localizations.importJsonFile,
+          titleText: l10n.importJsonFile,
           onTap: () async {
             /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
             await FilePicker.platform.clearTemporaryFiles();
@@ -28,7 +28,7 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
                   isDismissible: false,
                   messageText: Center(
                     child: Text(
-                      localizations.pleaseBackToHomePage,
+                      l10n.pleaseBackToHomePage,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -56,9 +56,9 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
         ),
         MercuriusListItemWidget(
           iconData: Icons.nfc_rounded,
-          titleText: localizations.importNfcData,
+          titleText: l10n.importNfcData,
           // TODO: 写逻辑
-          summaryText: localizations.notYetCompleted,
+          summaryText: l10n.notYetCompleted,
         ),
       ],
     );

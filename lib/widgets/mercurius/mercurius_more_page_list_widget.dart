@@ -13,27 +13,27 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final currentVersion = ref.watch(currentVersionProvider);
 
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     final List<List<dynamic>> data = [
       [
         Icons.analytics,
-        localizations.statistics,
+        l10n.statistics,
         const DiaryStatisticPage(),
       ],
       [
         Icons.image_rounded,
-        localizations.imageGallery,
+        l10n.imageGallery,
         const MercuriusGalleryPage(),
       ],
       [
         Icons.import_export_rounded,
-        localizations.importAndExport,
+        l10n.importAndExport,
         const MercuriusIOPage(),
       ],
       [
         Icons.settings_rounded,
-        localizations.settings,
+        l10n.settings,
         const MercuriusSettingPage(),
       ],
     ];
@@ -68,7 +68,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
                   data: (currentVersion) => currentVersion != github.tag_name,
                 ),
               ),
-              titleText: localizations.aboutUs,
+              titleText: l10n.aboutUs,
               onTap: () => showDialog<void>(
                 context: context,
                 builder: (context) => const DialogAboutWidget(),

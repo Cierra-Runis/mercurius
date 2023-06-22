@@ -6,7 +6,7 @@ class DialogAboutTitleWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentVersion = ref.watch(currentVersionProvider);
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return Column(
       children: [
@@ -21,8 +21,8 @@ class DialogAboutTitleWidget extends ConsumerWidget {
           children: [
             Text(
               currentVersion.when(
-                loading: () => localizations.unknownVersion,
-                error: (error, stackTrace) => localizations.failedToGetVersion,
+                loading: () => l10n.unknownVersion,
+                error: (error, stackTrace) => l10n.failedToGetVersion,
                 data: (data) => data,
               ),
               style: const TextStyle(

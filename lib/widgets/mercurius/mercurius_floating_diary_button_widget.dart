@@ -37,10 +37,10 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return FloatingActionButton(
-      tooltip: localizations.createNewDiary,
+      tooltip: l10n.createNewDiary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
       ),

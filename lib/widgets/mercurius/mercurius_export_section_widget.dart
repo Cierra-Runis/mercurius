@@ -5,14 +5,14 @@ class MercuriusExportSectionWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return MercuriusListSectionWidget(
-      title: Text(localizations.export),
+      title: Text(l10n.export),
       children: [
         MercuriusListItemWidget(
           iconData: Icons.data_object_rounded,
-          titleText: localizations.exportJsonFile,
+          titleText: l10n.exportJsonFile,
           onTap: () async {
             String dir = await ref.watch(mercuriusPathProvider.future);
             String path = '$dir/export.json';
@@ -24,9 +24,9 @@ class MercuriusExportSectionWidget extends ConsumerWidget {
         ),
         MercuriusListItemWidget(
           iconData: Icons.nfc_rounded,
-          titleText: localizations.exportNfcData,
+          titleText: l10n.exportNfcData,
           // TODO: 写逻辑
-          summaryText: localizations.notYetCompleted,
+          summaryText: l10n.notYetCompleted,
         ),
       ],
     );

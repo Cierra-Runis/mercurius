@@ -5,7 +5,7 @@ class DialogAboutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return AlertDialog(
       title: const Row(
@@ -25,7 +25,7 @@ class DialogAboutWidget extends StatelessWidget {
           style: TextButton.styleFrom(
             textStyle: Theme.of(context).textTheme.labelLarge,
           ),
-          child: Text(localizations.back),
+          child: Text(l10n.back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ],

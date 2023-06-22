@@ -5,7 +5,7 @@ class DialogAboutContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return MercuriusListWidget(
       shrinkWrap: true,
@@ -15,7 +15,7 @@ class DialogAboutContentWidget extends StatelessWidget {
           children: [
             MercuriusListItemWidget(
               iconData: Icons.link,
-              titleText: localizations.contactUs,
+              titleText: l10n.contactUs,
               summaryText: Mercurius.contactUrl,
               onTap: () => launchUrlString(
                 Mercurius.contactUrl,
@@ -24,28 +24,27 @@ class DialogAboutContentWidget extends StatelessWidget {
             ),
             MercuriusListItemWidget(
               iconData: Icons.import_contacts_rounded,
-              titleText: localizations.importDeclaration,
-              summaryText: localizations.importDeclarationDescription,
+              titleText: l10n.importDeclaration,
+              summaryText: l10n.importDeclarationDescription,
               onTap: () => showDialog(
                 context: context,
                 builder: (context) => MercuriusJsonToDialogWidget(
-                  title: localizations.importDeclaration,
-                  updateTime: localizations.importDeclarationContentUpdateTime,
-                  content: localizations.importDeclarationContent,
+                  title: l10n.importDeclaration,
+                  updateTime: l10n.importDeclarationContentUpdateTime,
+                  content: l10n.importDeclarationContent,
                 ),
               ),
             ),
             MercuriusListItemWidget(
               iconData: Icons.privacy_tip_rounded,
-              titleText: localizations.privacyStatement,
-              summaryText:
-                  '${Mercurius.name} ${localizations.privacyStatement}',
+              titleText: l10n.privacyStatement,
+              summaryText: '${Mercurius.name} ${l10n.privacyStatement}',
               onTap: () => showDialog(
                 context: context,
                 builder: (context) => MercuriusJsonToDialogWidget(
-                  title: localizations.privacyStatement,
-                  updateTime: localizations.privacyStatementContentUpdateTime,
-                  content: localizations.privacyStatementContent,
+                  title: l10n.privacyStatement,
+                  updateTime: l10n.privacyStatementContentUpdateTime,
+                  content: l10n.privacyStatementContent,
                 ),
               ),
             ),

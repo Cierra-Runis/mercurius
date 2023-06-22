@@ -26,7 +26,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
     bool inline,
     TextStyle textStyle,
   ) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     Widget getInkWellChild(File file) {
       if (file.existsSync()) {
@@ -41,7 +41,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
                 width: double.maxFinite,
                 height: 200,
                 child: Text(
-                  localizations.unsupportedImageFormat,
+                  l10n.unsupportedImageFormat,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 16.0,
@@ -57,7 +57,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
           width: double.maxFinite,
           height: 200,
           child: Text(
-            localizations.imageMissing,
+            l10n.imageMissing,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16.0,

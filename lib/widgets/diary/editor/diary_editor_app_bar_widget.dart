@@ -27,7 +27,7 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return AppBar(
       leading: TextButton(
@@ -35,14 +35,14 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
           Mercurius.vibration(ref: ref);
           Navigator.of(context).pop();
         },
-        child: Text(localizations.back),
+        child: Text(l10n.back),
       ),
       title: TextField(
         textAlign: TextAlign.center,
         key: GlobalKey<FormState>(),
         controller: textEditingController,
         decoration: InputDecoration(
-          hintText: localizations.untitled,
+          hintText: l10n.untitled,
           border: InputBorder.none,
         ),
       ),

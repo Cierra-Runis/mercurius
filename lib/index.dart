@@ -1,6 +1,6 @@
 /// 各路由下的 index.dart
 export 'common/index.dart';
-export 'generated/l10n.dart';
+export 'l10n/l10n.dart';
 export 'models/index.dart';
 export 'pages/index.dart';
 export 'states/index.dart';

@@ -10,7 +10,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
     return Stack(
@@ -75,7 +75,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                           children: [
                             Chip(
                               label: Text(
-                                localizations.moodText(
+                                l10n.moodText(
                                   diary.moodType.mood,
                                 ),
                               ),
@@ -83,14 +83,14 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                             ),
                             Chip(
                               label: Text(
-                                localizations.weatherText(
+                                l10n.weatherText(
                                   diary.weatherType.weather,
                                 ),
                               ),
                               labelPadding: EdgeInsets.zero,
                             ),
                             Chip(
-                              label: Text(localizations.wordCount(diary.words)),
+                              label: Text(l10n.wordCount(diary.words)),
                               labelPadding: EdgeInsets.zero,
                             ),
                           ],
@@ -132,9 +132,8 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                                 Mercurius.vibration(ref: ref);
                                 bool? confirm =
                                     await MercuriusConfirmDialogWidget(
-                                  title:
-                                      localizations.areYouSureToDeleteTheDiary,
-                                  summary: localizations
+                                  title: l10n.areYouSureToDeleteTheDiary,
+                                  summary: l10n
                                       .pleaseThinkTwiceAboutDeletingTheDiary,
                                   context: context,
                                 ).confirm;
@@ -159,7 +158,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                               ref: ref,
                               diary: diary,
                               lang: lang,
-                              localizations: localizations,
+                              l10n: l10n,
                             ),
                           ],
                         ),

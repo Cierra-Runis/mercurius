@@ -28,7 +28,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
 
     final path = ref.watch(mercuriusPathProvider);
 
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
     List<EmbedButtonBuilder> embedButtons = [
@@ -37,7 +37,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
           loading: () => const MercuriusLoadingWidget(),
           error: (error, stackTrace) => Container(),
           data: (data) => DiaryEditorToolbarImageButtonWidget(
-            tooltip: localizations.insertImage,
+            tooltip: l10n.insertImage,
             controller: controller,
             context: context,
             path: data,
@@ -75,26 +75,26 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
       customButtons: [
         DiaryEditorToolbarTimestampButtonWidget(
           controller: quillController,
-          tooltip: localizations.insertTime,
+          tooltip: l10n.insertTime,
           lang: lang,
         ),
         DiaryEditorToolbarMoodButtonWidget(
           context: context,
           currentDiary: diary,
           handleToolbarChangeDiary: handleChangeDiary,
-          tooltip: localizations.changeMood,
+          tooltip: l10n.changeMood,
         ),
         DiaryEditorToolbarWeatherButtonWidget(
           context: context,
           currentDiary: diary,
           handleToolbarChangeDiary: handleChangeDiary,
-          tooltip: localizations.changeWeather,
+          tooltip: l10n.changeWeather,
         ),
         DiaryEditorToolbarDateTimeButtonWidget(
           currentDiary: diary,
           context: context,
           handleToolbarChangeDiary: handleChangeDiary,
-          tooltip: localizations.changeDate,
+          tooltip: l10n.changeDate,
         ),
       ],
       locale: Localizations.localeOf(context),

@@ -14,7 +14,7 @@ class MercuriusHiToKoToWidget extends StatelessWidget {
   /// FIXME: 当组件被挡住时仍然进行刷新
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return StreamBuilder<Future<HiToKoTo>>(
       stream:
@@ -29,20 +29,20 @@ class MercuriusHiToKoToWidget extends StatelessWidget {
                 mode: LaunchMode.externalApplication,
               ),
               child: Tooltip(
-                message: localizations.hiToKoToProvider,
+                message: l10n.hiToKoToProvider,
                 preferBelow: false,
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 1000),
                   child: Text(
                     snapshot.hasData
                         ? snapshot.data!.hitokoto
-                        : localizations.hiToKoToFetching,
+                        : l10n.hiToKoToFetching,
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.outline,
                     ),
                     key: Key(
-                      snapshot.data?.hitokoto ?? localizations.hiToKoToFetching,
+                      snapshot.data?.hitokoto ?? l10n.hiToKoToFetching,
                     ),
                   ),
                 ),

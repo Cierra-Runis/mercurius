@@ -18,7 +18,7 @@ class DiaryEditorBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return QuillEditor(
       locale: Localizations.localeOf(context),
@@ -31,7 +31,7 @@ class DiaryEditorBodyWidget extends StatelessWidget {
       expands: false,
       padding: const EdgeInsets.all(2.0),
       autoFocus: autoFocus,
-      placeholder: localizations.writingSomethingHere,
+      placeholder: l10n.writingSomethingHere,
       controller: quillController,
       readOnly: readOnly,
       onLaunchUrl: (url) {

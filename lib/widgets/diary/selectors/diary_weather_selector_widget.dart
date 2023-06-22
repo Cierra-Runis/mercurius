@@ -10,16 +10,16 @@ class DiaryWeatherSelectorDialogWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return AlertDialog(
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(localizations.whatIsTheWeatherNow),
+          Text(l10n.whatIsTheWeatherNow),
           Text(
-            localizations.whatIsTheWeatherNowDescription,
+            l10n.whatIsTheWeatherNowDescription,
             style: TextStyle(
               fontSize: 10,
               color: Theme.of(context).colorScheme.outline,
@@ -45,7 +45,7 @@ class DiaryWeatherSelectorDialogWidget extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(weatherType.qweatherIcons.iconData),
-                  Text(localizations.weatherText(weatherType.weather)),
+                  Text(l10n.weatherText(weatherType.weather)),
                 ],
               ),
               color: diary.weatherType != weatherType
@@ -62,7 +62,7 @@ class DiaryWeatherSelectorDialogWidget extends ConsumerWidget {
             Mercurius.vibration(ref: ref);
             Navigator.of(context).pop();
           },
-          child: Text(localizations.back),
+          child: Text(l10n.back),
         ),
       ],
     );

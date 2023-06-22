@@ -22,23 +22,23 @@ class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     final List<MercuriusBottomBarItem> bottomWidgets = [
       MercuriusBottomBarItem(
         icon: const Icon(Icons.home),
-        title: localizations.homePage,
+        title: l10n.homePage,
       ),
       MercuriusBottomBarItem(
         icon: const _MercuriusBottomBarMorePageIconWidget(),
-        title: localizations.morePage,
+        title: l10n.morePage,
       ),
     ];
 
     return Scaffold(
       body: Center(
         child: MercuriusDoubleBackWidget(
-          message: localizations.backAgainToExit,
+          message: l10n.backAgainToExit,
           background: Theme.of(context).colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _currentIndex == 0,
