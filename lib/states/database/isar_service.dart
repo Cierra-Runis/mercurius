@@ -102,15 +102,29 @@ class IsarService {
       Mercurius.printLog(
         '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 ${Mercurius.database} 中',
       );
+      Directory directory;
 
-      final dir = await getApplicationDocumentsDirectory();
+      /// TIPS: 对 Android 而言为 /data/user/0/Android/data/pers.cierra_runis.mercurius/files
+      /// TIPS: 对 Windows 而言为 C:\Users\{user_name}\Documents/Mercurius/
+      if (Platform.isAndroid) {
+        directory = await getApplicationDocumentsDirectory();
+      } else if (Platform.isWindows) {
+        directory = await getApplicationDocumentsDirectory();
+        Directory dir = Directory('${directory.path}/${Mercurius.name}/');
+        dir.createSync(recursive: true);
+        directory = dir;
+      } else {
+        throw Exception('不支持的平台');
+      }
+
+      Mercurius.printLog('数据库位置 ${directory.path}');
 
       Mercurius.printLog('数据库初始化完成');
       return Isar.open(
         [DiarySchema, ConfigSchema],
         inspector: true,
         name: Mercurius.database,
-        directory: dir.path,
+        directory: directory.path,
         compactOnLaunch: const CompactCondition(
           /// 压缩能减小 1KB 及以上，且达到了 1KB 的体积就进行压缩
           minBytes: 1024,

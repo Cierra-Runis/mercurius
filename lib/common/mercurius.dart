@@ -86,8 +86,16 @@ class Mercurius {
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    /// 实现高刷
-    await FlutterDisplayMode.setHighRefreshRate();
+    /// 在 Windows 上启动窗口管理
+    if (Platform.isWindows) {
+      await MercuriusWindowsManager.init();
+      await MercuriusWindowsTray.init();
+    }
+
+    /// 在 Android 上实现高刷
+    if (Platform.isAndroid) {
+      await FlutterDisplayMode.setHighRefreshRate();
+    }
 
     /// 固定竖屏
     SystemChrome.setPreferredOrientations([
@@ -111,6 +119,9 @@ class Mercurius {
     List<int> intensities = const [],
     int amplitude = -1,
   }) async {
+    /// Windows 不支持振动
+    if (Platform.isWindows) return;
+
     Config config = await isarService.getConfig();
     bool buttonVibration = config.buttonVibration;
     bool hasVibrator = await Vibration.hasVibrator() ?? false;

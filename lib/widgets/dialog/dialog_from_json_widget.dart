@@ -42,14 +42,19 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
         width: double.maxFinite,
         child: Markdown(
           shrinkWrap: true,
+          softLineBreak: true,
           data: content,
           padding: const EdgeInsets.all(0),
           onTapLink: (text, href, title) {
             if (href != null) {
-              launchUrlString(
-                href,
-                mode: LaunchMode.externalApplication,
-              );
+              try {
+                launchUrlString(
+                  href,
+                  mode: LaunchMode.externalApplication,
+                );
+              } catch (e) {
+                Mercurius.printLog('launch $href failed: $e');
+              }
             }
           },
         ),

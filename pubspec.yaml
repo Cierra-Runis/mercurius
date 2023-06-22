@@ -21,7 +21,7 @@ dependencies:
   file_picker: ^5.3.2 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.15 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.2.7 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.2.8 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^0.8.9 # 图片选择 [https://pub.dev/packages/image_picker]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
@@ -38,11 +38,13 @@ dependencies:
   riverpod_annotation: ^2.1.1 # 状态管理相关 [https://pub.dev/packages/riverpod_annotation]
   share_plus: ^7.0.2 # 分享 [https://pub.dev/packages/share_plus]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
-  syncfusion_flutter_charts: ^21.2.10 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  system_tray: ^2.0.3 # 系统托盘 [https://pub.dev/packages/system_tray]
+  syncfusion_flutter_charts: ^22.1.34 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   url_launcher: ^6.1.11 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
-  vibration: ^1.7.7 # 振动反馈 [https://pub.dev/packages/vibration]
+  vibration: ^1.8.1 # 振动反馈 [https://pub.dev/packages/vibration]
   waterfall_flow: ^3.0.2 # 图片网格流 [https://pub.dev/packages/waterfall_flow]
+  window_manager: ^0.3.4 # 窗口管理 [https://pub.dev/packages/window_manager]
 
 dev_dependencies:
   flutter_test:

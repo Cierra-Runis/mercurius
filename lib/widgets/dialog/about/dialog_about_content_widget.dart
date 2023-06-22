@@ -17,10 +17,18 @@ class DialogAboutContentWidget extends StatelessWidget {
               iconData: Icons.link,
               titleText: l10n.contactUs,
               summaryText: Mercurius.contactUrl,
-              onTap: () => launchUrlString(
-                Mercurius.contactUrl,
-                mode: LaunchMode.externalApplication,
-              ),
+              onTap: () {
+                try {
+                  launchUrlString(
+                    Mercurius.contactUrl,
+                    mode: LaunchMode.externalApplication,
+                  );
+                } catch (e) {
+                  Mercurius.printLog(
+                    'launch ${Mercurius.contactUrl} failed: $e',
+                  );
+                }
+              },
             ),
             MercuriusListItemWidget(
               iconData: Icons.import_contacts_rounded,

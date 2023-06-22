@@ -15,7 +15,9 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
           titleText: l10n.importJsonFile,
           onTap: () async {
             /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
-            await FilePicker.platform.clearTemporaryFiles();
+            if (Platform.isAndroid) {
+              await FilePicker.platform.clearTemporaryFiles();
+            }
             FilePickerResult? result = await FilePicker.platform.pickFiles();
             if (result != null && result.files.single.path != null) {
               bool succuss = await isarService.importJsonWith(

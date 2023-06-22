@@ -35,10 +35,14 @@ class DiaryEditorBodyWidget extends StatelessWidget {
       controller: quillController,
       readOnly: readOnly,
       onLaunchUrl: (url) {
-        launchUrlString(
-          url,
-          mode: LaunchMode.externalApplication,
-        );
+        try {
+          launchUrlString(
+            url,
+            mode: LaunchMode.externalApplication,
+          );
+        } catch (e) {
+          Mercurius.printLog('launch $url failed: $e');
+        }
       },
       scrollBottomInset: 10,
       embedBuilders: [DiaryImageEmbedBuilderWidget()],

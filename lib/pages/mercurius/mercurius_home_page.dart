@@ -20,6 +20,10 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: _switchCurrentBarMode,
+          icon: const Icon(Icons.search),
+        ),
         title: AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           child: _searchBarMode
@@ -27,12 +31,7 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
               : const MercuriusAppBarTitleWidget(),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: _switchCurrentBarMode,
-            icon: const Icon(Icons.search),
-          ),
-        ],
+        actions: MercuriusWindowsManager.getActions(),
       ),
       body: const DiaryListViewWidget(),
       floatingActionButton: const MercuriusFloatingDiaryButtonWidget(),

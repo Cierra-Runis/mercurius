@@ -12,8 +12,10 @@ class DiaryPageViewWidget extends ConsumerWidget {
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
+    MercuriusL10N l10n = MercuriusL10N.of(context);
+
     if (snapshot.data == null || snapshot.data!.isEmpty) {
-      Navigator.pop(context);
+      return AlertDialog(title: Center(child: Text(l10n.noData)));
     }
 
     List<Diary> diaries = snapshot.data!;

@@ -24,10 +24,16 @@ class MercuriusHiToKoToWidget extends StatelessWidget {
           future: snapshot.data,
           builder: (context, snapshot) {
             return InkWell(
-              onTap: () => launchUrlString(
-                'https://hitokoto.cn/?uuid=${snapshot.data!.uuid!}',
-                mode: LaunchMode.externalApplication,
-              ),
+              onTap: () {
+                try {
+                  launchUrlString(
+                    'https://hitokoto.cn/?uuid=${snapshot.data!.uuid!}',
+                    mode: LaunchMode.externalApplication,
+                  );
+                } catch (e) {
+                  Mercurius.printLog('launch hitokoto failed: $e');
+                }
+              },
               child: Tooltip(
                 message: l10n.hiToKoToProvider,
                 preferBelow: false,
