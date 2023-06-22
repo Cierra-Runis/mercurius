@@ -53,7 +53,9 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
           String targetFilePath = '$path/image/${pickedFile.name}';
 
           await XFile(sourceFilePath).saveTo(targetFilePath);
-          await File(sourceFilePath).delete();
+          if (Platform.isAndroid) {
+            await File(sourceFilePath).delete();
+          }
           _insertImage(controller, targetFilePath);
         }
         break;

@@ -17,7 +17,11 @@ class MercuriusReleasePage extends ConsumerWidget {
         data: data.body!,
         onTapLink: (text, href, title) {
           if (href != null) {
-            launchUrlString(href, mode: LaunchMode.externalApplication);
+            try {
+              launchUrlString(href, mode: LaunchMode.externalApplication);
+            } catch (e) {
+              Mercurius.printLog('launch $href failed: $e');
+            }
           }
         },
       );
@@ -60,16 +64,16 @@ class MercuriusReleasePage extends ConsumerWidget {
             onPressed: githubLatestRelease.when(
               loading: () => null,
               error: (error, stackTrace) => null,
-              data: (data) {
-                if (data.assets != null) {
-                  return () {
-                    launchUrlString(
-                      data.assets![0].browser_download_url!,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  };
-                } else {
-                  return null;
+              data: (data) => () {
+                try {
+                  launchUrlString(
+                    data.assets![0].browser_download_url!,
+                    mode: LaunchMode.externalApplication,
+                  );
+                } catch (e) {
+                  Mercurius.printLog(
+                    'launch browser_download_url failed: $e',
+                  );
                 }
               },
             ),

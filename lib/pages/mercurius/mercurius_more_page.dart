@@ -9,6 +9,7 @@ class MercuriusMorePage extends StatelessWidget {
       appBar: AppBar(
         title: const MercuriusAppBarTitleWidget(),
         centerTitle: true,
+        actions: MercuriusWindowsManager.getActions(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

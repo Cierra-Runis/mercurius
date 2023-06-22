@@ -24,8 +24,10 @@
         "startfile",
         "syncfusion",
         "timeago",
+        "trackpad",
         "unfocus",
         "Unicons",
+        "unmaximize",
         "vsync"
     ],
     "files.exclude": {
