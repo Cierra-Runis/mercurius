@@ -66,10 +66,24 @@ class MercuriusReleasePage extends ConsumerWidget {
               error: (error, stackTrace) => null,
               data: (data) => () {
                 try {
-                  launchUrlString(
-                    data.assets![0].browser_download_url!,
-                    mode: LaunchMode.externalApplication,
-                  );
+                  if (Platform.isAndroid) {
+                    GithubLatestReleaseAsset asset = data.assets!.firstWhere(
+                      (element) => element.name!.endsWith('.apk'),
+                    );
+                    launchUrlString(
+                      asset.browser_download_url!,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
+                  if (Platform.isWindows) {
+                    GithubLatestReleaseAsset asset = data.assets!.firstWhere(
+                      (element) => element.name!.endsWith('.zip'),
+                    );
+                    launchUrlString(
+                      asset.browser_download_url!,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
                 } catch (e) {
                   Mercurius.printLog(
                     'launch browser_download_url failed: $e',
