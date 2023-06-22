@@ -10,7 +10,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
     final dayWidget = Text(
@@ -63,8 +63,8 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       movementDuration: const Duration(milliseconds: 400),
       onDismissed: (_) => isarService.deleteDiaryById(diary.id),
       confirmDismiss: (_) => MercuriusConfirmDialogWidget(
-        title: localizations.areYouSureToDeleteTheDiary,
-        summary: localizations.pleaseThinkTwiceAboutDeletingTheDiary,
+        title: l10n.areYouSureToDeleteTheDiary,
+        summary: l10n.pleaseThinkTwiceAboutDeletingTheDiary,
         context: context,
       ).confirm,
       child: Card(

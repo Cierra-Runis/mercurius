@@ -34,12 +34,12 @@ class _DiaryMonthlyWordsWidgetState
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
     return MercuriusListSectionWidget(
       title: Text(
-        localizations.monthlyWordCountStatistics,
+        l10n.monthlyWordCountStatistics,
         style: const TextStyle(
           fontFamily: 'Saira',
           fontSize: 18,

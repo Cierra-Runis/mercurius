@@ -44,10 +44,10 @@ class MercuriusApp extends StatelessWidget {
           themeMode: snapshot.data?.themeMode,
           home: const MercuriusSplashPage(),
           localizationsDelegates: const [
+            MercuriusL10N.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
-            S.delegate,
           ],
           supportedLocales: const [
             Locale('en'),

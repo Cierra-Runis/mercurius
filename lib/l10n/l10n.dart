@@ -12,42 +12,42 @@ import 'intl/messages_all.dart';
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
 // ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
 
-class S {
-  S();
+class MercuriusL10N {
+  MercuriusL10N();
 
-  static S? _current;
+  static MercuriusL10N? _current;
 
-  static S get current {
+  static MercuriusL10N get current {
     assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+        'No instance of MercuriusL10N was loaded. Try to initialize the MercuriusL10N delegate before accessing MercuriusL10N.current.');
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
-  static Future<S> load(Locale locale) {
+  static Future<MercuriusL10N> load(Locale locale) {
     final name = (locale.countryCode?.isEmpty ?? false)
         ? locale.languageCode
         : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      final instance = S();
-      S._current = instance;
+      final instance = MercuriusL10N();
+      MercuriusL10N._current = instance;
 
       return instance;
     });
   }
 
-  static S of(BuildContext context) {
-    final instance = S.maybeOf(context);
+  static MercuriusL10N of(BuildContext context) {
+    final instance = MercuriusL10N.maybeOf(context);
     assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+        'No instance of MercuriusL10N present in the widget tree. Did you add MercuriusL10N.delegate in localizationsDelegates?');
     return instance!;
   }
 
-  static S? maybeOf(BuildContext context) {
-    return Localizations.of<S>(context, S);
+  static MercuriusL10N? maybeOf(BuildContext context) {
+    return Localizations.of<MercuriusL10N>(context, MercuriusL10N);
   }
 
   /// `Back`
@@ -829,7 +829,7 @@ class S {
   }
 }
 
-class AppLocalizationDelegate extends LocalizationsDelegate<S> {
+class AppLocalizationDelegate extends LocalizationsDelegate<MercuriusL10N> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
@@ -843,7 +843,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
   @override
-  Future<S> load(Locale locale) => S.load(locale);
+  Future<MercuriusL10N> load(Locale locale) => MercuriusL10N.load(locale);
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

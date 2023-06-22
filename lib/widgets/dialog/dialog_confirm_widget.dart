@@ -18,7 +18,7 @@ class MercuriusConfirmDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return AlertDialog(
       title: Column(
@@ -40,13 +40,13 @@ class MercuriusConfirmDialogWidget extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(false);
           },
-          child: Text(falseString ?? localizations.cancel),
+          child: Text(falseString ?? l10n.cancel),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop(true);
           },
-          child: Text(trueString ?? localizations.confirm),
+          child: Text(trueString ?? l10n.confirm),
         )
       ],
     );

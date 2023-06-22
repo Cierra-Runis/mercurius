@@ -4,7 +4,7 @@ class MercuriusReleasePage extends ConsumerWidget {
   const MercuriusReleasePage({super.key});
 
   Widget getBodyByData(BuildContext context, GithubLatestRelease data) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     if (data.body != null) {
       return Markdown(
@@ -23,20 +23,20 @@ class MercuriusReleasePage extends ConsumerWidget {
       );
     }
     return Center(
-      child: Text(localizations.releasePageOops),
+      child: Text(l10n.releasePageOops),
     );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          localizations.releasePage,
+          l10n.releasePage,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

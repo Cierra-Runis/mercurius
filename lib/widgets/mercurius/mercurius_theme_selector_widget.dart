@@ -5,7 +5,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return StreamBuilder(
         stream: isarService.listenToConfig(),
@@ -18,7 +18,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
                 ),
-                child: Text(localizations.followTheSystem),
+                child: Text(l10n.followTheSystem),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isarService
@@ -29,7 +29,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
                 ),
-                child: Text(localizations.alwaysDark),
+                child: Text(l10n.alwaysDark),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isarService
@@ -40,7 +40,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 style: TextButton.styleFrom(
                   textStyle: Theme.of(context).textTheme.labelLarge,
                 ),
-                child: Text(localizations.alwaysBright),
+                child: Text(l10n.alwaysBright),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   isarService

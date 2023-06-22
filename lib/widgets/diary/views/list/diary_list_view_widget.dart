@@ -15,12 +15,11 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {
-      final S localizations = S.of(context);
-      return Center(child: Text(localizations.noData));
+      return Center(child: Text(l10n.noData));
     }
 
     List<_DiaryListViewSection> sections = [];
@@ -63,7 +62,7 @@ class _DiaryListViewWidgetState extends ConsumerState<DiaryListViewWidget> {
               accessoryView: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
-                  localizations.diaryCount(sections[sectionIndex].items.length),
+                  l10n.diaryCount(sections[sectionIndex].items.length),
                 ),
               ),
               disabled: true,

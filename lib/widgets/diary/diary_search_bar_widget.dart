@@ -5,7 +5,7 @@ class DiarySearchBarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return SizedBox(
       width: 160,
@@ -15,7 +15,7 @@ class DiarySearchBarWidget extends ConsumerWidget {
         onChanged: (value) =>
             ref.watch(diarySearchTextProvider.notifier).change(value),
         decoration: InputDecoration(
-          hintText: localizations.searchDiaryContent,
+          hintText: l10n.searchDiaryContent,
           border: InputBorder.none,
         ),
       ),

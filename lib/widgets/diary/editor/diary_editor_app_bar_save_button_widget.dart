@@ -16,7 +16,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return TextButton(
       onPressed: () {
@@ -30,7 +30,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
             isDismissible: false,
             messageText: Center(
               child: Text(
-                localizations.contentCannotBeEmpty,
+                l10n.contentCannotBeEmpty,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -72,7 +72,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
           const Size(56, 56),
         ),
       ),
-      child: Text(localizations.save),
+      child: Text(l10n.save),
     );
   }
 }

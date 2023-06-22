@@ -11,16 +11,16 @@ class DiaryMoodSelectorWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return AlertDialog(
       title: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(localizations.howIsYourMoodNow),
+          Text(l10n.howIsYourMoodNow),
           Text(
-            localizations.howIsYourMoodNowDescription,
+            l10n.howIsYourMoodNowDescription,
             style: TextStyle(
               fontSize: 10,
               color: Theme.of(context).colorScheme.outline,
@@ -46,7 +46,7 @@ class DiaryMoodSelectorWidget extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(moodType.iconData),
-                  Text(localizations.moodText(moodType.mood)),
+                  Text(l10n.moodText(moodType.mood)),
                 ],
               ),
               color: diary.moodType != moodType
@@ -63,7 +63,7 @@ class DiaryMoodSelectorWidget extends ConsumerWidget {
             Mercurius.vibration(ref: ref);
             Navigator.of(context).pop();
           },
-          child: Text(localizations.back),
+          child: Text(l10n.back),
         ),
       ],
     );

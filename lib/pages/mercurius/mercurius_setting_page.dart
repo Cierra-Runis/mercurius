@@ -5,11 +5,11 @@ class MercuriusSettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(localizations.settings),
+        title: Text(l10n.settings),
       ),
       body: const Center(
         child: MercuriusListWidget(
@@ -32,7 +32,7 @@ class _ThemeSelectListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return StreamBuilder(
       stream: isarService.listenToConfig(),
@@ -41,12 +41,12 @@ class _ThemeSelectListItem extends ConsumerWidget {
           Config config = snapshot.data!;
           return MercuriusListItemWidget(
             iconData: Icons.dark_mode_rounded,
-            titleText: localizations.darkMode,
+            titleText: l10n.darkMode,
             detailText: config.themeMode == ThemeMode.system
-                ? localizations.followTheSystem
+                ? l10n.followTheSystem
                 : snapshot.data?.themeMode == ThemeMode.dark
-                    ? localizations.alwaysDark
-                    : localizations.alwaysBright,
+                    ? l10n.alwaysDark
+                    : l10n.alwaysBright,
             onTap: () => showDialog<void>(
               context: context,
               builder: (context) {
@@ -66,7 +66,7 @@ class _VibrationSelectListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return StreamBuilder(
       stream: isarService.listenToConfig(),
@@ -75,10 +75,8 @@ class _VibrationSelectListItem extends ConsumerWidget {
           Config config = snapshot.data!;
           return MercuriusModifiedListSwitchItem(
             iconData: Icons.vibration,
-            titleText: localizations.buttonVibration,
-            detailText: config.buttonVibration
-                ? localizations.enabled
-                : localizations.disabled,
+            titleText: l10n.buttonVibration,
+            detailText: config.buttonVibration ? l10n.enabled : l10n.disabled,
             value: config.buttonVibration,
             onChanged: (value) => isarService.saveConfig(
               config..buttonVibration = !config.buttonVibration,

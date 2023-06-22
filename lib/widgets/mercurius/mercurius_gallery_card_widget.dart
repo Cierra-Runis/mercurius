@@ -12,7 +12,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S localizations = S.of(context);
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -37,7 +37,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                   width: double.maxFinite,
                   height: 100,
                   child: Text(
-                    localizations.unsupportedImageFormat,
+                    l10n.unsupportedImageFormat,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 8.0,
@@ -63,9 +63,8 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                       ? null
                       : () async {
                           bool? confirm = await MercuriusConfirmDialogWidget(
-                            title: localizations.areYouSureToDeleteTheImage,
-                            summary: localizations
-                                .pleaseThinkTwiceAboutDeletingTheImage,
+                            title: l10n.areYouSureToDeleteTheImage,
+                            summary: l10n.pleaseThinkTwiceAboutDeletingTheImage,
                             context: context,
                           ).confirm;
                           if (confirm == true) {
