@@ -61,6 +61,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
             ),
             latestEditTime: DateTime.now(),
             titleString: textEditingController.text,
+            editing: false,
           );
           handleChangeDiary(newDiary);
           isarService.saveDiary(newDiary);
