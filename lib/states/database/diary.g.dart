@@ -27,24 +27,29 @@ const DiarySchema = CollectionSchema(
       name: r'createDateTime',
       type: IsarType.dateTime,
     ),
-    r'latestEditTime': PropertySchema(
+    r'editing': PropertySchema(
       id: 2,
+      name: r'editing',
+      type: IsarType.bool,
+    ),
+    r'latestEditTime': PropertySchema(
+      id: 3,
       name: r'latestEditTime',
       type: IsarType.dateTime,
     ),
     r'moodType': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'moodType',
       type: IsarType.byte,
       enumMap: _DiarymoodTypeEnumValueMap,
     ),
     r'titleString': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'titleString',
       type: IsarType.string,
     ),
     r'weatherType': PropertySchema(
-      id: 5,
+      id: 6,
       name: r'weatherType',
       type: IsarType.byte,
       enumMap: _DiaryweatherTypeEnumValueMap,
@@ -83,10 +88,11 @@ void _diarySerialize(
 ) {
   writer.writeString(offsets[0], object.contentJsonString);
   writer.writeDateTime(offsets[1], object.createDateTime);
-  writer.writeDateTime(offsets[2], object.latestEditTime);
-  writer.writeByte(offsets[3], object.moodType.index);
-  writer.writeString(offsets[4], object.titleString);
-  writer.writeByte(offsets[5], object.weatherType.index);
+  writer.writeBool(offsets[2], object.editing);
+  writer.writeDateTime(offsets[3], object.latestEditTime);
+  writer.writeByte(offsets[4], object.moodType.index);
+  writer.writeString(offsets[5], object.titleString);
+  writer.writeByte(offsets[6], object.weatherType.index);
 }
 
 Diary _diaryDeserialize(
@@ -98,13 +104,14 @@ Diary _diaryDeserialize(
   final object = Diary(
     contentJsonString: reader.readString(offsets[0]),
     createDateTime: reader.readDateTime(offsets[1]),
+    editing: reader.readBoolOrNull(offsets[2]) ?? false,
     id: id,
-    latestEditTime: reader.readDateTime(offsets[2]),
-    moodType: _DiarymoodTypeValueEnumMap[reader.readByteOrNull(offsets[3])] ??
+    latestEditTime: reader.readDateTime(offsets[3]),
+    moodType: _DiarymoodTypeValueEnumMap[reader.readByteOrNull(offsets[4])] ??
         DiaryMoodType.defaultType,
-    titleString: reader.readStringOrNull(offsets[4]) ?? '',
+    titleString: reader.readStringOrNull(offsets[5]) ?? '',
     weatherType:
-        _DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offsets[5])] ??
+        _DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offsets[6])] ??
             DiaryWeatherType.defaultType,
   );
   return object;
@@ -122,13 +129,15 @@ P _diaryDeserializeProp<P>(
     case 1:
       return (reader.readDateTime(offset)) as P;
     case 2:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readBoolOrNull(offset) ?? false) as P;
     case 3:
+      return (reader.readDateTime(offset)) as P;
+    case 4:
       return (_DiarymoodTypeValueEnumMap[reader.readByteOrNull(offset)] ??
           DiaryMoodType.defaultType) as P;
-    case 4:
-      return (reader.readStringOrNull(offset) ?? '') as P;
     case 5:
+      return (reader.readStringOrNull(offset) ?? '') as P;
+    case 6:
       return (_DiaryweatherTypeValueEnumMap[reader.readByteOrNull(offset)] ??
           DiaryWeatherType.defaultType) as P;
     default:
@@ -448,6 +457,15 @@ extension DiaryQueryFilter on QueryBuilder<Diary, Diary, QFilterCondition> {
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Diary, Diary, QAfterFilterCondition> editingEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'editing',
+        value: value,
       ));
     });
   }
@@ -823,6 +841,18 @@ extension DiaryQuerySortBy on QueryBuilder<Diary, Diary, QSortBy> {
     });
   }
 
+  QueryBuilder<Diary, Diary, QAfterSortBy> sortByEditing() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'editing', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Diary, Diary, QAfterSortBy> sortByEditingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'editing', Sort.desc);
+    });
+  }
+
   QueryBuilder<Diary, Diary, QAfterSortBy> sortByLatestEditTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'latestEditTime', Sort.asc);
@@ -894,6 +924,18 @@ extension DiaryQuerySortThenBy on QueryBuilder<Diary, Diary, QSortThenBy> {
   QueryBuilder<Diary, Diary, QAfterSortBy> thenByCreateDateTimeDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'createDateTime', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Diary, Diary, QAfterSortBy> thenByEditing() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'editing', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Diary, Diary, QAfterSortBy> thenByEditingDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'editing', Sort.desc);
     });
   }
 
@@ -973,6 +1015,12 @@ extension DiaryQueryWhereDistinct on QueryBuilder<Diary, Diary, QDistinct> {
     });
   }
 
+  QueryBuilder<Diary, Diary, QDistinct> distinctByEditing() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'editing');
+    });
+  }
+
   QueryBuilder<Diary, Diary, QDistinct> distinctByLatestEditTime() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'latestEditTime');
@@ -1018,6 +1066,12 @@ extension DiaryQueryProperty on QueryBuilder<Diary, Diary, QQueryProperty> {
     });
   }
 
+  QueryBuilder<Diary, bool, QQueryOperations> editingProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'editing');
+    });
+  }
+
   QueryBuilder<Diary, DateTime, QQueryOperations> latestEditTimeProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'latestEditTime');
@@ -1053,6 +1107,7 @@ Diary _$DiaryFromJson(Map<String, dynamic> json) => Diary(
       createDateTime: DateTime.parse(json['createDateTime'] as String),
       latestEditTime: DateTime.parse(json['latestEditTime'] as String),
       contentJsonString: json['contentJsonString'] as String,
+      editing: json['editing'] as bool? ?? false,
       titleString: json['titleString'] as String? ?? '',
       moodType: $enumDecodeNullable(_$DiaryMoodTypeEnumMap, json['moodType']) ??
           DiaryMoodType.defaultType,
@@ -1067,6 +1122,7 @@ Map<String, dynamic> _$DiaryToJson(Diary instance) => <String, dynamic>{
       'latestEditTime': instance.latestEditTime.toIso8601String(),
       'titleString': instance.titleString,
       'contentJsonString': instance.contentJsonString,
+      'editing': instance.editing,
       'weatherType': _$DiaryWeatherTypeEnumMap[instance.weatherType]!,
       'moodType': _$DiaryMoodTypeEnumMap[instance.moodType]!,
     };

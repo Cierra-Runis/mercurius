@@ -9,9 +9,9 @@ class IsarService {
   }
 
   /// 保存 `newDiary` 至数据库
-  Future<void> saveDiary(Diary newDiary) async {
+  Future<int> saveDiary(Diary newDiary) async {
     final isar = await _db;
-    await isar.writeTxn(() => isar.diarys.put(newDiary));
+    return isar.writeTxn(() => isar.diarys.put(newDiary));
   }
 
   /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
@@ -23,8 +23,19 @@ class IsarService {
     await Future.delayed(Duration(milliseconds: delayed));
     yield* isar.diarys
         .filter()
+        .editingEqualTo(false)
         .contentJsonStringContains(contains)
         .sortByCreateDateTimeDesc()
+        .watch(fireImmediately: true);
+  }
+
+  /// 创建 `Stream` 监听所有 `editing` 为 `true` 的日记
+  Stream<List<Diary>> listenToDiariesEditing({int delayed = 300}) async* {
+    final isar = await _db;
+    await Future.delayed(Duration(milliseconds: delayed));
+    yield* isar.diarys
+        .filter()
+        .editingEqualTo(true)
         .watch(fireImmediately: true);
   }
 
@@ -120,7 +131,7 @@ class IsarService {
       Mercurius.printLog('数据库位置 ${directory.path}');
 
       Mercurius.printLog('数据库初始化完成');
-      return Isar.open(
+      final isar = await Isar.open(
         [DiarySchema, ConfigSchema],
         inspector: true,
         name: Mercurius.database,
@@ -131,6 +142,10 @@ class IsarService {
           minFileSize: 1024,
         ),
       );
+
+      await DatabaseMigrator.migration(isar);
+
+      return isar;
     }
     Mercurius.printLog('数据库 ${Isar.instanceNames} 已被打开');
     return Future.value(Isar.getInstance(Mercurius.database));

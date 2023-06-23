@@ -74,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "content": MessageLookupByLibrary.simpleMessage("内容"),
         "contentCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("コンテンツを空にすることはできません"),
+        "continueEditingDiary":
+            MessageLookupByLibrary.simpleMessage("日記の編集を続ける"),
         "createNewDiary": MessageLookupByLibrary.simpleMessage("日記を追加"),
         "darkMode": MessageLookupByLibrary.simpleMessage("ダークモード"),
         "diaryCount": m0,

@@ -73,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUs": MessageLookupByLibrary.simpleMessage("联系我们"),
         "content": MessageLookupByLibrary.simpleMessage("内容"),
         "contentCannotBeEmpty": MessageLookupByLibrary.simpleMessage("内容不能为空"),
+        "continueEditingDiary": MessageLookupByLibrary.simpleMessage("继续编辑日记"),
         "createNewDiary": MessageLookupByLibrary.simpleMessage("创建新日记"),
         "darkMode": MessageLookupByLibrary.simpleMessage("深色模式"),
         "diaryCount": m0,

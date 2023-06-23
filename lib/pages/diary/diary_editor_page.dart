@@ -14,6 +14,7 @@ class DiaryEditorPage extends ConsumerStatefulWidget {
 
 class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
   late final QuillController _quillController;
+  late final Timer _timer;
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
@@ -28,11 +29,32 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
       selection: const TextSelection.collapsed(offset: 0),
     );
     _textEditingController.text = _diary.titleString;
+    _timer = Timer.periodic(
+      const Duration(seconds: 5),
+      (_) {
+        String plainText = _quillController.document
+            .toPlainText()
+            .replaceAll(RegExp(r'\n'), '');
+        if (plainText != '') {
+          Diary newDiary = Diary.copyWith(
+            _diary,
+            contentJsonString: jsonEncode(
+              _quillController.document.toDelta().toJson(),
+            ),
+            latestEditTime: DateTime.now(),
+            titleString: _textEditingController.text,
+            editing: true,
+          );
+          isarService.saveDiary(newDiary);
+        }
+      },
+    );
   }
 
   @override
   void dispose() {
     FocusManager.instance.primaryFocus?.unfocus();
+    _timer.cancel();
     super.dispose();
   }
 

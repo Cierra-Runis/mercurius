@@ -4,9 +4,13 @@ class DiaryListViewCardWidget extends ConsumerWidget {
   const DiaryListViewCardWidget({
     super.key,
     required this.diary,
+    this.dismissDirection = DismissDirection.endToStart,
+    this.disabled = false,
   });
 
   final Diary diary;
+  final DismissDirection dismissDirection;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -59,7 +63,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
 
     return Dismissible(
       key: ValueKey(diary.id),
-      direction: DismissDirection.endToStart,
+      direction: dismissDirection,
       movementDuration: const Duration(milliseconds: 400),
       onDismissed: (_) => isarService.deleteDiaryById(diary.id),
       confirmDismiss: (_) => MercuriusConfirmDialogWidget(
@@ -74,13 +78,15 @@ class DiaryListViewCardWidget extends ConsumerWidget {
         ),
         child: InkWell(
           onTap: () async {
-            Mercurius.vibration(ref: ref);
-            await showDialog<void>(
-              context: context,
-              builder: (context) => DiaryPageViewWidget(
-                diary: diary,
-              ),
-            );
+            if (!disabled) {
+              Mercurius.vibration(ref: ref);
+              await showDialog<void>(
+                context: context,
+                builder: (context) => DiaryPageViewWidget(
+                  diary: diary,
+                ),
+              );
+            }
           },
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
