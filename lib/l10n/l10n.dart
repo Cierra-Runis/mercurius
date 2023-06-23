@@ -550,6 +550,16 @@ class MercuriusL10N {
     );
   }
 
+  /// `Continue Editing Diary`
+  String get continueEditingDiary {
+    return Intl.message(
+      'Continue Editing Diary',
+      name: 'continueEditingDiary',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Monthly Word Count`
   String get monthlyWordCountStatistics {
     return Intl.message(

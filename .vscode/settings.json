@@ -48,7 +48,8 @@
         "**/custom_lint.log": true,
         "**/android": true,
         "**/pubspec.lock": true,
-        "**/.vscode": true
+        "**/.vscode": true,
+        "**/windows": true
     },
     "commentTranslate.hover.string": true,
     "commentTranslate.hover.variable": true,

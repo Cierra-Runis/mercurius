@@ -9,6 +9,7 @@ class Diary {
     required this.createDateTime,
     required this.latestEditTime,
     required this.contentJsonString,
+    this.editing = false,
     this.titleString = '',
     this.moodType = DiaryMoodType.defaultType,
     this.weatherType = DiaryWeatherType.defaultType,
@@ -28,6 +29,11 @@ class Diary {
 
   /// 内容 json 串
   final String contentJsonString;
+
+  /// 标记日记是否为 `editing` 状态
+  /// 是则在 `createNewDiary` 浮动按钮处红点提示并不再显示 list card 和 page view
+  /// 否则按一般情况处理
+  final bool editing;
 
   /// 枚举类型 [DiaryWeatherType]
   @enumerated
@@ -57,6 +63,7 @@ class Diary {
     DateTime? latestEditTime,
     String? titleString,
     String? contentJsonString,
+    bool? editing,
     DiaryWeatherType? weatherType,
     DiaryMoodType? moodType,
   }) =>
@@ -66,6 +73,7 @@ class Diary {
         latestEditTime: latestEditTime ?? diary.latestEditTime,
         titleString: titleString ?? diary.titleString,
         contentJsonString: contentJsonString ?? diary.contentJsonString,
+        editing: editing ?? diary.editing,
         weatherType: weatherType ?? diary.weatherType,
         moodType: moodType ?? diary.moodType,
       );

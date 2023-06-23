@@ -79,6 +79,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "content": MessageLookupByLibrary.simpleMessage("Content"),
         "contentCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Content Cannot Be Empty"),
+        "continueEditingDiary":
+            MessageLookupByLibrary.simpleMessage("Continue Editing Diary"),
         "createNewDiary":
             MessageLookupByLibrary.simpleMessage("Create New Diary"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
