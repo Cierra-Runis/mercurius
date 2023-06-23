@@ -190,7 +190,7 @@ def main_module() -> None:
         # 直至新版本号合法
 
         # 写入新版本号至 pubspec.yaml 文件
-        rewrite_current_version_in_pubspec_yaml(input_str)
+        # rewrite_current_version_in_pubspec_yaml(input_str)
 
         # 版本号已修改
         print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')
