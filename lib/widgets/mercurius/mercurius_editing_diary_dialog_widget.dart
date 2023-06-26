@@ -16,18 +16,19 @@ class MercuriusEditingDiaryDialogWidget extends StatelessWidget {
       title: Text(l10n.continueEditingDiary),
       content: SizedBox(
         width: double.maxFinite,
-        child: DiaryListViewCardWidget(
-          diary: editingDiaries[0],
-          dismissDirection: DismissDirection.none,
-          disabled: true,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: editingDiaries.length,
+          itemBuilder: (context, index) => FrameSeparateWidget(
+            index: index,
+            placeHolder: const DiaryListViewCardPlaceHolderWidget(),
+            child: DiaryListViewCardWidget(
+              onTap: () => Navigator.pop(context, editingDiaries[index]),
+              diary: editingDiaries[index],
+            ),
+          ),
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context, editingDiaries[0]),
-          child: Text(l10n.confirm),
-        )
-      ],
     );
   }
 }

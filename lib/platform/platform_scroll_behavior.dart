@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusScrollBehavior extends CupertinoScrollBehavior {
-  const MercuriusScrollBehavior();
+class PlatformScrollBehavior extends CupertinoScrollBehavior {
+  const PlatformScrollBehavior();
 
   @override
   Set<PointerDeviceKind> get dragDevices {

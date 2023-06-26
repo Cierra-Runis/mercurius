@@ -16,6 +16,7 @@
         "lerp",
         "LTRB",
         "mercurius",
+        "Pausable",
         "pubspec",
         "qweather",
         "riverpod",
@@ -49,7 +50,7 @@
         "**/android": true,
         "**/pubspec.lock": true,
         "**/.vscode": true,
-        "**/windows": true
+        "windows": true
     },
     "commentTranslate.hover.string": true,
     "commentTranslate.hover.variable": true,

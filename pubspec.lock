@@ -479,10 +479,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: "920a9a2ed7bb34d8838f7524360d18994496761306981198225f3f378f180282"
+      sha256: f0460f31219ad9bace86967c6f7d5fe86076ebbbaf4933b18d79d836ff863023
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.8"
+    version: "7.2.9"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -582,7 +582,7 @@ packages:
     source: hosted
     version: "0.8.9"
   image_picker_android:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker_android
       sha256: d2bab152deb2547ea6f53d82ebca9b7e77386bb706e5789e815d37e08ea475bb
@@ -622,7 +622,7 @@ packages:
     source: hosted
     version: "0.2.1"
   image_picker_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker_platform_interface
       sha256: "7c7b96bb9413a9c28229e717e6fd1e3edd1cc5569c1778fcca060ecf729b65ee"
@@ -861,6 +861,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
+  pausable_timer:
+    dependency: "direct main"
+    description:
+      name: pausable_timer
+      sha256: d0fb70dea9e1d2ec59c4c2afba00c843fd34de989d5495130867724de0c5246d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   pedantic:
     dependency: transitive
     description:

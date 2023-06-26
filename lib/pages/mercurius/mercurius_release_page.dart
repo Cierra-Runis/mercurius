@@ -3,7 +3,36 @@ import 'package:mercurius/index.dart';
 class MercuriusReleasePage extends ConsumerWidget {
   const MercuriusReleasePage({super.key});
 
-  Widget getBodyByData(BuildContext context, GithubLatestRelease data) {
+  VoidCallback _downloadRelease(GithubLatestRelease data) {
+    return () {
+      try {
+        if (Platform.isAndroid) {
+          GithubLatestReleaseAsset asset = data.assets!.firstWhere(
+            (element) => element.name!.endsWith('.apk'),
+          );
+          launchUrlString(
+            asset.browser_download_url!,
+            mode: LaunchMode.externalApplication,
+          );
+        }
+        if (Platform.isWindows) {
+          GithubLatestReleaseAsset asset = data.assets!.firstWhere(
+            (element) => element.name!.endsWith('.zip'),
+          );
+          launchUrlString(
+            asset.browser_download_url!,
+            mode: LaunchMode.externalApplication,
+          );
+        }
+      } catch (e) {
+        Mercurius.printLog(
+          'launch browser_download_url failed: $e',
+        );
+      }
+    };
+  }
+
+  Widget _getBodyByData(BuildContext context, GithubLatestRelease data) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     if (data.body != null) {
@@ -49,7 +78,7 @@ class MercuriusReleasePage extends ConsumerWidget {
           skipLoadingOnRefresh: false,
           loading: () => const MercuriusLoadingWidget(),
           error: (error, stackTrace) => Container(),
-          data: (data) => getBodyByData(context, data),
+          data: (data) => _getBodyByData(context, data),
         ),
       ),
       floatingActionButton: Column(
@@ -64,32 +93,7 @@ class MercuriusReleasePage extends ConsumerWidget {
             onPressed: githubLatestRelease.when(
               loading: () => null,
               error: (error, stackTrace) => null,
-              data: (data) => () {
-                try {
-                  if (Platform.isAndroid) {
-                    GithubLatestReleaseAsset asset = data.assets!.firstWhere(
-                      (element) => element.name!.endsWith('.apk'),
-                    );
-                    launchUrlString(
-                      asset.browser_download_url!,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  }
-                  if (Platform.isWindows) {
-                    GithubLatestReleaseAsset asset = data.assets!.firstWhere(
-                      (element) => element.name!.endsWith('.zip'),
-                    );
-                    launchUrlString(
-                      asset.browser_download_url!,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  }
-                } catch (e) {
-                  Mercurius.printLog(
-                    'launch browser_download_url failed: $e',
-                  );
-                }
-              },
+              data: _downloadRelease,
             ),
             mini: true,
             child: const Icon(Icons.download_rounded),

@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusWindowsTray {
+class PlatformWindowsTray {
   static Future<void> init() async {
     final SystemTray systemTray = SystemTray();
 

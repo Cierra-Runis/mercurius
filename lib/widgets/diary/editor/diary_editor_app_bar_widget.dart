@@ -8,10 +8,12 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
     required this.quillController,
     required this.textEditingController,
     required this.handleChangeDiary,
+    this.autoSave = false,
     this.toolbarHeight,
     this.bottom,
   });
 
+  final bool autoSave;
   final double? toolbarHeight;
   final PreferredSizeWidget? bottom;
 
@@ -37,17 +39,27 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
         },
         child: Text(l10n.back),
       ),
-      title: TextField(
-        textAlign: TextAlign.center,
-        key: GlobalKey<FormState>(),
-        controller: textEditingController,
-        decoration: InputDecoration(
-          hintText: l10n.untitled,
-          border: InputBorder.none,
-        ),
+      title: Stack(
+        children: [
+          TextField(
+            textAlign: TextAlign.center,
+            key: GlobalKey<FormState>(),
+            controller: textEditingController,
+            decoration: InputDecoration(
+              hintText: l10n.untitled,
+              border: InputBorder.none,
+            ),
+          ),
+        ],
       ),
       centerTitle: true,
       actions: [
+        DiaryEditorAutoSaveButton(
+          diary: diary,
+          quillController: quillController,
+          textEditingController: textEditingController,
+          autoSave: autoSave,
+        ),
         DiaryEditorAppBarSaveButtonWidget(
           diary: diary,
           quillController: quillController,
