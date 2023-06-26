@@ -4,11 +4,13 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
   const MercuriusGalleryCardWidget({
     super.key,
     required this.fileSystemEntity,
+    required this.height,
     this.readOnly = false,
   });
 
   final FileSystemEntity fileSystemEntity;
   final bool readOnly;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,10 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: readOnly
-            ? () {
-                Navigator.of(context).pop(fileSystemEntity.path);
-              }
-            : () async => await showDialog(
+            ? () => Navigator.of(context).pop(
+                  fileSystemEntity.path.split('/').last,
+                )
+            : () => showDialog(
                   context: context,
                   builder: (context) => DiaryImageViewWidget(
                     imageUrl: fileSystemEntity.path,
@@ -31,6 +33,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
           children: [
             Image.file(
               File(fileSystemEntity.path),
+              height: height,
               errorBuilder: (context, error, stackTrace) {
                 return MercuriusFadeShimmerWidget(
                   radius: 16,

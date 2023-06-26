@@ -78,14 +78,33 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
       }
     }
 
-    File file = File(node.value.data);
+    Future<File> getImageFile(String filename) async {
+      Directory? directory;
 
-    return Material(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16.0),
-        onTap: () => onInkWellTap(file, readOnly),
-        child: getInkWellChild(file),
-      ),
+      if (Platform.isAndroid) {
+        directory = await getExternalStorageDirectory();
+      } else if (Platform.isWindows) {
+        directory = await getApplicationSupportDirectory();
+      } else {
+        throw Exception('不支持的平台');
+      }
+      return File('${directory!.path}/image/${node.value.data}');
+    }
+
+    return FutureBuilder<File>(
+      future: getImageFile(node.value.data),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Material(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(16.0),
+              onTap: () => onInkWellTap(snapshot.data!, readOnly),
+              child: getInkWellChild(snapshot.data!),
+            ),
+          );
+        }
+        return Container();
+      },
     );
   }
 }
