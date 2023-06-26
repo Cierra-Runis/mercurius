@@ -32,6 +32,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
     List<FileSystemEntity> fileSystemEntities = snapshot.data!;
 
     return WaterfallFlow.builder(
+      cacheExtent: 1000,
       gridDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),

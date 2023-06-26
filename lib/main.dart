@@ -37,7 +37,7 @@ class MercuriusApp extends StatelessWidget {
       stream: isarService.listenToConfig(),
       builder: (context, snapshot) {
         return MaterialApp(
-          scrollBehavior: const MercuriusScrollBehavior(),
+          scrollBehavior: const PlatformScrollBehavior(),
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
           theme: theme,

@@ -9,13 +9,7 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
 
     return Column(
       children: [
-        const Text(
-          Mercurius.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Saira',
-          ),
-        ),
+        const MercuriusAppNameWidget(),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [

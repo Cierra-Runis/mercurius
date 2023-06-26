@@ -88,8 +88,8 @@ class Mercurius {
 
     /// 在 Windows 上启动窗口管理
     if (Platform.isWindows) {
-      await MercuriusWindowsManager.init();
-      await MercuriusWindowsTray.init();
+      await PlatformWindowsManager.init();
+      await PlatformWindowsTray.init();
     }
 
     /// 在 Android 上实现高刷

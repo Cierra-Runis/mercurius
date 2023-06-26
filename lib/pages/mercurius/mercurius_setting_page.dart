@@ -44,7 +44,7 @@ class _ThemeSelectListItem extends ConsumerWidget {
             titleText: l10n.darkMode,
             detailText: config.themeMode == ThemeMode.system
                 ? l10n.followTheSystem
-                : snapshot.data?.themeMode == ThemeMode.dark
+                : snapshot.data!.themeMode == ThemeMode.dark
                     ? l10n.alwaysDark
                     : l10n.alwaysBright,
             onTap: () => showDialog<void>(

@@ -5,12 +5,12 @@ class DiaryListViewCardWidget extends ConsumerWidget {
     super.key,
     required this.diary,
     this.dismissDirection = DismissDirection.endToStart,
-    this.disabled = false,
+    this.onTap,
   });
 
   final Diary diary;
   final DismissDirection dismissDirection;
-  final bool disabled;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -77,17 +77,16 @@ class DiaryListViewCardWidget extends ConsumerWidget {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: InkWell(
-          onTap: () async {
-            if (!disabled) {
-              Mercurius.vibration(ref: ref);
-              await showDialog<void>(
-                context: context,
-                builder: (context) => DiaryPageViewWidget(
-                  diary: diary,
-                ),
-              );
-            }
-          },
+          onTap: onTap ??
+              () async => {
+                    Mercurius.vibration(ref: ref),
+                    await showDialog<void>(
+                      context: context,
+                      builder: (context) => DiaryPageViewWidget(
+                        diary: diary,
+                      ),
+                    )
+                  },
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
             height: 80,

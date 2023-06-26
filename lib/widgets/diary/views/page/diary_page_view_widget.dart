@@ -20,8 +20,6 @@ class DiaryPageViewWidget extends ConsumerWidget {
 
     List<Diary> diaries = snapshot.data!;
 
-    Mercurius.printLog(diary.id.toString());
-
     /// FIXME: 问题见 https://github.com/flutter/flutter/issues/45632
     return PageView.builder(
       itemCount: diaries.length,

@@ -48,7 +48,7 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
       Navigator.push(
         context,
         CupertinoPageRoute(
-          builder: (context) => DiaryEditorPage(diary: diary),
+          builder: (context) => DiaryEditorPage(diary: diary, autoSave: true),
         ),
       );
     }
@@ -85,6 +85,7 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
           CupertinoPageRoute(
             builder: (context) => DiaryEditorPage(
               diary: Diary.copyWith(diary, id: id + 1),
+              autoSave: true,
             ),
           ),
         );

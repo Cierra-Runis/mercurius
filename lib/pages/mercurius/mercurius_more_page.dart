@@ -7,9 +7,14 @@ class MercuriusMorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const MercuriusAppBarTitleWidget(),
+        title: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onPanStart: (_) => windowManager.startDragging(),
+          onDoubleTap: windowManager.center,
+          child: const MercuriusAppBarTitleWidget(),
+        ),
         centerTitle: true,
-        actions: MercuriusWindowsManager.getActions(),
+        actions: PlatformWindowsManager.getActions(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

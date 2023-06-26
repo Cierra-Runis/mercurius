@@ -82,6 +82,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
 
     return Material(
       child: InkWell(
+        borderRadius: BorderRadius.circular(16.0),
         onTap: () => onInkWellTap(file, readOnly),
         child: getInkWellChild(file),
       ),

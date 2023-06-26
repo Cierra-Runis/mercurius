@@ -37,6 +37,13 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     switch (newImage) {
       case true:
 
+        /// TIPS: 安卓启用新版本
+        final ImagePickerPlatform imagePickerImplementation =
+            ImagePickerPlatform.instance;
+        if (imagePickerImplementation is ImagePickerAndroid) {
+          imagePickerImplementation.useAndroidPhotoPicker = true;
+        }
+
         /// TIPS: 这里返还的是图片地址
         /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
         /// TIPS: 而不是可见于 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/cache/` 下

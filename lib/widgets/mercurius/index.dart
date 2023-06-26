@@ -15,3 +15,4 @@ export 'mercurius_app_icon_widget.dart';
 export 'mercurius_hitokoto_widget.dart';
 export 'mercurius_floating_diary_button_widget.dart';
 export 'mercurius_editing_diary_dialog_widget.dart';
+export 'mercurius_app_name_widget.dart';

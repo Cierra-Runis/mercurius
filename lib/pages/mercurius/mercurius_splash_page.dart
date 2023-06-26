@@ -51,47 +51,14 @@ class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
 
     return FadeTransition(
       opacity: _animation,
-      child: Scaffold(
+      child: const Scaffold(
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              IconButton(
-                padding: EdgeInsets.zero,
-                onPressed: null,
-                icon: Container(
-                  width: 48,
-                  height: 48,
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/icon/icon.png'),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 15.0,
-                        spreadRadius: 4.0,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    Mercurius.name,
-                    style: TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Saira',
-                    ),
-                  ),
-                ],
+              MercuriusAppIconWidget(),
+              MercuriusAppNameWidget(
+                fontSize: 42,
               ),
             ],
           ),
