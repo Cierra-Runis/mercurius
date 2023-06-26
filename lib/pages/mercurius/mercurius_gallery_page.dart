@@ -30,6 +30,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
     }
 
     List<FileSystemEntity> fileSystemEntities = snapshot.data!;
+    final height = MediaQuery.sizeOf(context).width / 2;
 
     return WaterfallFlow.builder(
       cacheExtent: 1000,
@@ -40,6 +41,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
       itemCount: fileSystemEntities.length,
       itemBuilder: (context, index) => MercuriusGalleryCardWidget(
         readOnly: readOnly,
+        height: height,
         fileSystemEntity: fileSystemEntities[index],
       ),
     );

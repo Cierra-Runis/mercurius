@@ -63,12 +63,12 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
           if (Platform.isAndroid) {
             await File(sourceFilePath).delete();
           }
-          _insertImage(controller, targetFilePath);
+          _insertImage(controller, pickedFile.name);
         }
         break;
       case false:
         if (context.mounted) {
-          String? targetFilePath = await Navigator.push(
+          String? filename = await Navigator.push(
             context,
             CupertinoPageRoute(
               builder: (context) => const MercuriusGalleryPage(
@@ -76,8 +76,8 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
               ),
             ),
           );
-          if (targetFilePath != null) {
-            _insertImage(controller, targetFilePath);
+          if (filename != null) {
+            _insertImage(controller, filename);
           }
         }
         break;
@@ -86,8 +86,8 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
     }
   }
 
-  static void _insertImage(QuillController controller, String targetFilePath) {
-    Mercurius.printLog(targetFilePath);
+  static void _insertImage(QuillController controller, String filename) {
+    Mercurius.printLog(filename);
 
     controller.document.insert(controller.selection.extentOffset, '\n');
     controller.updateSelection(
@@ -99,7 +99,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
 
     controller.document.insert(
       controller.selection.extentOffset,
-      DiaryImageBlockEmbed(targetFilePath),
+      DiaryImageBlockEmbed(filename),
     );
 
     controller.updateSelection(
