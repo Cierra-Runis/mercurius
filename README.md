@@ -28,7 +28,9 @@
 
 # 📚 Introduction
 
-`Mercurius` is a diary application developed based on [Flutter](https://flutter.dev/), and some of the realized functions are as follows:
+`Mercurius` is a diary application developed based on [Flutter](https://flutter.dev/), it supports `Android` and `Windows` platforms.
+
+And some of the realized functions are as follows:
 
 - Support the coexistence of diary in one day
 
@@ -92,7 +94,13 @@
 
 # 📦 How to use
 
-Go [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) and select the latest version of `app-arm64-v8a-release.apk` to download and install it
+- For `Android`
+
+  Go [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) and select the latest version of `app-arm64-v8a-release.apk` to download and install it
+
+- For `Windows`
+
+  Go [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) and select the latest version of `Mercurius.for.Windows.zip` to download and unzip it, the double click `Mercurius.exe`
 
 # ⏳ Rate of progress
 
