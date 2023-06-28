@@ -80,7 +80,7 @@
   "insertTheImageFrom": "Insert the image from...",
   "systemFile": "System File",
   "mood": "Mood",
-  "moodText": "{mood, select, other{Unknown Mood} smile{Happy} angry{angry} confused{Confused} frown{Frown} laughing{Laughing} silentSquint{Silent Squint} sadCrying{Sad Crying} smileDizzy{Smile Dizzy} normal{Normal}}",
+  "moodText": "{mood, select, other{Unknown Mood} smile{Happy} angry{Angry} confused{Confused} frown{Frown} laughing{Laughing} silentSquint{Silent Squint} sadCrying{Sad Crying} smileDizzy{Smile Dizzy} normal{Normal}}",
   "@moodText": {
     "description": "Get mood text by mood in [DiaryMoodType]",
     "placeholders": {

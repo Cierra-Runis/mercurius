@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m1(mood) => "${Intl.select(mood, {
             'other': 'Unknown Mood',
             'smile': 'Happy',
-            'angry': 'angry',
+            'angry': 'Angry',
             'confused': 'Confused',
             'frown': 'Frown',
             'laughing': 'Laughing',
