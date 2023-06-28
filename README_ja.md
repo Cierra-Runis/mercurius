@@ -26,7 +26,9 @@
 
 # 📚 紹介
 
-本ソフトウェアは [Flutter](https://flutter.dev/) に基づいて開発された日記ソフトで、実現した一部の機能は次の通りです：
+本ソフトウェアは [Flutter](https://flutter.dev/) に基づいて開発された日記ソフトで、`Android` および `Windows` プラットフォームを支持する
+
+実現した一部の機能は次の通りです：
 
 - 一日多日記共存を支持する
 - リッチテキスト編集を支持する
@@ -66,7 +68,13 @@
 
 # 📦 使用方式
 
-[リリースページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `app-arm64-v8a-release.apk` をダウンロードすれば良いです
+- `Android` の場合
+
+   [リリースページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `app-arm64-v8a-release.apk` をダウンロードすれば良いです
+
+- `Windows` の場合
+
+   [リリース ページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `Mercurius.for.Windows.zip` をダウンロードして解凍し、`Mercurius.exe` をダブルクリックすれば良いです
 
 # ⏳ 進捗
 

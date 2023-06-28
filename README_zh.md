@@ -26,7 +26,9 @@
 
 # 📚 简介
 
-本软件是基于 [Flutter](https://flutter.dev/) 开发的一款日记软件，已实现的部分功能如下：
+本软件是基于 [Flutter](https://flutter.dev/) 开发的一款日记软件，支持 `Android` 和 `Windows` 平台
+
+已实现的部分功能如下：
 
 - 支持一日多日记共存
 - 支持富文本编辑
@@ -66,7 +68,13 @@
 
 # 📦 使用方式
 
-请在 [Releases](https://github.com/Cierra-Runis/mercurius/releases) 中选择下载安装最新版本的 `app-arm64-v8a-release.apk` 即可
+- 对于 `Android`
+
+  请在 [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) 中选择下载安装最新版本的 `app-arm64-v8a-release.apk` 即可
+
+- 对于 `Windows`
+
+  请在 [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) 中选择下载解压最新版本的 `Mercurius.for.Windows.zip` 后双击 `Mercurius.exe` 即可
 
 # ⏳ 进度
 
