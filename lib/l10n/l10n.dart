@@ -684,14 +684,14 @@ class MercuriusL10N {
     );
   }
 
-  /// `{mood, select, other{Unknown Mood} smile{Happy} angry{angry} confused{Confused} frown{Frown} laughing{Laughing} silentSquint{Silent Squint} sadCrying{Sad Crying} smileDizzy{Smile Dizzy} normal{Normal}}`
+  /// `{mood, select, other{Unknown Mood} smile{Happy} angry{Angry} confused{Confused} frown{Frown} laughing{Laughing} silentSquint{Silent Squint} sadCrying{Sad Crying} smileDizzy{Smile Dizzy} normal{Normal}}`
   String moodText(String mood) {
     return Intl.select(
       mood,
       {
         'other': 'Unknown Mood',
         'smile': 'Happy',
-        'angry': 'angry',
+        'angry': 'Angry',
         'confused': 'Confused',
         'frown': 'Frown',
         'laughing': 'Laughing',
