@@ -55,6 +55,8 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
       centerTitle: true,
       actions: [
         DiaryEditorAutoSaveButton(
+          /// TIPS: 需要 UniqueKey() 否则 diary 即便变化了该组件仍会使用旧状态
+          key: UniqueKey(),
           diary: diary,
           quillController: quillController,
           textEditingController: textEditingController,
