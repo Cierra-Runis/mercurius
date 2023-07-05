@@ -1,30 +1,36 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.3.4+80](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.4+80)
+[v1.3.5+81](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.5+81)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Fix issue 🔧
+> Revise📖 & Fix issue🔧 & Features🌍
 >
-> 1. 🔧 Fixed issue that auto save mode will not save changed mood and weather of diary
+> 1. 📖Now images in `Gallery` are sorted by `changedTime`
+> 2. 🔧Fixed issue that auto save button will lose statement #9
+> 3. 🌍Add new Tag Embedded Widget #10
 
-> 修复问题 🔧
+> 修改 📖 & 修复问题 🔧 & 添加功能 🌍
 >
-> 1. 🔧 修复自动保存模式不会保存日记心情和天气变化的问题
+> 1. 📖 现在 `图片库` 内的图片按 `changedTime` 排序
+> 2. 🔧 修复了自动保存按钮丢失状态的问题 #9
+> 3. 🌍 添加了新的标签组件 #10
 
-> 修正 🔧
+> 変更 📖 & バグ修正 🔧 & 機能追加 🌍
 >
-> 1. 🔧 自動保存モードで変更された日記の気分や天気が保存されない問題を修正
+> 1. 📖 `ギャラリー` 内の画像が `changedTime` で並べ替えられるようになりました
+> 2. 🔧 自動保存ボタンがステートメント #9 を失う問題を修正
+> 3. 🌍 新しいタグウィジェットを追加 #10
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.3+79...v1.3.4+80)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.4+80...v1.3.5+81)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.3+79...v1.3.4+80)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.4+80...v1.3.5+81)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.3+79...v1.3.4+80)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.4+80...v1.3.5+81)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**

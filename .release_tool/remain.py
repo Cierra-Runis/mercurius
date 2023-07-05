@@ -17,6 +17,7 @@ class RegStr(Enum):
     reg str
     """
     version_str: str = r'(\d+)\.(\d+)\.(\d+)\+(\d+)'
+    pubspec_yaml: str = r'version: (\d+\.\d+\.\d+\+\d+)'
 
 
 class FileStr(Enum):
@@ -35,22 +36,32 @@ def get_version_from_pubspec_yaml() -> str:
     """
     file = open(FileStr.pubspec_yaml.value, encoding='utf-8')
     data = yaml.load(file, Loader=yaml.FullLoader)
-    print(data)
     result = data['version']
     file.close()
     return result
 
 
-# TODO: 处理注释丢失的问题
+def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
+    """
+    改写用辅助函数
+    """
+    file = open(file_dir, 'r+', encoding='utf-8')
+    text = file.read()
+    file.seek(0, 0)
+    text = re.sub(reg, repl, text)
+    file.write(text)
+    file.close()
+
+
 def rewrite_current_version_in_pubspec_yaml(new_version: str) -> None:
     """
     修改 pubspec.yaml 文件中的版本号
     """
-    with open(FileStr.pubspec_yaml.value, 'r', encoding='utf-8') as f:
-        data = yaml.load(f, Loader=yaml.FullLoader)
-    data['version'] = new_version
-    with open(FileStr.pubspec_yaml.value, 'w', encoding='utf-8') as f:
-        f.write(yaml.dump(data))
+    rewrite_tool(
+        file_dir=FileStr.pubspec_yaml.value,
+        reg=RegStr.pubspec_yaml.value,
+        repl=f'version: {new_version}',
+    )
 
 
 def is_new_version_legal(current_version: str, new_version: str) -> bool:
@@ -190,7 +201,7 @@ def main_module() -> None:
         # 直至新版本号合法
 
         # 写入新版本号至 pubspec.yaml 文件
-        # rewrite_current_version_in_pubspec_yaml(input_str)
+        rewrite_current_version_in_pubspec_yaml(input_str)
 
         # 版本号已修改
         print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')
@@ -199,7 +210,8 @@ def main_module() -> None:
         os.system(
             'flutter build apk' + ' --obfuscate' +
             ' --split-debug-info=splitMap' +
-            ' --target-platform android-arm64' + ' --split-per-abi', )
+            ' --target-platform android-arm64' + ' --split-per-abi' +
+            ' --no-tree-shake-icons', )
 
         # 并将 build 后的 apk 转移至 .release_tool/
         copy_file(
@@ -210,7 +222,8 @@ def main_module() -> None:
         # 修改版本号后自动构建 exe
         os.system(
             'flutter build windows' +
-            ' --obfuscate --split-debug-info=splitMap', )
+            ' --obfuscate --split-debug-info=splitMap' +
+            ' --no-tree-shake-icons', )
 
         # 并将 build 后的 Release 文件夹转移至 .release_tool/
         copy_tree(
@@ -226,9 +239,54 @@ def main_module() -> None:
         print('> 已取消更改版本号')
 
 
-def release_module():
-    '''
-    '''
+def release_module() -> None:
+    """
+    发布模块
+    """
+    current_version_str = get_version_from_pubspec_yaml()
+    input_str = ''
+
+    input_str = input_tool(
+        first_message=f'是否发布当前版本 {current_version_str}',
+        rule='(y/n)',
+        error_message='请只输入 y 或 n',
+        rule_function=lambda input_str: input_str == 'y' or input_str == 'n',
+    )
+
+    # 若输入的是 'y'
+    if input_str == 'y':
+        # 修改发布版本
+        # rewrite_release_version(current_version_str)
+        # # 打开 body.md 文件进行修改
+        # print('> 已为你打开 body.md 文件')
+        # os.startfile(FileStr.body_md.value)
+
+        # # 打开文件后询问是否完成
+        # input_str = input_tool(
+        #     first_message='是否完成修改',
+        #     rule='(y)',
+        #     error_message='请输入 y 以确认修改完成',
+        #     rule_function=lambda input_str: input_str == 'y',
+        # )
+
+        # 梳理逻辑, 本脚本分为两个模块
+        # 1. 通过脚本修改版本号则保证 pubspec.yaml 和 apk 版本一致
+        # 2. 通过脚本发布软件保证 pubspec.yaml 和 body.md , tag.md 的版本一致
+        # 一般流程为 1 -> 1 -> 1 -> 2 即多次修改版本号后发布, 无异常
+        # 提交 release
+        print('-- release.py --')
+        release_version_str = get_version_from_pubspec_yaml()
+        print(f'> 正在发布 v{release_version_str}')
+        os.system('git add .')
+        os.system(f'git commit -m "🎉 Release v{release_version_str} 🎉"')
+        os.system('git push')
+        os.system(f'git tag v{release_version_str}')
+        os.system('git push --tags')
+        print(f'> 已发布 v{release_version_str}')
+
+    else:
+        # 反之输入的不是 'y'
+        print('> 已取消发布')
 
 
 if __name__ == '__main__':
