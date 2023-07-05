@@ -37,6 +37,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
           error: (error, stackTrace) => Container(),
           data: (data) => DiaryEditorToolbarImageButtonWidget(
             tooltip: l10n.insertImage,
+            iconTheme: quillIconTheme,
             controller: controller,
             context: context,
             path: data,
@@ -46,6 +47,7 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
       (controller, _, __, ___) {
         return DiaryEditorToolbarTagButtonWidget(
           tooltip: l10n.insertTag,
+          iconTheme: quillIconTheme,
           controller: controller,
           context: context,
         );

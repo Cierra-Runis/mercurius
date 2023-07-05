@@ -13,10 +13,10 @@ class DiaryEditorToolbarWeatherButtonWidget extends QuillCustomButton {
   final ValueChanged<Diary?> handleToolbarChangeDiary;
 
   @override
-  IconData? get icon => Icons.cloud;
+  IconData get icon => Icons.cloud;
 
   @override
-  VoidCallback? get onTap => () async {
+  VoidCallback get onTap => () async {
         Diary? newDiary = await showDialog<Diary>(
           context: context,
           builder: (context) => DiaryWeatherSelectorDialogWidget(
