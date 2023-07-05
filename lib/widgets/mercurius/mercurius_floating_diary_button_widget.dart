@@ -76,15 +76,15 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
         editing: true,
       );
 
-      /// TODO: 使用另一种方式获取可用的 id
       int id = await isarService.saveDiary(diary);
       isarService.deleteDiaryById(id);
+
       if (context.mounted) {
         Navigator.push(
           context,
           CupertinoPageRoute(
             builder: (context) => DiaryEditorPage(
-              diary: Diary.copyWith(diary, id: id + 1),
+              diary: Diary.copyWith(diary, id: id),
               autoSave: true,
             ),
           ),
@@ -97,9 +97,8 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return StreamBuilder<List<Diary>>(
       stream: isarService.listenToDiariesEditing().distinct(),
-      builder: (context, snapshot) {
-        return _getFloatingButton(context, snapshot, ref);
-      },
+      builder: (context, snapshot) =>
+          _getFloatingButton(context, snapshot, ref),
     );
   }
 }

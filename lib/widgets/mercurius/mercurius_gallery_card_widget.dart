@@ -70,9 +70,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                             summary: l10n.pleaseThinkTwiceAboutDeletingTheImage,
                             context: context,
                           ).confirm;
-                          if (confirm == true) {
-                            fileSystemEntity.deleteSync();
-                          }
+                          if (confirm == true) fileSystemEntity.deleteSync();
                         },
                   icon: const Icon(
                     Icons.delete_outline_rounded,

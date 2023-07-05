@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusGalleryPage extends ConsumerWidget {
+class MercuriusGalleryPage extends ConsumerStatefulWidget {
   const MercuriusGalleryPage({
     super.key,
     this.readOnly = false,
@@ -8,15 +8,32 @@ class MercuriusGalleryPage extends ConsumerWidget {
 
   final bool readOnly;
 
+  @override
+  ConsumerState<MercuriusGalleryPage> createState() =>
+      _MercuriusGalleryPageState();
+}
+
+class _MercuriusGalleryPageState extends ConsumerState<MercuriusGalleryPage> {
+  late bool _readOnly;
+  late List<FileSystemEntity> _list = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _readOnly = widget.readOnly;
+  }
+
   Stream<List<FileSystemEntity>> listenToImageFile(String path) {
-    return Stream.periodic(
-      const Duration(milliseconds: 100),
-      (_) => Directory('$path/image/').listSync().where(
-        (file) {
-          return file.statSync().type == FileSystemEntityType.file;
-        },
-      ).toList(),
-    );
+    return Stream.periodic(const Duration(milliseconds: 100), (_) {
+      List<FileSystemEntity> newList = Directory('$path/image/').listSync();
+      if (_list.length != newList.length) {
+        newList.sort((a, b) {
+          return b.statSync().changed.differenceInSeconds(a.statSync().changed);
+        });
+        return (_list = newList);
+      }
+      return _list;
+    });
   }
 
   Widget getGridBySnapshotData(
@@ -40,7 +57,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
       padding: const EdgeInsets.all(12.0),
       itemCount: fileSystemEntities.length,
       itemBuilder: (context, index) => MercuriusGalleryCardWidget(
-        readOnly: readOnly,
+        readOnly: _readOnly,
         height: height,
         fileSystemEntity: fileSystemEntities[index],
       ),
@@ -67,7 +84,7 @@ class MercuriusGalleryPage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final path = ref.watch(mercuriusPathProvider);
 
     final MercuriusL10N l10n = MercuriusL10N.of(context);
