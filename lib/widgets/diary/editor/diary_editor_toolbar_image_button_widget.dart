@@ -17,7 +17,7 @@ class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
   final QuillController controller;
 
   @override
-  Widget? get icon => const Icon(Icons.image_rounded);
+  Widget? get icon => const Icon(Icons.add_photo_alternate_rounded);
 
   static void _onPressed(
     QuillController controller,

@@ -15,7 +15,7 @@ class DiaryImageBlockEmbed extends Embeddable {
 
 class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
   @override
-  String get key => 'mercuriusImage';
+  String get key => DiaryImageBlockEmbed.mercuriusImageType;
 
   @override
   Widget build(
@@ -86,7 +86,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
       } else if (Platform.isWindows) {
         directory = await getApplicationSupportDirectory();
       } else {
-        throw Exception('不支持的平台');
+        throw Exception('Unknown Platform');
       }
       return File('${directory!.path}/image/${node.value.data}');
     }

@@ -105,8 +105,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "importJsonFile": MessageLookupByLibrary.simpleMessage("导入 json 文件"),
         "importNfcData": MessageLookupByLibrary.simpleMessage("导入 NFC 数据"),
         "insertImage": MessageLookupByLibrary.simpleMessage("插入图片"),
+        "insertTag": MessageLookupByLibrary.simpleMessage("插入标签"),
+        "insertTagMessage": MessageLookupByLibrary.simpleMessage("请输入标签信息"),
+        "insertTagTitle": MessageLookupByLibrary.simpleMessage("请选择标签图标并输入信息"),
         "insertTheImageFrom": MessageLookupByLibrary.simpleMessage("从何处插入图片？"),
-        "insertTime": MessageLookupByLibrary.simpleMessage("插入时间"),
         "monthlyWordCountStatistics":
             MessageLookupByLibrary.simpleMessage("月度字数统计"),
         "mood": MessageLookupByLibrary.simpleMessage("心情"),

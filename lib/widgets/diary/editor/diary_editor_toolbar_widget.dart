@@ -29,7 +29,6 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
     final path = ref.watch(mercuriusPathProvider);
 
     final MercuriusL10N l10n = MercuriusL10N.of(context);
-    final String lang = Localizations.localeOf(context).toLanguageTag();
 
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
@@ -42,6 +41,13 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
             context: context,
             path: data,
           ),
+        );
+      },
+      (controller, _, __, ___) {
+        return DiaryEditorToolbarTagButtonWidget(
+          tooltip: l10n.insertTag,
+          controller: controller,
+          context: context,
         );
       }
     ];
@@ -73,11 +79,6 @@ class DiaryEditorToolbarWidget extends ConsumerWidget {
       iconTheme: quillIconTheme,
       embedButtons: embedButtons,
       customButtons: [
-        DiaryEditorToolbarTimestampButtonWidget(
-          controller: quillController,
-          tooltip: l10n.insertTime,
-          lang: lang,
-        ),
         DiaryEditorToolbarMoodButtonWidget(
           context: context,
           currentDiary: diary,

@@ -170,11 +170,31 @@ class MercuriusL10N {
     );
   }
 
-  /// `Insert Time`
-  String get insertTime {
+  /// `Insert Tag`
+  String get insertTag {
     return Intl.message(
-      'Insert Time',
-      name: 'insertTime',
+      'Insert Tag',
+      name: 'insertTag',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Select The Tag Icon And Enter Message`
+  String get insertTagTitle {
+    return Intl.message(
+      'Please Select The Tag Icon And Enter Message',
+      name: 'insertTagTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Tag Message`
+  String get insertTagMessage {
+    return Intl.message(
+      'Please Enter Tag Message',
+      name: 'insertTagMessage',
       desc: '',
       args: [],
     );
