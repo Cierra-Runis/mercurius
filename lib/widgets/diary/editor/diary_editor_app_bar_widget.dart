@@ -8,6 +8,7 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
     required this.quillController,
     required this.textEditingController,
     required this.handleChangeDiary,
+    required this.handleAutoSaveButtonChangeState,
     this.autoSave = false,
     this.toolbarHeight,
     this.bottom,
@@ -21,6 +22,7 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
   final QuillController quillController;
   final TextEditingController textEditingController;
   final ValueChanged<Diary?> handleChangeDiary;
+  final ValueChanged<bool> handleAutoSaveButtonChangeState;
 
   @override
   Size get preferredSize => Size.fromHeight(
@@ -55,12 +57,11 @@ class DiaryEditorAppBarWidget extends ConsumerWidget
       centerTitle: true,
       actions: [
         DiaryEditorAutoSaveButton(
-          /// TIPS: 需要 UniqueKey() 否则 diary 即便变化了该组件仍会使用旧状态
-          key: UniqueKey(),
           diary: diary,
           quillController: quillController,
           textEditingController: textEditingController,
           autoSave: autoSave,
+          handleAutoSaveButtonChangeState: handleAutoSaveButtonChangeState,
         ),
         DiaryEditorAppBarSaveButtonWidget(
           diary: diary,

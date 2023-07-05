@@ -45,6 +45,10 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
     setState(() => _diary = newDiary ?? _diary);
   }
 
+  void _handleAutoSaveButtonChangeState(bool newState) {
+    setState(() => _autoSave = newState);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +57,7 @@ class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
         quillController: _quillController,
         textEditingController: _textEditingController,
         handleChangeDiary: _handleChangeDiary,
+        handleAutoSaveButtonChangeState: _handleAutoSaveButtonChangeState,
         autoSave: _autoSave,
       ),
       body: Padding(

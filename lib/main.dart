@@ -35,28 +35,26 @@ class MercuriusApp extends StatelessWidget {
 
     return StreamBuilder(
       stream: isarService.listenToConfig(),
-      builder: (context, snapshot) {
-        return MaterialApp(
-          scrollBehavior: const PlatformScrollBehavior(),
-          debugShowCheckedModeBanner: false,
-          navigatorKey: navigatorKey,
-          theme: theme,
-          darkTheme: darkTheme,
-          themeMode: snapshot.data?.themeMode,
-          home: const MercuriusSplashPage(),
-          localizationsDelegates: const [
-            MercuriusL10N.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en'),
-            Locale('zh', 'CN'),
-            Locale('ja'),
-          ],
-        );
-      },
+      builder: (context, snapshot) => MaterialApp(
+        scrollBehavior: const PlatformScrollBehavior(),
+        debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
+        theme: theme,
+        darkTheme: darkTheme,
+        themeMode: snapshot.data?.themeMode,
+        home: const MercuriusSplashPage(),
+        localizationsDelegates: const [
+          MercuriusL10N.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'),
+          Locale('zh', 'CN'),
+          Locale('ja'),
+        ],
+      ),
     );
   }
 }

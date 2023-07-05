@@ -6,6 +6,7 @@ class DiaryEditorAutoSaveButton extends StatefulWidget {
     required this.diary,
     required this.quillController,
     required this.textEditingController,
+    required this.handleAutoSaveButtonChangeState,
     this.autoSave = false,
   });
 
@@ -13,6 +14,7 @@ class DiaryEditorAutoSaveButton extends StatefulWidget {
   final bool autoSave;
   final QuillController quillController;
   final TextEditingController textEditingController;
+  final ValueChanged<bool> handleAutoSaveButtonChangeState;
 
   @override
   State<DiaryEditorAutoSaveButton> createState() =>
@@ -24,6 +26,7 @@ class _DiaryEditorAutoSaveButtonState extends State<DiaryEditorAutoSaveButton> {
   late bool _autoSave;
   late QuillController _quillController;
   late TextEditingController _textEditingController;
+  late ValueChanged<bool> _handleAutoSaveButtonChangeState;
 
   late PausableTimer _timer;
 
@@ -76,9 +79,10 @@ class _DiaryEditorAutoSaveButtonState extends State<DiaryEditorAutoSaveButton> {
               : const Icon(Icons.timer_off_rounded),
         ),
         value: _autoSave,
-        onChanged: (value) => setState(
-          () => (_autoSave = value) ? _timer.start() : _timer.pause(),
-        ),
+        onChanged: (value) {
+          setState(() => (_autoSave = value) ? _timer.start() : _timer.pause());
+          _handleAutoSaveButtonChangeState(value);
+        },
       ),
     );
   }
