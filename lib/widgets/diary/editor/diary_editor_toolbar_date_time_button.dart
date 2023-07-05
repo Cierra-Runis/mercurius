@@ -13,10 +13,10 @@ class DiaryEditorToolbarDateTimeButtonWidget extends QuillCustomButton {
   final ValueChanged<Diary?> handleToolbarChangeDiary;
 
   @override
-  IconData? get icon => Icons.date_range_rounded;
+  IconData get icon => Icons.date_range_rounded;
 
   @override
-  VoidCallback? get onTap => () async {
+  VoidCallback get onTap => () async {
         DateTime? dateTime = await showDatePicker(
           context: context,
           initialEntryMode: DatePickerEntryMode.calendarOnly,

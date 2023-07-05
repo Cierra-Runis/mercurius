@@ -1,23 +1,18 @@
 import 'package:mercurius/index.dart';
 
-class DiaryEditorToolbarImageButtonWidget extends QuillIconButton {
+class DiaryEditorToolbarImageButtonWidget extends CustomButton {
   DiaryEditorToolbarImageButtonWidget({
     super.key,
+    super.icon = Icons.add_photo_alternate_rounded,
+    super.iconTheme,
     required super.tooltip,
     required this.controller,
     required this.context,
     required String path,
-  }) : super(
-          size: 18 * 1.77,
-          borderRadius: 12,
-          onPressed: () => _onPressed(controller, context, path),
-        );
+  }) : super(onPressed: () => _onPressed(controller, context, path));
 
   final BuildContext context;
   final QuillController controller;
-
-  @override
-  Widget? get icon => const Icon(Icons.add_photo_alternate_rounded);
 
   static void _onPressed(
     QuillController controller,

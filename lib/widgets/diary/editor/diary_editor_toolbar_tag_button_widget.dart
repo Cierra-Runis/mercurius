@@ -1,22 +1,19 @@
 import 'package:mercurius/index.dart';
 
-class DiaryEditorToolbarTagButtonWidget extends QuillIconButton {
+class DiaryEditorToolbarTagButtonWidget extends CustomButton {
   DiaryEditorToolbarTagButtonWidget({
     super.key,
+    super.icon = Icons.new_label_rounded,
+    super.iconTheme,
     required super.tooltip,
     required this.controller,
     required this.context,
   }) : super(
-          size: 18 * 1.77,
-          borderRadius: 12,
           onPressed: () => _onPressed(controller, context),
         );
 
   final BuildContext context;
   final QuillController controller;
-
-  @override
-  Widget? get icon => const Icon(Icons.new_label_rounded);
 
   static void _onPressed(
     QuillController controller,
