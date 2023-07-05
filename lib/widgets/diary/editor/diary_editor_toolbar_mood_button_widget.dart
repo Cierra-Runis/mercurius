@@ -13,7 +13,7 @@ class DiaryEditorToolbarMoodButtonWidget extends QuillCustomButton {
   final ValueChanged<Diary?> handleToolbarChangeDiary;
 
   @override
-  IconData? get icon => Icons.mood;
+  IconData? get icon => Icons.mood_rounded;
 
   @override
   VoidCallback? get onTap => () async {

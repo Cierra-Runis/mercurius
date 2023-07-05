@@ -5,6 +5,6 @@ export 'diary_editor_body_widget.dart';
 export 'diary_editor_toolbar_widget.dart';
 export 'diary_editor_app_bar_widget.dart';
 export 'diary_editor_app_bar_save_button_widget.dart';
-export 'diary_editor_toolbar_timestamp_button_widget.dart';
+export 'diary_editor_toolbar_tag_button_widget.dart';
 export 'diary_editor_toolbar_image_button_widget.dart';
 export 'diary_editor_auto_save_button_widget.dart';

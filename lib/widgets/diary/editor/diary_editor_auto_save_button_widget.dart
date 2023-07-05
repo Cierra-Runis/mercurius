@@ -37,8 +37,8 @@ class _DiaryEditorAutoSaveButtonState extends State<DiaryEditorAutoSaveButton> {
     _autoSave = widget.autoSave;
     _quillController = widget.quillController;
     _textEditingController = widget.textEditingController;
+    _handleAutoSaveButtonChangeState = widget.handleAutoSaveButtonChangeState;
     _timer = PausableTimer(const Duration(seconds: 5), () {
-      Mercurius.printLog('自动保存 ${DateTime.now().toHumanString()}');
       _timer
         ..reset()
         ..start();

@@ -113,9 +113,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "importNfcData":
             MessageLookupByLibrary.simpleMessage("NFC データをインポートする"),
         "insertImage": MessageLookupByLibrary.simpleMessage("図を挿入"),
+        "insertTag": MessageLookupByLibrary.simpleMessage("タグを挿入"),
+        "insertTagMessage":
+            MessageLookupByLibrary.simpleMessage("タグ情報を入力してください"),
+        "insertTagTitle":
+            MessageLookupByLibrary.simpleMessage("タグアイコンを選択し、情報を入力してください"),
         "insertTheImageFrom":
             MessageLookupByLibrary.simpleMessage("どこから画像を挿入すればよいですか？"),
-        "insertTime": MessageLookupByLibrary.simpleMessage("時間を挿入"),
         "monthlyWordCountStatistics":
             MessageLookupByLibrary.simpleMessage("月度文字数統計"),
         "mood": MessageLookupByLibrary.simpleMessage("気分"),

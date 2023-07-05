@@ -45,7 +45,10 @@ class DiaryEditorBodyWidget extends StatelessWidget {
         }
       },
       scrollBottomInset: 10,
-      embedBuilders: [DiaryImageEmbedBuilderWidget()],
+      embedBuilders: [
+        DiaryImageEmbedBuilderWidget(),
+        DiaryTagEmbedBuilderWidget(),
+      ],
       customStyles: DefaultStyles(
         placeHolder: DefaultTextBlockStyle(
           TextStyle(

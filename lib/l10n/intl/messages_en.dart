@@ -123,9 +123,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "importNfcData":
             MessageLookupByLibrary.simpleMessage("Import NFC Data"),
         "insertImage": MessageLookupByLibrary.simpleMessage("Insert Image"),
+        "insertTag": MessageLookupByLibrary.simpleMessage("Insert Tag"),
+        "insertTagMessage":
+            MessageLookupByLibrary.simpleMessage("Please Enter Tag Message"),
+        "insertTagTitle": MessageLookupByLibrary.simpleMessage(
+            "Please Select The Tag Icon And Enter Message"),
         "insertTheImageFrom":
             MessageLookupByLibrary.simpleMessage("Insert the image from..."),
-        "insertTime": MessageLookupByLibrary.simpleMessage("Insert Time"),
         "monthlyWordCountStatistics":
             MessageLookupByLibrary.simpleMessage("Monthly Word Count"),
         "mood": MessageLookupByLibrary.simpleMessage("Mood"),
