@@ -1,29 +1,28 @@
-"""
+'''
 自动化 python 脚本
-remain.py
-"""
+main.py
+'''
 
 from enum import Enum
 import os
 import re
 import shutil
 import zipfile
-
 import yaml
 
 
 class RegStr(Enum):
-    """
+    '''
     reg str
-    """
+    '''
     version_str: str = r'(\d+)\.(\d+)\.(\d+)\+(\d+)'
     pubspec_yaml: str = r'version: (\d+\.\d+\.\d+\+\d+)'
 
 
 class FileStr(Enum):
-    """
+    '''
     file str
-    """
+    '''
     pubspec_yaml: str = r'pubspec.yaml'
     app_arm64_v8a_release_apk: str = r'build\app\outputs\apk\release\app-arm64-v8a-release.apk'
     release_tool_dir: str = r'.release_tool'
@@ -31,9 +30,9 @@ class FileStr(Enum):
 
 
 def get_version_from_pubspec_yaml() -> str:
-    """
+    '''
     从 pubspec.yaml 文件中获取当前版本的字符串
-    """
+    '''
     file = open(FileStr.pubspec_yaml.value, encoding='utf-8')
     data = yaml.load(file, Loader=yaml.FullLoader)
     result = data['version']
@@ -42,9 +41,9 @@ def get_version_from_pubspec_yaml() -> str:
 
 
 def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
-    """
+    '''
     改写用辅助函数
-    """
+    '''
     file = open(file_dir, 'r+', encoding='utf-8')
     text = file.read()
     file.seek(0, 0)
@@ -54,9 +53,9 @@ def rewrite_tool(file_dir: str, reg: str, repl: str) -> None:
 
 
 def rewrite_current_version_in_pubspec_yaml(new_version: str) -> None:
-    """
+    '''
     修改 pubspec.yaml 文件中的版本号
-    """
+    '''
     rewrite_tool(
         file_dir=FileStr.pubspec_yaml.value,
         reg=RegStr.pubspec_yaml.value,
@@ -65,9 +64,9 @@ def rewrite_current_version_in_pubspec_yaml(new_version: str) -> None:
 
 
 def is_new_version_legal(current_version: str, new_version: str) -> bool:
-    """
+    '''
     比较版本号大小, 两字符串格式类似 1.0.0+1
-    """
+    '''
     current = re.match(RegStr.version_str.value, current_version)
     new = re.match(RegStr.version_str.value, new_version)
 
@@ -95,9 +94,9 @@ def input_tool(
     error_message: str,
     rule_function: any,
 ) -> str:
-    """
+    '''
     根据 rule_function 获取合法的值
-    """
+    '''
     # 提醒
     print(f'> {first_message} {rule}: ', end='')
     # 第一次输入
@@ -143,9 +142,9 @@ def zip_file(src_dir):
 
 
 def copy_file(src_file: str, dst_path: str) -> None:
-    """
+    '''
     复制 src_file 文件至 dst_path 目录下, 且要求 dst_path 后不接 '/'
-    """
+    '''
     if not os.path.isfile(src_file):
         print(f'> 所复制 {src_file} 不存在')
     else:
@@ -157,9 +156,9 @@ def copy_file(src_file: str, dst_path: str) -> None:
 
 
 def main_module() -> None:
-    """
+    '''
     主模块
-    """
+    '''
     # 程序开始
     print('-- main.py --')
     current_version_str = get_version_from_pubspec_yaml()
@@ -240,9 +239,9 @@ def main_module() -> None:
 
 
 def release_module() -> None:
-    """
+    '''
     发布模块
-    """
+    '''
     current_version_str = get_version_from_pubspec_yaml()
     input_str = ''
 

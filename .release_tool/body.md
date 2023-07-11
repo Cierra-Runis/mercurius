@@ -1,36 +1,30 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.3.5+81](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.5+81)
+[v1.3.6+82](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.6+82)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Revise📖 & Fix issue🔧 & Features🌍
+> Features🌍
 >
-> 1. 📖Now images in `Gallery` are sorted by `changedTime`
-> 2. 🔧Fixed issue that auto save button will lose statement #9
-> 3. 🌍Add new Tag Embedded Widget #10
+> 1. 🌍Embedded Widget will not show `￼` anymore
 
-> 修改 📖 & 修复问题 🔧 & 添加功能 🌍
+> 添加功能 🌍
 >
-> 1. 📖 现在 `图片库` 内的图片按 `changedTime` 排序
-> 2. 🔧 修复了自动保存按钮丢失状态的问题 #9
-> 3. 🌍 添加了新的标签组件 #10
+> 1. 🌍 内嵌组件不会再显示 `￼` 豆腐块了
 
 > 変更 📖 & バグ修正 🔧 & 機能追加 🌍
 >
-> 1. 📖 `ギャラリー` 内の画像が `changedTime` で並べ替えられるようになりました
-> 2. 🔧 自動保存ボタンがステートメント #9 を失う問題を修正
-> 3. 🌍 新しいタグウィジェットを追加 #10
+> 1. 🌍 埋め込みウィジェットに `￼` が表示されなくなります
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.4+80...v1.3.5+81)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.6+82)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.4+80...v1.3.5+81)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.6+82)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.4+80...v1.3.5+81)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.6+82)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**

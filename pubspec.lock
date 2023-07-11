@@ -463,10 +463,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_markdown
-      sha256: "9e0202b5339cd88ac0f109abae8502681bfab0b13a8e02a0e7158124610b5d98"
+      sha256: "4b1bfbb802d76320a1a46d9ce984106135093efd9d969765d07c2125af107bdf"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.15+1"
+    version: "0.6.17"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -1134,18 +1134,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: "2cf092e1b09a9c75d2dc4a6d22f5b2d642010b8c3ae0f8a65272715af0ebe211"
+      sha256: "5177ac8fd2a171ed9ad3a48de1d715eb38271629d0f33a561eea85ff44f89c7e"
       url: "https://pub.dev"
     source: hosted
-    version: "22.1.36"
+    version: "22.1.37"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: cd99c16c22658fce7ef036af5e72125428c53b8b58110ef01593b1e17891b68a
+      sha256: e2b49a16805a54714ba0712d62e9f3c6311081ec2bec835529b778cc5349430a
       url: "https://pub.dev"
     source: hosted
-    version: "22.1.36"
+    version: "22.1.37"
   system_tray:
     dependency: "direct main"
     description:
@@ -1214,10 +1214,10 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: eb1e00ab44303d50dd487aab67ebc575456c146c6af44422f9c13889984c00f3
+      sha256: "781bd58a1eb16069412365c98597726cd8810ae27435f04b3b4d3a470bacd61e"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.11"
+    version: "6.1.12"
   url_launcher_android:
     dependency: transitive
     description:
