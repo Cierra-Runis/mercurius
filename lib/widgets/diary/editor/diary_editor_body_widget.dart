@@ -16,6 +16,11 @@ class DiaryEditorBodyWidget extends StatelessWidget {
   bool get enableInteractiveSelection => !readOnly;
   bool get enableSelectionToolbar => !readOnly;
 
+  static const List<EmbedBuilder> embedBuilders = [
+    DiaryImageEmbedBuilderWidget(),
+    DiaryTagEmbedBuilderWidget(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
@@ -45,10 +50,7 @@ class DiaryEditorBodyWidget extends StatelessWidget {
         }
       },
       scrollBottomInset: 10,
-      embedBuilders: [
-        DiaryImageEmbedBuilderWidget(),
-        DiaryTagEmbedBuilderWidget(),
-      ],
+      embedBuilders: embedBuilders,
       customStyles: DefaultStyles(
         placeHolder: DefaultTextBlockStyle(
           TextStyle(

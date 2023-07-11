@@ -14,8 +14,13 @@ class DiaryImageBlockEmbed extends Embeddable {
 }
 
 class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
+  const DiaryImageEmbedBuilderWidget();
+
   @override
   String get key => DiaryImageBlockEmbed.mercuriusImageType;
+
+  @override
+  String toPlainText(Embed node) => node.value.data;
 
   @override
   Widget build(

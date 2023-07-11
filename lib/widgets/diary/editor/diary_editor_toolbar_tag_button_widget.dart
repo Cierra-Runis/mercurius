@@ -8,9 +8,7 @@ class DiaryEditorToolbarTagButtonWidget extends CustomButton {
     required super.tooltip,
     required this.controller,
     required this.context,
-  }) : super(
-          onPressed: () => _onPressed(controller, context),
-        );
+  }) : super(onPressed: () => _onPressed(controller, context));
 
   final BuildContext context;
   final QuillController controller;

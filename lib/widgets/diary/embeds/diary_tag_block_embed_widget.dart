@@ -14,8 +14,14 @@ class DiaryTagBlockEmbed extends Embeddable {
 }
 
 class DiaryTagEmbedBuilderWidget extends EmbedBuilder {
+  const DiaryTagEmbedBuilderWidget();
+
   @override
   String get key => DiaryTagBlockEmbed.mercuriusTagType;
+
+  @override
+  String toPlainText(Embed node) =>
+      DiaryTag.fromJson(jsonDecode(node.value.data)).message;
 
   @override
   Widget build(
