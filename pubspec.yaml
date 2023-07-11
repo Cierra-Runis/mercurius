@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 1.3.5+81
+version: 1.3.6+82
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -20,7 +20,7 @@ dependencies:
   dart_date: ^1.2.2 # 转换时间工具 [https://pub.dev/packages/dart_date]
   file_picker: ^5.3.2 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
-  flutter_markdown: ^0.6.15+1 # markdown [https://pub.dev/packages/flutter_markdown]
+  flutter_markdown: ^0.6.17 # markdown [https://pub.dev/packages/flutter_markdown]
   flutter_quill: ^7.2.11 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^1.0.0 # 图片选择 [https://pub.dev/packages/image_picker]
@@ -42,8 +42,8 @@ dependencies:
   share_plus: ^7.0.2 # 分享 [https://pub.dev/packages/share_plus]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
   system_tray: ^2.0.3 # 系统托盘 [https://pub.dev/packages/system_tray]
-  syncfusion_flutter_charts: ^22.1.36 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
-  url_launcher: ^6.1.11 # 打开外部链接 [https://pub.dev/packages/url_launcher]
+  syncfusion_flutter_charts: ^22.1.37 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  url_launcher: ^6.1.12 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.8.1 # 振动反馈 [https://pub.dev/packages/vibration]
   waterfall_flow: ^3.0.2 # 图片网格流 [https://pub.dev/packages/waterfall_flow]
