@@ -25,7 +25,7 @@ class DiaryPageViewShareButtonWidget extends StatelessWidget {
           '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}\n'
           '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}\n'
           '--- ${l10n.content} ---\n'
-          '${diary.document.toPlainText()}',
+          '${diary.document.toPlainText(DiaryEditorBodyWidget.embedBuilders)}',
         );
       },
       icon: const Icon(UniconsLine.share),
