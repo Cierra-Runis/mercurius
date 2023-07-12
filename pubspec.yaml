@@ -42,7 +42,7 @@ dependencies:
   share_plus: ^7.0.2 # 分享 [https://pub.dev/packages/share_plus]
   sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表 [https://pub.dev/packages/sticky_and_expandable_list]
   system_tray: ^2.0.3 # 系统托盘 [https://pub.dev/packages/system_tray]
-  syncfusion_flutter_charts: ^22.1.37 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
+  syncfusion_flutter_charts: ^22.1.38 # 图表 [https://pub.dev/packages/syncfusion_flutter_charts]
   url_launcher: ^6.1.12 # 打开外部链接 [https://pub.dev/packages/url_launcher]
   unicons: ^2.1.1 # 图标 [https://pub.dev/packages/unicons]
   vibration: ^1.8.1 # 振动反馈 [https://pub.dev/packages/vibration]
