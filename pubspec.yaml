@@ -21,7 +21,7 @@ dependencies:
   file_picker: ^5.3.2 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.17 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.2.11 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.2.12 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^1.0.1 # 图片选择 [https://pub.dev/packages/image_picker]
   image_picker_android: ^0.8.7+3 # 图片选择 [https://pub.dev/packages/image_picker_android]
