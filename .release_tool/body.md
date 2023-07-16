@@ -1,30 +1,33 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.3.6+82](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.6+82)
+[v1.3.7+83](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.7+83)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Features🌍
+> Revise 📖 & Features🌍
 >
-> 1. 🌍Embedded Widget will not show `￼` anymore
+> 1. 📖 Update privacy statement
+> 2. 🌍 Embedded Widget can be copy/cut/paste with text together
 
-> 添加功能 🌍
+> 修改 📖 & 添加功能 🌍
 >
-> 1. 🌍 内嵌组件不会再显示 `￼` 豆腐块了
+> 1. 📖 更新了隐私政策
+> 2. 🌍 内嵌组件能和文本一并复制、剪切、粘贴了
 
-> 機能追加 🌍
+> 変更 📖 & 機能追加 🌍
 >
-> 1. 🌍 埋め込みウィジェットに `￼` が表示されなくなります
+> 1. 📖 プライバシーに関する声明が更新しました
+> 2. 🌍 埋め込みウィジェットはテキストと一緒にコピー/カット/ペーストできます
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.6+82)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.7+83)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.6+82)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.7+83)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.6+82)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.7+83)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**
