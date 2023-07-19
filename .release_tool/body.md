@@ -1,33 +1,30 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.3.7+83](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.7+83)
+[v1.3.8+84](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.8+84)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Revise 📖 & Features🌍
+> Features🌍
 >
-> 1. 📖 Update privacy statement
-> 2. 🌍 Embedded Widget can be copy/cut/paste with text together
+> 1. 🌍 A new button is added to diary image view to save images [#12](https://github.com/Cierra-Runis/mercurius/issues/12)
 
-> 修改 📖 & 添加功能 🌍
+> 添加功能 🌍
 >
-> 1. 📖 更新了隐私政策
-> 2. 🌍 内嵌组件能和文本一并复制、剪切、粘贴了
+> 1. 🌍 在图片详情页添加了一个新的按钮以导出图片 [#12](https://github.com/Cierra-Runis/mercurius/issues/12)
 
-> 変更 📖 & 機能追加 🌍
+> 機能追加 🌍
 >
-> 1. 📖 プライバシーに関する声明が更新しました
-> 2. 🌍 埋め込みウィジェットはテキストと一緒にコピー/カット/ペーストできます
+> 1. 🌍 画像を保存するための新しいボタンが日記画像ビューに追加されました [#12](https://github.com/Cierra-Runis/mercurius/issues/12)
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.7+83)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.7+83...v1.3.8+84)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.7+83)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.7+83...v1.3.8+84)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.5+81...v1.3.7+83)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.7+83...v1.3.8+84)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**
