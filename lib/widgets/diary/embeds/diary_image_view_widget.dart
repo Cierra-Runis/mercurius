@@ -35,7 +35,18 @@ class DiaryImageViewWidget extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(imageUrl.split('/').last),
           ),
-        )
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: IconButton(
+            onPressed: () async {
+              Mercurius.vibration(ref: ref);
+              Mercurius.printLog(imageUrl);
+              await Share.shareFiles([imageUrl]);
+            },
+            icon: const Icon(Icons.file_download_rounded),
+          ),
+        ),
       ],
     );
   }
