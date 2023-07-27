@@ -34,7 +34,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       diary.latestEditTime.format('HH:mm:ss'),
       style: const TextStyle(
         fontSize: 12,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
       ),
     );
     final createDateTimeWidget = Text(
@@ -45,7 +45,7 @@ class DiaryListViewCardWidget extends ConsumerWidget {
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
       ),
     );
     final contentJsonStringWidget = Text(

@@ -13,7 +13,7 @@ class DialogAboutTitleWidget extends ConsumerWidget {
         const Text(
           Mercurius.name,
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             fontFamily: 'Saira',
           ),
         ),
@@ -27,7 +27,7 @@ class DialogAboutTitleWidget extends ConsumerWidget {
               ),
               style: const TextStyle(
                 fontSize: 12,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w600,
                 fontFamily: 'Saira',
               ),
             ),

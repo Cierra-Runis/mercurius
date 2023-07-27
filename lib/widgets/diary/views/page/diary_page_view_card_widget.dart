@@ -50,7 +50,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                           style: const TextStyle(
                             fontSize: 60,
                             fontFamily: 'Saira',
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         Column(
@@ -59,7 +59,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
                               diary.createDateTime
                                   .format(DateFormat.YEAR_ABBR_MONTH, lang),
                               style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
