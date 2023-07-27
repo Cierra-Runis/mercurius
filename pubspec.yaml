@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 1.3.8+84
+version: 1.3.9+85
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
