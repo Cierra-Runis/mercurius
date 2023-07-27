@@ -65,8 +65,50 @@ flutter:
   fonts:
     - family: Saira
       fonts:
-        - asset: assets/fonts/Saira.ttf
-        - asset: assets/fonts/Saira-Italic.ttf
+        - asset: assets/fonts/Saira-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Saira-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Saira-ExtraThin.ttf
+          weight: 200
+        - asset: assets/fonts/Saira-ExtraThinItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Saira-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Saira-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Saira-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Saira-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Saira-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Saira-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Saira-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Saira-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Saira-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Saira-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Saira-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Saira-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Saira-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Saira-BlackItalic.ttf
+          weight: 900
           style: italic
   assets:
     - assets/icon/
