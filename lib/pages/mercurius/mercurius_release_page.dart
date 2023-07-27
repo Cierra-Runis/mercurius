@@ -70,7 +70,7 @@ class MercuriusReleasePage extends ConsumerWidget {
         centerTitle: true,
         title: Text(
           l10n.releasePage,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
       body: Center(

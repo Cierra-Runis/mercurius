@@ -32,7 +32,7 @@ class DiaryEditorAppBarSaveButtonWidget extends ConsumerWidget {
               child: Text(
                 l10n.contentCannotBeEmpty,
                 style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

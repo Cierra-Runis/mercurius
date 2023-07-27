@@ -32,7 +32,7 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
                     child: Text(
                       l10n.pleaseBackToHomePage,
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

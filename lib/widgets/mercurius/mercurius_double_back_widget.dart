@@ -13,7 +13,7 @@ class MercuriusDoubleBackWidget extends StatefulWidget {
     this.onConditionFail,
     this.onFirstBackPress,
     this.platform = TargetPlatform.android,
-    this.textStyle = const TextStyle(fontWeight: FontWeight.bold),
+    this.textStyle = const TextStyle(fontWeight: FontWeight.w600),
     this.waitForSecondBackPress = 2,
   });
 
