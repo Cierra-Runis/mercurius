@@ -18,14 +18,14 @@ dependencies:
   cross_file: ^0.3.3+4 # 文件操作 [https://pub.dev/packages/cross_file]
   dio: ^5.3.0 # 网络请求 [https://pub.dev/packages/dio]
   dart_date: ^1.2.2 # 转换时间工具 [https://pub.dev/packages/dart_date]
-  file_picker: ^5.3.2 # 文件选择 [https://pub.dev/packages/file_picker]
+  file_picker: ^5.3.3 # 文件选择 [https://pub.dev/packages/file_picker]
   flutter_displaymode: ^0.6.0 # 高刷 [https://pub.dev/packages/flutter_displaymode]
   flutter_markdown: ^0.6.17 # markdown [https://pub.dev/packages/flutter_markdown]
-  flutter_quill: ^7.2.13 # 富文本 [https://pub.dev/packages/flutter_quill]
+  flutter_quill: ^7.2.18 # 富文本 [https://pub.dev/packages/flutter_quill]
   flutter_riverpod: ^2.3.6 # 状态管理 [https://pub.dev/packages/riverpod]
   image_picker: ^1.0.1 # 图片选择 [https://pub.dev/packages/image_picker]
   image_picker_android: ^0.8.7+4 # 图片选择 [https://pub.dev/packages/image_picker_android]
-  image_picker_platform_interface: ^2.8.0 # 图片选择 [https://pub.dev/packages/image_picker_platform_interface]
+  image_picker_platform_interface: ^2.9.0 # 图片选择 [https://pub.dev/packages/image_picker_platform_interface]
   isar: ^3.1.0+1 # 数据库 [https://pub.dev/packages/isar]
   isar_flutter_libs: ^3.1.0+1 # 数据库的库 [https://pub.dev/packages/isar_flutter_libs]
   intl: ^0.18.0 # 国际化 [https://pub.dev/packages/intl]
@@ -57,8 +57,8 @@ dev_dependencies:
   custom_lint: ^0.4.0 # 自定义 lint [https://pub.dev/packages/custom_lint]
   isar_generator: ^3.1.0+1 # 数据库代码生成工具 [https://pub.dev/packages/isar_generator]
   json_serializable: ^6.7.1 # json 相关 [https://pub.dev/packages/json_serializable]
-  riverpod_generator: ^2.2.3 # riverpod 代码生成工具 [https://pub.dev/packages/riverpod]
-  riverpod_lint: ^1.3.2 # riverpod 代码检查 [https://pub.dev/packages/riverpod_lint]
+  riverpod_generator: ^2.2.4 # riverpod 代码生成工具 [https://pub.dev/packages/riverpod]
+  riverpod_lint: ^1.4.0 # riverpod 代码检查 [https://pub.dev/packages/riverpod_lint]
 
 flutter:
   uses-material-design: true # 启用 material3 设计
@@ -66,6 +66,8 @@ flutter:
     - family: Saira
       fonts:
         - asset: assets/fonts/Saira.ttf
+        - asset: assets/fonts/Saira-Italic.ttf
+          style: italic
   assets:
     - assets/icon/
 
