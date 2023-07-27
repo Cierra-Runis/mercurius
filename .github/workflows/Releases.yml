@@ -16,8 +16,8 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: ".release_tool/app-arm64-v8a-release.apk,.release_tool/Mercurius for Windows.zip"
-          name: "🎉 Release v1.3.9+85 🎉"
-          tag: "v1.3.9+85"
+          name: "🎉 Release v1.3.9+86 🎉"
+          tag: "v1.3.9+86"
           bodyFile: ".release_tool/body.md"
           skipIfReleaseExists: true
           token: ${{ secrets.WAREHOUSE_TOKEN }}
