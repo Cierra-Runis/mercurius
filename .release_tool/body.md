@@ -1,6 +1,6 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.3.9+86](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.9+86)
+[v1.3.9+87](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.9+87)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
@@ -21,13 +21,13 @@
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+86)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+87)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+86)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+87)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+86)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+87)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**
