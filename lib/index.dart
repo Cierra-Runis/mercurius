@@ -54,6 +54,7 @@ export 'package:photo_view/photo_view.dart'; // 图片视图
 export 'package:pull_to_refresh/pull_to_refresh.dart'; // 下拉刷新
 export 'package:qweather_icons/qweather_icons.dart'; // QWeather 图标
 export 'package:share_plus/share_plus.dart'; // 分享
+export 'package:star_menu/star_menu.dart'; // 浮动面板
 export 'package:sticky_and_expandable_list/sticky_and_expandable_list.dart'; // 粘性头部与分组列表
 export 'package:system_tray/system_tray.dart'; // 系统托盘
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表

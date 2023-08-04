@@ -3,15 +3,28 @@
 part of 'diary_search_text.dart';
 
 // **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+DiarySearch _$DiarySearchFromJson(Map<String, dynamic> json) => DiarySearch(
+      text: json['text'] as String,
+    );
+
+Map<String, dynamic> _$DiarySearchToJson(DiarySearch instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+    };
+
+// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$diarySearchTextHash() => r'aabff893c5663a62c2ebc4da1ab1bed17c9e947a';
+String _$diarySearchTextHash() => r'b2e5221700bda35c519b9ac82f0555e308c0fa04';
 
 /// See also [DiarySearchText].
 @ProviderFor(DiarySearchText)
 final diarySearchTextProvider =
-    AutoDisposeNotifierProvider<DiarySearchText, String>.internal(
+    AutoDisposeNotifierProvider<DiarySearchText, DiarySearch>.internal(
   DiarySearchText.new,
   name: r'diarySearchTextProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,5 +34,6 @@ final diarySearchTextProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$DiarySearchText = AutoDisposeNotifier<String>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+typedef _$DiarySearchText = AutoDisposeNotifier<DiarySearch>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

@@ -1082,6 +1082,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  star_menu:
+    dependency: "direct main"
+    description:
+      name: star_menu
+      sha256: "8c5de0b5002dd09bee51bc4456c3424ba81e127a2b0a2a6e7b775fdacaed2a61"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.4"
   state_notifier:
     dependency: transitive
     description:
