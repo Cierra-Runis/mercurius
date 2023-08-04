@@ -24,16 +24,16 @@ class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
           onPressed: _switchCurrentBarMode,
           icon: const Icon(Icons.search),
         ),
-        title: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onPanStart: (_) => windowManager.startDragging(),
-          onDoubleTap: windowManager.center,
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 500),
-            child: _searchBarMode
-                ? const DiarySearchBarWidget()
-                : const MercuriusAppBarTitleWidget(),
-          ),
+        title: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          child: _searchBarMode
+              ? const DiarySearchBarWidget()
+              : GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onPanStart: (_) => windowManager.startDragging(),
+                  onDoubleTap: windowManager.center,
+                  child: const MercuriusAppBarTitleWidget(),
+                ),
         ),
         centerTitle: true,
         actions: PlatformWindowsManager.getActions(),
