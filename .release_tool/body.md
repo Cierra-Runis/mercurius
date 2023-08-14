@@ -1,33 +1,36 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.3.9+87](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.3.9+87)
+[v1.4.0+88](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.0+88)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Revise📖
+> Revise 📖 & Features 🌍
 >
-> 1. 📖Tree shake fonts to reduce app size
-> 2. 📖Update some package
+> 1. 🌍Title searching [#13](https://github.com/Cierra-Runis/mercurius/issues/13)
+> 2. 📖Improve paragraph spacing
+> 3. 📖Update some package
 
-> 修改 📖
+> 修改 📖 & 添加功能 🌍
 >
-> 1. 📖 Tree shake 了字体以减小应用体积
-> 2. 📖 升级了部分包
+> 1. 🌍 标题搜索 [#13](https://github.com/Cierra-Runis/mercurius/issues/13)
+> 1. 📖 改进了段落间距
+> 1. 📖 升级了部分包
 
-> 変更 📖
+> 変更 📖 & 機能追加 🌍
 >
-> 1. 📖 ツリーシェイクフォントでアプリのサイズを削減
-> 2. 📖 いくつかのパッケージを更新する
+> 1. 🌍 タイトル検索 [#13](https://github.com/Cierra-Runis/mercurius/issues/13)
+> 2. 📖 段落間隔を改善する
+> 3. 📖 いくつかのパッケージを更新する
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+87)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.9+87...v1.4.0+88)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+87)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.9+87...v1.4.0+88)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.8+84...v1.3.9+87)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.9+87...v1.4.0+88)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**
