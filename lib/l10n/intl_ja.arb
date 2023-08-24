@@ -107,7 +107,8 @@
   "whatIsTheWeatherNowDescription": "今日もいい天気",
   "unsupportedImageFormat": "サポートされていない画像フォーマット",
   "imageMissing": "画像がありません",
-  "searchDiaryContent": "日記の内容を検索する",
+  "searchDiary": "日記を検索",
+  "searchTitle": "タイトルを検索",
   "backAgainToExit": "もう一度戻って終了します",
   "hiToKoToProvider": "このサービスは、Hitokoto「一言」が提供しています",
   "hiToKoToFetching": "「一言」を取得中"
