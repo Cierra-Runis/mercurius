@@ -6,22 +6,19 @@
 
 请使用 `.release_tool/main.py` 进行修改版本号, 简化自 [此链接](https://www.jianshu.com/p/5058eb7505d3)
 
-`Flutter` 使用 `android/app/build.gradle` 来打包 `apk`, 且其引入了 `flutter.gradle` 如 `D:/flutter/packages/flutter_tools/gradle/flutter.gradle`
+`Flutter` 使用 `android/app/build.gradle` 来打包 `apk`, 且其引入了 `flutter.gradle` 并指向 `flutter.groovy` 如 `D:\Flutter\packages\flutter_tools\gradle\src\main\groovy\flutter.groovy`
 
-约在 `flutter.gradle` 的 `810` 行
+约在 `flutter.groovy` 的 `993` 行
 
-```js
-def addFlutterDeps = { variant ->
-    if (shouldSplitPerAbi()) {
-        variant.outputs.each { output ->
-            def abiVersionCode = ABI_VERSION.get(output.getFilter(OutputFile.ABI))
-            if (abiVersionCode != null) {
-                output.versionCodeOverride =
-                    abiVersionCode * 1000 + variant.versionCode
-            }
+```groovy
+if (shouldSplitPerAbi()) {
+    variant.outputs.each { output ->
+        def abiVersionCode = ABI_VERSION.get(output.getFilter(OutputFile.ABI))
+        if (abiVersionCode != null) {
+            output.versionCodeOverride =
+                abiVersionCode * 1000 + variant.versionCode
         }
     }
-    (...)
 }
 ```
 
@@ -31,7 +28,7 @@ def addFlutterDeps = { variant ->
 
 我们只需修改 `ABI_VERSION map` 如下
 
-```js
+```groovy
 private static final Map ABI_VERSION = [
     (ARCH_ARM32)        : 0,
     (ARCH_ARM64)        : 0,
@@ -40,7 +37,7 @@ private static final Map ABI_VERSION = [
 ]
 ```
 
-***注意若进行了 `Flutter` 版本更新，应重新修改该 `flutter.gradle` 文件***
+**_注意若进行了 `Flutter` 版本更新，应重新修改该 `flutter.groovy` 文件_**
 
 ## `vivo` 系手机无法调试 `Flutter` 程序
 
