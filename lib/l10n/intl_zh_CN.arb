@@ -107,7 +107,8 @@
   "whatIsTheWeatherNowDescription": "今日もいい天気",
   "unsupportedImageFormat": "不支持的图片格式",
   "imageMissing": "图片缺失",
-  "searchDiaryContent": "查找日记内容",
+  "searchDiary": "查找日记",
+  "searchTitle": "搜索标题",
   "backAgainToExit": "再次返回以退出",
   "hiToKoToProvider": "该服务由 Hitokoto「一言」 提供",
   "hiToKoToFetching": "正在获取「一言」"

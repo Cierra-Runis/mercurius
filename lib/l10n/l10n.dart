@@ -818,11 +818,21 @@ class MercuriusL10N {
     );
   }
 
-  /// `Search Diary Content`
-  String get searchDiaryContent {
+  /// `Search Diary`
+  String get searchDiary {
     return Intl.message(
-      'Search Diary Content',
-      name: 'searchDiaryContent',
+      'Search Diary',
+      name: 'searchDiary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Title`
+  String get searchTitle {
+    return Intl.message(
+      'Search Title',
+      name: 'searchTitle',
       desc: '',
       args: [],
     );

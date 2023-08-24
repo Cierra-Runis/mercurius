@@ -143,8 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "releasePageOops":
             MessageLookupByLibrary.simpleMessage("おっと! ページを更新してください！"),
         "save": MessageLookupByLibrary.simpleMessage("保存"),
-        "searchDiaryContent":
-            MessageLookupByLibrary.simpleMessage("日記の内容を検索する"),
+        "searchDiary": MessageLookupByLibrary.simpleMessage("日記を検索"),
+        "searchTitle": MessageLookupByLibrary.simpleMessage("タイトルを検索"),
         "settings": MessageLookupByLibrary.simpleMessage("设定"),
         "statistics": MessageLookupByLibrary.simpleMessage("統計データ"),
         "systemFile": MessageLookupByLibrary.simpleMessage("システムファイル"),

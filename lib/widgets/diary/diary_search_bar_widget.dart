@@ -19,7 +19,7 @@ class DiarySearchBarWidget extends ConsumerWidget {
                       ref.watch(diarySearchTextProvider).copyWith(text: value),
                     ),
             decoration: InputDecoration(
-              hintText: l10n.searchDiaryContent,
+              hintText: l10n.searchDiary,
               border: InputBorder.none,
             ),
           ),
@@ -47,7 +47,7 @@ class DiarySearchBarWidget extends ConsumerWidget {
             return [
               BaseChipWidget(
                 leadingIconData: diarySearch.searchTitle ? Icons.check : null,
-                label: '搜索标题',
+                label: l10n.searchTitle,
                 onTap: () => ref.watch(diarySearchTextProvider.notifier).change(
                       diarySearch.copyWith(
                         searchTitle: !diarySearch.searchTitle,

@@ -156,8 +156,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "releasePageOops": MessageLookupByLibrary.simpleMessage(
             "Oops! Please refresh the page!"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
-        "searchDiaryContent":
-            MessageLookupByLibrary.simpleMessage("Search Diary Content"),
+        "searchDiary": MessageLookupByLibrary.simpleMessage("Search Diary"),
+        "searchTitle": MessageLookupByLibrary.simpleMessage("Search Title"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "systemFile": MessageLookupByLibrary.simpleMessage("System File"),
