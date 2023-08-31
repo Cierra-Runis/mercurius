@@ -1,36 +1,36 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.4.0+88](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.0+88)
+[v1.4.1+89](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.1+89)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Revise 📖 & Features 🌍
+> Revise 📖
 >
-> 1. 🌍Title searching [#13](https://github.com/Cierra-Runis/mercurius/issues/13)
-> 2. 📖Improve paragraph spacing
+> 1. 📖Updates SDK version to Flutter 3.13
+> 2. 📖Improve multi-language
 > 3. 📖Update some package
 
-> 修改 📖 & 添加功能 🌍
+> 修改 📖
 >
-> 1. 🌍 标题搜索 [#13](https://github.com/Cierra-Runis/mercurius/issues/13)
-> 1. 📖 改进了段落间距
+> 1. 📖 升级 SDK 版本至 Flutter 3.13
+> 1. 📖 改进了多语言
 > 1. 📖 升级了部分包
 
-> 変更 📖 & 機能追加 🌍
+> 変更 📖
 >
-> 1. 🌍 タイトル検索 [#13](https://github.com/Cierra-Runis/mercurius/issues/13)
-> 2. 📖 段落間隔を改善する
+> 1. 📖 SDK バージョンを Flutter 3.13 に更新します
+> 2. 📖 多言語の改善
 > 3. 📖 いくつかのパッケージを更新する
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.3.9+87...v1.4.0+88)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.0+88...v1.4.1+89)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.3.9+87...v1.4.0+88)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.4.0+88...v1.4.1+89)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.3.9+87...v1.4.0+88)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.4.0+88...v1.4.1+89)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**
