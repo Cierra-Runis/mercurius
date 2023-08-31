@@ -13,7 +13,7 @@ class MercuriusVersionNoticeWidget extends ConsumerWidget {
       onPressed: () => Navigator.push(
         context,
         CupertinoPageRoute(
-          builder: (context) => const MercuriusReleasePage(),
+          builder: (context) => const ReleasePage(),
         ),
       ),
       style: TextButton.styleFrom(

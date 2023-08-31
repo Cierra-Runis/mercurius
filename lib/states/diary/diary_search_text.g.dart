@@ -7,19 +7,21 @@ part of 'diary_search_text.dart';
 // **************************************************************************
 
 DiarySearch _$DiarySearchFromJson(Map<String, dynamic> json) => DiarySearch(
-      text: json['text'] as String,
+      text: json['text'] as String? ?? '\\n',
+      searchTitle: json['searchTitle'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$DiarySearchToJson(DiarySearch instance) =>
     <String, dynamic>{
       'text': instance.text,
+      'searchTitle': instance.searchTitle,
     };
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$diarySearchTextHash() => r'b2e5221700bda35c519b9ac82f0555e308c0fa04';
+String _$diarySearchTextHash() => r'a8cd631aa1362c7115ca2bc829dd2c2d31f2b394';
 
 /// See also [DiarySearchText].
 @ProviderFor(DiarySearchText)

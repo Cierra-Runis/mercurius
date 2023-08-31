@@ -190,7 +190,7 @@ class DiaryPageViewCardWidget extends ConsumerWidget {
     return Navigator.push(
       context,
       CupertinoPageRoute(
-        builder: (context) => DiaryEditorPage(
+        builder: (context) => EditorPage(
           diary: diary,
         ),
       ),

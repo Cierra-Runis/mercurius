@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class DiaryStatisticPage extends StatelessWidget {
-  const DiaryStatisticPage({super.key});
+class StatisticPage extends StatelessWidget {
+  const StatisticPage({super.key});
 
   @override
   Widget build(BuildContext context) {

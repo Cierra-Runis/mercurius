@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusReleasePage extends ConsumerWidget {
-  const MercuriusReleasePage({super.key});
+class ReleasePage extends ConsumerWidget {
+  const ReleasePage({super.key});
 
   VoidCallback _downloadRelease(GithubLatestRelease data) {
     return () {

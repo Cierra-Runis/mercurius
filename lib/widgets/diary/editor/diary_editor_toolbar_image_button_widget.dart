@@ -66,7 +66,7 @@ class DiaryEditorToolbarImageButtonWidget extends CustomButton {
           String? filename = await Navigator.push(
             context,
             CupertinoPageRoute(
-              builder: (context) => const MercuriusGalleryPage(
+              builder: (context) => const GalleryPage(
                 readOnly: true,
               ),
             ),

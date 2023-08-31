@@ -19,22 +19,22 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
       [
         Icons.analytics,
         l10n.statistics,
-        const DiaryStatisticPage(),
+        const StatisticPage(),
       ],
       [
         Icons.image_rounded,
         l10n.imageGallery,
-        const MercuriusGalleryPage(),
+        const GalleryPage(),
       ],
       [
         Icons.import_export_rounded,
         l10n.importAndExport,
-        const MercuriusIOPage(),
+        const IOPage(),
       ],
       [
         Icons.settings_rounded,
         l10n.settings,
-        const MercuriusSettingPage(),
+        const SettingPage(),
       ],
     ];
 

@@ -1,13 +1,13 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusHomePage extends ConsumerStatefulWidget {
-  const MercuriusHomePage({super.key});
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
 
   @override
-  ConsumerState<MercuriusHomePage> createState() => _MercuriusHomePageState();
+  ConsumerState<HomePage> createState() => _MercuriusHomePageState();
 }
 
-class _MercuriusHomePageState extends ConsumerState<MercuriusHomePage> {
+class _MercuriusHomePageState extends ConsumerState<HomePage> {
   bool _searchBarMode = false;
 
   void _switchCurrentBarMode() {
