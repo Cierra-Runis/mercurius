@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class DiaryEditorPage extends ConsumerStatefulWidget {
-  const DiaryEditorPage({
+class EditorPage extends ConsumerStatefulWidget {
+  const EditorPage({
     super.key,
     required this.diary,
     this.autoSave = false,
@@ -11,10 +11,10 @@ class DiaryEditorPage extends ConsumerStatefulWidget {
   final bool autoSave;
 
   @override
-  ConsumerState<DiaryEditorPage> createState() => _DiaryEditorPageState();
+  ConsumerState<EditorPage> createState() => _DiaryEditorPageState();
 }
 
-class _DiaryEditorPageState extends ConsumerState<DiaryEditorPage> {
+class _DiaryEditorPageState extends ConsumerState<EditorPage> {
   late final QuillController _quillController;
   final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();

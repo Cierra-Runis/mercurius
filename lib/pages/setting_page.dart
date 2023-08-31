@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusSettingPage extends StatelessWidget {
-  const MercuriusSettingPage({super.key});
+class SettingPage extends StatelessWidget {
+  const SettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {

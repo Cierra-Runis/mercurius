@@ -4,11 +4,9 @@ class PlatformScrollBehavior extends CupertinoScrollBehavior {
   const PlatformScrollBehavior();
 
   @override
-  Set<PointerDeviceKind> get dragDevices {
-    return {
-      PointerDeviceKind.touch,
-      PointerDeviceKind.mouse,
-      PointerDeviceKind.trackpad,
-    };
-  }
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }

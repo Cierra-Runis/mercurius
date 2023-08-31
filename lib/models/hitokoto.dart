@@ -6,20 +6,33 @@ part 'hitokoto.g.dart';
 
 @JsonSerializable()
 class HiToKoTo {
-  HiToKoTo();
+  const HiToKoTo({
+    required this.id,
+    required this.uuid,
+    required this.type,
+    required this.from,
+    required this.from_who,
+    required this.creator,
+    required this.creator_uid,
+    required this.reviewer,
+    required this.commit_from,
+    required this.created_at,
+    required this.length,
+    required this.hitokoto,
+  });
 
-  int? id;
-  String? uuid;
-  late String hitokoto;
-  String? type;
-  String? from;
-  String? from_who;
-  String? creator;
-  int? creator_uid;
-  int? reviewer;
-  String? commit_from;
-  String? created_at;
-  int? length;
+  final int? id;
+  final String? uuid;
+  final String hitokoto;
+  final String? type;
+  final String? from;
+  final String? from_who;
+  final String? creator;
+  final int? creator_uid;
+  final int? reviewer;
+  final String? commit_from;
+  final String? created_at;
+  final int? length;
 
   factory HiToKoTo.fromJson(Map<String, dynamic> json) =>
       _$HiToKoToFromJson(json);

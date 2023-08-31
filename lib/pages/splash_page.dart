@@ -1,14 +1,13 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusSplashPage extends ConsumerStatefulWidget {
-  const MercuriusSplashPage({super.key});
+class SplashPage extends ConsumerStatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  ConsumerState<MercuriusSplashPage> createState() =>
-      _MercuriusSplashPageState();
+  ConsumerState<SplashPage> createState() => _MercuriusSplashPageState();
 }
 
-class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
+class _MercuriusSplashPageState extends ConsumerState<SplashPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -29,7 +28,7 @@ class _MercuriusSplashPageState extends ConsumerState<MercuriusSplashPage>
           Mercurius.printLog('进入主页面');
           Navigator.of(context).pushAndRemoveUntil(
             CupertinoPageRoute(
-              builder: (context) => const MercuriusRoute(),
+              builder: (context) => const RootPage(),
             ),
             (route) => false,
           );

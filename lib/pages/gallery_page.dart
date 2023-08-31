@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusGalleryPage extends ConsumerStatefulWidget {
-  const MercuriusGalleryPage({
+class GalleryPage extends ConsumerStatefulWidget {
+  const GalleryPage({
     super.key,
     this.readOnly = false,
   });
@@ -9,11 +9,10 @@ class MercuriusGalleryPage extends ConsumerStatefulWidget {
   final bool readOnly;
 
   @override
-  ConsumerState<MercuriusGalleryPage> createState() =>
-      _MercuriusGalleryPageState();
+  ConsumerState<GalleryPage> createState() => _MercuriusGalleryPageState();
 }
 
-class _MercuriusGalleryPageState extends ConsumerState<MercuriusGalleryPage> {
+class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
   late bool _readOnly;
   late List<FileSystemEntity> _list = [];
 

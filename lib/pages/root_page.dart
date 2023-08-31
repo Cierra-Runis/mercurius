@@ -1,17 +1,17 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusRoute extends ConsumerStatefulWidget {
-  const MercuriusRoute({super.key});
+class RootPage extends ConsumerStatefulWidget {
+  const RootPage({super.key});
   @override
-  ConsumerState<MercuriusRoute> createState() => _MercuriusRouteState();
+  ConsumerState<RootPage> createState() => _MercuriusRouteState();
 }
 
-class _MercuriusRouteState extends ConsumerState<MercuriusRoute> {
+class _MercuriusRouteState extends ConsumerState<RootPage> {
   int _currentIndex = 0;
 
   static const List<Widget> _bodyWidgets = [
-    MercuriusHomePage(),
-    MercuriusMorePage(),
+    HomePage(),
+    MorePage(),
   ];
 
   void _onItemTapped(int index) {

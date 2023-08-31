@@ -42,7 +42,7 @@ class MercuriusApp extends StatelessWidget {
         theme: theme,
         darkTheme: darkTheme,
         themeMode: snapshot.data?.themeMode,
-        home: const MercuriusSplashPage(),
+        home: const SplashPage(),
         localizationsDelegates: const [
           MercuriusL10N.delegate,
           GlobalMaterialLocalizations.delegate,
