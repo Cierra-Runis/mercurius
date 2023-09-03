@@ -4,7 +4,6 @@ about: Suggest an idea for Mercurius
 title: "[Feature Request] There's a new idea"
 labels: Feature Request
 assignees: Cierra-Runis
-
 ---
 
 ## Describe

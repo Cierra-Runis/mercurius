@@ -4,7 +4,6 @@ about: Describe the bug here
 title: "[Bug] Describe the bug here"
 labels: Bug
 assignees: Cierra-Runis
-
 ---
 
 ## Describe
