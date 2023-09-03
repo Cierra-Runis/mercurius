@@ -22,13 +22,14 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
     _readOnly = widget.readOnly;
   }
 
+  int _sort(FileSystemEntity a, FileSystemEntity b) =>
+      b.statSync().changed.differenceInSeconds(a.statSync().changed);
+
   Stream<List<FileSystemEntity>> listenToImageFile(String path) {
     return Stream.periodic(const Duration(milliseconds: 100), (_) {
       List<FileSystemEntity> newList = Directory('$path/image/').listSync();
       if (_list.length != newList.length) {
-        newList.sort((a, b) {
-          return b.statSync().changed.differenceInSeconds(a.statSync().changed);
-        });
+        newList.sort(_sort);
         return (_list = newList);
       }
       return _list;
@@ -46,18 +47,15 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
     }
 
     List<FileSystemEntity> fileSystemEntities = snapshot.data!;
-    final height = MediaQuery.sizeOf(context).width / 2;
 
-    return WaterfallFlow.builder(
+    return GridView.builder(
       cacheExtent: 1000,
-      gridDelegate: const SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       padding: const EdgeInsets.all(12.0),
       itemCount: fileSystemEntities.length,
       itemBuilder: (context, index) => MercuriusGalleryCardWidget(
         readOnly: _readOnly,
-        height: height,
         fileSystemEntity: fileSystemEntities[index],
       ),
     );

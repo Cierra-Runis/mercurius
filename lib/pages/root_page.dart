@@ -15,8 +15,6 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
   ];
 
   void _onItemTapped(int index) {
-    Mercurius.vibration(ref: ref);
-    ref.watch(diarySearchTextProvider.notifier).change();
     setState(() => _currentIndex = index);
   }
 

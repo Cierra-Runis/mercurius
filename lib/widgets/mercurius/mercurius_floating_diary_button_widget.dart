@@ -35,8 +35,6 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
     WidgetRef ref,
     List<Diary> editingDiaries,
   ) async {
-    Mercurius.vibration(ref: ref);
-
     Diary? diary = await showDialog(
       context: context,
       builder: (context) => MercuriusEditingDiaryDialogWidget(
@@ -55,8 +53,6 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
   }
 
   void _addDiary(BuildContext context, WidgetRef ref) async {
-    Mercurius.vibration(ref: ref);
-
     DateTime? dateTime = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,

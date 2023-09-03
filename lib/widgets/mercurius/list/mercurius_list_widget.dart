@@ -1,13 +1,13 @@
 import 'package:mercurius/index.dart';
 
 class MercuriusListWidget extends StatelessWidget {
-  final EdgeInsets? padding;
+  final EdgeInsets padding;
   final List<Widget> children;
   final bool shrinkWrap;
 
   const MercuriusListWidget({
     super.key,
-    this.padding,
+    this.padding = const EdgeInsets.only(top: 8),
     this.children = const <Widget>[],
     this.shrinkWrap = false,
   });
@@ -15,7 +15,7 @@ class MercuriusListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: padding ?? const EdgeInsets.only(top: 8),
+      padding: padding,
       shrinkWrap: shrinkWrap,
       children: children,
     );

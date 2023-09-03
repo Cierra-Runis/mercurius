@@ -4,17 +4,16 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
   const MercuriusGalleryCardWidget({
     super.key,
     required this.fileSystemEntity,
-    required this.height,
     this.readOnly = false,
   });
 
   final FileSystemEntity fileSystemEntity;
   final bool readOnly;
-  final double height;
 
   @override
   Widget build(BuildContext context) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -25,15 +24,16 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                 )
             : () => showDialog(
                   context: context,
-                  builder: (context) => DiaryImageViewWidget(
+                  builder: (context) => ImageViewWidget(
                     imageUrl: fileSystemEntity.path,
                   ),
                 ),
-        child: Column(
+        child: Stack(
+          fit: StackFit.expand,
           children: [
             Image.file(
               File(fileSystemEntity.path),
-              height: height,
+              fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return MercuriusFadeShimmerWidget(
                   radius: 16,
@@ -49,35 +49,45 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                 );
               },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Text(
-                      fileSystemEntity.path.split('/').last,
-                      style: const TextStyle(fontSize: 10.0),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                color: colorScheme.shadow.withAlpha(144),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          fileSystemEntity.path.split('/').last,
+                          style: const TextStyle(fontSize: 12.0),
+                        ),
+                      ),
                     ),
-                  ),
+                    IconButton(
+                      onPressed: readOnly
+                          ? null
+                          : () async {
+                              bool? confirm =
+                                  await MercuriusConfirmDialogWidget(
+                                title: l10n.areYouSureToDeleteTheImage,
+                                summary:
+                                    l10n.pleaseThinkTwiceAboutDeletingTheImage,
+                                context: context,
+                              ).confirm;
+                              if (confirm == true) {
+                                fileSystemEntity.deleteSync();
+                              }
+                            },
+                      icon: const Icon(
+                        Icons.delete_outline_rounded,
+                      ),
+                    )
+                  ],
                 ),
-                IconButton(
-                  onPressed: readOnly
-                      ? null
-                      : () async {
-                          bool? confirm = await MercuriusConfirmDialogWidget(
-                            title: l10n.areYouSureToDeleteTheImage,
-                            summary: l10n.pleaseThinkTwiceAboutDeletingTheImage,
-                            context: context,
-                          ).confirm;
-                          if (confirm == true) fileSystemEntity.deleteSync();
-                        },
-                  icon: const Icon(
-                    Icons.delete_outline_rounded,
-                    size: 12,
-                  ),
-                )
-              ],
+              ),
             )
           ],
         ),

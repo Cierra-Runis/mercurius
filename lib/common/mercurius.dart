@@ -112,8 +112,7 @@ class Mercurius {
   }
 
   static void vibration({
-    required WidgetRef ref,
-    int duration = 50,
+    int duration = 300,
     List<int> pattern = const [],
     int repeat = -1,
     List<int> intensities = const [],
@@ -122,17 +121,12 @@ class Mercurius {
     /// Windows 不支持振动
     if (Platform.isWindows) return;
 
-    Config config = await isarService.getConfig();
-    bool buttonVibration = config.buttonVibration;
     bool hasVibrator = await Vibration.hasVibrator() ?? false;
     bool hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
     bool hasCustomVibrationsSupport =
         await Vibration.hasCustomVibrationsSupport() ?? false;
 
-    if (buttonVibration &&
-        hasVibrator &&
-        hasAmplitudeControl &&
-        hasCustomVibrationsSupport) {
+    if (hasVibrator && hasAmplitudeControl && hasCustomVibrationsSupport) {
       Vibration.vibrate(
         duration: duration,
         pattern: pattern,

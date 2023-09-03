@@ -52,7 +52,6 @@ class MercuriusConfirmDialogWidget extends StatelessWidget {
     );
   }
 
-  Future<bool?> get confirm async {
-    return await showDialog<bool?>(context: context, builder: (_) => this);
-  }
+  Future<bool?> get confirm =>
+      showDialog<bool?>(context: context, builder: (_) => this);
 }

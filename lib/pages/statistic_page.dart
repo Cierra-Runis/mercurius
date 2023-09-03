@@ -13,7 +13,7 @@ class StatisticPage extends StatelessWidget {
       ),
       body: const MercuriusListWidget(
         children: [
-          DiaryMonthlyWordsWidget(),
+          MonthlyWordsStatisticWidget(),
         ],
       ),
     );
