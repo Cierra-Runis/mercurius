@@ -1,8 +1,5 @@
 import 'package:mercurius/index.dart';
 
-/// 全局导航 key
-final navigatorKey = GlobalKey<NavigatorState>();
-
 /// isar 数据库
 final isarService = IsarService();
 
@@ -15,22 +12,24 @@ class MercuriusApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Mercurius.printLog('正在构建 $this');
 
-    ThemeData theme = ThemeData(
+    final theme = ThemeData(
       useMaterial3: true,
       colorScheme: Mercurius.lightColorScheme,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
       fontFamily: 'Saira',
+      appBarTheme: const AppBarTheme(centerTitle: true),
     );
 
-    ThemeData darkTheme = ThemeData(
+    final darkTheme = ThemeData(
       useMaterial3: true,
       colorScheme: Mercurius.darkColorScheme,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
       fontFamily: 'Saira',
+      appBarTheme: const AppBarTheme(centerTitle: true),
     );
 
     return StreamBuilder(
@@ -38,7 +37,6 @@ class MercuriusApp extends StatelessWidget {
       builder: (context, snapshot) => MaterialApp(
         scrollBehavior: const PlatformScrollBehavior(),
         debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
         theme: theme,
         darkTheme: darkTheme,
         themeMode: snapshot.data?.themeMode,

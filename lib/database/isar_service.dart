@@ -15,23 +15,23 @@ class IsarService {
   }
 
   /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
-  Stream<List<Diary>> listenToDiariesContains(
-    DiarySearch diarySearch, {
-    int delayed = 300,
-  }) async* {
-    final isar = await _db;
-    await Future.delayed(Duration(milliseconds: delayed));
-    QueryBuilder<Diary, Diary, QAfterFilterCondition> diaries =
-        isar.diarys.filter().editingEqualTo(false);
+  // Stream<List<Diary>> listenToDiariesContains(
+  //   DiarySearch diarySearch, {
+  //   int delayed = 300,
+  // }) async* {
+  //   final isar = await _db;
+  //   await Future.delayed(Duration(milliseconds: delayed));
+  //   QueryBuilder<Diary, Diary, QAfterFilterCondition> diaries =
+  //       isar.diarys.filter().editingEqualTo(false);
 
-    if (diarySearch.searchTitle) {
-      diaries = diaries.titleStringContains(diarySearch.text);
-    } else {
-      diaries = diaries.contentJsonStringContains(diarySearch.text);
-    }
+  //   if (diarySearch.searchTitle) {
+  //     diaries = diaries.titleStringContains(diarySearch.text);
+  //   } else {
+  //     diaries = diaries.contentJsonStringContains(diarySearch.text);
+  //   }
 
-    yield* diaries.sortByCreateDateTimeDesc().watch(fireImmediately: true);
-  }
+  //   yield* diaries.sortByCreateDateTimeDesc().watch(fireImmediately: true);
+  // }
 
   /// 创建 `Stream` 监听所有 `editing` 为 `true` 的日记
   Stream<List<Diary>> listenToDiariesEditing({int delayed = 300}) async* {
@@ -47,6 +47,17 @@ class IsarService {
   Future<List<Diary>> getAllDiaries() async {
     final isar = await _db;
     return isar.diarys.where().findAll();
+  }
+
+  /// 监听所有非编辑中的日记
+  Stream<List<Diary>> listenToAllDiaries({int delayed = 300}) async* {
+    final isar = await _db;
+    await Future.delayed(Duration(milliseconds: delayed));
+    yield* isar.diarys
+        .filter()
+        .editingEqualTo(false)
+        .sortByCreateDateTimeDesc()
+        .watch(fireImmediately: true);
   }
 
   /// 根据 `id` 删除日记

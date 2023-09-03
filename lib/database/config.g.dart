@@ -17,13 +17,8 @@ const ConfigSchema = CollectionSchema(
   name: r'Config',
   id: -3644000870443854999,
   properties: {
-    r'buttonVibration': PropertySchema(
-      id: 0,
-      name: r'buttonVibration',
-      type: IsarType.bool,
-    ),
     r'themeMode': PropertySchema(
-      id: 1,
+      id: 0,
       name: r'themeMode',
       type: IsarType.byte,
       enumMap: _ConfigthemeModeEnumValueMap,
@@ -58,8 +53,7 @@ void _configSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeBool(offsets[0], object.buttonVibration);
-  writer.writeByte(offsets[1], object.themeMode.index);
+  writer.writeByte(offsets[0], object.themeMode.index);
 }
 
 Config _configDeserialize(
@@ -69,9 +63,8 @@ Config _configDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = Config(
-    buttonVibration: reader.readBoolOrNull(offsets[0]) ?? true,
     themeMode:
-        _ConfigthemeModeValueEnumMap[reader.readByteOrNull(offsets[1])] ??
+        _ConfigthemeModeValueEnumMap[reader.readByteOrNull(offsets[0])] ??
             ThemeMode.system,
   );
   object.id = id;
@@ -86,8 +79,6 @@ P _configDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readBoolOrNull(offset) ?? true) as P;
-    case 1:
       return (_ConfigthemeModeValueEnumMap[reader.readByteOrNull(offset)] ??
           ThemeMode.system) as P;
     default:
@@ -194,16 +185,6 @@ extension ConfigQueryWhere on QueryBuilder<Config, Config, QWhereClause> {
 }
 
 extension ConfigQueryFilter on QueryBuilder<Config, Config, QFilterCondition> {
-  QueryBuilder<Config, Config, QAfterFilterCondition> buttonVibrationEqualTo(
-      bool value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'buttonVibration',
-        value: value,
-      ));
-    });
-  }
-
   QueryBuilder<Config, Config, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -315,18 +296,6 @@ extension ConfigQueryObject on QueryBuilder<Config, Config, QFilterCondition> {}
 extension ConfigQueryLinks on QueryBuilder<Config, Config, QFilterCondition> {}
 
 extension ConfigQuerySortBy on QueryBuilder<Config, Config, QSortBy> {
-  QueryBuilder<Config, Config, QAfterSortBy> sortByButtonVibration() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'buttonVibration', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Config, Config, QAfterSortBy> sortByButtonVibrationDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'buttonVibration', Sort.desc);
-    });
-  }
-
   QueryBuilder<Config, Config, QAfterSortBy> sortByThemeMode() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'themeMode', Sort.asc);
@@ -341,18 +310,6 @@ extension ConfigQuerySortBy on QueryBuilder<Config, Config, QSortBy> {
 }
 
 extension ConfigQuerySortThenBy on QueryBuilder<Config, Config, QSortThenBy> {
-  QueryBuilder<Config, Config, QAfterSortBy> thenByButtonVibration() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'buttonVibration', Sort.asc);
-    });
-  }
-
-  QueryBuilder<Config, Config, QAfterSortBy> thenByButtonVibrationDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'buttonVibration', Sort.desc);
-    });
-  }
-
   QueryBuilder<Config, Config, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -379,12 +336,6 @@ extension ConfigQuerySortThenBy on QueryBuilder<Config, Config, QSortThenBy> {
 }
 
 extension ConfigQueryWhereDistinct on QueryBuilder<Config, Config, QDistinct> {
-  QueryBuilder<Config, Config, QDistinct> distinctByButtonVibration() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'buttonVibration');
-    });
-  }
-
   QueryBuilder<Config, Config, QDistinct> distinctByThemeMode() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'themeMode');
@@ -396,12 +347,6 @@ extension ConfigQueryProperty on QueryBuilder<Config, Config, QQueryProperty> {
   QueryBuilder<Config, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
-    });
-  }
-
-  QueryBuilder<Config, bool, QQueryOperations> buttonVibrationProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'buttonVibration');
     });
   }
 

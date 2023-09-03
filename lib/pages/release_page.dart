@@ -67,7 +67,6 @@ class ReleasePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           l10n.releasePage,
           style: const TextStyle(fontWeight: FontWeight.w600),

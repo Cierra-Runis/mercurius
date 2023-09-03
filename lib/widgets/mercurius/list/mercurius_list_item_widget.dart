@@ -42,7 +42,6 @@ class MercuriusListItemWidget extends ConsumerWidget {
   final VoidCallback? onTap;
 
   void _onTap(WidgetRef ref) {
-    Mercurius.vibration(ref: ref);
     if (onTap != null) onTap!();
   }
 

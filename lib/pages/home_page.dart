@@ -8,37 +8,27 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _MercuriusHomePageState extends ConsumerState<HomePage> {
-  bool _searchBarMode = false;
-
-  void _switchCurrentBarMode() {
-    Mercurius.vibration(ref: ref);
-    ref.watch(diarySearchTextProvider.notifier).change();
-    setState(() => _searchBarMode = !_searchBarMode);
-  }
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: _switchCurrentBarMode,
+          onPressed: () {},
+          tooltip: l10n.notYetCompleted,
           icon: const Icon(Icons.search),
         ),
-        title: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
-          child: _searchBarMode
-              ? const DiarySearchBarWidget()
-              : GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onPanStart: (_) => windowManager.startDragging(),
-                  onDoubleTap: windowManager.center,
-                  child: const MercuriusAppBarTitleWidget(),
-                ),
+        title: MercuriusAppBarTitleWidget(
+          scrollController: scrollController,
         ),
-        centerTitle: true,
         actions: PlatformWindowsManager.getActions(),
       ),
-      body: const DiaryListViewWidget(),
+      body: DiaryListViewWidget(
+        scrollController: scrollController,
+      ),
       floatingActionButton: const MercuriusFloatingDiaryButtonWidget(),
     );
   }

@@ -47,23 +47,15 @@ class MercuriusListSectionWidget extends StatelessWidget {
                   Expanded(
                     child: Column(
                       children: [
-                        for (var i = 0; i < children.length; i++)
-                          Builder(
-                            builder: (_) {
-                              Widget child = children[i];
-                              return Column(
-                                children: [
-                                  child,
-                                  if (i < children.length - 1)
-                                    const Divider(
-                                      height: 0,
-                                      indent: 8,
-                                      endIndent: 8,
-                                    ),
-                                ],
-                              );
-                            },
-                          ),
+                        for (final (i, c) in children.indexed) ...[
+                          c,
+                          if (i < children.length - 1)
+                            const Divider(
+                              height: 0,
+                              indent: 8,
+                              endIndent: 8,
+                            ),
+                        ],
                       ],
                     ),
                   ),
