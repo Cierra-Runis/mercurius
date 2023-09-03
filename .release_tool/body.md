@@ -1,36 +1,42 @@
 ### **Latest Version - 最新版本 - 最新バージョン**
 
-[v1.4.1+89](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.1+89)
+[v1.4.2+90](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.2+90)
 
 ### **What's Updated - 更新内容 - 更新内容**
 
-> Revise 📖
+> Revise📖& Feature🌍
 >
-> 1. 📖Updates SDK version to Flutter 3.13
-> 2. 📖Improve multi-language
-> 3. 📖Update some package
+> 1. 📖Search is temporarily unavailable
+> 2. 📖Remove some unused package
+> 3. 📖Redesign gallery card widget
+> 4. 📖Remove vibration setting
+> 5. 🌍You can now go back to the top by clicking on the title
 
-> 修改 📖
+> 修改 📖& 添加功能 🌍
 >
-> 1. 📖 升级 SDK 版本至 Flutter 3.13
-> 1. 📖 改进了多语言
-> 1. 📖 升级了部分包
+> 1. 📖 搜索功能暂时关闭
+> 2. 📖 删除未使用的依赖包
+> 3. 📖 重新设计了图片库卡片样式
+> 4. 📖 移除了振动设置`
+> 5. 🌍 现可通过点击标题回到最顶部
 
-> 変更 📖
+> 変更 📖& 機能追加 🌍
 >
-> 1. 📖 SDK バージョンを Flutter 3.13 に更新します
-> 2. 📖 多言語の改善
-> 3. 📖 いくつかのパッケージを更新する
+> 1. 📖 検索は一時的に利用できません
+> 2. 📖 未使用のパッケージを削除します
+> 3. 📖 ギャラリーカードウィジェットの再設計
+> 4. 📖 振動設定を削除する
+> 5. 🌍 タイトルをクリックするとトップに戻れるようになりました
 
 ### **Changelog - 历史更新 - 更新歴史**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.0+88...v1.4.1+89)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.1+89...v1.4.2+90)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.4.0+88...v1.4.1+89)
+> [和前一版本比较](https://github.com/Cierra-Runis/mercurius/compare/v1.4.1+89...v1.4.2+90)
 > 有关先前的更新见 [Github Releases 页面](https://github.com/Cierra-Runis/mercurius/releases)
 
-> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.4.0+88...v1.4.1+89)
+> [前バージョンとの比較](https://github.com/Cierra-Runis/mercurius/compare/v1.4.1+89...v1.4.2+90)
 > 以前の更新については [Github リリースページ](https://github.com/Cierra-Runis/mercurius/releases) を参照してください
 
 ### **Breaking Changes - 破坏性更新 - 破壊的更新**
