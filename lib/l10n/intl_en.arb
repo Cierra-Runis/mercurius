@@ -111,5 +111,6 @@
   "searchTitle": "Search Title",
   "backAgainToExit": "Go Back Again To Exit",
   "hiToKoToProvider": "This service is provided by Hitokoto「一言」",
-  "hiToKoToFetching": "Fetching 「一言」..."
+  "hiToKoToFetching": "Fetching 「一言」...",
+  "thisDayLastYear": "This Day Last Year"
 }

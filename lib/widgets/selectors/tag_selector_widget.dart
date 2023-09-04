@@ -49,7 +49,7 @@ class _TagSelectorWidgetState extends State<TagSelectorWidget> {
           children: [
             Expanded(
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 64,
                 ),
                 itemCount: TagSelectorWidget.iconDataList.length,

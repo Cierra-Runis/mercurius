@@ -867,6 +867,16 @@ class MercuriusL10N {
       args: [],
     );
   }
+
+  /// `This Day Last Year`
+  String get thisDayLastYear {
+    return Intl.message(
+      'This Day Last Year',
+      name: 'thisDayLastYear',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<MercuriusL10N> {

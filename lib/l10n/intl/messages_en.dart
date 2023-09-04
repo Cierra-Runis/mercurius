@@ -161,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "systemFile": MessageLookupByLibrary.simpleMessage("System File"),
+        "thisDayLastYear":
+            MessageLookupByLibrary.simpleMessage("This Day Last Year"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),
         "unknownVersion":
             MessageLookupByLibrary.simpleMessage("Unknown Version"),

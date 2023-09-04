@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("设定"),
         "statistics": MessageLookupByLibrary.simpleMessage("統計データ"),
         "systemFile": MessageLookupByLibrary.simpleMessage("システムファイル"),
+        "thisDayLastYear": MessageLookupByLibrary.simpleMessage("去年の今日"),
         "title": MessageLookupByLibrary.simpleMessage("タイトル"),
         "unknownVersion": MessageLookupByLibrary.simpleMessage("不明なバージョン"),
         "unsupportedImageFormat":
