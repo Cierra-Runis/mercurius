@@ -111,5 +111,6 @@
   "searchTitle": "搜索标题",
   "backAgainToExit": "再次返回以退出",
   "hiToKoToProvider": "该服务由 Hitokoto「一言」 提供",
-  "hiToKoToFetching": "正在获取「一言」"
+  "hiToKoToFetching": "正在获取「一言」",
+  "thisDayLastYear": "去年今日"
 }

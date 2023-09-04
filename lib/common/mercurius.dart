@@ -107,7 +107,7 @@ class Mercurius {
   }
 
   /// [Mercurius] 调试用输出语句
-  static void printLog(String newLog) {
+  static void printLog(dynamic newLog) {
     devtools.log('[${Mercurius.name}] $newLog');
   }
 

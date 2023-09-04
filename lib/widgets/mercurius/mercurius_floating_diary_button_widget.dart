@@ -14,19 +14,71 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
 
     bool hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
 
-    return FloatingActionButton(
-      tooltip:
-          hasEditingDiary ? l10n.continueEditingDiary : l10n.createNewDiary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40),
-      ),
-      onPressed: () => hasEditingDiary
-          ? _editingDiary(context, ref, snapshot.data!)
-          : _addDiary(context, ref),
-      child: Badge(
-        showBadge: hasEditingDiary,
-        child: const Icon(UniconsLine.diary),
-      ),
+    return Wrap(
+      direction: Axis.vertical,
+      spacing: 8,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        FutureBuilder<List<Diary>>(
+          future: isarService.getDiaryByDate(DateTime.now().previousYear),
+          builder: (context, snapshot) {
+            Mercurius.printLog(snapshot.data);
+
+            if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+              List<Diary> diaries = snapshot.data!;
+
+              return FloatingActionButton.small(
+                tooltip: l10n.thisDayLastYear,
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(l10n.thisDayLastYear),
+                    content: SizedBox(
+                      width: double.maxFinite,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: diaries.length,
+                        itemBuilder: (context, index) => FrameSeparateWidget(
+                          index: index,
+                          placeHolder: const DiaryListItemPlaceHolderWidget(),
+                          child: DiaryListItemWidget(
+                            onTap: () => Navigator.push(
+                              context,
+                              CupertinoDialogRoute(
+                                builder: (context) => DiaryPageItemWidget(
+                                  diary: diaries[index],
+                                ),
+                                context: context,
+                              ),
+                            ),
+                            diary: diaries[index],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                child: const Icon(Icons.nights_stay_rounded),
+              );
+            }
+            return const SizedBox();
+          },
+        ),
+        FloatingActionButton(
+          tooltip:
+              hasEditingDiary ? l10n.continueEditingDiary : l10n.createNewDiary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          onPressed: () => hasEditingDiary
+              ? _editingDiary(context, ref, snapshot.data!)
+              : _addDiary(context, ref),
+          child: Badge(
+            showBadge: hasEditingDiary,
+            child: const Icon(UniconsLine.diary),
+          ),
+        ),
+      ],
     );
   }
 

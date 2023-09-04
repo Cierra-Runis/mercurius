@@ -14,6 +14,18 @@ class IsarService {
     return isar.writeTxn(() => isar.diarys.put(newDiary));
   }
 
+  Future<List<Diary>> getDiaryByDate(DateTime dateTime) async {
+    final isar = await _db;
+    return isar.diarys
+        .filter()
+        .createDateTimeBetween(
+          DateTime(dateTime.year, dateTime.month, dateTime.day),
+          DateTime(dateTime.year, dateTime.month, dateTime.day).nextDay,
+          includeUpper: false,
+        )
+        .findAll();
+  }
+
   /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
   // Stream<List<Diary>> listenToDiariesContains(
   //   DiarySearch diarySearch, {
