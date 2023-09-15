@@ -11,7 +11,7 @@ class IOPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.importAndExport),
       ),
-      body: const MercuriusListWidget(
+      body: const BasedListView(
         children: [
           MercuriusImportSectionWidget(),
           MercuriusExportSectionWidget(),

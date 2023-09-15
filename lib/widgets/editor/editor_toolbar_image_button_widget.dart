@@ -82,8 +82,6 @@ class EditorToolbarImageButtonWidget extends CustomButton {
   }
 
   static void _insert(QuillController controller, String filename) {
-    Mercurius.printLog(filename);
-
     controller.document.insert(controller.selection.extentOffset, '\n');
     controller.updateSelection(
       TextSelection.collapsed(

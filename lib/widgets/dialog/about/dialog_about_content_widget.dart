@@ -7,16 +7,15 @@ class DialogAboutContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
 
-    return MercuriusListWidget(
-      shrinkWrap: true,
+    return BasedListView(
       children: [
-        MercuriusListSectionWidget(
+        BasedListSection(
           margin: EdgeInsets.zero,
           children: [
-            MercuriusListItemWidget(
-              iconData: Icons.link,
+            BasedListTile(
+              leadingIcon: Icons.link,
               titleText: l10n.contactUs,
-              summaryText: Mercurius.contactUrl,
+              subtitleText: Mercurius.contactUrl,
               onTap: () {
                 try {
                   launchUrlString(
@@ -30,10 +29,10 @@ class DialogAboutContentWidget extends StatelessWidget {
                 }
               },
             ),
-            MercuriusListItemWidget(
-              iconData: Icons.import_contacts_rounded,
+            BasedListTile(
+              leadingIcon: Icons.import_contacts_rounded,
               titleText: l10n.importDeclaration,
-              summaryText: l10n.importDeclarationDescription,
+              subtitleText: l10n.importDeclarationDescription,
               onTap: () => showDialog(
                 context: context,
                 builder: (context) => MercuriusJsonToDialogWidget(
@@ -43,10 +42,10 @@ class DialogAboutContentWidget extends StatelessWidget {
                 ),
               ),
             ),
-            MercuriusListItemWidget(
-              iconData: Icons.privacy_tip_rounded,
+            BasedListTile(
+              leadingIcon: Icons.privacy_tip_rounded,
               titleText: l10n.privacyStatement,
-              summaryText: '${Mercurius.name} ${l10n.privacyStatement}',
+              subtitleText: '${Mercurius.name} ${l10n.privacyStatement}',
               onTap: () => showDialog(
                 context: context,
                 builder: (context) => MercuriusJsonToDialogWidget(
@@ -59,6 +58,6 @@ class DialogAboutContentWidget extends StatelessWidget {
           ],
         )
       ],
-    );
+    ).adaptAlertDialog;
   }
 }

@@ -10,11 +10,8 @@ Future<QWeatherNow> qWeatherNow(
   CurrentPosition currentPosition =
       await ref.watch(currentPositionProvider.future);
 
-  String apiName = MercuriusApi.qWeather.apiName;
   String apiUrl = MercuriusApi.qWeather.apiUrl;
   String aqiKey = MercuriusApi.qWeather.apiKey;
-
-  Mercurius.printLog('$apiName 初始化中');
 
   _QWeather qWeather = _QWeather();
   QWeatherNow qWeatherNow = QWeatherNow();
@@ -29,21 +26,14 @@ Future<QWeatherNow> qWeatherNow(
       },
     );
   } catch (e) {
-    Mercurius.printLog('$apiName 连接失败');
     return qWeatherNow;
   }
 
-  Mercurius.printLog('$apiName 连接成功');
-
   if (response.statusCode == 200) {
-    Mercurius.printLog('$apiName 请求成功 $response');
     qWeather = _QWeather.fromJson(
       jsonDecode('$response'),
     );
-  } else {
-    Mercurius.printLog('$apiName 请求失败');
   }
-
   return qWeather.now ?? qWeatherNow;
 }
 

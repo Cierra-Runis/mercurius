@@ -25,9 +25,7 @@ class ReleasePage extends ConsumerWidget {
           );
         }
       } catch (e) {
-        Mercurius.printLog(
-          'launch browser_download_url failed: $e',
-        );
+        Mercurius.printLog('launch browser_download_url failed: $e');
       }
     };
   }

@@ -12,9 +12,9 @@ class SettingPage extends StatelessWidget {
         title: Text(l10n.settings),
       ),
       body: const Center(
-        child: MercuriusListWidget(
+        child: BasedListView(
           children: [
-            MercuriusListSectionWidget(
+            BasedListSection(
               children: [
                 _ThemeSelectListItem(),
               ],
@@ -38,8 +38,8 @@ class _ThemeSelectListItem extends ConsumerWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           Config config = snapshot.data!;
-          return MercuriusListItemWidget(
-            iconData: Icons.dark_mode_rounded,
+          return BasedListTile(
+            leadingIcon: Icons.dark_mode_rounded,
             titleText: l10n.darkMode,
             detailText: config.themeMode == ThemeMode.system
                 ? l10n.followTheSystem

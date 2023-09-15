@@ -53,10 +53,10 @@ class DiaryListViewWidget extends ConsumerWidget {
         headerBuilder: (context, sectionIndex, index) {
           return Container(
             color: Theme.of(context).colorScheme.background,
-            child: MercuriusListItemWidget(
-              icon: const MercuriusAppIconWidget(size: 28),
+            child: BasedListTile(
+              leading: const MercuriusAppIconWidget(size: 28),
               titleText: sections[sectionIndex].header,
-              accessoryView: Padding(
+              detail: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
                   l10n.diaryCount(sections[sectionIndex].items.length),

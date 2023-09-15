@@ -38,10 +38,7 @@ class ImageViewWidget extends ConsumerWidget {
         Align(
           alignment: Alignment.bottomRight,
           child: IconButton(
-            onPressed: () async {
-              Mercurius.printLog(imageUrl);
-              await Share.shareFiles([imageUrl]);
-            },
+            onPressed: () => Share.shareFiles([imageUrl]),
             icon: const Icon(Icons.file_download_rounded),
           ),
         ),

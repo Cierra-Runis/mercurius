@@ -22,12 +22,11 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
         FutureBuilder<List<Diary>>(
           future: isarService.getDiaryByDate(DateTime.now().previousYear),
           builder: (context, snapshot) {
-            Mercurius.printLog(snapshot.data);
-
             if (snapshot.hasData && snapshot.data!.isNotEmpty) {
               List<Diary> diaries = snapshot.data!;
 
               return FloatingActionButton.small(
+                heroTag: 'thisDayLastYear',
                 tooltip: l10n.thisDayLastYear,
                 onPressed: () => showDialog(
                   context: context,
@@ -65,6 +64,7 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
           },
         ),
         FloatingActionButton(
+          heroTag: 'create',
           tooltip:
               hasEditingDiary ? l10n.continueEditingDiary : l10n.createNewDiary,
           shape: RoundedRectangleBorder(

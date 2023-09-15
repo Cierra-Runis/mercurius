@@ -7,11 +7,11 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
 
-    return MercuriusListSectionWidget(
-      title: Text(l10n.import),
+    return BasedListSection(
+      titleText: l10n.import,
       children: [
-        MercuriusListItemWidget(
-          iconData: Icons.data_object_rounded,
+        BasedListTile(
+          leadingIcon: Icons.data_object_rounded,
           titleText: l10n.importJsonFile,
           onTap: () async {
             /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
@@ -56,11 +56,11 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
             }
           },
         ),
-        MercuriusListItemWidget(
-          iconData: Icons.nfc_rounded,
+        BasedListTile(
+          leadingIcon: Icons.nfc_rounded,
           titleText: l10n.importNfcData,
           // TODO: 写逻辑
-          summaryText: l10n.notYetCompleted,
+          subtitleText: l10n.notYetCompleted,
         ),
       ],
     );

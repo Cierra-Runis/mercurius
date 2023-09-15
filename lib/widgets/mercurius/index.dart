@@ -1,5 +1,3 @@
-export 'list/index.dart';
-
 export 'mercurius_bottom_bar_widget.dart';
 export 'mercurius_double_back_widget.dart';
 export 'mercurius_fade_shimmer_widget.dart';

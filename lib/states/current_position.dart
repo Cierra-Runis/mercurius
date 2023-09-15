@@ -19,11 +19,8 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
       },
     );
   } catch (e) {
-    Mercurius.printLog('aMap 连接失败');
     return newCachePosition;
   }
-
-  Mercurius.printLog('aMap 连接成功');
 
   dynamic data;
   if (response.statusCode == 200) {
@@ -31,13 +28,9 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
     if (data['province'] == null ||
         data['city'] == null ||
         data['rectangle'] == null) {
-      Mercurius.printLog('获取 aMap 失败');
       return newCachePosition;
-    } else {
-      Mercurius.printLog('获取 aMap 成功，且为 ${jsonEncode(data)}');
     }
   } else {
-    Mercurius.printLog('获取 aMap 失败');
     return newCachePosition;
   }
 
