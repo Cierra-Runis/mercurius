@@ -15,7 +15,6 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
   @override
   void initState() {
     super.initState();
-    Mercurius.printLog('正在初始化 $this');
 
     _controller = AnimationController(
       vsync: this,
@@ -25,7 +24,6 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
     _animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.completed) {
-          Mercurius.printLog('进入主页面');
           Navigator.of(context).pushAndRemoveUntil(
             CupertinoPageRoute(
               builder: (context) => const RootPage(),
@@ -46,8 +44,6 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
 
   @override
   Widget build(BuildContext context) {
-    Mercurius.printLog('正在构建 $this');
-
     return FadeTransition(
       opacity: _animation,
       child: const Scaffold(

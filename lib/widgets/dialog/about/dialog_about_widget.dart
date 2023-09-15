@@ -15,10 +15,7 @@ class DialogAboutWidget extends StatelessWidget {
           DialogAboutTitleWidget(),
         ],
       ),
-      content: const SizedBox(
-        width: double.minPositive,
-        child: DialogAboutContentWidget(),
-      ),
+      content: const DialogAboutContentWidget(),
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(

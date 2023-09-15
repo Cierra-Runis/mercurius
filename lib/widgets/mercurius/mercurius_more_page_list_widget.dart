@@ -41,8 +41,8 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
     List<Widget> list = [];
     for (List<dynamic> element in data) {
       list.add(
-        MercuriusListItemWidget(
-          iconData: element[0],
+        BasedListTile(
+          leadingIcon: element[0],
           titleText: element[1],
           onTap: () => Navigator.push(
             context,
@@ -52,14 +52,14 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
       );
     }
 
-    return MercuriusListWidget(
+    return BasedListView(
       children: [
-        MercuriusListSectionWidget(
+        BasedListSection(
           children: [
             ...list,
-            MercuriusListItemWidget(
-              iconData: Icons.info_outline,
-              showAccessoryViewBadge: githubLatestRelease.when(
+            BasedListTile(
+              leadingIcon: Icons.info_outline,
+              showDetailTextBadge: githubLatestRelease.when(
                 loading: () => false,
                 error: (error, stackTrace) => false,
                 data: (github) => currentVersion.when(

@@ -10,8 +10,6 @@ class MercuriusApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Mercurius.printLog('正在构建 $this');
-
     final theme = ThemeData(
       useMaterial3: true,
       colorScheme: Mercurius.lightColorScheme,

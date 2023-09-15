@@ -7,11 +7,11 @@ class MercuriusExportSectionWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
 
-    return MercuriusListSectionWidget(
-      title: Text(l10n.export),
+    return BasedListSection(
+      titleText: l10n.export,
       children: [
-        MercuriusListItemWidget(
-          iconData: Icons.data_object_rounded,
+        BasedListTile(
+          leadingIcon: Icons.data_object_rounded,
           titleText: l10n.exportJsonFile,
           onTap: () async {
             String dir = await ref.watch(mercuriusPathProvider.future);
@@ -22,11 +22,11 @@ class MercuriusExportSectionWidget extends ConsumerWidget {
             await Share.shareFiles([path]);
           },
         ),
-        MercuriusListItemWidget(
-          iconData: Icons.nfc_rounded,
+        BasedListTile(
+          leadingIcon: Icons.nfc_rounded,
           titleText: l10n.exportNfcData,
           // TODO: 写逻辑
-          summaryText: l10n.notYetCompleted,
+          subtitleText: l10n.notYetCompleted,
         ),
       ],
     );

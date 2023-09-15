@@ -11,7 +11,7 @@ class StatisticPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.statistics),
       ),
-      body: const MercuriusListWidget(
+      body: const BasedListView(
         children: [
           MonthlyWordsStatisticWidget(),
         ],

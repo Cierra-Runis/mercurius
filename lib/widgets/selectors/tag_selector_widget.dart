@@ -42,40 +42,35 @@ class _TagSelectorWidgetState extends State<TagSelectorWidget> {
 
     return AlertDialog(
       title: Text(l10n.insertTagTitle),
-      content: SizedBox(
-        width: double.maxFinite,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 64,
-                ),
-                itemCount: TagSelectorWidget.iconDataList.length,
-                itemBuilder: (context, index) {
-                  IconData iconData = TagSelectorWidget.iconDataList[index];
-                  return IconButton(
-                    onPressed: () => setState(() {
-                      _selectedIcon = iconData;
-                    }),
-                    icon: Icon(iconData),
-                    color: iconData != _selectedIcon
-                        ? null
-                        : Theme.of(context).colorScheme.primary,
-                  );
-                },
-              ),
+      content: BasedListView(
+        children: [
+          GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 64,
             ),
-            TextField(
-              controller: _textEditingController,
-              decoration: InputDecoration(
-                hintText: l10n.insertTagMessage,
-              ),
+            itemCount: TagSelectorWidget.iconDataList.length,
+            itemBuilder: (context, index) {
+              IconData iconData = TagSelectorWidget.iconDataList[index];
+              return IconButton(
+                onPressed: () => setState(() {
+                  _selectedIcon = iconData;
+                }),
+                icon: Icon(iconData),
+                color: iconData != _selectedIcon
+                    ? null
+                    : Theme.of(context).colorScheme.primary,
+              );
+            },
+          ),
+          TextField(
+            controller: _textEditingController,
+            decoration: InputDecoration(
+              hintText: l10n.insertTagMessage,
             ),
-          ],
-        ),
-      ),
+          ),
+        ],
+      ).adaptAlertDialog,
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(

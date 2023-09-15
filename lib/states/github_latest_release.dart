@@ -8,8 +8,6 @@ part 'github_latest_release.g.dart';
 Future<GithubLatestRelease> githubLatestRelease(
   GithubLatestReleaseRef ref,
 ) async {
-  Mercurius.printLog('GithubLatestRelease 初始化中');
-
   const String url =
       'https://api.github.com/repos/Cierra-Runis/mercurius/releases/latest';
 
@@ -22,7 +20,6 @@ Future<GithubLatestRelease> githubLatestRelease(
   try {
     response = await Dio().get(url);
   } catch (e) {
-    Mercurius.printLog('GithubLatestRelease 连接失败');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode(
         '{"tag_name": "$currentVersion"}',
@@ -31,15 +28,11 @@ Future<GithubLatestRelease> githubLatestRelease(
     return githubLatestRelease;
   }
 
-  Mercurius.printLog('GithubLatestRelease 连接成功');
-
   if (response.statusCode == 200) {
-    Mercurius.printLog('GithubLatestRelease 请求成功');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode('$response'),
     );
   } else {
-    Mercurius.printLog('GithubLatestRelease 请求失败');
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode(
         '{"tag_name": "$currentVersion"}',

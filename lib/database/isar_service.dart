@@ -89,7 +89,6 @@ class IsarService {
       });
       return true;
     } catch (e) {
-      Mercurius.printLog('导入 json 文件出错：$e');
       return false;
     }
   }
@@ -134,12 +133,7 @@ class IsarService {
 
   /// 打开数据库
   Future<Isar> openDB() async {
-    Mercurius.printLog('数据库初始化中');
-
     if (Isar.instanceNames.isEmpty) {
-      Mercurius.printLog(
-        '现在所打开的数据库 ${Isar.instanceNames} 个数为零，打开 ${Mercurius.database} 中',
-      );
       Directory directory;
 
       /// TIPS: 对 Android 而言为 /data/user/0/Android/data/pers.cierra_runis.mercurius/files
@@ -152,12 +146,9 @@ class IsarService {
         dir.createSync(recursive: true);
         directory = dir;
       } else {
-        throw Exception('不支持的平台');
+        throw Exception('Unsupported Platform');
       }
 
-      Mercurius.printLog('数据库位置 ${directory.path}');
-
-      Mercurius.printLog('数据库初始化完成');
       final isar = await Isar.open(
         [DiarySchema, ConfigSchema],
         inspector: true,
@@ -174,7 +165,6 @@ class IsarService {
 
       return isar;
     }
-    Mercurius.printLog('数据库 ${Isar.instanceNames} 已被打开');
     return Future.value(Isar.getInstance(Mercurius.database));
   }
 }
