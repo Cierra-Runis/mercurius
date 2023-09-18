@@ -410,20 +410,20 @@ class MercuriusL10N {
     );
   }
 
-  /// `To Upgrade`
-  String get clickHereToUpgrade {
+  /// `To Update`
+  String get clickHereToUpdate {
     return Intl.message(
-      'To Upgrade',
-      name: 'clickHereToUpgrade',
+      'To Update',
+      name: 'clickHereToUpdate',
       desc: '',
       args: [],
     );
   }
 
-  /// `Upgraded`
+  /// `Updated`
   String get alreadyTheLatestVersion {
     return Intl.message(
-      'Upgraded',
+      'Updated',
       name: 'alreadyTheLatestVersion',
       desc: '',
       args: [],

@@ -100,7 +100,7 @@ class AboutSection extends ConsumerWidget {
             data: (data) => data,
           ),
           detailText: hasNewVersion(githubLatestRelease, currentVersion)
-              ? l10n.clickHereToUpgrade
+              ? l10n.clickHereToUpdate
               : l10n.alreadyTheLatestVersion,
           showTrailingBadge: hasNewVersion(githubLatestRelease, currentVersion),
           onTap: () => Navigator.push(

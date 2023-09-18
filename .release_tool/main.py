@@ -205,6 +205,9 @@ def main_module() -> None:
         # 版本号已修改
         print(f'> 版本号已修改为 {get_version_from_pubspec_yaml()}')
 
+        # clean 一下
+        os.system('flutter clean')
+
         # 修改版本号后自动构建 apk
         os.system(
             'flutter build apk' + ' --obfuscate' +

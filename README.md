@@ -4,7 +4,7 @@
 
   <p>『 Mercurius - Write Some Diaries!』</p>
 
-  <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
+<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
 
 </div>
 
@@ -109,7 +109,7 @@ Official version has been released
 # 📌 Cautions
 
 - Please pay attention to the relevant information marked in the list of breaking updated versions on the update page
-- and actively use the `import and export` function to back up diary data in time to prevent data loss after upgrading the version
+- and actively use the `import and export` function to back up diary data in time to prevent data loss after updating the version
 
 # 🧑‍💻 Contributor
 

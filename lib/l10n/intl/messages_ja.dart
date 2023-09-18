@@ -68,7 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeDate": MessageLookupByLibrary.simpleMessage("日付を変える"),
         "changeMood": MessageLookupByLibrary.simpleMessage("気分を変える"),
         "changeWeather": MessageLookupByLibrary.simpleMessage("天気を変える"),
-        "clickHereToUpgrade": MessageLookupByLibrary.simpleMessage("アップグレード"),
+        "clickHereToUpdate": MessageLookupByLibrary.simpleMessage("更新"),
         "confirm": MessageLookupByLibrary.simpleMessage("確認"),
         "contactUs": MessageLookupByLibrary.simpleMessage("お問い合わせ"),
         "content": MessageLookupByLibrary.simpleMessage("内容"),
