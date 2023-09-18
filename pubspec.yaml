@@ -3,7 +3,7 @@ description: For mercurius.
 
 publish_to: "none"
 
-version: 1.4.4+92
+version: 1.4.5+93
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.12.30 # 提示框
   badges: ^3.1.2 # 小红点提示
-  based_list: ^1.0.5
+  based_list: ^1.0.6
   cross_file: ^0.3.3+5 # 文件操作
   dio: ^5.3.2 # 网络请求
   dart_date: ^1.2.2 # 转换时间工具
