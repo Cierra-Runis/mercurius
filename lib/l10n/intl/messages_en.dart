@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
         "alreadyTheLatestVersion":
-            MessageLookupByLibrary.simpleMessage("Upgraded"),
+            MessageLookupByLibrary.simpleMessage("Updated"),
         "alwaysBright": MessageLookupByLibrary.simpleMessage("Always Bright"),
         "alwaysDark": MessageLookupByLibrary.simpleMessage("Always Dark"),
         "areYouSureToDeleteTheDiary":
@@ -72,8 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeDate": MessageLookupByLibrary.simpleMessage("Change Date"),
         "changeMood": MessageLookupByLibrary.simpleMessage("Change Mood"),
         "changeWeather": MessageLookupByLibrary.simpleMessage("Change Weather"),
-        "clickHereToUpgrade":
-            MessageLookupByLibrary.simpleMessage("To Upgrade"),
+        "clickHereToUpdate": MessageLookupByLibrary.simpleMessage("To Update"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "content": MessageLookupByLibrary.simpleMessage("Content"),
