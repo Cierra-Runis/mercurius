@@ -10,45 +10,30 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
     return StreamBuilder(
       stream: isarService.listenToConfig(),
       builder: (context, snapshot) {
-        return AlertDialog(
-          actionsAlignment: MainAxisAlignment.center,
-          actionsPadding: const EdgeInsets.all(0),
-          actions: [
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: Text(l10n.followTheSystem),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                isarService
-                    .saveConfig(snapshot.data!..themeMode = ThemeMode.system);
-              },
+        if (snapshot.hasData) {
+          return AlertDialog(
+            content: SegmentedButton<ThemeMode>(
+              segments: [
+                ButtonSegment(
+                  value: ThemeMode.system,
+                  label: Text(l10n.followTheSystem),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.dark,
+                  label: Text(l10n.alwaysDark),
+                ),
+                ButtonSegment(
+                  value: ThemeMode.light,
+                  label: Text(l10n.alwaysBright),
+                )
+              ],
+              selected: {snapshot.data!.themeMode},
+              onSelectionChanged: (p0) =>
+                  isarService.saveConfig(snapshot.data!..themeMode = p0.first),
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: Text(l10n.alwaysDark),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                isarService
-                    .saveConfig(snapshot.data!..themeMode = ThemeMode.dark);
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: Text(l10n.alwaysBright),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                isarService
-                    .saveConfig(snapshot.data!..themeMode = ThemeMode.light);
-              },
-            ),
-          ],
-        );
+          );
+        }
+        return const MercuriusLoadingWidget();
       },
     );
   }

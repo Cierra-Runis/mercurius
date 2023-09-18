@@ -22,17 +22,6 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
   Widget build(BuildContext context) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
 
-    final List<MercuriusBottomBarItem> bottomWidgets = [
-      MercuriusBottomBarItem(
-        icon: const Icon(Icons.home),
-        title: l10n.homePage,
-      ),
-      MercuriusBottomBarItem(
-        icon: const _MercuriusBottomBarMorePageIconWidget(),
-        title: l10n.morePage,
-      ),
-    ];
-
     return Scaffold(
       body: Center(
         child: MercuriusDoubleBackWidget(
@@ -41,14 +30,25 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
           backgroundRadius: BorderRadius.circular(16),
           condition: _currentIndex == 0,
           onConditionFail: () => setState(() => _currentIndex = 0),
-          child: _bodyWidgets[_currentIndex],
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 400),
+            child: _bodyWidgets[_currentIndex],
+          ),
         ),
       ),
-      bottomNavigationBar: MercuriusBottomBarWidget(
-        colorScheme: Theme.of(context).colorScheme,
-        bottomWidgets: bottomWidgets,
-        currentIndex: _currentIndex,
-        onItemTapped: _onItemTapped,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: _onItemTapped,
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.home),
+            label: l10n.homePage,
+          ),
+          NavigationDestination(
+            icon: const _MercuriusBottomBarMorePageIconWidget(),
+            label: l10n.morePage,
+          )
+        ],
       ),
     );
   }

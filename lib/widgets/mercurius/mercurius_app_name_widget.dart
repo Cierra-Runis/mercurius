@@ -15,7 +15,6 @@ class MercuriusAppNameWidget extends StatelessWidget {
       style: TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: fontSize,
-        fontFamily: 'Saira',
       ),
     );
   }

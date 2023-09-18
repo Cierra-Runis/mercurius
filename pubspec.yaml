@@ -21,7 +21,7 @@ dependencies:
   dart_date: ^1.2.2 # 转换时间工具
   file_picker: ^5.5.0 # 文件选择
   flutter_displaymode: ^0.6.0 # 高刷
-  flutter_markdown: ^0.6.17+2 # markdown
+  flutter_markdown: ^0.6.17+3 # markdown
   flutter_quill: ^7.4.6 # 富文本
   flutter_riverpod: ^2.4.0 # 状态管理
   image_picker: ^1.0.4 # 图片选择
@@ -56,8 +56,8 @@ dev_dependencies:
   custom_lint: ^0.5.3 # 自定义 lint
   isar_generator: ^3.1.0+1 # 数据库代码生成工具
   json_serializable: ^6.7.1 # json 相关
-  riverpod_generator: ^2.3.1 # riverpod 代码生成工具
-  riverpod_lint: ^2.0.3 # riverpod 代码检查
+  riverpod_generator: ^2.3.2 # riverpod 代码生成工具
+  riverpod_lint: ^2.1.0 # riverpod 代码检查
 
 flutter:
   uses-material-design: true # 启用 material3 设计

@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusFadeShimmerWidget extends StatefulWidget {
-  const MercuriusFadeShimmerWidget({
+class BasedShimmer extends StatefulWidget {
+  const BasedShimmer({
     super.key,
     this.millisecondsDelay = 0,
     this.radius = 0,
@@ -21,7 +21,7 @@ class MercuriusFadeShimmerWidget extends StatefulWidget {
   final int millisecondsDelay;
 
   /// 用它来创建一个圆形加载小部件
-  const MercuriusFadeShimmerWidget.round({
+  const BasedShimmer.round({
     super.key,
     required double size,
     this.millisecondsDelay = 0,
@@ -32,12 +32,10 @@ class MercuriusFadeShimmerWidget extends StatefulWidget {
         radius = size / 2;
 
   @override
-  State<MercuriusFadeShimmerWidget> createState() =>
-      _MercuriusFadeShimmerWidgetState();
+  State<BasedShimmer> createState() => _BasedShimmerState();
 }
 
-class _MercuriusFadeShimmerWidgetState
-    extends State<MercuriusFadeShimmerWidget> {
+class _BasedShimmerState extends State<BasedShimmer> {
   static final isHighLightStream = Stream<bool>.periodic(
     const Duration(seconds: 1),
     (x) => x % 2 == 0,

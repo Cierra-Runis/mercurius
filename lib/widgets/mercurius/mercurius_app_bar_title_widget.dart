@@ -3,17 +3,17 @@ import 'package:mercurius/index.dart';
 class MercuriusAppBarTitleWidget extends ConsumerWidget {
   const MercuriusAppBarTitleWidget({
     super.key,
-    this.scrollController,
+    required this.controller,
   });
 
-  final ScrollController? scrollController;
+  final ScrollController controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentPosition = ref.watch(currentPositionProvider);
 
     return GestureDetector(
-      onTap: () => scrollController?.animateTo(
+      onTap: () => controller.animateTo(
         0,
         duration: const Duration(seconds: 3),
         curve: Curves.easeInOut,

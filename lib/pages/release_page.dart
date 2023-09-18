@@ -78,21 +78,22 @@ class ReleasePage extends ConsumerWidget {
           data: (data) => _getBodyByData(context, data),
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisSize: MainAxisSize.min,
+      floatingActionButton: Wrap(
+        spacing: 8,
+        direction: Axis.vertical,
         children: [
-          FloatingActionButton(
+          FloatingActionButton.small(
+            heroTag: 'refresh',
             onPressed: () => ref.refresh(githubLatestReleaseProvider),
-            mini: true,
             child: const Icon(Icons.refresh_rounded),
           ),
-          FloatingActionButton(
+          FloatingActionButton.small(
+            heroTag: 'download',
             onPressed: githubLatestRelease.when(
               loading: () => null,
               error: (error, stackTrace) => null,
               data: _downloadRelease,
             ),
-            mini: true,
             child: const Icon(Icons.download_rounded),
           ),
         ],

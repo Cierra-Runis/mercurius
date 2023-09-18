@@ -8,7 +8,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _MercuriusHomePageState extends ConsumerState<HomePage> {
-  final ScrollController scrollController = ScrollController();
+  final ScrollController controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +17,17 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: null,
           tooltip: l10n.notYetCompleted,
           icon: const Icon(Icons.search),
         ),
         title: MercuriusAppBarTitleWidget(
-          scrollController: scrollController,
+          controller: controller,
         ),
         actions: PlatformWindowsManager.getActions(),
       ),
       body: DiaryListViewWidget(
-        scrollController: scrollController,
+        controller: controller,
       ),
       floatingActionButton: const MercuriusFloatingDiaryButtonWidget(),
     );

@@ -41,7 +41,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
             file,
             alignment: Alignment.center,
             errorBuilder: (context, error, stackTrace) {
-              return MercuriusFadeShimmerWidget(
+              return BasedShimmer(
                 radius: 16,
                 width: double.maxFinite,
                 height: 200,
@@ -57,7 +57,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
           ),
         );
       } else {
-        return MercuriusFadeShimmerWidget(
+        return BasedShimmer(
           radius: 16,
           width: double.maxFinite,
           height: 200,
