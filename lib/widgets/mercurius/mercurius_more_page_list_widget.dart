@@ -102,6 +102,7 @@ class AboutSection extends ConsumerWidget {
           detailText: hasNewVersion(githubLatestRelease, currentVersion)
               ? l10n.clickHereToUpgrade
               : l10n.alreadyTheLatestVersion,
+          showTrailingBadge: hasNewVersion(githubLatestRelease, currentVersion),
           onTap: () => Navigator.push(
             context,
             CupertinoPageRoute(builder: (context) => const ReleasePage()),

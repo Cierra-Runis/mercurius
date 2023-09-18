@@ -5,18 +5,20 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: MercuriusMorePageListWidget(context: context),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(10),
-            child: MercuriusHiToKoToWidget(),
-          ),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: MercuriusMorePageListWidget(context: context),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: MercuriusHiToKoToWidget(),
+            ),
+          ],
+        ),
       ),
     );
   }
