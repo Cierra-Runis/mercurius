@@ -131,7 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("保存"),
         "searchDiary": MessageLookupByLibrary.simpleMessage("查找日记"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("搜索标题"),
-        "settings": MessageLookupByLibrary.simpleMessage("设定"),
+        "settings": MessageLookupByLibrary.simpleMessage("设置"),
         "statistics": MessageLookupByLibrary.simpleMessage("统计数据"),
         "systemFile": MessageLookupByLibrary.simpleMessage("系统文件"),
         "thisDayLastYear": MessageLookupByLibrary.simpleMessage("去年今日"),

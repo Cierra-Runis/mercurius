@@ -3,9 +3,9 @@ import 'package:mercurius/index.dart';
 class DiaryListViewWidget extends ConsumerWidget {
   const DiaryListViewWidget({
     super.key,
-    required this.scrollController,
+    required this.controller,
   });
-  final ScrollController scrollController;
+  final ScrollController controller;
 
   Widget _getCardBySnapshotData(
     BuildContext context,
@@ -47,7 +47,7 @@ class DiaryListViewWidget extends ConsumerWidget {
 
     return ExpandableListView(
       cacheExtent: 1000,
-      controller: scrollController,
+      controller: controller,
       builder: SliverExpandableChildDelegate<Diary, _DiaryListViewSection>(
         sectionList: sections,
         headerBuilder: (context, sectionIndex, index) {
@@ -56,11 +56,8 @@ class DiaryListViewWidget extends ConsumerWidget {
             child: BasedListTile(
               leading: const MercuriusAppIconWidget(size: 28),
               titleText: sections[sectionIndex].header,
-              detail: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Text(
-                  l10n.diaryCount(sections[sectionIndex].items.length),
-                ),
+              trailing: Text(
+                l10n.diaryCount(sections[sectionIndex].items.length),
               ),
               disabled: true,
             ),

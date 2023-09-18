@@ -10,9 +10,6 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final currentVersion = ref.watch(currentVersionProvider);
-
     final MercuriusL10N l10n = MercuriusL10N.of(context);
 
     final List<List<dynamic>> data = [
@@ -55,26 +52,104 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
     return BasedListView(
       children: [
         BasedListSection(
-          children: [
-            ...list,
-            BasedListTile(
-              leadingIcon: Icons.info_outline,
-              showDetailTextBadge: githubLatestRelease.when(
-                loading: () => false,
-                error: (error, stackTrace) => false,
-                data: (github) => currentVersion.when(
-                  loading: () => false,
-                  error: (error, stackTrace) => false,
-                  data: (currentVersion) => currentVersion != github.tag_name,
-                ),
-              ),
-              titleText: l10n.aboutApp,
-              onTap: () => showDialog<void>(
-                context: context,
-                builder: (context) => const DialogAboutWidget(),
-              ),
-            )
-          ],
+          titleText: l10n.morePage,
+          children: list,
+        ),
+        const AboutSection()
+      ],
+    );
+  }
+}
+
+class AboutSection extends ConsumerWidget {
+  const AboutSection({
+    super.key,
+  });
+
+  bool hasNewVersion(
+    AsyncValue<GithubLatestRelease> githubLatestRelease,
+    AsyncValue<String> currentVersion,
+  ) =>
+      githubLatestRelease.when(
+        loading: () => false,
+        error: (error, stackTrace) => false,
+        data: (github) => currentVersion.when(
+          loading: () => false,
+          error: (error, stackTrace) => false,
+          data: (currentVersion) => currentVersion != github.tag_name,
+        ),
+      );
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
+
+    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+    final currentVersion = ref.watch(currentVersionProvider);
+
+    return BasedListSection(
+      titleText: l10n.aboutApp,
+      titleTextStyle: const TextStyle(),
+      children: [
+        BasedListTile(
+          leading: const MercuriusAppIconWidget(size: 24),
+          titleText: Mercurius.name,
+          subtitleText: currentVersion.when(
+            loading: () => l10n.unknownVersion,
+            error: (error, stackTrace) => l10n.failedToGetVersion,
+            data: (data) => data,
+          ),
+          detailText: hasNewVersion(githubLatestRelease, currentVersion)
+              ? l10n.clickHereToUpgrade
+              : l10n.alreadyTheLatestVersion,
+          onTap: () => Navigator.push(
+            context,
+            CupertinoPageRoute(builder: (context) => const ReleasePage()),
+          ),
+        ),
+        // DialogAboutTitleWidget(),
+        BasedListTile(
+          leadingIcon: Icons.link,
+          titleText: l10n.contactUs,
+          subtitleText: Mercurius.contactUrl,
+          onTap: () {
+            try {
+              launchUrlString(
+                Mercurius.contactUrl,
+                mode: LaunchMode.externalApplication,
+              );
+            } catch (e) {
+              Mercurius.printLog(
+                'launch ${Mercurius.contactUrl} failed: $e',
+              );
+            }
+          },
+        ),
+        BasedListTile(
+          leadingIcon: Icons.import_contacts_rounded,
+          titleText: l10n.importDeclaration,
+          subtitleText: l10n.importDeclarationDescription,
+          onTap: () => showDialog(
+            context: context,
+            builder: (context) => MercuriusJsonToDialogWidget(
+              title: l10n.importDeclaration,
+              updateTime: l10n.importDeclarationContentUpdateTime,
+              content: l10n.importDeclarationContent,
+            ),
+          ),
+        ),
+        BasedListTile(
+          leadingIcon: Icons.privacy_tip_rounded,
+          titleText: l10n.privacyStatement,
+          subtitleText: '${Mercurius.name} ${l10n.privacyStatement}',
+          onTap: () => showDialog(
+            context: context,
+            builder: (context) => MercuriusJsonToDialogWidget(
+              title: l10n.privacyStatement,
+              updateTime: l10n.privacyStatementContentUpdateTime,
+              content: l10n.privacyStatementContent,
+            ),
+          ),
         ),
       ],
     );

@@ -6,10 +6,6 @@ class MorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const MercuriusAppBarTitleWidget(),
-        actions: PlatformWindowsManager.getActions(),
-      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -43,44 +43,41 @@ class _MercuriusDoubleBackWidgetState extends State<MercuriusDoubleBackWidget> {
     return WillPopScope(
       onWillPop: () async {
         if (widget.condition) {
-          if (_tapped) {
-            return true;
+          if (_tapped) return true;
+
+          _tapped = true;
+          Timer(
+            Duration(seconds: widget.waitForSecondBackPress),
+            () => _tapped = false,
+          );
+          if (widget.onFirstBackPress != null) {
+            widget.onFirstBackPress!(context);
           } else {
-            _tapped = true;
-            Timer(
-              Duration(seconds: widget.waitForSecondBackPress),
-              () => _tapped = false,
-            );
-            if (widget.onFirstBackPress != null) {
-              widget.onFirstBackPress!(context);
-            } else {
-              Flushbar(
-                icon: const Icon(UniconsLine.exit),
-                isDismissible: false,
-                messageText: Center(
-                  child: Text(widget.message, style: widget.textStyle),
+            Flushbar(
+              icon: const Icon(UniconsLine.exit),
+              isDismissible: false,
+              messageText: Center(
+                child: Text(widget.message, style: widget.textStyle),
+              ),
+              margin: widget.margin,
+              barBlur: 1.0,
+              borderRadius: widget.backgroundRadius,
+              backgroundColor: widget.background,
+              boxShadows: const [
+                BoxShadow(
+                  color: Colors.transparent,
+                  offset: Offset(0, 16),
                 ),
-                margin: widget.margin,
-                barBlur: 1.0,
-                borderRadius: widget.backgroundRadius,
-                backgroundColor: widget.background,
-                boxShadows: const [
-                  BoxShadow(
-                    color: Colors.transparent,
-                    offset: Offset(0, 16),
-                  ),
-                ],
-                duration: widget.duration,
-              ).show(context);
-            }
-            return false;
-          }
-        } else {
-          if (widget.onConditionFail != null) {
-            widget.onConditionFail!();
+              ],
+              duration: widget.duration,
+            ).show(context);
           }
           return false;
         }
+        if (widget.onConditionFail != null) {
+          widget.onConditionFail!();
+        }
+        return false;
       },
       child: widget.child,
     );

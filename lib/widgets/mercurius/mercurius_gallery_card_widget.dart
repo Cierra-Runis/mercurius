@@ -35,7 +35,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
               File(fileSystemEntity.path),
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                return MercuriusFadeShimmerWidget(
+                return BasedShimmer(
                   radius: 16,
                   width: double.maxFinite,
                   height: 100,

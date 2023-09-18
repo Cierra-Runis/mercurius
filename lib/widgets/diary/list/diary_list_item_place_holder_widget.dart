@@ -5,33 +5,33 @@ class DiaryListItemPlaceHolderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const dayWidget = MercuriusFadeShimmerWidget(
+    const dayWidget = BasedShimmer(
       width: 24,
       height: 20,
       radius: 6,
     );
-    const weatherWidget = MercuriusFadeShimmerWidget.round(
+    const weatherWidget = BasedShimmer.round(
       size: 16,
     );
-    const weekdayWidget = MercuriusFadeShimmerWidget(
+    const weekdayWidget = BasedShimmer(
       width: 30,
       height: 10,
       radius: 5,
     );
-    const moodWidget = MercuriusFadeShimmerWidget.round(
+    const moodWidget = BasedShimmer.round(
       size: 16,
     );
-    const createDateTimeWidget = MercuriusFadeShimmerWidget(
+    const createDateTimeWidget = BasedShimmer(
       width: 72,
       height: 16,
       radius: 8,
     );
-    const latestEditTimeWidget = MercuriusFadeShimmerWidget(
+    const latestEditTimeWidget = BasedShimmer(
       width: 32,
       height: 10,
       radius: 5,
     );
-    const contentJsonStringWidget = MercuriusFadeShimmerWidget(
+    const contentJsonStringWidget = BasedShimmer(
       width: 160,
       height: 12,
       radius: 6,
