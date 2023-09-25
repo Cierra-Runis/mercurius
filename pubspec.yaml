@@ -15,14 +15,14 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.12.30 # 提示框
   badges: ^3.1.2 # 小红点提示
-  based_list: ^1.0.6
+  based_list: ^1.1.0
   cross_file: ^0.3.3+5 # 文件操作
-  dio: ^5.3.2 # 网络请求
+  dio: ^5.3.3 # 网络请求
   dart_date: ^1.2.2 # 转换时间工具
   file_picker: ^5.5.0 # 文件选择
   flutter_displaymode: ^0.6.0 # 高刷
   flutter_markdown: ^0.6.17+3 # markdown
-  flutter_quill: ^7.4.6 # 富文本
+  flutter_quill: ^7.4.7 # 富文本
   flutter_riverpod: ^2.4.0 # 状态管理
   image_picker: ^1.0.4 # 图片选择
   image_picker_android: ^0.8.8 # 图片选择
@@ -40,7 +40,7 @@ dependencies:
   qweather_icons: ^1.5.0 # QWeather 图标
   riverpod_annotation: ^2.1.5 # 状态管理相关
   share_plus: ^7.1.0 # 分享
-  sticky_and_expandable_list: ^1.1.2 # 粘性头部与分组列表
+  sticky_and_expandable_list: ^1.1.3 # 粘性头部与分组列表
   system_tray: ^2.0.3 # 系统托盘
   syncfusion_flutter_charts: ^23.1.36 # 图表
   url_launcher: ^6.1.14 # 打开外部链接

@@ -61,10 +61,10 @@ packages:
     dependency: "direct main"
     description:
       name: based_list
-      sha256: "9c385fe0475911f4ddadf57fbb336cbe641ad143fe6b98fc643b5ce304229603"
+      sha256: d45015d064011ebf12dcf17e7ade57a8062072f2e6508c4c19476c4ec0c6c0b3
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.6"
+    version: "1.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -101,10 +101,10 @@ packages:
     dependency: transitive
     description:
       name: build_resolvers
-      sha256: a7417cc44d9edb3f2c8760000270c99dba8c72ff66d0146772b8326565780745
+      sha256: d912852cce27c9e80a93603db721c267716894462e7033165178b91138587972
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.2"
   build_runner:
     dependency: "direct dev"
     description:
@@ -293,10 +293,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
+      sha256: "417e2a6f9d83ab396ec38ff4ea5da6c254da71e4db765ad737a42af6930140b7"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.2"
+    version: "5.3.3"
   equatable:
     dependency: transitive
     description:
@@ -349,10 +349,10 @@ packages:
     dependency: transitive
     description:
       name: file_selector_macos
-      sha256: "182c3f8350cee659f7b115e956047ee3dc672a96665883a545e81581b9a82c72"
+      sha256: b15c3da8bd4908b9918111fa486903f5808e388b8d1c559949f584725a6594d6
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.3+2"
+    version: "0.9.3+3"
   file_selector_platform_interface:
     dependency: transitive
     description:
@@ -479,10 +479,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: "3b606259b0d14e0ea5521f9a4ce8d164d221eccadf792baa2b58734ef9cf46bd"
+      sha256: "6350f7b93bd5dc30d12f8235c32f66727c4844f328a0e91869e36ecda4fdb2fa"
       url: "https://pub.dev"
     source: hosted
-    version: "7.4.6"
+    version: "7.4.7"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -1086,10 +1086,10 @@ packages:
     dependency: "direct main"
     description:
       name: sticky_and_expandable_list
-      sha256: eef5080ea848e17e82674566709b41d28becb9f7ac223d7255b27c004a01de69
+      sha256: "42886b52d659f1fb0f6c355192d8e4e919bdee4eb9510049b2e3d05ea988b7ed"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.1.3"
   stream_channel:
     dependency: transitive
     description:
@@ -1318,18 +1318,18 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "9e82a402b7f3d518fb9c02d0e9ae45952df31b9bf34d77baf19da2de03fc2aaa"
+      sha256: c97defd418eef4ec88c0d1652cdce84b9f7b63dd7198e266d06ac1710d527067
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.7"
+    version: "5.0.8"
   win32_registry:
     dependency: transitive
     description:
       name: win32_registry
-      sha256: e4506d60b7244251bc59df15656a3093501c37fb5af02105a944d73eb95be4c9
+      sha256: "41fd8a189940d8696b1b810efb9abcf60827b6cbfab90b0c43e8439e3a39d85a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   window_manager:
     dependency: "direct main"
     description:

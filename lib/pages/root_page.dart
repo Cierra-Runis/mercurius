@@ -10,8 +10,8 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
   int _currentIndex = 0;
 
   static const List<Widget> _bodyWidgets = [
-    HomePage(),
-    MorePage(),
+    HomePage(key: ValueKey(0)),
+    MorePage(key: ValueKey(1)),
   ];
 
   void _onItemTapped(int index) {
@@ -31,7 +31,7 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
           condition: _currentIndex == 0,
           onConditionFail: () => setState(() => _currentIndex = 0),
           child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 300),
             child: _bodyWidgets[_currentIndex],
           ),
         ),
