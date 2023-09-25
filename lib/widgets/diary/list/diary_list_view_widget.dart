@@ -59,7 +59,7 @@ class DiaryListViewWidget extends ConsumerWidget {
               trailing: Text(
                 l10n.diaryCount(sections[sectionIndex].items.length),
               ),
-              disabled: true,
+              enabled: false,
             ),
           );
         },
