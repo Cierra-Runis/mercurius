@@ -1,28 +1,19 @@
 ### **Latest Version**
 
-[v1.4.5+93](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.5+93)
+[v1.4.6+94](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.6+94)
 
 ### **What's Updated**
 
-> 📖Revise & 🔧Fix issue
+> 📖Revise
 >
-> 1. 📖Update packages
-> 2. 📖Add `SafeArea` to `MorePage`
-> 3. 📖Improve translation of zh_CN
-> 4. 📖Disable search button
-> 5. 📖Remove app bar of `more` page
-> 6. 📖Improve the gap of floating buttons in `release` page
-> 7. 🔧Add `heroTag` to floating buttons
-> 8. 📖Use `AboutSection` instead of `about` dialog
-> 9. 📖Use material 3 design with `NavigationBar`
-> 10. 📖Rename `MercuriusFadeShimmerWidget` to `BasedShimmer`
-> 11. 📖Remove `trailingIcon` of diary section
-> 12. 📖Simplify the logic of `MercuriusDoubleBackWidget`
-> 13. 📖Use `SegmentedButton` instead `TextButton`s in theme selector
+> 1. 📖Improve typo
+> 2. 📖Update packages
+> 3. 📖Change `SafeArea` position in `MorePage`
+> 4. 📖Improve animation when change bottom navigation
 
 ### **Changelog**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.4+92...v1.4.5+93)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.5+93...v1.4.6+94)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
 ### **Breaking Changes**
