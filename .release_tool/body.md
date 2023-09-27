@@ -1,19 +1,17 @@
 ### **Latest Version**
 
-[v1.4.6+94](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.4.6+94)
+[v1.5.0+95](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.5.0+95)
 
 ### **What's Updated**
 
-> 📖Revise
+> 📖Revise & 🌍Feature
 >
-> 1. 📖Improve typo
-> 2. 📖Update packages
-> 3. 📖Change `SafeArea` position in `MorePage`
-> 4. 📖Improve animation when change bottom navigation
+> 1. 📖Update packages
+> 2. 🌍You can add background image at Home Page now
 
 ### **Changelog**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.5+93...v1.4.6+94)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.6+94...v1.5.0+95)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
 ### **Breaking Changes**
