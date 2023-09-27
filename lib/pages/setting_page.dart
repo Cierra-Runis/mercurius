@@ -17,11 +17,46 @@ class SettingPage extends StatelessWidget {
             BasedListSection(
               children: [
                 _ThemeSelectListItem(),
+                _BackgroundImageListTile(),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _BackgroundImageListTile extends StatelessWidget {
+  const _BackgroundImageListTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final MercuriusL10N l10n = MercuriusL10N.of(context);
+
+    return StreamBuilder(
+      stream: isarService.listenToConfig(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          Config config = snapshot.data!;
+          return BasedListTile(
+            leadingIcon: Icons.flip_to_back_rounded,
+            titleText: l10n.backgroundImage,
+            detailText: config.backgroundImagePath ?? l10n.noImageSelected,
+            onTap: () async {
+              String? path = await Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const GalleryPage(readOnly: true),
+                ),
+              );
+              Mercurius.printLog(path);
+              isarService.saveConfig(config..backgroundImagePath = path);
+            },
+          );
+        }
+        return const MercuriusLoadingWidget();
+      },
     );
   }
 }
@@ -48,9 +83,7 @@ class _ThemeSelectListItem extends ConsumerWidget {
                     : l10n.alwaysBright,
             onTap: () => showDialog<void>(
               context: context,
-              builder: (context) {
-                return const MercuriusThemeSelectorWidget();
-              },
+              builder: (context) => const MercuriusThemeSelectorWidget(),
             ),
           );
         }

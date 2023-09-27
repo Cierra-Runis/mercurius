@@ -22,6 +22,7 @@ export 'package:flutter/gestures.dart';
 export 'dart:async' show Timer, StreamSubscription;
 export 'dart:convert';
 export 'dart:io';
+export 'dart:ui' show ImageFilter;
 
 /// 外部包相关
 export 'package:another_flushbar/flushbar.dart'; // 提示框

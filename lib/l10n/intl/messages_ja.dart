@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("画像を削除してもよろしいですか？"),
         "back": MessageLookupByLibrary.simpleMessage("戻る"),
         "backAgainToExit": MessageLookupByLibrary.simpleMessage("もう一度戻って終了します"),
+        "backgroundImage": MessageLookupByLibrary.simpleMessage("背景画像"),
         "buttonVibration": MessageLookupByLibrary.simpleMessage("ボタン振動"),
         "cancel": MessageLookupByLibrary.simpleMessage("キャンセル"),
         "changeDate": MessageLookupByLibrary.simpleMessage("日付を変える"),
@@ -126,6 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "moodText": m1,
         "morePage": MessageLookupByLibrary.simpleMessage("詳細"),
         "noData": MessageLookupByLibrary.simpleMessage("データ無し"),
+        "noImageSelected": MessageLookupByLibrary.simpleMessage("画像が選択されていません"),
         "notYetCompleted": MessageLookupByLibrary.simpleMessage("まだ完成していません"),
         "pleaseBackToHomePage":
             MessageLookupByLibrary.simpleMessage("ホームページに戻ってください"),

@@ -112,5 +112,7 @@
   "backAgainToExit": "もう一度戻って終了します",
   "hiToKoToProvider": "このサービスは、Hitokoto「一言」が提供しています",
   "hiToKoToFetching": "「一言」を取得中",
-  "thisDayLastYear": "去年の今日"
+  "thisDayLastYear": "去年の今日",
+  "backgroundImage": "背景画像",
+  "noImageSelected": "画像が選択されていません"
 }

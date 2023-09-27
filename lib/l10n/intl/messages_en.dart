@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "backAgainToExit":
             MessageLookupByLibrary.simpleMessage("Go Back Again To Exit"),
+        "backgroundImage":
+            MessageLookupByLibrary.simpleMessage("Background Image"),
         "buttonVibration":
             MessageLookupByLibrary.simpleMessage("Button vibration"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -135,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "moodText": m1,
         "morePage": MessageLookupByLibrary.simpleMessage("More"),
         "noData": MessageLookupByLibrary.simpleMessage("No Data"),
+        "noImageSelected":
+            MessageLookupByLibrary.simpleMessage("No Image Selected"),
         "notYetCompleted":
             MessageLookupByLibrary.simpleMessage("Not Yet Completed"),
         "pleaseBackToHomePage":

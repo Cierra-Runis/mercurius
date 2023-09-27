@@ -13,6 +13,7 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final path = ref.watch(mercuriusPathProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -26,8 +27,32 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
         ),
         actions: PlatformWindowsManager.getActions(),
       ),
-      body: DiaryListViewWidget(
-        controller: controller,
+      body: StreamBuilder(
+        stream: isarService.listenToConfig(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+              decoration: path.when(
+                loading: () => null,
+                error: (error, stackTrace) => null,
+                data: (data) => BoxDecoration(
+                  image: DecorationImage(
+                    opacity: 0.8,
+                    image: FileImage(
+                      File('$data/image/${snapshot.data?.backgroundImagePath}'),
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                child: DiaryListViewWidget(controller: controller),
+              ),
+            );
+          }
+          return const MercuriusLoadingWidget();
+        },
       ),
       floatingActionButton: const MercuriusFloatingDiaryButtonWidget(),
     );

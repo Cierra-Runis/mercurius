@@ -46,9 +46,8 @@ class IsarService {
   // }
 
   /// 创建 `Stream` 监听所有 `editing` 为 `true` 的日记
-  Stream<List<Diary>> listenToDiariesEditing({int delayed = 300}) async* {
+  Stream<List<Diary>> listenToDiariesEditing() async* {
     final isar = await _db;
-    await Future.delayed(Duration(milliseconds: delayed));
     yield* isar.diarys
         .filter()
         .editingEqualTo(true)
@@ -62,9 +61,8 @@ class IsarService {
   }
 
   /// 监听所有非编辑中的日记
-  Stream<List<Diary>> listenToAllDiaries({int delayed = 300}) async* {
+  Stream<List<Diary>> listenToAllDiaries() async* {
     final isar = await _db;
-    await Future.delayed(Duration(milliseconds: delayed));
     yield* isar.diarys
         .filter()
         .editingEqualTo(false)

@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("确定删除图片吗？"),
         "back": MessageLookupByLibrary.simpleMessage("返回"),
         "backAgainToExit": MessageLookupByLibrary.simpleMessage("再次返回以退出"),
+        "backgroundImage": MessageLookupByLibrary.simpleMessage("背景图像"),
         "buttonVibration": MessageLookupByLibrary.simpleMessage("按钮振动"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "changeDate": MessageLookupByLibrary.simpleMessage("修改日期"),
@@ -114,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "moodText": m1,
         "morePage": MessageLookupByLibrary.simpleMessage("更多"),
         "noData": MessageLookupByLibrary.simpleMessage("无数据"),
+        "noImageSelected": MessageLookupByLibrary.simpleMessage("未选择图片"),
         "notYetCompleted": MessageLookupByLibrary.simpleMessage("暂未完成"),
         "pleaseBackToHomePage": MessageLookupByLibrary.simpleMessage("请回到主页"),
         "pleaseThinkTwiceAboutDeletingTheDiary":
