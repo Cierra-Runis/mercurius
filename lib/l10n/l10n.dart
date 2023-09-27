@@ -877,6 +877,26 @@ class MercuriusL10N {
       args: [],
     );
   }
+
+  /// `Background Image`
+  String get backgroundImage {
+    return Intl.message(
+      'Background Image',
+      name: 'backgroundImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Image Selected`
+  String get noImageSelected {
+    return Intl.message(
+      'No Image Selected',
+      name: 'noImageSelected',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<MercuriusL10N> {

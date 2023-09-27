@@ -12,4 +12,6 @@ class Config {
   /// 主题模式 (不可为空)
   @enumerated
   ThemeMode themeMode;
+
+  String? backgroundImagePath;
 }

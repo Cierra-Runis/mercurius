@@ -42,10 +42,10 @@ dependencies:
   share_plus: ^7.1.0 # 分享
   sticky_and_expandable_list: ^1.1.3 # 粘性头部与分组列表
   system_tray: ^2.0.3 # 系统托盘
-  syncfusion_flutter_charts: ^23.1.36 # 图表
+  syncfusion_flutter_charts: ^23.1.38 # 图表
   url_launcher: ^6.1.14 # 打开外部链接
   unicons: ^2.1.1 # 图标
-  vibration: ^1.8.1 # 振动反馈
+  vibration: ^1.8.2 # 振动反馈
   window_manager: ^0.3.6 # 窗口管理
 
 dev_dependencies:

@@ -17,8 +17,13 @@ const ConfigSchema = CollectionSchema(
   name: r'Config',
   id: -3644000870443854999,
   properties: {
-    r'themeMode': PropertySchema(
+    r'backgroundImagePath': PropertySchema(
       id: 0,
+      name: r'backgroundImagePath',
+      type: IsarType.string,
+    ),
+    r'themeMode': PropertySchema(
+      id: 1,
       name: r'themeMode',
       type: IsarType.byte,
       enumMap: _ConfigthemeModeEnumValueMap,
@@ -44,6 +49,12 @@ int _configEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  {
+    final value = object.backgroundImagePath;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
@@ -53,7 +64,8 @@ void _configSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeByte(offsets[0], object.themeMode.index);
+  writer.writeString(offsets[0], object.backgroundImagePath);
+  writer.writeByte(offsets[1], object.themeMode.index);
 }
 
 Config _configDeserialize(
@@ -64,9 +76,10 @@ Config _configDeserialize(
 ) {
   final object = Config(
     themeMode:
-        _ConfigthemeModeValueEnumMap[reader.readByteOrNull(offsets[0])] ??
+        _ConfigthemeModeValueEnumMap[reader.readByteOrNull(offsets[1])] ??
             ThemeMode.system,
   );
+  object.backgroundImagePath = reader.readStringOrNull(offsets[0]);
   object.id = id;
   return object;
 }
@@ -79,6 +92,8 @@ P _configDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
+      return (reader.readStringOrNull(offset)) as P;
+    case 1:
       return (_ConfigthemeModeValueEnumMap[reader.readByteOrNull(offset)] ??
           ThemeMode.system) as P;
     default:
@@ -185,6 +200,160 @@ extension ConfigQueryWhere on QueryBuilder<Config, Config, QWhereClause> {
 }
 
 extension ConfigQueryFilter on QueryBuilder<Config, Config, QFilterCondition> {
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'backgroundImagePath',
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'backgroundImagePath',
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathEqualTo(
+    String? value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'backgroundImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathGreaterThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'backgroundImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathLessThan(
+    String? value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'backgroundImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathBetween(
+    String? lower,
+    String? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'backgroundImagePath',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'backgroundImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'backgroundImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'backgroundImagePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'backgroundImagePath',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'backgroundImagePath',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterFilterCondition>
+      backgroundImagePathIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'backgroundImagePath',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<Config, Config, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -296,6 +465,18 @@ extension ConfigQueryObject on QueryBuilder<Config, Config, QFilterCondition> {}
 extension ConfigQueryLinks on QueryBuilder<Config, Config, QFilterCondition> {}
 
 extension ConfigQuerySortBy on QueryBuilder<Config, Config, QSortBy> {
+  QueryBuilder<Config, Config, QAfterSortBy> sortByBackgroundImagePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'backgroundImagePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterSortBy> sortByBackgroundImagePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'backgroundImagePath', Sort.desc);
+    });
+  }
+
   QueryBuilder<Config, Config, QAfterSortBy> sortByThemeMode() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'themeMode', Sort.asc);
@@ -310,6 +491,18 @@ extension ConfigQuerySortBy on QueryBuilder<Config, Config, QSortBy> {
 }
 
 extension ConfigQuerySortThenBy on QueryBuilder<Config, Config, QSortThenBy> {
+  QueryBuilder<Config, Config, QAfterSortBy> thenByBackgroundImagePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'backgroundImagePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Config, Config, QAfterSortBy> thenByBackgroundImagePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'backgroundImagePath', Sort.desc);
+    });
+  }
+
   QueryBuilder<Config, Config, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -336,6 +529,14 @@ extension ConfigQuerySortThenBy on QueryBuilder<Config, Config, QSortThenBy> {
 }
 
 extension ConfigQueryWhereDistinct on QueryBuilder<Config, Config, QDistinct> {
+  QueryBuilder<Config, Config, QDistinct> distinctByBackgroundImagePath(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'backgroundImagePath',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Config, Config, QDistinct> distinctByThemeMode() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'themeMode');
@@ -347,6 +548,13 @@ extension ConfigQueryProperty on QueryBuilder<Config, Config, QQueryProperty> {
   QueryBuilder<Config, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
+    });
+  }
+
+  QueryBuilder<Config, String?, QQueryOperations>
+      backgroundImagePathProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'backgroundImagePath');
     });
   }
 
