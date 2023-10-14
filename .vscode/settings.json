@@ -50,7 +50,9 @@
         "build": true,
         ".idea": true,
         ".dart_tool": true,
-        "splitMap": true
+        "splitMap": true,
+        "lib/l10n/intl": true,
+        "lib/l10n/**/*.dart": true
     },
     "commentTranslate.hover.string": true,
     "commentTranslate.hover.variable": true,
