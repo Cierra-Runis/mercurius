@@ -1,10 +1,24 @@
-# https://dart.cn/guides/language/analysis-options
-
 include: package:flutter_lints/flutter.yaml
-
-analyzer:
-  plugins:
-    - custom_lint
 
 linter:
   rules:
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    cancel_subscriptions: true
+    close_sinks: true
+    collection_methods_unrelated_type: true
+    control_flow_in_finally: true
+    matching_super_parameters: true
+    prefer_single_quotes: true
+    require_trailing_commas: true
+    use_colored_box: true
+    use_decorated_box: true
+    use_super_parameters: true
+    unnecessary_lambdas: true
+    unnecessary_parenthesis: true
+
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+  plugins:
+    - custom_lint

@@ -22,7 +22,7 @@ class MoodSelectorWidget extends ConsumerWidget {
             l10n.howIsYourMoodNowDescription,
             style: TextStyle(
               fontSize: 10,
-              color: Theme.of(context).colorScheme.outline,
+              color: context.colorScheme.outline,
             ),
           ),
         ],
@@ -38,7 +38,7 @@ class MoodSelectorWidget extends ConsumerWidget {
           itemBuilder: (context, index) {
             DiaryMoodType moodType = DiaryMoodType.values[index];
             return IconButton(
-              onPressed: () => Navigator.of(context).pop(
+              onPressed: () => context.pop(
                 Diary.copyWith(diary, moodType: moodType),
               ),
               icon: Column(
@@ -50,7 +50,7 @@ class MoodSelectorWidget extends ConsumerWidget {
               ),
               color: diary.moodType != moodType
                   ? null
-                  : Theme.of(context).colorScheme.primary,
+                  : context.colorScheme.primary,
             );
           },
         ),
@@ -58,9 +58,7 @@ class MoodSelectorWidget extends ConsumerWidget {
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: context.pop,
           child: Text(l10n.back),
         ),
       ],

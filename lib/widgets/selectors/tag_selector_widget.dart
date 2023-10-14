@@ -17,7 +17,7 @@ class TagSelectorWidget extends StatefulWidget {
     Icons.balance_rounded,
     Icons.bathtub_rounded,
     Icons.beach_access_rounded,
-    Icons.bed_rounded
+    Icons.bed_rounded,
   ];
 
   final String defaultMessage;
@@ -59,7 +59,7 @@ class _TagSelectorWidgetState extends State<TagSelectorWidget> {
                 icon: Icon(iconData),
                 color: iconData != _selectedIcon
                     ? null
-                    : Theme.of(context).colorScheme.primary,
+                    : context.colorScheme.primary,
               );
             },
           ),
@@ -73,8 +73,7 @@ class _TagSelectorWidgetState extends State<TagSelectorWidget> {
       ).adaptAlertDialog,
       actions: [
         TextButton(
-          onPressed: () => Navigator.pop(
-            context,
+          onPressed: () => context.pop(
             DiaryTag(
               codePoint: _selectedIcon.codePoint,
               fontFamily: _selectedIcon.fontFamily,
@@ -84,7 +83,7 @@ class _TagSelectorWidgetState extends State<TagSelectorWidget> {
             ),
           ),
           child: Text(l10n.confirm),
-        )
+        ),
       ],
     );
   }

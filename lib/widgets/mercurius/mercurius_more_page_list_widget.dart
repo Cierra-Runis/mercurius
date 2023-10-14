@@ -41,10 +41,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
         BasedListTile(
           leadingIcon: element[0],
           titleText: element[1],
-          onTap: () => Navigator.push(
-            context,
-            CupertinoPageRoute(builder: (context) => element[2]),
-          ),
+          onTap: () => context.push(element[2]),
         ),
       );
     }
@@ -55,7 +52,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
           titleText: l10n.morePage,
           children: list,
         ),
-        const AboutSection()
+        const AboutSection(),
       ],
     );
   }
@@ -103,10 +100,7 @@ class AboutSection extends ConsumerWidget {
               ? l10n.clickHereToUpdate
               : l10n.alreadyTheLatestVersion,
           showTrailingBadge: hasNewVersion(githubLatestRelease, currentVersion),
-          onTap: () => Navigator.push(
-            context,
-            CupertinoPageRoute(builder: (context) => const ReleasePage()),
-          ),
+          onTap: () => context.push(const ReleasePage()),
         ),
         // DialogAboutTitleWidget(),
         BasedListTile(

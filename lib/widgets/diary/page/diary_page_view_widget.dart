@@ -57,11 +57,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return StreamBuilder<List<Diary>>(
       stream: isarService.listenToAllDiaries(),
-      builder: (
-        BuildContext context,
-        AsyncSnapshot<List<Diary>> snapshot,
-      ) =>
-          _getBodyBySnapshotState(context, snapshot),
+      builder: _getBodyBySnapshotState,
     );
   }
 }

@@ -16,10 +16,9 @@ class EditorToolbarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final iconSelectedFillColor =
-        Theme.of(context).brightness == Brightness.dark
-            ? Theme.of(context).colorScheme.outlineVariant
-            : Theme.of(context).colorScheme.primaryContainer;
+    final iconSelectedFillColor = context.brightness.isDark
+        ? context.colorScheme.outlineVariant
+        : context.colorScheme.primaryContainer;
 
     final quillIconTheme = QuillIconTheme(
       borderRadius: 12,

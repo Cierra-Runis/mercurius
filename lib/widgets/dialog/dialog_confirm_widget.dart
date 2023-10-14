@@ -30,24 +30,20 @@ class MercuriusConfirmDialogWidget extends StatelessWidget {
             summary,
             style: TextStyle(
               fontSize: 10,
-              color: Theme.of(context).colorScheme.outline,
+              color: context.colorScheme.outline,
             ),
           ),
         ],
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop(false);
-          },
+          onPressed: () => context.pop(false),
           child: Text(falseString ?? l10n.cancel),
         ),
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop(true);
-          },
+          onPressed: () => context.pop(true),
           child: Text(trueString ?? l10n.confirm),
-        )
+        ),
       ],
     );
   }

@@ -33,7 +33,7 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
             updateTime,
             style: TextStyle(
               fontSize: 10,
-              color: Theme.of(context).colorScheme.outline,
+              color: context.colorScheme.outline,
             ),
           ),
         ],
@@ -61,11 +61,8 @@ class MercuriusJsonToDialogWidget extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          style: TextButton.styleFrom(
-            textStyle: Theme.of(context).textTheme.labelLarge,
-          ),
+          onPressed: context.pop,
           child: Text(l10n.confirm),
-          onPressed: () => Navigator.of(context).pop(),
         ),
       ],
       actionsPadding: const EdgeInsets.fromLTRB(8, 0, 8, 8),

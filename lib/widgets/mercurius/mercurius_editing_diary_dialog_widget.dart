@@ -23,7 +23,7 @@ class MercuriusEditingDiaryDialogWidget extends StatelessWidget {
             index: index,
             placeHolder: const DiaryListItemPlaceHolderWidget(),
             child: DiaryListItemWidget(
-              onTap: () => Navigator.pop(context, editingDiaries[index]),
+              onTap: () => context.pop(editingDiaries[index]),
               diary: editingDiaries[index],
             ),
           ),

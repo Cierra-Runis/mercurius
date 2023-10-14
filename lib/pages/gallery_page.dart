@@ -30,7 +30,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
       List<FileSystemEntity> newList = Directory('$path/image/').listSync();
       if (_list.length != newList.length) {
         newList.sort(_sort);
-        return (_list = newList);
+        return _list = newList;
       }
       return _list;
     });

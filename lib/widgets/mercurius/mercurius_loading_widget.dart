@@ -12,9 +12,9 @@ class MercuriusLoadingWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           LoadingAnimationWidget.staggeredDotsWave(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Theme.of(context).colorScheme.primary
-                : Theme.of(context).colorScheme.primaryContainer,
+            color: context.brightness.isDark
+                ? context.colorScheme.primary
+                : context.colorScheme.primaryContainer,
             size: 16,
           ),
         ],

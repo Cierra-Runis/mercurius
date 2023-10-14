@@ -41,14 +41,8 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
                           index: index,
                           placeHolder: const DiaryListItemPlaceHolderWidget(),
                           child: DiaryListItemWidget(
-                            onTap: () => Navigator.push(
-                              context,
-                              CupertinoDialogRoute(
-                                builder: (context) => DiaryPageItemWidget(
-                                  diary: diaries[index],
-                                ),
-                                context: context,
-                              ),
+                            onTap: () => context.push(
+                              DiaryPageItemWidget(diary: diaries[index]),
                             ),
                             diary: diaries[index],
                           ),
@@ -95,11 +89,8 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
     );
 
     if (context.mounted && diary != null) {
-      Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (context) => EditorPage(diary: diary, autoSave: true),
-        ),
+      context.push(
+        EditorPage(diary: diary, autoSave: true),
       );
     }
   }
@@ -128,13 +119,10 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
       isarService.deleteDiaryById(id);
 
       if (context.mounted) {
-        Navigator.push(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => EditorPage(
-              diary: Diary.copyWith(diary, id: id),
-              autoSave: true,
-            ),
+        context.push(
+          EditorPage(
+            diary: Diary.copyWith(diary, id: id),
+            autoSave: true,
           ),
         );
       }

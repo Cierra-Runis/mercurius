@@ -13,13 +13,13 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final ColorScheme colorScheme = context.colorScheme;
 
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: readOnly
-            ? () => Navigator.of(context).pop(
+            ? () => context.pop(
                   fileSystemEntity.path.split('/').last,
                 )
             : () => showDialog(
@@ -51,7 +51,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: ColoredBox(
                 color: colorScheme.shadow.withAlpha(144),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,11 +84,11 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                       icon: const Icon(
                         Icons.delete_outline_rounded,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

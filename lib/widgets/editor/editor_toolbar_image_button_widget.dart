@@ -63,13 +63,8 @@ class EditorToolbarImageButtonWidget extends CustomButton {
         break;
       case false:
         if (context.mounted) {
-          String? filename = await Navigator.push(
-            context,
-            CupertinoPageRoute(
-              builder: (context) => const GalleryPage(
-                readOnly: true,
-              ),
-            ),
+          String? filename = await context.push(
+            const GalleryPage(readOnly: true),
           );
           if (filename != null) {
             _insert(controller, filename);

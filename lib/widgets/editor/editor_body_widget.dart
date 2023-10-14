@@ -68,7 +68,7 @@ class EditorBodyWidget extends StatelessWidget {
             fontFamily: 'Saira',
             fontSize: 14,
             height: 1.5,
-            color: Theme.of(context).colorScheme.inverseSurface,
+            color: context.colorScheme.inverseSurface,
           ),
           const VerticalSpacing(3, 3),
           const VerticalSpacing(0, 0),

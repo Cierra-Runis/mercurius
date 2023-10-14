@@ -44,11 +44,8 @@ class _BackgroundImageListTile extends StatelessWidget {
             titleText: l10n.backgroundImage,
             detailText: config.backgroundImagePath ?? l10n.noImageSelected,
             onTap: () async {
-              String? path = await Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (context) => const GalleryPage(readOnly: true),
-                ),
+              String? path = await context.push(
+                const GalleryPage(readOnly: true),
               );
               Mercurius.printLog(path);
               isarService.saveConfig(config..backgroundImagePath = path);
