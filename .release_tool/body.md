@@ -1,17 +1,16 @@
 ### **Latest Version**
 
-[v1.5.0+95](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.5.0+95)
+[v1.5.1+96](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.5.1+96)
 
 ### **What's Updated**
 
-> 📖Revise & 🌍Feature
+> 📖Revise
 >
 > 1. 📖Update packages
-> 2. 🌍You can add background image at Home Page now
 
 ### **Changelog**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.4.6+94...v1.5.0+95)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.5.0+95...v1.5.1+96)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
 ### **Breaking Changes**
