@@ -20,7 +20,7 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
 
   @override
   Widget build(BuildContext context) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     return Scaffold(
       body: Center(

@@ -14,7 +14,7 @@ class MercuriusHiToKoToWidget extends StatelessWidget {
   /// FIXME: 当组件被挡住时仍然进行刷新
   @override
   Widget build(BuildContext context) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     return StreamBuilder<Future<HiToKoTo>>(
       stream:

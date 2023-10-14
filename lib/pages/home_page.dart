@@ -12,7 +12,7 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
     final path = ref.watch(mercuriusPathProvider);
 
     return Scaffold(

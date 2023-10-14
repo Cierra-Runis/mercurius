@@ -12,7 +12,7 @@ class DiaryPageItemShareButtonWidget extends StatelessWidget {
   final WidgetRef ref;
   final Diary diary;
   final String lang;
-  final MercuriusL10N l10n;
+  final l10n;
 
   @override
   Widget build(BuildContext context) {

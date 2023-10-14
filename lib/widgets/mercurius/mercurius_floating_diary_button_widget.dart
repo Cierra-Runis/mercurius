@@ -10,7 +10,7 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
     AsyncSnapshot<List<Diary>> snapshot,
     WidgetRef ref,
   ) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     bool hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
 
