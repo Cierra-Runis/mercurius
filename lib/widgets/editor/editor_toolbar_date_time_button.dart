@@ -26,7 +26,7 @@ class EditorToolbarDateTimeButtonWidget extends QuillCustomButton {
             const Duration(days: 20000),
           ),
         );
-        if (dateTime != null) {
+        if (dateTime.isNotNull) {
           handleToolbarChangeDiary(
             Diary.copyWith(
               currentDiary,

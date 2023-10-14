@@ -14,7 +14,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
   ) {
     L10N l10n = context.l10n;
 
-    if (snapshot.data == null || snapshot.data!.isEmpty) {
+    if (snapshot.data.isNull || snapshot.data!.isEmpty) {
       return AlertDialog(title: Center(child: Text(l10n.noData)));
     }
 
