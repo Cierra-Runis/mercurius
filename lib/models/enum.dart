@@ -33,3 +33,23 @@ enum DiaryWeatherType {
   final String weather;
   final QWeatherIcons qweatherIcons;
 }
+
+enum DiaryTagType {
+  accessTime(Icons.access_time_rounded),
+  accessTimeFilled(Icons.access_time_filled_rounded),
+  accessAlarm(Icons.access_alarm_rounded),
+  accountBalanceWallet(Icons.account_balance_wallet_rounded),
+  adUnits(Icons.ad_units_rounded),
+  assignment(Icons.assignment_outlined),
+  attractions(Icons.attractions_rounded),
+  audiotrack(Icons.audiotrack_rounded),
+  autoAwesome(Icons.auto_awesome_rounded),
+  badge(Icons.badge_rounded),
+  balance(Icons.balance_rounded),
+  bathtub(Icons.bathtub_rounded),
+  beachAccess(Icons.beach_access_rounded),
+  bed(Icons.bed_rounded);
+
+  const DiaryTagType(this.iconData);
+  final IconData iconData;
+}
