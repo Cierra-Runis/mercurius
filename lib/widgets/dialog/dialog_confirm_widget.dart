@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusConfirmDialogWidget extends StatelessWidget {
-  const MercuriusConfirmDialogWidget({
+class ConfirmDialog extends StatelessWidget {
+  const ConfirmDialog({
     super.key,
     required this.title,
     required this.summary,

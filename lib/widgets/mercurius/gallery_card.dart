@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusGalleryCardWidget extends StatelessWidget {
-  const MercuriusGalleryCardWidget({
+class GalleryCard extends StatelessWidget {
+  const GalleryCard({
     super.key,
     required this.fileSystemEntity,
     this.readOnly = false,
@@ -70,8 +70,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
                       onPressed: readOnly
                           ? null
                           : () async {
-                              bool? confirm =
-                                  await MercuriusConfirmDialogWidget(
+                              bool? confirm = await ConfirmDialog(
                                 title: l10n.areYouSureToDeleteTheImage,
                                 summary:
                                     l10n.pleaseThinkTwiceAboutDeletingTheImage,

@@ -8,8 +8,8 @@ const String _connectErrorJsonString =
 const String _responseErrorJsonString =
     '{"id":8035,"uuid":"d4ea5c57-bd64-4b9c-81a1-3035bc059b43","hitokoto":"没有BUG的代码是不完美的！[请求失败]","type":"l","from":"Sodium_Sulfate","from_who":"Sodium_Sulfate","creator":"Sodium_Sulfate","creator_uid":12666,"reviewer":1,"commit_from":"web","created_at":"1658485841","length":14}';
 
-class MercuriusHiToKoToWidget extends StatelessWidget {
-  const MercuriusHiToKoToWidget({super.key});
+class HiToKoToWidget extends StatelessWidget {
+  const HiToKoToWidget({super.key});
 
   /// FIXME: 当组件被挡住时仍然进行刷新
   @override

@@ -73,7 +73,7 @@ class ReleasePage extends ConsumerWidget {
       body: Center(
         child: githubLatestRelease.when(
           skipLoadingOnRefresh: false,
-          loading: () => const MercuriusLoadingWidget(),
+          loading: () => const Loading(),
           error: (error, stackTrace) => Container(),
           data: (data) => _getBodyByData(context, data),
         ),

@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusImportSectionWidget extends ConsumerWidget {
-  const MercuriusImportSectionWidget({super.key});
+class ImportSection extends ConsumerWidget {
+  const ImportSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

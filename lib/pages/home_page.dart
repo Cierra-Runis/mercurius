@@ -22,7 +22,7 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
           tooltip: l10n.notYetCompleted,
           icon: const Icon(Icons.search),
         ),
-        title: MercuriusAppBarTitleWidget(
+        title: AppBarTitle(
           controller: controller,
         ),
         actions: PlatformWindowsManager.getActions(),
@@ -51,10 +51,10 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
               ),
             );
           }
-          return const MercuriusLoadingWidget();
+          return const Loading();
         },
       ),
-      floatingActionButton: const MercuriusFloatingDiaryButtonWidget(),
+      floatingActionButton: const FloatingDiaryButton(),
     );
   }
 }

@@ -52,7 +52,7 @@ class _BackgroundImageListTile extends StatelessWidget {
             },
           );
         }
-        return const MercuriusLoadingWidget();
+        return const Loading();
       },
     );
   }
@@ -80,11 +80,11 @@ class _ThemeSelectListItem extends ConsumerWidget {
                     : l10n.alwaysBright,
             onTap: () => showDialog<void>(
               context: context,
-              builder: (context) => const MercuriusThemeSelectorWidget(),
+              builder: (context) => const ThemeSelector(),
             ),
           );
         }
-        return const MercuriusLoadingWidget();
+        return const Loading();
       },
     );
   }

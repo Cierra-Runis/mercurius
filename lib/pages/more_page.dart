@@ -11,11 +11,11 @@ class MorePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: MercuriusMorePageListWidget(context: context),
+              child: MorePageList(context: context),
             ),
             const Padding(
               padding: EdgeInsets.all(10),
-              child: MercuriusHiToKoToWidget(),
+              child: HiToKoToWidget(),
             ),
           ],
         ),

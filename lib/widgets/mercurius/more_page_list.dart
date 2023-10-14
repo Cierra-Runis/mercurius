@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusMorePageListWidget extends ConsumerWidget {
-  const MercuriusMorePageListWidget({
+class MorePageList extends ConsumerWidget {
+  const MorePageList({
     super.key,
     required this.context,
   });
@@ -89,7 +89,7 @@ class AboutSection extends ConsumerWidget {
       titleTextStyle: const TextStyle(),
       children: [
         BasedListTile(
-          leading: const MercuriusAppIconWidget(size: 24),
+          leading: const AppIcon(size: 24),
           titleText: Mercurius.name,
           subtitleText: currentVersion.when(
             loading: () => l10n.unknownVersion,
@@ -126,7 +126,7 @@ class AboutSection extends ConsumerWidget {
           subtitleText: l10n.importDeclarationDescription,
           onTap: () => showDialog(
             context: context,
-            builder: (context) => MercuriusJsonToDialogWidget(
+            builder: (context) => JsonToDialog(
               title: l10n.importDeclaration,
               updateTime: l10n.importDeclarationContentUpdateTime,
               content: l10n.importDeclarationContent,
@@ -139,7 +139,7 @@ class AboutSection extends ConsumerWidget {
           subtitleText: '${Mercurius.name} ${l10n.privacyStatement}',
           onTap: () => showDialog(
             context: context,
-            builder: (context) => MercuriusJsonToDialogWidget(
+            builder: (context) => JsonToDialog(
               title: l10n.privacyStatement,
               updateTime: l10n.privacyStatementContentUpdateTime,
               content: l10n.privacyStatementContent,

@@ -24,7 +24,7 @@ class EditorToolbarTagButtonWidget extends CustomButton {
 
     DiaryTag? diaryTag = await showDialog(
       context: context,
-      builder: (context) => TagSelectorWidget(
+      builder: (context) => TagSelector(
         defaultMessage: time,
       ),
     );

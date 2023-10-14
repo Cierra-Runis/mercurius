@@ -46,8 +46,8 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              MercuriusAppIconWidget(),
-              MercuriusAppNameWidget(
+              AppIcon(),
+              AppName(
                 fontSize: 42,
               ),
             ],

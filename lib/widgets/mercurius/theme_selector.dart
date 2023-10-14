@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusThemeSelectorWidget extends ConsumerWidget {
-  const MercuriusThemeSelectorWidget({super.key});
+class ThemeSelector extends ConsumerWidget {
+  const ThemeSelector({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,7 +33,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
             ),
           );
         }
-        return const MercuriusLoadingWidget();
+        return const Loading();
       },
     );
   }

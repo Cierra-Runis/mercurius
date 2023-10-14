@@ -19,7 +19,7 @@ class EditorToolbarMoodButtonWidget extends QuillCustomButton {
   VoidCallback get onTap => () async {
         Diary? newDiary = await showDialog<Diary>(
           context: context,
-          builder: (context) => MoodSelectorWidget(
+          builder: (context) => MoodSelector(
             diary: currentDiary,
           ),
         );

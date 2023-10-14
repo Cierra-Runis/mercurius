@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusAppBarTitleWidget extends ConsumerWidget {
-  const MercuriusAppBarTitleWidget({
+class AppBarTitle extends ConsumerWidget {
+  const AppBarTitle({
     super.key,
     required this.controller,
   });
@@ -22,7 +22,7 @@ class MercuriusAppBarTitleWidget extends ConsumerWidget {
       onDoubleTap: windowManager.center,
       child: Column(
         children: [
-          const MercuriusAppNameWidget(),
+          const AppName(),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [

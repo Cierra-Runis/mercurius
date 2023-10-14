@@ -54,7 +54,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
           const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       padding: const EdgeInsets.all(12.0),
       itemCount: fileSystemEntities.length,
-      itemBuilder: (context, index) => MercuriusGalleryCardWidget(
+      itemBuilder: (context, index) => GalleryCard(
         readOnly: _readOnly,
         fileSystemEntity: fileSystemEntities[index],
       ),
@@ -72,7 +72,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
       case ConnectionState.none:
         return const Center(child: Icon(UniconsLine.data_sharing));
       case ConnectionState.waiting:
-        return const MercuriusLoadingWidget();
+        return const Loading();
       case ConnectionState.active:
         return getGridBySnapshotData(context, snapshot);
       case ConnectionState.done:
@@ -91,7 +91,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
         title: Text(l10n.imageGallery),
       ),
       body: path.when(
-        loading: () => const MercuriusLoadingWidget(),
+        loading: () => const Loading(),
 
         /// TODO: 这里应该提示 error
         error: (error, stackTrace) => Container(),

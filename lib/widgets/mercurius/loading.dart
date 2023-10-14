@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusLoadingWidget extends StatelessWidget {
-  const MercuriusLoadingWidget({
+class Loading extends StatelessWidget {
+  const Loading({
     super.key,
   });
 

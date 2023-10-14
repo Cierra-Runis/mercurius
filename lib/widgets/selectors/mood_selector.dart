@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class WeatherSelectorWidget extends ConsumerWidget {
-  const WeatherSelectorWidget({
+class MoodSelector extends ConsumerWidget {
+  const MoodSelector({
     super.key,
     required this.diary,
   });
@@ -17,9 +17,9 @@ class WeatherSelectorWidget extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(l10n.whatIsTheWeatherNow),
+          Text(l10n.howIsYourMoodNow),
           Text(
-            l10n.whatIsTheWeatherNowDescription,
+            l10n.howIsYourMoodNowDescription,
             style: TextStyle(
               fontSize: 10,
               color: context.colorScheme.outline,
@@ -34,21 +34,21 @@ class WeatherSelectorWidget extends ConsumerWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
           ),
-          itemCount: DiaryWeatherType.values.length,
+          itemCount: DiaryMoodType.values.length,
           itemBuilder: (context, index) {
-            DiaryWeatherType weatherType = DiaryWeatherType.values[index];
+            DiaryMoodType moodType = DiaryMoodType.values[index];
             return IconButton(
               onPressed: () => context.pop(
-                Diary.copyWith(diary, weatherType: weatherType),
+                Diary.copyWith(diary, moodType: moodType),
               ),
               icon: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(weatherType.qweatherIcons.iconData),
-                  Text(l10n.weatherText(weatherType.weather)),
+                  Icon(moodType.iconData),
+                  Text(l10n.moodText(moodType.mood)),
                 ],
               ),
-              color: diary.weatherType != weatherType
+              color: diary.moodType != moodType
                   ? null
                   : context.colorScheme.primary,
             );
