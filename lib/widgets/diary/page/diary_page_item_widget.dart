@@ -21,12 +21,12 @@ class DiaryPageItemWidget extends ConsumerWidget {
             borderRadius: BorderRadius.circular(24.0),
           ),
           child: SizedBox(
-            child: Container(
+            child: DecoratedBox(
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24.0),
                 ),
-                color: Theme.of(context).colorScheme.background,
+                color: context.colorScheme.background,
                 shadows: const [
                   BoxShadow(
                     color: Colors.black12,
@@ -147,9 +147,9 @@ class DiaryPageItemWidget extends ConsumerWidget {
                         Row(
                           children: [
                             IconButton(
-                              onPressed: () async {
-                                await _showDiaryEditorPage(context, diary);
-                              },
+                              onPressed: () => context.push(
+                                EditorPage(diary: diary),
+                              ),
                               icon: const Icon(Icons.edit),
                             ),
                             DiaryPageItemShareButtonWidget(
@@ -173,24 +173,11 @@ class DiaryPageItemWidget extends ConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: CloseButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              onPressed: context.pop,
             ),
           ),
-        )
-      ],
-    );
-  }
-
-  Future<void> _showDiaryEditorPage(BuildContext context, Diary diary) {
-    return Navigator.push(
-      context,
-      CupertinoPageRoute(
-        builder: (context) => EditorPage(
-          diary: diary,
         ),
-      ),
+      ],
     );
   }
 }

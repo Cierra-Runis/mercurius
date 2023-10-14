@@ -25,7 +25,7 @@ class MercuriusThemeSelectorWidget extends ConsumerWidget {
                 ButtonSegment(
                   value: ThemeMode.light,
                   label: Text(l10n.alwaysBright),
-                )
+                ),
               ],
               selected: {snapshot.data!.themeMode},
               onSelectionChanged: (p0) =>

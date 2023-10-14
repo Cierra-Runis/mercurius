@@ -78,13 +78,13 @@ class DiaryListItemWidget extends ConsumerWidget {
         ),
         child: InkWell(
           onTap: onTap ??
-              () async => {
-                    await showDialog<void>(
+              () => {
+                    showDialog<void>(
                       context: context,
                       builder: (context) => DiaryPageViewWidget(
                         diary: diary,
                       ),
-                    )
+                    ),
                   },
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(

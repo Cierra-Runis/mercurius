@@ -79,8 +79,8 @@ class _BasedShimmerState extends State<BasedShimmer> {
       height: widget.height,
       decoration: BoxDecoration(
         color: _isHighLight
-            ? Theme.of(context).colorScheme.outline.withOpacity(0.4)
-            : Theme.of(context).colorScheme.outline.withOpacity(0.1),
+            ? context.colorScheme.outline.withOpacity(0.4)
+            : context.colorScheme.outline.withOpacity(0.1),
         borderRadius: BorderRadius.circular(widget.radius),
       ),
       alignment: widget.childAlignment,

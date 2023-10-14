@@ -45,7 +45,7 @@ class MercuriusHiToKoToWidget extends StatelessWidget {
                         : l10n.hiToKoToFetching,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Theme.of(context).colorScheme.outline,
+                      color: context.colorScheme.outline,
                     ),
                     key: Key(
                       snapshot.data?.hitokoto ?? l10n.hiToKoToFetching,

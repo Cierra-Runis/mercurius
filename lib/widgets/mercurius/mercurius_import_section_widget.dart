@@ -39,8 +39,7 @@ class MercuriusImportSectionWidget extends ConsumerWidget {
                   margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
                   barBlur: 1.0,
                   borderRadius: BorderRadius.circular(16),
-                  backgroundColor:
-                      Theme.of(context).colorScheme.outline.withAlpha(16),
+                  backgroundColor: context.colorScheme.outline.withAlpha(16),
                   boxShadows: const [
                     BoxShadow(
                       color: Colors.transparent,

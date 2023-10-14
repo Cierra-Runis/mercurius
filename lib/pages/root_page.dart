@@ -26,7 +26,7 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
       body: Center(
         child: MercuriusDoubleBackWidget(
           message: l10n.backAgainToExit,
-          background: Theme.of(context).colorScheme.outline.withAlpha(16),
+          background: context.colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
           condition: _currentIndex == 0,
           onConditionFail: () => setState(() => _currentIndex = 0),
@@ -47,7 +47,7 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
           NavigationDestination(
             icon: const _MercuriusBottomBarMorePageIconWidget(),
             label: l10n.morePage,
-          )
+          ),
         ],
       ),
     );

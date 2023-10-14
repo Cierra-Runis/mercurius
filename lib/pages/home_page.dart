@@ -31,10 +31,10 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
         stream: isarService.listenToConfig(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Container(
+            return DecoratedBox(
               decoration: path.when(
-                loading: () => null,
-                error: (error, stackTrace) => null,
+                loading: BoxDecoration.new,
+                error: (error, stackTrace) => const BoxDecoration(),
                 data: (data) => BoxDecoration(
                   image: DecorationImage(
                     opacity: 0.8,

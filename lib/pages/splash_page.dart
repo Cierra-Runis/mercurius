@@ -24,12 +24,7 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
     _animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.completed) {
-          Navigator.of(context).pushAndRemoveUntil(
-            CupertinoPageRoute(
-              builder: (context) => const RootPage(),
-            ),
-            (route) => false,
-          );
+          context.pushAndRemoveRoot(const RootPage());
         }
       },
     );

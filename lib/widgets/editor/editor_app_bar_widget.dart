@@ -34,9 +34,7 @@ class EditorAppBarWidget extends ConsumerWidget implements PreferredSizeWidget {
 
     return AppBar(
       leading: TextButton(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        onPressed: context.pop,
         child: Text(l10n.back),
       ),
       title: Stack(

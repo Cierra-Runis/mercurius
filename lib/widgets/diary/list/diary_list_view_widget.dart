@@ -51,8 +51,8 @@ class DiaryListViewWidget extends ConsumerWidget {
       builder: SliverExpandableChildDelegate<Diary, _DiaryListViewSection>(
         sectionList: sections,
         headerBuilder: (context, sectionIndex, index) {
-          return Container(
-            color: Theme.of(context).colorScheme.background,
+          return ColoredBox(
+            color: context.colorScheme.background,
             child: BasedListTile(
               leading: const MercuriusAppIconWidget(size: 28),
               titleText: sections[sectionIndex].header,
@@ -99,11 +99,7 @@ class DiaryListViewWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return StreamBuilder<List<Diary>>(
       stream: isarService.listenToAllDiaries(),
-      builder: (
-        BuildContext context,
-        AsyncSnapshot<List<Diary>> snapshot,
-      ) =>
-          _getBodyBySnapshotState(context, snapshot),
+      builder: _getBodyBySnapshotState,
     );
   }
 }

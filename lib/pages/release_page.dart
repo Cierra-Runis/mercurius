@@ -38,7 +38,7 @@ class ReleasePage extends ConsumerWidget {
         styleSheet: MarkdownStyleSheet(
           blockquoteDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
-            color: Theme.of(context).colorScheme.surface,
+            color: context.colorScheme.surface,
           ),
         ),
         data: data.body!,

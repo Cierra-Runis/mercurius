@@ -22,7 +22,7 @@ class WeatherSelectorWidget extends ConsumerWidget {
             l10n.whatIsTheWeatherNowDescription,
             style: TextStyle(
               fontSize: 10,
-              color: Theme.of(context).colorScheme.outline,
+              color: context.colorScheme.outline,
             ),
           ),
         ],
@@ -38,7 +38,7 @@ class WeatherSelectorWidget extends ConsumerWidget {
           itemBuilder: (context, index) {
             DiaryWeatherType weatherType = DiaryWeatherType.values[index];
             return IconButton(
-              onPressed: () => Navigator.of(context).pop(
+              onPressed: () => context.pop(
                 Diary.copyWith(diary, weatherType: weatherType),
               ),
               icon: Column(
@@ -50,7 +50,7 @@ class WeatherSelectorWidget extends ConsumerWidget {
               ),
               color: diary.weatherType != weatherType
                   ? null
-                  : Theme.of(context).colorScheme.primary,
+                  : context.colorScheme.primary,
             );
           },
         ),
@@ -58,9 +58,7 @@ class WeatherSelectorWidget extends ConsumerWidget {
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: context.pop,
           child: Text(l10n.back),
         ),
       ],

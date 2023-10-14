@@ -23,9 +23,7 @@ class ImageViewWidget extends ConsumerWidget {
         Align(
           alignment: Alignment.topRight,
           child: CloseButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: context.pop,
           ),
         ),
         Align(

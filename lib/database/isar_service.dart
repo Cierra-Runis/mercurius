@@ -126,7 +126,7 @@ class IsarService {
   /// 清除数据库
   Future<void> cleanDb() async {
     final isar = await _db;
-    await isar.writeTxn(() => isar.clear());
+    await isar.writeTxn(isar.clear);
   }
 
   /// 打开数据库

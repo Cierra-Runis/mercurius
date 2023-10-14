@@ -56,10 +56,7 @@ class MonthlyWordsStatisticWidget extends ConsumerWidget {
                   ),
                   series: <ColumnSeries<_DiaryWordsData, String>>[
                     ColumnSeries<_DiaryWordsData, String>(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primary
-                          .withOpacity(0.7),
+                      color: context.colorScheme.primary.withOpacity(0.7),
                       dataSource: snapshot.data!,
                       xValueMapper: (_DiaryWordsData data, _) => data.dateTime
                           .format(DateFormat.YEAR_ABBR_MONTH, lang),

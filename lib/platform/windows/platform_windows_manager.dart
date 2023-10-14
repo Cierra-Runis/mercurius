@@ -40,7 +40,7 @@ class PlatformWindowsManager {
         icon: const Icon(
           UniconsLine.times,
         ),
-      )
+      ),
     ];
   }
 
