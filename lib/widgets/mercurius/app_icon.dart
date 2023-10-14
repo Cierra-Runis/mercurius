@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusAppIconWidget extends StatelessWidget {
-  const MercuriusAppIconWidget({
+class AppIcon extends StatelessWidget {
+  const AppIcon({
     super.key,
     this.size = 48,
   });

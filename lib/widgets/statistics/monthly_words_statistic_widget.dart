@@ -72,7 +72,7 @@ class MonthlyWordsStatisticWidget extends ConsumerWidget {
                   ],
                 );
               }
-              return const MercuriusLoadingWidget();
+              return const Loading();
             },
           ),
         ),

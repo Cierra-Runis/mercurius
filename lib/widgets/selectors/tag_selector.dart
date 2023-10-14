@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class TagSelectorWidget extends StatefulWidget {
-  const TagSelectorWidget({super.key, required this.defaultMessage});
+class TagSelector extends StatefulWidget {
+  const TagSelector({super.key, required this.defaultMessage});
 
   static const List<IconData> iconDataList = [
     Icons.access_time_rounded,
@@ -23,11 +23,11 @@ class TagSelectorWidget extends StatefulWidget {
   final String defaultMessage;
 
   @override
-  State<TagSelectorWidget> createState() => _TagSelectorWidgetState();
+  State<TagSelector> createState() => _TagSelectorState();
 }
 
-class _TagSelectorWidgetState extends State<TagSelectorWidget> {
-  IconData _selectedIcon = TagSelectorWidget.iconDataList[0];
+class _TagSelectorState extends State<TagSelector> {
+  IconData _selectedIcon = TagSelector.iconDataList[0];
   late final TextEditingController _textEditingController;
 
   @override
@@ -49,9 +49,9 @@ class _TagSelectorWidgetState extends State<TagSelectorWidget> {
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 64,
             ),
-            itemCount: TagSelectorWidget.iconDataList.length,
+            itemCount: TagSelector.iconDataList.length,
             itemBuilder: (context, index) {
-              IconData iconData = TagSelectorWidget.iconDataList[index];
+              IconData iconData = TagSelector.iconDataList[index];
               return IconButton(
                 onPressed: () => setState(() {
                   _selectedIcon = iconData;

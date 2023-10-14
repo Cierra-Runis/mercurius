@@ -66,7 +66,7 @@ class DiaryListItemWidget extends ConsumerWidget {
       direction: dismissDirection,
       movementDuration: const Duration(milliseconds: 400),
       onDismissed: (_) => isarService.deleteDiaryById(diary.id),
-      confirmDismiss: (_) => MercuriusConfirmDialogWidget(
+      confirmDismiss: (_) => ConfirmDialog(
         title: l10n.areYouSureToDeleteTheDiary,
         summary: l10n.pleaseThinkTwiceAboutDeletingTheDiary,
         context: context,

@@ -13,8 +13,8 @@ class IOPage extends StatelessWidget {
       ),
       body: const BasedListView(
         children: [
-          MercuriusImportSectionWidget(),
-          MercuriusExportSectionWidget(),
+          ImportSection(),
+          ExportSection(),
         ],
       ),
     );

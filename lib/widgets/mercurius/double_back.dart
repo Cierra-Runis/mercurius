@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusDoubleBackWidget extends StatefulWidget {
-  const MercuriusDoubleBackWidget({
+class DoubleBack extends StatefulWidget {
+  const DoubleBack({
     super.key,
     required this.background,
     required this.backgroundRadius,
@@ -31,11 +31,10 @@ class MercuriusDoubleBackWidget extends StatefulWidget {
   final int waitForSecondBackPress;
 
   @override
-  State<MercuriusDoubleBackWidget> createState() =>
-      _MercuriusDoubleBackWidgetState();
+  State<DoubleBack> createState() => _DoubleBackState();
 }
 
-class _MercuriusDoubleBackWidgetState extends State<MercuriusDoubleBackWidget> {
+class _DoubleBackState extends State<DoubleBack> {
   bool _tapped = false;
 
   @override

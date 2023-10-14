@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusAppNameWidget extends StatelessWidget {
-  const MercuriusAppNameWidget({
+class AppName extends StatelessWidget {
+  const AppName({
     super.key,
     this.fontSize,
   });

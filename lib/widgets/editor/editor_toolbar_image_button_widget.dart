@@ -21,7 +21,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
   ) async {
     final l10n = context.l10n;
 
-    bool? newImage = await MercuriusConfirmDialogWidget(
+    bool? newImage = await ConfirmDialog(
       context: context,
       title: l10n.insertTheImageFrom,
       summary: '${l10n.imageGallery}？${l10n.systemFile}？',

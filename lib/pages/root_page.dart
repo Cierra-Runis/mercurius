@@ -24,7 +24,7 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
 
     return Scaffold(
       body: Center(
-        child: MercuriusDoubleBackWidget(
+        child: DoubleBack(
           message: l10n.backAgainToExit,
           background: context.colorScheme.outline.withAlpha(16),
           backgroundRadius: BorderRadius.circular(16),
@@ -45,7 +45,7 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
             label: l10n.homePage,
           ),
           NavigationDestination(
-            icon: const _MercuriusBottomBarMorePageIconWidget(),
+            icon: const _BottomBarMorePageIcon(),
             label: l10n.morePage,
           ),
         ],
@@ -54,8 +54,8 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
   }
 }
 
-class _MercuriusBottomBarMorePageIconWidget extends ConsumerWidget {
-  const _MercuriusBottomBarMorePageIconWidget();
+class _BottomBarMorePageIcon extends ConsumerWidget {
+  const _BottomBarMorePageIcon();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

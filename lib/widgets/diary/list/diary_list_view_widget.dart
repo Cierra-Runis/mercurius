@@ -54,7 +54,7 @@ class DiaryListViewWidget extends ConsumerWidget {
           return ColoredBox(
             color: context.colorScheme.background,
             child: BasedListTile(
-              leading: const MercuriusAppIconWidget(size: 28),
+              leading: const AppIcon(size: 28),
               titleText: sections[sectionIndex].header,
               trailing: Text(
                 l10n.diaryCount(sections[sectionIndex].items.length),
@@ -87,7 +87,7 @@ class DiaryListViewWidget extends ConsumerWidget {
       case ConnectionState.none:
         return const Center(child: Icon(UniconsLine.data_sharing));
       case ConnectionState.waiting:
-        return const MercuriusLoadingWidget();
+        return const Loading();
       case ConnectionState.active:
         return _getCardBySnapshotData(context, snapshot);
       case ConnectionState.done:

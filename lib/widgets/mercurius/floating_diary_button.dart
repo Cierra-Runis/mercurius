@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
-  const MercuriusFloatingDiaryButtonWidget({
+class FloatingDiaryButton extends ConsumerWidget {
+  const FloatingDiaryButton({
     super.key,
   });
 
@@ -83,7 +83,7 @@ class MercuriusFloatingDiaryButtonWidget extends ConsumerWidget {
   ) async {
     Diary? diary = await showDialog(
       context: context,
-      builder: (context) => MercuriusEditingDiaryDialogWidget(
+      builder: (context) => EditingDiaryDialog(
         editingDiaries: editingDiaries,
       ),
     );

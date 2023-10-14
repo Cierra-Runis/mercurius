@@ -45,7 +45,7 @@ class DiaryPageViewWidget extends ConsumerWidget {
       case ConnectionState.none:
         return const Center(child: Icon(UniconsLine.data_sharing));
       case ConnectionState.waiting:
-        return const MercuriusLoadingWidget();
+        return const Loading();
       case ConnectionState.active:
         return _getPageBySnapshotData(context, snapshot);
       case ConnectionState.done:

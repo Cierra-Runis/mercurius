@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusJsonToDialogWidget extends StatelessWidget {
-  const MercuriusJsonToDialogWidget({
+class JsonToDialog extends StatelessWidget {
+  const JsonToDialog({
     super.key,
     required this.title,
     required this.updateTime,

@@ -32,7 +32,7 @@ class EditorToolbarWidget extends ConsumerWidget {
     List<EmbedButtonBuilder> embedButtons = [
       (controller, _, __, ___) {
         return path.when(
-          loading: () => const MercuriusLoadingWidget(),
+          loading: () => const Loading(),
           error: (error, stackTrace) => Container(),
           data: (data) => EditorToolbarImageButtonWidget(
             tooltip: l10n.insertImage,

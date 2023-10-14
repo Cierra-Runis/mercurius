@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MercuriusEditingDiaryDialogWidget extends StatelessWidget {
-  const MercuriusEditingDiaryDialogWidget({
+class EditingDiaryDialog extends StatelessWidget {
+  const EditingDiaryDialog({
     super.key,
     required this.editingDiaries,
   });
