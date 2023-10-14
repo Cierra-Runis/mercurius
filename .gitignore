@@ -43,5 +43,3 @@ lib/common/mercurius_key.dart
 
 # release_tool
 .release_tool/Mercurius for Windows
-
-*.g.dart
