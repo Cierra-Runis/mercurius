@@ -49,7 +49,7 @@ class _DoubleBackState extends State<DoubleBack> {
             Duration(seconds: widget.waitForSecondBackPress),
             () => _tapped = false,
           );
-          if (widget.onFirstBackPress != null) {
+          if (widget.onFirstBackPress.isNotNull) {
             widget.onFirstBackPress!(context);
           } else {
             Flushbar(
@@ -73,7 +73,7 @@ class _DoubleBackState extends State<DoubleBack> {
           }
           return false;
         }
-        if (widget.onConditionFail != null) {
+        if (widget.onConditionFail.isNotNull) {
           widget.onConditionFail!();
         }
         return false;

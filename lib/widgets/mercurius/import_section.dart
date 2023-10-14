@@ -19,7 +19,7 @@ class ImportSection extends ConsumerWidget {
               await FilePicker.platform.clearTemporaryFiles();
             }
             FilePickerResult? result = await FilePicker.platform.pickFiles();
-            if (result != null && result.files.single.path != null) {
+            if (result.isNotNull && result!.files.single.path.isNotNull) {
               bool succuss = await isarService.importJsonWith(
                 result.files.single.path!,
               );

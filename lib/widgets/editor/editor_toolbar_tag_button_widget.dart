@@ -28,7 +28,7 @@ class EditorToolbarTagButtonWidget extends CustomButton {
         defaultMessage: time,
       ),
     );
-    if (diaryTag != null) _insert(controller, diaryTag);
+    if (diaryTag.isNotNull) _insert(controller, diaryTag!);
   }
 
   static void _insert(
