@@ -10,8 +10,8 @@ class _MercuriusRouteState extends ConsumerState<RootPage> {
   int _currentIndex = 0;
 
   static const List<Widget> _bodyWidgets = [
-    HomePage(key: ValueKey(0)),
-    MorePage(key: ValueKey(1)),
+    HomePage(key: ValueKey(HomePage)),
+    MorePage(key: ValueKey(MorePage)),
   ];
 
   void _onItemTapped(int index) {
