@@ -46,3 +46,4 @@ lib/common/mercurius_key.dart
 
 *.g.dart
 *.freezed.dart
+lib/l10n/**/*.dart
