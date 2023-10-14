@@ -47,6 +47,7 @@ dependencies:
   unicons: ^2.1.1 # 图标
   vibration: ^1.8.3 # 振动反馈
   window_manager: ^0.3.7 # 窗口管理
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ dev_dependencies:
   json_serializable: ^6.7.1 # json 相关
   riverpod_generator: ^2.3.2 # riverpod 代码生成工具
   riverpod_lint: ^2.1.0 # riverpod 代码检查
+  freezed: ^2.4.5
 
 flutter:
   uses-material-design: true # 启用 material3 设计

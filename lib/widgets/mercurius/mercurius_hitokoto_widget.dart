@@ -27,7 +27,7 @@ class MercuriusHiToKoToWidget extends StatelessWidget {
               onTap: () {
                 try {
                   launchUrlString(
-                    'https://hitokoto.cn/?uuid=${snapshot.data!.uuid!}',
+                    'https://hitokoto.cn/?uuid=${snapshot.data!.uuid}',
                     mode: LaunchMode.externalApplication,
                   );
                 } catch (e) {

@@ -3,38 +3,27 @@
 import 'package:mercurius/index.dart';
 
 part 'hitokoto.g.dart';
+part 'hitokoto.freezed.dart';
 
-@JsonSerializable()
-class HiToKoTo {
-  const HiToKoTo({
-    required this.id,
-    required this.uuid,
-    required this.type,
-    required this.from,
-    required this.from_who,
-    required this.creator,
-    required this.creator_uid,
-    required this.reviewer,
-    required this.commit_from,
-    required this.created_at,
-    required this.length,
-    required this.hitokoto,
-  });
+@freezed
+class HiToKoTo with _$HiToKoTo {
+  const factory HiToKoTo({
+    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'uuid') required String uuid,
+    @JsonKey(name: 'hitokoto') required String hitokoto,
+    @JsonKey(name: 'type') required String type,
+    @JsonKey(name: 'from') required String from,
+    @JsonKey(name: 'from_who') required String fromWho,
+    @JsonKey(name: 'creator') required String creator,
+    @JsonKey(name: 'creator_uid') required int creatorUid,
+    @JsonKey(name: 'reviewer') required int reviewer,
+    @JsonKey(name: 'commit_from') required String commitFrom,
+    @JsonKey(name: 'created_at') required String createdAt,
+    @JsonKey(name: 'length') required int length,
+  }) = _HiToKoTo;
 
-  final int? id;
-  final String? uuid;
-  final String hitokoto;
-  final String? type;
-  final String? from;
-  final String? from_who;
-  final String? creator;
-  final int? creator_uid;
-  final int? reviewer;
-  final String? commit_from;
-  final String? created_at;
-  final int? length;
+  const HiToKoTo._();
 
-  factory HiToKoTo.fromJson(Map<String, dynamic> json) =>
+  factory HiToKoTo.fromJson(Map<String, Object?> json) =>
       _$HiToKoToFromJson(json);
-  Map<String, dynamic> toJson() => _$HiToKoToToJson(this);
 }

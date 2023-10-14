@@ -5,7 +5,7 @@ export 'l10n/l10n.dart';
 export 'models/index.dart';
 export 'pages/index.dart';
 export 'platform/index.dart';
-export 'states/index.dart';
+export 'riverpod/index.dart';
 export 'widgets/index.dart';
 export 'main.dart';
 
@@ -39,6 +39,7 @@ export 'package:flutter_markdown/flutter_markdown.dart'; // markdown
 /// [Text] 和 `export 'package:flutter/material.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
 export 'package:flutter_quill/flutter_quill.dart' hide Text; // 富文本
 export 'package:flutter_riverpod/flutter_riverpod.dart'; // 状态管理
+export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:image_picker/image_picker.dart'; // 图片选择
 export 'package:image_picker_android/image_picker_android.dart'; // 图片选择
 export 'package:image_picker_platform_interface/image_picker_platform_interface.dart'; // 图片选择
