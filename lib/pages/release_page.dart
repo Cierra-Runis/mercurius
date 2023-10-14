@@ -31,7 +31,7 @@ class ReleasePage extends ConsumerWidget {
   }
 
   Widget _getBodyByData(BuildContext context, GithubLatestRelease data) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     if (data.body != null) {
       return Markdown(
@@ -61,7 +61,7 @@ class ReleasePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     return Scaffold(
       appBar: AppBar(

@@ -12,7 +12,7 @@ class MercuriusGalleryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return Card(

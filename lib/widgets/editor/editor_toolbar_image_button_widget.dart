@@ -19,7 +19,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
     BuildContext context,
     String path,
   ) async {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     bool? newImage = await MercuriusConfirmDialogWidget(
       context: context,

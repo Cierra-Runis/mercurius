@@ -10,7 +10,7 @@ class MercuriusMorePageListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     final List<List<dynamic>> data = [
       [
@@ -82,7 +82,7 @@ class AboutSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final currentVersion = ref.watch(currentVersionProvider);

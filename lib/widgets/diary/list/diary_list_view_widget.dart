@@ -11,7 +11,7 @@ class DiaryListViewWidget extends ConsumerWidget {
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {

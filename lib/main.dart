@@ -40,7 +40,7 @@ class MercuriusApp extends StatelessWidget {
         themeMode: snapshot.data?.themeMode,
         home: const SplashPage(),
         localizationsDelegates: const [
-          MercuriusL10N.delegate,
+          L10N.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

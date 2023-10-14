@@ -10,7 +10,7 @@ class WeatherSelectorWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     return AlertDialog(
       title: Column(

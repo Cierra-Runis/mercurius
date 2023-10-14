@@ -23,7 +23,7 @@ class EditorBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MercuriusL10N l10n = MercuriusL10N.of(context);
+    final l10n = context.l10n;
 
     return QuillEditor(
       locale: Localizations.localeOf(context),
