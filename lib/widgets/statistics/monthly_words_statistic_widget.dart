@@ -1,39 +1,10 @@
 import 'package:mercurius/index.dart';
 
-class MonthlyWordsStatisticWidget extends ConsumerStatefulWidget {
+class MonthlyWordsStatisticWidget extends ConsumerWidget {
   const MonthlyWordsStatisticWidget({super.key});
 
   @override
-  ConsumerState<MonthlyWordsStatisticWidget> createState() =>
-      _DiaryMonthlyWordsWidgetState();
-}
-
-class _DiaryMonthlyWordsWidgetState
-    extends ConsumerState<MonthlyWordsStatisticWidget> {
-  TooltipBehavior? _tooltipBehavior;
-  ZoomPanBehavior? _zoomPanBehavior;
-
-  @override
-  void initState() {
-    super.initState();
-    _tooltipBehavior = TooltipBehavior(
-      header: '',
-      format: 'point.x point.y',
-      enable: true,
-      textStyle: const TextStyle(
-        fontFamily: 'Saira',
-        fontSize: 8,
-      ),
-    );
-    _zoomPanBehavior = ZoomPanBehavior(
-      enablePinching: true,
-      zoomMode: ZoomMode.x,
-      enablePanning: true,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final MercuriusL10N l10n = MercuriusL10N.of(context);
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
@@ -69,8 +40,20 @@ class _DiaryMonthlyWordsWidgetState
                       fontSize: 6,
                     ),
                   ),
-                  tooltipBehavior: _tooltipBehavior,
-                  zoomPanBehavior: _zoomPanBehavior,
+                  tooltipBehavior: TooltipBehavior(
+                    header: '',
+                    format: 'point.x point.y',
+                    enable: true,
+                    textStyle: const TextStyle(
+                      fontFamily: 'Saira',
+                      fontSize: 8,
+                    ),
+                  ),
+                  zoomPanBehavior: ZoomPanBehavior(
+                    enablePinching: true,
+                    zoomMode: ZoomMode.x,
+                    enablePanning: true,
+                  ),
                   series: <ColumnSeries<_DiaryWordsData, String>>[
                     ColumnSeries<_DiaryWordsData, String>(
                       color: Theme.of(context)
