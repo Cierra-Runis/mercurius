@@ -33,10 +33,7 @@ class AppBarTitle extends ConsumerWidget {
               Text(
                 currentPosition.when(
                   loading: () => ' ${CurrentPosition().humanFormat} ',
-                  error: (error, stackTrace) {
-                    Mercurius.printLog(error);
-                    return 'error';
-                  },
+                  error: (error, stackTrace) => 'error',
                   data: (data) => ' ${data.humanFormat} ',
                 ),
                 style: const TextStyle(
