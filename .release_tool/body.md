@@ -1,16 +1,18 @@
 ### **Latest Version**
 
-[v1.5.1+96](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.5.1+96)
+[v1.5.2+97](https://github.com/Cierra-Runis/mercurius/releases/tag/v1.5.2+97)
 
 ### **What's Updated**
 
-> 📖Revise
+> 📖Revise & 🔧Fix issue
 >
-> 1. 📖Update packages
+> 1. 🔧Fix issue cause by .isNull & .isNotNull
+> 2. 📖Update flutter_quill and other packages
+> 3. 📖Remove some printLog
 
 ### **Changelog**
 
-> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.5.0+95...v1.5.1+96)
+> [Compare To Previous Version](https://github.com/Cierra-Runis/mercurius/compare/v1.5.1+96...v1.5.2+97)
 > For further changelog, check the [Github Releases Page](https://github.com/Cierra-Runis/mercurius/releases)
 
 ### **Breaking Changes**
