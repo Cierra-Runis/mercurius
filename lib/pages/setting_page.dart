@@ -47,7 +47,6 @@ class _BackgroundImageListTile extends StatelessWidget {
               String? path = await context.push(
                 const GalleryPage(readOnly: true),
               );
-              Mercurius.printLog(path);
               isarService.saveConfig(config..backgroundImagePath = path);
             },
           );
