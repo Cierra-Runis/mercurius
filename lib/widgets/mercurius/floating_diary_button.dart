@@ -12,7 +12,7 @@ class FloatingDiaryButton extends ConsumerWidget {
   ) {
     final l10n = context.l10n;
 
-    bool hasEditingDiary = snapshot.data.isNotNull && snapshot.data!.isNotEmpty;
+    bool hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
 
     return Wrap(
       direction: Axis.vertical,
@@ -88,9 +88,9 @@ class FloatingDiaryButton extends ConsumerWidget {
       ),
     );
 
-    if (context.mounted && diary.isNotNull) {
+    if (context.mounted && diary != null) {
       context.push(
-        EditorPage(diary: diary!, autoSave: true),
+        EditorPage(diary: diary, autoSave: true),
       );
     }
   }
@@ -106,10 +106,10 @@ class FloatingDiaryButton extends ConsumerWidget {
       ),
     );
 
-    if (context.mounted && dateTime.isNotNull) {
+    if (context.mounted && dateTime != null) {
       Diary diary = Diary(
         id: Isar.autoIncrement,
-        createDateTime: dateTime!,
+        createDateTime: dateTime,
         latestEditTime: dateTime,
         contentJsonString: jsonEncode(Document().toDelta().toJson()),
         editing: true,

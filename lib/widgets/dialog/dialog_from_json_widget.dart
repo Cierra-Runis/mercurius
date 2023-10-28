@@ -46,10 +46,10 @@ class JsonToDialog extends StatelessWidget {
           data: content,
           padding: const EdgeInsets.all(0),
           onTapLink: (text, href, title) {
-            if (href.isNotNull) {
+            if (href != null) {
               try {
                 launchUrlString(
-                  href!,
+                  href,
                   mode: LaunchMode.externalApplication,
                 );
               } catch (e) {

@@ -23,8 +23,3 @@ extension BrightnessExtension on Brightness {
   bool get isDark => this == Brightness.dark;
   bool get isLight => this == Brightness.light;
 }
-
-extension DynamicExtension on dynamic {
-  bool get isNull => this == null;
-  bool get isNotNull => this != null;
-}

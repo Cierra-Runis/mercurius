@@ -50,8 +50,8 @@ class EditorToolbarImageButtonWidget extends CustomButton {
           source: ImageSource.gallery,
         );
 
-        if (pickedFile.isNotNull) {
-          String sourceFilePath = pickedFile!.path;
+        if (pickedFile != null) {
+          String sourceFilePath = pickedFile.path;
           String targetFilePath = '$path/image/${pickedFile.name}';
 
           await XFile(sourceFilePath).saveTo(targetFilePath);
@@ -66,8 +66,8 @@ class EditorToolbarImageButtonWidget extends CustomButton {
           String? filename = await context.push(
             const GalleryPage(readOnly: true),
           );
-          if (filename.isNotNull) {
-            _insert(controller, filename!);
+          if (filename != null) {
+            _insert(controller, filename);
           }
         }
         break;

@@ -42,7 +42,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
   ) {
     final l10n = context.l10n;
 
-    if (snapshot.data.isNull || snapshot.data!.isEmpty) {
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
       return Center(child: Text(l10n.noData));
     }
 
