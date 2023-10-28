@@ -3,6 +3,7 @@ import 'package:mercurius/index.dart';
 class EditorToolbarDateTimeButtonWidget extends QuillCustomButton {
   const EditorToolbarDateTimeButtonWidget({
     required super.tooltip,
+    super.iconData = Icons.date_range_rounded,
     required this.currentDiary,
     required this.context,
     required this.handleToolbarChangeDiary,
@@ -11,9 +12,6 @@ class EditorToolbarDateTimeButtonWidget extends QuillCustomButton {
   final BuildContext context;
   final Diary currentDiary;
   final ValueChanged<Diary?> handleToolbarChangeDiary;
-
-  @override
-  IconData get icon => Icons.date_range_rounded;
 
   @override
   VoidCallback get onTap => () async {

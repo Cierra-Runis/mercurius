@@ -3,6 +3,7 @@ import 'package:mercurius/index.dart';
 class EditorToolbarWeatherButtonWidget extends QuillCustomButton {
   const EditorToolbarWeatherButtonWidget({
     required super.tooltip,
+    super.iconData = Icons.cloud,
     required this.currentDiary,
     required this.context,
     required this.handleToolbarChangeDiary,
@@ -11,9 +12,6 @@ class EditorToolbarWeatherButtonWidget extends QuillCustomButton {
   final BuildContext context;
   final Diary currentDiary;
   final ValueChanged<Diary?> handleToolbarChangeDiary;
-
-  @override
-  IconData get icon => Icons.cloud;
 
   @override
   VoidCallback get onTap => () async {

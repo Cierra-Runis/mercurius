@@ -11,7 +11,7 @@ class DiaryPageItemWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final String lang = Localizations.localeOf(context).toLanguageTag();
+    final lang = Localizations.localeOf(context).toLanguageTag();
 
     return Stack(
       children: [
@@ -106,12 +106,19 @@ class DiaryPageItemWidget extends ConsumerWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-                      child: EditorBodyWidget(
-                        readOnly: true,
-                        scrollController: ScrollController(),
-                        quillController: QuillController(
-                          document: diary.document,
-                          selection: const TextSelection.collapsed(offset: 0),
+                      child: QuillProvider(
+                        configurations: QuillConfigurations(
+                          controller: QuillController(
+                            document: diary.document,
+                            selection: const TextSelection.collapsed(offset: 0),
+                          ),
+                          sharedConfigurations: QuillSharedConfigurations(
+                            locale: Localizations.localeOf(context),
+                          ),
+                        ),
+                        child: EditorBodyWidget(
+                          readOnly: true,
+                          scrollController: ScrollController(),
                         ),
                       ),
                     ),
