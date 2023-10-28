@@ -5,13 +5,11 @@ class EditorToolbarWidget extends ConsumerWidget {
     super.key,
     required this.diary,
     required this.scrollController,
-    required this.quillController,
     required this.handleChangeDiary,
   });
 
   final Diary diary;
   final ScrollController scrollController;
-  final QuillController quillController;
   final ValueChanged<Diary?> handleChangeDiary;
 
   @override
@@ -53,53 +51,55 @@ class EditorToolbarWidget extends ConsumerWidget {
       }
     ];
 
-    return QuillToolbar.basic(
-      controller: quillController,
-      showUndo: false,
-      showRedo: false,
-      showFontFamily: false,
-      showFontSize: false,
-      showBackgroundColorButton: false,
-      showClearFormat: false,
-      showColorButton: false,
-      showCodeBlock: false,
-      showInlineCode: false,
-      showAlignmentButtons: true,
-      showListBullets: false,
-      showListCheck: false,
-      showListNumbers: false,
-      showJustifyAlignment: false,
-      showDividers: false,
-      showSmallButton: true,
-      showSearchButton: false,
-      showIndent: false,
-      showLink: false,
-      showSubscript: false,
-      showSuperscript: false,
-      toolbarSectionSpacing: 2,
-      iconTheme: quillIconTheme,
-      embedButtons: embedButtons,
-      customButtons: [
-        EditorToolbarMoodButtonWidget(
-          context: context,
-          currentDiary: diary,
-          handleToolbarChangeDiary: handleChangeDiary,
-          tooltip: l10n.changeMood,
+    return QuillToolbar(
+      configurations: QuillToolbarConfigurations(
+        buttonOptions: QuillToolbarButtonOptions(
+          base: QuillToolbarBaseButtonOptions(iconTheme: quillIconTheme),
         ),
-        EditorToolbarWeatherButtonWidget(
-          context: context,
-          currentDiary: diary,
-          handleToolbarChangeDiary: handleChangeDiary,
-          tooltip: l10n.changeWeather,
-        ),
-        EditorToolbarDateTimeButtonWidget(
-          currentDiary: diary,
-          context: context,
-          handleToolbarChangeDiary: handleChangeDiary,
-          tooltip: l10n.changeDate,
-        ),
-      ],
-      locale: Localizations.localeOf(context),
+        showUndo: false,
+        showRedo: false,
+        showFontFamily: false,
+        showFontSize: false,
+        showBackgroundColorButton: false,
+        showClearFormat: false,
+        showColorButton: false,
+        showCodeBlock: false,
+        showInlineCode: false,
+        showAlignmentButtons: true,
+        showListBullets: false,
+        showListCheck: false,
+        showListNumbers: false,
+        showJustifyAlignment: false,
+        showDividers: false,
+        showSmallButton: true,
+        showSearchButton: false,
+        showIndent: false,
+        showLink: false,
+        showSubscript: false,
+        showSuperscript: false,
+        toolbarSectionSpacing: 2,
+        embedButtons: embedButtons,
+        customButtons: [
+          EditorToolbarMoodButtonWidget(
+            context: context,
+            currentDiary: diary,
+            handleToolbarChangeDiary: handleChangeDiary,
+            tooltip: l10n.changeMood,
+          ),
+          EditorToolbarWeatherButtonWidget(
+            context: context,
+            currentDiary: diary,
+            handleToolbarChangeDiary: handleChangeDiary,
+            tooltip: l10n.changeWeather,
+          ),
+          EditorToolbarDateTimeButtonWidget(
+            currentDiary: diary,
+            context: context,
+            handleToolbarChangeDiary: handleChangeDiary,
+            tooltip: l10n.changeDate,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -62,23 +62,29 @@ class _DiaryEditorPageState extends ConsumerState<EditorPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: EditorBodyWidget(
-                readOnly: false,
-                scrollController: _scrollController,
-                quillController: _quillController,
+        child: QuillProvider(
+          configurations: QuillConfigurations(
+            controller: _quillController,
+            sharedConfigurations: QuillSharedConfigurations(
+              locale: Localizations.localeOf(context),
+            ),
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: EditorBodyWidget(
+                  readOnly: false,
+                  scrollController: _scrollController,
+                ),
               ),
-            ),
-            const Divider(),
-            EditorToolbarWidget(
-              diary: _diary,
-              scrollController: _scrollController,
-              quillController: _quillController,
-              handleChangeDiary: _handleChangeDiary,
-            ),
-          ],
+              const Divider(),
+              EditorToolbarWidget(
+                diary: _diary,
+                scrollController: _scrollController,
+                handleChangeDiary: _handleChangeDiary,
+              ),
+            ],
+          ),
         ),
       ),
     );
