@@ -14,7 +14,7 @@ class DiaryListViewWidget extends ConsumerWidget {
     final l10n = context.l10n;
     final String lang = Localizations.localeOf(context).toLanguageTag();
 
-    if (snapshot.data.isNull || snapshot.data!.isEmpty) {
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
       return Center(child: Text(l10n.noData));
     }
 

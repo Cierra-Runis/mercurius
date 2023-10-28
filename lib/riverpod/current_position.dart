@@ -25,9 +25,9 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
   dynamic data;
   if (response.statusCode == 200) {
     data = jsonDecode('$response');
-    if (data['province'].isNull ||
-        data['city'].isNull ||
-        data['rectangle'].isNull) {
+    if (data['province'] == null ||
+        data['city'] == null ||
+        data['rectangle'] == null) {
       return newCachePosition;
     }
   } else {

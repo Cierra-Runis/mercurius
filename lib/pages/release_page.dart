@@ -33,7 +33,7 @@ class ReleasePage extends ConsumerWidget {
   Widget _getBodyByData(BuildContext context, GithubLatestRelease data) {
     final l10n = context.l10n;
 
-    if (data.body.isNotNull) {
+    if (data.body != null) {
       return Markdown(
         styleSheet: MarkdownStyleSheet(
           blockquoteDecoration: BoxDecoration(
@@ -43,9 +43,9 @@ class ReleasePage extends ConsumerWidget {
         ),
         data: data.body!,
         onTapLink: (text, href, title) {
-          if (href.isNotNull) {
+          if (href != null) {
             try {
-              launchUrlString(href!, mode: LaunchMode.externalApplication);
+              launchUrlString(href, mode: LaunchMode.externalApplication);
             } catch (e) {
               Mercurius.printLog('launch $href failed: $e');
             }
