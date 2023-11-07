@@ -6,7 +6,7 @@ publish_to: "none"
 version: 1.5.2+97
 
 environment:
-  sdk: ">=3.1.2 <4.0.0"
+  sdk: ">=3.1.3 <4.0.0"
 
 dependencies:
   flutter: # Flutter 本体
@@ -18,12 +18,12 @@ dependencies:
   based_list: ^1.1.2
   cross_file: ^0.3.3+5 # 文件操作
   dio: ^5.3.3 # 网络请求
-  dart_date: ^1.2.2 # 转换时间工具
-  file_picker: ^6.0.0 # 文件选择
+  dart_date: ^1.3.2 # 转换时间工具
+  file_picker: ^6.1.1 # 文件选择
   flutter_displaymode: ^0.6.0 # 高刷
   flutter_markdown: ^0.6.18 # markdown
-  flutter_quill: ^8.1.0 # 富文本
-  flutter_riverpod: ^2.4.4 # 状态管理
+  flutter_quill: ^8.2.5 # 富文本
+  flutter_riverpod: ^2.4.5 # 状态管理
   image_picker: ^1.0.4 # 图片选择
   image_picker_android: ^0.8.8 # 图片选择
   image_picker_platform_interface: ^2.9.1 # 图片选择
@@ -35,14 +35,14 @@ dependencies:
   loading_animation_widget: ^1.2.0+4 # 加载器组件
   path_provider: ^2.1.1 # 路径获取
   package_info_plus: ^4.2.0 # 包信息
-  pausable_timer: ^3.0.0 # 可暂停计时器
+  pausable_timer: ^3.1.0+3 # 可暂停计时器
   photo_view: ^0.14.0 # 图片视图
   qweather_icons: ^1.5.0 # QWeather 图标
-  riverpod_annotation: ^2.2.1 # 状态管理相关
+  riverpod_annotation: ^2.3.0 # 状态管理相关
   share_plus: ^7.2.1 # 分享
   sticky_and_expandable_list: ^1.1.3 # 粘性头部与分组列表
   system_tray: ^2.0.3 # 系统托盘
-  syncfusion_flutter_charts: ^23.1.42 # 图表
+  syncfusion_flutter_charts: ^23.1.44 # 图表
   url_launcher: ^6.2.1 # 打开外部链接
   unicons: ^2.1.1 # 图标
   vibration: ^1.8.3 # 振动反馈
