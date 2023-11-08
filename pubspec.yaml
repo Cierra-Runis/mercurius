@@ -40,6 +40,7 @@ dependencies:
   qweather_icons: ^1.5.0 # QWeather 图标
   riverpod_annotation: ^2.3.0 # 状态管理相关
   share_plus: ^7.2.1 # 分享
+  shared_preferences: ^2.2.2
   sticky_and_expandable_list: ^1.1.3 # 粘性头部与分组列表
   system_tray: ^2.0.3 # 系统托盘
   syncfusion_flutter_charts: ^23.1.44 # 图表

@@ -37,7 +37,7 @@ export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:flutter_markdown/flutter_markdown.dart'; // markdown
 /// [Text] 和 `export 'package:flutter/material.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
-export 'package:flutter_quill/flutter_quill.dart' hide Text; // 富文本
+export 'package:flutter_quill/flutter_quill.dart'; // 富文本
 export 'package:flutter_riverpod/flutter_riverpod.dart'; // 状态管理
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:image_picker/image_picker.dart'; // 图片选择
@@ -54,6 +54,7 @@ export 'package:package_info_plus/package_info_plus.dart'; // 包信息
 export 'package:photo_view/photo_view.dart'; // 图片视图
 export 'package:qweather_icons/qweather_icons.dart'; // QWeather 图标
 export 'package:share_plus/share_plus.dart'; // 分享
+export 'package:shared_preferences/shared_preferences.dart';
 export 'package:sticky_and_expandable_list/sticky_and_expandable_list.dart'; // 粘性头部与分组列表
 export 'package:system_tray/system_tray.dart'; // 系统托盘
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表

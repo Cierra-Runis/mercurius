@@ -103,7 +103,14 @@ class Mercurius {
     ]);
 
     /// 启动
-    runApp(const ProviderScope(child: MercuriusApp()));
+    runApp(
+      ProviderScope(
+        overrides: [
+          persistenceProvider.overrideWithValue(await Persistence.init()),
+        ],
+        child: const MercuriusApp(),
+      ),
+    );
   }
 
   /// [Mercurius] 调试用输出语句
