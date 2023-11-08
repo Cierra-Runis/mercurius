@@ -82,7 +82,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
 
     controller.document.insert(
@@ -94,7 +94,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
 
     controller.document.insert(controller.selection.extentOffset, ' ');
@@ -102,7 +102,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
 
     controller.document.insert(controller.selection.extentOffset, '\n');
@@ -110,7 +110,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
   }
 }

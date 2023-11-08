@@ -13,6 +13,25 @@ class ImageBlockEmbed extends Embeddable {
   Document get document => Document.fromJson(jsonDecode(data));
 }
 
+class DeprecatedEmbed extends EmbedBuilder {
+  @override
+  String get key => 'deprecated';
+
+  @override
+  Widget build(
+    BuildContext context,
+    QuillController controller,
+    Embed node,
+    bool readOnly,
+    bool inline,
+    TextStyle textStyle,
+  ) {
+    return const Chip(
+      label: Text('已弃用'),
+    );
+  }
+}
+
 class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
   const DiaryImageEmbedBuilderWidget();
 
@@ -108,7 +127,7 @@ class DiaryImageEmbedBuilderWidget extends EmbedBuilder {
             ),
           );
         }
-        return Container();
+        return const SizedBox();
       },
     );
   }
