@@ -5,11 +5,13 @@ final isarService = IsarService();
 
 void main() => Mercurius.run();
 
-class MercuriusApp extends StatelessWidget {
+class MercuriusApp extends ConsumerWidget {
   const MercuriusApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+
     final theme = ThemeData(
       useMaterial3: true,
       colorScheme: Mercurius.lightColorScheme,
@@ -30,27 +32,24 @@ class MercuriusApp extends StatelessWidget {
       appBarTheme: const AppBarTheme(centerTitle: true),
     );
 
-    return StreamBuilder(
-      stream: isarService.listenToConfig(),
-      builder: (context, snapshot) => MaterialApp(
-        scrollBehavior: const PlatformScrollBehavior(),
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        darkTheme: darkTheme,
-        themeMode: snapshot.data?.themeMode,
-        home: const SplashPage(),
-        localizationsDelegates: const [
-          L10N.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en'),
-          Locale('zh', 'CN'),
-          Locale('ja'),
-        ],
-      ),
+    return MaterialApp(
+      scrollBehavior: const PlatformScrollBehavior(),
+      debugShowCheckedModeBanner: false,
+      theme: theme,
+      darkTheme: darkTheme,
+      themeMode: settings.themeMode,
+      home: const SplashPage(),
+      localizationsDelegates: const [
+        L10N.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('zh', 'CN'),
+        Locale('ja'),
+      ],
     );
   }
 }

@@ -99,30 +99,6 @@ class IsarService {
     await file.writeAsString(jsonEncode(data));
   }
 
-  /// 获取 config
-  Future<Config> getConfig() async {
-    final isar = await _db;
-    if (await isar.configs.count() == 0) {
-      await isar.writeTxn(() => isar.configs.put(Config()));
-    }
-    return isar.configs.getSync(0)!;
-  }
-
-  /// 监听 config
-  Stream<Config?> listenToConfig() async* {
-    final isar = await _db;
-    if (await isar.configs.count() == 0) {
-      await isar.writeTxn(() => isar.configs.put(Config()));
-    }
-    yield* isar.configs.watchObject(0, fireImmediately: true);
-  }
-
-  /// 保存 config
-  Future<void> saveConfig(Config config) async {
-    final isar = await _db;
-    await isar.writeTxn(() => isar.configs.put(config));
-  }
-
   /// 清除数据库
   Future<void> cleanDb() async {
     final isar = await _db;
@@ -148,7 +124,7 @@ class IsarService {
       }
 
       final isar = await Isar.open(
-        [DiarySchema, ConfigSchema],
+        [DiarySchema],
         inspector: true,
         name: Mercurius.database,
         directory: directory.path,

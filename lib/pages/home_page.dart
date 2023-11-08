@@ -14,6 +14,7 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final path = ref.watch(mercuriusPathProvider);
+    final settings = ref.watch(settingsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -27,32 +28,26 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
         ),
         actions: PlatformWindowsManager.getActions(),
       ),
-      body: StreamBuilder(
-        stream: isarService.listenToConfig(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return DecoratedBox(
-              decoration: path.when(
+      body: DecoratedBox(
+        decoration: settings.bgImgPath != null
+            ? path.when(
                 loading: BoxDecoration.new,
                 error: (error, stackTrace) => const BoxDecoration(),
                 data: (data) => BoxDecoration(
                   image: DecorationImage(
                     opacity: 0.8,
                     image: FileImage(
-                      File('$data/image/${snapshot.data?.backgroundImagePath}'),
+                      File('$data/image/${settings.bgImgPath}'),
                     ),
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                child: DiaryListViewWidget(controller: controller),
-              ),
-            );
-          }
-          return const Loading();
-        },
+              )
+            : const BoxDecoration(),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+          child: DiaryListViewWidget(controller: controller),
+        ),
       ),
       floatingActionButton: const FloatingDiaryButton(),
     );

@@ -27,31 +27,24 @@ class SettingPage extends StatelessWidget {
   }
 }
 
-class _BackgroundImageListTile extends StatelessWidget {
+class _BackgroundImageListTile extends ConsumerWidget {
   const _BackgroundImageListTile();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
-    return StreamBuilder(
-      stream: isarService.listenToConfig(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          Config config = snapshot.data!;
-          return BasedListTile(
-            leadingIcon: Icons.flip_to_back_rounded,
-            titleText: l10n.backgroundImage,
-            detailText: config.backgroundImagePath ?? l10n.noImageSelected,
-            onTap: () async {
-              String? path = await context.push(
-                const GalleryPage(readOnly: true),
-              );
-              isarService.saveConfig(config..backgroundImagePath = path);
-            },
-          );
-        }
-        return const Loading();
+    return BasedListTile(
+      leadingIcon: Icons.flip_to_back_rounded,
+      titleText: l10n.backgroundImage,
+      detailText: settings.bgImgPath ?? l10n.noImageSelected,
+      onTap: () async {
+        String? path = await context.push(
+          const GalleryPage(readOnly: true),
+        );
+        settingsNotifier.setBgImgPath(path);
       },
     );
   }
@@ -63,28 +56,20 @@ class _ThemeSelectListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
 
-    return StreamBuilder(
-      stream: isarService.listenToConfig(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          Config config = snapshot.data!;
-          return BasedListTile(
-            leadingIcon: Icons.dark_mode_rounded,
-            titleText: l10n.darkMode,
-            detailText: config.themeMode == ThemeMode.system
-                ? l10n.followTheSystem
-                : snapshot.data!.themeMode == ThemeMode.dark
-                    ? l10n.alwaysDark
-                    : l10n.alwaysBright,
-            onTap: () => showDialog<void>(
-              context: context,
-              builder: (context) => const ThemeSelector(),
-            ),
-          );
-        }
-        return const Loading();
-      },
+    return BasedListTile(
+      leadingIcon: Icons.dark_mode_rounded,
+      titleText: l10n.darkMode,
+      detailText: settings.themeMode == ThemeMode.system
+          ? l10n.followTheSystem
+          : settings.themeMode == ThemeMode.dark
+              ? l10n.alwaysDark
+              : l10n.alwaysBright,
+      onTap: () => showDialog<void>(
+        context: context,
+        builder: (context) => const ThemeSelector(),
+      ),
     );
   }
 }
