@@ -159,10 +159,7 @@ class DiaryPageItemWidget extends ConsumerWidget {
                               icon: const Icon(Icons.edit),
                             ),
                             DiaryPageItemShareButtonWidget(
-                              ref: ref,
                               diary: diary,
-                              lang: lang,
-                              l10n: l10n,
                             ),
                           ],
                         ),
