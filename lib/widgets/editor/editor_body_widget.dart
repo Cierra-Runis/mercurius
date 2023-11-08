@@ -14,10 +14,12 @@ class EditorBodyWidget extends StatelessWidget {
   bool get enableInteractiveSelection => !readOnly;
   bool get enableSelectionToolbar => !readOnly;
 
-  static const List<EmbedBuilder> embedBuilders = [
+  static const embedBuilders = [
     DiaryImageEmbedBuilderWidget(),
     DiaryTagEmbedBuilderWidget(),
   ];
+
+  static final unknownEmbedBuilder = DeprecatedEmbed();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class EditorBodyWidget extends StatelessWidget {
         },
         scrollBottomInset: 10,
         embedBuilders: embedBuilders,
+        unknownEmbedBuilder: unknownEmbedBuilder,
         customStyles: DefaultStyles(
           placeHolder: DefaultTextBlockStyle(
             TextStyle(
