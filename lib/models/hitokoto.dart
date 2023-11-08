@@ -8,8 +8,8 @@ part 'hitokoto.freezed.dart';
 @freezed
 class HiToKoTo with _$HiToKoTo {
   const factory HiToKoTo({
-    @JsonKey(name: 'uuid') required String uuid,
-    @JsonKey(name: 'hitokoto') required String hitokoto,
+    required String uuid,
+    required String hitokoto,
   }) = _HiToKoTo;
 
   const HiToKoTo._();

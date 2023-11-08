@@ -15,7 +15,7 @@ class DiaryListItemWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final String lang = Localizations.localeOf(context).toLanguageTag();
+    final lang = Localizations.localeOf(context).toLanguageTag();
 
     final dayWidget = Text(
       diary.createDateTime.format('dd'),
@@ -92,7 +92,7 @@ class DiaryListItemWidget extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(flex: 18, child: Container()),
+                const Expanded(flex: 18, child: SizedBox()),
                 Expanded(
                   flex: 40,
                   child: Column(
@@ -120,7 +120,7 @@ class DiaryListItemWidget extends ConsumerWidget {
                     children: [moodWidget, weatherWidget],
                   ),
                 ),
-                Expanded(flex: 9, child: Container()),
+                const Expanded(flex: 9, child: SizedBox()),
               ],
             ),
           ),

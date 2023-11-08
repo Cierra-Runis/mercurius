@@ -94,7 +94,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
         loading: () => const Loading(),
 
         /// TODO: 这里应该提示 error
-        error: (error, stackTrace) => Container(),
+        error: (error, stackTrace) => const SizedBox(),
         data: (data) => StreamBuilder(
           stream: listenToImageFile(data).distinct(),
           builder: getBodyBySnapshotState,

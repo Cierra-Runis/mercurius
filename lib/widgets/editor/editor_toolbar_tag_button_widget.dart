@@ -17,7 +17,7 @@ class EditorToolbarTagButtonWidget extends CustomButton {
     QuillController controller,
     BuildContext context,
   ) async {
-    final String lang = Localizations.localeOf(context).toLanguageTag();
+    final lang = Localizations.localeOf(context).toLanguageTag();
 
     DateTime now = DateTime.now();
     String time = now.format(DateFormat.HOUR24_MINUTE_SECOND, lang);
@@ -44,7 +44,7 @@ class EditorToolbarTagButtonWidget extends CustomButton {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
 
     controller.document.insert(controller.selection.extentOffset, ' ');
@@ -52,7 +52,7 @@ class EditorToolbarTagButtonWidget extends CustomButton {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
   }
 }

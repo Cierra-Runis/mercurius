@@ -36,7 +36,7 @@ class MoodSelector extends ConsumerWidget {
           ),
           itemCount: DiaryMoodType.values.length,
           itemBuilder: (context, index) {
-            DiaryMoodType moodType = DiaryMoodType.values[index];
+            final moodType = DiaryMoodType.values[index];
             return IconButton(
               onPressed: () => context.pop(
                 Diary.copyWith(diary, moodType: moodType),

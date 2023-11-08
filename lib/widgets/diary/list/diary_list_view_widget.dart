@@ -12,7 +12,7 @@ class DiaryListViewWidget extends ConsumerWidget {
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
     final l10n = context.l10n;
-    final String lang = Localizations.localeOf(context).toLanguageTag();
+    final lang = Localizations.localeOf(context).toLanguageTag();
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return Center(child: Text(l10n.noData));
