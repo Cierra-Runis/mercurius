@@ -51,7 +51,7 @@ class _TagSelectorState extends State<TagSelector> {
             ),
             itemCount: TagSelector.iconDataList.length,
             itemBuilder: (context, index) {
-              IconData iconData = TagSelector.iconDataList[index];
+              final iconData = TagSelector.iconDataList[index];
               return IconButton(
                 onPressed: () => setState(() {
                   _selectedIcon = iconData;

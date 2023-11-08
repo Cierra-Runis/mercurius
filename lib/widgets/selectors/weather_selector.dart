@@ -36,7 +36,7 @@ class WeatherSelector extends ConsumerWidget {
           ),
           itemCount: DiaryWeatherType.values.length,
           itemBuilder: (context, index) {
-            DiaryWeatherType weatherType = DiaryWeatherType.values[index];
+            final weatherType = DiaryWeatherType.values[index];
             return IconButton(
               onPressed: () => context.pop(
                 Diary.copyWith(diary, weatherType: weatherType),

@@ -6,7 +6,7 @@ class MonthlyWordsStatisticWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final String lang = Localizations.localeOf(context).toLanguageTag();
+    final lang = Localizations.localeOf(context).toLanguageTag();
 
     return BasedListSection(
       titleText: l10n.monthlyWordCountStatistics,

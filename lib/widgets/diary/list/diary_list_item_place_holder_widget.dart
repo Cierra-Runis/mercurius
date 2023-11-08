@@ -44,13 +44,13 @@ class DiaryListItemPlaceHolderWidget extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(24.0),
-        child: SizedBox(
+        child: const SizedBox(
           height: 80,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(flex: 18, child: Container()),
-              const Expanded(
+              Expanded(flex: 18, child: SizedBox()),
+              Expanded(
                 flex: 40,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -58,7 +58,7 @@ class DiaryListItemPlaceHolderWidget extends StatelessWidget {
                   children: [dayWidget, weekdayWidget],
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 142,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,14 +70,14 @@ class DiaryListItemPlaceHolderWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              const Expanded(
+              Expanded(
                 flex: 50,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [moodWidget, weatherWidget],
                 ),
               ),
-              Expanded(flex: 9, child: Container()),
+              Expanded(flex: 9, child: SizedBox()),
             ],
           ),
         ),

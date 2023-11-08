@@ -74,7 +74,7 @@ class ReleasePage extends ConsumerWidget {
         child: githubLatestRelease.when(
           skipLoadingOnRefresh: false,
           loading: () => const Loading(),
-          error: (error, stackTrace) => Container(),
+          error: (error, stackTrace) => const SizedBox(),
           data: (data) => _getBodyByData(context, data),
         ),
       ),

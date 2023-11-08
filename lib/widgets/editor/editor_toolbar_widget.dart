@@ -31,7 +31,7 @@ class EditorToolbarWidget extends ConsumerWidget {
       (controller, _, __, ___) {
         return path.when(
           loading: () => const Loading(),
-          error: (error, stackTrace) => Container(),
+          error: (error, stackTrace) => const SizedBox(),
           data: (data) => EditorToolbarImageButtonWidget(
             tooltip: l10n.insertImage,
             iconTheme: quillIconTheme,
