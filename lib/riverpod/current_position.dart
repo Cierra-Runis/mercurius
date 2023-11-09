@@ -7,7 +7,7 @@ part 'current_position.g.dart';
 Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
   ref.keepAlive();
   Response response;
-  CurrentPosition newCachePosition = CurrentPosition();
+  var newCachePosition = CurrentPosition();
 
   // 尝试连接 aMap 获取位置
   try {
@@ -34,7 +34,7 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
     return newCachePosition;
   }
 
-  var match = RegExp(r'(.*),(.*);').firstMatch(data['rectangle']);
+  final match = RegExp(r'(.*),(.*);').firstMatch(data['rectangle']);
 
   newCachePosition = CurrentPosition()
     ..latitude = double.parse('${match![1]}').toStringAsFixed(2)

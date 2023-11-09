@@ -41,10 +41,10 @@ class _EditorAutoSaveButtonState extends State<EditorAutoSaveButton> {
       _timer
         ..reset()
         ..start();
-      String plainText =
+      final plainText =
           _quillController.document.toPlainText().replaceAll(RegExp(r'\n'), '');
       if (plainText != '') {
-        Diary newDiary = Diary.copyWith(
+        final newDiary = Diary.copyWith(
           _diary,
           contentJsonString: jsonEncode(
             _quillController.document.toDelta().toJson(),

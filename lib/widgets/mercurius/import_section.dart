@@ -18,9 +18,9 @@ class ImportSection extends ConsumerWidget {
             if (Platform.isAndroid) {
               await FilePicker.platform.clearTemporaryFiles();
             }
-            FilePickerResult? result = await FilePicker.platform.pickFiles();
+            final result = await FilePicker.platform.pickFiles();
             if (result != null && result.files.single.path != null) {
-              bool succuss = await isarService.importJsonWith(
+              final succuss = await isarService.importJsonWith(
                 result.files.single.path!,
               );
               if (context.mounted && succuss) {

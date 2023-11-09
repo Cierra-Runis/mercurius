@@ -27,7 +27,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
 
   Stream<List<FileSystemEntity>> listenToImageFile(String path) {
     return Stream.periodic(const Duration(milliseconds: 100), (_) {
-      List<FileSystemEntity> newList = Directory('$path/image/').listSync();
+      final newList = Directory('$path/image/').listSync();
       if (_list.length != newList.length) {
         newList.sort(_sort);
         return _list = newList;
@@ -46,7 +46,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
       return Center(child: Text(l10n.noData));
     }
 
-    List<FileSystemEntity> fileSystemEntities = snapshot.data!;
+    final fileSystemEntities = snapshot.data!;
 
     return GridView.builder(
       cacheExtent: 1000,

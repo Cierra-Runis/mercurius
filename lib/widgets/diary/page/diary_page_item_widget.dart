@@ -136,7 +136,7 @@ class DiaryPageItemWidget extends ConsumerWidget {
                           children: [
                             IconButton(
                               onPressed: () async {
-                                bool? confirm = await ConfirmDialog(
+                                final confirm = await ConfirmDialog(
                                   title: l10n.areYouSureToDeleteTheDiary,
                                   summary: l10n
                                       .pleaseThinkTwiceAboutDeletingTheDiary,

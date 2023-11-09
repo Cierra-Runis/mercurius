@@ -81,21 +81,21 @@ class MonthlyWordsStatisticWidget extends ConsumerWidget {
   }
 
   Future<List<_DiaryWordsData>> _getDiaryWordsData(WidgetRef ref) async {
-    List<_DiaryWordsData> result = [];
+    final result = <_DiaryWordsData>[];
 
-    Map<DateTime, int> data = {};
+    final data = <DateTime, int>{};
 
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    List<Diary> diaries = await isarService.getAllDiaries();
+    final diaries = await isarService.getAllDiaries();
 
     if (diaries.isEmpty) {
       return result;
     }
 
-    DateTime start = diaries[0].createDateTime;
+    var start = diaries[0].createDateTime;
     start = DateTime(start.year, start.month, 1);
-    DateTime end = diaries[diaries.length - 1].createDateTime;
+    final end = diaries[diaries.length - 1].createDateTime;
 
     while (start.isBefore(end)) {
       data.addAll({start: 0});
@@ -103,7 +103,7 @@ class MonthlyWordsStatisticWidget extends ConsumerWidget {
     }
 
     data.forEach((key, _) {
-      for (Diary diary in diaries) {
+      for (final diary in diaries) {
         if (key.isSameYear(diary.createDateTime) &&
             key.isSameMonth(diary.createDateTime)) {
           data.update(key, (value) => value += diary.words);

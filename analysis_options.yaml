@@ -9,7 +9,12 @@ linter:
     collection_methods_unrelated_type: true
     control_flow_in_finally: true
     matching_super_parameters: true
+    omit_local_variable_types: true
     prefer_single_quotes: true
+    prefer_const_declarations: true
+    prefer_final_fields: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
     require_trailing_commas: true
     use_colored_box: true
     use_decorated_box: true
@@ -25,4 +30,4 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-    - "lib/l10n/**/*.dart"
+    - "lib/l10n/*"

@@ -7,7 +7,7 @@ class ReleasePage extends ConsumerWidget {
     return () {
       try {
         if (Platform.isAndroid) {
-          GithubLatestReleaseAsset asset = data.assets!.firstWhere(
+          final asset = data.assets!.firstWhere(
             (element) => element.name!.endsWith('.apk'),
           );
           launchUrlString(
@@ -16,7 +16,7 @@ class ReleasePage extends ConsumerWidget {
           );
         }
         if (Platform.isWindows) {
-          GithubLatestReleaseAsset asset = data.assets!.firstWhere(
+          final asset = data.assets!.firstWhere(
             (element) => element.name!.endsWith('.zip'),
           );
           launchUrlString(

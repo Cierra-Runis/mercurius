@@ -3,8 +3,8 @@ import 'package:mercurius/index.dart';
 class PlatformWindowsManager {
   static Future<void> init() async {
     await windowManager.ensureInitialized();
-    WindowOptions windowOptions = const WindowOptions(
-      title: Mercurius.name,
+    const windowOptions = WindowOptions(
+      title: Mercurius.appName,
       minimumSize: Size(400, 400),
       center: true,
       backgroundColor: Colors.transparent,

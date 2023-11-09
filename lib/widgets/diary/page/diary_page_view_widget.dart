@@ -12,13 +12,13 @@ class DiaryPageViewWidget extends ConsumerWidget {
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
-    L10N l10n = context.l10n;
+    final l10n = context.l10n;
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return AlertDialog(title: Center(child: Text(l10n.noData)));
     }
 
-    List<Diary> diaries = snapshot.data!;
+    final diaries = snapshot.data!;
 
     /// FIXME: 问题见 https://github.com/flutter/flutter/issues/45632
     return PageView.builder(

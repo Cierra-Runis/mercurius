@@ -19,10 +19,10 @@ class EditorToolbarTagButtonWidget extends CustomButton {
   ) async {
     final lang = Localizations.localeOf(context).toLanguageTag();
 
-    DateTime now = DateTime.now();
-    String time = now.format(DateFormat.HOUR24_MINUTE_SECOND, lang);
+    final now = DateTime.now();
+    final time = now.format(DateFormat.HOUR24_MINUTE_SECOND, lang);
 
-    DiaryTag? diaryTag = await showDialog(
+    final diaryTag = await showDialog(
       context: context,
       builder: (context) => TagSelector(
         defaultMessage: time,

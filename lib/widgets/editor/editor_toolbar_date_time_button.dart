@@ -15,7 +15,7 @@ class EditorToolbarDateTimeButtonWidget extends QuillCustomButton {
 
   @override
   VoidCallback get onTap => () async {
-        DateTime? dateTime = await showDatePicker(
+        final dateTime = await showDatePicker(
           context: context,
           initialEntryMode: DatePickerEntryMode.calendarOnly,
           initialDate: currentDiary.createDateTime,

@@ -15,7 +15,7 @@ class EditorToolbarWeatherButtonWidget extends QuillCustomButton {
 
   @override
   VoidCallback get onTap => () async {
-        Diary? newDiary = await showDialog<Diary>(
+        final newDiary = await showDialog<Diary>(
           context: context,
           builder: (context) => WeatherSelector(
             diary: currentDiary,

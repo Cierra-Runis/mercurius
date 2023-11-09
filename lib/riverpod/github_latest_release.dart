@@ -8,13 +8,12 @@ part 'github_latest_release.g.dart';
 Future<GithubLatestRelease> githubLatestRelease(
   GithubLatestReleaseRef ref,
 ) async {
-  const String url =
+  const url =
       'https://api.github.com/repos/Cierra-Runis/mercurius/releases/latest';
 
-  String currentVersion = await ref.watch(currentVersionProvider.future);
+  final currentVersion = await ref.watch(currentVersionProvider.future);
 
-  GithubLatestRelease githubLatestRelease = GithubLatestRelease()
-    ..tag_name = currentVersion;
+  var githubLatestRelease = GithubLatestRelease()..tag_name = currentVersion;
 
   Response response;
   try {

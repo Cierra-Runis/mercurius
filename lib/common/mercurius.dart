@@ -5,7 +5,7 @@ import 'dart:developer' as devtools show log;
 /// [Mercurius] 是为简便操作而创建的类
 class Mercurius {
   /// 程序名称
-  static const String name = 'Mercurius';
+  static const String appName = 'Mercurius';
 
   /// 数据库名
   static const String database = 'mercurius_database';
@@ -106,7 +106,9 @@ class Mercurius {
     runApp(
       ProviderScope(
         overrides: [
-          persistenceProvider.overrideWithValue(await Persistence.init()),
+          persistenceProvider.overrideWithValue(
+            await Persistence.init(),
+          ),
         ],
         child: const MercuriusApp(),
       ),
@@ -114,9 +116,8 @@ class Mercurius {
   }
 
   /// [Mercurius] 调试用输出语句
-  static void printLog(dynamic newLog) {
-    devtools.log('$newLog', name: Mercurius.name);
-  }
+  static void printLog(dynamic log) =>
+      devtools.log('$log', name: appName, time: DateTime.now());
 
   static void vibration({
     int duration = 300,
@@ -128,9 +129,9 @@ class Mercurius {
     /// Windows 不支持振动
     if (Platform.isWindows) return;
 
-    bool hasVibrator = await Vibration.hasVibrator() ?? false;
-    bool hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
-    bool hasCustomVibrationsSupport =
+    final hasVibrator = await Vibration.hasVibrator() ?? false;
+    final hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
+    final hasCustomVibrationsSupport =
         await Vibration.hasCustomVibrationsSupport() ?? false;
 
     if (hasVibrator && hasAmplitudeControl && hasCustomVibrationsSupport) {

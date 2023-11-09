@@ -12,7 +12,7 @@ class MorePageList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
-    final List<List<dynamic>> data = [
+    final data = <List<dynamic>>[
       [
         Icons.analytics,
         l10n.statistics,
@@ -35,8 +35,8 @@ class MorePageList extends ConsumerWidget {
       ],
     ];
 
-    List<Widget> list = [];
-    for (List<dynamic> element in data) {
+    final list = <Widget>[];
+    for (final element in data) {
       list.add(
         BasedListTile(
           leadingIcon: element[0],
@@ -90,7 +90,7 @@ class AboutSection extends ConsumerWidget {
       children: [
         BasedListTile(
           leading: const AppIcon(size: 24),
-          titleText: Mercurius.name,
+          titleText: Mercurius.appName,
           subtitleText: currentVersion.when(
             loading: () => l10n.unknownVersion,
             error: (error, stackTrace) => l10n.failedToGetVersion,
@@ -136,7 +136,7 @@ class AboutSection extends ConsumerWidget {
         BasedListTile(
           leadingIcon: Icons.privacy_tip_rounded,
           titleText: l10n.privacyStatement,
-          subtitleText: '${Mercurius.name} ${l10n.privacyStatement}',
+          subtitleText: '${Mercurius.appName} ${l10n.privacyStatement}',
           onTap: () => showDialog(
             context: context,
             builder: (context) => JsonToDialog(

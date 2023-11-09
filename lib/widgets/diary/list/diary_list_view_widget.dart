@@ -18,18 +18,18 @@ class DiaryListViewWidget extends ConsumerWidget {
       return Center(child: Text(l10n.noData));
     }
 
-    List<_DiaryListViewSection> sections = [];
-    List<Diary> diaries = snapshot.data!;
+    final sections = <_DiaryListViewSection>[];
+    final diaries = snapshot.data!;
 
-    int year = diaries[0].createDateTime.year;
-    int month = diaries[0].createDateTime.month;
+    var year = diaries[0].createDateTime.year;
+    var month = diaries[0].createDateTime.month;
     sections.add(
       _DiaryListViewSection()
         ..header =
             diaries[0].createDateTime.format(DateFormat.YEAR_ABBR_MONTH, lang),
     );
 
-    for (Diary diary in diaries) {
+    for (final diary in diaries) {
       if (diary.createDateTime.month == month &&
           diary.createDateTime.year == year) {
         sections.last.items.add(diary);

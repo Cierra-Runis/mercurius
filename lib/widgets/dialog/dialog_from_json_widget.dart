@@ -28,7 +28,7 @@ class JsonToDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${Mercurius.name} $title'),
+          Text('${Mercurius.appName} $title'),
           Text(
             updateTime,
             style: TextStyle(

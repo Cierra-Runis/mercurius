@@ -16,9 +16,9 @@ Future<String> mercuriusPath(MercuriusPathRef ref) async {
     throw Exception('Unsupported Platform');
   }
 
-  String path = directory!.path;
+  final path = directory!.path;
 
-  Directory imageDirectory = Directory('$path/image/');
+  final imageDirectory = Directory('$path/image/');
   if (!imageDirectory.existsSync()) imageDirectory.create();
 
   return path;

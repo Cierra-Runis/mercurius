@@ -7,14 +7,13 @@ Future<QWeatherNow> qWeatherNow(
   QWeatherNowRef ref,
 ) async {
   ref.keepAlive();
-  CurrentPosition currentPosition =
-      await ref.watch(currentPositionProvider.future);
+  final currentPosition = await ref.watch(currentPositionProvider.future);
 
-  String apiUrl = MercuriusApi.qWeather.apiUrl;
-  String aqiKey = MercuriusApi.qWeather.apiKey;
+  final apiUrl = MercuriusApi.qWeather.apiUrl;
+  final aqiKey = MercuriusApi.qWeather.apiKey;
 
-  _QWeather qWeather = _QWeather();
-  QWeatherNow qWeatherNow = QWeatherNow();
+  var qWeather = _QWeather();
+  final qWeatherNow = QWeatherNow();
 
   Response response;
   try {

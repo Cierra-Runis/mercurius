@@ -21,7 +21,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
   ) async {
     final l10n = context.l10n;
 
-    bool? newImage = await ConfirmDialog(
+    final newImage = await ConfirmDialog(
       context: context,
       title: l10n.insertTheImageFrom,
       summary: '${l10n.imageGallery}？${l10n.systemFile}？',
@@ -33,8 +33,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
       case true:
 
         /// TIPS: 安卓启用新版本
-        final ImagePickerPlatform imagePickerImplementation =
-            ImagePickerPlatform.instance;
+        final imagePickerImplementation = ImagePickerPlatform.instance;
         if (imagePickerImplementation is ImagePickerAndroid) {
           imagePickerImplementation.useAndroidPhotoPicker = true;
         }
@@ -46,13 +45,13 @@ class EditorToolbarImageButtonWidget extends CustomButton {
         /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
         /// TIPS: 并删除所需的中间缓存图片
 
-        XFile? pickedFile = await ImagePicker().pickImage(
+        final pickedFile = await ImagePicker().pickImage(
           source: ImageSource.gallery,
         );
 
         if (pickedFile != null) {
-          String sourceFilePath = pickedFile.path;
-          String targetFilePath = '$path/image/${pickedFile.name}';
+          final sourceFilePath = pickedFile.path;
+          final targetFilePath = '$path/image/${pickedFile.name}';
 
           await XFile(sourceFilePath).saveTo(targetFilePath);
           if (Platform.isAndroid) {
@@ -63,7 +62,7 @@ class EditorToolbarImageButtonWidget extends CustomButton {
         break;
       case false:
         if (context.mounted) {
-          String? filename = await context.push(
+          final filename = await context.push<String?>(
             const GalleryPage(readOnly: true),
           );
           if (filename != null) {

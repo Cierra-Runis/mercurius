@@ -94,8 +94,8 @@ class IsarService {
   /// 导出 `json` 数据
   Future<void> exportJsonWith(String path) async {
     final isar = await _db;
-    List<Map<String, dynamic>> data = await isar.diarys.where().exportJson();
-    File file = await File(path).create();
+    final data = await isar.diarys.where().exportJson();
+    final file = await File(path).create();
     await file.writeAsString(jsonEncode(data));
   }
 
@@ -116,7 +116,7 @@ class IsarService {
         directory = await getApplicationDocumentsDirectory();
       } else if (Platform.isWindows) {
         directory = await getApplicationDocumentsDirectory();
-        Directory dir = Directory('${directory.path}/${Mercurius.name}/');
+        final dir = Directory('${directory.path}/${Mercurius.appName}/');
         dir.createSync(recursive: true);
         directory = dir;
       } else {

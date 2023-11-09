@@ -2,11 +2,11 @@ import 'package:mercurius/index.dart';
 
 class PlatformWindowsTray {
   static Future<void> init() async {
-    final SystemTray systemTray = SystemTray();
+    final systemTray = SystemTray();
 
     await systemTray.initSystemTray(
-      title: Mercurius.name,
-      toolTip: Mercurius.name,
+      title: Mercurius.appName,
+      toolTip: Mercurius.appName,
       iconPath: 'assets/icon/app_icon.ico',
     );
 

@@ -13,7 +13,7 @@ class GalleryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final ColorScheme colorScheme = context.colorScheme;
+    final colorScheme = context.colorScheme;
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -70,7 +70,7 @@ class GalleryCard extends StatelessWidget {
                       onPressed: readOnly
                           ? null
                           : () async {
-                              bool? confirm = await ConfirmDialog(
+                              final confirm = await ConfirmDialog(
                                 title: l10n.areYouSureToDeleteTheImage,
                                 summary:
                                     l10n.pleaseThinkTwiceAboutDeletingTheImage,

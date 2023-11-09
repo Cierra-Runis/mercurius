@@ -32,7 +32,7 @@ class DiaryTagEmbedBuilderWidget extends EmbedBuilder {
     bool inline,
     TextStyle textStyle,
   ) {
-    DiaryTag tag = DiaryTag.fromJson(jsonDecode(node.value.data));
+    final tag = DiaryTag.fromJson(jsonDecode(node.value.data));
 
     return Chip(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

@@ -27,7 +27,7 @@ class EditorToolbarWidget extends ConsumerWidget {
 
     final l10n = context.l10n;
 
-    List<EmbedButtonBuilder> embedButtons = [
+    final embedButtons = <EmbedButtonBuilder>[
       (controller, _, __, ___) {
         return path.when(
           loading: () => const Loading(),

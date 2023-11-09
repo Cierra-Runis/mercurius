@@ -20,7 +20,7 @@ class EditorAppBarSaveButtonWidget extends ConsumerWidget {
 
     return TextButton(
       onPressed: () {
-        String plainText = quillController.document
+        final plainText = quillController.document
             .toPlainText()
             .replaceAll(RegExp(r'\n'), '');
         if (plainText == '') {
@@ -52,7 +52,7 @@ class EditorAppBarSaveButtonWidget extends ConsumerWidget {
             flushbarPosition: FlushbarPosition.TOP,
           ).show(context);
         } else {
-          Diary newDiary = Diary.copyWith(
+          final newDiary = Diary.copyWith(
             diary,
             contentJsonString: jsonEncode(
               quillController.document.toDelta().toJson(),

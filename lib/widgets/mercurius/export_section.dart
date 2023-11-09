@@ -14,8 +14,8 @@ class ExportSection extends ConsumerWidget {
           leadingIcon: Icons.data_object_rounded,
           titleText: l10n.exportJsonFile,
           onTap: () async {
-            String dir = await ref.watch(mercuriusPathProvider.future);
-            String path = '$dir/export.json';
+            final dir = await ref.watch(mercuriusPathProvider.future);
+            final path = '$dir/export.json';
             await isarService.exportJsonWith(path);
 
             /// FIXME: https://github.com/fluttercommunity/plus_plugins/issues/1351

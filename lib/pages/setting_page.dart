@@ -41,7 +41,7 @@ class _BackgroundImageListTile extends ConsumerWidget {
       titleText: l10n.backgroundImage,
       detailText: settings.bgImgPath ?? l10n.noImageSelected,
       onTap: () async {
-        String? path = await context.push(
+        final path = await context.push<String?>(
           const GalleryPage(readOnly: true),
         );
         settingsNotifier.setBgImgPath(path);

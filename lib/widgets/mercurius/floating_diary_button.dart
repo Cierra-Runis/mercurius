@@ -12,7 +12,7 @@ class FloatingDiaryButton extends ConsumerWidget {
   ) {
     final l10n = context.l10n;
 
-    bool hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
+    final hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
 
     return Wrap(
       direction: Axis.vertical,
@@ -23,7 +23,7 @@ class FloatingDiaryButton extends ConsumerWidget {
           future: isarService.getDiaryByDate(DateTime.now().previousYear),
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-              List<Diary> diaries = snapshot.data!;
+              final diaries = snapshot.data!;
 
               return FloatingActionButton.small(
                 heroTag: 'thisDayLastYear',
@@ -81,7 +81,7 @@ class FloatingDiaryButton extends ConsumerWidget {
     WidgetRef ref,
     List<Diary> editingDiaries,
   ) async {
-    Diary? diary = await showDialog(
+    final diary = await showDialog(
       context: context,
       builder: (context) => EditingDiaryDialog(
         editingDiaries: editingDiaries,
@@ -96,7 +96,7 @@ class FloatingDiaryButton extends ConsumerWidget {
   }
 
   void _addDiary(BuildContext context, WidgetRef ref) async {
-    DateTime? dateTime = await showDatePicker(
+    final dateTime = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       initialDate: DateTime.now(),
@@ -107,7 +107,7 @@ class FloatingDiaryButton extends ConsumerWidget {
     );
 
     if (context.mounted && dateTime != null) {
-      Diary diary = Diary(
+      final diary = Diary(
         id: Isar.autoIncrement,
         createDateTime: dateTime,
         latestEditTime: dateTime,
@@ -115,7 +115,7 @@ class FloatingDiaryButton extends ConsumerWidget {
         editing: true,
       );
 
-      int id = await isarService.saveDiary(diary);
+      final id = await isarService.saveDiary(diary);
       isarService.deleteDiaryById(id);
 
       if (context.mounted) {

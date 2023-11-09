@@ -4,6 +4,6 @@ part 'current_version.g.dart';
 
 @riverpod
 Future<String> currentVersion(CurrentVersionRef ref) async {
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  final packageInfo = await PackageInfo.fromPlatform();
   return 'v${packageInfo.version}+${packageInfo.buildNumber}';
 }
