@@ -1,4 +1,6 @@
 /// 各路由下的 index.dart
+library app;
+
 export 'common/index.dart';
 export 'database/index.dart';
 export 'l10n/l10n.dart';
@@ -36,7 +38,6 @@ export 'package:file_picker/file_picker.dart'; // 文件选择
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:flutter_markdown/flutter_markdown.dart'; // markdown
-/// [Text] 和 `export 'package:flutter/material.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
 export 'package:flutter_quill/flutter_quill.dart'; // 富文本
 export 'package:flutter_riverpod/flutter_riverpod.dart'; // 状态管理
 export 'package:freezed_annotation/freezed_annotation.dart';
