@@ -1,13 +1,13 @@
 import 'package:mercurius/index.dart';
 
-class SplashPage extends ConsumerStatefulWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  ConsumerState<SplashPage> createState() => _MercuriusSplashPageState();
+  State<SplashPage> createState() => _MercuriusSplashPageState();
 }
 
-class _MercuriusSplashPageState extends ConsumerState<SplashPage>
+class _MercuriusSplashPageState extends State<SplashPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -15,7 +15,6 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
   @override
   void initState() {
     super.initState();
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
@@ -43,13 +42,13 @@ class _MercuriusSplashPageState extends ConsumerState<SplashPage>
       opacity: _animation,
       child: const Scaffold(
         body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 8,
             children: [
               AppIcon(),
-              AppName(
-                fontSize: 42,
-              ),
+              AppName(fontSize: 42),
             ],
           ),
         ),
