@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  based_split_view:
+    dependency: "direct main"
+    description:
+      name: based_split_view
+      sha256: dd7e5cd13c1d53d7cbd62252a8e274a4a7491dc74d5da4d9a0582961d0315226
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:

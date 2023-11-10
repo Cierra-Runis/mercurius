@@ -96,11 +96,6 @@ class App {
       await FlutterDisplayMode.setHighRefreshRate();
     }
 
-    /// 固定竖屏
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-
     /// 启动
     runApp(
       ProviderScope(

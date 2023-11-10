@@ -23,7 +23,11 @@ class _MercuriusSplashPageState extends State<SplashPage>
     _animation.addStatusListener(
       (status) {
         if (status == AnimationStatus.completed) {
-          context.pushAndRemoveRoot(const RootPage());
+          Navigator.pushAndRemoveUntil(
+            context,
+            CupertinoPageRoute(builder: (_) => const RootView()),
+            (_) => false,
+          );
         }
       },
     );

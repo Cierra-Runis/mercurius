@@ -16,6 +16,7 @@ dependencies:
   another_flushbar: ^1.12.30 # 提示框
   badges: ^3.1.2 # 小红点提示
   based_list: ^1.1.2
+  based_split_view: ^1.0.0
   cross_file: ^0.3.3+6 # 文件操作
   dio: ^5.3.3 # 网络请求
   dart_date: ^1.3.2 # 转换时间工具

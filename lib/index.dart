@@ -14,8 +14,7 @@ export 'main.dart';
 /// flutter 相关
 /// [RefreshCallback] 和 `export 'package:flutter/material.dart'` 冲突，两者近似
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
-export 'package:flutter/services.dart'
-    show DeviceOrientation, SystemChrome; // 设备服务
+
 /// [Badge] 和 `export 'package:badges/badges.dart'; // 小红点提示` 冲突，我想用外部包
 export 'package:flutter/material.dart' hide Badge;
 export 'package:flutter/gestures.dart';
@@ -30,6 +29,7 @@ export 'dart:ui' show ImageFilter;
 export 'package:another_flushbar/flushbar.dart'; // 提示框
 export 'package:badges/badges.dart'; // 小红点提示
 export 'package:based_list/based_list.dart';
+export 'package:based_split_view/based_split_view.dart';
 export 'package:cross_file/cross_file.dart'; // 文件操作
 export 'package:dio/dio.dart'; // 网络请求
 /// [Interval] 和 `package:flutter/src/animation/curves.dart` 冲突，两者结构完全不同，但外部包里的这个用不到

@@ -80,7 +80,8 @@ class DiaryListItemWidget extends ConsumerWidget {
           onTap: onTap ??
               () => {
                     showDialog<void>(
-                      context: context,
+                      context: splitViewKey.currentContext ?? context,
+                      useRootNavigator: false,
                       builder: (context) => DiaryPageViewWidget(
                         diary: diary,
                       ),
