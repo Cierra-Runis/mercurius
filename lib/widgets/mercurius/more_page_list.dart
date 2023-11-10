@@ -90,7 +90,7 @@ class AboutSection extends ConsumerWidget {
       children: [
         BasedListTile(
           leading: const AppIcon(size: 24),
-          titleText: Mercurius.appName,
+          titleText: App.name,
           subtitleText: currentVersion.when(
             loading: () => l10n.unknownVersion,
             error: (error, stackTrace) => l10n.failedToGetVersion,
@@ -106,16 +106,16 @@ class AboutSection extends ConsumerWidget {
         BasedListTile(
           leadingIcon: Icons.link,
           titleText: l10n.contactUs,
-          subtitleText: Mercurius.contactUrl,
+          subtitleText: App.contactUrl,
           onTap: () {
             try {
               launchUrlString(
-                Mercurius.contactUrl,
+                App.contactUrl,
                 mode: LaunchMode.externalApplication,
               );
             } catch (e) {
-              Mercurius.printLog(
-                'launch ${Mercurius.contactUrl} failed: $e',
+              App.printLog(
+                'launch ${App.contactUrl} failed: $e',
               );
             }
           },
@@ -136,7 +136,7 @@ class AboutSection extends ConsumerWidget {
         BasedListTile(
           leadingIcon: Icons.privacy_tip_rounded,
           titleText: l10n.privacyStatement,
-          subtitleText: '${Mercurius.appName} ${l10n.privacyStatement}',
+          subtitleText: '${App.name} ${l10n.privacyStatement}',
           onTap: () => showDialog(
             context: context,
             builder: (context) => JsonToDialog(

@@ -25,7 +25,7 @@ class ReleasePage extends ConsumerWidget {
           );
         }
       } catch (e) {
-        Mercurius.printLog('launch browser_download_url failed: $e');
+        App.printLog('launch browser_download_url failed: $e');
       }
     };
   }
@@ -47,7 +47,7 @@ class ReleasePage extends ConsumerWidget {
             try {
               launchUrlString(href, mode: LaunchMode.externalApplication);
             } catch (e) {
-              Mercurius.printLog('launch $href failed: $e');
+              App.printLog('launch $href failed: $e');
             }
           }
         },

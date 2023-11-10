@@ -4,7 +4,7 @@ class PlatformWindowsManager {
   static Future<void> init() async {
     await windowManager.ensureInitialized();
     const windowOptions = WindowOptions(
-      title: Mercurius.appName,
+      title: App.name,
       minimumSize: Size(400, 400),
       center: true,
       backgroundColor: Colors.transparent,

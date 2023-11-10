@@ -45,7 +45,7 @@ class EditorBodyWidget extends StatelessWidget {
               mode: LaunchMode.externalApplication,
             );
           } catch (e) {
-            Mercurius.printLog('launch $url failed: $e');
+            App.printLog('launch $url failed: $e');
           }
         },
         scrollBottomInset: 10,

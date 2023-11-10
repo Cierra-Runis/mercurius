@@ -11,7 +11,7 @@ class AppName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      Mercurius.appName,
+      App.name,
       style: TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: fontSize,

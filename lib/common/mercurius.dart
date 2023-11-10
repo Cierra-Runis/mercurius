@@ -2,10 +2,9 @@ import 'package:mercurius/index.dart';
 
 import 'dart:developer' as devtools show log;
 
-/// [Mercurius] 是为简便操作而创建的类
-class Mercurius {
+class App {
   /// 程序名称
-  static const String appName = 'Mercurius';
+  static const String name = 'Mercurius';
 
   /// 数据库名
   static const String database = 'mercurius_database';
@@ -115,9 +114,8 @@ class Mercurius {
     );
   }
 
-  /// [Mercurius] 调试用输出语句
   static void printLog(dynamic log) =>
-      devtools.log('$log', name: appName, time: DateTime.now());
+      devtools.log('$log', name: name, time: DateTime.now());
 
   static void vibration({
     int duration = 300,
@@ -126,8 +124,7 @@ class Mercurius {
     List<int> intensities = const [],
     int amplitude = -1,
   }) async {
-    /// Windows 不支持振动
-    if (Platform.isWindows) return;
+    if (!Platform.isAndroid) return;
 
     final hasVibrator = await Vibration.hasVibrator() ?? false;
     final hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;

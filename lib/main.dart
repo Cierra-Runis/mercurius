@@ -3,7 +3,7 @@ import 'package:mercurius/index.dart';
 /// isar 数据库
 final isarService = IsarService();
 
-void main() => Mercurius.run();
+void main() => App.run();
 
 class MercuriusApp extends ConsumerWidget {
   const MercuriusApp({super.key});
@@ -14,7 +14,7 @@ class MercuriusApp extends ConsumerWidget {
 
     final theme = ThemeData(
       useMaterial3: true,
-      colorScheme: Mercurius.lightColorScheme,
+      colorScheme: App.lightColorScheme,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
@@ -24,7 +24,7 @@ class MercuriusApp extends ConsumerWidget {
 
     final darkTheme = ThemeData(
       useMaterial3: true,
-      colorScheme: Mercurius.darkColorScheme,
+      colorScheme: App.darkColorScheme,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),

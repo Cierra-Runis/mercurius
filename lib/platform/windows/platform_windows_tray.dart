@@ -5,13 +5,13 @@ class PlatformWindowsTray {
     final systemTray = SystemTray();
 
     await systemTray.initSystemTray(
-      title: Mercurius.appName,
-      toolTip: Mercurius.appName,
+      title: App.name,
+      toolTip: App.name,
       iconPath: 'assets/icon/app_icon.ico',
     );
 
     systemTray.registerSystemTrayEventHandler((eventName) async {
-      Mercurius.printLog('托盘点击事件为 $eventName');
+      App.printLog('托盘点击事件为 $eventName');
       if (eventName == kSystemTrayEventClick) {
         if (await windowManager.isVisible()) {
           windowManager.hide();

@@ -28,7 +28,7 @@ class JsonToDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('${Mercurius.appName} $title'),
+          Text('${App.name} $title'),
           Text(
             updateTime,
             style: TextStyle(
@@ -53,7 +53,7 @@ class JsonToDialog extends StatelessWidget {
                   mode: LaunchMode.externalApplication,
                 );
               } catch (e) {
-                Mercurius.printLog('launch $href failed: $e');
+                App.printLog('launch $href failed: $e');
               }
             }
           },

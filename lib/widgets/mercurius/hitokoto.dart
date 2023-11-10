@@ -31,7 +31,7 @@ class HiToKoToWidget extends StatelessWidget {
                     mode: LaunchMode.externalApplication,
                   );
                 } catch (e) {
-                  Mercurius.printLog('launch hitokoto failed: $e');
+                  App.printLog('launch hitokoto failed: $e');
                 }
               },
               child: Tooltip(

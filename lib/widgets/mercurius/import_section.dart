@@ -24,7 +24,7 @@ class ImportSection extends ConsumerWidget {
                 result.files.single.path!,
               );
               if (context.mounted && succuss) {
-                Mercurius.vibration();
+                App.vibration();
                 Flushbar(
                   icon: const Icon(UniconsLine.smile),
                   isDismissible: false,

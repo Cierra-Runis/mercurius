@@ -24,7 +24,7 @@ class EditorAppBarSaveButtonWidget extends ConsumerWidget {
             .toPlainText()
             .replaceAll(RegExp(r'\n'), '');
         if (plainText == '') {
-          Mercurius.vibration();
+          App.vibration();
           Flushbar(
             icon: const Icon(UniconsLine.confused),
             isDismissible: false,

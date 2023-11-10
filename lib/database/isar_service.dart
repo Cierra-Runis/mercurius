@@ -116,7 +116,7 @@ class IsarService {
         directory = await getApplicationDocumentsDirectory();
       } else if (Platform.isWindows) {
         directory = await getApplicationDocumentsDirectory();
-        final dir = Directory('${directory.path}/${Mercurius.appName}/');
+        final dir = Directory('${directory.path}/${App.name}/');
         dir.createSync(recursive: true);
         directory = dir;
       } else {
@@ -126,7 +126,7 @@ class IsarService {
       final isar = await Isar.open(
         [DiarySchema],
         inspector: true,
-        name: Mercurius.database,
+        name: App.database,
         directory: directory.path,
         compactOnLaunch: const CompactCondition(
           /// 压缩能减小 1KB 及以上，且达到了 1KB 的体积就进行压缩
@@ -139,6 +139,6 @@ class IsarService {
 
       return isar;
     }
-    return Future.value(Isar.getInstance(Mercurius.database));
+    return Future.value(Isar.getInstance(App.database));
   }
 }
