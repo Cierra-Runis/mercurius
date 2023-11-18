@@ -42,7 +42,7 @@ app.*.map.json
 lib/common/mercurius_key.dart
 
 # release_tool
-.release_tool/Mercurius for Windows
+.release_tool/*
 
 *.g.dart
 *.freezed.dart
