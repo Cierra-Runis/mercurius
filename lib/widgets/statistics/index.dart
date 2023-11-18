@@ -1,1 +1,1 @@
-export 'monthly_words_statistic_widget.dart';
+export 'monthly_words.dart';

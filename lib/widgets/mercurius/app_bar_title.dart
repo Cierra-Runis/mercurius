@@ -14,12 +14,10 @@ class AppBarTitle extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () => controller.animateTo(
-        0,
+        -WindowAppBar.appBarHeight,
         duration: const Duration(seconds: 3),
         curve: Curves.easeInOut,
       ),
-      onPanStart: (_) => windowManager.startDragging(),
-      onDoubleTap: windowManager.center,
       child: Column(
         children: [
           const AppName(),

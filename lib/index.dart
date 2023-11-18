@@ -29,6 +29,7 @@ export 'dart:ui' show ImageFilter;
 export 'package:another_flushbar/flushbar.dart'; // 提示框
 export 'package:badges/badges.dart'; // 小红点提示
 export 'package:based_list/based_list.dart';
+export 'package:based_splash_page/based_splash_page.dart';
 export 'package:based_split_view/based_split_view.dart';
 export 'package:cross_file/cross_file.dart'; // 文件操作
 export 'package:dio/dio.dart'; // 网络请求

@@ -12,7 +12,7 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
     final path = ref.watch(mercuriusPathProvider);
     final settings = ref.watch(settingsProvider);
 
@@ -26,27 +26,28 @@ class _MercuriusHomePageState extends ConsumerState<HomePage> {
         title: AppBarTitle(
           controller: controller,
         ),
-        actions: PlatformWindowsManager.getActions(),
       ),
-      body: DecoratedBox(
-        decoration: settings.bgImgPath != null
-            ? path.when(
-                loading: BoxDecoration.new,
-                error: (error, stackTrace) => const BoxDecoration(),
-                data: (data) => BoxDecoration(
-                  image: DecorationImage(
-                    opacity: 0.8,
-                    image: FileImage(
-                      File('$data/image/${settings.bgImgPath}'),
+      body: ClipRRect(
+        child: DecoratedBox(
+          decoration: settings.bgImgPath != null
+              ? path.when(
+                  loading: BoxDecoration.new,
+                  error: (error, stackTrace) => const BoxDecoration(),
+                  data: (data) => BoxDecoration(
+                    image: DecorationImage(
+                      opacity: 0.8,
+                      image: FileImage(
+                        File('$data/image/${settings.bgImgPath}'),
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                    fit: BoxFit.cover,
                   ),
-                ),
-              )
-            : const BoxDecoration(),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-          child: DiaryListViewWidget(controller: controller),
+                )
+              : const BoxDecoration(),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+            child: DiaryListView(controller: controller),
+          ),
         ),
       ),
       floatingActionButton: const FloatingDiaryButton(),

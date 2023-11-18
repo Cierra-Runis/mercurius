@@ -26,25 +26,6 @@ class IsarService {
         .findAll();
   }
 
-  /// 创建 `Stream` 监听所有含有 `contains` 字符串的日记
-  // Stream<List<Diary>> listenToDiariesContains(
-  //   DiarySearch diarySearch, {
-  //   int delayed = 300,
-  // }) async* {
-  //   final isar = await _db;
-  //   await Future.delayed(Duration(milliseconds: delayed));
-  //   QueryBuilder<Diary, Diary, QAfterFilterCondition> diaries =
-  //       isar.diarys.filter().editingEqualTo(false);
-
-  //   if (diarySearch.searchTitle) {
-  //     diaries = diaries.titleStringContains(diarySearch.text);
-  //   } else {
-  //     diaries = diaries.contentJsonStringContains(diarySearch.text);
-  //   }
-
-  //   yield* diaries.sortByCreateDateTimeDesc().watch(fireImmediately: true);
-  // }
-
   /// 创建 `Stream` 监听所有 `editing` 为 `true` 的日记
   Stream<List<Diary>> listenToDiariesEditing() async* {
     final isar = await _db;
@@ -134,8 +115,6 @@ class IsarService {
           minFileSize: 1024,
         ),
       );
-
-      await DatabaseMigrator.migration(isar);
 
       return isar;
     }

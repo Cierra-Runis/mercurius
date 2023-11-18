@@ -10,7 +10,7 @@ class EditingDiaryDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return AlertDialog(
       title: Text(l10n.continueEditingDiary),
@@ -21,8 +21,8 @@ class EditingDiaryDialog extends StatelessWidget {
           itemCount: editingDiaries.length,
           itemBuilder: (context, index) => FrameSeparateWidget(
             index: index,
-            placeHolder: const DiaryListItemPlaceHolderWidget(),
-            child: DiaryListItemWidget(
+            placeHolder: const DiaryListItemPlaceholder(),
+            child: DiaryListItem(
               onTap: () => context.pop(editingDiaries[index]),
               diary: editingDiaries[index],
             ),

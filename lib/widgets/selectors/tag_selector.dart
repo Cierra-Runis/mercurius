@@ -38,7 +38,7 @@ class _TagSelectorState extends State<TagSelector> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return AlertDialog(
       title: Text(l10n.insertTagTitle),

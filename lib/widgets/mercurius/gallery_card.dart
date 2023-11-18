@@ -12,7 +12,7 @@ class GalleryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
     final colorScheme = context.colorScheme;
 
     return Card(
@@ -22,9 +22,8 @@ class GalleryCard extends StatelessWidget {
             ? () => context.pop(
                   fileSystemEntity.path.split('/').last,
                 )
-            : () => showDialog(
-                  context: context,
-                  builder: (context) => ImageViewWidget(
+            : () => context.pushDialog(
+                  ImageView(
                     imageUrl: fileSystemEntity.path,
                   ),
                 ),

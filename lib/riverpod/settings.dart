@@ -62,9 +62,23 @@ class Settings extends _$Settings {
     );
   }
 
+  static const themeModeIcon = {
+    ThemeMode.system: Icons.brightness_auto_rounded,
+    ThemeMode.light: Icons.light_mode_rounded,
+    ThemeMode.dark: Icons.dark_mode_rounded,
+  };
+
   Future<void> setThemeMode(ThemeMode value) async {
     await _pers.setThemeMode(value);
     state = state.copyWith(themeMode: value);
+  }
+
+  Future<void> loopThemeMode() async {
+    final modes = themeModeIcon.keys.toList();
+    final currentIndex = modes.indexOf(state.themeMode);
+    final nextIndex = (currentIndex + 1) % modes.length;
+    final nextMode = modes.elementAt(nextIndex);
+    setThemeMode(nextMode);
   }
 
   Future<void> setBgImgPath(String? value) async {

@@ -18,7 +18,7 @@ class _RootViewState extends State<RootView> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return DoubleBack(
       message: l10n.backAgainToExit,
@@ -47,7 +47,7 @@ class _RootViewState extends State<RootView> {
   }
 }
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
   const RootPage({
     super.key,
     required this.currentIndex,
@@ -63,19 +63,24 @@ class RootPage extends StatelessWidget {
   ];
 
   @override
+  State<RootPage> createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return Scaffold(
       body: Center(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
-          child: _bodyWidgets[currentIndex],
+          child: RootPage._bodyWidgets[widget.currentIndex],
         ),
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentIndex,
-        onDestinationSelected: onItemTapped,
+        selectedIndex: widget.currentIndex,
+        onDestinationSelected: widget.onItemTapped,
         destinations: [
           NavigationDestination(
             icon: const Icon(Icons.home),

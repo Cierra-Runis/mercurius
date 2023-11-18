@@ -5,7 +5,7 @@ class ThemeSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
     final settings = ref.watch(settingsProvider);
     final settingsNotifier = ref.watch(settingsProvider.notifier);
 

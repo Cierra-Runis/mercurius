@@ -41,6 +41,11 @@ class _DoubleBackState extends State<DoubleBack> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        if (splitViewKey.currentState?.canPop() == true) {
+          splitViewKey.currentState?.pop();
+          return false;
+        }
+
         if (widget.condition) {
           if (_tapped) return true;
 

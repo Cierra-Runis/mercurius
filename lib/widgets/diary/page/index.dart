@@ -1,3 +1,3 @@
-export 'diary_page_view_widget.dart';
-export 'diary_page_item_widget.dart';
-export 'diary_page_item_share_button_widget.dart';
+export 'diary_page_view.dart';
+export 'diary_page_item.dart';
+export 'diary_share_button.dart';

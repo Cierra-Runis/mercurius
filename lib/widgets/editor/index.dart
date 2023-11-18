@@ -1,10 +1,7 @@
-export 'editor_toolbar_mood_button_widget.dart';
-export 'editor_toolbar_weather_button.dart';
-export 'editor_toolbar_date_time_button.dart';
-export 'editor_body_widget.dart';
-export 'editor_toolbar_widget.dart';
-export 'editor_app_bar_widget.dart';
-export 'editor_app_bar_save_button_widget.dart';
-export 'editor_toolbar_tag_button_widget.dart';
-export 'editor_toolbar_image_button_widget.dart';
-export 'editor_auto_save_button_widget.dart';
+export 'editor_body.dart';
+export 'editor_toolbar.dart';
+export 'editor_app_bar.dart';
+export 'editor_save_button.dart';
+export 'editor_tag_button.dart';
+export 'editor_image_button.dart';
+export 'editor_auto_save_button.dart';

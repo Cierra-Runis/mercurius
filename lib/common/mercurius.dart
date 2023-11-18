@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 import 'dart:developer' as devtools show log;
 
-class App {
+abstract class App {
   /// 程序名称
   static const String name = 'Mercurius';
 

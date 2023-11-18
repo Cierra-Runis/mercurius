@@ -10,7 +10,7 @@ class WeatherSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return AlertDialog(
       title: Column(
@@ -38,9 +38,7 @@ class WeatherSelector extends ConsumerWidget {
           itemBuilder: (context, index) {
             final weatherType = DiaryWeatherType.values[index];
             return IconButton(
-              onPressed: () => context.pop(
-                Diary.copyWith(diary, weatherType: weatherType),
-              ),
+              onPressed: () => context.pop(weatherType),
               icon: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

@@ -10,7 +10,7 @@ class FloatingDiaryButton extends ConsumerWidget {
     AsyncSnapshot<List<Diary>> snapshot,
     WidgetRef ref,
   ) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     final hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
 
@@ -28,9 +28,8 @@ class FloatingDiaryButton extends ConsumerWidget {
               return FloatingActionButton.small(
                 heroTag: 'thisDayLastYear',
                 tooltip: l10n.thisDayLastYear,
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
+                onPressed: () => context.pushDialog(
+                  AlertDialog(
                     title: Text(l10n.thisDayLastYear),
                     content: SizedBox(
                       width: double.maxFinite,
@@ -39,10 +38,10 @@ class FloatingDiaryButton extends ConsumerWidget {
                         itemCount: diaries.length,
                         itemBuilder: (context, index) => FrameSeparateWidget(
                           index: index,
-                          placeHolder: const DiaryListItemPlaceHolderWidget(),
-                          child: DiaryListItemWidget(
+                          placeHolder: const DiaryListItemPlaceholder(),
+                          child: DiaryListItem(
                             onTap: () => context.push(
-                              DiaryPageItemWidget(diary: diaries[index]),
+                              DiaryPageItem(diary: diaries[index]),
                             ),
                             diary: diaries[index],
                           ),
@@ -81,9 +80,8 @@ class FloatingDiaryButton extends ConsumerWidget {
     WidgetRef ref,
     List<Diary> editingDiaries,
   ) async {
-    final diary = await showDialog(
-      context: context,
-      builder: (context) => EditingDiaryDialog(
+    final diary = await context.pushDialog<Diary?>(
+      EditingDiaryDialog(
         editingDiaries: editingDiaries,
       ),
     );
@@ -99,6 +97,7 @@ class FloatingDiaryButton extends ConsumerWidget {
     final dateTime = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
+      useRootNavigator: false,
       initialDate: DateTime.now(),
       firstDate: DateTime(1949, 10, 1),
       lastDate: DateTime.now().add(
@@ -121,7 +120,7 @@ class FloatingDiaryButton extends ConsumerWidget {
       if (context.mounted) {
         context.push(
           EditorPage(
-            diary: Diary.copyWith(diary, id: id),
+            diary: diary.copyWith(id: id),
             autoSave: true,
           ),
         );

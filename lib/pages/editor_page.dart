@@ -52,7 +52,7 @@ class _DiaryEditorPageState extends ConsumerState<EditorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EditorAppBarWidget(
+      appBar: EditorAppBar(
         diary: _diary,
         quillController: _quillController,
         textEditingController: _textEditingController,
@@ -72,7 +72,7 @@ class _DiaryEditorPageState extends ConsumerState<EditorPage> {
           child: Column(
             children: [
               Expanded(
-                child: EditorBodyWidget(
+                child: EditorBody(
                   readOnly: false,
                   scrollController: _scrollController,
                 ),

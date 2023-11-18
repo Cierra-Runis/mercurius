@@ -14,7 +14,7 @@ class HiToKoToWidget extends StatelessWidget {
   /// FIXME: 当组件被挡住时仍然进行刷新
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return StreamBuilder<Future<HiToKoTo>>(
       stream:

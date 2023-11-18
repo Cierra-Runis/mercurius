@@ -10,7 +10,7 @@ class MorePageList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     final data = <List<dynamic>>[
       [
@@ -79,7 +79,7 @@ class AboutSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final currentVersion = ref.watch(currentVersionProvider);
@@ -124,9 +124,8 @@ class AboutSection extends ConsumerWidget {
           leadingIcon: Icons.import_contacts_rounded,
           titleText: l10n.importDeclaration,
           subtitleText: l10n.importDeclarationDescription,
-          onTap: () => showDialog(
-            context: context,
-            builder: (context) => JsonToDialog(
+          onTap: () => context.pushDialog(
+            JsonToDialog(
               title: l10n.importDeclaration,
               updateTime: l10n.importDeclarationContentUpdateTime,
               content: l10n.importDeclarationContent,
@@ -137,9 +136,8 @@ class AboutSection extends ConsumerWidget {
           leadingIcon: Icons.privacy_tip_rounded,
           titleText: l10n.privacyStatement,
           subtitleText: '${App.name} ${l10n.privacyStatement}',
-          onTap: () => showDialog(
-            context: context,
-            builder: (context) => JsonToDialog(
+          onTap: () => context.pushDialog(
+            JsonToDialog(
               title: l10n.privacyStatement,
               updateTime: l10n.privacyStatementContentUpdateTime,
               content: l10n.privacyStatementContent,

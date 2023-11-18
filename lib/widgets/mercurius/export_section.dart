@@ -5,7 +5,7 @@ class ExportSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return BasedListSection(
       titleText: l10n.export,

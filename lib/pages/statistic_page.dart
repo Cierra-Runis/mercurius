@@ -5,7 +5,7 @@ class StatisticPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return Scaffold(
       appBar: AppBar(
@@ -13,7 +13,7 @@ class StatisticPage extends StatelessWidget {
       ),
       body: const BasedListView(
         children: [
-          MonthlyWordsStatisticWidget(),
+          MonthlyWords(),
         ],
       ),
     );

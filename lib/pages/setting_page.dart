@@ -5,7 +5,7 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +32,7 @@ class _BackgroundImageListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
     final settings = ref.watch(settingsProvider);
     final settingsNotifier = ref.watch(settingsProvider.notifier);
 
@@ -55,7 +55,7 @@ class _ThemeSelectListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
     final settings = ref.watch(settingsProvider);
 
     return BasedListTile(
@@ -66,9 +66,8 @@ class _ThemeSelectListItem extends ConsumerWidget {
           : settings.themeMode == ThemeMode.dark
               ? l10n.alwaysDark
               : l10n.alwaysBright,
-      onTap: () => showDialog<void>(
-        context: context,
-        builder: (context) => const ThemeSelector(),
+      onTap: () => context.pushDialog(
+        const ThemeSelector(),
       ),
     );
   }

@@ -55,9 +55,7 @@ class Diary {
   factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
 
-  /// 转换用工厂函数
-  factory Diary.copyWith(
-    Diary diary, {
+  Diary copyWith({
     Id? id,
     DateTime? createDateTime,
     DateTime? latestEditTime,
@@ -68,13 +66,13 @@ class Diary {
     DiaryMoodType? moodType,
   }) =>
       Diary(
-        id: id ?? diary.id,
-        createDateTime: createDateTime ?? diary.createDateTime,
-        latestEditTime: latestEditTime ?? diary.latestEditTime,
-        titleString: titleString ?? diary.titleString,
-        contentJsonString: contentJsonString ?? diary.contentJsonString,
-        editing: editing ?? diary.editing,
-        weatherType: weatherType ?? diary.weatherType,
-        moodType: moodType ?? diary.moodType,
+        id: id ?? this.id,
+        createDateTime: createDateTime ?? this.createDateTime,
+        latestEditTime: latestEditTime ?? this.latestEditTime,
+        titleString: titleString ?? this.titleString,
+        contentJsonString: contentJsonString ?? this.contentJsonString,
+        editing: editing ?? this.editing,
+        weatherType: weatherType ?? this.weatherType,
+        moodType: moodType ?? this.moodType,
       );
 }

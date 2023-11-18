@@ -1,2 +1,2 @@
-export 'dialog_confirm_widget.dart';
-export 'dialog_from_json_widget.dart';
+export 'confirm_dialog.dart';
+export 'json_to_dialog.dart';

@@ -38,7 +38,16 @@ class MercuriusApp extends ConsumerWidget {
       theme: theme,
       darkTheme: darkTheme,
       themeMode: settings.themeMode,
-      home: const SplashPage(),
+      home: BasedSplashPage(
+        rootPage: Column(
+          children: [
+            if (Platform.isWindows) const WindowAppBar(),
+            const Expanded(child: RootView()),
+          ],
+        ),
+        appIcon: const AppIcon(),
+        appName: const AppName(fontSize: 42),
+      ),
       localizationsDelegates: const [
         L10N.delegate,
         GlobalMaterialLocalizations.delegate,

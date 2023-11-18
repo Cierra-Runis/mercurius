@@ -10,7 +10,7 @@ class MoodSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
+    final l10n = L10N.current;
 
     return AlertDialog(
       title: Column(
@@ -38,9 +38,7 @@ class MoodSelector extends ConsumerWidget {
           itemBuilder: (context, index) {
             final moodType = DiaryMoodType.values[index];
             return IconButton(
-              onPressed: () => context.pop(
-                Diary.copyWith(diary, moodType: moodType),
-              ),
+              onPressed: () => context.pop(moodType),
               icon: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

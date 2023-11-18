@@ -6,5 +6,4 @@ export 'more_page.dart';
 export 'release_page.dart';
 export 'root_page.dart';
 export 'setting_page.dart';
-export 'splash_page.dart';
 export 'statistic_page.dart';
