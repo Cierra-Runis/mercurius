@@ -1,38 +1,27 @@
 import 'package:mercurius/index.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'root_page.g.dart';
 
 final splitViewKey = GlobalKey<NavigatorState>();
 
-class RootView extends StatefulWidget {
+@riverpod
+class CurrentIndex extends _$CurrentIndex {
+  @override
+  int build() => 0;
+
+  void changeTo(int value) => state = value;
+}
+
+class RootView extends ConsumerWidget {
   const RootView({super.key});
 
   @override
-  State<RootView> createState() => _RootViewState();
-}
-
-class _RootViewState extends State<RootView> {
-  int _currentIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() => _currentIndex = index);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = L10N.current;
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return DoubleBack(
-      message: l10n.backAgainToExit,
-      background: context.colorScheme.outline.withAlpha(16),
-      backgroundRadius: BorderRadius.circular(16),
-      condition: _currentIndex == 0,
-      onConditionFail: () => _onItemTapped(0),
       child: BasedSplitView(
         splitMode: SplitMode.width,
         navigatorKey: splitViewKey,
-        leftWidget: RootPage(
-          currentIndex: _currentIndex,
-          onItemTapped: _onItemTapped,
-        ),
+        leftWidget: const RootPage(),
         leftWidth: 364,
         breakPoint: 364 * 2,
         rightPlaceholder: const Scaffold(
@@ -47,40 +36,33 @@ class _RootViewState extends State<RootView> {
   }
 }
 
-class RootPage extends StatefulWidget {
+class RootPage extends ConsumerWidget {
   const RootPage({
     super.key,
-    required this.currentIndex,
-    required this.onItemTapped,
   });
 
-  final int currentIndex;
-  final void Function(int) onItemTapped;
-
-  static const List<Widget> _bodyWidgets = [
+  static const bodyWidgets = [
     HomePage(key: ValueKey(HomePage)),
     MorePage(key: ValueKey(MorePage)),
   ];
 
   @override
-  State<RootPage> createState() => _RootPageState();
-}
-
-class _RootPageState extends State<RootPage> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.current;
+    final currentIndex = ref.watch(currentIndexProvider);
+    final setCurrentIndex = ref.watch(currentIndexProvider.notifier);
 
     return Scaffold(
       body: Center(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
-          child: RootPage._bodyWidgets[widget.currentIndex],
+          child: bodyWidgets[currentIndex],
         ),
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: widget.currentIndex,
-        onDestinationSelected: widget.onItemTapped,
+        selectedIndex: currentIndex,
+        onDestinationSelected: setCurrentIndex.changeTo,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         destinations: [
           NavigationDestination(
             icon: const Icon(Icons.home),

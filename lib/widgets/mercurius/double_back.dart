@@ -1,44 +1,31 @@
 import 'package:mercurius/index.dart';
 
-class DoubleBack extends StatefulWidget {
+class DoubleBack extends ConsumerStatefulWidget {
   const DoubleBack({
     super.key,
-    required this.background,
-    required this.backgroundRadius,
-    required this.message,
     required this.child,
-    this.condition = true,
-    this.duration = const Duration(milliseconds: 600),
-    this.margin = const EdgeInsets.fromLTRB(60, 0, 60, 70),
-    this.onConditionFail,
-    this.onFirstBackPress,
-    this.platform = TargetPlatform.android,
-    this.textStyle = const TextStyle(fontWeight: FontWeight.w600),
-    this.waitForSecondBackPress = 2,
   });
 
-  final Color background;
-  final BorderRadius backgroundRadius;
   final Widget child;
-  final bool condition;
-  final Duration duration;
-  final EdgeInsets margin;
-  final String message;
-  final VoidCallback? onConditionFail;
-  final Function? onFirstBackPress;
-  final TargetPlatform platform;
-  final TextStyle textStyle;
-  final int waitForSecondBackPress;
 
   @override
-  State<DoubleBack> createState() => _DoubleBackState();
+  ConsumerState<DoubleBack> createState() => _DoubleBackState();
 }
 
-class _DoubleBackState extends State<DoubleBack> {
+class _DoubleBackState extends ConsumerState<DoubleBack> {
   bool _tapped = false;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = L10N.current;
+
+    final message = l10n.backAgainToExit;
+    final background = context.colorScheme.outline.withAlpha(16);
+    final backgroundRadius = BorderRadius.circular(16);
+
+    final currentIndex = ref.watch(currentIndexProvider);
+    final setCurrentIndex = ref.watch(currentIndexProvider.notifier);
+
     return WillPopScope(
       onWillPop: () async {
         if (splitViewKey.currentState?.canPop() == true) {
@@ -46,41 +33,42 @@ class _DoubleBackState extends State<DoubleBack> {
           return false;
         }
 
-        if (widget.condition) {
-          if (_tapped) return true;
-
-          _tapped = true;
-          Timer(
-            Duration(seconds: widget.waitForSecondBackPress),
-            () => _tapped = false,
-          );
-          if (widget.onFirstBackPress != null) {
-            widget.onFirstBackPress!(context);
-          } else {
-            Flushbar(
-              icon: const Icon(UniconsLine.exit),
-              isDismissible: false,
-              messageText: Center(
-                child: Text(widget.message, style: widget.textStyle),
-              ),
-              margin: widget.margin,
-              barBlur: 1.0,
-              borderRadius: widget.backgroundRadius,
-              backgroundColor: widget.background,
-              boxShadows: const [
-                BoxShadow(
-                  color: Colors.transparent,
-                  offset: Offset(0, 16),
-                ),
-              ],
-              duration: widget.duration,
-            ).show(context);
-          }
+        if (currentIndex != 0) {
+          setCurrentIndex.changeTo(0);
           return false;
         }
-        if (widget.onConditionFail != null) {
-          widget.onConditionFail!();
-        }
+
+        if (_tapped) return true;
+
+        _tapped = true;
+
+        Timer(
+          const Duration(seconds: 2),
+          () => _tapped = false,
+        );
+
+        Flushbar(
+          icon: const Icon(UniconsLine.exit),
+          isDismissible: false,
+          messageText: Center(
+            child: Text(
+              message,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+          margin: const EdgeInsets.fromLTRB(60, 0, 60, 70),
+          barBlur: 1.0,
+          borderRadius: backgroundRadius,
+          backgroundColor: background,
+          boxShadows: const [
+            BoxShadow(
+              color: Colors.transparent,
+              offset: Offset(0, 16),
+            ),
+          ],
+          duration: const Duration(milliseconds: 600),
+        ).show(context);
+
         return false;
       },
       child: widget.child,
