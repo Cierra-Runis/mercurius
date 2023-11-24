@@ -19,6 +19,7 @@ class MercuriusApp extends ConsumerWidget {
         dayStyle: TextStyle(fontSize: 12),
       ),
       fontFamily: 'Saira',
+      fontFamilyFallback: const ['MiSans'],
       appBarTheme: const AppBarTheme(centerTitle: true),
     );
 
@@ -29,6 +30,7 @@ class MercuriusApp extends ConsumerWidget {
         dayStyle: TextStyle(fontSize: 12),
       ),
       fontFamily: 'Saira',
+      fontFamilyFallback: const ['MiSans'],
       appBarTheme: const AppBarTheme(centerTitle: true),
     );
 

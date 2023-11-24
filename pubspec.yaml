@@ -69,51 +69,54 @@ flutter:
   fonts:
     - family: Saira
       fonts:
-        - asset: assets/fonts/Saira-Thin.ttf
+        - asset: assets/fonts/Saira/Saira-Thin.ttf
           weight: 100
-        - asset: assets/fonts/Saira-ThinItalic.ttf
+        - asset: assets/fonts/Saira/Saira-ThinItalic.ttf
           weight: 100
           style: italic
-        - asset: assets/fonts/Saira-ExtraLight.ttf
+        - asset: assets/fonts/Saira/Saira-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/Saira-ExtraLightItalic.ttf
+        - asset: assets/fonts/Saira/Saira-ExtraLightItalic.ttf
           weight: 200
           style: italic
-        - asset: assets/fonts/Saira-Light.ttf
+        - asset: assets/fonts/Saira/Saira-Light.ttf
           weight: 300
-        - asset: assets/fonts/Saira-LightItalic.ttf
+        - asset: assets/fonts/Saira/Saira-LightItalic.ttf
           weight: 300
           style: italic
-        - asset: assets/fonts/Saira-Regular.ttf
+        - asset: assets/fonts/Saira/Saira-Regular.ttf
           weight: 400
-        - asset: assets/fonts/Saira-Italic.ttf
+        - asset: assets/fonts/Saira/Saira-Italic.ttf
           weight: 400
           style: italic
-        - asset: assets/fonts/Saira-Medium.ttf
+        - asset: assets/fonts/Saira/Saira-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Saira-MediumItalic.ttf
+        - asset: assets/fonts/Saira/Saira-MediumItalic.ttf
           weight: 500
           style: italic
-        - asset: assets/fonts/Saira-SemiBold.ttf
+        - asset: assets/fonts/Saira/Saira-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Saira-SemiBoldItalic.ttf
+        - asset: assets/fonts/Saira/Saira-SemiBoldItalic.ttf
           weight: 600
           style: italic
-        - asset: assets/fonts/Saira-Bold.ttf
+        - asset: assets/fonts/Saira/Saira-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Saira-BoldItalic.ttf
+        - asset: assets/fonts/Saira/Saira-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: assets/fonts/Saira-ExtraBold.ttf
+        - asset: assets/fonts/Saira/Saira-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/Saira-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Saira/Saira-ExtraBoldItalic.ttf
           weight: 800
           style: italic
-        - asset: assets/fonts/Saira-Black.ttf
+        - asset: assets/fonts/Saira/Saira-Black.ttf
           weight: 900
-        - asset: assets/fonts/Saira-BlackItalic.ttf
+        - asset: assets/fonts/Saira/Saira-BlackItalic.ttf
           weight: 900
           style: italic
+    - family: MiSans
+      fonts:
+        - asset: assets/fonts/MiSans/MiSans-Regular.ttf
   assets:
     - assets/icon/
 
