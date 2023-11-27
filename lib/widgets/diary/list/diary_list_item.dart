@@ -21,7 +21,7 @@ class DiaryListItem extends ConsumerWidget {
       diary.createDateTime.format('dd'),
       style: const TextStyle(
         fontSize: 24,
-        fontFamily: 'Saira',
+        fontFamily: App.fontSaira,
       ),
     );
     final weekdayWidget = Text(

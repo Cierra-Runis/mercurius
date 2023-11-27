@@ -11,7 +11,7 @@ class MonthlyWords extends ConsumerWidget {
     return BasedListSection(
       titleText: l10n.monthlyWordCountStatistics,
       titleTextStyle: const TextStyle(
-        fontFamily: 'Saira',
+        fontFamily: App.fontSaira,
         fontSize: 18,
       ),
       children: [
@@ -27,7 +27,7 @@ class MonthlyWords extends ConsumerWidget {
                     majorGridLines: const MajorGridLines(width: 0),
                     labelPlacement: LabelPlacement.onTicks,
                     labelStyle: const TextStyle(
-                      fontFamily: 'Saira',
+                      fontFamily: App.fontSaira,
                       fontSize: 6,
                     ),
                   ),
@@ -36,7 +36,7 @@ class MonthlyWords extends ConsumerWidget {
                     labelFormat: '{value}',
                     majorTickLines: const MajorTickLines(size: 0),
                     labelStyle: const TextStyle(
-                      fontFamily: 'Saira',
+                      fontFamily: App.fontSaira,
                       fontSize: 6,
                     ),
                   ),
@@ -45,7 +45,7 @@ class MonthlyWords extends ConsumerWidget {
                     format: 'point.x point.y',
                     enable: true,
                     textStyle: const TextStyle(
-                      fontFamily: 'Saira',
+                      fontFamily: App.fontSaira,
                       fontSize: 8,
                     ),
                   ),
@@ -64,7 +64,7 @@ class MonthlyWords extends ConsumerWidget {
                       dataLabelSettings: const DataLabelSettings(
                         isVisible: true,
                         textStyle: TextStyle(
-                          fontFamily: 'Saira',
+                          fontFamily: App.fontSaira,
                           fontSize: 6,
                         ),
                       ),

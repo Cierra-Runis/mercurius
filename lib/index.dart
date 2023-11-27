@@ -14,6 +14,7 @@ export 'main.dart';
 /// flutter 相关
 /// [RefreshCallback] 和 `export 'package:flutter/material.dart'` 冲突，两者近似
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
+export 'package:flutter/foundation.dart' hide describeIdentity, shortHash;
 
 /// [Badge] 和 `export 'package:badges/badges.dart'; // 小红点提示` 冲突，我想用外部包
 export 'package:flutter/material.dart' hide Badge;
@@ -23,7 +24,7 @@ export 'package:flutter/gestures.dart';
 export 'dart:async' show Timer, StreamSubscription;
 export 'dart:convert';
 export 'dart:io';
-export 'dart:ui' show ImageFilter;
+export 'dart:ui' show ImageFilter, FontFeature;
 
 /// 外部包相关
 export 'package:another_flushbar/flushbar.dart'; // 提示框
@@ -35,6 +36,7 @@ export 'package:cross_file/cross_file.dart'; // 文件操作
 export 'package:dio/dio.dart'; // 网络请求
 /// [Interval] 和 `package:flutter/src/animation/curves.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
 export 'package:dart_date/dart_date.dart' hide Interval; // 日期工具
+export 'package:dynamic_color/dynamic_color.dart';
 export 'package:file_picker/file_picker.dart'; // 文件选择
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化

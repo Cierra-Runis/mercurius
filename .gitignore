@@ -43,7 +43,7 @@ lib/common/mercurius_key.dart
 
 # release_tool
 .release_tool/*
-**/*.ttf
+assets/fonts/**
 
 *.g.dart
 *.freezed.dart

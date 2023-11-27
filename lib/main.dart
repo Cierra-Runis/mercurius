@@ -10,28 +10,35 @@ class MercuriusApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final colorSchemes = ref.watch(colorSchemesProvider);
     final settings = ref.watch(settingsProvider);
+
+    const appBarTheme = AppBarTheme(
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      centerTitle: true,
+    );
 
     final theme = ThemeData(
       useMaterial3: true,
-      colorScheme: App.lightColorScheme,
+      colorScheme: colorSchemes.light,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
-      fontFamily: 'Saira',
-      fontFamilyFallback: const ['MiSans'],
-      appBarTheme: const AppBarTheme(centerTitle: true),
+      fontFamily: App.fontSaira,
+      fontFamilyFallback: const [App.fontMiSans],
+      appBarTheme: appBarTheme,
     );
 
     final darkTheme = ThemeData(
       useMaterial3: true,
-      colorScheme: App.darkColorScheme,
+      colorScheme: colorSchemes.dark,
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
-      fontFamily: 'Saira',
-      fontFamilyFallback: const ['MiSans'],
-      appBarTheme: const AppBarTheme(centerTitle: true),
+      fontFamily: App.fontSaira,
+      fontFamilyFallback: const [App.fontMiSans],
+      appBarTheme: appBarTheme,
     );
 
     return MaterialApp(

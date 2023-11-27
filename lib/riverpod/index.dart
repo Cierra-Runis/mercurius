@@ -1,3 +1,4 @@
+export 'color_schemes.dart';
 export 'github_latest_release.dart';
 export 'mercurius_path.dart';
 export 'persistence.dart';

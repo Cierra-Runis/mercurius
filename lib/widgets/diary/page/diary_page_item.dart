@@ -38,7 +38,7 @@ class DiaryPageItem extends ConsumerWidget {
                         diary.createDateTime.format('dd'),
                         style: const TextStyle(
                           fontSize: 60,
-                          fontFamily: 'Saira',
+                          fontFamily: App.fontSaira,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
