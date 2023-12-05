@@ -39,11 +39,12 @@ export 'package:dart_date/dart_date.dart' hide Interval; // 日期工具
 export 'package:dynamic_color/dynamic_color.dart';
 export 'package:file_picker/file_picker.dart'; // 文件选择
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
+export 'package:flutter_hooks/flutter_hooks.dart';
 export 'package:flutter_localizations/flutter_localizations.dart'; // 本地化
 export 'package:flutter_markdown/flutter_markdown.dart'; // markdown
 export 'package:flutter_quill/flutter_quill.dart'; // 富文本
-export 'package:flutter_riverpod/flutter_riverpod.dart'; // 状态管理
 export 'package:freezed_annotation/freezed_annotation.dart';
+export 'package:hooks_riverpod/hooks_riverpod.dart'; // 状态管理
 export 'package:image_picker/image_picker.dart'; // 图片选择
 export 'package:image_picker_android/image_picker_android.dart'; // 图片选择
 export 'package:image_picker_platform_interface/image_picker_platform_interface.dart'; // 图片选择

@@ -24,9 +24,10 @@ dependencies:
   dynamic_color: ^1.6.8
   file_picker: ^6.1.1
   flutter_displaymode: ^0.6.0
+  flutter_hooks: ^0.20.3
   flutter_markdown: ^0.6.18+2
   flutter_quill: ^8.6.4
-  flutter_riverpod: ^2.4.9
+  hooks_riverpod: ^2.4.9
   image_picker: ^1.0.4
   image_picker_android: ^0.8.8
   image_picker_platform_interface: ^2.9.1

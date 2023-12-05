@@ -1,20 +1,14 @@
 import 'package:mercurius/index.dart';
 
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _MercuriusHomePageState();
-}
-
-class _MercuriusHomePageState extends ConsumerState<HomePage> {
-  final ScrollController controller = ScrollController();
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.current;
     final path = ref.watch(mercuriusPathProvider);
     final settings = ref.watch(settingsProvider);
+    final controller = useScrollController();
 
     return Scaffold(
       appBar: AppBar(

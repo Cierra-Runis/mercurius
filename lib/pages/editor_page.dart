@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class EditorPage extends ConsumerStatefulWidget {
+class EditorPage extends StatefulHookWidget {
   const EditorPage({
     super.key,
     required this.diary,
@@ -11,12 +11,11 @@ class EditorPage extends ConsumerStatefulWidget {
   final bool autoSave;
 
   @override
-  ConsumerState<EditorPage> createState() => _DiaryEditorPageState();
+  State<EditorPage> createState() => _DiaryEditorPageState();
 }
 
-class _DiaryEditorPageState extends ConsumerState<EditorPage> {
+class _DiaryEditorPageState extends State<EditorPage> {
   late final QuillController _quillController;
-  final TextEditingController _textEditingController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
   late Diary _diary;
@@ -32,7 +31,6 @@ class _DiaryEditorPageState extends ConsumerState<EditorPage> {
       keepStyleOnNewLine: true,
       selection: const TextSelection.collapsed(offset: 0),
     );
-    _textEditingController.text = _diary.titleString;
   }
 
   @override
@@ -51,11 +49,15 @@ class _DiaryEditorPageState extends ConsumerState<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final textEditingController = useTextEditingController(
+      text: _diary.titleString,
+    );
+
     return Scaffold(
       appBar: EditorAppBar(
         diary: _diary,
         quillController: _quillController,
-        textEditingController: _textEditingController,
+        textEditingController: textEditingController,
         handleChangeDiary: _handleChangeDiary,
         handleAutoSaveButtonChangeState: _handleAutoSaveButtonChangeState,
         autoSave: _autoSave,
