@@ -8,6 +8,13 @@ void main() => App.run();
 class MercuriusApp extends ConsumerWidget {
   const MercuriusApp({super.key});
 
+  Widget builder(context, child) => Column(
+        children: [
+          if (Platform.isWindows) const WindowAppBar(),
+          Expanded(child: ClipRRect(child: child)),
+        ],
+      );
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorSchemes = ref.watch(colorSchemesProvider);
@@ -47,15 +54,11 @@ class MercuriusApp extends ConsumerWidget {
       theme: theme,
       darkTheme: darkTheme,
       themeMode: settings.themeMode,
-      home: BasedSplashPage(
-        rootPage: Column(
-          children: [
-            if (Platform.isWindows) const WindowAppBar(),
-            const Expanded(child: RootView()),
-          ],
-        ),
-        appIcon: const AppIcon(),
-        appName: const AppName(fontSize: 42),
+      builder: builder,
+      home: const BasedSplashPage(
+        rootPage: RootView(),
+        appIcon: AppIcon(),
+        appName: AppName(fontSize: 42),
       ),
       localizationsDelegates: const [
         L10N.delegate,
