@@ -77,14 +77,7 @@ class DiaryListItem extends ConsumerWidget {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: InkWell(
-          onTap: onTap ??
-              () => {
-                    (splitViewKey.currentContext ?? context).pushDialog(
-                      DiaryPageView(
-                        diary: diary,
-                      ),
-                    ),
-                  },
+          onTap: onTap ?? () => context.pushDialog(DiaryPageView(diary: diary)),
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
             height: 80,

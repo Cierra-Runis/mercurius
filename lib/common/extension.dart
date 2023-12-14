@@ -1,8 +1,9 @@
 import 'package:mercurius/index.dart';
 
 extension BuildContextExt on BuildContext {
-  Future<T?> push<T extends Object?>(Widget page) => splitViewKey.currentState!
-      .push(CupertinoPageRoute<T>(builder: (_) => page));
+  Future<T?> push<T extends Object?>(Widget page) =>
+      (splitViewKey.currentState ?? Navigator.of(this))
+          .push(CupertinoPageRoute<T>(builder: (_) => page));
 
   void pop<T extends Object?>([T? result]) => Navigator.pop(this, result);
 
@@ -12,21 +13,17 @@ extension BuildContextExt on BuildContext {
     Color? barrierColor,
     String? barrierLabel,
     bool useSafeArea = true,
-    bool useRootNavigator = false,
+    bool useRootNavigator = true,
     RouteSettings? routeSettings,
     Offset? anchorPoint,
     TraversalEdgeBehavior? traversalEdgeBehavior,
   }) =>
-      showDialog(
-        context: this,
-        builder: (context) => dialog,
-        barrierDismissible: barrierDismissible,
-        barrierColor: barrierColor,
-        barrierLabel: barrierLabel,
-        useSafeArea: useRootNavigator,
-        routeSettings: routeSettings,
-        anchorPoint: anchorPoint,
-        traversalEdgeBehavior: traversalEdgeBehavior,
+      (splitViewKey.currentState ?? Navigator.of(this)).push(
+        DialogRoute(
+          context: splitViewKey.currentState?.context ?? this,
+          builder: (context) =>
+              Material(type: MaterialType.transparency, child: dialog),
+        ),
       );
 
   ColorScheme get colorScheme => Theme.of(this).colorScheme;

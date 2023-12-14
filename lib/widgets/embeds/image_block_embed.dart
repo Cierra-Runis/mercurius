@@ -97,12 +97,10 @@ class DiaryImageEmbedBuilder extends EmbedBuilder {
       future: getImageFile(node.value.data),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Material(
-            child: InkWell(
-              borderRadius: BorderRadius.circular(16.0),
-              onTap: () => onInkWellTap(snapshot.data!, readOnly),
-              child: getInkWellChild(snapshot.data!),
-            ),
+          return InkWell(
+            borderRadius: BorderRadius.circular(16.0),
+            onTap: () => onInkWellTap(snapshot.data!, readOnly),
+            child: getInkWellChild(snapshot.data!),
           );
         }
         return const SizedBox();
