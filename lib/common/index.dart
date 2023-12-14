@@ -1,3 +1,3 @@
 export 'extension.dart';
-export 'mercurius.dart';
+export 'app.dart';
 export 'key.dart';
