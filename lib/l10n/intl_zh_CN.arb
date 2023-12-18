@@ -114,5 +114,7 @@
   "hiToKoToFetching": "正在获取「一言」",
   "thisDayLastYear": "去年今日",
   "backgroundImage": "背景图像",
-  "noImageSelected": "未选择图片"
+  "noImageSelected": "未选择图片",
+  "clear": "清除",
+  "language": "语言"
 }

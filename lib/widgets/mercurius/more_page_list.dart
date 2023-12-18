@@ -31,7 +31,7 @@ class MorePageList extends ConsumerWidget {
       [
         Icons.settings_rounded,
         l10n.settings,
-        const SettingPage(),
+        const SettingsPage(),
       ],
     ];
 

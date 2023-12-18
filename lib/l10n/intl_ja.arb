@@ -114,5 +114,7 @@
   "hiToKoToFetching": "「一言」を取得中",
   "thisDayLastYear": "去年の今日",
   "backgroundImage": "背景画像",
-  "noImageSelected": "画像が選択されていません"
+  "noImageSelected": "画像が選択されていません",
+  "clear": "クリア",
+  "language": "言語"
 }

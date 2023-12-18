@@ -114,5 +114,7 @@
   "hiToKoToFetching": "Fetching 「一言」...",
   "thisDayLastYear": "This Day Last Year",
   "backgroundImage": "Background Image",
-  "noImageSelected": "No Image Selected"
+  "noImageSelected": "No Image Selected",
+  "clear": "Clear",
+  "language": "Language"
 }

@@ -1,6 +1,5 @@
 export 'based_shimmer.dart';
 export 'double_back.dart';
-export 'theme_selector.dart';
 export 'app_bar_title.dart';
 export 'gallery_card.dart';
 export 'loading.dart';

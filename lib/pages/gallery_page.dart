@@ -50,8 +50,9 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
 
     return GridView.builder(
       cacheExtent: 1000,
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
       padding: const EdgeInsets.all(12.0),
       itemCount: fileSystemEntities.length,
       itemBuilder: (context, index) => GalleryCard(
@@ -83,12 +84,23 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
   @override
   Widget build(BuildContext context) {
     final path = ref.watch(mercuriusPathProvider);
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     final l10n = L10N.current;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.imageGallery),
+        actions: [
+          if (_readOnly)
+            TextButton(
+              onPressed: () {
+                settingsNotifier.setBgImgPath(null);
+                context.pop();
+              },
+              child: Text(l10n.clear),
+            ),
+        ],
       ),
       body: path.when(
         loading: () => const Loading(),

@@ -60,6 +60,7 @@ class MercuriusApp extends ConsumerWidget {
         appIcon: AppIcon(),
         appName: AppName(fontSize: 42),
       ),
+      locale: settings.locale,
       localizationsDelegates: const [
         L10N.delegate,
         GlobalMaterialLocalizations.delegate,
