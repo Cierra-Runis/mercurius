@@ -19,7 +19,7 @@ class EditorToolbarWidget extends ConsumerWidget {
         : context.colorScheme.primaryContainer;
 
     final quillIconTheme = QuillIconTheme(
-      borderRadius: 12,
+      borderRadius: 10,
       iconSelectedFillColor: iconSelectedFillColor,
     );
 
@@ -88,7 +88,10 @@ class EditorToolbarWidget extends ConsumerWidget {
     return QuillToolbar(
       configurations: QuillToolbarConfigurations(
         buttonOptions: QuillToolbarButtonOptions(
-          base: QuillToolbarBaseButtonOptions(iconTheme: quillIconTheme),
+          base: QuillToolbarBaseButtonOptions(
+            iconTheme: quillIconTheme,
+            globalIconSize: 16,
+          ),
         ),
         showUndo: false,
         showRedo: false,

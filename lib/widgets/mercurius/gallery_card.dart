@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class GalleryCard extends StatelessWidget {
+class GalleryCard extends ConsumerWidget {
   const GalleryCard({
     super.key,
     required this.fileSystemEntity,
@@ -11,17 +11,21 @@ class GalleryCard extends StatelessWidget {
   final bool readOnly;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.current;
     final colorScheme = context.colorScheme;
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: readOnly
-            ? () => context.pop(
+            ? () {
+                settingsNotifier.setBgImgPath(
                   fileSystemEntity.path.split('/').last,
-                )
+                );
+                context.pop();
+              }
             : () => context.pushDialog(
                   ImageView(
                     imageUrl: fileSystemEntity.path,

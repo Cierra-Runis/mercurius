@@ -37,7 +37,7 @@ class ImageView extends ConsumerWidget {
           alignment: Alignment.bottomRight,
           child: IconButton(
             onPressed: () => Share.shareFiles([imageUrl]),
-            icon: const Icon(Icons.file_download_rounded),
+            icon: const Icon(UniconsLine.share),
           ),
         ),
       ],
