@@ -33,10 +33,6 @@ class EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
     final l10n = L10N.current;
 
     return AppBar(
-      leading: TextButton(
-        onPressed: context.pop,
-        child: Text(l10n.back),
-      ),
       title: Stack(
         children: [
           TextField(

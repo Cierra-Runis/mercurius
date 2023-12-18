@@ -38,17 +38,12 @@ class WeatherSelector extends ConsumerWidget {
           itemBuilder: (context, index) {
             final weatherType = DiaryWeatherType.values[index];
             return IconButton(
+              tooltip: l10n.weatherText(weatherType.weather),
+              color: diary.weatherType.weather == weatherType.weather
+                  ? context.colorScheme.primary
+                  : null,
               onPressed: () => context.pop(weatherType),
-              icon: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(weatherType.qweatherIcons.iconData),
-                  Text(l10n.weatherText(weatherType.weather)),
-                ],
-              ),
-              color: diary.weatherType != weatherType
-                  ? null
-                  : context.colorScheme.primary,
+              icon: Icon(weatherType.qweatherIcons.iconData),
             );
           },
         ),

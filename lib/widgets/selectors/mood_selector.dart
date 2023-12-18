@@ -38,17 +38,12 @@ class MoodSelector extends ConsumerWidget {
           itemBuilder: (context, index) {
             final moodType = DiaryMoodType.values[index];
             return IconButton(
+              tooltip: l10n.moodText(moodType.mood),
               onPressed: () => context.pop(moodType),
-              icon: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(moodType.iconData),
-                  Text(l10n.moodText(moodType.mood)),
-                ],
-              ),
-              color: diary.moodType != moodType
-                  ? null
-                  : context.colorScheme.primary,
+              icon: Icon(moodType.iconData),
+              color: diary.moodType.name == moodType.name
+                  ? context.colorScheme.primary
+                  : null,
             );
           },
         ),
