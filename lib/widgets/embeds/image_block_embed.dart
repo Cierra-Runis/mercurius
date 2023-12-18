@@ -31,7 +31,7 @@ class DiaryImageEmbedBuilder extends EmbedBuilder {
     bool inline,
     TextStyle textStyle,
   ) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     Widget getInkWellChild(File file) {
       if (file.existsSync()) {

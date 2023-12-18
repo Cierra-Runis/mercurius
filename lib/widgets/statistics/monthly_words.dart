@@ -5,7 +5,7 @@ class MonthlyWords extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
     final lang = Localizations.localeOf(context).toLanguageTag();
 
     return BasedListSection(
@@ -23,19 +23,19 @@ class MonthlyWords extends ConsumerWidget {
               if (snapshot.hasData) {
                 return SfCartesianChart(
                   margin: const EdgeInsets.fromLTRB(12.0, 24.0, 24.0, 12.0),
-                  primaryXAxis: CategoryAxis(
-                    majorGridLines: const MajorGridLines(width: 0),
+                  primaryXAxis: const CategoryAxis(
+                    majorGridLines: MajorGridLines(width: 0),
                     labelPlacement: LabelPlacement.onTicks,
-                    labelStyle: const TextStyle(
+                    labelStyle: TextStyle(
                       fontFamily: App.fontSaira,
                       fontSize: 6,
                     ),
                   ),
-                  primaryYAxis: NumericAxis(
-                    axisLine: const AxisLine(width: 0),
+                  primaryYAxis: const NumericAxis(
+                    axisLine: AxisLine(width: 0),
                     labelFormat: '{value}',
-                    majorTickLines: const MajorTickLines(size: 0),
-                    labelStyle: const TextStyle(
+                    majorTickLines: MajorTickLines(size: 0),
+                    labelStyle: TextStyle(
                       fontFamily: App.fontSaira,
                       fontSize: 6,
                     ),

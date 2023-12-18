@@ -5,7 +5,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class _BackgroundImageListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
     final settings = ref.watch(settingsProvider);
 
     return BasedListTile(
@@ -54,7 +54,7 @@ class _ThemeSelectListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     return BasedListTile(
       leadingIcon: Icons.dark_mode_rounded,
@@ -69,7 +69,7 @@ class _LanguageSelectListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     return BasedListTile(
       leadingIcon: Icons.translate_rounded,

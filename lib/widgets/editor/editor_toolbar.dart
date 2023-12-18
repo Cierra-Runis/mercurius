@@ -25,7 +25,7 @@ class EditorToolbarWidget extends ConsumerWidget {
 
     final path = ref.watch(mercuriusPathProvider);
 
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     final embedButtons = <EmbedButtonBuilder>[
       (controller, _, __, ___) {

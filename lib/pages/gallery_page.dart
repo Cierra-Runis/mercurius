@@ -40,7 +40,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
     BuildContext context,
     AsyncSnapshot<List<FileSystemEntity>> snapshot,
   ) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return Center(child: Text(l10n.noData));
@@ -86,7 +86,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
     final path = ref.watch(mercuriusPathProvider);
     final settingsNotifier = ref.watch(settingsProvider.notifier);
 
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     return Scaffold(
       appBar: AppBar(

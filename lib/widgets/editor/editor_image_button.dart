@@ -17,7 +17,7 @@ class EditorToolbarImageButton extends QuillToolbarCustomButtonOptions {
     BuildContext context,
     String path,
   ) async {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     final newImage = await ConfirmDialog(
       context: context,

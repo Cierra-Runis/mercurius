@@ -10,7 +10,7 @@ class MorePageList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     final data = <List<dynamic>>[
       [
@@ -79,7 +79,7 @@ class AboutSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final currentVersion = ref.watch(currentVersionProvider);

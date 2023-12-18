@@ -12,7 +12,7 @@ class DiaryPageView extends ConsumerWidget {
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
-    final l10n = L10N.current;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return AlertDialog(title: Center(child: Text(l10n.noData)));
