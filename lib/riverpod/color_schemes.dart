@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'color_schemes.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 ColorSchemes colorSchemes(ColorSchemesRef ref) =>
     throw Exception('colorSchemesProvider not initialized');
 

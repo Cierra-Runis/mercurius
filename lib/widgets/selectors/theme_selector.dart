@@ -19,17 +19,17 @@ class ThemeSelector extends ConsumerWidget {
         ButtonSegment(
           value: ThemeMode.system,
           tooltip: l10n.followTheSystem,
-          label: Icon(Settings.themeModeIcon[ThemeMode.system]),
+          label: Icon(App.themeModeIcon[ThemeMode.system]),
         ),
         ButtonSegment(
           value: ThemeMode.dark,
           tooltip: l10n.alwaysDark,
-          label: Icon(Settings.themeModeIcon[ThemeMode.dark]),
+          label: Icon(App.themeModeIcon[ThemeMode.dark]),
         ),
         ButtonSegment(
           value: ThemeMode.light,
           tooltip: l10n.alwaysBright,
-          label: Icon(Settings.themeModeIcon[ThemeMode.light]),
+          label: Icon(App.themeModeIcon[ThemeMode.light]),
         ),
       ],
       selected: {settings.themeMode},

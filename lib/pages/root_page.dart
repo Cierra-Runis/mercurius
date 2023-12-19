@@ -84,17 +84,12 @@ class _BottomBarMorePageIcon extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final currentVersion = ref.watch(currentVersionProvider);
+    final tagName = ref.watch(packageInfoProvider).tagName;
     return Badge(
       showBadge: githubLatestRelease.when(
         loading: () => false,
         error: (error, stackTrace) => false,
-        data: (githubLatestRelease) => currentVersion.when(
-          loading: () => false,
-          error: (error, stackTrace) => false,
-          data: (currentVersion) =>
-              currentVersion != githubLatestRelease.tag_name,
-        ),
+        data: (data) => tagName != data.tagName,
       ),
       child: const Icon(Icons.more_horiz),
     );

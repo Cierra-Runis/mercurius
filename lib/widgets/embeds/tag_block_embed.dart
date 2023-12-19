@@ -1,23 +1,23 @@
 import 'package:mercurius/index.dart';
 
-class DiaryTagBlockEmbed extends Embeddable {
-  const DiaryTagBlockEmbed(
+class TagBlockEmbed extends Embeddable {
+  const TagBlockEmbed(
     String value,
   ) : super(mercuriusTagType, value);
 
   static const String mercuriusTagType = 'mercuriusTag';
 
-  static DiaryTagBlockEmbed fromDocument(Document document) =>
-      DiaryTagBlockEmbed(jsonEncode(document.toDelta().toJson()));
+  static TagBlockEmbed fromDocument(Document document) =>
+      TagBlockEmbed(jsonEncode(document.toDelta().toJson()));
 
   Document get document => Document.fromJson(jsonDecode(data));
 }
 
-class DiaryTagEmbedBuilder extends EmbedBuilder {
-  const DiaryTagEmbedBuilder();
+class TagBlockEmbedBuilder extends EmbedBuilder {
+  const TagBlockEmbedBuilder();
 
   @override
-  String get key => DiaryTagBlockEmbed.mercuriusTagType;
+  String get key => TagBlockEmbed.mercuriusTagType;
 
   @override
   String toPlainText(Embed node) =>

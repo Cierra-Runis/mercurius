@@ -80,7 +80,7 @@ class _DiaryEditorPageState extends State<EditorPage> {
                 ),
               ),
               const Divider(),
-              EditorToolbarWidget(
+              EditorToolbar(
                 diary: _diary,
                 scrollController: _scrollController,
                 handleChangeDiary: _handleChangeDiary,

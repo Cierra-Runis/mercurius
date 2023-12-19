@@ -1,6 +1,7 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'qweather_now.g.dart';
+part 'qweather_now.freezed.dart';
 
 @riverpod
 Future<QWeatherNow> qWeatherNow(
@@ -12,8 +13,8 @@ Future<QWeatherNow> qWeatherNow(
   final apiUrl = MercuriusApi.qWeather.apiUrl;
   final aqiKey = MercuriusApi.qWeather.apiKey;
 
-  var qWeather = _QWeather();
-  final qWeatherNow = QWeatherNow();
+  var qWeather = const _QWeather();
+  const qWeatherNow = QWeatherNow();
 
   Response response;
   try {
@@ -36,70 +37,24 @@ Future<QWeatherNow> qWeatherNow(
   return qWeather.now ?? qWeatherNow;
 }
 
-@JsonSerializable()
-class _QWeather {
-  _QWeather();
+@freezed
+class QWeatherNow with _$QWeatherNow {
+  const factory QWeatherNow({
+    @JsonKey(name: 'icon') String? icon,
+  }) = _QWeatherNow;
 
-  String? code;
-  String? updateTime;
-  String? fxLink;
-  QWeatherNow? now;
-  QWeatherRefer? refer;
+  const QWeatherNow._();
 
-  factory _QWeather.fromJson(Map<String, dynamic> json) =>
-      _$QWeatherFromJson(json);
-  Map<String, dynamic> toJson() => _$QWeatherToJson(this);
-}
-
-@JsonSerializable()
-class QWeatherNow {
-  QWeatherNow({
-    this.obsTime,
-    this.temp,
-    this.feelsLike,
-    this.icon,
-    this.text,
-    this.wind360,
-    this.windDir,
-    this.windScale,
-    this.windSpeed,
-    this.humidity,
-    this.precip,
-    this.pressure,
-    this.vis,
-    this.cloud,
-    this.dew,
-  });
-
-  String? obsTime;
-  String? temp;
-  String? feelsLike;
-  String? icon;
-  String? text;
-  String? wind360;
-  String? windDir;
-  String? windScale;
-  String? windSpeed;
-  String? humidity;
-  String? precip;
-  String? pressure;
-  String? vis;
-  String? cloud;
-  String? dew;
-
-  factory QWeatherNow.fromJson(Map<String, dynamic> json) =>
+  factory QWeatherNow.fromJson(Map<String, Object?> json) =>
       _$QWeatherNowFromJson(json);
-  Map<String, dynamic> toJson() => _$QWeatherNowToJson(this);
 }
 
-@JsonSerializable()
-class QWeatherRefer {
-  QWeatherRefer();
+@freezed
+class _QWeather with _$QWeather {
+  const factory _QWeather({
+    @JsonKey(name: 'now') QWeatherNow? now,
+  }) = __QWeather;
 
-  List<String>? sources;
-  List<String>? license;
-
-  factory QWeatherRefer.fromJson(Map<String, dynamic> json) =>
-      _$QWeatherReferFromJson(json);
-  Map<String, dynamic> toJson() => _$QWeatherReferToJson(this);
+  factory _QWeather.fromJson(Map<String, Object?> json) =>
+      _$QWeatherFromJson(json);
 }

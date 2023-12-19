@@ -7,22 +7,26 @@ class ReleasePage extends ConsumerWidget {
     return () {
       try {
         if (Platform.isAndroid) {
-          final asset = data.assets!.firstWhere(
-            (element) => element.name!.endsWith('.apk'),
+          final asset = data.assets?.firstWhere(
+            (element) => element.name.endsWith('.apk'),
           );
-          launchUrlString(
-            asset.browser_download_url!,
-            mode: LaunchMode.externalApplication,
-          );
+          if (asset != null) {
+            launchUrlString(
+              asset.browserDownloadUrl,
+              mode: LaunchMode.externalApplication,
+            );
+          }
         }
         if (Platform.isWindows) {
-          final asset = data.assets!.firstWhere(
-            (element) => element.name!.endsWith('.zip'),
+          final asset = data.assets?.firstWhere(
+            (element) => element.name.endsWith('.zip'),
           );
-          launchUrlString(
-            asset.browser_download_url!,
-            mode: LaunchMode.externalApplication,
-          );
+          if (asset != null) {
+            launchUrlString(
+              asset.browserDownloadUrl,
+              mode: LaunchMode.externalApplication,
+            );
+          }
         }
       } catch (e) {
         App.printLog('launch browser_download_url failed: $e');
@@ -30,7 +34,7 @@ class ReleasePage extends ConsumerWidget {
     };
   }
 
-  Widget _getBodyByData(BuildContext context, GithubLatestRelease data) {
+  Widget getBodyByData(BuildContext context, GithubLatestRelease data) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     if (data.body != null) {
@@ -75,7 +79,7 @@ class ReleasePage extends ConsumerWidget {
           skipLoadingOnRefresh: false,
           loading: () => const Loading(),
           error: (error, stackTrace) => const SizedBox(),
-          data: (data) => _getBodyByData(context, data),
+          data: (data) => getBodyByData(context, data),
         ),
       ),
       floatingActionButton: Wrap(

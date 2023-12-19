@@ -11,3 +11,4 @@ export 'hitokoto.dart';
 export 'floating_diary_button.dart';
 export 'editing_diary_dialog.dart';
 export 'app_name.dart';
+export 'about_section.dart';

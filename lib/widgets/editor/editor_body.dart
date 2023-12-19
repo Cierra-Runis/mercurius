@@ -15,8 +15,8 @@ class EditorBody extends StatelessWidget {
   bool get enableSelectionToolbar => !readOnly;
 
   static const embedBuilders = [
-    DiaryImageEmbedBuilder(),
-    DiaryTagEmbedBuilder(),
+    ImageBlockEmbedBuilder(),
+    TagBlockEmbedBuilder(),
   ];
 
   static const unknownEmbedBuilder = DeprecatedEmbedBuilder();

@@ -13,7 +13,7 @@ extension _Ext on Persistence {
         orElse: () => ThemeMode.system,
       );
 
-  Future<void> setThemeMode(ThemeMode value) async =>
+  Future<bool> setThemeMode(ThemeMode value) async =>
       await sp.setString(themeMode, value.name);
 
   static const bgImgPath = '${Persistence.prefix}_bgImgPath';
@@ -25,7 +25,7 @@ extension _Ext on Persistence {
     return value;
   }
 
-  Future<void> setBgImgPath(String? value) async =>
+  Future<bool> setBgImgPath(String? value) async =>
       await sp.setString(bgImgPath, value ?? '');
 
   static const locale = '${Persistence.prefix}_locale';
@@ -78,28 +78,22 @@ class Settings extends _$Settings {
     );
   }
 
-  static const themeModeIcon = {
-    ThemeMode.system: Icons.brightness_auto_rounded,
-    ThemeMode.light: Icons.light_mode_rounded,
-    ThemeMode.dark: Icons.dark_mode_rounded,
-  };
-
-  Future<void> setThemeMode(ThemeMode value) async {
-    await _pers.setThemeMode(value);
+  Future<bool> setThemeMode(ThemeMode value) async {
     state = state.copyWith(themeMode: value);
+    return _pers.setThemeMode(value);
   }
 
-  Future<void> loopThemeMode() async {
-    final modes = themeModeIcon.keys.toList();
+  Future<bool> loopThemeMode() async {
+    final modes = App.themeModeIcon.keys.toList();
     final currentIndex = modes.indexOf(state.themeMode);
     final nextIndex = (currentIndex + 1) % modes.length;
     final nextMode = modes.elementAt(nextIndex);
-    setThemeMode(nextMode);
+    return setThemeMode(nextMode);
   }
 
-  Future<void> setBgImgPath(String? value) async {
-    await _pers.setBgImgPath(value);
+  Future<bool> setBgImgPath(String? value) async {
     state = state.copyWith(bgImgPath: value);
+    return _pers.setBgImgPath(value);
   }
 
   Future<bool> setLocale(Locale? value) async {

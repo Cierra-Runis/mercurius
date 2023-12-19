@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class EditorToolbarWidget extends ConsumerWidget {
-  const EditorToolbarWidget({
+class EditorToolbar extends ConsumerWidget {
+  const EditorToolbar({
     super.key,
     required this.diary,
     required this.scrollController,
@@ -34,11 +34,11 @@ class EditorToolbarWidget extends ConsumerWidget {
           error: (error, stackTrace) => const SizedBox(),
           data: (data) => QuillToolbarCustomButton(
             controller: controller,
-            options: EditorToolbarImageButton(
+            options: EditorImageButton(
               tooltip: l10n.insertImage,
               iconTheme: quillIconTheme,
               controller: controller,
-              onPressed: () => EditorToolbarImageButton.onTap(
+              onPressed: () => EditorImageButton.onTap(
                 controller,
                 context,
                 data,
@@ -50,11 +50,11 @@ class EditorToolbarWidget extends ConsumerWidget {
       (controller, _, __, ___) {
         return QuillToolbarCustomButton(
           controller: controller,
-          options: EditorToolbarTagButton(
+          options: EditorTagButton(
             tooltip: l10n.insertTag,
             iconTheme: quillIconTheme,
             controller: controller,
-            onPressed: () => EditorToolbarTagButton.onTap(controller, context),
+            onPressed: () => EditorTagButton.onTap(controller, context),
           ),
         );
       }

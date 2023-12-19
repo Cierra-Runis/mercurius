@@ -30,7 +30,7 @@ class AppBarTitle extends ConsumerWidget {
               ),
               Text(
                 currentPosition.when(
-                  loading: () => ' ${CurrentPosition().humanFormat} ',
+                  loading: () => ' ${const CurrentPosition().humanFormat} ',
                   error: (error, stackTrace) => 'error',
                   data: (data) => ' ${data.humanFormat} ',
                 ),
@@ -53,7 +53,7 @@ class AppBarTitle extends ConsumerWidget {
           ),
           Text(
             currentPosition.when(
-              loading: () => CurrentPosition().city,
+              loading: () => const CurrentPosition().city,
               error: (error, stackTrace) => 'error',
               data: (cachePosition) => cachePosition.city,
             ),

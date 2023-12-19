@@ -14,7 +14,6 @@ class AppIcon extends StatelessWidget {
       borderRadius: BorderRadius.circular(size / 3),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        borderRadius: BorderRadius.circular(size / 3),
         child: Image.asset(
           'assets/icon/icon.png',
           height: size,

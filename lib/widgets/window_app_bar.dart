@@ -34,7 +34,7 @@ class WindowAppBar extends ConsumerWidget {
                 duration: const Duration(milliseconds: 200),
                 child: Icon(
                   key: ValueKey(settings.themeMode),
-                  Settings.themeModeIcon[settings.themeMode],
+                  App.themeModeIcon[settings.themeMode],
                   size: _actionSize,
                 ),
               ),

@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class EditorToolbarImageButton extends QuillToolbarCustomButtonOptions {
-  const EditorToolbarImageButton({
+class EditorImageButton extends QuillToolbarCustomButtonOptions {
+  const EditorImageButton({
     required super.tooltip,
     super.iconTheme,
     super.icon = const Icon(

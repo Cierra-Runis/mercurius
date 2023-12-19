@@ -3,6 +3,7 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'github_latest_release.g.dart';
+part 'github_latest_release.freezed.dart';
 
 @riverpod
 Future<GithubLatestRelease> githubLatestRelease(
@@ -11,19 +12,14 @@ Future<GithubLatestRelease> githubLatestRelease(
   const url =
       'https://api.github.com/repos/Cierra-Runis/mercurius/releases/latest';
 
-  final currentVersion = await ref.watch(currentVersionProvider.future);
+  final tagName = ref.watch(packageInfoProvider).tagName;
 
-  var githubLatestRelease = GithubLatestRelease()..tag_name = currentVersion;
+  var githubLatestRelease = GithubLatestRelease(tagName: tagName);
 
   Response response;
   try {
     response = await Dio().get(url);
   } catch (e) {
-    githubLatestRelease = GithubLatestRelease.fromJson(
-      jsonDecode(
-        '{"tag_name": "$currentVersion"}',
-      ),
-    );
     return githubLatestRelease;
   }
 
@@ -31,45 +27,35 @@ Future<GithubLatestRelease> githubLatestRelease(
     githubLatestRelease = GithubLatestRelease.fromJson(
       jsonDecode('$response'),
     );
-  } else {
-    githubLatestRelease = GithubLatestRelease.fromJson(
-      jsonDecode(
-        '{"tag_name": "$currentVersion"}',
-      ),
-    );
   }
 
   return githubLatestRelease;
 }
 
-@JsonSerializable()
-class GithubLatestRelease {
-  GithubLatestRelease();
+@freezed
+class GithubLatestRelease with _$GithubLatestRelease {
+  const factory GithubLatestRelease({
+    @JsonKey(name: 'tag_name') required String tagName,
+    @JsonKey(name: 'assets') List<AssetsItem>? assets,
+    @JsonKey(name: 'body') String? body,
+  }) = _GithubLatestRelease;
 
-  String? tag_name;
-  String? name;
-  bool? draft;
-  bool? prerelease;
-  List<GithubLatestReleaseAsset>? assets;
-  String? body;
+  const GithubLatestRelease._();
 
-  factory GithubLatestRelease.fromJson(Map<String, dynamic> json) =>
+  factory GithubLatestRelease.fromJson(Map<String, Object?> json) =>
       _$GithubLatestReleaseFromJson(json);
-  Map<String, dynamic> toJson() => _$GithubLatestReleaseToJson(this);
 }
 
-@JsonSerializable()
-class GithubLatestReleaseAsset {
-  GithubLatestReleaseAsset();
+@freezed
+class AssetsItem with _$AssetsItem {
+  const factory AssetsItem({
+    @JsonKey(name: 'name') required String name,
+    @JsonKey(name: 'content_type') required String contentType,
+    @JsonKey(name: 'browser_download_url') required String browserDownloadUrl,
+  }) = _AssetsItem;
 
-  String? name;
-  int? size;
-  int? download_count;
-  DateTime? created_at;
-  DateTime? updated_at;
-  String? browser_download_url;
+  const AssetsItem._();
 
-  factory GithubLatestReleaseAsset.fromJson(Map<String, dynamic> json) =>
-      _$GithubLatestReleaseAssetFromJson(json);
-  Map<String, dynamic> toJson() => _$GithubLatestReleaseAssetToJson(this);
+  factory AssetsItem.fromJson(Map<String, Object?> json) =>
+      _$AssetsItemFromJson(json);
 }

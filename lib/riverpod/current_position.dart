@@ -1,15 +1,14 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'current_position.g.dart';
+part 'current_position.freezed.dart';
 
-/// 使用高德 api 获取位置
 @riverpod
 Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
   ref.keepAlive();
   Response response;
-  var newCachePosition = CurrentPosition();
+  var newCachePosition = const CurrentPosition();
 
-  // 尝试连接 aMap 获取位置
   try {
     response = await Dio().get(
       MercuriusApi.aMap.apiUrl,
@@ -36,35 +35,27 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
 
   final match = RegExp(r'(.*),(.*);').firstMatch(data['rectangle']);
 
-  newCachePosition = CurrentPosition()
-    ..latitude = double.parse('${match![1]}').toStringAsFixed(2)
-    ..longitude = double.parse('${match[2]}').toStringAsFixed(2)
-    ..city = data['city']
-    ..dateTime = DateTime.now();
+  newCachePosition = CurrentPosition(
+    latitude: double.parse('${match![1]}').toStringAsFixed(2),
+    longitude: double.parse('${match[2]}').toStringAsFixed(2),
+    city: data['city'],
+  );
 
   return newCachePosition;
 }
 
-@JsonSerializable()
-class CurrentPosition {
-  CurrentPosition();
+@freezed
+class CurrentPosition with _$CurrentPosition {
+  const factory CurrentPosition({
+    @JsonKey(name: 'latitude') @Default('116.38') String latitude,
+    @JsonKey(name: 'longitude') @Default('39.91') String longitude,
+    @JsonKey(name: 'city') @Default('北京市') String city,
+  }) = _CurrentPosition;
 
-  /// 纬度
-  String latitude = '116.38';
-
-  /// 经度
-  String longitude = '39.91';
-
-  /// 城市
-  String city = '北京市';
-
-  /// 缓存时间
-  DateTime dateTime = DateTime.now();
-
-  /// 获得格式化字符串
   String get humanFormat => '${latitude}N ${longitude}E';
 
-  factory CurrentPosition.fromJson(Map<String, dynamic> json) =>
+  const CurrentPosition._();
+
+  factory CurrentPosition.fromJson(Map<String, Object?> json) =>
       _$CurrentPositionFromJson(json);
-  Map<String, dynamic> toJson() => _$CurrentPositionToJson(this);
 }

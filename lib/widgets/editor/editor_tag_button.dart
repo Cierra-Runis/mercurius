@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class EditorToolbarTagButton extends QuillToolbarCustomButtonOptions {
-  const EditorToolbarTagButton({
+class EditorTagButton extends QuillToolbarCustomButtonOptions {
+  const EditorTagButton({
     required super.tooltip,
     super.iconTheme,
     super.icon = const Icon(
@@ -36,7 +36,7 @@ class EditorToolbarTagButton extends QuillToolbarCustomButtonOptions {
   ) {
     controller.document.insert(
       controller.selection.extentOffset,
-      DiaryTagBlockEmbed(jsonEncode(diaryTag.toJson())),
+      TagBlockEmbed(jsonEncode(diaryTag.toJson())),
     );
 
     controller.updateSelection(

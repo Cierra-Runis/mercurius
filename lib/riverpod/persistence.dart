@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'persistence.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Persistence persistence(PersistenceRef ref) =>
     throw Exception('persistenceProvider not initialized');
 

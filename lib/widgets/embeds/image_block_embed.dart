@@ -13,8 +13,8 @@ class ImageBlockEmbed extends Embeddable {
   Document get document => Document.fromJson(jsonDecode(data));
 }
 
-class DiaryImageEmbedBuilder extends EmbedBuilder {
-  const DiaryImageEmbedBuilder();
+class ImageBlockEmbedBuilder extends EmbedBuilder {
+  const ImageBlockEmbedBuilder();
 
   @override
   String get key => ImageBlockEmbed.mercuriusImageType;
