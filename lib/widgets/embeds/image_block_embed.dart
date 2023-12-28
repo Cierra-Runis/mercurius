@@ -85,7 +85,7 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
 
       if (Platform.isAndroid) {
         directory = await getExternalStorageDirectory();
-      } else if (Platform.isWindows) {
+      } else if (Platform.isWindows || Platform.isIOS) {
         directory = await getApplicationSupportDirectory();
       } else {
         throw Exception('Unknown Platform');

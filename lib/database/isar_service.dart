@@ -93,7 +93,7 @@ class IsarService {
 
       /// TIPS: 对 Android 而言为 /data/user/0/Android/data/pers.cierra_runis.mercurius/files
       /// TIPS: 对 Windows 而言为 C:\Users\{user_name}\Documents/Mercurius/
-      if (Platform.isAndroid) {
+      if (Platform.isAndroid || Platform.isIOS) {
         directory = await getApplicationDocumentsDirectory();
       } else if (Platform.isWindows) {
         directory = await getApplicationDocumentsDirectory();
