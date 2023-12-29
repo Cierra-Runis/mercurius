@@ -17,7 +17,7 @@ class DiaryPageItem extends ConsumerWidget {
       child: Stack(
         children: [
           Card(
-            color: context.colorScheme.background,
+            surfaceTintColor: context.colorScheme.background,
             margin: const EdgeInsets.all(10.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),

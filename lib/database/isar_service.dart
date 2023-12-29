@@ -95,7 +95,7 @@ class IsarService {
       /// TIPS: 对 Windows 而言为 C:\Users\{user_name}\Documents/Mercurius/
       if (Platform.isAndroid || Platform.isIOS) {
         directory = await getApplicationDocumentsDirectory();
-      } else if (Platform.isWindows) {
+      } else if (Platform.isWindows || Platform.isMacOS) {
         directory = await getApplicationDocumentsDirectory();
         final dir = Directory('${directory.path}/${App.name}/');
         dir.createSync(recursive: true);

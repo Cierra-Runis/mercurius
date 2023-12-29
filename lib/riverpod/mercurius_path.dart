@@ -10,7 +10,7 @@ Future<String> mercuriusPath(MercuriusPathRef ref) async {
 
   if (Platform.isAndroid) {
     directory = await getExternalStorageDirectory();
-  } else if (Platform.isWindows || Platform.isIOS) {
+  } else if (Platform.isWindows || Platform.isIOS || Platform.isMacOS) {
     directory = await getApplicationSupportDirectory();
   } else {
     throw Exception('Unsupported Platform');

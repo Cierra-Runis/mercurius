@@ -19,8 +19,11 @@ abstract class App {
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    if (Platform.isWindows) {
+    if (Platform.isWindows || Platform.isMacOS) {
       await PlatformWindowsManager.init();
+    }
+
+    if (Platform.isWindows) {
       await PlatformWindowsTray.init();
     }
 

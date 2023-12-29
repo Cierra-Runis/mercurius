@@ -10,7 +10,7 @@ class MercuriusApp extends ConsumerWidget {
 
   Widget builder(context, child) => Column(
         children: [
-          if (Platform.isWindows) const WindowAppBar(),
+          if (Platform.isWindows || Platform.isMacOS) const WindowAppBar(),
           Expanded(child: ClipRRect(child: child)),
         ],
       );
