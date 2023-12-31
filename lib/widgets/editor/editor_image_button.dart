@@ -6,9 +6,7 @@ class EditorImageButton extends QuillToolbarCustomButtonOptions {
     super.iconTheme,
     super.icon = const Icon(
       Icons.add_photo_alternate_rounded,
-      size: kDefaultIconSize,
     ),
-    required super.controller,
     required super.onPressed,
   });
 

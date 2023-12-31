@@ -3,10 +3,12 @@ import 'package:mercurius/index.dart';
 class EditorBody extends StatelessWidget {
   const EditorBody({
     super.key,
+    required this.controller,
     required this.scrollController,
     required this.readOnly,
   });
 
+  final QuillController controller;
   final ScrollController scrollController;
   final bool readOnly;
   bool get autoFocus => !readOnly;
@@ -40,7 +42,8 @@ class EditorBody extends StatelessWidget {
       focusNode: FocusNode(),
       scrollController: scrollController,
       configurations: QuillEditorConfigurations(
-        padding: const EdgeInsets.all(2.0),
+        controller: controller,
+        padding: const EdgeInsets.all(14.0),
         autoFocus: autoFocus,
         expands: false,
         placeholder: l10n.writingSomethingHere,

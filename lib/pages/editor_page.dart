@@ -62,32 +62,16 @@ class _DiaryEditorPageState extends State<EditorPage> {
         handleAutoSaveButtonChangeState: _handleAutoSaveButtonChangeState,
         autoSave: _autoSave,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: QuillProvider(
-          configurations: QuillConfigurations(
-            controller: _quillController,
-            sharedConfigurations: QuillSharedConfigurations(
-              locale: Localizations.localeOf(context),
-            ),
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: EditorBody(
-                  readOnly: false,
-                  scrollController: _scrollController,
-                ),
-              ),
-              const Divider(),
-              EditorToolbar(
-                diary: _diary,
-                scrollController: _scrollController,
-                handleChangeDiary: _handleChangeDiary,
-              ),
-            ],
-          ),
-        ),
+      body: EditorBody(
+        readOnly: false,
+        controller: _quillController,
+        scrollController: _scrollController,
+      ),
+      bottomSheet: EditorToolbar(
+        diary: _diary,
+        controller: _quillController,
+        scrollController: _scrollController,
+        handleChangeDiary: _handleChangeDiary,
       ),
     );
   }

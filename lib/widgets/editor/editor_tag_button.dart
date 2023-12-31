@@ -6,9 +6,7 @@ class EditorTagButton extends QuillToolbarCustomButtonOptions {
     super.iconTheme,
     super.icon = const Icon(
       Icons.new_label_rounded,
-      size: kDefaultIconSize,
     ),
-    required super.controller,
     required super.onPressed,
   });
 

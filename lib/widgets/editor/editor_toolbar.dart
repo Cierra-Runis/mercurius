@@ -4,23 +4,27 @@ class EditorToolbar extends ConsumerWidget {
   const EditorToolbar({
     super.key,
     required this.diary,
+    required this.controller,
     required this.scrollController,
     required this.handleChangeDiary,
   });
 
   final Diary diary;
+  final QuillController controller;
   final ScrollController scrollController;
   final ValueChanged<Diary?> handleChangeDiary;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final iconSelectedFillColor = context.brightness.isDark
-        ? context.colorScheme.outlineVariant
-        : context.colorScheme.primaryContainer;
-
-    final quillIconTheme = QuillIconTheme(
-      borderRadius: 10,
-      iconSelectedFillColor: iconSelectedFillColor,
+    const quillIconTheme = QuillIconTheme(
+      iconButtonSelectedData: IconButtonData(
+        iconSize: 14,
+        constraints: BoxConstraints(),
+      ),
+      iconButtonUnselectedData: IconButtonData(
+        iconSize: 14,
+        constraints: BoxConstraints(),
+      ),
     );
 
     final path = ref.watch(mercuriusPathProvider);
@@ -36,8 +40,6 @@ class EditorToolbar extends ConsumerWidget {
             controller: controller,
             options: EditorImageButton(
               tooltip: l10n.insertImage,
-              iconTheme: quillIconTheme,
-              controller: controller,
               onPressed: () => EditorImageButton.onTap(
                 controller,
                 context,
@@ -52,8 +54,6 @@ class EditorToolbar extends ConsumerWidget {
           controller: controller,
           options: EditorTagButton(
             tooltip: l10n.insertTag,
-            iconTheme: quillIconTheme,
-            controller: controller,
             onPressed: () => EditorTagButton.onTap(controller, context),
           ),
         );
@@ -64,35 +64,34 @@ class EditorToolbar extends ConsumerWidget {
       tooltip: l10n.changeMood,
       icon: const Icon(
         Icons.mood_rounded,
-        size: kDefaultIconSize,
       ),
       onPressed: () => changMood(context, diary),
     );
-    final editorWeather = QuillToolbarCustomButtonOptions(
+    final editorWeatherButton = QuillToolbarCustomButtonOptions(
       tooltip: l10n.changeWeather,
       icon: const Icon(
         Icons.cloud,
-        size: kDefaultIconSize,
       ),
       onPressed: () => changeWeather(context, diary),
     );
     final editorDateButton = QuillToolbarCustomButtonOptions(
       tooltip: l10n.changeDate,
-      iconTheme: quillIconTheme,
       icon: const Icon(
         Icons.date_range_rounded,
-        size: kDefaultIconSize,
       ),
       onPressed: () => changeDate(context, diary),
     );
-    return QuillToolbar(
-      configurations: QuillToolbarConfigurations(
-        buttonOptions: QuillToolbarButtonOptions(
+
+    return QuillToolbar.simple(
+      configurations: QuillSimpleToolbarConfigurations(
+        buttonOptions: const QuillSimpleToolbarButtonOptions(
           base: QuillToolbarBaseButtonOptions(
+            iconButtonFactor: 1,
+            iconSize: 14,
             iconTheme: quillIconTheme,
-            globalIconSize: 16,
           ),
         ),
+        controller: controller,
         showUndo: false,
         showRedo: false,
         showFontFamily: false,
@@ -110,11 +109,11 @@ class EditorToolbar extends ConsumerWidget {
         showLink: false,
         showSubscript: false,
         showSuperscript: false,
-        toolbarSectionSpacing: 2,
+        toolbarSectionSpacing: -10,
         embedButtons: embedButtons,
         customButtons: [
           editorMoodButton,
-          editorWeather,
+          editorWeatherButton,
           editorDateButton,
         ],
       ),

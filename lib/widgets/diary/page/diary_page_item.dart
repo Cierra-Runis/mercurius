@@ -25,8 +25,9 @@ class DiaryPageItem extends ConsumerWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 30.0,
+                  padding: const EdgeInsets.only(
+                    top: 30.0,
+                    bottom: 20,
                   ),
                   child: Wrap(
                     alignment: WrapAlignment.center,
@@ -93,23 +94,13 @@ class DiaryPageItem extends ConsumerWidget {
                   endIndent: 8,
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-                    child: QuillProvider(
-                      configurations: QuillConfigurations(
-                        controller: QuillController(
-                          document: diary.document,
-                          selection: const TextSelection.collapsed(offset: 0),
-                        ),
-                        sharedConfigurations: QuillSharedConfigurations(
-                          locale: Localizations.localeOf(context),
-                        ),
-                      ),
-                      child: EditorBody(
-                        readOnly: true,
-                        scrollController: ScrollController(),
-                      ),
+                  child: EditorBody(
+                    readOnly: true,
+                    controller: QuillController(
+                      document: diary.document,
+                      selection: const TextSelection.collapsed(offset: 0),
                     ),
+                    scrollController: ScrollController(),
                   ),
                 ),
                 const Divider(

@@ -33,18 +33,14 @@ class EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     return AppBar(
-      title: Stack(
-        children: [
-          TextField(
-            textAlign: TextAlign.center,
-            key: GlobalKey<FormState>(),
-            controller: textEditingController,
-            decoration: InputDecoration(
-              hintText: l10n.untitled,
-              border: InputBorder.none,
-            ),
-          ),
-        ],
+      title: TextField(
+        textAlign: TextAlign.center,
+        key: GlobalKey<FormState>(),
+        controller: textEditingController,
+        decoration: InputDecoration(
+          hintText: l10n.untitled,
+          border: InputBorder.none,
+        ),
       ),
       actions: [
         EditorAutoSaveButton(
