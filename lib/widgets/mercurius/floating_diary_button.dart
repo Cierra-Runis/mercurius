@@ -67,7 +67,7 @@ class FloatingDiaryButton extends ConsumerWidget {
               ? _editingDiary(context, ref, snapshot.data!)
               : _addDiary(context, ref),
           child: Badge(
-            showBadge: hasEditingDiary,
+            isLabelVisible: hasEditingDiary,
             child: const Icon(UniconsLine.diary),
           ),
         ),

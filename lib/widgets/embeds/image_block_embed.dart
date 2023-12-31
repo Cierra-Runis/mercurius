@@ -72,7 +72,7 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
       }
     }
 
-    void onInkWellTap(File file, bool readOnly) {
+    void onTap(File file, bool readOnly) {
       if (file.existsSync() && readOnly) {
         context.pushDialog(
           ImageView(imageUrl: file.path),
@@ -97,10 +97,12 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
       future: getImageFile(node.value.data),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return InkWell(
-            borderRadius: BorderRadius.circular(16.0),
-            onTap: () => onInkWellTap(snapshot.data!, readOnly),
-            child: getInkWellChild(snapshot.data!),
+          return MouseRegion(
+            cursor: MaterialStateMouseCursor.clickable,
+            child: GestureDetector(
+              onTap: () => onTap(snapshot.data!, readOnly),
+              child: getInkWellChild(snapshot.data!),
+            ),
           );
         }
         return const SizedBox();

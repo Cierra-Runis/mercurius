@@ -86,7 +86,7 @@ class _BottomBarMorePageIcon extends ConsumerWidget {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final tagName = ref.watch(packageInfoProvider).tagName;
     return Badge(
-      showBadge: githubLatestRelease.when(
+      isLabelVisible: githubLatestRelease.when(
         loading: () => false,
         error: (error, stackTrace) => false,
         data: (data) => tagName != data.tagName,

@@ -40,7 +40,9 @@ class HomePage extends HookConsumerWidget {
               : const BoxDecoration(),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-            child: DiaryListView(controller: controller),
+            child: DiaryListView(
+              controller: controller,
+            ),
           ),
         ),
       ),
