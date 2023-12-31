@@ -15,9 +15,7 @@ export 'main.dart';
 /// [RefreshCallback] 和 `export 'package:flutter/material.dart'` 冲突，两者近似
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
 export 'package:flutter/foundation.dart' hide describeIdentity, shortHash;
-
-/// [Badge] 和 `export 'package:badges/badges.dart'; // 小红点提示` 冲突，我想用外部包
-export 'package:flutter/material.dart' hide Badge;
+export 'package:flutter/material.dart';
 export 'package:flutter/gestures.dart';
 
 /// dart 相关
@@ -28,7 +26,6 @@ export 'dart:ui' show ImageFilter, FontFeature;
 
 /// 外部包相关
 export 'package:another_flushbar/flushbar.dart'; // 提示框
-export 'package:badges/badges.dart'; // 小红点提示
 export 'package:based_list/based_list.dart';
 export 'package:based_splash_page/based_splash_page.dart';
 export 'package:based_split_view/based_split_view.dart';
@@ -61,7 +58,6 @@ export 'package:qweather_icons/qweather_icons.dart'; // QWeather 图标
 export 'package:share_plus/share_plus.dart'; // 分享
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:sticky_and_expandable_list/sticky_and_expandable_list.dart'; // 粘性头部与分组列表
-export 'package:system_tray/system_tray.dart'; // 系统托盘
 export 'package:syncfusion_flutter_charts/charts.dart'; // 图表
 export 'package:url_launcher/url_launcher_string.dart'; // 打开外部链接
 export 'package:unicons/unicons.dart'; // 图标

@@ -23,10 +23,6 @@ abstract class App {
       await PlatformWindowsManager.init();
     }
 
-    if (Platform.isWindows) {
-      await PlatformWindowsTray.init();
-    }
-
     if (Platform.isAndroid) {
       await FlutterDisplayMode.setHighRefreshRate();
     }
