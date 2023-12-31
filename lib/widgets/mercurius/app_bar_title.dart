@@ -15,7 +15,7 @@ class AppBarTitle extends ConsumerWidget {
     return GestureDetector(
       onTap: () => controller.animateTo(
         -WindowAppBar.appBarHeight,
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 1),
         curve: Curves.easeInOut,
       ),
       child: Column(
