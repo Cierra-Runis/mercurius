@@ -5,11 +5,11 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   dynamic_color
   file_selector_windows
+  irondash_engine_context
   isar_flutter_libs
-  pasteboard
   screen_retriever
   share_plus
-  system_tray
+  super_native_extensions
   url_launcher_windows
   window_manager
 )
