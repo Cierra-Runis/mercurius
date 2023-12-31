@@ -20,7 +20,7 @@ abstract class App {
     WidgetsFlutterBinding.ensureInitialized();
 
     if (Platform.isWindows || Platform.isMacOS) {
-      await PlatformWindowsManager.init();
+      await PlatformWindowManager.init();
     }
 
     if (Platform.isAndroid) {

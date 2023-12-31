@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class PlatformWindowsManager {
+class PlatformWindowManager {
   static Future<void> init() async {
     await windowManager.ensureInitialized();
     const windowOptions = WindowOptions(
