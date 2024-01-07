@@ -45,11 +45,9 @@ class _EditorAutoSaveButtonState extends State<EditorAutoSaveButton> {
           _quillController.document.toPlainText().replaceAll(RegExp(r'\n'), '');
       if (plainText != '') {
         final newDiary = _diary.copyWith(
-          contentJsonString: jsonEncode(
-            _quillController.document.toDelta().toJson(),
-          ),
+          content: _quillController.document.toDelta().toJson(),
           latestEditTime: DateTime.now(),
-          titleString: _textEditingController.text,
+          title: _textEditingController.text,
           editing: true,
         );
         isarService.saveDiary(newDiary);

@@ -19,28 +19,40 @@ abstract class App {
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    if (Platform.isWindows || Platform.isMacOS) {
-      await PlatformWindowManager.init();
-    }
+    final List<Override> overrides;
 
-    if (Platform.isAndroid) {
-      await FlutterDisplayMode.setHighRefreshRate();
+    try {
+      if (Platform.isWindows || Platform.isMacOS) {
+        await PlatformWindowManager.init();
+      }
+
+      if (Platform.isAndroid) {
+        await FlutterDisplayMode.setHighRefreshRate();
+      }
+
+      overrides = [
+        persistenceProvider.overrideWithValue(
+          await Persistence.init(),
+        ),
+        colorSchemesProvider.overrideWithValue(
+          await ColorSchemes.init(),
+        ),
+        packageInfoProvider.overrideWithValue(
+          await PackageInfo.fromPlatform(),
+        ),
+      ];
+    } catch (e, s) {
+      return runApp(
+        ProviderScope(
+          child: _ErrorApp(e: e, s: s),
+        ),
+      );
     }
 
     runApp(
       ProviderScope(
         observers: const [_ProviderObserver()],
-        overrides: [
-          persistenceProvider.overrideWithValue(
-            await Persistence.init(),
-          ),
-          colorSchemesProvider.overrideWithValue(
-            await ColorSchemes.init(),
-          ),
-          packageInfoProvider.overrideWithValue(
-            await PackageInfo.fromPlatform(),
-          ),
-        ],
+        overrides: overrides,
         child: const MercuriusApp(),
       ),
     );
@@ -85,6 +97,29 @@ abstract class App {
         amplitude: amplitude,
       );
     }
+  }
+}
+
+class _ErrorApp extends StatelessWidget {
+  const _ErrorApp({
+    required this.e,
+    required this.s,
+  });
+
+  final Object e;
+  final StackTrace s;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: Scaffold(
+        body: Center(
+          child: Text('$e\n$s'),
+        ),
+      ),
+    );
   }
 }
 

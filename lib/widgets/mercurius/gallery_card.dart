@@ -1,41 +1,31 @@
 import 'package:mercurius/index.dart';
 
-class GalleryCard extends ConsumerWidget {
+class GalleryCard extends StatelessWidget {
   const GalleryCard({
     super.key,
-    required this.fileSystemEntity,
+    required this.diaryImage,
     this.readOnly = false,
+    required this.onTap,
   });
 
-  final FileSystemEntity fileSystemEntity;
+  final DiaryImage diaryImage;
   final bool readOnly;
+  final void Function(BuildContext context, DiaryImage diaryImage) onTap;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
     final colorScheme = context.colorScheme;
-    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: readOnly
-            ? () {
-                settingsNotifier.setBgImgPath(
-                  fileSystemEntity.path.split('/').last,
-                );
-                context.pop();
-              }
-            : () => context.pushDialog(
-                  ImageView(
-                    imageUrl: fileSystemEntity.path,
-                  ),
-                ),
+        onTap: !readOnly ? () => onTap(context, diaryImage) : null,
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.file(
-              File(fileSystemEntity.path),
+            Image(
+              image: diaryImage.provider,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return BasedShimmer(
@@ -64,7 +54,7 @@ class GalleryCard extends ConsumerWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0),
                         child: Text(
-                          fileSystemEntity.path.split('/').last,
+                          diaryImage.title,
                           style: const TextStyle(fontSize: 12.0),
                         ),
                       ),
@@ -80,7 +70,7 @@ class GalleryCard extends ConsumerWidget {
                                 context: context,
                               ).confirm;
                               if (confirm == true) {
-                                fileSystemEntity.deleteSync();
+                                isarService.deleteDiaryImageById(diaryImage.id);
                               }
                             },
                       icon: const Icon(

@@ -16,7 +16,7 @@ class DiaryShareButton extends StatelessWidget {
     return IconButton(
       onPressed: () => Share.share(
         '${diary.createDateTime.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang)}\n'
-        '${l10n.title} - ${diary.titleString == '' ? l10n.untitled : diary.titleString}\n'
+        '${l10n.title} - ${diary.title == '' ? l10n.untitled : diary.title}\n'
         '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}\n'
         '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}\n'
         '--- ${l10n.content} ---\n'

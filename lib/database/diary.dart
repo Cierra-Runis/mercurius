@@ -8,43 +8,33 @@ class Diary {
     required this.id,
     required this.createDateTime,
     required this.latestEditTime,
-    required this.contentJsonString,
+    required this.content,
     this.editing = false,
-    this.titleString = '',
+    this.title = '',
     this.moodType = DiaryMoodType.defaultType,
     this.weatherType = DiaryWeatherType.defaultType,
   });
 
-  /// 日记 `id`
-  final Id id;
+  final int id;
 
-  /// 创建时间
   final DateTime createDateTime;
 
-  /// 最后编辑时间
   final DateTime latestEditTime;
 
-  /// 标题串
-  final String titleString;
+  final String title;
 
-  /// 内容 json 串
-  final String contentJsonString;
+  final List<dynamic> content;
 
-  /// 标记日记是否为 `editing` 状态
-  /// 是则在 `createNewDiary` 浮动按钮处红点提示并不再显示 list card 和 page view
-  /// 否则按一般情况处理
   final bool editing;
 
-  /// 枚举类型 [DiaryWeatherType]
-  @enumerated
+  @enumValue
   final DiaryWeatherType weatherType;
 
-  /// 枚举类型 [DiaryMoodType]
-  @enumerated
+  @enumValue
   final DiaryMoodType moodType;
 
   @ignore
-  Document get document => Document.fromJson(jsonDecode(contentJsonString));
+  Document get document => Document.fromJson(content);
 
   @ignore
   String get plainText => document.toPlainText().replaceAll(RegExp(r'\n'), '');
@@ -56,11 +46,11 @@ class Diary {
   Map<String, dynamic> toJson() => _$DiaryToJson(this);
 
   Diary copyWith({
-    Id? id,
+    int? id,
     DateTime? createDateTime,
     DateTime? latestEditTime,
-    String? titleString,
-    String? contentJsonString,
+    String? title,
+    List<dynamic>? content,
     bool? editing,
     DiaryWeatherType? weatherType,
     DiaryMoodType? moodType,
@@ -69,8 +59,8 @@ class Diary {
         id: id ?? this.id,
         createDateTime: createDateTime ?? this.createDateTime,
         latestEditTime: latestEditTime ?? this.latestEditTime,
-        titleString: titleString ?? this.titleString,
-        contentJsonString: contentJsonString ?? this.contentJsonString,
+        title: title ?? this.title,
+        content: content ?? this.content,
         editing: editing ?? this.editing,
         weatherType: weatherType ?? this.weatherType,
         moodType: moodType ?? this.moodType,

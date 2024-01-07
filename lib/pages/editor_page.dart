@@ -49,7 +49,7 @@ class _DiaryEditorPageState extends State<EditorPage> {
   @override
   Widget build(BuildContext context) {
     final textEditingController = useTextEditingController(
-      text: _diary.titleString,
+      text: _diary.title,
     );
 
     return Scaffold(

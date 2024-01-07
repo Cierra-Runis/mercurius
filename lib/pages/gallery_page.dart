@@ -1,44 +1,18 @@
 import 'package:mercurius/index.dart';
 
-class GalleryPage extends ConsumerStatefulWidget {
+class GalleryPage extends ConsumerWidget {
   const GalleryPage({
     super.key,
     this.readOnly = false,
+    required this.onTap,
   });
 
   final bool readOnly;
-
-  @override
-  ConsumerState<GalleryPage> createState() => _MercuriusGalleryPageState();
-}
-
-class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
-  late bool _readOnly;
-  late List<FileSystemEntity> _list = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _readOnly = widget.readOnly;
-  }
-
-  int _sort(FileSystemEntity a, FileSystemEntity b) =>
-      b.statSync().changed.differenceInSeconds(a.statSync().changed);
-
-  Stream<List<FileSystemEntity>> listenToImageFile(String path) {
-    return Stream.periodic(const Duration(milliseconds: 100), (_) {
-      final newList = Directory('$path/image/').listSync();
-      if (_list.length != newList.length) {
-        newList.sort(_sort);
-        return _list = newList;
-      }
-      return _list;
-    });
-  }
+  final void Function(BuildContext context, DiaryImage image) onTap;
 
   Widget getGridBySnapshotData(
     BuildContext context,
-    AsyncSnapshot<List<FileSystemEntity>> snapshot,
+    AsyncSnapshot<List<DiaryImage>> snapshot,
   ) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
 
@@ -46,7 +20,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
       return Center(child: Text(l10n.noData));
     }
 
-    final fileSystemEntities = snapshot.data!;
+    final images = snapshot.data!;
 
     return GridView.builder(
       cacheExtent: 1000,
@@ -54,17 +28,18 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
         crossAxisCount: 2,
       ),
       padding: const EdgeInsets.all(12.0),
-      itemCount: fileSystemEntities.length,
+      itemCount: images.length,
       itemBuilder: (context, index) => GalleryCard(
-        readOnly: _readOnly,
-        fileSystemEntity: fileSystemEntities[index],
+        readOnly: readOnly,
+        onTap: onTap,
+        diaryImage: images[index],
       ),
     );
   }
 
   Widget getBodyBySnapshotState(
     BuildContext context,
-    AsyncSnapshot<List<FileSystemEntity>> snapshot,
+    AsyncSnapshot<List<DiaryImage>> snapshot,
   ) {
     if (snapshot.hasError) {
       return Center(child: Text('Steam error: ${snapshot.error}'));
@@ -82,7 +57,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final path = ref.watch(mercuriusPathProvider);
     final settingsNotifier = ref.watch(settingsProvider.notifier);
 
@@ -92,7 +67,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
       appBar: AppBar(
         title: Text(l10n.imageGallery),
         actions: [
-          if (_readOnly)
+          if (readOnly)
             TextButton(
               onPressed: () {
                 settingsNotifier.setBgImgPath(null);
@@ -108,7 +83,7 @@ class _MercuriusGalleryPageState extends ConsumerState<GalleryPage> {
         /// TODO: 这里应该提示 error
         error: (error, stackTrace) => const SizedBox(),
         data: (data) => StreamBuilder(
-          stream: listenToImageFile(data).distinct(),
+          stream: isarService.listenToAllDiaryImages(),
           builder: getBodyBySnapshotState,
         ),
       ),

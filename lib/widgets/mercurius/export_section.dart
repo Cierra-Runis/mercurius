@@ -16,9 +16,10 @@ class ExportSection extends ConsumerWidget {
           onTap: () async {
             final dir = await ref.watch(mercuriusPathProvider.future);
             final path = '$dir/export.json';
-            await isarService.exportJsonWith(path);
+            await isarService.exportDiaryWith(path);
 
             /// FIXME: https://github.com/fluttercommunity/plus_plugins/issues/1351
+
             await Share.shareFiles([path]);
           },
         ),

@@ -107,20 +107,17 @@ class FloatingDiaryButton extends ConsumerWidget {
 
     if (context.mounted && dateTime != null) {
       final diary = Diary(
-        id: Isar.autoIncrement,
+        id: 0,
         createDateTime: dateTime,
         latestEditTime: dateTime,
-        contentJsonString: jsonEncode(Document().toDelta().toJson()),
+        content: Document().toDelta().toJson(),
         editing: true,
       );
-
-      final id = await isarService.saveDiary(diary);
-      isarService.deleteDiaryById(id);
 
       if (context.mounted) {
         context.push(
           EditorPage(
-            diary: diary.copyWith(id: id),
+            diary: diary,
             autoSave: true,
           ),
         );

@@ -38,9 +38,7 @@ class DiaryListItem extends ConsumerWidget {
       ),
     );
     final createDateTimeWidget = Text(
-      diary.titleString == ''
-          ? diary.createDateTime.format('y-M-d')
-          : diary.titleString,
+      diary.title == '' ? diary.createDateTime.format('y-M-d') : diary.title,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(

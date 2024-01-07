@@ -35,6 +35,7 @@ class _BackgroundImageListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
     final settings = ref.watch(settingsProvider);
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     return BasedListTile(
       leadingIcon: Icons.flip_to_back_rounded,
@@ -42,7 +43,15 @@ class _BackgroundImageListTile extends ConsumerWidget {
       detailText: settings.bgImgPath ?? l10n.noImageSelected,
       onTap: () {
         context.push(
-          const GalleryPage(readOnly: true),
+          GalleryPage(
+            onTap: (context, path) {
+              /// TODO:
+              // settingsNotifier.setBgImgPath(
+              //   path.split('/').last,
+              // );
+              context.pop();
+            },
+          ),
         );
       },
     );

@@ -30,6 +30,8 @@ class HomePage extends HookConsumerWidget {
                   data: (data) => BoxDecoration(
                     image: DecorationImage(
                       opacity: 0.8,
+
+                      /// TODO:
                       image: FileImage(
                         File('$data/image/${settings.bgImgPath}'),
                       ),

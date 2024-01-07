@@ -21,7 +21,13 @@ class MorePageList extends ConsumerWidget {
       [
         Icons.image_rounded,
         l10n.imageGallery,
-        const GalleryPage(),
+        GalleryPage(
+          onTap: (context, image) => context.pushDialog(
+            ImageView(
+              image: image,
+            ),
+          ),
+        ),
       ],
       [
         Icons.import_export_rounded,

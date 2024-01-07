@@ -25,53 +25,51 @@ class EditorImageButton extends QuillToolbarCustomButtonOptions {
       falseString: l10n.imageGallery,
     ).confirm;
 
-    switch (newImage) {
-      case true:
+    if (newImage == null) return;
 
-        /// TIPS: 安卓启用新版本
-        final imagePickerImplementation = ImagePickerPlatform.instance;
-        if (imagePickerImplementation is ImagePickerAndroid) {
-          imagePickerImplementation.useAndroidPhotoPicker = true;
-        }
+    if (newImage) {
+      /// TIPS: 安卓启用新版本
+      final imagePickerImplementation = ImagePickerPlatform.instance;
+      if (imagePickerImplementation is ImagePickerAndroid) {
+        imagePickerImplementation.useAndroidPhotoPicker = true;
+      }
 
-        /// TIPS: 这里返还的是图片地址
-        /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
-        /// TIPS: 而不是可见于 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/cache/` 下
-        /// TIPS: 这会导致用户清除缓存后图片无法加载的问题
-        /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
-        /// TIPS: 并删除所需的中间缓存图片
+      /// TIPS: 这里返还的是图片地址
+      /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
+      /// TIPS: 而不是可见于 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/cache/` 下
+      /// TIPS: 这会导致用户清除缓存后图片无法加载的问题
+      /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
+      /// TIPS: 并删除所需的中间缓存图片
 
-        final pickedFile = await ImagePicker().pickImage(
-          source: ImageSource.gallery,
+      final pickedFile = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (pickedFile != null) {
+        final image = DiaryImage(
+          id: 0,
+          title: pickedFile.name,
+          createDateTime: DateTime.now(),
+          data: await pickedFile.readAsBytes(),
         );
-
-        if (pickedFile != null) {
-          final sourceFilePath = pickedFile.path;
-          final targetFilePath = '$path/image/${pickedFile.name}';
-
-          await XFile(sourceFilePath).saveTo(targetFilePath);
-          if (Platform.isAndroid) {
-            await File(sourceFilePath).delete();
-          }
-          _insert(controller, pickedFile.name);
+        isarService.saveDiaryImage(image);
+        _insert(controller, image);
+      }
+    } else {
+      if (context.mounted) {
+        final image = await context.push<DiaryImage?>(
+          GalleryPage(
+            onTap: (context, image) => context.pop(image),
+          ),
+        );
+        if (image != null) {
+          _insert(controller, image);
         }
-        break;
-      case false:
-        if (context.mounted) {
-          final filename = await context.push<String?>(
-            const GalleryPage(readOnly: true),
-          );
-          if (filename != null) {
-            _insert(controller, filename);
-          }
-        }
-        break;
-      default:
-        return;
+      }
     }
   }
 
-  static void _insert(QuillController controller, String filename) {
+  static void _insert(QuillController controller, DiaryImage image) {
     controller.document.insert(controller.selection.extentOffset, '\n');
     controller.updateSelection(
       TextSelection.collapsed(
@@ -82,7 +80,7 @@ class EditorImageButton extends QuillToolbarCustomButtonOptions {
 
     controller.document.insert(
       controller.selection.extentOffset,
-      ImageBlockEmbed(filename),
+      ImageBlockEmbed(image.id),
     );
 
     controller.updateSelection(

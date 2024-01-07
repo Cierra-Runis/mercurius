@@ -6,20 +6,10 @@ part 'mercurius_path.g.dart';
 Future<String> mercuriusPath(MercuriusPathRef ref) async {
   /// TIPS: 对 Android 而言为 /storage/emulated/0/Android/data/pers.cierra_runis.mercurius/files
   /// TIPS: 对 Windows 而言为 C:\Users\{user_name}\AppData\Roaming\pers.cierra_runis\Mercurius
-  Directory? directory;
 
-  if (Platform.isAndroid) {
-    directory = await getExternalStorageDirectory();
-  } else if (Platform.isWindows || Platform.isIOS || Platform.isMacOS) {
-    directory = await getApplicationSupportDirectory();
-  } else {
-    throw Exception('Unsupported Platform');
-  }
+  final directory = await getApplicationSupportDirectory();
 
-  final path = directory!.path;
-
-  final imageDirectory = Directory('$path/image/');
-  if (!imageDirectory.existsSync()) imageDirectory.create();
+  final path = directory.path;
 
   return path;
 }

@@ -3,10 +3,10 @@ import 'package:mercurius/index.dart';
 class ImageView extends ConsumerWidget {
   const ImageView({
     super.key,
-    required this.imageUrl,
+    required this.image,
   });
 
-  final String imageUrl;
+  final DiaryImage image;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +17,7 @@ class ImageView extends ConsumerWidget {
             enableRotation: true,
             backgroundDecoration: const BoxDecoration(),
             tightMode: true,
-            imageProvider: FileImage(File(imageUrl)),
+            imageProvider: image.provider,
           ),
         ),
         Align(
@@ -30,13 +30,15 @@ class ImageView extends ConsumerWidget {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
-            child: Text(imageUrl.split('/').last),
+            child: Text(image.title),
           ),
         ),
         Align(
           alignment: Alignment.bottomRight,
           child: IconButton(
-            onPressed: () => Share.shareFiles([imageUrl]),
+            onPressed: () => Share.shareXFiles([
+              XFile.fromData(image.uint8list),
+            ]),
             icon: const Icon(UniconsLine.share),
           ),
         ),
