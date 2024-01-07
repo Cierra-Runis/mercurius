@@ -114,7 +114,7 @@ Official version has been released
 # 🧑‍💻 Contributor
 
 <a href="https://github.com/Cierra-Runis/repository_template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" />
+  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" alt="mercurius"/>
 </a>
 
 # 🔦 Declaration
@@ -124,3 +124,7 @@ Official version has been released
 This project is licensed under the terms of the `GPL-3.0` license. See [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) for more details
 
 For information about the open source library introduced by Mercurius, see the `About` page in Mercurius
+
+[android & iOS icon generator](https://www.appicon.co/)
+
+[macOS icon generator](https://www.candyicons.com/free-tools/app-icon-assets-generator)

@@ -4,7 +4,7 @@
 
   <p>『 Mercurius - 记点日记！』</p>
 
-  <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
+<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
 
 </div>
 
@@ -87,7 +87,7 @@
 # 🧑‍💻 贡献者
 
 <a href="https://github.com/Cierra-Runis/mercurius/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" />
+  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" alt="mercurius"/>
 </a>
 
 # 🔦 声明

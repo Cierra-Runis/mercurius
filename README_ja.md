@@ -4,7 +4,7 @@
 
   <p>『 Mercurius - 日記を書きましょう！』</p>
 
-  <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
+<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
 
 </div>
 
@@ -70,11 +70,11 @@
 
 - `Android` の場合
 
-   [リリースページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `app-arm64-v8a-release.apk` をダウンロードすれば良いです
+  [リリースページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `app-arm64-v8a-release.apk` をダウンロードすれば良いです
 
 - `Windows` の場合
 
-   [リリース ページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `Mercurius.for.Windows.zip` をダウンロードして解凍し、`Mercurius.exe` をダブルクリックすれば良いです
+  [リリース ページ](https://github.com/Cierra-Runis/mercurius/releases) で最新バージョンの `Mercurius.for.Windows.zip` をダウンロードして解凍し、`Mercurius.exe` をダブルクリックすれば良いです
 
 # ⏳ 進捗
 
@@ -88,7 +88,7 @@
 # 🧑‍💻 貢献者
 
 <a href="https://github.com/Cierra-Runis/mercurius/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" />
+  <img src="https://contrib.rocks/image?repo=Cierra-Runis/mercurius" alt="mercurius"/>
 </a>
 
 # 🔦 声明
