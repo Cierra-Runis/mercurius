@@ -69,10 +69,10 @@ packages:
     dependency: "direct main"
     description:
       name: based_split_view
-      sha256: "62d4026e02d2715a97f82d7dedd6ab4a51745763c04b8927fce9008247ca74b2"
+      sha256: ea10a41f0d7823cf796f8988551d1710fd16a2bb73e32729905cc5aeaf632bb9
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.6"
+    version: "1.0.7"
   boolean_selector:
     dependency: transitive
     description:
@@ -442,10 +442,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_hooks
-      sha256: "7c8db779c2d1010aa7f9ea3fbefe8f86524fcb87b69e8b0af31e1a4b55422dec"
+      sha256: "09f64db63fee3b2ab8b9038a1346be7d8986977fae3fec601275bf32455ccfc0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.20.3"
+    version: "0.20.4"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -527,10 +527,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_quill
-      sha256: cdf855ade60cc9ae6052f0ec456e3c8e0e4a8183239fe64f33874d602eb320aa
+      sha256: "60168e016c3bcdfd11527a0a8c7f3caf6dd720e0b2838fa7029e200ce4f4411e"
       url: "https://pub.dev"
     source: hosted
-    version: "9.2.0"
+    version: "9.2.2"
   flutter_riverpod:
     dependency: transitive
     description:
@@ -649,10 +649,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker
-      sha256: fc712337719239b0b6e41316aa133350b078fa39b6cbd706b61f3fd421b03c77
+      sha256: "340efe08645537d6b088a30620ee5752298b1630f23a829181172610b868262b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   image_picker_android:
     dependency: "direct main"
     description:
@@ -697,10 +697,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker_platform_interface
-      sha256: ed9b00e63977c93b0d2d2b343685bed9c324534ba5abafbb3dfbd6a780b1b514
+      sha256: "0e827c156e3a90edd3bbe7f6de048b39247b16e58173b08a835b7eb00aba239e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.1"
+    version: "2.9.2"
   image_picker_windows:
     dependency: transitive
     description:
@@ -1254,34 +1254,34 @@ packages:
     dependency: transitive
     description:
       name: super_clipboard
-      sha256: "6281b19e4f4af4c4897c7b4117758164a21f63bbeee63da09c04d47823f8b228"
+      sha256: "158919981cfb9232b32869f999db094afe100e08f77832fcfcff37aeaa753140"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.1"
+    version: "0.8.2+1"
   super_native_extensions:
     dependency: transitive
     description:
       name: super_native_extensions
-      sha256: d6d445a644856430cdca70c233213065c413bc3046a3b1e21858e19087d01645
+      sha256: "4e080671cacd1612df3ac52e86e925689c27283bcbdefb51a9b7bacb4bb0046c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.1"
+    version: "0.8.2+1"
   syncfusion_flutter_charts:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: "6f2ea3eaa34b998ba68461f6c8457f01cf8c07cf376a57069f9995a9cae1eb33"
+      sha256: "1f5434cb0dd0118a8f3281a0351559772e09066c2adfd69b16098f38f2b909e9"
       url: "https://pub.dev"
     source: hosted
-    version: "24.1.41"
+    version: "24.1.44+1"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "69c827931957d5b121ee9f0b9b0b8d7d0d1ac537b61bcdd5c3fbffc044bbe86e"
+      sha256: "083d4a0ddb25435d267328a30c3938d09599f7578f5f0d28fbd9fd5424c1cd51"
       url: "https://pub.dev"
     source: hosted
-    version: "24.1.41"
+    version: "24.1.44"
   term_glyph:
     dependency: transitive
     description:
