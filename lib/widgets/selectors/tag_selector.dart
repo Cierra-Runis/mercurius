@@ -1,24 +1,10 @@
 import 'package:mercurius/index.dart';
 
 class TagSelector extends StatefulWidget {
-  const TagSelector({super.key, required this.defaultMessage});
-
-  static const List<IconData> iconDataList = [
-    Icons.access_time_rounded,
-    Icons.access_time_filled_rounded,
-    Icons.access_alarm_rounded,
-    Icons.account_balance_wallet_rounded,
-    Icons.ad_units_rounded,
-    Icons.assignment_outlined,
-    Icons.attractions_rounded,
-    Icons.audiotrack_rounded,
-    Icons.auto_awesome_rounded,
-    Icons.badge_rounded,
-    Icons.balance_rounded,
-    Icons.bathtub_rounded,
-    Icons.beach_access_rounded,
-    Icons.bed_rounded,
-  ];
+  const TagSelector({
+    super.key,
+    required this.defaultMessage,
+  });
 
   final String defaultMessage;
 
@@ -27,7 +13,7 @@ class TagSelector extends StatefulWidget {
 }
 
 class _TagSelectorState extends State<TagSelector> {
-  IconData _selectedIcon = TagSelector.iconDataList[0];
+  DiaryTagType _selectedType = DiaryTagType.values.first;
   late final TextEditingController _textEditingController;
 
   @override
@@ -49,15 +35,15 @@ class _TagSelectorState extends State<TagSelector> {
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 64,
             ),
-            itemCount: TagSelector.iconDataList.length,
+            itemCount: DiaryTagType.values.length,
             itemBuilder: (context, index) {
-              final iconData = TagSelector.iconDataList[index];
+              final tagType = DiaryTagType.values[index];
               return IconButton(
                 onPressed: () => setState(() {
-                  _selectedIcon = iconData;
+                  _selectedType = tagType;
                 }),
-                icon: Icon(iconData),
-                color: iconData != _selectedIcon
+                icon: Icon(tagType.iconData),
+                color: _selectedType != tagType
                     ? null
                     : context.colorScheme.primary,
               );
@@ -75,10 +61,7 @@ class _TagSelectorState extends State<TagSelector> {
         TextButton(
           onPressed: () => context.pop(
             DiaryTag(
-              codePoint: _selectedIcon.codePoint,
-              fontFamily: _selectedIcon.fontFamily,
-              fontPackage: _selectedIcon.fontPackage,
-              matchTextDirection: _selectedIcon.matchTextDirection,
+              tagType: _selectedType,
               message: _textEditingController.text,
             ),
           ),

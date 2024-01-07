@@ -13,7 +13,6 @@ class EditorImageButton extends QuillToolbarCustomButtonOptions {
   static void onTap(
     QuillController controller,
     BuildContext context,
-    String path,
   ) async {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
 
@@ -90,18 +89,10 @@ class EditorImageButton extends QuillToolbarCustomButtonOptions {
       ChangeSource.local,
     );
 
-    controller.document.insert(controller.selection.extentOffset, ' ');
+    controller.document.insert(controller.selection.extentOffset, ' \n');
     controller.updateSelection(
       TextSelection.collapsed(
-        offset: controller.selection.extentOffset + 1,
-      ),
-      ChangeSource.local,
-    );
-
-    controller.document.insert(controller.selection.extentOffset, '\n');
-    controller.updateSelection(
-      TextSelection.collapsed(
-        offset: controller.selection.extentOffset + 1,
+        offset: controller.selection.extentOffset + 2,
       ),
       ChangeSource.local,
     );

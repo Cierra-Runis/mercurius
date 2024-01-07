@@ -19,7 +19,7 @@ class EditorTagButton extends QuillToolbarCustomButtonOptions {
     final now = DateTime.now();
     final time = now.format(DateFormat.HOUR24_MINUTE_SECOND, lang);
 
-    final diaryTag = await showDialog(
+    final diaryTag = await showDialog<DiaryTag>(
       context: context,
       builder: (context) => TagSelector(
         defaultMessage: time,
@@ -44,10 +44,10 @@ class EditorTagButton extends QuillToolbarCustomButtonOptions {
       ChangeSource.local,
     );
 
-    controller.document.insert(controller.selection.extentOffset, ' ');
+    controller.document.insert(controller.selection.extentOffset, ' \n');
     controller.updateSelection(
       TextSelection.collapsed(
-        offset: controller.selection.extentOffset + 1,
+        offset: controller.selection.extentOffset + 2,
       ),
       ChangeSource.local,
     );

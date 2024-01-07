@@ -6,11 +6,6 @@ class TagBlockEmbed extends Embeddable {
   ) : super(mercuriusTagType, value);
 
   static const String mercuriusTagType = 'mercuriusTag';
-
-  static TagBlockEmbed fromDocument(Document document) =>
-      TagBlockEmbed(jsonEncode(document.toDelta().toJson()));
-
-  Document get document => Document.fromJson(jsonDecode(data));
 }
 
 class TagBlockEmbedBuilder extends EmbedBuilder {
@@ -37,12 +32,7 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
     return Chip(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       avatar: Icon(
-        IconData(
-          tag.codePoint,
-          fontFamily: tag.fontFamily,
-          fontPackage: tag.fontPackage,
-          matchTextDirection: tag.matchTextDirection,
-        ),
+        tag.tagType.iconData,
       ),
       label: Text(tag.message),
     );

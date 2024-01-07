@@ -6,8 +6,6 @@ class ImageBlockEmbed extends Embeddable {
   ) : super(mercuriusImageType, diaryImageId);
 
   static const String mercuriusImageType = 'mercuriusImage';
-
-  Document get document => Document.fromJson(jsonDecode(data));
 }
 
 class ImageBlockEmbedBuilder extends EmbedBuilder {
