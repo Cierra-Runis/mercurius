@@ -144,7 +144,7 @@ class EditorToolbar extends ConsumerWidget {
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
       initialDate: diary.createDateTime,
-      firstDate: DateTime(1949, 10, 1),
+      firstDate: DateTime(1949, 10),
       lastDate: DateTime.now().add(
         const Duration(days: 20000),
       ),

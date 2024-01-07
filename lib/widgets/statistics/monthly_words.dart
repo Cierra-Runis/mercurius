@@ -94,7 +94,7 @@ class MonthlyWords extends ConsumerWidget {
     }
 
     var start = diaries[0].createDateTime;
-    start = DateTime(start.year, start.month, 1);
+    start = DateTime(start.year, start.month);
     final end = diaries[diaries.length - 1].createDateTime;
 
     while (start.isBefore(end)) {

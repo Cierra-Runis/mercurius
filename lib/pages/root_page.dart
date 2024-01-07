@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'root_page.g.dart';
 
 final splitViewKey = GlobalKey<NavigatorState>();
+final _rootPage = GlobalKey();
 
 @riverpod
 class CurrentIndex extends _$CurrentIndex {
@@ -19,11 +20,8 @@ class RootView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return DoubleBack(
       child: BasedSplitView(
-        splitMode: SplitMode.width,
         navigatorKey: splitViewKey,
-        leftWidget: const RootPage(),
-        leftWidth: 364,
-        breakPoint: 364 * 2,
+        leftWidget: RootPage(key: _rootPage),
         rightPlaceholder: const Scaffold(
           body: Center(
             child: AppIcon(

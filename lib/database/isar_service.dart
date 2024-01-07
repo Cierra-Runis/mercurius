@@ -106,7 +106,6 @@ class IsarService {
 
       final isar = await Isar.open(
         [DiarySchema],
-        inspector: true,
         name: App.database,
         directory: directory.path,
         compactOnLaunch: const CompactCondition(

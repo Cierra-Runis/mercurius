@@ -4,6 +4,7 @@ linter:
   rules:
     avoid_slow_async_io: true
     avoid_type_to_string: true
+    avoid_redundant_argument_values: true
     cancel_subscriptions: true
     close_sinks: true
     collection_methods_unrelated_type: true

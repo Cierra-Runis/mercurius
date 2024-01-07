@@ -18,10 +18,9 @@ class ColorSchemes {
     final seedColor =
         await DynamicColorPlugin.getAccentColor() ?? Colors.deepPurple;
 
-    final light = palette?.toColorScheme(brightness: Brightness.light) ??
+    final light = palette?.toColorScheme() ??
         ColorScheme.fromSeed(
           seedColor: seedColor,
-          brightness: Brightness.light,
         );
 
     final dark = palette?.toColorScheme(brightness: Brightness.dark) ??

@@ -53,7 +53,6 @@ class DiaryListItemPlaceholder extends StatelessWidget {
               Expanded(
                 flex: 40,
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [dayWidget, weekdayWidget],
                 ),

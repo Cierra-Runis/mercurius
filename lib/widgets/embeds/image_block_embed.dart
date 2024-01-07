@@ -39,7 +39,6 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
           borderRadius: BorderRadius.circular(16.0),
           child: Image.file(
             file,
-            alignment: Alignment.center,
             errorBuilder: (context, error, stackTrace) {
               return BasedShimmer(
                 radius: 16,

@@ -88,7 +88,6 @@ class DiaryListItem extends ConsumerWidget {
                 Expanded(
                   flex: 40,
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [dayWidget, weekdayWidget],
                   ),

@@ -28,7 +28,6 @@ class _DiaryEditorPageState extends State<EditorPage> {
     _autoSave = widget.autoSave;
     _quillController = QuillController(
       document: _diary.document,
-      keepStyleOnNewLine: true,
       selection: const TextSelection.collapsed(offset: 0),
     );
   }
