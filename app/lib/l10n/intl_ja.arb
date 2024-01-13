@@ -1,0 +1,120 @@
+{
+  "@@last_modified": "2023-06-19T16:53:41+08:00",
+  "@@locale": "ja",
+  "back": "戻る",
+  "save": "保存",
+  "cancel": "キャンセル",
+  "confirm": "確認",
+  "enabled": "有効",
+  "disabled": "無効",
+  "title": "タイトル",
+  "untitled": "タイトル無し",
+  "content": "内容",
+  "noData": "データ無し",
+  "writingSomethingHere": "何かを書けよ…",
+  "insertImage": "図を挿入",
+  "insertTag": "タグを挿入",
+  "insertTagTitle": "タグアイコンを選択し、情報を入力してください",
+  "insertTagMessage": "タグ情報を入力してください",
+  "changeMood": "気分を変える",
+  "changeWeather": "天気を変える",
+  "changeDate": "日付を変える",
+  "statistics": "統計データ",
+  "imageGallery": "画廊",
+  "import": "輸入",
+  "export": "輸出",
+  "importAndExport": "データの輸出入",
+  "importJsonFile": "JSON ファイルをインポートする",
+  "importNfcData": "NFC データをインポートする",
+  "exportJsonFile": "JSON ファイルをエクスポートする",
+  "exportNfcData": "NFC データをエクスポートする",
+  "pleaseBackToHomePage": "ホームページに戻ってください",
+  "notYetCompleted": "まだ完成していません",
+  "settings": "设定",
+  "darkMode": "ダークモード",
+  "buttonVibration": "ボタン振動",
+  "followTheSystem": "システムに従います",
+  "alwaysDark": "常に暗い",
+  "alwaysBright": "常に明るい",
+  "aboutApp": "アプリについて",
+  "clickHereToUpdate": "更新",
+  "alreadyTheLatestVersion": "すでに最新",
+  "contentCannotBeEmpty": "コンテンツを空にすることはできません",
+  "homePage": "ホーム",
+  "morePage": "詳細",
+  "releasePage": "リリースページ",
+  "releasePageOops": "おっと! ページを更新してください！",
+  "contactUs": "お問い合わせ",
+  "importDeclaration": "インポートに関する声明",
+  "importDeclarationDescription": "フォント、アイコン、気象サービス関連",
+  "importDeclarationContentUpdateTime": "2023 年 6 月 4 日更新",
+  "importDeclarationContent": "Cierra_Runis の Mercurius ソフトウェアおよびサービスへようこそ。\n\nこの度、Cierra_Runis は「Mercurius インポートに関する声明」（以下「本声明」といいます）を作成いたしました。\n\n一、フォントに関する声明\n1. Mercurius は、Mercurius のメイン フォントとして Saira フォントを導入しました。[ライセンス](https://github.com/Omnibus-Type/Sira/blob/master/OFL.txt)\n\n二、アイコンに関する声明\n1. Mercurius は、Mercurius のメイン アイコンとしてマテリアル アイコンを導入しました。[ライセンス](https://github.com/qwd/Icons/blob/main/LICENSE)\n2. Mercurius は、Mercurius の二次アイコンとしてユニコンを導入しました。[ライセンス](https://github.com/pedrolemoz/unicons-flutter/blob/master/LICENSE)\n\n三、気象サービスに関する声明\n1. Mercurius は、Mercurius の気象サービスを推進するために [QWeather](https://www.qweather.com) を導入しました。",
+  "privacyStatement": "プライバシーに関する声明",
+  "privacyStatementContentUpdateTime": "2023 年 7 月 12 日更新",
+  "privacyStatementContent": "Cierra_Runis の Mercurius ソフトウェアおよびサービスへようこそ。\n\nお客様の個人情報をより適切に保護するために、このポリシーをよくお読みください。\n\nこのポリシーに関して異議や質問がある場合は、このポリシーの第 5 条に掲載されている連絡先情報を通じて Cierra_Runis と連絡を取ることができます。\n\n一、はじめに\n1. このポリシーは、Mercurius マルチプラットフォームアプリに適用されます。\n2. メルクリウスのサービスをご利用いただく前に、本ポリシーをよくお読みいただき、内容を十分にご理解ください。Mercurius ソフトウェアおよびサービスの使用を継続すると、Cierra_Runis がこのポリシーに従って関連情報を使用および処理することに同意したことになります。\n3. Cierra_Runis は、関連法令等に基づき本ポリシーを随時更新しますので、本ポリシーが更新・変更された場合には、新たな本ポリシーの内容をご確認ください。\n4. お客様が変更されたポリシーを確認した場合にのみ、Cierra_Runis が更新されたポリシーに従ってお客様の個人情報を収集、使用、保管、および処理することに同意し、ご理解ください。お客様には、更新されたポリシーを拒否する権利があります。ただし、変更後のポリシーへの同意を拒否すると、Mercurius 関連のサービスおよび機能を完全に利用し続けることができなくなりますので、ご注意ください。\n\n二、Cierra_Runis について\n1. Mercurius は、Cierra_Runis によって個人的にソフトウェアサービスとして提供されます。\n2. Cierra_Runis の基本情報は以下のとおりです。個人 Web サイトは [https://github.com/Cierra-Runis](https://github.com/Cierra-Runis) です。\n\n三、Mercurius の情報ポリシー\n1. Mercurius によって生成されたすべてのデータはローカルに保存され、日記や画像など、Mercurius によって生成されたデータはアップロードされません。\n\n四、適用範囲\n1. Cierra_Runis のすべてのサービスはこのポリシーの対象となります。このポリシーとプライバシーガイドラインまたは特定のサービスの声明との間に矛盾がある場合、このポリシーが優先されるものとします。\n\n五、Cierra_Runis に連絡する\n1. 本ポリシーの内容や Cierra_Runis のサービス利用時に発生するプライバシー保護関連事項に関してご質問、お問い合わせや苦情がある場合は、以下のいずれかの方法で Cierra_Runis にお問い合わせいただけます。\n- Mercurius のアバウトパージからお問い合わせいただけます。\n- [byrdsaron@gmail.com](byrdsaron@gmail.com) にメールを送信できます。",
+  "createNewDiary": "日記を追加",
+  "continueEditingDiary": "日記の編集を続ける",
+  "monthlyWordCountStatistics": "月度文字数統計",
+  "wordCount": "{count} 文字",
+  "@wordCount": {
+    "description": "日記の文字数",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diaryCount": "計 {count} 本",
+  "@diaryCount": {
+    "description": "ある期間の日記の数",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unknownVersion": "不明なバージョン",
+  "failedToGetVersion": "バージョンの取得に失敗しました",
+  "areYouSureToDeleteTheDiary": "日記を削除してもよろしいですか？",
+  "pleaseThinkTwiceAboutDeletingTheDiary": "日記を削除するかどうかよく考えてください",
+  "areYouSureToDeleteTheImage": "画像を削除してもよろしいですか？",
+  "pleaseThinkTwiceAboutDeletingTheImage": "画像を削除するかどうかよく考えてください",
+  "insertTheImageFrom": "どこから画像を挿入すればよいですか？",
+  "systemFile": "システムファイル",
+  "mood": "気分",
+  "moodText": "{mood, select, other{未知の気分} smile{ハッピー} angry{怒り} confused{混乱} frown{しかめっ面} laughing{大笑い} silentSquint{辛い} sadCrying{悲しい泣く} smileDizzy{死にたい} normal{普通}}",
+  "@moodText": {
+    "description": "Get mood text by mood in [DiaryMoodType]",
+    "placeholders": {
+      "mood": {
+        "type": "String"
+      }
+    }
+  },
+  "howIsYourMoodNow": "今の気分は？",
+  "howIsYourMoodNowDescription": "ねぇ、今どんな気持ち",
+  "weather": "天気",
+  "weatherText": "{weather, select, other{未知} sunny{晴れ} cloudy{曇り} fewClouds{雲が少ない} heavyThunderstorm{激しい雷雨} lightRain{小雨} heavyRain{大雨} lightSnow{小雪} heavySnow{大雪} foggy{霧}}",
+  "@weatherText": {
+    "description": "Get weather text by weather in [DiaryWeatherType]",
+    "placeholders": {
+      "weather": {
+        "type": "String"
+      }
+    }
+  },
+  "whatIsTheWeatherNow": "今の天気は？",
+  "whatIsTheWeatherNowDescription": "今日もいい天気",
+  "unsupportedImageFormat": "サポートされていない画像フォーマット",
+  "imageMissing": "画像がありません",
+  "searchDiary": "日記を検索",
+  "searchTitle": "タイトルを検索",
+  "backAgainToExit": "もう一度戻って終了します",
+  "hiToKoToProvider": "このサービスは、Hitokoto「一言」が提供しています",
+  "hiToKoToFetching": "「一言」を取得中",
+  "thisDayLastYear": "去年の今日",
+  "backgroundImage": "背景画像",
+  "noImageSelected": "画像が選択されていません",
+  "clear": "クリア",
+  "language": "言語"
+}

@@ -1,0 +1,34 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    avoid_redundant_argument_values: true
+    cancel_subscriptions: true
+    close_sinks: true
+    collection_methods_unrelated_type: true
+    control_flow_in_finally: true
+    matching_super_parameters: true
+    omit_local_variable_types: true
+    prefer_single_quotes: true
+    prefer_const_declarations: true
+    prefer_final_fields: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    require_trailing_commas: true
+    use_colored_box: true
+    use_decorated_box: true
+    use_super_parameters: true
+    unnecessary_lambdas: true
+    unnecessary_parenthesis: true
+
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+  plugins:
+    - custom_lint
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "lib/l10n/*"
