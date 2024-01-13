@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'qweather_now.g.dart';
 part 'qweather_now.freezed.dart';

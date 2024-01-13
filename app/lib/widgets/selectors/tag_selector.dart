@@ -1,4 +1,4 @@
-import '../../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class TagSelector extends StatefulWidget {
   const TagSelector({

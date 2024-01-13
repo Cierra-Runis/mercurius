@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 part 'hitokoto.g.dart';
 part 'hitokoto.freezed.dart';

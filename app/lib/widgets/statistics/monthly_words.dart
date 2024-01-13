@@ -1,4 +1,4 @@
-import '../../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class MonthlyWords extends ConsumerWidget {
   const MonthlyWords({super.key});

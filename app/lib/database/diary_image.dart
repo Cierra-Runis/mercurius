@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 part 'diary_image.g.dart';
 part 'diary_image.freezed.dart';
 

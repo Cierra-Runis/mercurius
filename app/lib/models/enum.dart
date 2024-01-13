@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 /// 枚举类型 [DiaryMoodType]
 enum DiaryMoodType {

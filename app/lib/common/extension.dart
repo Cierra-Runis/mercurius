@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 extension CacheForExtension on AutoDisposeRef<Object?> {
   /// Refresh provider each [duration].

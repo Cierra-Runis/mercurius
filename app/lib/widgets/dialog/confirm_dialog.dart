@@ -1,4 +1,4 @@
-import '../../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class ConfirmDialog extends StatelessWidget {
   const ConfirmDialog({

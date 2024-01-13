@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

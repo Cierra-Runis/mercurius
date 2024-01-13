@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class StatisticPage extends StatelessWidget {
   const StatisticPage({super.key});

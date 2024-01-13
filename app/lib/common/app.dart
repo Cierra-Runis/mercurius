@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 import 'dart:developer' as devtools show log, inspect;
 

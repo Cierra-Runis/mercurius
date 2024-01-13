@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class ReleasePage extends ConsumerWidget {
   const ReleasePage({super.key});

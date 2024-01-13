@@ -1,4 +1,4 @@
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class GalleryPage extends ConsumerWidget {
   const GalleryPage({

@@ -1,4 +1,4 @@
-import '../../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class ImportSection extends ConsumerWidget {
   const ImportSection({super.key});

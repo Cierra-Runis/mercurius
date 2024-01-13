@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import '../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'github_latest_release.g.dart';
 part 'github_latest_release.freezed.dart';

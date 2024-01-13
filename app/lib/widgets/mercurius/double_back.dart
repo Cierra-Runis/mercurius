@@ -1,4 +1,4 @@
-import '../../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class DoubleBack extends ConsumerStatefulWidget {
   const DoubleBack({

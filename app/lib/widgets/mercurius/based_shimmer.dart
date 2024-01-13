@@ -1,4 +1,4 @@
-import '../../../app/lib/index.dart';
+import 'package:mercurius/index.dart';
 
 class BasedShimmer extends StatefulWidget {
   const BasedShimmer({
