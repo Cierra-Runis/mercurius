@@ -4,7 +4,7 @@
 
   <p>『 Mercurius - 日記を書きましょう！』</p>
 
-<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/README_ja.md">日本語</a>
+<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/.github/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/.github/README_ja.md">日本語</a>
 
 </div>
 
