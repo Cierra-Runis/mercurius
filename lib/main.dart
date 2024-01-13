@@ -1,12 +1,9 @@
 import 'package:mercurius/index.dart';
 
-/// isar 数据库
-final isarService = IsarService();
-
 void main() => App.run();
 
-class MercuriusApp extends ConsumerWidget {
-  const MercuriusApp({super.key});
+class MainApp extends ConsumerWidget {
+  const MainApp({super.key});
 
   Widget builder(context, child) => Column(
         children: [

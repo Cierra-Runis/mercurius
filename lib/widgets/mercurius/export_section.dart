@@ -6,6 +6,7 @@ class ExportSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final paths = ref.watch(pathsProvider);
 
     return BasedListSection(
       titleText: l10n.export,
@@ -14,13 +15,10 @@ class ExportSection extends ConsumerWidget {
           leadingIcon: Icons.data_object_rounded,
           titleText: l10n.exportJsonFile,
           onTap: () async {
-            final dir = await ref.watch(mercuriusPathProvider.future);
-            final path = '$dir/export.json';
-            await isarService.exportDiaryWith(path);
-
-            /// FIXME: https://github.com/fluttercommunity/plus_plugins/issues/1351
-
-            await Share.shareFiles([path]);
+            final path = join(paths.temp.path, 'export.json');
+            final json = await isarService.exportDiaryJson();
+            await File(path).writeAsString(jsonEncode(json));
+            await Share.shareXFiles([XFile(path)]);
           },
         ),
         BasedListTile(

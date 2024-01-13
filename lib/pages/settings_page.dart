@@ -40,15 +40,12 @@ class _BackgroundImageListTile extends ConsumerWidget {
     return BasedListTile(
       leadingIcon: Icons.flip_to_back_rounded,
       titleText: l10n.backgroundImage,
-      detailText: settings.bgImgPath ?? l10n.noImageSelected,
+      detailText: settings.bgImgId == null ? l10n.noImageSelected : '',
       onTap: () {
         context.push(
           GalleryPage(
-            onTap: (context, path) {
-              /// TODO:
-              // settingsNotifier.setBgImgPath(
-              //   path.split('/').last,
-              // );
+            onTap: (context, image) {
+              settingsNotifier.setBgImgId(image.id);
               context.pop();
             },
           ),

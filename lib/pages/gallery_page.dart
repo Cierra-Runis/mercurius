@@ -58,7 +58,6 @@ class GalleryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final path = ref.watch(mercuriusPathProvider);
     final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     final l10n = L10N.maybeOf(context) ?? L10N.current;
@@ -70,22 +69,16 @@ class GalleryPage extends ConsumerWidget {
           if (readOnly)
             TextButton(
               onPressed: () {
-                settingsNotifier.setBgImgPath(null);
+                settingsNotifier.setBgImgId(null);
                 context.pop();
               },
               child: Text(l10n.clear),
             ),
         ],
       ),
-      body: path.when(
-        loading: () => const Loading(),
-
-        /// TODO: 这里应该提示 error
-        error: (error, stackTrace) => const SizedBox(),
-        data: (data) => StreamBuilder(
-          stream: isarService.listenToAllDiaryImages(),
-          builder: getBodyBySnapshotState,
-        ),
+      body: StreamBuilder(
+        stream: isarService.listenToAllDiaryImages(),
+        builder: getBodyBySnapshotState,
       ),
     );
   }

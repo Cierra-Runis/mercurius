@@ -15,14 +15,19 @@ class ImportSection extends ConsumerWidget {
           titleText: l10n.importJsonFile,
           onTap: () async {
             /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
-            if (Platform.isAndroid) {
+            if (Platform.isAndroid || Platform.isIOS) {
               await FilePicker.platform.clearTemporaryFiles();
             }
-            final result = await FilePicker.platform.pickFiles();
+
+            final result = await FilePicker.platform.pickFiles(
+              allowedExtensions: ['json'],
+            );
+
             if (result != null && result.files.single.path != null) {
               final succuss = await isarService.importJsonWith(
                 result.files.single.path!,
               );
+
               if (context.mounted && succuss) {
                 App.vibration();
                 Flushbar(

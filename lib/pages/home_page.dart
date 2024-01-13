@@ -6,7 +6,7 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
-    final path = ref.watch(mercuriusPathProvider);
+    final path = ref.watch(pathsProvider);
     final settings = ref.watch(settingsProvider);
     final controller = useScrollController();
 
@@ -23,20 +23,16 @@ class HomePage extends HookConsumerWidget {
       ),
       body: ClipRRect(
         child: DecoratedBox(
-          decoration: settings.bgImgPath != null
-              ? path.when(
-                  loading: BoxDecoration.new,
-                  error: (error, stackTrace) => const BoxDecoration(),
-                  data: (data) => BoxDecoration(
-                    image: DecorationImage(
-                      opacity: 0.8,
+          decoration: settings.bgImgId != null
+              ? BoxDecoration(
+                  image: DecorationImage(
+                    opacity: 0.8,
 
-                      /// TODO:
-                      image: FileImage(
-                        File('$data/image/${settings.bgImgPath}'),
-                      ),
-                      fit: BoxFit.cover,
+                    /// TODO:
+                    image: FileImage(
+                      File('$path/image/${settings.bgImgId}'),
                     ),
+                    fit: BoxFit.cover,
                   ),
                 )
               : const BoxDecoration(),

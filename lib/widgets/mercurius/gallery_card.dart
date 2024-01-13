@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class GalleryCard extends StatelessWidget {
+class GalleryCard extends ConsumerWidget {
   const GalleryCard({
     super.key,
     required this.diaryImage,
@@ -13,7 +13,7 @@ class GalleryCard extends StatelessWidget {
   final void Function(BuildContext context, DiaryImage diaryImage) onTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
     final colorScheme = context.colorScheme;
 

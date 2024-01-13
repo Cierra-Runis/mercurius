@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class EditorToolbar extends ConsumerWidget {
+class EditorToolbar extends StatelessWidget {
   const EditorToolbar({
     super.key,
     required this.diary,
@@ -15,36 +15,39 @@ class EditorToolbar extends ConsumerWidget {
   final ValueChanged<Diary?> handleChangeDiary;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    const quillIconTheme = QuillIconTheme(
+  Widget build(BuildContext context) {
+    final VisualDensity visualDensity;
+
+    if (Platform.isAndroid || Platform.isIOS) {
+      visualDensity = VisualDensity.compact;
+    } else {
+      visualDensity = VisualDensity.standard;
+    }
+
+    final quillIconTheme = QuillIconTheme(
       iconButtonSelectedData: IconButtonData(
-        iconSize: 14,
-        constraints: BoxConstraints(),
+        iconSize: 16,
+        visualDensity: visualDensity,
+        constraints: const BoxConstraints(),
       ),
       iconButtonUnselectedData: IconButtonData(
-        iconSize: 14,
-        constraints: BoxConstraints(),
+        iconSize: 16,
+        visualDensity: visualDensity,
+        constraints: const BoxConstraints(),
       ),
     );
-
-    final path = ref.watch(mercuriusPathProvider);
 
     final l10n = L10N.maybeOf(context) ?? L10N.current;
 
     final embedButtons = <EmbedButtonBuilder>[
       (controller, _, __, ___) {
-        return path.when(
-          loading: () => const Loading(),
-          error: (error, stackTrace) => const SizedBox(),
-          data: (data) => QuillToolbarCustomButton(
-            controller: controller,
-            options: EditorImageButton(
-              tooltip: l10n.insertImage,
-              onPressed: () => EditorImageButton.onTap(
-                controller,
-                context,
-                data,
-              ),
+        return QuillToolbarCustomButton(
+          controller: controller,
+          options: EditorImageButton(
+            tooltip: l10n.insertImage,
+            onPressed: () => EditorImageButton.onTap(
+              controller,
+              context,
             ),
           ),
         );
@@ -84,10 +87,10 @@ class EditorToolbar extends ConsumerWidget {
 
     return QuillToolbar.simple(
       configurations: QuillSimpleToolbarConfigurations(
-        buttonOptions: const QuillSimpleToolbarButtonOptions(
+        buttonOptions: QuillSimpleToolbarButtonOptions(
           base: QuillToolbarBaseButtonOptions(
             iconButtonFactor: 1,
-            iconSize: 14,
+            iconSize: 16,
             iconTheme: quillIconTheme,
           ),
         ),
@@ -109,7 +112,6 @@ class EditorToolbar extends ConsumerWidget {
         showLink: false,
         showSubscript: false,
         showSuperscript: false,
-        toolbarSectionSpacing: -10,
         embedButtons: embedButtons,
         customButtons: [
           editorMoodButton,

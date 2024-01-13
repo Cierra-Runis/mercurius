@@ -2,6 +2,8 @@ import 'package:mercurius/index.dart';
 
 import 'dart:developer' as devtools show log, inspect;
 
+late final IsarService isarService;
+
 abstract class App {
   static const name = 'Mercurius';
   static const database = 'mercurius_database';
@@ -19,8 +21,6 @@ abstract class App {
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    final List<Override> overrides;
-
     try {
       if (Platform.isWindows || Platform.isMacOS) {
         await PlatformWindowManager.init();
@@ -30,17 +30,25 @@ abstract class App {
         await FlutterDisplayMode.setHighRefreshRate();
       }
 
-      overrides = [
-        persistenceProvider.overrideWithValue(
-          await Persistence.init(),
+      final paths = await Paths.init();
+      final persistence = await Persistence.init();
+      final colorSchemes = await ColorSchemes.init();
+      final packageInfo = await PackageInfo.fromPlatform();
+
+      isarService = IsarService.openDB(paths.appSupport);
+
+      runApp(
+        ProviderScope(
+          observers: const [_ProviderObserver()],
+          overrides: [
+            pathsProvider.overrideWithValue(paths),
+            persistenceProvider.overrideWithValue(persistence),
+            colorSchemesProvider.overrideWithValue(colorSchemes),
+            packageInfoProvider.overrideWithValue(packageInfo),
+          ],
+          child: const MainApp(),
         ),
-        colorSchemesProvider.overrideWithValue(
-          await ColorSchemes.init(),
-        ),
-        packageInfoProvider.overrideWithValue(
-          await PackageInfo.fromPlatform(),
-        ),
-      ];
+      );
     } catch (e, s) {
       return runApp(
         ProviderScope(
@@ -48,14 +56,6 @@ abstract class App {
         ),
       );
     }
-
-    runApp(
-      ProviderScope(
-        observers: const [_ProviderObserver()],
-        overrides: overrides,
-        child: const MercuriusApp(),
-      ),
-    );
   }
 
   static void printLog(

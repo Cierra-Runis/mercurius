@@ -50,6 +50,7 @@ export 'package:intl/intl.dart' hide TextDirection; // 国际化
 export 'package:json_annotation/json_annotation.dart'; // json 相关
 export 'package:keframe/keframe.dart'; // 列表优化
 export 'package:loading_animation_widget/loading_animation_widget.dart'; // 加载器组件
+export 'package:path/path.dart' show join;
 export 'package:path_provider/path_provider.dart'; // 路径获取
 export 'package:pausable_timer/pausable_timer.dart'; // 可暂停计时器
 export 'package:package_info_plus/package_info_plus.dart'; // 包信息

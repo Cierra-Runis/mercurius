@@ -1,17 +1,17 @@
 import 'package:mercurius/index.dart';
 
 abstract class _Service {
-  late Future<Isar> _db;
+  final Isar db;
+
+  const _Service({required this.db});
 }
 
 class IsarService extends _Service with _DiaryService, _DiaryImageService {
-  IsarService() {
-    _db = openDB();
-  }
+  const IsarService(Isar db) : super(db: db);
 
   Future<bool> importJsonWith(String path) async {
     try {
-      final isar = await _db;
+      final isar = db;
       final bytes = await File(path).readAsString();
       await isar.writeAsync((isar) {
         isar.diarys.clear();
@@ -23,46 +23,42 @@ class IsarService extends _Service with _DiaryService, _DiaryImageService {
     }
   }
 
-  Future<void> exportDiaryWith(String path) async {
-    final isar = await _db;
-    final data = isar.diarys.where().exportJson();
-    final file = await File(path).create();
-    await file.writeAsString(jsonEncode(data));
+  Future<List<Map<String, dynamic>>> exportDiaryJson() async {
+    final isar = db;
+    return isar.diarys.where().exportJson();
   }
 
   Future<void> cleanDb() async {
-    final isar = await _db;
+    final isar = db;
     await isar.writeAsync((isar) => isar.clear);
   }
 
-  Future<Isar> openDB() async {
-    final dir = await getApplicationSupportDirectory();
-
+  static IsarService openDB(Directory directory) {
     final isar = Isar.open(
       schemas: [
         DiarySchema,
         DiaryImageSchema,
       ],
       name: App.database,
-      directory: dir.path,
+      directory: directory.path,
       compactOnLaunch: const CompactCondition(
         minBytes: 1024,
         minFileSize: 1024,
       ),
     );
 
-    return isar;
+    return IsarService(isar);
   }
 }
 
 mixin _DiaryService on _Service {
   Future<void> saveDiary(Diary newDiary) async {
-    final isar = await _db;
+    final isar = db;
     return isar.writeAsync((isar) => isar.diarys.put(newDiary));
   }
 
   Future<List<Diary>> getDiaryByDate(DateTime dateTime) async {
-    final isar = await _db;
+    final isar = db;
     return isar.diarys
         .where()
         .createDateTimeBetween(
@@ -73,7 +69,7 @@ mixin _DiaryService on _Service {
   }
 
   Stream<List<Diary>> listenToDiariesEditing() async* {
-    final isar = await _db;
+    final isar = db;
     yield* isar.diarys
         .where()
         .editingEqualTo(true)
@@ -81,12 +77,12 @@ mixin _DiaryService on _Service {
   }
 
   Future<List<Diary>> getAllDiaries() async {
-    final isar = await _db;
+    final isar = db;
     return isar.diarys.where().findAll();
   }
 
   Stream<List<Diary>> listenToAllDiaries() async* {
-    final isar = await _db;
+    final isar = db;
     yield* isar.diarys
         .where()
         .editingEqualTo(false)
@@ -95,29 +91,29 @@ mixin _DiaryService on _Service {
   }
 
   Future<void> deleteDiaryById(int id) async {
-    final isar = await _db;
+    final isar = db;
     await isar.writeAsync((isar) => isar.diarys.delete(id));
   }
 }
 
 mixin _DiaryImageService on _Service {
   Future<void> saveDiaryImage(DiaryImage newDiaryImage) async {
-    final isar = await _db;
+    final isar = db;
     await isar.writeAsync((isar) => isar.diaryImages.put(newDiaryImage));
   }
 
   Future<void> deleteDiaryImageById(int id) async {
-    final isar = await _db;
+    final isar = db;
     await isar.writeAsync((isar) => isar.diaryImages.delete(id));
   }
 
   Future<DiaryImage?> getDiaryImageById(int id) async {
-    final isar = await _db;
+    final isar = db;
     return isar.readAsync((isar) => isar.diaryImages.get(id));
   }
 
   Stream<List<DiaryImage>> listenToAllDiaryImages() async* {
-    final isar = await _db;
+    final isar = db;
     yield* isar.diaryImages
         .where()
         .sortByCreateDateTimeDesc()

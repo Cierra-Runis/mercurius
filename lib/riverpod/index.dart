@@ -1,6 +1,6 @@
 export 'color_schemes.dart';
 export 'github_latest_release.dart';
-export 'mercurius_path.dart';
+export 'paths.dart';
 export 'persistence.dart';
 export 'qweather_now.dart';
 export 'package_info.dart';
