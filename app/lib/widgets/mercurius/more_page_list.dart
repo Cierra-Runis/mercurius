@@ -18,17 +18,17 @@ class MorePageList extends ConsumerWidget {
         l10n.statistics,
         const StatisticPage(),
       ],
-      [
-        Icons.image_rounded,
-        l10n.imageGallery,
-        GalleryPage(
-          onTap: (context, image) => context.pushDialog(
-            ImageView(
-              image: image,
-            ),
-          ),
-        ),
-      ],
+      // [
+      //   Icons.image_rounded,
+      //   l10n.imageGallery,
+      //   GalleryPage(
+      //     onTap: (context, image) => context.pushDialog(
+      //       ImageView(
+      //         image: image,
+      //       ),
+      //     ),
+      //   ),
+      // ],
       [
         Icons.import_export_rounded,
         l10n.importAndExport,

@@ -40,61 +40,61 @@ class EditorImageButton extends QuillToolbarCustomButtonOptions {
       /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
       /// TIPS: 并删除所需的中间缓存图片
 
-      final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-      );
+      // final pickedFile = await ImagePicker().pickImage(
+      //   source: ImageSource.gallery,
+      // );
 
-      if (pickedFile != null) {
-        final image = DiaryImage(
-          id: 0,
-          title: pickedFile.name,
-          createDateTime: DateTime.now(),
-          data: await pickedFile.readAsBytes(),
-        );
-        isarService.saveDiaryImage(image);
-        _insert(controller, image);
-      }
+      // if (pickedFile != null) {
+      //   final image = DiaryImage(
+      //     id: 0,
+      //     title: pickedFile.name,
+      //     createAt: DateTime.now(),
+      //     data: await pickedFile.readAsBytes(),
+      //   );
+      //   isarService.saveDiaryImage(image);
+      //   _insert(controller, image);
+      // }
     } else {
       if (context.mounted) {
-        final image = await context.push<DiaryImage?>(
-          GalleryPage(
-            onTap: (context, image) => context.pop(image),
-          ),
-        );
-        if (image != null) {
-          _insert(controller, image);
-        }
+        // final image = await context.push<DiaryImage?>(
+        //   GalleryPage(
+        //     onTap: (context, image) => context.pop(image),
+        //   ),
+        // );
+        // if (image != null) {
+        //   _insert(controller, image);
+        // }
       }
     }
   }
 
-  static void _insert(QuillController controller, DiaryImage image) {
-    controller.document.insert(controller.selection.extentOffset, '\n');
-    controller.updateSelection(
-      TextSelection.collapsed(
-        offset: controller.selection.extentOffset + 1,
-      ),
-      ChangeSource.local,
-    );
+  // static void _insert(QuillController controller, DiaryImage image) {
+  //   controller.document.insert(controller.selection.extentOffset, '\n');
+  //   controller.updateSelection(
+  //     TextSelection.collapsed(
+  //       offset: controller.selection.extentOffset + 1,
+  //     ),
+  //     ChangeSource.local,
+  //   );
 
-    controller.document.insert(
-      controller.selection.extentOffset,
-      ImageBlockEmbed(image.id),
-    );
+  //   controller.document.insert(
+  //     controller.selection.extentOffset,
+  //     ImageBlockEmbed(image.id),
+  //   );
 
-    controller.updateSelection(
-      TextSelection.collapsed(
-        offset: controller.selection.extentOffset + 1,
-      ),
-      ChangeSource.local,
-    );
+  //   controller.updateSelection(
+  //     TextSelection.collapsed(
+  //       offset: controller.selection.extentOffset + 1,
+  //     ),
+  //     ChangeSource.local,
+  //   );
 
-    controller.document.insert(controller.selection.extentOffset, ' \n');
-    controller.updateSelection(
-      TextSelection.collapsed(
-        offset: controller.selection.extentOffset + 2,
-      ),
-      ChangeSource.local,
-    );
-  }
+  //   controller.document.insert(controller.selection.extentOffset, ' \n');
+  //   controller.updateSelection(
+  //     TextSelection.collapsed(
+  //       offset: controller.selection.extentOffset + 2,
+  //     ),
+  //     ChangeSource.local,
+  //   );
+  // }
 }
