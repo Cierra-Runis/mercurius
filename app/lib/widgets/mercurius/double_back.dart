@@ -28,7 +28,7 @@ class _DoubleBackState extends ConsumerState<DoubleBack> {
 
     return WillPopScope(
       onWillPop: () async {
-        if (splitViewKey.currentState?.canPop() == true) {
+        if (splitViewKey.currentState?.canPop() ?? false) {
           splitViewKey.currentState?.pop();
           return false;
         }
