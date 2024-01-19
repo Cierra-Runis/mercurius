@@ -1,11 +1,18 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListView extends ConsumerWidget {
+class DiaryListView extends ConsumerStatefulWidget {
   const DiaryListView({
     super.key,
     required this.controller,
   });
   final ScrollController controller;
+
+  @override
+  ConsumerState<DiaryListView> createState() => _DiaryListViewState();
+}
+
+class _DiaryListViewState extends ConsumerState<DiaryListView> {
+  late final stream = isarService.listenToAllDiaries();
 
   Widget _getCardBySnapshotData(
     BuildContext context,
@@ -21,25 +28,22 @@ class DiaryListView extends ConsumerWidget {
     final sections = <_DiaryListViewSection>[];
     final diaries = snapshot.data!;
 
-    var year = diaries[0].createDateTime.year;
-    var month = diaries[0].createDateTime.month;
+    var year = diaries[0].createAt.year;
+    var month = diaries[0].createAt.month;
     sections.add(
       _DiaryListViewSection()
-        ..header =
-            diaries[0].createDateTime.format(DateFormat.YEAR_ABBR_MONTH, lang),
+        ..header = diaries[0].createAt.format(DateFormat.YEAR_ABBR_MONTH, lang),
     );
 
     for (final diary in diaries) {
-      if (diary.createDateTime.month == month &&
-          diary.createDateTime.year == year) {
+      if (diary.createAt.month == month && diary.createAt.year == year) {
         sections.last.items.add(diary);
       } else {
-        month = diary.createDateTime.month;
-        year = diary.createDateTime.year;
+        month = diary.createAt.month;
+        year = diary.createAt.year;
         sections.add(
           _DiaryListViewSection()
-            ..header =
-                diary.createDateTime.format(DateFormat.YEAR_ABBR_MONTH, lang)
+            ..header = diary.createAt.format(DateFormat.YEAR_ABBR_MONTH, lang)
             ..items.add(diary),
         );
       }
@@ -47,7 +51,7 @@ class DiaryListView extends ConsumerWidget {
 
     return ExpandableListView(
       cacheExtent: 1000,
-      controller: controller,
+      controller: widget.controller,
       builder: SliverExpandableChildDelegate<Diary, _DiaryListViewSection>(
         sectionList: sections,
         headerBuilder: (context, sectionIndex, index) {
@@ -96,9 +100,9 @@ class DiaryListView extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return StreamBuilder<List<Diary>>(
-      stream: isarService.listenToAllDiaries(),
+      stream: stream,
       builder: _getBodyBySnapshotState,
     );
   }
