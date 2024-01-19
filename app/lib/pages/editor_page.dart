@@ -63,12 +63,10 @@ class _DiaryEditorPageState extends State<EditorPage> {
       ),
       body: Stack(
         children: [
-          Expanded(
-            child: EditorBody(
-              readOnly: false,
-              controller: _quillController,
-              scrollController: _scrollController,
-            ),
+          EditorBody(
+            readOnly: false,
+            controller: _quillController,
+            scrollController: _scrollController,
           ),
           Align(
             alignment: Alignment.bottomCenter,
