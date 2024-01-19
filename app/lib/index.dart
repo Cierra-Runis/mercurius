@@ -27,6 +27,7 @@ export 'dart:ui' show ImageFilter, FontFeature;
 /// 外部包相关
 export 'package:another_flushbar/flushbar.dart'; // 提示框
 export 'package:based_list/based_list.dart';
+export 'package:based_local_first_image/based_local_first_image.dart';
 export 'package:based_splash_page/based_splash_page.dart';
 export 'package:based_split_view/based_split_view.dart';
 export 'package:cross_file/cross_file.dart'; // 文件操作
@@ -34,6 +35,7 @@ export 'package:dio/dio.dart'; // 网络请求
 /// [Interval] 和 `package:flutter/src/animation/curves.dart` 冲突，两者结构完全不同，但外部包里的这个用不到
 export 'package:dart_date/dart_date.dart' hide Interval; // 日期工具
 export 'package:dynamic_color/dynamic_color.dart';
+export 'package:flex_color_picker/flex_color_picker.dart';
 export 'package:file_picker/file_picker.dart'; // 文件选择
 export 'package:flutter_displaymode/flutter_displaymode.dart'; // 高刷
 export 'package:flutter_hooks/flutter_hooks.dart';
@@ -50,6 +52,8 @@ export 'package:intl/intl.dart' hide TextDirection; // 国际化
 export 'package:json_annotation/json_annotation.dart'; // json 相关
 export 'package:keframe/keframe.dart'; // 列表优化
 export 'package:loading_animation_widget/loading_animation_widget.dart'; // 加载器组件
+export 'package:material_color_utilities/material_color_utilities.dart'
+    show CorePalette;
 export 'package:path/path.dart' show join;
 export 'package:path_provider/path_provider.dart'; // 路径获取
 export 'package:pausable_timer/pausable_timer.dart'; // 可暂停计时器
