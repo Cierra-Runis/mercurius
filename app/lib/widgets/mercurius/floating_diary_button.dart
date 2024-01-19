@@ -107,8 +107,8 @@ class FloatingDiaryButton extends ConsumerWidget {
     if (context.mounted && dateTime != null) {
       final diary = Diary(
         id: 0,
-        createDateTime: dateTime,
-        latestEditTime: dateTime,
+        createAt: dateTime,
+        editAt: dateTime,
         content: Document().toDelta().toJson(),
         editing: true,
       );

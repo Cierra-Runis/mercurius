@@ -34,7 +34,7 @@ class EditorTagButton extends QuillToolbarCustomButtonOptions {
   ) {
     controller.document.insert(
       controller.selection.extentOffset,
-      TagBlockEmbed(jsonEncode(diaryTag.toJson())),
+      TagBlockEmbed(json: diaryTag.toJson()),
     );
 
     controller.updateSelection(

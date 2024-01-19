@@ -18,27 +18,27 @@ class DiaryListItem extends ConsumerWidget {
     final lang = Localizations.localeOf(context).toLanguageTag();
 
     final dayWidget = Text(
-      diary.createDateTime.format('dd'),
+      diary.createAt.format('dd'),
       style: const TextStyle(
         fontSize: 24,
         fontFamily: App.fontSaira,
       ),
     );
     final weekdayWidget = Text(
-      diary.createDateTime.format(DateFormat.WEEKDAY, lang),
+      diary.createAt.format(DateFormat.WEEKDAY, lang),
       style: const TextStyle(
         fontSize: 10,
       ),
     );
     final latestEditTimeWidget = Text(
-      diary.latestEditTime.format('HH:mm:ss'),
+      diary.editAt.format('HH:mm:ss'),
       style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w600,
       ),
     );
     final createDateTimeWidget = Text(
-      diary.title == '' ? diary.createDateTime.format('y-M-d') : diary.title,
+      diary.title == '' ? diary.createAt.format('y-M-d') : diary.title,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(

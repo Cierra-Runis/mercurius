@@ -46,7 +46,7 @@ class _EditorAutoSaveButtonState extends State<EditorAutoSaveButton> {
       if (plainText != '') {
         final newDiary = _diary.copyWith(
           content: _quillController.document.toDelta().toJson(),
-          latestEditTime: DateTime.now(),
+          editAt: DateTime.now(),
           title: _textEditingController.text,
           editing: true,
         );

@@ -6,7 +6,7 @@ abstract class _Service {
   const _Service({required this.db});
 }
 
-class IsarService extends _Service with _DiaryService, _DiaryImageService {
+class IsarService extends _Service with _DiaryService {
   const IsarService(Isar db) : super(db: db);
 
   Future<bool> importJsonWith(String path) async {
@@ -37,7 +37,6 @@ class IsarService extends _Service with _DiaryService, _DiaryImageService {
     final isar = Isar.open(
       schemas: [
         DiarySchema,
-        DiaryImageSchema,
       ],
       name: App.database,
       directory: directory.path,
@@ -61,7 +60,7 @@ mixin _DiaryService on _Service {
     final isar = db;
     return isar.diarys
         .where()
-        .createDateTimeBetween(
+        .createAtBetween(
           DateTime(dateTime.year, dateTime.month, dateTime.day),
           DateTime(dateTime.year, dateTime.month, dateTime.day).nextDay,
         )
@@ -86,37 +85,12 @@ mixin _DiaryService on _Service {
     yield* isar.diarys
         .where()
         .editingEqualTo(false)
-        .sortByCreateDateTimeDesc()
+        .sortByCreateAtDesc()
         .watch(fireImmediately: true);
   }
 
   Future<void> deleteDiaryById(int id) async {
     final isar = db;
     await isar.writeAsync((isar) => isar.diarys.delete(id));
-  }
-}
-
-mixin _DiaryImageService on _Service {
-  Future<void> saveDiaryImage(DiaryImage newDiaryImage) async {
-    final isar = db;
-    await isar.writeAsync((isar) => isar.diaryImages.put(newDiaryImage));
-  }
-
-  Future<void> deleteDiaryImageById(int id) async {
-    final isar = db;
-    await isar.writeAsync((isar) => isar.diaryImages.delete(id));
-  }
-
-  Future<DiaryImage?> getDiaryImageById(int id) async {
-    final isar = db;
-    return isar.readAsync((isar) => isar.diaryImages.get(id));
-  }
-
-  Stream<List<DiaryImage>> listenToAllDiaryImages() async* {
-    final isar = db;
-    yield* isar.diaryImages
-        .where()
-        .sortByCreateDateTimeDesc()
-        .watch(fireImmediately: true);
   }
 }

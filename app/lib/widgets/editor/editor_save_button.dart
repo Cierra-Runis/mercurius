@@ -54,7 +54,7 @@ class EditorSaveButton extends ConsumerWidget {
         } else {
           final newDiary = diary.copyWith(
             content: quillController.document.toDelta().toJson(),
-            latestEditTime: DateTime.now(),
+            editAt: DateTime.now(),
             title: textEditingController.text,
             editing: false,
           );

@@ -16,13 +16,9 @@ class EditorToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final VisualDensity visualDensity;
-
-    if (Platform.isAndroid || Platform.isIOS) {
-      visualDensity = VisualDensity.compact;
-    } else {
-      visualDensity = VisualDensity.standard;
-    }
+    final visualDensity = Platform.isAndroid || Platform.isIOS
+        ? VisualDensity.compact
+        : VisualDensity.standard;
 
     final quillIconTheme = QuillIconTheme(
       iconButtonSelectedData: IconButtonData(
@@ -128,7 +124,7 @@ class EditorToolbar extends StatelessWidget {
         diary: diary,
       ),
     );
-    handleChangeDiary(diary.copyWith(moodType: type));
+    handleChangeDiary(diary.copyWith(moodType: type ?? diary.moodType));
   }
 
   void changeWeather(BuildContext context, Diary diary) async {
@@ -137,7 +133,7 @@ class EditorToolbar extends StatelessWidget {
         diary: diary,
       ),
     );
-    handleChangeDiary(diary.copyWith(weatherType: type));
+    handleChangeDiary(diary.copyWith(weatherType: type ?? diary.weatherType));
   }
 
   void changeDate(BuildContext context, Diary diary) async {
@@ -145,7 +141,7 @@ class EditorToolbar extends StatelessWidget {
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
-      initialDate: diary.createDateTime,
+      initialDate: diary.createAt,
       firstDate: DateTime(1949, 10),
       lastDate: DateTime.now().add(
         const Duration(days: 20000),
@@ -153,7 +149,7 @@ class EditorToolbar extends StatelessWidget {
     );
     if (dateTime != null) {
       handleChangeDiary(
-        diary.copyWith(createDateTime: dateTime),
+        diary.copyWith(createAt: dateTime),
       );
     }
   }

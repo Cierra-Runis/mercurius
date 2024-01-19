@@ -93,9 +93,9 @@ class MonthlyWords extends ConsumerWidget {
       return result;
     }
 
-    var start = diaries[0].createDateTime;
+    var start = diaries.first.createAt;
     start = DateTime(start.year, start.month);
-    final end = diaries[diaries.length - 1].createDateTime;
+    final end = diaries.last.createAt;
 
     while (start.isBefore(end)) {
       data.addAll({start: 0});
@@ -104,8 +104,7 @@ class MonthlyWords extends ConsumerWidget {
 
     data.forEach((key, _) {
       for (final diary in diaries) {
-        if (key.isSameYear(diary.createDateTime) &&
-            key.isSameMonth(diary.createDateTime)) {
+        if (key.isSameYear(diary.createAt) && key.isSameMonth(diary.createAt)) {
           data.update(key, (value) => value += diary.words);
         }
       }

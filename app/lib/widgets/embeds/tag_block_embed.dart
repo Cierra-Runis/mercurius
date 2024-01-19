@@ -1,22 +1,21 @@
 import 'package:mercurius/index.dart';
 
 class TagBlockEmbed extends Embeddable {
-  const TagBlockEmbed(
-    String value,
-  ) : super(mercuriusTagType, value);
+  const TagBlockEmbed({
+    required Map<String, dynamic> json,
+  }) : super(tagType, json);
 
-  static const String mercuriusTagType = 'mercuriusTag';
+  static const String tagType = 'mercuriusTag';
 }
 
 class TagBlockEmbedBuilder extends EmbedBuilder {
   const TagBlockEmbedBuilder();
 
   @override
-  String get key => TagBlockEmbed.mercuriusTagType;
+  String get key => TagBlockEmbed.tagType;
 
   @override
-  String toPlainText(Embed node) =>
-      DiaryTag.fromJson(jsonDecode(node.value.data)).message;
+  String toPlainText(Embed node) => DiaryTag.fromJson(node.value.data).message;
 
   @override
   Widget build(
@@ -27,7 +26,7 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
     bool inline,
     TextStyle textStyle,
   ) {
-    final tag = DiaryTag.fromJson(jsonDecode(node.value.data));
+    final tag = DiaryTag.fromJson(node.value.data);
 
     return Chip(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
