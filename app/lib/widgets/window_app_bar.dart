@@ -68,7 +68,7 @@ class WindowAppBar extends ConsumerWidget {
             ),
           if (Platform.isWindows)
             InkWell(
-              onTap: windowManager.hide,
+              onTap: windowManager.close,
               hoverColor: Colors.red,
               child: const SizedBox(
                 width: _actionWidth,
