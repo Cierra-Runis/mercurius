@@ -32,7 +32,7 @@ abstract class App {
 
       final paths = await Paths.init();
       final persistence = await Persistence.init();
-      final colorSchemes = await ColorSchemes.init();
+      final dynamicColor = await DynamicColor.init();
       final packageInfo = await PackageInfo.fromPlatform();
 
       isarService = IsarService.openDB(paths.appSupport);
@@ -43,7 +43,7 @@ abstract class App {
           overrides: [
             pathsProvider.overrideWithValue(paths),
             persistenceProvider.overrideWithValue(persistence),
-            colorSchemesProvider.overrideWithValue(colorSchemes),
+            dynamicColorProvider.overrideWithValue(dynamicColor),
             packageInfoProvider.overrideWithValue(packageInfo),
           ],
           child: const MainApp(),

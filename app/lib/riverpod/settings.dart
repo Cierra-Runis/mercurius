@@ -40,6 +40,18 @@ extension _Ext on Persistence {
     if (value == null) return sp.remove(locale);
     return sp.setString(locale, value.toLanguageTag());
   }
+
+  static const accentColor = '${Persistence.prefix}_accentColor';
+  Color? getAccentColor() {
+    final value = sp.getInt(accentColor);
+    if (value == null) return null;
+    return Color(value);
+  }
+
+  Future<bool> setAccentColor(Color? value) async {
+    if (value == null) return sp.remove(accentColor);
+    return sp.setInt(accentColor, value.value);
+  }
 }
 
 /// State which return by [ref.watch]
@@ -53,6 +65,7 @@ class SettingsState with _$SettingsState {
     @JsonKey(name: _Ext.themeMode) required ThemeMode themeMode,
     @JsonKey(name: _Ext.bgImgId) int? bgImgId,
     @JsonKey(name: _Ext.locale) Locale? locale,
+    @JsonKey(name: _Ext.accentColor) Color? accentColor,
   }) = _SettingsState;
 }
 
@@ -71,6 +84,7 @@ class Settings extends _$Settings {
       themeMode: _pers.getThemeMode(),
       bgImgId: _pers.getBgImgId(),
       locale: _pers.getLocale(),
+      accentColor: _pers.getAccentColor(),
     );
   }
 
@@ -95,5 +109,10 @@ class Settings extends _$Settings {
   Future<bool> setLocale(Locale? value) async {
     state = state.copyWith(locale: value);
     return _pers.setLocale(value);
+  }
+
+  Future<bool> setAccentColor(Color value) async {
+    state = state.copyWith(accentColor: value);
+    return _pers.setAccentColor(value);
   }
 }

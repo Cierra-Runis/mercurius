@@ -7,3 +7,4 @@ export 'package_info.dart';
 export 'current_position.dart';
 export 'settings.dart';
 export 'hitokoto.dart';
+export 'dynamic_color.dart';

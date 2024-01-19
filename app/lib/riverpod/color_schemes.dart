@@ -1,34 +1,31 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'color_schemes.g.dart';
+part 'color_schemes.freezed.dart';
 
-@Riverpod(keepAlive: true)
-ColorSchemes colorSchemes(ColorSchemesRef ref) =>
-    throw Exception('colorSchemesProvider not initialized');
+@freezed
+class ColorSchemesState with _$ColorSchemesState {
+  const factory ColorSchemesState({
+    required ColorScheme light,
+    required ColorScheme dark,
+  }) = _ColorSchemesState;
+}
 
-class ColorSchemes {
-  final ColorScheme light;
-  final ColorScheme dark;
+@riverpod
+class ColorSchemes extends _$ColorSchemes {
+  @override
+  ColorSchemesState build() {
+    final dynamicColor = ref.watch(dynamicColorProvider);
+    final settings = ref.watch(settingsProvider);
+    final seedColor = settings.accentColor ?? dynamicColor.seedColor;
 
-  const ColorSchemes._(this.light, this.dark);
+    final light = dynamicColor.corePalette?.toColorScheme() ??
+        ColorScheme.fromSeed(seedColor: seedColor);
 
-  static Future<ColorSchemes> init() async {
-    final palette = await DynamicColorPlugin.getCorePalette();
+    final dark = dynamicColor.corePalette
+            ?.toColorScheme(brightness: Brightness.dark) ??
+        ColorScheme.fromSeed(seedColor: seedColor, brightness: Brightness.dark);
 
-    final seedColor =
-        await DynamicColorPlugin.getAccentColor() ?? Colors.deepPurple;
-
-    final light = palette?.toColorScheme() ??
-        ColorScheme.fromSeed(
-          seedColor: seedColor,
-        );
-
-    final dark = palette?.toColorScheme(brightness: Brightness.dark) ??
-        ColorScheme.fromSeed(
-          seedColor: seedColor,
-          brightness: Brightness.dark,
-        );
-
-    return ColorSchemes._(light, dark);
+    return ColorSchemesState(light: light, dark: dark);
   }
 }
