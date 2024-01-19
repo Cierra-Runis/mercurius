@@ -13,9 +13,6 @@ Future<QWeatherNow> qWeatherNow(
   final apiUrl = MercuriusApi.qWeather.apiUrl;
   final aqiKey = MercuriusApi.qWeather.apiKey;
 
-  var qWeather = const _QWeather();
-  const qWeatherNow = QWeatherNow();
-
   Response response;
   try {
     response = await Dio().get(
@@ -26,15 +23,14 @@ Future<QWeatherNow> qWeatherNow(
       },
     );
   } catch (e) {
-    return qWeatherNow;
+    return const QWeatherNow();
   }
 
   if (response.statusCode == 200) {
-    qWeather = _QWeather.fromJson(
-      jsonDecode('$response'),
-    );
+    return _QWeather.fromJson(jsonDecode('$response')).now ??
+        const QWeatherNow();
   }
-  return qWeather.now ?? qWeatherNow;
+  return const _QWeather().now ?? const QWeatherNow();
 }
 
 @freezed

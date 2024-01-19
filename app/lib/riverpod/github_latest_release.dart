@@ -14,7 +14,7 @@ Future<GithubLatestRelease> githubLatestRelease(
 
   final tagName = ref.watch(packageInfoProvider).tagName;
 
-  var githubLatestRelease = GithubLatestRelease(tagName: tagName);
+  final githubLatestRelease = GithubLatestRelease(tagName: tagName);
 
   Response response;
   try {
@@ -24,7 +24,7 @@ Future<GithubLatestRelease> githubLatestRelease(
   }
 
   if (response.statusCode == 200) {
-    githubLatestRelease = GithubLatestRelease.fromJson(
+    return GithubLatestRelease.fromJson(
       jsonDecode('$response'),
     );
   }

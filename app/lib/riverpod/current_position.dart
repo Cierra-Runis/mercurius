@@ -6,8 +6,8 @@ part 'current_position.freezed.dart';
 @riverpod
 Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
   ref.keepAlive();
-  Response response;
-  var newCachePosition = const CurrentPosition();
+
+  final Response response;
 
   try {
     response = await Dio().get(
@@ -18,7 +18,7 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
       },
     );
   } catch (e) {
-    return newCachePosition;
+    return const CurrentPosition();
   }
 
   dynamic data;
@@ -27,21 +27,19 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
     if (data['province'] == null ||
         data['city'] == null ||
         data['rectangle'] == null) {
-      return newCachePosition;
+      return const CurrentPosition();
     }
   } else {
-    return newCachePosition;
+    return const CurrentPosition();
   }
 
   final match = RegExp(r'(.*),(.*);').firstMatch(data['rectangle']);
 
-  newCachePosition = CurrentPosition(
+  return CurrentPosition(
     latitude: double.parse('${match![1]}').toStringAsFixed(2),
     longitude: double.parse('${match[2]}').toStringAsFixed(2),
     city: data['city'],
   );
-
-  return newCachePosition;
 }
 
 @freezed
