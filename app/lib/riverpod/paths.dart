@@ -11,6 +11,8 @@ class Paths {
   final Directory appCache;
   final Directory documents;
 
+  String get imageDirectory => join(appSupport.path, 'image');
+
   const Paths._({
     required this.temp,
     required this.appSupport,
