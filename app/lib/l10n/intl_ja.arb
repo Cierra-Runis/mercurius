@@ -116,5 +116,7 @@
   "backgroundImage": "背景画像",
   "noImageSelected": "画像が選択されていません",
   "clear": "クリア",
-  "language": "言語"
+  "language": "言語",
+  "resetToDefault": "デフォルトにリセットする",
+  "selectAccentColor": "アクセントカラーを選んでください"
 }

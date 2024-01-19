@@ -56,7 +56,7 @@ enum DiaryTagType {
 
 enum Language {
   en(Locale('en'), 'English'),
-  zhCN(Locale('zh', 'CN'), '简体中文'),
+  zhCN(Locale('zh'), '简体中文'),
   ja(Locale('ja'), '日本語');
 
   const Language(this.locale, this.humanName);

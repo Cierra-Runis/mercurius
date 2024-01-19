@@ -66,7 +66,7 @@ class MainApp extends ConsumerWidget {
       ],
       supportedLocales: const [
         Locale('en'),
-        Locale('zh', 'CN'),
+        Locale('zh'),
         Locale('ja'),
       ],
     );

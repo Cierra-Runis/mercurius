@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2023-06-19T16:53:53+08:00",
-  "@@locale": "zh_CN",
+  "@@locale": "zh",
   "back": "返回",
   "save": "保存",
   "cancel": "取消",
@@ -116,5 +116,7 @@
   "backgroundImage": "背景图像",
   "noImageSelected": "未选择图片",
   "clear": "清除",
-  "language": "语言"
+  "language": "语言",
+  "resetToDefault": "重置为默认",
+  "selectAccentColor": "选择主题色"
 }
