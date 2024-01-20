@@ -24,19 +24,24 @@ extension BuildContextExt on BuildContext {
   Future<T?> pushDialog<T>(
     Widget dialog, {
     bool barrierDismissible = true,
-    Color? barrierColor,
     String? barrierLabel,
-    bool useSafeArea = true,
-    bool useRootNavigator = true,
-    RouteSettings? routeSettings,
+    bool useSafeArea = false,
+    RouteSettings? settings,
     Offset? anchorPoint,
     TraversalEdgeBehavior? traversalEdgeBehavior,
   }) =>
       (splitViewKey.currentState ?? Navigator.of(this)).push(
         DialogRoute(
           context: splitViewKey.currentState?.context ?? this,
-          builder: (context) =>
-              Material(type: MaterialType.transparency, child: dialog),
+          barrierDismissible: barrierDismissible,
+          useSafeArea: useSafeArea,
+          settings: settings,
+          anchorPoint: anchorPoint,
+          traversalEdgeBehavior: traversalEdgeBehavior,
+          builder: (context) => Material(
+            type: MaterialType.transparency,
+            child: dialog,
+          ),
         ),
       );
 
