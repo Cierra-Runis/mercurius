@@ -17,10 +17,8 @@ class BasedShimmer extends StatefulWidget {
   final Widget? child;
   final AlignmentGeometry? childAlignment;
 
-  /// 在更新颜色之前延迟时间，使用它来使加载项目动画跟随彼此而不是平行
   final int millisecondsDelay;
 
-  /// 用它来创建一个圆形加载小部件
   const BasedShimmer.round({
     super.key,
     required double size,

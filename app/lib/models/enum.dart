@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-/// 枚举类型 [DiaryMoodType]
+/// [DiaryMoodType]
 enum DiaryMoodType {
   defaultType('smile', UniconsLine.smile),
   angry('angry', UniconsLine.angry),
@@ -17,7 +17,7 @@ enum DiaryMoodType {
   final IconData iconData;
 }
 
-/// 枚举类型 [DiaryWeatherType]
+/// [DiaryWeatherType]
 enum DiaryWeatherType {
   defaultType('sunny', QWeatherIcons.tag_sunny),
   cloudy('cloudy', QWeatherIcons.tag_cloudy),

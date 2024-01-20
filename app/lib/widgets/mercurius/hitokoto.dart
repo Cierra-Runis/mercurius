@@ -3,7 +3,6 @@ import 'package:mercurius/index.dart';
 class HiToKoToWidget extends ConsumerWidget {
   const HiToKoToWidget({super.key});
 
-  /// FIXME: 当组件被挡住时仍然进行刷新
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = L10N.maybeOf(context) ?? L10N.current;
