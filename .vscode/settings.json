@@ -61,5 +61,6 @@
     "commentTranslate.hover.string": true,
     "commentTranslate.hover.variable": true,
     "commentTranslate.multiLineMerge": true,
-    "explorerExclude.backup": {}
+    "explorerExclude.backup": {},
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
