@@ -62,7 +62,9 @@ mixin _DiaryService on _Service {
         .where()
         .createAtBetween(
           DateTime(dateTime.year, dateTime.month, dateTime.day),
-          DateTime(dateTime.year, dateTime.month, dateTime.day).nextDay,
+          DateTime(dateTime.year, dateTime.month, dateTime.day)
+              .nextDay
+              .subSeconds(1),
         )
         .findAll();
   }
