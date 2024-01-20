@@ -48,7 +48,6 @@ class WeatherSelector extends ConsumerWidget {
           },
         ),
       ),
-      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
       actions: [
         TextButton(
           onPressed: context.pop,
