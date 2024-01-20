@@ -60,9 +60,7 @@ class MainApp extends ConsumerWidget {
       locale: settings.locale,
       localizationsDelegates: const [
         L10N.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        ...FlutterQuillLocalizations.localizationsDelegates,
       ],
       supportedLocales: const [
         Locale('en'),

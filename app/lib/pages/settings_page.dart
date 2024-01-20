@@ -61,12 +61,12 @@ class _AccentColorListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dynamicColor = ref.watch(dynamicColorProvider);
-    final settings = ref.watch(settingsProvider);
-    final color = settings.accentColor ?? dynamicColor.seedColor;
+    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final color = context.colorScheme.primary;
+
     return BasedListTile(
       leadingIcon: Icons.color_lens_rounded,
-      titleText: '主题色',
+      titleText: l10n.accentColor,
       trailing: ColorIndicator(
         color: color,
       ),
@@ -97,11 +97,18 @@ class _ColorPickerState extends ConsumerState<_ColorPicker> {
     final setSettings = ref.watch(settingsProvider.notifier);
 
     return AlertDialog(
+      scrollable: true,
       title: Text(l10n.selectAccentColor),
-      content: ColorWheelPicker(
-        color: _color,
-        onWheel: (value) {},
-        onChanged: (value) => setState(() => _color = value),
+      content: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: ColorWheelPicker(
+            color: _color,
+            onWheel: (value) {},
+            onChanged: (value) => setState(() => _color = value),
+          ),
+        ),
       ),
       actions: [
         TextButton(

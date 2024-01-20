@@ -118,5 +118,6 @@
   "clear": "クリア",
   "language": "言語",
   "resetToDefault": "デフォルトにリセットする",
+  "accentColor": "アクセントカラー",
   "selectAccentColor": "アクセントカラーを選んでください"
 }

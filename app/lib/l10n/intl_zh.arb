@@ -118,5 +118,6 @@
   "clear": "清除",
   "language": "语言",
   "resetToDefault": "重置为默认",
+  "accentColor": "主题色",
   "selectAccentColor": "选择主题色"
 }
