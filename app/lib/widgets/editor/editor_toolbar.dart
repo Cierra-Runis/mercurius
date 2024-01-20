@@ -16,105 +16,101 @@ class EditorToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final visualDensity = Platform.isAndroid || Platform.isIOS
-        ? VisualDensity.compact
-        : VisualDensity.standard;
-
-    final quillIconTheme = QuillIconTheme(
-      iconButtonSelectedData: IconButtonData(
-        iconSize: 16,
-        visualDensity: visualDensity,
-        constraints: const BoxConstraints(),
-      ),
-      iconButtonUnselectedData: IconButtonData(
-        iconSize: 16,
-        visualDensity: visualDensity,
-        constraints: const BoxConstraints(),
-      ),
-    );
-
     final l10n = L10N.maybeOf(context) ?? L10N.current;
 
-    final embedButtons = <EmbedButtonBuilder>[
-      (controller, _, __, ___) {
-        return QuillToolbarCustomButton(
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      runAlignment: WrapAlignment.center,
+      children: [
+        QuillToolbarToggleStyleButton(
           controller: controller,
-          options: EditorImageButton(
-            tooltip: l10n.insertImage,
-            onPressed: () => EditorImageButton.onTap(
-              controller,
-              context,
-            ),
-          ),
-        );
-      },
-      (controller, _, __, ___) {
-        return QuillToolbarCustomButton(
-          controller: controller,
-          options: EditorTagButton(
-            tooltip: l10n.insertTag,
-            onPressed: () => EditorTagButton.onTap(controller, context),
-          ),
-        );
-      }
-    ];
-
-    final editorMoodButton = QuillToolbarCustomButtonOptions(
-      tooltip: l10n.changeMood,
-      icon: const Icon(
-        Icons.mood_rounded,
-      ),
-      onPressed: () => changMood(context, diary),
-    );
-    final editorWeatherButton = QuillToolbarCustomButtonOptions(
-      tooltip: l10n.changeWeather,
-      icon: const Icon(
-        Icons.cloud,
-      ),
-      onPressed: () => changeWeather(context, diary),
-    );
-    final editorDateButton = QuillToolbarCustomButtonOptions(
-      tooltip: l10n.changeDate,
-      icon: const Icon(
-        Icons.date_range_rounded,
-      ),
-      onPressed: () => changeDate(context, diary),
-    );
-
-    return QuillToolbar.simple(
-      configurations: QuillSimpleToolbarConfigurations(
-        buttonOptions: QuillSimpleToolbarButtonOptions(
-          base: QuillToolbarBaseButtonOptions(
-            iconButtonFactor: 1,
-            iconSize: 16,
-            iconTheme: quillIconTheme,
-          ),
+          attribute: Attribute.bold,
         ),
-        controller: controller,
-        showUndo: false,
-        showRedo: false,
-        showFontFamily: false,
-        showFontSize: false,
-        showBackgroundColorButton: false,
-        showClearFormat: false,
-        showColorButton: false,
-        showInlineCode: false,
-        showAlignmentButtons: true,
-        showJustifyAlignment: false,
-        showDividers: false,
-        showSmallButton: true,
-        showSearchButton: false,
-        showIndent: false,
-        showLink: false,
-        showSubscript: false,
-        showSuperscript: false,
-        embedButtons: embedButtons,
-        customButtons: [
-          editorMoodButton,
-          editorWeatherButton,
-          editorDateButton,
-        ],
-      ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.italic,
+        ),
+        // const _ToggleButton(),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.underline,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.strikeThrough,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.small,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.leftAlignment,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.centerAlignment,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.rightAlignment,
+        ),
+        // QuillToolbarSelectHeaderStyleDropdownButton(
+        //   controller: controller,
+        // ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.list,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.ul,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.codeBlock,
+        ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.blockQuote,
+        ),
+        // QuillToolbarSelectHeaderStyleButtons(
+        //   controller: controller,
+        // ),
+        IconButton(
+          tooltip: l10n.insertImage,
+          onPressed: () => EditorImageButton.onTap(controller, context),
+          icon: const Icon(Icons.add_photo_alternate_rounded),
+        ),
+        IconButton(
+          tooltip: l10n.insertTag,
+          onPressed: () => EditorTagButton.onTap(controller, context),
+          icon: const Icon(Icons.new_label_rounded),
+        ),
+        IconButton(
+          tooltip: l10n.changeMood,
+          onPressed: () => changMood(context, diary),
+          icon: const Icon(Icons.mood_rounded),
+        ),
+        IconButton(
+          tooltip: l10n.changeWeather,
+          onPressed: () => changeWeather(context, diary),
+          icon: const Icon(Icons.cloud_rounded),
+        ),
+        IconButton(
+          tooltip: l10n.changeDate,
+          onPressed: () => changeDate(context, diary),
+          icon: const Icon(Icons.calendar_month_rounded),
+        ),
+      ]
+          .map(
+            (e) => Transform.scale(
+              scale: 0.8,
+              child: e,
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -154,3 +150,29 @@ class EditorToolbar extends StatelessWidget {
     }
   }
 }
+
+// class _ToggleButton extends StatefulWidget {
+//   const _ToggleButton();
+
+//   @override
+//   State<_ToggleButton> createState() => _ToggleButtonState();
+// }
+
+// class _ToggleButtonState extends State<_ToggleButton> {
+//   bool isSelected = false;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedSwitcher(
+//       duration: Durations.medium2,
+//       child: IconButton.filledTonal(
+//         key: UniqueKey(),
+//         isSelected: isSelected,
+//         onPressed: () => setState(() => isSelected = !isSelected),
+//         icon: const Icon(
+//           Icons.format_bold_rounded,
+//         ),
+//       ),
+//     );
+//   }
+// }
