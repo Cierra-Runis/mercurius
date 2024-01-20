@@ -22,6 +22,7 @@ class RootView extends ConsumerWidget {
       child: BasedSplitView(
         navigatorKey: splitViewKey,
         leftWidget: RootPage(key: _rootPage),
+        dividerWidth: 0,
         rightPlaceholder: const Scaffold(
           body: Center(
             child: AppIcon(
