@@ -20,6 +20,7 @@ class ImportSection extends ConsumerWidget {
             }
 
             final result = await FilePicker.platform.pickFiles(
+              type: FileType.custom,
               allowedExtensions: ['json'],
             );
 
