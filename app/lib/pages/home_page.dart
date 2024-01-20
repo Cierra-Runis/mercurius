@@ -20,6 +20,15 @@ class HomePage extends HookConsumerWidget {
         title: AppBarTitle(
           controller: controller,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Badge(
+              backgroundColor: Colors.green,
+              child: Icon(Icons.dns_rounded),
+            ),
+          ),
+        ],
       ),
       body: ClipRRect(
         child: DecoratedBox(
