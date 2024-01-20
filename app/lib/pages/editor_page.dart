@@ -61,30 +61,21 @@ class _DiaryEditorPageState extends State<EditorPage> {
         handleAutoSaveButtonChangeState: _handleAutoSaveButtonChangeState,
         autoSave: _autoSave,
       ),
-      body: Stack(
+      body: Column(
         children: [
-          EditorBody(
-            readOnly: false,
+          Expanded(
+            child: EditorBody(
+              readOnly: false,
+              controller: _quillController,
+              scrollController: _scrollController,
+            ),
+          ),
+          const Divider(height: 0),
+          EditorToolbar(
+            diary: _diary,
             controller: _quillController,
             scrollController: _scrollController,
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Card(
-              margin: EdgeInsets.zero,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: EditorToolbar(
-                  diary: _diary,
-                  controller: _quillController,
-                  scrollController: _scrollController,
-                  handleChangeDiary: _handleChangeDiary,
-                ),
-              ),
-            ),
+            handleChangeDiary: _handleChangeDiary,
           ),
         ],
       ),

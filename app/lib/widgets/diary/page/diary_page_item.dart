@@ -48,37 +48,40 @@ class DiaryPageItem extends ConsumerWidget {
           ),
         ],
       ),
-      bottomSheet: Row(
-        children: [
-          Chip(
-            label: Text(
-              l10n.moodText(
-                diary.moodType.mood,
-              ),
+
+      /// TIPS: https://github.com/flutter/flutter/issues/141922
+      persistentFooterAlignment: AlignmentDirectional.centerStart,
+      persistentFooterButtons: [
+        Chip(
+          avatar: Icon(diary.moodType.iconData),
+          label: Text(
+            l10n.moodText(
+              diary.moodType.mood,
             ),
-            labelPadding: EdgeInsets.zero,
           ),
-          Chip(
-            avatar: Icon(diary.weatherType.qweatherIcons.iconData),
-            label: Text(
-              l10n.weatherText(
-                diary.weatherType.weather,
-              ),
+          labelPadding: EdgeInsets.zero,
+        ),
+        Chip(
+          avatar: Icon(diary.weatherType.qweatherIcons.iconData),
+          label: Text(
+            l10n.weatherText(
+              diary.weatherType.weather,
             ),
-            labelPadding: EdgeInsets.zero,
           ),
-          Chip(
-            label: Text(l10n.wordCount(diary.words)),
-            labelPadding: EdgeInsets.zero,
-          ),
-        ],
-      ),
+          labelPadding: EdgeInsets.zero,
+        ),
+        Chip(
+          label: Text(l10n.wordCount(diary.words)),
+          labelPadding: EdgeInsets.zero,
+        ),
+      ],
       bottomNavigationBar: BottomAppBar(
         child: Wrap(
           spacing: 4,
           runAlignment: WrapAlignment.center,
           children: [
             IconButton(
+              color: context.colorScheme.error,
               onPressed: () async {
                 final confirm = await ConfirmDialog(
                   title: l10n.areYouSureToDeleteTheDiary,
