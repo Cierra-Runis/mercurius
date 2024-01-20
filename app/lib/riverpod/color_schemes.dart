@@ -19,11 +19,9 @@ class ColorSchemes extends _$ColorSchemes {
     final settings = ref.watch(settingsProvider);
     final seedColor = settings.accentColor ?? dynamicColor.seedColor;
 
-    final light = dynamicColor.corePalette?.toColorScheme() ??
-        ColorScheme.fromSeed(seedColor: seedColor);
+    final light = ColorScheme.fromSeed(seedColor: seedColor);
 
-    final dark = dynamicColor.corePalette
-            ?.toColorScheme(brightness: Brightness.dark) ??
+    final dark =
         ColorScheme.fromSeed(seedColor: seedColor, brightness: Brightness.dark);
 
     return ColorSchemesState(light: light, dark: dark);
