@@ -51,6 +51,8 @@ class IsarService extends _Service with _DiaryService {
 }
 
 mixin _DiaryService on _Service {
+  int diarysAutoIncrement() => db.diarys.autoIncrement();
+
   Future<void> saveDiary(Diary newDiary) async {
     final isar = db;
     return isar.writeAsync((isar) => isar.diarys.put(newDiary));
