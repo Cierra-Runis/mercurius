@@ -18,6 +18,12 @@ abstract class App {
     ThemeMode.dark: Icons.dark_mode_rounded,
   };
 
+  static const supportLanguages = {
+    'English': Locale('en'),
+    '日本語': Locale('ja'),
+    '中文': Locale('zh'),
+  };
+
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 

@@ -53,13 +53,3 @@ enum DiaryTagType {
   const DiaryTagType(this.iconData);
   final IconData iconData;
 }
-
-enum Language {
-  en(Locale('en'), 'English'),
-  zhCN(Locale('zh'), '简体中文'),
-  ja(Locale('ja'), '日本語');
-
-  const Language(this.locale, this.humanName);
-  final Locale locale;
-  final String humanName;
-}

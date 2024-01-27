@@ -13,29 +13,27 @@ class LanguagePage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.language),
       ),
-      body: Column(
-        children: [
-          BasedRadioListTile<Locale?>(
-            value: null,
-            groupValue: settings.locale,
-            titleText: l10n.followTheSystem,
-            onChanged: setSettings.setLocale,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: L10N.delegate.supportedLocales.length,
-              itemBuilder: (context, index) {
-                final lang = Language.values.firstWhere(
-                  (e) => e.locale == L10N.delegate.supportedLocales[index],
-                );
-                return BasedRadioListTile<Locale>(
-                  value: L10N.delegate.supportedLocales[index],
-                  groupValue: settings.locale,
-                  titleText: '${lang.humanName} (${lang.locale})',
-                  onChanged: setSettings.setLocale,
-                );
-              },
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: BasedRadioListTile<Locale?>(
+              value: null,
+              groupValue: settings.locale,
+              titleText: l10n.followTheSystem,
+              onChanged: setSettings.setLocale,
             ),
+          ),
+          SliverList.builder(
+            itemCount: App.supportLanguages.length,
+            itemBuilder: (context, index) {
+              final map = App.supportLanguages.entries.elementAt(index);
+              return BasedRadioListTile<Locale>(
+                value: App.supportLanguages.values.elementAt(index),
+                groupValue: settings.locale,
+                titleText: '${map.key} (${map.value})',
+                onChanged: setSettings.setLocale,
+              );
+            },
           ),
         ],
       ),

@@ -62,11 +62,7 @@ class MainApp extends ConsumerWidget {
         L10N.delegate,
         ...FlutterQuillLocalizations.localizationsDelegates,
       ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('zh'),
-        Locale('ja'),
-      ],
+      supportedLocales: App.supportLanguages.values,
     );
   }
 }

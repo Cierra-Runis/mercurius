@@ -1,7 +1,5 @@
 import 'package:mercurius/index.dart';
 
-import '../widgets/gallery.dart';
-
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
 
