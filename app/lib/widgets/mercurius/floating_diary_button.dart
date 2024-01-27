@@ -10,7 +10,7 @@ class FloatingDiaryButton extends ConsumerWidget {
     AsyncSnapshot<List<Diary>> snapshot,
     WidgetRef ref,
   ) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
     final hasEditingDiary = snapshot.data != null && snapshot.data!.isNotEmpty;
 
     return Wrap(

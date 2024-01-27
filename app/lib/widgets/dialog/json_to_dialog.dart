@@ -21,7 +21,7 @@ class JsonToDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
 
     return AlertDialog(
       title: Column(

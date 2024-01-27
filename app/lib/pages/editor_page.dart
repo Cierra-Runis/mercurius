@@ -16,7 +16,7 @@ class EditorPage extends StatefulHookWidget {
 
 class _DiaryEditorPageState extends State<EditorPage> {
   late final QuillController _quillController;
-  final ScrollController _scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   late Diary _diary;
   late bool _autoSave;

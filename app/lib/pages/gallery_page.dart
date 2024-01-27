@@ -14,7 +14,7 @@
 //     BuildContext context,
 //     AsyncSnapshot<List<DiaryImage>> snapshot,
 //   ) {
-//     final l10n = L10N.maybeOf(context) ?? L10N.current;
+//     final l10n = context.l10n;
 
 //     if (snapshot.data == null || snapshot.data!.isEmpty) {
 //       return Center(child: Text(l10n.noData));
@@ -60,7 +60,7 @@
 //   Widget build(BuildContext context, WidgetRef ref) {
 //     final settingsNotifier = ref.watch(settingsProvider.notifier);
 
-//     final l10n = L10N.maybeOf(context) ?? L10N.current;
+//     final l10n = context.l10n;
 
 //     return Scaffold(
 //       appBar: AppBar(

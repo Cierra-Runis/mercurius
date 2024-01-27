@@ -19,7 +19,7 @@ class _DiaryPageViewState extends ConsumerState<DiaryPageView> {
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
   ) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
 
     if (snapshot.data == null || snapshot.data!.isEmpty) {
       return AlertDialog(title: Center(child: Text(l10n.noData)));

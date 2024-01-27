@@ -17,7 +17,7 @@ class _DoubleBackState extends ConsumerState<DoubleBack> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
 
     final message = l10n.backAgainToExit;
     final background = context.colorScheme.outline.withAlpha(16);

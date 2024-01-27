@@ -47,6 +47,8 @@ extension BuildContextExt on BuildContext {
 
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   Brightness get brightness => colorScheme.brightness;
+
+  L10N get l10n => L10N.maybeOf(this) ?? L10N.current;
 }
 
 extension BrightnessExt on Brightness {

@@ -5,7 +5,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +34,7 @@ class SettingsPage extends StatelessWidget {
 
 //   @override
 //   Widget build(BuildContext context, WidgetRef ref) {
-//     final l10n = L10N.maybeOf(context) ?? L10N.current;
+//     final l10n = context.l10n;
 //     final settings = ref.watch(settingsProvider);
 //     final settingsNotifier = ref.watch(settingsProvider.notifier);
 
@@ -61,7 +61,7 @@ class _AccentColorListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
     final color = context.colorScheme.primary;
 
     return BasedListTile(
@@ -92,7 +92,7 @@ class _ColorPickerState extends ConsumerState<_ColorPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
     final dynamicColor = ref.watch(dynamicColorProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
 
@@ -139,7 +139,7 @@ class _ThemeSelectListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
 
     return BasedListTile(
       leadingIcon: Icons.dark_mode_rounded,
@@ -154,7 +154,7 @@ class _LanguageSelectListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10N.maybeOf(context) ?? L10N.current;
+    final l10n = context.l10n;
 
     return BasedListTile(
       leadingIcon: Icons.translate_rounded,
