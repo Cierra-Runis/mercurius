@@ -16,12 +16,12 @@ extension _Ext on Persistence {
   Future<bool> setThemeMode(ThemeMode value) async =>
       await sp.setString(themeMode, value.name);
 
-  static const bgImgId = '${Persistence.prefix}_bgImgId';
-  int? getBgImgId() => sp.getInt(bgImgId);
+  static const bgImgPath = '${Persistence.prefix}_bgImgPath';
+  String? getBgImgPath() => sp.getString(bgImgPath);
 
-  Future<bool> setBgImgId(int? value) async {
-    if (value == null) return sp.remove(bgImgId);
-    return sp.setInt(bgImgId, value);
+  Future<bool> setBgImgPath(String? value) async {
+    if (value == null) return sp.remove(bgImgPath);
+    return sp.setString(bgImgPath, value);
   }
 
   static const locale = '${Persistence.prefix}_locale';
@@ -63,7 +63,7 @@ class SettingsState with _$SettingsState {
 
   const factory SettingsState({
     @JsonKey(name: _Ext.themeMode) required ThemeMode themeMode,
-    @JsonKey(name: _Ext.bgImgId) int? bgImgId,
+    @JsonKey(name: _Ext.bgImgPath) String? bgImgPath,
     @JsonKey(name: _Ext.locale) Locale? locale,
     @JsonKey(name: _Ext.accentColor) Color? accentColor,
   }) = _SettingsState;
@@ -82,7 +82,7 @@ class Settings extends _$Settings {
     _pers = ref.watch(persistenceProvider);
     return SettingsState(
       themeMode: _pers.getThemeMode(),
-      bgImgId: _pers.getBgImgId(),
+      bgImgPath: _pers.getBgImgPath(),
       locale: _pers.getLocale(),
       accentColor: _pers.getAccentColor(),
     );
@@ -101,9 +101,9 @@ class Settings extends _$Settings {
     return setThemeMode(nextMode);
   }
 
-  Future<bool> setBgImgId(int? value) async {
-    state = state.copyWith(bgImgId: value);
-    return _pers.setBgImgId(value);
+  Future<bool> setBgImgPath(String? value) async {
+    state = state.copyWith(bgImgPath: value);
+    return _pers.setBgImgPath(value);
   }
 
   Future<bool> setLocale(Locale? value) async {

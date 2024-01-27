@@ -58,7 +58,7 @@ mixin _DiaryService on _Service {
     return isar.writeAsync((isar) => isar.diarys.put(newDiary));
   }
 
-  Future<List<Diary>> getDiaryByDate(DateTime dateTime) async {
+  Stream<List<Diary>> listenToDiariesWithDate(DateTime dateTime) {
     final isar = db;
     return isar.diarys
         .where()
@@ -68,7 +68,7 @@ mixin _DiaryService on _Service {
               .nextDay
               .subSeconds(1),
         )
-        .findAll();
+        .watch(fireImmediately: true);
   }
 
   Stream<List<Diary>> listenToDiariesEditing() async* {

@@ -18,7 +18,7 @@ class SettingsPage extends StatelessWidget {
               children: [
                 _ThemeSelectListTile(),
                 _AccentColorListTile(),
-                // _BackgroundImageListTile(),
+                _BackgroundImageListTile(),
                 _LanguageSelectListTile(),
               ],
             ),
@@ -29,32 +29,58 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-// class _BackgroundImageListTile extends ConsumerWidget {
-//   const _BackgroundImageListTile();
+class _ThemeSelectListTile extends ConsumerWidget {
+  const _ThemeSelectListTile();
 
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final l10n = context.l10n;
-//     final settings = ref.watch(settingsProvider);
-//     final settingsNotifier = ref.watch(settingsProvider.notifier);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
 
-//     return BasedListTile(
-//       leadingIcon: Icons.flip_to_back_rounded,
-//       titleText: l10n.backgroundImage,
-//       detailText: settings.bgImgId == null ? l10n.noImageSelected : '',
-//       onTap: () {
-//         context.push(
-//           GalleryPage(
-//             onTap: (context, image) {
-//               settingsNotifier.setBgImgId(image.id);
-//               context.pop();
-//             },
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+    return BasedListTile(
+      leadingIcon: Icons.dark_mode_rounded,
+      titleText: l10n.darkMode,
+      trailing: const _ThemeSelector(),
+    );
+  }
+}
+
+class _ThemeSelector extends ConsumerWidget {
+  const _ThemeSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
+
+    return SegmentedButton<ThemeMode>(
+      showSelectedIcon: false,
+      style: const ButtonStyle(
+        padding: MaterialStatePropertyAll(EdgeInsets.zero),
+        visualDensity: VisualDensity.compact,
+      ),
+      segments: [
+        ButtonSegment(
+          value: ThemeMode.system,
+          tooltip: l10n.followTheSystem,
+          label: Icon(App.themeModeIcon[ThemeMode.system]),
+        ),
+        ButtonSegment(
+          value: ThemeMode.dark,
+          tooltip: l10n.alwaysDark,
+          label: Icon(App.themeModeIcon[ThemeMode.dark]),
+        ),
+        ButtonSegment(
+          value: ThemeMode.light,
+          tooltip: l10n.alwaysBright,
+          label: Icon(App.themeModeIcon[ThemeMode.light]),
+        ),
+      ],
+      selected: {settings.themeMode},
+      onSelectionChanged: (p0) => settingsNotifier.setThemeMode(p0.first),
+    );
+  }
+}
 
 class _AccentColorListTile extends ConsumerWidget {
   const _AccentColorListTile();
@@ -134,17 +160,35 @@ class _ColorPickerState extends ConsumerState<_ColorPicker> {
   }
 }
 
-class _ThemeSelectListTile extends ConsumerWidget {
-  const _ThemeSelectListTile();
+class _BackgroundImageListTile extends ConsumerWidget {
+  const _BackgroundImageListTile();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     return BasedListTile(
-      leadingIcon: Icons.dark_mode_rounded,
-      titleText: l10n.darkMode,
-      trailing: const ThemeSelector(),
+      leadingIcon: Icons.flip_to_back_rounded,
+      titleText: l10n.backgroundImage,
+      detailText: settings.bgImgPath == null ? l10n.noImageSelected : '',
+      onTap: () {
+        context.push(
+          Gallery(
+            appBarActions: [
+              TextButton(
+                onPressed: () => settingsNotifier.setBgImgPath(null),
+                child: Text(l10n.clear),
+              ),
+            ],
+            onCardTap: (context, image) {
+              settingsNotifier.setBgImgPath(image);
+              context.pop();
+            },
+          ),
+        );
+      },
     );
   }
 }
