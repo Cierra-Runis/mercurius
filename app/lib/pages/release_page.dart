@@ -2,34 +2,35 @@ import 'package:mercurius/index.dart';
 
 class ReleasePage extends ConsumerWidget {
   const ReleasePage({super.key});
-
-  void _downloadRelease(GithubLatestRelease data) {
-    try {
-      if (Platform.isAndroid) {
-        final asset = data.assets?.firstWhere(
-          (element) => element.name.endsWith('.apk'),
-        );
-        if (asset != null) {
-          launchUrlString(
-            asset.browserDownloadUrl,
-            mode: LaunchMode.externalApplication,
+  VoidCallback _downloadRelease(GithubLatestRelease data) {
+    return () {
+      try {
+        if (Platform.isAndroid) {
+          final asset = data.assets?.firstWhere(
+            (element) => element.name.endsWith('.apk'),
           );
+          if (asset != null) {
+            launchUrlString(
+              asset.browserDownloadUrl,
+              mode: LaunchMode.externalApplication,
+            );
+          }
         }
-      }
-      if (Platform.isWindows) {
-        final asset = data.assets?.firstWhere(
-          (element) => element.name.endsWith('.zip'),
-        );
-        if (asset != null) {
-          launchUrlString(
-            asset.browserDownloadUrl,
-            mode: LaunchMode.externalApplication,
+        if (Platform.isWindows) {
+          final asset = data.assets?.firstWhere(
+            (element) => element.name.endsWith('.zip'),
           );
+          if (asset != null) {
+            launchUrlString(
+              asset.browserDownloadUrl,
+              mode: LaunchMode.externalApplication,
+            );
+          }
         }
+      } catch (e) {
+        App.printLog('launch browser_download_url failed: $e');
       }
-    } catch (e) {
-      App.printLog('launch browser_download_url failed: $e');
-    }
+    };
   }
 
   Widget getBodyByData(BuildContext context, GithubLatestRelease data) {
@@ -94,10 +95,7 @@ class ReleasePage extends ConsumerWidget {
             onPressed: githubLatestRelease.when(
               loading: () => null,
               error: (error, stackTrace) => null,
-              data: (data) {
-                _downloadRelease(data);
-                return null;
-              },
+              data: _downloadRelease,
             ),
             child: const Icon(Icons.download_rounded),
           ),
