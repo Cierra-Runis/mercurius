@@ -54,6 +54,6 @@ class CurrentPosition with _$CurrentPosition {
 
   const CurrentPosition._();
 
-  factory CurrentPosition.fromJson(Map<String, Object?> json) =>
+  factory CurrentPosition.fromJson(Json json) =>
       _$CurrentPositionFromJson(json);
 }

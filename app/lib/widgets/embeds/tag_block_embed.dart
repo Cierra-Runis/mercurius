@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 class TagBlockEmbed extends Embeddable {
   const TagBlockEmbed({
-    required Map<String, dynamic> json,
+    required Json json,
   }) : super(tagType, json);
 
   static const String tagType = 'mercuriusTag';

@@ -11,7 +11,7 @@ class Diary with _$Diary {
     required int id,
     required DateTime createAt,
     required DateTime editAt,
-    required List<dynamic> content,
+    required List<Json> content,
     @Default(false) bool editing,
     @Default('') String title,
     @Default(DiaryMoodType.defaultType) DiaryMoodType moodType,
@@ -27,5 +27,5 @@ class Diary with _$Diary {
   @ignore
   int get words => plainText.length;
 
-  factory Diary.fromJson(Map<String, dynamic> json) => _$DiaryFromJson(json);
+  factory Diary.fromJson(Json json) => _$DiaryFromJson(json);
 }

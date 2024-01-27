@@ -14,6 +14,5 @@ class HiToKoTo with _$HiToKoTo {
 
   const HiToKoTo._();
 
-  factory HiToKoTo.fromJson(Map<String, Object?> json) =>
-      _$HiToKoToFromJson(json);
+  factory HiToKoTo.fromJson(Json json) => _$HiToKoToFromJson(json);
 }

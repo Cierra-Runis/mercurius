@@ -4,6 +4,8 @@ import 'dart:developer' as devtools show log, inspect;
 
 late final IsarService isarService;
 
+typedef Json = Map<String, dynamic>;
+
 abstract class App {
   static const name = 'Mercurius';
   static const database = 'mercurius_database';

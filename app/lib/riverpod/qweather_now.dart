@@ -41,8 +41,7 @@ class QWeatherNow with _$QWeatherNow {
 
   const QWeatherNow._();
 
-  factory QWeatherNow.fromJson(Map<String, Object?> json) =>
-      _$QWeatherNowFromJson(json);
+  factory QWeatherNow.fromJson(Json json) => _$QWeatherNowFromJson(json);
 }
 
 @freezed
@@ -51,6 +50,5 @@ class _QWeather with _$QWeather {
     @JsonKey(name: 'now') QWeatherNow? now,
   }) = __QWeather;
 
-  factory _QWeather.fromJson(Map<String, Object?> json) =>
-      _$QWeatherFromJson(json);
+  factory _QWeather.fromJson(Json json) => _$QWeatherFromJson(json);
 }

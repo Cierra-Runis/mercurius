@@ -23,7 +23,7 @@ class IsarService extends _Service with _DiaryService {
     }
   }
 
-  Future<List<Map<String, dynamic>>> exportDiaryJson() async {
+  Future<List<Json>> exportDiaryJson() async {
     final isar = db;
     return isar.diarys.where().exportJson();
   }

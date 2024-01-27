@@ -11,6 +11,5 @@ class DiaryTag with _$DiaryTag {
     required String message,
   }) = _DiaryTag;
 
-  factory DiaryTag.fromJson(Map<String, dynamic> json) =>
-      _$DiaryTagFromJson(json);
+  factory DiaryTag.fromJson(Json json) => _$DiaryTagFromJson(json);
 }

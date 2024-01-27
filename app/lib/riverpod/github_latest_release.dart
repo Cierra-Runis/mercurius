@@ -42,7 +42,7 @@ class GithubLatestRelease with _$GithubLatestRelease {
 
   const GithubLatestRelease._();
 
-  factory GithubLatestRelease.fromJson(Map<String, Object?> json) =>
+  factory GithubLatestRelease.fromJson(Json json) =>
       _$GithubLatestReleaseFromJson(json);
 }
 
@@ -56,6 +56,5 @@ class AssetsItem with _$AssetsItem {
 
   const AssetsItem._();
 
-  factory AssetsItem.fromJson(Map<String, Object?> json) =>
-      _$AssetsItemFromJson(json);
+  factory AssetsItem.fromJson(Json json) => _$AssetsItemFromJson(json);
 }
