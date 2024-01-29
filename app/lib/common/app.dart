@@ -94,21 +94,26 @@ abstract class App {
     List<int> intensities = const [],
     int amplitude = -1,
   }) async {
-    if (!Platform.isAndroid) return;
-
     final hasVibrator = await Vibration.hasVibrator() ?? false;
+    if (!hasVibrator) return;
+
     final hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
+    if (!hasAmplitudeControl) return;
+
     final hasCustomVibrationsSupport =
         await Vibration.hasCustomVibrationsSupport() ?? false;
+    if (!hasCustomVibrationsSupport) return;
 
-    if (hasVibrator && hasAmplitudeControl && hasCustomVibrationsSupport) {
-      Vibration.vibrate(
+    try {
+      await Vibration.vibrate(
         duration: duration,
         pattern: pattern,
         repeat: repeat,
         intensities: intensities,
         amplitude: amplitude,
       );
+    } catch (e, s) {
+      App.printLog('Vibration error', error: e, stackTrace: s);
     }
   }
 }

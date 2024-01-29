@@ -185,8 +185,11 @@ class _CreateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return FloatingActionButton(
       heroTag: 'create',
+      tooltip: l10n.createNewDiary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
       ),
@@ -208,6 +211,8 @@ class _EditingButtonState extends State<_EditingButton> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return StreamBuilder<List<Diary>>(
       stream: stream,
       builder: (context, snapshot) {
@@ -215,6 +220,7 @@ class _EditingButtonState extends State<_EditingButton> {
         if (!hasData) return const SizedBox();
 
         return FloatingActionButton.small(
+          tooltip: l10n.continueEditingDiary,
           onPressed: () => context.pushDialog(
             const _EditingDialog(),
           ),

@@ -1,19 +1,25 @@
 import 'package:mercurius/index.dart';
 import 'package:path/path.dart' as path;
 
+typedef GalleryOnTap = void Function(
+  BuildContext context,
+  String filename,
+);
+
+typedef GalleryActionsBuilder = List<Widget> Function(
+  BuildContext context,
+  String filename,
+);
+
 class Gallery extends ConsumerStatefulWidget {
   const Gallery({
     super.key,
-    this.readOnly = false,
     required this.onCardTap,
     this.actionsBuilder,
   });
 
-  final bool readOnly;
-
-  final void Function(BuildContext context, String filename) onCardTap;
-  final List<Widget> Function(BuildContext context, String filename)?
-      actionsBuilder;
+  final GalleryOnTap onCardTap;
+  final GalleryActionsBuilder? actionsBuilder;
 
   @override
   ConsumerState<Gallery> createState() => _GalleryPageState();
@@ -21,28 +27,6 @@ class Gallery extends ConsumerStatefulWidget {
 
 class _GalleryPageState extends ConsumerState<Gallery> {
   late List<FileSystemEntity> _files;
-
-  Widget getGridBySnapshotData(
-    List<FileSystemEntity> files,
-  ) {
-    return GridView.builder(
-      cacheExtent: 1000,
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-      ),
-      padding: const EdgeInsets.all(12.0),
-      itemCount: files.length,
-      itemBuilder: (context, index) {
-        final filename = path.basename(files[index].path);
-        return _GalleryCard(
-          key: Key(filename),
-          filename: filename,
-          onCardTap: widget.onCardTap,
-          actionsBuilder: widget.actionsBuilder,
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +37,23 @@ class _GalleryPageState extends ConsumerState<Gallery> {
           (event) => setState(() => _files = directory.listSync()),
         );
 
-    return getGridBySnapshotData(_files);
+    return GridView.builder(
+      cacheExtent: 1000,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+      ),
+      padding: const EdgeInsets.all(12.0),
+      itemCount: _files.length,
+      itemBuilder: (context, index) {
+        final filename = path.basename(_files[index].path);
+        return _GalleryCard(
+          key: Key(filename),
+          filename: filename,
+          onCardTap: widget.onCardTap,
+          actionsBuilder: widget.actionsBuilder,
+        );
+      },
+    );
   }
 }
 
