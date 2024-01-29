@@ -11,7 +11,7 @@ class Diary with _$Diary {
     required int id,
     required DateTime createAt,
     required DateTime editAt,
-    required List<Json> content,
+    required List<dynamic> content,
     @Default(false) bool editing,
     @Default('') String title,
     @Default(DiaryMoodType.defaultType) DiaryMoodType moodType,
@@ -22,7 +22,10 @@ class Diary with _$Diary {
   Document get document => Document.fromJson(content);
 
   @ignore
-  String get plainText => document.toPlainText().replaceAll(RegExp(r'\n'), '');
+  String get plainText => document.toPlainText(
+        EditorBody.embedBuilders,
+        EditorBody.unknownEmbedBuilder,
+      );
 
   @ignore
   int get words => plainText.length;
