@@ -43,7 +43,7 @@ class EditorBody extends StatelessWidget {
       scrollController: scrollController,
       configurations: QuillEditorConfigurations(
         controller: controller,
-        padding: const EdgeInsets.all(14.0),
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
         autoFocus: autoFocus,
         placeholder: l10n.writingSomethingHere,
         keyboardAppearance: context.brightness,
