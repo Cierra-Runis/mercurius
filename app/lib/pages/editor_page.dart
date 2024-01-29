@@ -42,13 +42,13 @@ class _DiaryEditorPageState extends State<EditorPage> {
     setState(() => _diary = newDiary ?? _diary);
   }
 
-  void _handleAutoSaveButtonChangeState(bool newState) {
+  void _handleAutoSaveToggle(bool newState) {
     setState(() => _autoSave = newState);
   }
 
   @override
   Widget build(BuildContext context) {
-    final textEditingController = useTextEditingController(
+    final titleController = useTextEditingController(
       text: _diary.title,
     );
 
@@ -56,9 +56,9 @@ class _DiaryEditorPageState extends State<EditorPage> {
       appBar: _EditorAppBar(
         diary: _diary,
         quillController: _quillController,
-        textEditingController: textEditingController,
+        titleController: titleController,
         handleChangeDiary: _handleChangeDiary,
-        handleAutoSaveButtonChangeState: _handleAutoSaveButtonChangeState,
+        handleAutoSaveToggle: _handleAutoSaveToggle,
         autoSave: _autoSave,
       ),
       body: Column(
@@ -87,9 +87,9 @@ class _EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const _EditorAppBar({
     required this.diary,
     required this.quillController,
-    required this.textEditingController,
+    required this.titleController,
     required this.handleChangeDiary,
-    required this.handleAutoSaveButtonChangeState,
+    required this.handleAutoSaveToggle,
     this.autoSave = false,
   });
 
@@ -97,9 +97,9 @@ class _EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
   final Diary diary;
   final QuillController quillController;
-  final TextEditingController textEditingController;
+  final TextEditingController titleController;
   final ValueChanged<Diary?> handleChangeDiary;
-  final ValueChanged<bool> handleAutoSaveButtonChangeState;
+  final ValueChanged<bool> handleAutoSaveToggle;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -112,7 +112,7 @@ class _EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
       title: TextField(
         textAlign: TextAlign.center,
         key: GlobalKey<FormState>(),
-        controller: textEditingController,
+        controller: titleController,
         decoration: InputDecoration(
           hintText: l10n.untitled,
           border: InputBorder.none,
@@ -122,15 +122,15 @@ class _EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
         _EditorAutoSaveButton(
           diary: diary,
           quillController: quillController,
-          textEditingController: textEditingController,
+          titleController: titleController,
           autoSave: autoSave,
-          handleAutoSaveButtonChangeState: handleAutoSaveButtonChangeState,
+          handleAutoSaveToggle: handleAutoSaveToggle,
         ),
         _EditorSaveButton(
           diary: diary,
           quillController: quillController,
           handleChangeDiary: handleChangeDiary,
-          textEditingController: textEditingController,
+          titleController: titleController,
         ),
       ],
     );
@@ -141,16 +141,16 @@ class _EditorAutoSaveButton extends StatefulWidget {
   const _EditorAutoSaveButton({
     required this.diary,
     required this.quillController,
-    required this.textEditingController,
-    required this.handleAutoSaveButtonChangeState,
+    required this.titleController,
+    required this.handleAutoSaveToggle,
     this.autoSave = false,
   });
 
   final Diary diary;
   final bool autoSave;
   final QuillController quillController;
-  final TextEditingController textEditingController;
-  final ValueChanged<bool> handleAutoSaveButtonChangeState;
+  final TextEditingController titleController;
+  final ValueChanged<bool> handleAutoSaveToggle;
 
   @override
   State<_EditorAutoSaveButton> createState() => _EditorAutoSaveButtonState();
@@ -161,7 +161,7 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
   late bool _autoSave;
   late QuillController _quillController;
   late TextEditingController _textEditingController;
-  late ValueChanged<bool> _handleAutoSaveButtonChangeState;
+  late ValueChanged<bool> _handleAutoSaveToggle;
 
   late PausableTimer _timer;
 
@@ -171,23 +171,24 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
     _diary = widget.diary;
     _autoSave = widget.autoSave;
     _quillController = widget.quillController;
-    _textEditingController = widget.textEditingController;
-    _handleAutoSaveButtonChangeState = widget.handleAutoSaveButtonChangeState;
+    _textEditingController = widget.titleController;
+    _handleAutoSaveToggle = widget.handleAutoSaveToggle;
     _timer = PausableTimer(const Duration(seconds: 5), () {
       _timer
         ..reset()
         ..start();
-      final plainText =
-          _quillController.document.toPlainText().replaceAll(RegExp(r'\n'), '');
-      if (plainText != '') {
-        final newDiary = _diary.copyWith(
-          content: _quillController.document.toDelta().toJson(),
-          editAt: DateTime.now(),
-          title: _textEditingController.text,
-          editing: true,
-        );
-        isarService.saveDiary(newDiary);
-      }
+      final plainText = _quillController.document.toPlainText(
+        EditorBody.embedBuilders,
+        EditorBody.unknownEmbedBuilder,
+      );
+      if (plainText.isEmpty) return;
+      final newDiary = _diary.copyWith(
+        content: _quillController.document.toDelta().toJson(),
+        editAt: DateTime.now(),
+        title: _textEditingController.text,
+        editing: true,
+      );
+      isarService.saveDiary(newDiary);
     });
     if (_autoSave) {
       _timer.start();
@@ -213,7 +214,7 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
         value: _autoSave,
         onChanged: (value) {
           setState(() => (_autoSave = value) ? _timer.start() : _timer.pause());
-          _handleAutoSaveButtonChangeState(value);
+          _handleAutoSaveToggle(value);
         },
       ),
     );
@@ -225,13 +226,13 @@ class _EditorSaveButton extends ConsumerWidget {
     required this.diary,
     required this.quillController,
     required this.handleChangeDiary,
-    required this.textEditingController,
+    required this.titleController,
   });
 
   final Diary diary;
   final QuillController quillController;
   final ValueChanged<Diary?> handleChangeDiary;
-  final TextEditingController textEditingController;
+  final TextEditingController titleController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -242,45 +243,45 @@ class _EditorSaveButton extends ConsumerWidget {
         final plainText = quillController.document
             .toPlainText()
             .replaceAll(RegExp(r'\n'), '');
-        if (plainText == '') {
-          App.vibration();
-          Flushbar(
-            icon: const Icon(UniconsLine.confused),
-            isDismissible: false,
-            messageText: Center(
-              child: Text(
-                l10n.contentCannotBeEmpty,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
-            barBlur: 1.0,
-            borderRadius: BorderRadius.circular(16),
-            backgroundColor: context.colorScheme.outline.withAlpha(16),
-            boxShadows: const [
-              BoxShadow(
-                color: Colors.transparent,
-                offset: Offset(0, 16),
-              ),
-            ],
-            duration: const Duration(
-              milliseconds: 600,
-            ),
-            flushbarPosition: FlushbarPosition.TOP,
-          ).show(context);
-        } else {
+        if (plainText.isNotEmpty) {
           final newDiary = diary.copyWith(
             content: quillController.document.toDelta().toJson(),
             editAt: DateTime.now(),
-            title: textEditingController.text,
+            title: titleController.text,
             editing: false,
           );
           handleChangeDiary(newDiary);
           isarService.saveDiary(newDiary);
-          context.pop(newDiary);
+          return context.pop(newDiary);
         }
+
+        App.vibration();
+        Flushbar(
+          icon: const Icon(UniconsLine.confused),
+          isDismissible: false,
+          messageText: Center(
+            child: Text(
+              l10n.contentCannotBeEmpty,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
+          barBlur: 1.0,
+          borderRadius: BorderRadius.circular(16),
+          backgroundColor: context.colorScheme.outline.withAlpha(16),
+          boxShadows: const [
+            BoxShadow(
+              color: Colors.transparent,
+              offset: Offset(0, 16),
+            ),
+          ],
+          duration: const Duration(
+            milliseconds: 600,
+          ),
+          flushbarPosition: FlushbarPosition.TOP,
+        ).show(context);
       },
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all<Size>(
