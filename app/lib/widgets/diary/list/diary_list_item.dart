@@ -15,49 +15,6 @@ class DiaryListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final lang = Localizations.localeOf(context).toLanguageTag();
-
-    final dayWidget = Text(
-      diary.createAt.format('dd'),
-      style: const TextStyle(
-        fontSize: 24,
-        fontFamily: App.fontSaira,
-      ),
-    );
-    final weekdayWidget = Text(
-      diary.createAt.format(DateFormat.WEEKDAY, lang),
-      style: const TextStyle(
-        fontSize: 10,
-      ),
-    );
-    final latestEditTimeWidget = Text(
-      diary.editAt.format('HH:mm:ss'),
-      style: const TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-      ),
-    );
-    final createDateTimeWidget = Text(
-      diary.title == '' ? diary.createAt.format('y-M-d') : diary.title,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-      ),
-    );
-    final contentJsonStringWidget = Text(
-      diary.document.toPlainText(EditorBody.embedBuilders),
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-      ),
-    );
-    final moodWidget = Icon(size: 18, diary.moodType.iconData);
-    final weatherWidget =
-        Icon(size: 18, diary.weatherType.qweatherIcons.iconData);
 
     return Dismissible(
       key: ValueKey(diary.id),
@@ -87,7 +44,10 @@ class DiaryListItem extends ConsumerWidget {
                   flex: 40,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [dayWidget, weekdayWidget],
+                    children: [
+                      _Day(diary: diary),
+                      _Weekday(diary: diary),
+                    ],
                   ),
                 ),
                 Expanded(
@@ -96,9 +56,9 @@ class DiaryListItem extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      latestEditTimeWidget,
-                      createDateTimeWidget,
-                      contentJsonStringWidget,
+                      _EditAt(diary: diary),
+                      _CreateAt(diary: diary),
+                      _Content(diary: diary),
                     ],
                   ),
                 ),
@@ -106,7 +66,10 @@ class DiaryListItem extends ConsumerWidget {
                   flex: 50,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [moodWidget, weatherWidget],
+                    children: [
+                      _Mood(diary: diary),
+                      _Weather(diary: diary),
+                    ],
                   ),
                 ),
                 const Expanded(flex: 9, child: SizedBox()),
@@ -114,6 +77,132 @@ class DiaryListItem extends ConsumerWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Weather extends StatelessWidget {
+  const _Weather({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(size: 18, diary.weatherType.qweatherIcons.iconData);
+  }
+}
+
+class _Mood extends StatelessWidget {
+  const _Mood({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(size: 18, diary.moodType.iconData);
+  }
+}
+
+class _Content extends StatelessWidget {
+  const _Content({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.document.toPlainText(EditorBody.embedBuilders),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+      ),
+    );
+  }
+}
+
+class _CreateAt extends StatelessWidget {
+  const _CreateAt({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.title.isEmpty ? diary.createAt.format('y-M-d') : diary.title,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+}
+
+class _EditAt extends StatelessWidget {
+  const _EditAt({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.editAt.format('HH:mm:ss'),
+      style: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+}
+
+class _Weekday extends StatelessWidget {
+  const _Weekday({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    final lang = Localizations.localeOf(context).toLanguageTag();
+
+    return Text(
+      diary.createAt.format(DateFormat.WEEKDAY, lang),
+      style: const TextStyle(
+        fontSize: 10,
+      ),
+    );
+  }
+}
+
+class _Day extends StatelessWidget {
+  const _Day({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.createAt.format('dd'),
+      style: const TextStyle(
+        fontSize: 24,
+        fontFamily: App.fontSaira,
       ),
     );
   }

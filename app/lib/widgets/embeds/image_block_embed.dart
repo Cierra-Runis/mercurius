@@ -27,46 +27,69 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
     bool inline,
     TextStyle textStyle,
   ) {
+    return _ImageBlock(
+      controller: controller,
+      node: node,
+      readOnly: readOnly,
+      inline: inline,
+      textStyle: textStyle,
+    );
+  }
+}
+
+class _ImageBlock extends ConsumerWidget {
+  const _ImageBlock({
+    required this.controller,
+    required this.node,
+    required this.readOnly,
+    required this.inline,
+    required this.textStyle,
+  });
+
+  final QuillController controller;
+  final Embed node;
+  final bool readOnly;
+  final bool inline;
+  final TextStyle textStyle;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
-    return Consumer(
-      builder: (context, ref, child) {
-        return MouseRegion(
-          cursor: MaterialStateMouseCursor.clickable,
-          child: GestureDetector(
-            onTap: () {
-              if (readOnly) {
-                context.pushDialog(
-                  ImageView(fileName: node.value.data as String),
-                );
-              }
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              child: Image(
-                image: BasedLocalFirstImage(
-                  fileName: node.value.data as String,
-                  localDirectory: ref.watch(pathsProvider).imageDirectory,
-                ),
-                errorBuilder: (context, error, stackTrace) {
-                  return BasedShimmer(
-                    radius: 16,
-                    width: double.maxFinite,
-                    height: 200,
-                    child: Text(
-                      l10n.unsupportedImageFormat,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  );
-                },
-              ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16.0),
+      child: MouseRegion(
+        cursor: readOnly ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        child: GestureDetector(
+          onTap: () {
+            if (readOnly) {
+              context.pushDialog(
+                ImageView(fileName: node.value.data as String),
+              );
+            }
+          },
+          child: Image(
+            image: BasedLocalFirstImage(
+              fileName: node.value.data as String,
+              localDirectory: ref.watch(pathsProvider).imageDirectory,
             ),
+            errorBuilder: (context, error, stackTrace) {
+              return BasedShimmer(
+                radius: 16,
+                width: double.maxFinite,
+                height: 200,
+                child: Text(
+                  l10n.unsupportedImageFormat,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              );
+            },
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

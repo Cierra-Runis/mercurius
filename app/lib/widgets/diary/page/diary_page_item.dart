@@ -11,7 +11,6 @@ class DiaryPageItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final lang = Localizations.localeOf(context).toLanguageTag();
 
     return Scaffold(
       body: CustomScrollView(
@@ -21,18 +20,8 @@ class DiaryPageItem extends ConsumerWidget {
             snap: true,
             title: Column(
               children: [
-                Text(
-                  diary.createAt.format(DateFormat.YEAR_MONTH_DAY, lang),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  diary.editAt.format('E HH:mm:ss', lang),
-                  style: const TextStyle(
-                    fontSize: 12,
-                  ),
-                ),
+                _CreateAt(diary: diary),
+                if (diary.title.isNotEmpty) _Title(diary: diary),
               ],
             ),
           ),
@@ -52,28 +41,9 @@ class DiaryPageItem extends ConsumerWidget {
       /// TIPS: https://github.com/flutter/flutter/issues/141922
       persistentFooterAlignment: AlignmentDirectional.centerStart,
       persistentFooterButtons: [
-        Chip(
-          avatar: Icon(diary.moodType.iconData),
-          label: Text(
-            l10n.moodText(
-              diary.moodType.mood,
-            ),
-          ),
-          labelPadding: EdgeInsets.zero,
-        ),
-        Chip(
-          avatar: Icon(diary.weatherType.qweatherIcons.iconData),
-          label: Text(
-            l10n.weatherText(
-              diary.weatherType.weather,
-            ),
-          ),
-          labelPadding: EdgeInsets.zero,
-        ),
-        Chip(
-          label: Text(l10n.wordCount(diary.words)),
-          labelPadding: EdgeInsets.zero,
-        ),
+        _MoodChip(diary: diary),
+        _WeatherChip(diary: diary),
+        _WordsChip(diary: diary),
       ],
       bottomNavigationBar: BottomAppBar(
         child: Wrap(
@@ -107,6 +77,105 @@ class DiaryPageItem extends ConsumerWidget {
         child: const Icon(Icons.edit),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+    );
+  }
+}
+
+class _CreateAt extends StatelessWidget {
+  const _CreateAt({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    final lang = Localizations.localeOf(context).toLanguageTag();
+
+    return Text(
+      diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
+      style: const TextStyle(
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+}
+
+class _WordsChip extends StatelessWidget {
+  const _WordsChip({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return Chip(
+      label: Text(l10n.wordCount(diary.words)),
+    );
+  }
+}
+
+class _WeatherChip extends StatelessWidget {
+  const _WeatherChip({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return Chip(
+      avatar: Icon(diary.weatherType.qweatherIcons.iconData),
+      label: Text(
+        l10n.weatherText(
+          diary.weatherType.weather,
+        ),
+      ),
+    );
+  }
+}
+
+class _MoodChip extends StatelessWidget {
+  const _MoodChip({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return Chip(
+      avatar: Icon(diary.moodType.iconData),
+      label: Text(
+        l10n.moodText(
+          diary.moodType.mood,
+        ),
+      ),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.title,
+      style: const TextStyle(
+        fontSize: 16,
+      ),
     );
   }
 }

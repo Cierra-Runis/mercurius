@@ -21,17 +21,17 @@ class DiaryListItemPlaceholder extends StatelessWidget {
     const moodWidget = BasedShimmer.round(
       size: 16,
     );
-    const createDateTimeWidget = BasedShimmer(
+    const createAtWidget = BasedShimmer(
       width: 72,
       height: 16,
       radius: 8,
     );
-    const latestEditTimeWidget = BasedShimmer(
+    const editAtWidget = BasedShimmer(
       width: 32,
       height: 10,
       radius: 5,
     );
-    const contentJsonStringWidget = BasedShimmer(
+    const contentWidget = BasedShimmer(
       width: 160,
       height: 12,
       radius: 6,
@@ -63,9 +63,9 @@ class DiaryListItemPlaceholder extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    latestEditTimeWidget,
-                    createDateTimeWidget,
-                    contentJsonStringWidget,
+                    editAtWidget,
+                    createAtWidget,
+                    contentWidget,
                   ],
                 ),
               ),
