@@ -24,6 +24,7 @@
   "import": "Import",
   "export": "Export",
   "importAndExport": "Import & Export",
+  "importV1Data": "Import v1 Data",
   "importJsonFile": "Import JSON File",
   "importNfcData": "Import NFC Data",
   "exportJsonFile": "Export JSON File",
