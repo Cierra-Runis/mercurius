@@ -7,15 +7,18 @@ DynamicColor dynamicColor(DynamicColorRef ref) =>
     throw Exception('dynamicColorProvider not initialized');
 
 class DynamicColor {
+  final CorePalette? corePalette;
   final Color seedColor;
 
   const DynamicColor._({
+    this.corePalette,
     required this.seedColor,
   });
 
   static Future<DynamicColor> init() async {
-    final seedColor =
-        await DynamicColorPlugin.getAccentColor() ?? Colors.deepPurple;
-    return DynamicColor._(seedColor: seedColor);
+    final corePalette = await DynamicColorPlugin.getCorePalette();
+    final accentColor = await DynamicColorPlugin.getAccentColor();
+    final seedColor = accentColor ?? Colors.red;
+    return DynamicColor._(corePalette: corePalette, seedColor: seedColor);
   }
 }

@@ -111,7 +111,7 @@ class Settings extends _$Settings {
     return _pers.setLocale(value);
   }
 
-  Future<bool> setAccentColor(Color value) async {
+  Future<bool> setAccentColor(Color? value) async {
     state = state.copyWith(accentColor: value);
     return _pers.setAccentColor(value);
   }

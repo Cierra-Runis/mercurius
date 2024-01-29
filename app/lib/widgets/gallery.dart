@@ -30,30 +30,35 @@ class _GalleryPageState extends ConsumerState<Gallery> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
-    final directory = Directory(paths.imageDirectory);
+    final directory = paths.imageDirectory;
     _files = directory.listSync();
     directory.watch().listen(
           (event) => setState(() => _files = directory.listSync()),
         );
 
-    return GridView.builder(
-      cacheExtent: 1000,
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-      ),
-      padding: const EdgeInsets.all(12.0),
-      itemCount: _files.length,
-      itemBuilder: (context, index) {
-        final filename = path.basename(_files[index].path);
-        return _GalleryCard(
-          key: Key(filename),
-          filename: filename,
-          onCardTap: widget.onCardTap,
-          actionsBuilder: widget.actionsBuilder,
-        );
-      },
-    );
+    return _files.isEmpty
+        ? Center(
+            child: Text(l10n.noData),
+          )
+        : GridView.builder(
+            cacheExtent: 1000,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
+            ),
+            padding: const EdgeInsets.all(12.0),
+            itemCount: _files.length,
+            itemBuilder: (context, index) {
+              final filename = path.basename(_files[index].path);
+              return _GalleryCard(
+                key: Key(filename),
+                filename: filename,
+                onCardTap: widget.onCardTap,
+                actionsBuilder: widget.actionsBuilder,
+              );
+            },
+          );
   }
 }
 
@@ -86,7 +91,7 @@ class _GalleryCard extends ConsumerWidget {
             Image(
               image: BasedLocalFirstImage(
                 filename: filename,
-                localDirectory: paths.imageDirectory,
+                localDirectory: paths.imageDirectory.path,
               ),
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {

@@ -17,13 +17,36 @@ class ColorSchemes extends _$ColorSchemes {
   ColorSchemesState build() {
     final dynamicColor = ref.watch(dynamicColorProvider);
     final settings = ref.watch(settingsProvider);
-    final seedColor = settings.accentColor ?? dynamicColor.seedColor;
 
-    final light = ColorScheme.fromSeed(seedColor: seedColor);
+    if (settings.accentColor != null) {
+      return ColorSchemesState(
+        light: ColorScheme.fromSeed(
+          seedColor: settings.accentColor!,
+        ),
+        dark: ColorScheme.fromSeed(
+          seedColor: settings.accentColor!,
+          brightness: Brightness.dark,
+        ),
+      );
+    }
 
-    final dark =
-        ColorScheme.fromSeed(seedColor: seedColor, brightness: Brightness.dark);
+    if (dynamicColor.corePalette != null) {
+      return ColorSchemesState(
+        light: dynamicColor.corePalette!.toColorScheme(),
+        dark: dynamicColor.corePalette!.toColorScheme(
+          brightness: Brightness.dark,
+        ),
+      );
+    }
 
-    return ColorSchemesState(light: light, dark: dark);
+    return ColorSchemesState(
+      light: ColorScheme.fromSeed(
+        seedColor: dynamicColor.seedColor,
+      ),
+      dark: ColorScheme.fromSeed(
+        seedColor: dynamicColor.seedColor,
+        brightness: Brightness.dark,
+      ),
+    );
   }
 }

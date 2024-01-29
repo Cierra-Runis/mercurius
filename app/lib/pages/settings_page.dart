@@ -143,7 +143,7 @@ class _ColorPickerState extends ConsumerState<_ColorPicker> {
         ),
         TextButton(
           onPressed: () {
-            setSettings.setAccentColor(dynamicColor.seedColor);
+            setSettings.setAccentColor(null);
             context.pop();
           },
           child: Text(l10n.resetToDefault),

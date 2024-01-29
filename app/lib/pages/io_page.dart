@@ -140,7 +140,7 @@ class _ImportImages extends ConsumerWidget {
     return BasedListTile(
       leadingIcon: Icons.add_photo_alternate_rounded,
       titleText: '导入自 v1 的 image.json',
-      onTap: () => importImages(paths.imageDirectory),
+      onTap: () => importImages(paths.imageDirectory.path),
     );
   }
 }

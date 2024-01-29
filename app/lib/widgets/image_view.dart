@@ -21,7 +21,7 @@ class ImageView extends ConsumerWidget {
             tightMode: true,
             imageProvider: BasedLocalFirstImage(
               filename: filename,
-              localDirectory: paths.imageDirectory,
+              localDirectory: paths.imageDirectory.path,
             ),
           ),
         ),
@@ -35,7 +35,7 @@ class ImageView extends ConsumerWidget {
           alignment: Alignment.bottomRight,
           child: IconButton(
             onPressed: () => Share.shareXFiles([
-              XFile(join(paths.imageDirectory, filename)),
+              XFile(join(paths.imageDirectory.path, filename)),
             ]),
             icon: const Icon(UniconsLine.share),
           ),

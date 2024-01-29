@@ -11,7 +11,9 @@ class Paths {
   final Directory appCache;
   final Directory documents;
 
-  String get imageDirectory => join(appSupport.path, 'image');
+  Directory get imageDirectory => Directory(
+        join(appSupport.path, 'image'),
+      )..create();
 
   const Paths._({
     required this.temp,
@@ -21,11 +23,12 @@ class Paths {
   });
 
   static Future<Paths> init() async {
-    return Paths._(
+    final paths = Paths._(
       temp: await getTemporaryDirectory(),
       appSupport: await getApplicationSupportDirectory(),
       appCache: await getApplicationCacheDirectory(),
       documents: await getApplicationDocumentsDirectory(),
     );
+    return paths;
   }
 }

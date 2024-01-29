@@ -55,6 +55,7 @@ class _ImageBlock extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final paths = ref.watch(pathsProvider);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.0),
@@ -71,7 +72,7 @@ class _ImageBlock extends ConsumerWidget {
           child: Image(
             image: BasedLocalFirstImage(
               filename: node.value.data as String,
-              localDirectory: ref.watch(pathsProvider).imageDirectory,
+              localDirectory: paths.imageDirectory.path,
             ),
             errorBuilder: (context, error, stackTrace) {
               return BasedShimmer(
