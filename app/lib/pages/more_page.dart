@@ -51,8 +51,8 @@ class _AboutSection extends StatelessWidget {
       children: const [
         _ReleaseTile(),
         _ContactTile(),
-        _ImportDeclarationTile(),
-        _PrivacyStatementTile(),
+        _ThirdPartyLicenseTile(),
+        _PrivacyPolicyTile(),
       ],
     );
   }
@@ -156,16 +156,16 @@ class _ContactTile extends StatelessWidget {
     return BasedListTile(
       leadingIcon: Icons.link,
       titleText: l10n.contactUs,
-      subtitleText: App.contactUrl,
+      subtitleText: App.githubUrl,
       onTap: () {
         try {
           launchUrlString(
-            App.contactUrl,
+            App.githubUrl,
             mode: LaunchMode.externalApplication,
           );
         } catch (e) {
           App.printLog(
-            'launch ${App.contactUrl} failed: $e',
+            'launch ${App.githubUrl} failed: $e',
           );
         }
       },
@@ -173,8 +173,8 @@ class _ContactTile extends StatelessWidget {
   }
 }
 
-class _ImportDeclarationTile extends StatelessWidget {
-  const _ImportDeclarationTile();
+class _ThirdPartyLicenseTile extends StatelessWidget {
+  const _ThirdPartyLicenseTile();
 
   @override
   Widget build(BuildContext context) {
@@ -182,21 +182,26 @@ class _ImportDeclarationTile extends StatelessWidget {
 
     return BasedListTile(
       leadingIcon: Icons.import_contacts_rounded,
-      titleText: l10n.importDeclaration,
-      subtitleText: l10n.importDeclarationDescription,
-      onTap: () => context.pushDialog(
-        JsonToDialog(
-          title: l10n.importDeclaration,
-          updateTime: l10n.importDeclarationContentUpdateTime,
-          content: l10n.importDeclarationContent,
-        ),
-      ),
+      titleText: l10n.thirdPartyLicense,
+      subtitleText: l10n.thirdPartyLicenseDescription,
+      onTap: () {
+        try {
+          launchUrlString(
+            App.thirdPartyLicenseUrl,
+            mode: LaunchMode.externalApplication,
+          );
+        } catch (e) {
+          App.printLog(
+            'launch ${App.thirdPartyLicenseUrl} failed: $e',
+          );
+        }
+      },
     );
   }
 }
 
-class _PrivacyStatementTile extends StatelessWidget {
-  const _PrivacyStatementTile();
+class _PrivacyPolicyTile extends StatelessWidget {
+  const _PrivacyPolicyTile();
 
   @override
   Widget build(BuildContext context) {
@@ -204,15 +209,20 @@ class _PrivacyStatementTile extends StatelessWidget {
 
     return BasedListTile(
       leadingIcon: Icons.privacy_tip_rounded,
-      titleText: l10n.privacyStatement,
-      subtitleText: '${App.name} ${l10n.privacyStatement}',
-      onTap: () => context.pushDialog(
-        JsonToDialog(
-          title: l10n.privacyStatement,
-          updateTime: l10n.privacyStatementContentUpdateTime,
-          content: l10n.privacyStatementContent,
-        ),
-      ),
+      titleText: l10n.privacyPolicy,
+      subtitleText: '${App.name} ${l10n.privacyPolicy}',
+      onTap: () {
+        try {
+          launchUrlString(
+            App.privacyPolicyUrl,
+            mode: LaunchMode.externalApplication,
+          );
+        } catch (e) {
+          App.printLog(
+            'launch ${App.privacyPolicyUrl} failed: $e',
+          );
+        }
+      },
     );
   }
 }

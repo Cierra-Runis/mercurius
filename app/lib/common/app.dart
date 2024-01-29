@@ -9,10 +9,15 @@ typedef Json = Map<String, dynamic>;
 abstract class App {
   static const name = 'Mercurius';
   static const database = 'mercurius_database';
-  static const contactUrl = 'https://github.com/Cierra-Runis/';
   static const fontSaira = 'Saira';
   static const fontCascadiaCodePL = 'CascadiaCodePL';
   static const fontMiSans = 'MiSans';
+
+  static const githubUrl = 'https://github.com/Cierra-Runis';
+  static const repoUrl = '$githubUrl/mercurius';
+  static const openIssueUrl = '$repoUrl/issues/new/choose';
+  static const thirdPartyLicenseUrl = '$repoUrl/wiki/Third-Party-License';
+  static const privacyPolicyUrl = '$repoUrl/wiki/Privacy-Policy';
 
   static const themeModeIcon = {
     ThemeMode.system: Icons.brightness_auto_rounded,
