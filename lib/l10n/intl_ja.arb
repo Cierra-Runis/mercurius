@@ -116,5 +116,7 @@
   "backgroundImage": "背景画像",
   "noImageSelected": "画像が選択されていません",
   "clear": "クリア",
-  "language": "言語"
+  "language": "言語",
+  "exportV2Files": "V2 ファイルをエクスポート",
+  "v2Files": "image.json, v2_diary.json"
 }

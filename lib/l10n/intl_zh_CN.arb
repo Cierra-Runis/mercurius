@@ -116,5 +116,7 @@
   "backgroundImage": "背景图像",
   "noImageSelected": "未选择图片",
   "clear": "清除",
-  "language": "语言"
+  "language": "语言",
+  "exportV2Files": "导出 V2 文件",
+  "v2Files": "image.json, v2_diary.json"
 }

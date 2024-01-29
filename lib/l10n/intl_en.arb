@@ -116,5 +116,7 @@
   "backgroundImage": "Background Image",
   "noImageSelected": "No Image Selected",
   "clear": "Clear",
-  "language": "Language"
+  "language": "Language",
+  "exportV2Files": "Export V2 Files",
+  "v2Files": "image.json, v2_diary.json"
 }
