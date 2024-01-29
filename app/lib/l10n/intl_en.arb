@@ -1,0 +1,120 @@
+{
+  "@@last_modified": "2023-06-19T16:53:25+08:00",
+  "@@locale": "en",
+  "back": "Back",
+  "save": "Save",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "enabled": "Enabled",
+  "disabled": "Disabled",
+  "title": "Title",
+  "untitled": "Untitled",
+  "content": "Content",
+  "noData": "No Data",
+  "writingSomethingHere": "Writing Something Here...",
+  "insertImage": "Insert Image",
+  "insertTag": "Insert Tag",
+  "insertTagTitle": "Please Select The Tag Icon And Enter Message",
+  "insertTagMessage": "Please Enter Tag Message",
+  "changeMood": "Change Mood",
+  "changeWeather": "Change Weather",
+  "changeDate": "Change Date",
+  "statistics": "Statistics",
+  "imageGallery": "Gallery",
+  "import": "Import",
+  "export": "Export",
+  "importAndExport": "Import & Export",
+  "importV1Data": "Import v1 Data",
+  "importJsonFile": "Import JSON File",
+  "importNfcData": "Import NFC Data",
+  "exportJsonFile": "Export JSON File",
+  "exportNfcData": "Export NFC Data",
+  "pleaseBackToHomePage": "Please Back To Home Page",
+  "notYetCompleted": "Not Yet Completed",
+  "settings": "Settings",
+  "darkMode": "Dark Mode",
+  "buttonVibration": "Button vibration",
+  "followTheSystem": "Follow The System",
+  "alwaysDark": "Always Dark",
+  "alwaysBright": "Always Bright",
+  "aboutApp": "About App",
+  "clickHereToUpdate": "To Update",
+  "alreadyTheLatestVersion": "Updated",
+  "contentCannotBeEmpty": "Content Cannot Be Empty",
+  "homePage": "Home",
+  "morePage": "More",
+  "releasePage": "Release Page",
+  "releasePageOops": "Oops! Please refresh the page!",
+  "contactUs": "Contact Us",
+  "thirdPartyLicense": "Third Party License",
+  "thirdPartyLicenseDescription": "Fonts, Icons, Weather Service Related",
+  "privacyPolicy": "Privacy Policy",
+  "createNewDiary": "Create New Diary",
+  "continueEditingDiary": "Continue Editing Diary",
+  "monthlyWordCountStatistics": "Monthly Word Count",
+  "wordCount": "{count, plural, =1{{count} Word} other{{count} Words}}",
+  "@wordCount": {
+    "description": "Word count of a diary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diaryCount": "{count, plural, =1{{count} Diary} other{{count} Diaries}}",
+  "@diaryCount": {
+    "description": "Diary count in a certain time period",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unknownVersion": "Unknown Version",
+  "failedToGetVersion": "Failed To Get Version",
+  "areYouSureToDeleteTheDiary": "Confirm delete the diary?",
+  "pleaseThinkTwiceAboutDeletingTheDiary": "Please think twice about deleting the diary",
+  "areYouSureToDeleteTheImage": "Confirm delete the image?",
+  "pleaseThinkTwiceAboutDeletingTheImage": "Please think twice about deleting the image",
+  "insertTheImageFrom": "Insert the image from...",
+  "systemFile": "System File",
+  "mood": "Mood",
+  "moodText": "{mood, select, other{Unknown Mood} smile{Happy} angry{Angry} confused{Confused} frown{Frown} laughing{Laughing} silentSquint{Silent Squint} sadCrying{Sad Crying} smileDizzy{Smile Dizzy} normal{Normal}}",
+  "@moodText": {
+    "description": "Get mood text by mood in [DiaryMoodType]",
+    "placeholders": {
+      "mood": {
+        "type": "String"
+      }
+    }
+  },
+  "howIsYourMoodNow": "How is your mood now?",
+  "howIsYourMoodNowDescription": "ねぇ、今どんな気持ち",
+  "weather": "Weather",
+  "weatherText": "{weather, select, other{Unknown Weather} sunny{Sunny} cloudy{Cloudy} fewClouds{Few Clouds} heavyThunderstorm{Heavy Thunderstorm} lightRain{Light Rain} heavyRain{Heavy Rain} lightSnow{Light Snow} heavySnow{Heavy Snow} foggy{Foggy}}",
+  "@weatherText": {
+    "description": "Get weather text by weather in [DiaryWeatherType]",
+    "placeholders": {
+      "weather": {
+        "type": "String"
+      }
+    }
+  },
+  "whatIsTheWeatherNow": "What is the weather now?",
+  "whatIsTheWeatherNowDescription": "今日もいい天気",
+  "unsupportedImageFormat": "Unsupported Image Format",
+  "imageMissing": "Image Missing",
+  "searchDiary": "Search Diary",
+  "searchTitle": "Search Title",
+  "backAgainToExit": "Go Back Again To Exit",
+  "hiToKoToProvider": "This service is provided by Hitokoto「一言」",
+  "hiToKoToFetching": "Fetching 「一言」...",
+  "thisDayLastYear": "This Day Last Year",
+  "backgroundImage": "Background Image",
+  "noImageSelected": "No Image Selected",
+  "clear": "Clear",
+  "language": "Language",
+  "resetToDefault": "Reset To Default",
+  "accentColor": "Accent Color",
+  "selectAccentColor": "Select Accent Color"
+}
