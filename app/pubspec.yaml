@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
   another_flushbar: ^1.12.30
   based_list: ^1.1.3
-  based_local_first_image: ^1.0.0
+  based_local_first_image: ^1.1.0
   based_splash_page: ^1.0.1
   based_split_view: ^1.1.0
   cross_file: ^0.3.3+8

@@ -167,28 +167,40 @@ class _BackgroundImageListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final settings = ref.watch(settingsProvider);
-    final settingsNotifier = ref.watch(settingsProvider.notifier);
 
     return BasedListTile(
       leadingIcon: Icons.flip_to_back_rounded,
       titleText: l10n.backgroundImage,
       detailText: settings.bgImgPath == null ? l10n.noImageSelected : '',
-      onTap: () {
-        context.push(
-          Gallery(
-            appBarActions: [
-              TextButton(
-                onPressed: () => settingsNotifier.setBgImgPath(null),
-                child: Text(l10n.clear),
-              ),
-            ],
-            onCardTap: (context, image) {
-              settingsNotifier.setBgImgPath(image);
-              context.pop();
-            },
+      onTap: () => context.push(const _BackgroundImagePage()),
+    );
+  }
+}
+
+class _BackgroundImagePage extends ConsumerWidget {
+  const _BackgroundImagePage();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settingsNotifier = ref.watch(settingsProvider.notifier);
+    final l10n = context.l10n;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.backgroundImage),
+        actions: [
+          TextButton(
+            onPressed: () => settingsNotifier.setBgImgPath(null),
+            child: Text(l10n.clear),
           ),
-        );
-      },
+        ],
+      ),
+      body: Gallery(
+        onCardTap: (context, filename) {
+          settingsNotifier.setBgImgPath(filename);
+          context.pop();
+        },
+      ),
     );
   }
 }

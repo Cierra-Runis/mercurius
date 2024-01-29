@@ -83,15 +83,7 @@ class _ImageGalleryTile extends StatelessWidget {
     return BasedListTile(
       leadingIcon: Icons.image_rounded,
       titleText: l10n.imageGallery,
-      onTap: () => context.push(
-        Gallery(
-          onCardTap: (context, fileName) {
-            context.pushDialog(
-              ImageView(fileName: fileName),
-            );
-          },
-        ),
-      ),
+      onTap: () => context.push(const GalleryPage()),
     );
   }
 }

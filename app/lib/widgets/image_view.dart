@@ -3,10 +3,10 @@ import 'package:mercurius/index.dart';
 class ImageView extends ConsumerWidget {
   const ImageView({
     super.key,
-    required this.fileName,
+    required this.filename,
   });
 
-  final String fileName;
+  final String filename;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +20,7 @@ class ImageView extends ConsumerWidget {
             backgroundDecoration: const BoxDecoration(),
             tightMode: true,
             imageProvider: BasedLocalFirstImage(
-              fileName: fileName,
+              filename: filename,
               localDirectory: paths.imageDirectory,
             ),
           ),
@@ -35,7 +35,7 @@ class ImageView extends ConsumerWidget {
           alignment: Alignment.bottomRight,
           child: IconButton(
             onPressed: () => Share.shareXFiles([
-              XFile(join(paths.imageDirectory, fileName)),
+              XFile(join(paths.imageDirectory, filename)),
             ]),
             icon: const Icon(UniconsLine.share),
           ),

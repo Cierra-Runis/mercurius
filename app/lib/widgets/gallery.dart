@@ -6,15 +6,13 @@ class Gallery extends ConsumerStatefulWidget {
     super.key,
     this.readOnly = false,
     required this.onCardTap,
-    this.appBarActions = const [],
     this.actionsBuilder,
   });
 
   final bool readOnly;
-  final List<Widget> appBarActions;
 
-  final void Function(BuildContext context, String fileName) onCardTap;
-  final List<Widget> Function(BuildContext context, String fileName)?
+  final void Function(BuildContext context, String filename) onCardTap;
+  final List<Widget> Function(BuildContext context, String filename)?
       actionsBuilder;
 
   @override
@@ -35,10 +33,10 @@ class _GalleryPageState extends ConsumerState<Gallery> {
       padding: const EdgeInsets.all(12.0),
       itemCount: files.length,
       itemBuilder: (context, index) {
-        final fileName = path.basename(files[index].path);
+        final filename = path.basename(files[index].path);
         return _GalleryCard(
-          key: Key(fileName),
-          fileName: fileName,
+          key: Key(filename),
+          filename: filename,
           onCardTap: widget.onCardTap,
           actionsBuilder: widget.actionsBuilder,
         );
@@ -48,7 +46,6 @@ class _GalleryPageState extends ConsumerState<Gallery> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
     final directory = Directory(paths.imageDirectory);
     _files = directory.listSync();
@@ -56,27 +53,21 @@ class _GalleryPageState extends ConsumerState<Gallery> {
           (event) => setState(() => _files = directory.listSync()),
         );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.imageGallery),
-        actions: widget.appBarActions,
-      ),
-      body: getGridBySnapshotData(_files),
-    );
+    return getGridBySnapshotData(_files);
   }
 }
 
 class _GalleryCard extends ConsumerWidget {
   const _GalleryCard({
     super.key,
-    required this.fileName,
+    required this.filename,
     this.onCardTap,
     this.actionsBuilder,
   });
 
-  final String fileName;
-  final void Function(BuildContext context, String fileName)? onCardTap;
-  final List<Widget> Function(BuildContext context, String fileName)?
+  final String filename;
+  final void Function(BuildContext context, String filename)? onCardTap;
+  final List<Widget> Function(BuildContext context, String filename)?
       actionsBuilder;
 
   @override
@@ -88,13 +79,13 @@ class _GalleryCard extends ConsumerWidget {
     return Card(
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: onCardTap != null ? () => onCardTap!(context, fileName) : null,
+        onTap: onCardTap != null ? () => onCardTap!(context, filename) : null,
         child: Stack(
           fit: StackFit.expand,
           children: [
             Image(
               image: BasedLocalFirstImage(
-                fileName: fileName,
+                filename: filename,
                 localDirectory: paths.imageDirectory,
               ),
               fit: BoxFit.cover,
@@ -120,7 +111,7 @@ class _GalleryCard extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.min,
-                  children: actionsBuilder?.call(context, fileName) ?? [],
+                  children: actionsBuilder?.call(context, filename) ?? [],
                   // children: [
                   //   IconButton(
                   //     onPressed: readOnly

@@ -5,9 +5,16 @@ class GalleryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Gallery(
-      onCardTap: (context, fileName) => context.pushDialog(
-        ImageView(fileName: fileName),
+    final l10n = context.l10n;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.imageGallery),
+      ),
+      body: Gallery(
+        onCardTap: (context, filename) => context.pushDialog(
+          ImageView(filename: filename),
+        ),
       ),
     );
   }

@@ -2,8 +2,8 @@ import 'package:mercurius/index.dart';
 
 class ImageBlockEmbed extends Embeddable {
   const ImageBlockEmbed({
-    required String fileName,
-  }) : super(imageType, fileName);
+    required String filename,
+  }) : super(imageType, filename);
 
   static const String imageType = 'mercuriusImage';
 }
@@ -64,13 +64,13 @@ class _ImageBlock extends ConsumerWidget {
           onTap: () {
             if (readOnly) {
               context.pushDialog(
-                ImageView(fileName: node.value.data as String),
+                ImageView(filename: node.value.data as String),
               );
             }
           },
           child: Image(
             image: BasedLocalFirstImage(
-              fileName: node.value.data as String,
+              filename: node.value.data as String,
               localDirectory: ref.watch(pathsProvider).imageDirectory,
             ),
             errorBuilder: (context, error, stackTrace) {
