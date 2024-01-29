@@ -32,6 +32,7 @@ class _ImportSection extends ConsumerWidget {
       titleText: l10n.import,
       children: [
         const _ImportJsonFile(),
+        const _ImportImages(),
         BasedListTile(
           leadingIcon: Icons.nfc_rounded,
           titleText: l10n.importNfcData,
@@ -64,42 +65,82 @@ class _ImportJsonFile extends StatelessWidget {
           allowedExtensions: ['json'],
         );
 
-        if (result != null && result.files.single.path != null) {
-          final succuss = await isarService.importJsonWith(
-            result.files.single.path!,
-          );
+        if (result == null || result.files.single.path == null) return;
 
-          if (context.mounted && succuss) {
-            App.vibration();
-            Flushbar(
-              icon: const Icon(UniconsLine.smile),
-              isDismissible: false,
-              messageText: Center(
-                child: Text(
-                  l10n.pleaseBackToHomePage,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
+        final succuss = await isarService.importJsonWith(
+          result.files.single.path!,
+        );
+
+        if (context.mounted && succuss) {
+          App.vibration();
+          Flushbar(
+            icon: const Icon(UniconsLine.smile),
+            isDismissible: false,
+            messageText: Center(
+              child: Text(
+                l10n.pleaseBackToHomePage,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
-              barBlur: 1.0,
-              borderRadius: BorderRadius.circular(16),
-              backgroundColor: context.colorScheme.outline.withAlpha(16),
-              boxShadows: const [
-                BoxShadow(
-                  color: Colors.transparent,
-                  offset: Offset(0, 16),
-                ),
-              ],
-              duration: const Duration(
-                milliseconds: 600,
+            ),
+            margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
+            barBlur: 1.0,
+            borderRadius: BorderRadius.circular(16),
+            backgroundColor: context.colorScheme.outline.withAlpha(16),
+            boxShadows: const [
+              BoxShadow(
+                color: Colors.transparent,
+                offset: Offset(0, 16),
               ),
-              flushbarPosition: FlushbarPosition.TOP,
-            ).show(context);
-          }
+            ],
+            duration: const Duration(
+              milliseconds: 600,
+            ),
+            flushbarPosition: FlushbarPosition.TOP,
+          ).show(context);
         }
       },
+    );
+  }
+}
+
+class _ImportImages extends ConsumerWidget {
+  const _ImportImages();
+
+  void importImages(String imageDirectory) async {
+    /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
+    if (Platform.isAndroid || Platform.isIOS) {
+      await FilePicker.platform.clearTemporaryFiles();
+    }
+
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['json'],
+    );
+
+    if (result == null || result.files.single.path == null) return;
+
+    try {
+      final file = File(result.files.single.path!);
+      final images = jsonDecode(file.readAsStringSync()) as List;
+      for (final image in images) {
+        final f = File(join(imageDirectory, image['filename']));
+        f.writeAsBytesSync(base64.decode(image['data']));
+      }
+    } catch (e) {
+      App.printLog('Error', error: e);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final paths = ref.watch(pathsProvider);
+
+    return BasedListTile(
+      leadingIcon: Icons.add_photo_alternate_rounded,
+      titleText: '导入自 v1 的 image.json',
+      onTap: () => importImages(paths.imageDirectory),
     );
   }
 }
