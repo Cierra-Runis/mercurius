@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class EditorPage extends StatefulHookWidget {
+class EditorPage extends StatefulWidget {
   const EditorPage({
     super.key,
     required this.diary,
@@ -16,6 +16,8 @@ class EditorPage extends StatefulHookWidget {
 
 class _DiaryEditorPageState extends State<EditorPage> {
   late final QuillController _quillController;
+  late final TextEditingController _titleController;
+
   final _scrollController = ScrollController();
 
   late Diary _diary;
@@ -29,6 +31,9 @@ class _DiaryEditorPageState extends State<EditorPage> {
     _quillController = QuillController(
       document: _diary.document,
       selection: const TextSelection.collapsed(offset: 0),
+    );
+    _titleController = TextEditingController(
+      text: _diary.title,
     );
   }
 
@@ -48,15 +53,11 @@ class _DiaryEditorPageState extends State<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final titleController = useTextEditingController(
-      text: _diary.title,
-    );
-
     return Scaffold(
       appBar: _EditorAppBar(
         diary: _diary,
         quillController: _quillController,
-        titleController: titleController,
+        titleController: _titleController,
         handleChangeDiary: _handleChangeDiary,
         handleAutoSaveToggle: _handleAutoSaveToggle,
         autoSave: _autoSave,
@@ -347,12 +348,18 @@ class _EditorToolbar extends StatelessWidget {
           controller: controller,
           attribute: Attribute.rightAlignment,
         ),
+        QuillToolbarToggleStyleButton(
+          controller: controller,
+          attribute: Attribute.checked,
+        ),
+
+        /// TODO: Header
         // QuillToolbarSelectHeaderStyleDropdownButton(
         //   controller: controller,
         // ),
         QuillToolbarToggleStyleButton(
           controller: controller,
-          attribute: Attribute.list,
+          attribute: Attribute.ol,
         ),
         QuillToolbarToggleStyleButton(
           controller: controller,
@@ -404,7 +411,9 @@ class _EditorToolbar extends StatelessWidget {
         diary: diary,
       ),
     );
-    handleChangeDiary(diary.copyWith(moodType: type ?? diary.moodType));
+    handleChangeDiary(
+      diary.copyWith(moodType: type ?? diary.moodType),
+    );
   }
 
   void changeWeather(BuildContext context, Diary diary) async {
@@ -413,11 +422,13 @@ class _EditorToolbar extends StatelessWidget {
         diary: diary,
       ),
     );
-    handleChangeDiary(diary.copyWith(weatherType: type ?? diary.weatherType));
+    handleChangeDiary(
+      diary.copyWith(weatherType: type ?? diary.weatherType),
+    );
   }
 
   void changeDate(BuildContext context, Diary diary) async {
-    final dateTime = await showDatePicker(
+    final createAt = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
@@ -427,54 +438,61 @@ class _EditorToolbar extends StatelessWidget {
         const Duration(days: 20000),
       ),
     );
-    if (dateTime != null) {
-      handleChangeDiary(
-        diary.copyWith(createAt: dateTime),
-      );
-    }
+    handleChangeDiary(
+      diary.copyWith(createAt: createAt ?? diary.createAt),
+    );
   }
 }
 
-class _EditorImageButton extends StatelessWidget {
+class _EditorImageButton extends ConsumerWidget {
   const _EditorImageButton({
     required this.controller,
   });
 
   final QuillController controller;
 
-  // static void _insert(QuillController controller, DiaryImage image) {
-  //   controller.document.insert(controller.selection.extentOffset, '\n');
-  //   controller.updateSelection(
-  //     TextSelection.collapsed(
-  //       offset: controller.selection.extentOffset + 1,
-  //     ),
-  //     ChangeSource.local,
-  //   );
+  void _insert(QuillController controller, String filename) {
+    controller.document.insert(controller.selection.extentOffset, '\n');
+    controller.updateSelection(
+      TextSelection.collapsed(
+        offset: controller.selection.extentOffset + 1,
+      ),
+      ChangeSource.local,
+    );
 
-  //   controller.document.insert(
-  //     controller.selection.extentOffset,
-  //     ImageBlockEmbed(image.id),
-  //   );
+    controller.document.insert(
+      controller.selection.extentOffset,
+      ImageBlockEmbed(filename: filename),
+    );
 
-  //   controller.updateSelection(
-  //     TextSelection.collapsed(
-  //       offset: controller.selection.extentOffset + 1,
-  //     ),
-  //     ChangeSource.local,
-  //   );
+    controller.updateSelection(
+      TextSelection.collapsed(
+        offset: controller.selection.extentOffset + 1,
+      ),
+      ChangeSource.local,
+    );
 
-  //   controller.document.insert(controller.selection.extentOffset, ' \n');
-  //   controller.updateSelection(
-  //     TextSelection.collapsed(
-  //       offset: controller.selection.extentOffset + 2,
-  //     ),
-  //     ChangeSource.local,
-  //   );
-  // }
+    controller.document.insert(controller.selection.extentOffset, ' ');
+    controller.updateSelection(
+      TextSelection.collapsed(
+        offset: controller.selection.extentOffset + 1,
+      ),
+      ChangeSource.local,
+    );
+
+    controller.document.insert(controller.selection.extentOffset, '\n');
+    controller.updateSelection(
+      TextSelection.collapsed(
+        offset: controller.selection.extentOffset + 1,
+      ),
+      ChangeSource.local,
+    );
+  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final paths = ref.watch(pathsProvider);
 
     return IconButton(
       tooltip: l10n.insertImage,
@@ -505,30 +523,29 @@ class _EditorImageButton extends StatelessWidget {
           /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
           /// TIPS: 并删除所需的中间缓存图片
 
-          // final pickedFile = await ImagePicker().pickImage(
-          //   source: ImageSource.gallery,
-          // );
+          final pickedFile = await ImagePicker().pickImage(
+            source: ImageSource.gallery,
+          );
 
-          // if (pickedFile != null) {
-          //   final image = DiaryImage(
-          //     id: 0,
-          //     title: pickedFile.name,
-          //     createAt: DateTime.now(),
-          //     data: await pickedFile.readAsBytes(),
-          //   );
-          //   isarService.saveDiaryImage(image);
-          //   _insert(controller, image);
-          // }
+          if (pickedFile != null) {
+            final sourcePath = pickedFile.path;
+            final targetPath = join(paths.imageDirectory.path, pickedFile.name);
+            await XFile(sourcePath).saveTo(targetPath);
+            _insert(controller, pickedFile.name);
+          }
         } else {
           if (context.mounted) {
-            // final image = await context.push<DiaryImage?>(
-            //   GalleryPage(
-            //     onTap: (context, image) => context.pop(image),
-            //   ),
-            // );
-            // if (image != null) {
-            //   _insert(controller, image);
-            // }
+            final image = await context.push<String?>(
+              Scaffold(
+                body: Gallery(
+                  directory: paths.imageDirectory,
+                  onCardTap: (context, filename) => context.pop(filename),
+                ),
+              ),
+            );
+            if (image != null) {
+              _insert(controller, image);
+            }
           }
         }
       },
