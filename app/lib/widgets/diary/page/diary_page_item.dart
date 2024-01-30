@@ -64,7 +64,7 @@ class DiaryPageItem extends ConsumerWidget {
               },
               icon: const Icon(Icons.delete_outline_rounded),
             ),
-            DiaryShareButton(
+            _DiaryShareButton(
               diary: diary,
             ),
           ],
@@ -176,6 +176,32 @@ class _Title extends StatelessWidget {
       style: const TextStyle(
         fontSize: 16,
       ),
+    );
+  }
+}
+
+class _DiaryShareButton extends ConsumerWidget {
+  const _DiaryShareButton({
+    required this.diary,
+  });
+
+  final Diary diary;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final lang = Localizations.localeOf(context).toLanguageTag();
+
+    return IconButton(
+      onPressed: () => Share.share(
+        '${diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang)}\n'
+        '${l10n.title} - ${diary.title.isEmpty ? l10n.untitled : diary.title}\n'
+        '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}\n'
+        '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}\n'
+        '--- ${l10n.content} ---\n'
+        '${diary.document.toPlainText(EditorBody.embedBuilders, EditorBody.unknownEmbedBuilder)}',
+      ),
+      icon: const Icon(UniconsLine.share),
     );
   }
 }
