@@ -48,6 +48,7 @@ abstract class App {
       final dynamicColor = await DynamicColor.init();
       final packageInfo = await PackageInfo.fromPlatform();
 
+      /// TODO: use riverpod instead
       isarService = IsarService.openDB(paths.appSupport);
 
       runApp(

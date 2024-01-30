@@ -3,13 +3,14 @@ import 'package:mercurius/index.dart';
 extension CacheForExtension on AutoDisposeRef<Object?> {
   /// Refresh provider each [duration].
   void refreshFor(Duration duration) {
-    // Immediately prevent the state from getting destroyed.
+    /// Immediately prevent the state from getting destroyed.
     keepAlive();
-    // After duration has elapsed, we re-enable automatic disposal.
+
+    /// After duration has elapsed, we re-enable automatic disposal.
     final timer = Timer(duration, invalidateSelf);
 
-    // Optional: when the provider is recomputed (such as with ref.watch),
-    // we cancel the pending timer.
+    /// Optional: when the provider is recomputed (such as with ref.watch),
+    /// we cancel the pending timer.
     onDispose(timer.cancel);
   }
 }
@@ -73,7 +74,7 @@ extension DefaultStylesExt on DefaultStyles {
     );
 
     const verticalSpacing = VerticalSpacing(4, 4);
-    const lineSpacing = VerticalSpacing(0, 0);
+    const lineSpacing = VerticalSpacing(2, 2);
 
     final h1 = DefaultTextBlockStyle(
       baseStyle.copyWith(fontSize: 20),

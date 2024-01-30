@@ -119,7 +119,6 @@ class _ColorPickerState extends ConsumerState<_ColorPicker> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final dynamicColor = ref.watch(dynamicColorProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
 
     return AlertDialog(
@@ -182,6 +181,7 @@ class _BackgroundImagePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final paths = ref.watch(pathsProvider);
     final settingsNotifier = ref.watch(settingsProvider.notifier);
     final l10n = context.l10n;
 
@@ -196,6 +196,7 @@ class _BackgroundImagePage extends ConsumerWidget {
         ],
       ),
       body: Gallery(
+        directory: paths.imageDirectory,
         onCardTap: (context, filename) {
           settingsNotifier.setBgImgPath(filename);
           context.pop();
