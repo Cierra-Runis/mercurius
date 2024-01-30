@@ -11,54 +11,50 @@ typedef GalleryActionsBuilder = List<Widget> Function(
   String filename,
 );
 
-class Gallery extends ConsumerStatefulWidget {
+class Gallery extends HookWidget {
   const Gallery({
     super.key,
+    required this.directory,
     required this.onCardTap,
     this.actionsBuilder,
   });
 
+  final Directory directory;
   final GalleryOnTap onCardTap;
   final GalleryActionsBuilder? actionsBuilder;
 
   @override
-  ConsumerState<Gallery> createState() => _GalleryPageState();
-}
-
-class _GalleryPageState extends ConsumerState<Gallery> {
-  late List<FileSystemEntity> _files;
-
-  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final paths = ref.watch(pathsProvider);
-    final directory = paths.imageDirectory;
-    _files = directory.listSync();
-    directory.watch().listen(
-          (event) => setState(() => _files = directory.listSync()),
-        );
+    final stream = useStream(
+      directory.watch().map((event) => directory.listSync()),
+      initialData: directory.listSync(),
+    );
 
-    return _files.isEmpty
-        ? Center(
-            child: Text(l10n.noData),
-          )
-        : GridView.builder(
-            cacheExtent: 1000,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-            ),
-            padding: const EdgeInsets.all(12.0),
-            itemCount: _files.length,
-            itemBuilder: (context, index) {
-              final filename = path.basename(_files[index].path);
-              return _GalleryCard(
-                key: Key(filename),
-                filename: filename,
-                onCardTap: widget.onCardTap,
-                actionsBuilder: widget.actionsBuilder,
-              );
-            },
+    if (stream.hasData) {
+      final files = stream.data!;
+      return GridView.builder(
+        cacheExtent: 1000,
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+        ),
+        padding: const EdgeInsets.all(12.0),
+        itemCount: files.length,
+        itemBuilder: (context, index) {
+          final filename = path.basename(files[index].path);
+          return _GalleryCard(
+            key: Key(filename),
+            filename: filename,
+            onCardTap: onCardTap,
+            actionsBuilder: actionsBuilder,
           );
+        },
+      );
+    }
+
+    return Center(
+      child: Text(l10n.noData),
+    );
   }
 }
 
@@ -114,8 +110,7 @@ class _GalleryCard extends ConsumerWidget {
               child: ColoredBox(
                 color: colorScheme.shadow.withAlpha(144),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: actionsBuilder?.call(context, filename) ?? [],
                   // children: [
                   //   IconButton(
