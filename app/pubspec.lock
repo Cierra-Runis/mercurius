@@ -261,26 +261,26 @@ packages:
     dependency: "direct dev"
     description:
       name: custom_lint
-      sha256: dfb893ff17c83cf08676c6b64df11d3e53d80590978d7c1fb242afff3ba6dedb
+      sha256: "22bd87a362f433ba6aae127a7bac2838645270737f3721b180916d7c5946cb5d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.8"
+    version: "0.5.11"
   custom_lint_builder:
     dependency: transitive
     description:
       name: custom_lint_builder
-      sha256: badc07d7737b71e9a9f960f53463f06e09cc6ccdaa1779623015eaf9f9ee8410
+      sha256: "7d0b094266b5c357769fffb920826b1a08373290f3c5c44b86253aae6873d5fc"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.10"
+    version: "0.5.11"
   custom_lint_core:
     dependency: transitive
     description:
       name: custom_lint_core
-      sha256: bfcc6b518c54d386ad0647ad7a4f415b4db3ea270d09fd9b7f4a1a2df07c3d84
+      sha256: "77dd37e9afe5ed86fc75de22ed3dfae5afb75303111358766550af23e7de53cd"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.10"
+    version: "0.5.11"
   dart_date:
     dependency: "direct main"
     description:
@@ -1510,10 +1510,10 @@ packages:
     dependency: "direct main"
     description:
       name: window_manager
-      sha256: dcc865277f26a7dad263a47d0e405d77e21f12cb71f30333a52710a408690bd7
+      sha256: b3c895bdf936c77b83c5254bec2e6b3f066710c1f89c38b20b8acc382b525494
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.7"
+    version: "0.3.8"
   xdg_directories:
     dependency: transitive
     description:
