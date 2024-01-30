@@ -263,7 +263,12 @@ class _EditingDialogState extends State<_EditingDialog> {
                 index: index,
                 placeHolder: const DiaryListItemPlaceholder(),
                 child: DiaryListItem(
-                  onTap: () => context.pop(diaries[index]),
+                  onTap: () {
+                    context.pop();
+                    context.push(
+                      EditorPage(diary: diaries[index]),
+                    );
+                  },
                   diary: diaries[index],
                 ),
               ),
