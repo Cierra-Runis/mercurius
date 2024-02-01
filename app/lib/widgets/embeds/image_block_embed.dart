@@ -5,7 +5,7 @@ class ImageBlockEmbed extends Embeddable {
     required String filename,
   }) : super(imageType, filename);
 
-  static const String imageType = 'mercuriusImage';
+  static const imageType = 'mercuriusImage';
 }
 
 class ImageBlockEmbedBuilder extends EmbedBuilder {
@@ -15,8 +15,7 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
   String get key => ImageBlockEmbed.imageType;
 
   @override
-  String toPlainText(Embed node) =>
-      '[${ImageBlockEmbed.imageType} ${node.value.data}]';
+  String toPlainText(Embed node) => '[$key ${node.value.data}]';
 
   @override
   Widget build(
@@ -62,13 +61,11 @@ class _ImageBlock extends ConsumerWidget {
       child: MouseRegion(
         cursor: readOnly ? SystemMouseCursors.click : SystemMouseCursors.basic,
         child: GestureDetector(
-          onTap: () {
-            if (readOnly) {
-              context.pushDialog(
-                ImageView(filename: node.value.data as String),
-              );
-            }
-          },
+          onTap: readOnly
+              ? () => context.pushDialog(
+                    ImageView(filename: node.value.data as String),
+                  )
+              : null,
           child: Image(
             image: BasedLocalFirstImage(
               filename: node.value.data as String,

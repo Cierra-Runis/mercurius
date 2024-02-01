@@ -567,7 +567,7 @@ class _EditorTagButton extends StatelessWidget {
   ) {
     controller.document.insert(
       controller.selection.extentOffset,
-      TagBlockEmbed(json: diaryTag.toJson()),
+      diaryTag.toEmbeddable(),
     );
 
     controller.updateSelection(
