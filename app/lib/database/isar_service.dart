@@ -81,7 +81,7 @@ mixin _DiaryService on _Service {
 
   Future<List<Diary>> getAllDiaries() async {
     final isar = db;
-    return isar.diarys.where().findAll();
+    return isar.diarys.where().sortByCreateAt().findAll();
   }
 
   Stream<List<Diary>> listenToAllDiaries() async* {
