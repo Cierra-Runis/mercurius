@@ -1,10 +1,10 @@
 import 'package:mercurius/index.dart';
 
-class HomePage extends HookConsumerWidget {
+class HomePage extends HookWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final controller = useScrollController();
 
     return Scaffold(
@@ -35,100 +35,11 @@ class _SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    return SearchAnchor(
-      builder: (context, controller) => IconButton(
-        onPressed: controller.openView,
-        icon: const Icon(Icons.search),
-      ),
-      viewBuilder: (suggestions) => suggestions.isEmpty
-          ? Center(child: Text(l10n.noData))
-          : ListView.builder(
-              cacheExtent: 1000,
-              itemCount: suggestions.length,
-              itemBuilder: (context, index) => suggestions.elementAt(index),
-            ),
-      suggestionsBuilder: (context, controller) async {
-        if (controller.text.isEmpty) {
-          return [];
-        }
-        final regex = RegExp(controller.text);
-        final diaries = await isarService.getAllDiaries();
-        final filteredDiaries = diaries.where(
-          (element) => element.plainText.contains(regex),
-        );
-
-        return filteredDiaries.map(
-          (diary) => _ListTile(
-            diary: diary,
-            regex: regex,
-          ),
-        );
-      },
+    return IconButton(
+      tooltip: l10n.searchDiary,
+      onPressed: () => context.push(const SearchPage()),
+      icon: const Icon(Icons.search),
     );
-  }
-}
-
-class _ListTile extends StatelessWidget {
-  const _ListTile({
-    required this.diary,
-    required this.regex,
-  });
-
-  final Diary diary;
-  final RegExp regex;
-
-  @override
-  Widget build(BuildContext context) {
-    final lang = Localizations.localeOf(context).toLanguageTag();
-    final primaryColor = Theme.of(context).colorScheme.primary;
-    final createAt = diary.createAt.format(
-      DateFormat.ABBR_MONTH_WEEKDAY_DAY,
-      lang,
-    );
-    final strings = diary.plainText.split(regex);
-
-    final spans = strings
-        .map((e) => TextSpan(text: e))
-        .joinSeparator(
-          TextSpan(
-            text: regex.pattern,
-            style: TextStyle(
-              color: primaryColor,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        )
-        .skip(1)
-        .toList();
-
-    return ListTile(
-      title: Text(createAt),
-      subtitle: Text.rich(
-        TextSpan(children: spans),
-        style: const TextStyle(fontSize: 10),
-        maxLines: 3,
-        overflow: TextOverflow.ellipsis,
-      ),
-      onTap: () => context.push(DiaryPageView(diary: diary)),
-    );
-  }
-}
-
-extension ListExtension<E> on Iterable<E> {
-  Iterable<E> joinSeparator(E separator) {
-    final iterator = this.iterator;
-    final result = <E>[];
-    if (!iterator.moveNext()) return result;
-    result.add(iterator.current);
-    if (!iterator.moveNext()) return result;
-
-    do {
-      result.add(separator);
-      result.add(iterator.current);
-    } while (iterator.moveNext());
-
-    return result;
   }
 }
 

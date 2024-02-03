@@ -84,7 +84,7 @@ class _DiaryEditorPageState extends State<EditorPage> {
   }
 }
 
-class _EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
+class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   const _EditorAppBar({
     required this.diary,
     required this.quillController,
@@ -106,7 +106,7 @@ class _EditorAppBar extends ConsumerWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return AppBar(
@@ -222,7 +222,7 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
   }
 }
 
-class _EditorSaveButton extends ConsumerWidget {
+class _EditorSaveButton extends StatelessWidget {
   const _EditorSaveButton({
     required this.diary,
     required this.quillController,
@@ -236,7 +236,7 @@ class _EditorSaveButton extends ConsumerWidget {
   final TextEditingController titleController;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return TextButton(
@@ -681,7 +681,7 @@ class _TagSelectorState extends State<_TagSelector> {
   }
 }
 
-class _MoodSelector extends ConsumerWidget {
+class _MoodSelector extends StatelessWidget {
   const _MoodSelector({
     required this.diary,
   });
@@ -689,7 +689,7 @@ class _MoodSelector extends ConsumerWidget {
   final Diary diary;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return AlertDialog(

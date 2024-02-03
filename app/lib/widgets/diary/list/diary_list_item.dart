@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListItem extends ConsumerWidget {
+class DiaryListItem extends StatelessWidget {
   const DiaryListItem({
     super.key,
     required this.diary,
@@ -13,7 +13,7 @@ class DiaryListItem extends ConsumerWidget {
   final VoidCallback? onTap;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return Dismissible(
@@ -32,7 +32,8 @@ class DiaryListItem extends ConsumerWidget {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: InkWell(
-          onTap: onTap ?? () => context.pushDialog(DiaryPageView(diary: diary)),
+          onTap: onTap ??
+              () => context.pushDialog(DiaryPageView(initialId: diary.id)),
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
             height: 80,

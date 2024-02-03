@@ -1,10 +1,10 @@
 import 'package:mercurius/index.dart';
 
-class MonthlyWords extends ConsumerWidget {
+class MonthlyWords extends HookWidget {
   const MonthlyWords({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
     final lang = Localizations.localeOf(context).toLanguageTag();
 
@@ -18,7 +18,7 @@ class MonthlyWords extends ConsumerWidget {
         SizedBox(
           height: 220,
           child: FutureBuilder<List<_DiaryWordsData>>(
-            future: _getDiaryWordsData(ref),
+            future: _getDiaryWordsData(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return SfCartesianChart(
@@ -80,7 +80,7 @@ class MonthlyWords extends ConsumerWidget {
     );
   }
 
-  Future<List<_DiaryWordsData>> _getDiaryWordsData(WidgetRef ref) async {
+  Future<List<_DiaryWordsData>> _getDiaryWordsData() async {
     final result = <_DiaryWordsData>[];
 
     final data = <DateTime, int>{};

@@ -13,11 +13,11 @@ class CurrentIndex extends _$CurrentIndex {
   void changeTo(int value) => state = value;
 }
 
-class RootView extends ConsumerWidget {
+class RootView extends StatelessWidget {
   const RootView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return DoubleBack(
       child: BasedSplitView(
         navigatorKey: splitViewKey,

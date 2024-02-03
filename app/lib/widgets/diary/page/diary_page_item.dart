@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryPageItem extends ConsumerWidget {
+class DiaryPageItem extends StatelessWidget {
   const DiaryPageItem({
     super.key,
     required this.diary,
@@ -9,7 +9,7 @@ class DiaryPageItem extends ConsumerWidget {
   final Diary diary;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return Scaffold(
@@ -180,7 +180,7 @@ class _Title extends StatelessWidget {
   }
 }
 
-class _DiaryShareButton extends ConsumerWidget {
+class _DiaryShareButton extends StatelessWidget {
   const _DiaryShareButton({
     required this.diary,
   });
@@ -188,7 +188,7 @@ class _DiaryShareButton extends ConsumerWidget {
   final Diary diary;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
     final lang = Localizations.localeOf(context).toLanguageTag();
 

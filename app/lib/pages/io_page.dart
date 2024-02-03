@@ -21,11 +21,11 @@ class IOPage extends StatelessWidget {
   }
 }
 
-class _ImportSection extends ConsumerWidget {
+class _ImportSection extends StatelessWidget {
   const _ImportSection();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return BasedListSection(

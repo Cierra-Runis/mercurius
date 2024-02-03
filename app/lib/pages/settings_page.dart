@@ -29,11 +29,11 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-class _ThemeSelectListTile extends ConsumerWidget {
+class _ThemeSelectListTile extends StatelessWidget {
   const _ThemeSelectListTile();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return BasedListTile(
@@ -82,11 +82,11 @@ class _ThemeSelector extends ConsumerWidget {
   }
 }
 
-class _AccentColorListTile extends ConsumerWidget {
+class _AccentColorListTile extends StatelessWidget {
   const _AccentColorListTile();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
     final color = context.colorScheme.primary;
 
