@@ -1,19 +1,19 @@
 import 'package:mercurius/index.dart';
 
-class DiaryPageView extends ConsumerStatefulWidget {
+class DiaryPageView extends StatefulWidget {
   const DiaryPageView({
     super.key,
-    required this.diary,
+    required this.initialId,
   });
 
-  final Diary diary;
+  final int initialId;
 
   @override
-  ConsumerState<DiaryPageView> createState() => _DiaryPageViewState();
+  State<DiaryPageView> createState() => _DiaryPageViewState();
 }
 
-class _DiaryPageViewState extends ConsumerState<DiaryPageView> {
-  late final stream = isarService.listenToAllDiaries();
+class _DiaryPageViewState extends State<DiaryPageView> {
+  final stream = isarService.listenToAllDiaries();
 
   Widget _getPageBySnapshotData(
     BuildContext context,
@@ -31,7 +31,7 @@ class _DiaryPageViewState extends ConsumerState<DiaryPageView> {
     return PageView.builder(
       itemCount: diaries.length,
       controller: PageController(
-        initialPage: diaries.indexWhere((e) => e.id == widget.diary.id),
+        initialPage: diaries.indexWhere((e) => e.id == widget.initialId),
       ),
       allowImplicitScrolling: true,
       itemBuilder: (context, index) => DiaryPageItem(

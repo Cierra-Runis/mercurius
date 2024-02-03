@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class DiaryListView extends ConsumerStatefulWidget {
+class DiaryListView extends StatefulWidget {
   const DiaryListView({
     super.key,
     required this.controller,
@@ -8,11 +8,11 @@ class DiaryListView extends ConsumerStatefulWidget {
   final ScrollController controller;
 
   @override
-  ConsumerState<DiaryListView> createState() => _DiaryListViewState();
+  State<DiaryListView> createState() => _DiaryListViewState();
 }
 
-class _DiaryListViewState extends ConsumerState<DiaryListView> {
-  late final stream = isarService.listenToAllDiaries();
+class _DiaryListViewState extends State<DiaryListView> {
+  final stream = isarService.listenToAllDiaries();
 
   Widget _getCardBySnapshotData(
     BuildContext context,
@@ -25,14 +25,16 @@ class _DiaryListViewState extends ConsumerState<DiaryListView> {
       return Center(child: Text(l10n.noData));
     }
 
-    final sections = <_DiaryListViewSection>[];
+    final sections = <DiaryListViewSection>[];
     final diaries = snapshot.data!;
 
     var year = diaries[0].createAt.year;
     var month = diaries[0].createAt.month;
     sections.add(
-      _DiaryListViewSection()
-        ..header = diaries[0].createAt.format(DateFormat.YEAR_ABBR_MONTH, lang),
+      DiaryListViewSection(
+        header: diaries[0].createAt.format(DateFormat.YEAR_ABBR_MONTH, lang),
+        items: [],
+      ),
     );
 
     for (final diary in diaries) {
@@ -42,9 +44,10 @@ class _DiaryListViewState extends ConsumerState<DiaryListView> {
         month = diary.createAt.month;
         year = diary.createAt.year;
         sections.add(
-          _DiaryListViewSection()
-            ..header = diary.createAt.format(DateFormat.YEAR_ABBR_MONTH, lang)
-            ..items.add(diary),
+          DiaryListViewSection(
+            header: diary.createAt.format(DateFormat.YEAR_ABBR_MONTH, lang),
+            items: [diary],
+          ),
         );
       }
     }
@@ -52,7 +55,7 @@ class _DiaryListViewState extends ConsumerState<DiaryListView> {
     return ExpandableListView(
       cacheExtent: 1000,
       controller: widget.controller,
-      builder: SliverExpandableChildDelegate<Diary, _DiaryListViewSection>(
+      builder: SliverExpandableChildDelegate<Diary, DiaryListViewSection>(
         sectionList: sections,
         headerBuilder: (context, sectionIndex, index) {
           return ColoredBox(
@@ -108,9 +111,14 @@ class _DiaryListViewState extends ConsumerState<DiaryListView> {
   }
 }
 
-class _DiaryListViewSection implements ExpandableListSection<Diary> {
-  late String header;
-  List<Diary> items = [];
+class DiaryListViewSection implements ExpandableListSection<Diary> {
+  const DiaryListViewSection({
+    required this.items,
+    required this.header,
+  });
+
+  final String header;
+  final List<Diary> items;
 
   @override
   List<Diary> getItems() => items;
@@ -120,4 +128,14 @@ class _DiaryListViewSection implements ExpandableListSection<Diary> {
 
   @override
   void setSectionExpanded(bool expanded) {}
+
+  DiaryListViewSection copyWith({
+    String? header,
+    List<Diary>? items,
+  }) {
+    return DiaryListViewSection(
+      items: items ?? this.items,
+      header: header ?? this.header,
+    );
+  }
 }

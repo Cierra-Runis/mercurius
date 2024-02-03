@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
-abstract class _Service {
+abstract class _IsarService {
   final Isar db;
 
-  const _Service({required this.db});
+  const _IsarService({required this.db});
 }
 
-class IsarService extends _Service with _DiaryService {
+class IsarService extends _IsarService with _DiaryService {
   const IsarService(Isar db) : super(db: db);
 
   Future<bool> importJsonWith(String path) async {
@@ -50,7 +50,7 @@ class IsarService extends _Service with _DiaryService {
   }
 }
 
-mixin _DiaryService on _Service {
+mixin _DiaryService on _IsarService {
   int diarysAutoIncrement() => db.diarys.autoIncrement();
 
   Future<void> saveDiary(Diary newDiary) async {

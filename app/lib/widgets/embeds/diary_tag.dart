@@ -33,7 +33,7 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
   @override
   String toPlainText(Embed node) {
     final tag = DiaryTag.fromJson(node.value.data);
-    return '[$key ${tag.message}]';
+    return '[${tag.tagType} ${tag.message}]';
   }
 
   @override
