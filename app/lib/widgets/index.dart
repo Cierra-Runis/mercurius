@@ -5,6 +5,7 @@ export 'statistics/index.dart';
 export 'confirm_dialog.dart';
 export 'editor_body.dart';
 export 'gallery.dart';
+export 'highlight_text.dart';
 export 'window_app_bar.dart';
 export 'based_shimmer.dart';
 export 'double_back.dart';

@@ -105,7 +105,7 @@
   "unsupportedImageFormat": "Unsupported Image Format",
   "imageMissing": "Image Missing",
   "searchDiary": "Search Diary",
-  "searchTitle": "Search Title",
+  "searchHint": "Support regular expressions",
   "backAgainToExit": "Go Back Again To Exit",
   "hiToKoToProvider": "This service is provided by Hitokoto「一言」",
   "hiToKoToFetching": "Fetching 「一言」...",

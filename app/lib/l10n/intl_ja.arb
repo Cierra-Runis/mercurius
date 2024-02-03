@@ -105,7 +105,7 @@
   "unsupportedImageFormat": "サポートされていない画像フォーマット",
   "imageMissing": "画像がありません",
   "searchDiary": "日記を検索",
-  "searchTitle": "タイトルを検索",
+  "searchHint": "正規表現を使用できます",
   "backAgainToExit": "もう一度戻って終了します",
   "hiToKoToProvider": "このサービスは、Hitokoto「一言」が提供しています",
   "hiToKoToFetching": "「一言」を取得中",
