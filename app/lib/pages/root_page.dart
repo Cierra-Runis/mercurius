@@ -13,15 +13,15 @@ class CurrentIndex extends _$CurrentIndex {
   void changeTo(int value) => state = value;
 }
 
-class RootView extends StatelessWidget {
-  const RootView({super.key});
+class RootPage extends StatelessWidget {
+  const RootPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DoubleBack(
       child: BasedSplitView(
         navigatorKey: splitViewKey,
-        leftWidget: RootPage(key: _rootPage),
+        leftWidget: _RootPage(key: _rootPage),
         dividerWidth: 0,
         rightPlaceholder: const Scaffold(
           body: Center(
@@ -35,8 +35,8 @@ class RootView extends StatelessWidget {
   }
 }
 
-class RootPage extends ConsumerWidget {
-  const RootPage({
+class _RootPage extends ConsumerWidget {
+  const _RootPage({
     super.key,
   });
 
