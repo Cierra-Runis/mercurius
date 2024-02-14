@@ -157,7 +157,7 @@ class _ListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         maxLines: 3,
       ),
-      onTap: () => context.push(
+      onTap: () => context.pushDialog(
         DiaryPageView(initialId: diary.id),
       ),
     );

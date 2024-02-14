@@ -1,19 +1,21 @@
 import 'package:mercurius/index.dart';
 
+enum ConfirmResult { deny, confirm }
+
 class ConfirmDialog extends StatelessWidget {
   const ConfirmDialog({
     super.key,
     required this.title,
     required this.summary,
-    this.falseString,
-    this.trueString,
+    this.denyString,
+    this.confirmString,
     required this.context,
   });
 
   final String title;
   final String summary;
-  final String? falseString;
-  final String? trueString;
+  final String? denyString;
+  final String? confirmString;
   final BuildContext context;
 
   @override
@@ -37,16 +39,16 @@ class ConfirmDialog extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () => context.pop(false),
-          child: Text(falseString ?? l10n.cancel),
+          onPressed: () => context.pop(ConfirmResult.deny),
+          child: Text(denyString ?? l10n.cancel),
         ),
         TextButton(
-          onPressed: () => context.pop(true),
-          child: Text(trueString ?? l10n.confirm),
+          onPressed: () => context.pop(ConfirmResult.confirm),
+          child: Text(confirmString ?? l10n.confirm),
         ),
       ],
     );
   }
 
-  Future<bool?> get confirm => context.pushDialog(this);
+  Future<ConfirmResult?> get confirm => context.pushDialog(this);
 }

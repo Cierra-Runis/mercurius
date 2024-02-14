@@ -11,13 +11,13 @@ class DiaryTag with _$DiaryTag {
     required String message,
   }) = _DiaryTag;
 
-  TagBlockEmbeddable toEmbeddable() => TagBlockEmbeddable._(json: toJson());
+  Embeddable toEmbeddable() => _TagBlockEmbeddable(json: toJson());
 
   factory DiaryTag.fromJson(Json json) => _$DiaryTagFromJson(json);
 }
 
-class TagBlockEmbeddable extends Embeddable {
-  const TagBlockEmbeddable._({
+class _TagBlockEmbeddable extends Embeddable {
+  const _TagBlockEmbeddable({
     required Json json,
   }) : super(tagType, json);
 
@@ -28,12 +28,12 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
   const TagBlockEmbedBuilder();
 
   @override
-  String get key => TagBlockEmbeddable.tagType;
+  String get key => _TagBlockEmbeddable.tagType;
 
   @override
   String toPlainText(Embed node) {
     final tag = DiaryTag.fromJson(node.value.data);
-    return '[${tag.tagType} ${tag.message}]';
+    return '[$key ${tag.message}]';
   }
 
   @override

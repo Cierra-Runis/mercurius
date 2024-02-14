@@ -19,14 +19,14 @@ Future<HiToKoTo> hitokoto(HitokotoRef ref) async {
     );
   }
 
-  if (response.statusCode == 200) {
-    return HiToKoTo.fromJson(
-      jsonDecode('$response'),
-    );
-  } else {
+  if (response.statusCode != 200 || response.data is! Map) {
     return const HiToKoTo(
       hitokoto: '没有BUG的代码是不完美的！[请求失败]',
       uuid: 'd4ea5c57-bd64-4b9c-81a1-3035bc059b43',
     );
   }
+
+  return HiToKoTo.fromJson(
+    response.data,
+  );
 }

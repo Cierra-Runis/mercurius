@@ -8,16 +8,11 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          LoadingAnimationWidget.staggeredDotsWave(
-            color: context.brightness.isDark
-                ? context.colorScheme.primary
-                : context.colorScheme.primaryContainer,
-            size: 16,
-          ),
-        ],
+      child: LoadingAnimationWidget.staggeredDotsWave(
+        color: context.brightness.isDark
+            ? context.colorScheme.primary
+            : context.colorScheme.primaryContainer,
+        size: 16,
       ),
     );
   }

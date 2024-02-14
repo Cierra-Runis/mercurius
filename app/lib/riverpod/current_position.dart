@@ -21,15 +21,14 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
     return const CurrentPosition();
   }
 
-  dynamic data;
-  if (response.statusCode == 200) {
-    data = jsonDecode('$response');
-    if (data['province'] == null ||
-        data['city'] == null ||
-        data['rectangle'] == null) {
-      return const CurrentPosition();
-    }
-  } else {
+  if (response.statusCode != 200 || response.data is! Map) {
+    return const CurrentPosition();
+  }
+
+  final data = response.data as Map;
+  if (data['province'] == null ||
+      data['city'] == null ||
+      data['rectangle'] == null) {
     return const CurrentPosition();
   }
 
