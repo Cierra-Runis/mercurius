@@ -1,4 +1,5 @@
 import 'package:mercurius/index.dart';
+import 'package:path/path.dart' as p;
 
 class GalleryPage extends ConsumerWidget {
   const GalleryPage({super.key});
@@ -21,7 +22,7 @@ class GalleryPage extends ConsumerWidget {
           IconButton(
             /// TODO: Confirm again
             onPressed: () => File(
-              join(paths.imageDirectory.path, filename),
+              p.join(paths.imageDirectory.path, filename),
             ).delete(),
             icon: const Icon(Icons.delete_rounded),
           ),

@@ -1,4 +1,5 @@
 import 'package:mercurius/index.dart';
+import 'package:path/path.dart' as p;
 
 class ImageView extends ConsumerWidget {
   const ImageView({
@@ -35,7 +36,7 @@ class ImageView extends ConsumerWidget {
           alignment: Alignment.bottomRight,
           child: IconButton(
             onPressed: () => Share.shareXFiles([
-              XFile(join(paths.imageDirectory.path, filename)),
+              XFile(p.join(paths.imageDirectory.path, filename)),
             ]),
             icon: const Icon(UniconsLine.share),
           ),

@@ -1,4 +1,5 @@
 import 'package:mercurius/index.dart';
+import 'package:path/path.dart' as p;
 
 class EditorPage extends StatefulWidget {
   const EditorPage({
@@ -238,12 +239,14 @@ class _EditorSaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final colorScheme = context.colorScheme;
 
     return TextButton(
       onPressed: () {
-        final plainText = quillController.document
-            .toPlainText()
-            .replaceAll(RegExp(r'\n'), '');
+        final plainText = quillController.document.toPlainText(
+          EditorBody.embedBuilders,
+          EditorBody.unknownEmbedBuilder,
+        );
         if (plainText.isNotEmpty) {
           final newDiary = diary.copyWith(
             content: quillController.document.toDelta().toJson(),
@@ -271,7 +274,7 @@ class _EditorSaveButton extends StatelessWidget {
           margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
           barBlur: 1.0,
           borderRadius: BorderRadius.circular(16),
-          backgroundColor: context.colorScheme.outline.withAlpha(16),
+          backgroundColor: colorScheme.outline.withAlpha(16),
           boxShadows: const [
             BoxShadow(
               color: Colors.transparent,
@@ -489,6 +492,49 @@ class _EditorImageButton extends ConsumerWidget {
     );
   }
 
+  void _insertFromSystem(Directory imageDirectory) async {
+    /// TIPS: 安卓启用新版本
+    final imagePickerImplementation = ImagePickerPlatform.instance;
+    if (imagePickerImplementation is ImagePickerAndroid) {
+      imagePickerImplementation.useAndroidPhotoPicker = true;
+    }
+
+    /// TIPS: 这里返还的是图片地址
+    /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
+    /// TIPS: 而不是可见于 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/cache/` 下
+    /// TIPS: 这会导致用户清除缓存后图片无法加载的问题
+    /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
+    /// TIPS: 并删除所需的中间缓存图片
+
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile != null) {
+      final sourcePath = pickedFile.path;
+      final targetPath = p.join(imageDirectory.path, pickedFile.name);
+      await XFile(sourcePath).saveTo(targetPath);
+      _insert(controller, pickedFile.name);
+    }
+  }
+
+  void _insertFromGallery(
+    BuildContext context,
+    Directory imageDirectory,
+  ) async {
+    final selectedFilename = await context.push<String?>(
+      Scaffold(
+        body: Gallery(
+          directory: imageDirectory,
+          onCardTap: (context, filename) => context.pop(filename),
+        ),
+      ),
+    );
+    if (selectedFilename != null) {
+      _insert(controller, selectedFilename);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
@@ -503,51 +549,18 @@ class _EditorImageButton extends ConsumerWidget {
           context: context,
           title: l10n.insertTheImageFrom,
           summary: '${l10n.imageGallery}？${l10n.systemFile}？',
-          trueString: l10n.systemFile,
-          falseString: l10n.imageGallery,
+          confirmString: l10n.systemFile,
+          denyString: l10n.imageGallery,
         ).confirm;
 
-        if (newImage == null) return;
+        if (!context.mounted) return;
+        final directory = paths.imageDirectory;
 
-        if (newImage) {
-          /// TIPS: 安卓启用新版本
-          final imagePickerImplementation = ImagePickerPlatform.instance;
-          if (imagePickerImplementation is ImagePickerAndroid) {
-            imagePickerImplementation.useAndroidPhotoPicker = true;
-          }
-
-          /// TIPS: 这里返还的是图片地址
-          /// TIPS: 缓存于 `/data/user/0/pers.cierra_runis.mercurius/cache/` 下
-          /// TIPS: 而不是可见于 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/cache/` 下
-          /// TIPS: 这会导致用户清除缓存后图片无法加载的问题
-          /// TIPS: 故修改图片地址至 `/storage/emulated/0/Android/data/pers.cierra_runis.mercurius/image/` 下
-          /// TIPS: 并删除所需的中间缓存图片
-
-          final pickedFile = await ImagePicker().pickImage(
-            source: ImageSource.gallery,
-          );
-
-          if (pickedFile != null) {
-            final sourcePath = pickedFile.path;
-            final targetPath = join(paths.imageDirectory.path, pickedFile.name);
-            await XFile(sourcePath).saveTo(targetPath);
-            _insert(controller, pickedFile.name);
-          }
-        } else {
-          if (context.mounted) {
-            final image = await context.push<String?>(
-              Scaffold(
-                body: Gallery(
-                  directory: paths.imageDirectory,
-                  onCardTap: (context, filename) => context.pop(filename),
-                ),
-              ),
-            );
-            if (image != null) {
-              _insert(controller, image);
-            }
-          }
-        }
+        return switch (newImage) {
+          ConfirmResult.deny => _insertFromSystem(directory),
+          ConfirmResult.confirm => _insertFromGallery(context, directory),
+          _ => null
+        };
       },
       icon: const Icon(Icons.add_photo_alternate_rounded),
     );

@@ -1,4 +1,5 @@
 import 'package:mercurius/index.dart';
+import 'package:path/path.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'paths.g.dart';
 
@@ -12,7 +13,7 @@ class Paths {
   final Directory documents;
 
   Directory get imageDirectory => Directory(
-        join(appSupport.path, 'image'),
+        p.join(appSupport.path, 'image'),
       )..create();
 
   const Paths._({

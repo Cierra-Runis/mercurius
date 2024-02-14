@@ -1,5 +1,5 @@
 import 'package:mercurius/index.dart';
-import 'package:path/path.dart' as path;
+import 'package:path/path.dart' as p;
 
 typedef GalleryOnTap = void Function(
   BuildContext context,
@@ -41,7 +41,7 @@ class Gallery extends HookWidget {
         padding: const EdgeInsets.all(12.0),
         itemCount: files.length,
         itemBuilder: (context, index) {
-          final filename = path.basename(files[index].path);
+          final filename = p.basename(files[index].path);
           return _GalleryCard(
             key: Key(filename),
             filename: filename,
@@ -112,26 +112,6 @@ class _GalleryCard extends ConsumerWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: actionsBuilder?.call(context, filename) ?? [],
-                  // children: [
-                  //   IconButton(
-                  //     onPressed: readOnly
-                  //         ? null
-                  //         : () async {
-                  //             final confirm = await ConfirmDialog(
-                  //               title: l10n.areYouSureToDeleteTheImage,
-                  //               summary:
-                  //                   l10n.pleaseThinkTwiceAboutDeletingTheImage,
-                  //               context: context,
-                  //             ).confirm;
-                  //             if (confirm ?? false) {
-                  //               isarService.deleteDiaryImageById(diaryImage.id);
-                  //             }
-                  //           },
-                  //     icon: const Icon(
-                  //       Icons.delete_outline_rounded,
-                  //     ),
-                  //   ),
-                  // ],
                 ),
               ),
             ),

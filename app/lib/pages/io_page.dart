@@ -1,4 +1,5 @@
 import 'package:mercurius/index.dart';
+import 'package:path/path.dart' as p;
 
 class IOPage extends StatelessWidget {
   const IOPage({super.key});
@@ -125,7 +126,7 @@ class _ImportImages extends ConsumerWidget {
       final file = File(result.files.single.path!);
       final images = jsonDecode(file.readAsStringSync()) as List;
       for (final image in images) {
-        final f = File(join(imageDirectory, image['filename']));
+        final f = File(p.join(imageDirectory, image['filename']));
         f.writeAsBytesSync(base64.decode(image['data']));
       }
     } catch (e) {
@@ -160,7 +161,7 @@ class _ExportSection extends ConsumerWidget {
           leadingIcon: Icons.data_object_rounded,
           titleText: l10n.exportJsonFile,
           onTap: () async {
-            final path = join(paths.temp.path, 'export.json');
+            final path = p.join(paths.temp.path, 'export.json');
             final json = await isarService.exportDiaryJson();
             await File(path).writeAsString(jsonEncode(json));
             await Share.shareXFiles([XFile(path)]);
