@@ -46,14 +46,14 @@ class MainApp extends ConsumerWidget {
     );
 
     return MaterialApp(
-      scrollBehavior: const PlatformScrollBehavior(),
+      scrollBehavior: const _ScrollBehavior(),
       debugShowCheckedModeBanner: false,
       theme: theme,
       darkTheme: darkTheme,
       themeMode: settings.themeMode,
       builder: builder,
       home: const BasedSplashPage(
-        rootPage: RootView(),
+        rootPage: RootPage(),
         appIcon: AppIcon(),
         appName: AppName(fontSize: 42),
       ),
@@ -65,4 +65,15 @@ class MainApp extends ConsumerWidget {
       supportedLocales: App.supportLanguages.values,
     );
   }
+}
+
+class _ScrollBehavior extends CupertinoScrollBehavior {
+  const _ScrollBehavior();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }

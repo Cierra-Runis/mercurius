@@ -5,7 +5,6 @@ export 'database/index.dart';
 export 'l10n/l10n.dart';
 export 'models/index.dart';
 export 'pages/index.dart';
-export 'platform/index.dart';
 export 'riverpod/index.dart';
 export 'widgets/index.dart';
 export 'main.dart';
@@ -52,7 +51,6 @@ export 'package:keframe/keframe.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:material_color_utilities/material_color_utilities.dart'
     show CorePalette;
-export 'package:path/path.dart' show join;
 export 'package:path_provider/path_provider.dart';
 export 'package:pausable_timer/pausable_timer.dart';
 export 'package:package_info_plus/package_info_plus.dart';

@@ -31,12 +31,18 @@ abstract class App {
     '中文': Locale('zh'),
   };
 
+  /// The entry of [App].
+  ///
+  /// Initialize settings for different platforms,
+  /// and override provider that need async initialization.
+  ///
+  /// If initialization failed, run [_ErrorApp] instead.
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     try {
       if (Platform.isWindows || Platform.isMacOS) {
-        await PlatformWindowManager.init();
+        await _PlatformWindowManager.init();
       }
 
       if (Platform.isAndroid) {
@@ -139,6 +145,24 @@ class _ErrorApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+abstract class _PlatformWindowManager {
+  static Future<void> init() async {
+    await windowManager.ensureInitialized();
+    const windowOptions = WindowOptions(
+      title: App.name,
+      minimumSize: Size(400, 400),
+      center: true,
+      backgroundColor: Colors.transparent,
+      skipTaskbar: false,
+      titleBarStyle: TitleBarStyle.hidden,
+    );
+    await windowManager.waitUntilReadyToShow(windowOptions, () {
+      windowManager.show();
+      windowManager.focus();
+    });
   }
 }
 
