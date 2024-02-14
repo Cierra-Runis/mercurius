@@ -16,9 +16,11 @@ extension CacheForExtension on AutoDisposeRef<Object?> {
 }
 
 extension BuildContextExt on BuildContext {
+  NavigatorState get _navigator =>
+      splitViewKey.currentState ?? Navigator.of(this);
+
   Future<T?> push<T extends Object?>(Widget page) =>
-      (splitViewKey.currentState ?? Navigator.of(this))
-          .push(CupertinoPageRoute<T>(builder: (_) => page));
+      _navigator.push(CupertinoPageRoute<T>(builder: (_) => page));
 
   void pop<T extends Object?>([T? result]) => Navigator.pop(this, result);
 
@@ -31,9 +33,9 @@ extension BuildContextExt on BuildContext {
     Offset? anchorPoint,
     TraversalEdgeBehavior? traversalEdgeBehavior,
   }) =>
-      (splitViewKey.currentState ?? Navigator.of(this)).push(
+      _navigator.push(
         DialogRoute(
-          context: splitViewKey.currentState?.context ?? this,
+          context: _navigator.context,
           barrierDismissible: barrierDismissible,
           useSafeArea: useSafeArea,
           settings: settings,
