@@ -75,6 +75,16 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    /// TIPS: https://juejin.cn/post/7330471268033478666
+    packagingOptions {
+        dex {
+            useLegacyPackaging true
+        }
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
 }
 
 flutter {
