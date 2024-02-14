@@ -21,11 +21,13 @@ class DiaryListItem extends StatelessWidget {
       direction: dismissDirection,
       movementDuration: const Duration(milliseconds: 400),
       onDismissed: (_) => isarService.deleteDiaryById(diary.id),
-      confirmDismiss: (_) => ConfirmDialog(
-        title: l10n.areYouSureToDeleteTheDiary,
-        summary: l10n.pleaseThinkTwiceAboutDeletingTheDiary,
-        context: context,
-      ).confirm,
+      confirmDismiss: (_) async =>
+          await ConfirmDialog(
+            title: l10n.areYouSureToDeleteTheDiary,
+            summary: l10n.pleaseThinkTwiceAboutDeletingTheDiary,
+            context: context,
+          ).confirm ==
+          ConfirmResult.confirm,
       child: Card(
         margin: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
@@ -84,9 +86,7 @@ class DiaryListItem extends StatelessWidget {
 }
 
 class _Weather extends StatelessWidget {
-  const _Weather({
-    required this.diary,
-  });
+  const _Weather({required this.diary});
 
   final Diary diary;
 
@@ -97,9 +97,7 @@ class _Weather extends StatelessWidget {
 }
 
 class _Mood extends StatelessWidget {
-  const _Mood({
-    required this.diary,
-  });
+  const _Mood({required this.diary});
 
   final Diary diary;
 
@@ -110,16 +108,17 @@ class _Mood extends StatelessWidget {
 }
 
 class _Content extends StatelessWidget {
-  const _Content({
-    required this.diary,
-  });
+  const _Content({required this.diary});
 
   final Diary diary;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      diary.document.toPlainText(EditorBody.embedBuilders),
+      diary.document.toPlainText(
+        EditorBody.embedBuilders,
+        EditorBody.unknownEmbedBuilder,
+      ),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
@@ -131,9 +130,7 @@ class _Content extends StatelessWidget {
 }
 
 class _CreateAt extends StatelessWidget {
-  const _CreateAt({
-    required this.diary,
-  });
+  const _CreateAt({required this.diary});
 
   final Diary diary;
 
@@ -152,9 +149,7 @@ class _CreateAt extends StatelessWidget {
 }
 
 class _EditAt extends StatelessWidget {
-  const _EditAt({
-    required this.diary,
-  });
+  const _EditAt({required this.diary});
 
   final Diary diary;
 
@@ -171,9 +166,7 @@ class _EditAt extends StatelessWidget {
 }
 
 class _Weekday extends StatelessWidget {
-  const _Weekday({
-    required this.diary,
-  });
+  const _Weekday({required this.diary});
 
   final Diary diary;
 
@@ -191,9 +184,7 @@ class _Weekday extends StatelessWidget {
 }
 
 class _Day extends StatelessWidget {
-  const _Day({
-    required this.diary,
-  });
+  const _Day({required this.diary});
 
   final Diary diary;
 

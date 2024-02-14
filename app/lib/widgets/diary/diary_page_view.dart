@@ -1,7 +1,77 @@
 import 'package:mercurius/index.dart';
 
-class DiaryPageItem extends StatelessWidget {
-  const DiaryPageItem({
+class DiaryPageView extends StatefulWidget {
+  const DiaryPageView({
+    super.key,
+    required this.initialId,
+  });
+
+  final int initialId;
+
+  @override
+  State<DiaryPageView> createState() => _DiaryPageViewState();
+}
+
+class _DiaryPageViewState extends State<DiaryPageView> {
+  final stream = isarService.listenToAllDiaries();
+
+  Widget _getPageBySnapshotData(
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
+    final l10n = context.l10n;
+
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
+      return AlertDialog(title: Center(child: Text(l10n.noData)));
+    }
+
+    final diaries = snapshot.data!;
+
+    /// FIXME: 问题见 https://github.com/flutter/flutter/issues/45632
+    return PageView.builder(
+      itemCount: diaries.length,
+      controller: PageController(
+        /// TIPS: diaries maybe random
+        initialPage: diaries.indexWhere((e) => e.id == widget.initialId),
+      ),
+      allowImplicitScrolling: true,
+      itemBuilder: (context, index) => _DiaryPageItem(
+        key: ValueKey(diaries[index].id),
+        diary: diaries[index],
+      ),
+    );
+  }
+
+  Widget _getBodyBySnapshotState(
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
+    if (snapshot.hasError) {
+      return Center(child: Text('Steam error: ${snapshot.error}'));
+    }
+    switch (snapshot.connectionState) {
+      case ConnectionState.none:
+        return const Center(child: Icon(UniconsLine.data_sharing));
+      case ConnectionState.waiting:
+        return const Loading();
+      case ConnectionState.active:
+        return _getPageBySnapshotData(context, snapshot);
+      case ConnectionState.done:
+        return const Center(child: Text('Stream closed'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<Diary>>(
+      stream: stream,
+      builder: _getBodyBySnapshotState,
+    );
+  }
+}
+
+class _DiaryPageItem extends StatelessWidget {
+  const _DiaryPageItem({
     super.key,
     required this.diary,
   });
@@ -58,7 +128,7 @@ class DiaryPageItem extends StatelessWidget {
                   summary: l10n.pleaseThinkTwiceAboutDeletingTheDiary,
                   context: context,
                 ).confirm;
-                if (confirm ?? false) {
+                if (confirm == ConfirmResult.confirm) {
                   isarService.deleteDiaryById(diary.id);
                 }
               },
@@ -82,9 +152,7 @@ class DiaryPageItem extends StatelessWidget {
 }
 
 class _CreateAt extends StatelessWidget {
-  const _CreateAt({
-    required this.diary,
-  });
+  const _CreateAt({required this.diary});
 
   final Diary diary;
 
@@ -94,17 +162,13 @@ class _CreateAt extends StatelessWidget {
 
     return Text(
       diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-      ),
+      style: const TextStyle(fontWeight: FontWeight.w600),
     );
   }
 }
 
 class _WordsChip extends StatelessWidget {
-  const _WordsChip({
-    required this.diary,
-  });
+  const _WordsChip({required this.diary});
 
   final Diary diary;
 
@@ -112,16 +176,12 @@ class _WordsChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Chip(
-      label: Text(l10n.wordCount(diary.words)),
-    );
+    return Chip(label: Text(l10n.wordCount(diary.words)));
   }
 }
 
 class _WeatherChip extends StatelessWidget {
-  const _WeatherChip({
-    required this.diary,
-  });
+  const _WeatherChip({required this.diary});
 
   final Diary diary;
 
@@ -131,19 +191,13 @@ class _WeatherChip extends StatelessWidget {
 
     return Chip(
       avatar: Icon(diary.weatherType.qweatherIcons.iconData),
-      label: Text(
-        l10n.weatherText(
-          diary.weatherType.weather,
-        ),
-      ),
+      label: Text(l10n.weatherText(diary.weatherType.weather)),
     );
   }
 }
 
 class _MoodChip extends StatelessWidget {
-  const _MoodChip({
-    required this.diary,
-  });
+  const _MoodChip({required this.diary});
 
   final Diary diary;
 
@@ -153,37 +207,24 @@ class _MoodChip extends StatelessWidget {
 
     return Chip(
       avatar: Icon(diary.moodType.iconData),
-      label: Text(
-        l10n.moodText(
-          diary.moodType.mood,
-        ),
-      ),
+      label: Text(l10n.moodText(diary.moodType.mood)),
     );
   }
 }
 
 class _Title extends StatelessWidget {
-  const _Title({
-    required this.diary,
-  });
+  const _Title({required this.diary});
 
   final Diary diary;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      diary.title,
-      style: const TextStyle(
-        fontSize: 16,
-      ),
-    );
+    return Text(diary.title, style: const TextStyle(fontSize: 16));
   }
 }
 
 class _DiaryShareButton extends StatelessWidget {
-  const _DiaryShareButton({
-    required this.diary,
-  });
+  const _DiaryShareButton({required this.diary});
 
   final Diary diary;
 
@@ -193,14 +234,27 @@ class _DiaryShareButton extends StatelessWidget {
     final lang = Localizations.localeOf(context).toLanguageTag();
 
     return IconButton(
-      onPressed: () => Share.share(
-        '${diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang)}\n'
-        '${l10n.title} - ${diary.title.isEmpty ? l10n.untitled : diary.title}\n'
-        '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}\n'
-        '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}\n'
-        '--- ${l10n.content} ---\n'
-        '${diary.document.toPlainText(EditorBody.embedBuilders, EditorBody.unknownEmbedBuilder)}',
-      ),
+      onPressed: () {
+        try {
+          Share.share(
+            [
+              diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
+              '${l10n.title} - ${diary.title.isEmpty ? l10n.untitled : diary.title}',
+              '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}',
+              '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}',
+              '',
+              '--- ${l10n.content} ---',
+              '',
+              diary.plainText,
+            ].join('\n'),
+          );
+        } catch (e, s) {
+          App.printLog('Share Failed', error: e, stackTrace: s);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Share Failed')),
+          );
+        }
+      },
       icon: const Icon(UniconsLine.share),
     );
   }
