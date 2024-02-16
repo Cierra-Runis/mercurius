@@ -21,6 +21,7 @@ class _SearchPageState extends State<SearchPage> {
           controller: _controller,
           decoration: InputDecoration(
             hintText: l10n.searchHint,
+            border: InputBorder.none,
             suffixIcon: IconButton(
               onPressed: _controller.clear,
               icon: const Icon(Icons.clear_rounded),
