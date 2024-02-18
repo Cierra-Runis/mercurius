@@ -15,6 +15,7 @@ class DiaryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final colorScheme = context.colorScheme;
 
     return Dismissible(
       key: ValueKey(diary.id),
@@ -29,13 +30,16 @@ class DiaryListItem extends StatelessWidget {
           ).confirm ==
           ConfirmResult.confirm,
       child: Card(
+        color: colorScheme.surface.withOpacity(0.8),
         margin: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: InkWell(
           onTap: onTap ??
-              () => context.pushDialog(DiaryPageView(initialId: diary.id)),
+              () => context.pushDialog(
+                    DiaryPageView(initialId: diary.id),
+                  ),
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
             height: 80,
