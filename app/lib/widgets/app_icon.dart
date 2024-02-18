@@ -12,11 +12,9 @@ class AppIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(size / 3),
-      child: InkWell(
-        child: Image.asset(
-          'assets/icon/icon.png',
-          height: size,
-        ),
+      child: SvgPicture.asset(
+        'assets/icon/icon.svg',
+        height: size,
       ),
     );
   }
