@@ -17,39 +17,13 @@ class MainApp extends ConsumerWidget {
     final colorSchemes = ref.watch(colorSchemesProvider);
     final settings = ref.watch(settingsProvider);
 
-    const appBarTheme = AppBarTheme(
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      centerTitle: true,
-    );
-
-    final theme = ThemeData(
-      useMaterial3: true,
-      colorScheme: colorSchemes.light,
-      datePickerTheme: const DatePickerThemeData(
-        dayStyle: TextStyle(fontSize: 12),
-      ),
-      fontFamily: App.fontSaira,
-      fontFamilyFallback: const [App.fontMiSans],
-      appBarTheme: appBarTheme,
-    );
-
-    final darkTheme = ThemeData(
-      useMaterial3: true,
-      colorScheme: colorSchemes.dark,
-      datePickerTheme: const DatePickerThemeData(
-        dayStyle: TextStyle(fontSize: 12),
-      ),
-      fontFamily: App.fontSaira,
-      fontFamilyFallback: const [App.fontMiSans],
-      appBarTheme: appBarTheme,
-    );
+    final themes = colorSchemes.toThemes();
 
     return MaterialApp(
       scrollBehavior: const _ScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      theme: theme,
-      darkTheme: darkTheme,
+      theme: themes.theme,
+      darkTheme: themes.darkTheme,
       themeMode: settings.themeMode,
       builder: builder,
       home: const BasedSplashPage(

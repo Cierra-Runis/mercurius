@@ -5,10 +5,44 @@ part 'color_schemes.freezed.dart';
 
 @freezed
 class ColorSchemesState with _$ColorSchemesState {
+  const ColorSchemesState._();
+
   const factory ColorSchemesState({
     required ColorScheme light,
     required ColorScheme dark,
   }) = _ColorSchemesState;
+
+  ({ThemeData theme, ThemeData darkTheme}) toThemes() {
+    const appBarTheme = AppBarTheme(
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      centerTitle: true,
+    );
+
+    final theme = ThemeData(
+      useMaterial3: true,
+      colorScheme: light,
+      datePickerTheme: const DatePickerThemeData(
+        dayStyle: TextStyle(fontSize: 12),
+      ),
+      fontFamily: App.fontSaira,
+      fontFamilyFallback: const [App.fontMiSans],
+      appBarTheme: appBarTheme,
+    );
+
+    final darkTheme = ThemeData(
+      useMaterial3: true,
+      colorScheme: dark,
+      datePickerTheme: const DatePickerThemeData(
+        dayStyle: TextStyle(fontSize: 12),
+      ),
+      fontFamily: App.fontSaira,
+      fontFamilyFallback: const [App.fontMiSans],
+      appBarTheme: appBarTheme,
+    );
+
+    return (theme: theme, darkTheme: darkTheme);
+  }
 }
 
 @riverpod
