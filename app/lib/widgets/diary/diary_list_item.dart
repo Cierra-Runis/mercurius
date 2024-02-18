@@ -4,7 +4,7 @@ class DiaryListItem extends StatelessWidget {
   const DiaryListItem({
     super.key,
     required this.diary,
-    this.dismissDirection = DismissDirection.endToStart,
+    this.dismissDirection = DismissDirection.none,
     this.onTap,
   });
 

@@ -385,19 +385,8 @@ class _DiaryListView extends StatefulWidget {
 class _DiaryListViewState extends State<_DiaryListView> {
   final stream = isarService.listenToAllDiaries();
 
-  Widget _getCardBySnapshotData(
-    BuildContext context,
-    AsyncSnapshot<List<Diary>> snapshot,
-  ) {
-    final l10n = context.l10n;
-    final lang = Localizations.localeOf(context).toLanguageTag();
-
-    if (snapshot.data == null || snapshot.data!.isEmpty) {
-      return Center(child: Text(l10n.noData));
-    }
-
+  List<_DiaryListViewSection> _parseDiaries(List<Diary> diaries, String lang) {
     final sections = <_DiaryListViewSection>[];
-    final diaries = snapshot.data!;
 
     var year = diaries[0].createAt.year;
     var month = diaries[0].createAt.month;
@@ -423,34 +412,49 @@ class _DiaryListViewState extends State<_DiaryListView> {
       }
     }
 
-    return ExpandableListView(
+    return sections;
+  }
+
+  Widget _getCardBySnapshotData(
+    BuildContext context,
+    AsyncSnapshot<List<Diary>> snapshot,
+  ) {
+    final l10n = context.l10n;
+    final lang = Localizations.localeOf(context).toLanguageTag();
+
+    if (snapshot.data == null || snapshot.data!.isEmpty) {
+      return Center(child: Text(l10n.noData));
+    }
+
+    final sections = _parseDiaries(snapshot.data!, lang);
+
+    return ListView.builder(
       cacheExtent: 1000,
       controller: widget.controller,
-      builder: SliverExpandableChildDelegate<Diary, _DiaryListViewSection>(
-        sectionList: sections,
-        headerBuilder: (context, sectionIndex, index) {
-          return ColoredBox(
-            color: context.colorScheme.background,
-            child: BasedListTile(
-              leading: const AppIcon(size: 28),
-              titleText: sections[sectionIndex].header,
-              trailing: Text(
-                l10n.diaryCount(sections[sectionIndex].items.length),
-              ),
-              enabled: false,
-            ),
-          );
-        },
-        itemBuilder: (context, sectionIndex, itemIndex, index) {
-          return FrameSeparateWidget(
-            index: index,
-            placeHolder: const DiaryListItemPlaceholder(),
-            child: DiaryListItem(
-              diary: sections[sectionIndex].items[itemIndex],
-            ),
-          );
-        },
-      ),
+      itemCount: sections.length,
+      itemBuilder: (context, index) {
+        final section = sections[index];
+        return ExpansionTile(
+          key: PageStorageKey(section.header),
+          initiallyExpanded: true,
+          shape: const Border(),
+          collapsedShape: const Border(),
+          leading: const AppIcon(size: 28),
+          title: Text(section.header),
+          trailing: Text(l10n.diaryCount(section.items.length)),
+          children: section.items
+              .map(
+                (e) => FrameSeparateWidget(
+                  placeHolder: const DiaryListItemPlaceholder(),
+                  child: DiaryListItem(
+                    dismissDirection: DismissDirection.endToStart,
+                    diary: e,
+                  ),
+                ),
+              )
+              .toList(),
+        );
+      },
     );
   }
 
@@ -482,7 +486,7 @@ class _DiaryListViewState extends State<_DiaryListView> {
   }
 }
 
-class _DiaryListViewSection implements ExpandableListSection<Diary> {
+class _DiaryListViewSection {
   const _DiaryListViewSection({
     required this.items,
     required this.header,
@@ -490,23 +494,4 @@ class _DiaryListViewSection implements ExpandableListSection<Diary> {
 
   final String header;
   final List<Diary> items;
-
-  @override
-  List<Diary> getItems() => items;
-
-  @override
-  bool isSectionExpanded() => true;
-
-  @override
-  void setSectionExpanded(bool expanded) {}
-
-  _DiaryListViewSection copyWith({
-    String? header,
-    List<Diary>? items,
-  }) {
-    return _DiaryListViewSection(
-      items: items ?? this.items,
-      header: header ?? this.header,
-    );
-  }
 }
