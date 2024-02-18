@@ -10,18 +10,8 @@ class HomePage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const _SearchButton(),
-        title: _AppBarTitle(
-          controller: controller,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Badge(
-              backgroundColor: Colors.green,
-              child: Icon(Icons.dns_rounded),
-            ),
-          ),
-        ],
+        title: _AppBarTitle(controller: controller),
+        actions: const [_SyncButton()],
       ),
       body: _HomePageBody(controller: controller),
       floatingActionButton: const _FloatingButton(),
@@ -39,6 +29,21 @@ class _SearchButton extends StatelessWidget {
       tooltip: l10n.searchDiary,
       onPressed: () => context.push(const SearchPage()),
       icon: const Icon(Icons.search),
+    );
+  }
+}
+
+class _SyncButton extends StatelessWidget {
+  const _SyncButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {},
+      icon: const Badge(
+        backgroundColor: Colors.green,
+        child: Icon(Icons.dns_rounded),
+      ),
     );
   }
 }
@@ -435,7 +440,7 @@ class _DiaryListViewState extends State<_DiaryListView> {
       itemBuilder: (context, index) {
         final section = sections[index];
         return ExpansionTile(
-          key: PageStorageKey(section.header),
+          key: PageStorageKey<String>(section.header),
           initiallyExpanded: true,
           shape: const Border(),
           collapsedShape: const Border(),
