@@ -41,8 +41,8 @@ class _RootPage extends ConsumerWidget {
   });
 
   static const bodyWidgets = [
-    HomePage(key: ValueKey(HomePage)),
-    MorePage(key: ValueKey(MorePage)),
+    HomePage(key: PageStorageKey(HomePage)),
+    MorePage(key: PageStorageKey(MorePage)),
   ];
 
   @override
