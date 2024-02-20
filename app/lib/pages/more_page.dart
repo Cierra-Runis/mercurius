@@ -125,10 +125,10 @@ class _ReleaseTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
-    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+    final gitHubLatestRelease = ref.watch(gitHubLatestReleaseProvider);
     final tagName = ref.watch(packageInfoProvider).tagName;
 
-    final hasUpdate = githubLatestRelease.when(
+    final hasUpdate = gitHubLatestRelease.when(
       loading: () => false,
       error: (error, stackTrace) => false,
       data: (github) => tagName != github.tagName,

@@ -4,44 +4,44 @@ part 'github_latest_release.g.dart';
 part 'github_latest_release.freezed.dart';
 
 @riverpod
-Future<GithubLatestRelease> githubLatestRelease(
-  GithubLatestReleaseRef ref,
+Future<GitHubLatestRelease> gitHubLatestRelease(
+  GitHubLatestReleaseRef ref,
 ) async {
   const url =
       'https://api.github.com/repos/Cierra-Runis/mercurius/releases/latest';
 
   final tagName = ref.watch(packageInfoProvider).tagName;
 
-  final githubLatestRelease = GithubLatestRelease(tagName: tagName);
+  final gitHubLatestRelease = GitHubLatestRelease(tagName: tagName);
 
   Response response;
   try {
     response = await Dio().get(url);
   } catch (e) {
-    return githubLatestRelease;
+    return gitHubLatestRelease;
   }
 
   if (response.statusCode == 200) {
-    return GithubLatestRelease.fromJson(
+    return GitHubLatestRelease.fromJson(
       jsonDecode('$response'),
     );
   }
 
-  return githubLatestRelease;
+  return gitHubLatestRelease;
 }
 
 @freezed
-class GithubLatestRelease with _$GithubLatestRelease {
-  const factory GithubLatestRelease({
+class GitHubLatestRelease with _$GitHubLatestRelease {
+  const factory GitHubLatestRelease({
     @JsonKey(name: 'tag_name') required String tagName,
     @JsonKey(name: 'assets') List<AssetsItem>? assets,
     @JsonKey(name: 'body') String? body,
-  }) = _GithubLatestRelease;
+  }) = _GitHubLatestRelease;
 
-  const GithubLatestRelease._();
+  const GitHubLatestRelease._();
 
-  factory GithubLatestRelease.fromJson(Json json) =>
-      _$GithubLatestReleaseFromJson(json);
+  factory GitHubLatestRelease.fromJson(Json json) =>
+      _$GitHubLatestReleaseFromJson(json);
 }
 
 @freezed

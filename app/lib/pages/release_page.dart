@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 class ReleasePage extends ConsumerWidget {
   const ReleasePage({super.key});
-  VoidCallback _downloadRelease(GithubLatestRelease data) {
+  VoidCallback _downloadRelease(GitHubLatestRelease data) {
     return () {
       try {
         if (Platform.isAndroid) {
@@ -33,7 +33,7 @@ class ReleasePage extends ConsumerWidget {
     };
   }
 
-  Widget getBodyByData(BuildContext context, GithubLatestRelease data) {
+  Widget getBodyByData(BuildContext context, GitHubLatestRelease data) {
     final l10n = context.l10n;
 
     if (data.body != null) {
@@ -63,7 +63,7 @@ class ReleasePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+    final gitHubLatestRelease = ref.watch(gitHubLatestReleaseProvider);
     final l10n = context.l10n;
 
     return Scaffold(
@@ -74,7 +74,7 @@ class ReleasePage extends ConsumerWidget {
         ),
       ),
       body: Center(
-        child: githubLatestRelease.when(
+        child: gitHubLatestRelease.when(
           skipLoadingOnRefresh: false,
           loading: () => const Loading(),
           error: (error, stackTrace) => const SizedBox(),
@@ -87,12 +87,12 @@ class ReleasePage extends ConsumerWidget {
         children: [
           FloatingActionButton.small(
             heroTag: 'refresh',
-            onPressed: () => ref.refresh(githubLatestReleaseProvider),
+            onPressed: () => ref.refresh(gitHubLatestReleaseProvider),
             child: const Icon(Icons.refresh_rounded),
           ),
           FloatingActionButton.small(
             heroTag: 'download',
-            onPressed: githubLatestRelease.when(
+            onPressed: gitHubLatestRelease.when(
               loading: () => null,
               error: (error, stackTrace) => null,
               data: _downloadRelease,
