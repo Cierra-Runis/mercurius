@@ -21,7 +21,6 @@ class MainApp extends ConsumerWidget {
 
     return MaterialApp(
       scrollBehavior: const _ScrollBehavior(),
-      debugShowCheckedModeBanner: false,
       theme: themes.theme,
       darkTheme: themes.darkTheme,
       themeMode: settings.themeMode,

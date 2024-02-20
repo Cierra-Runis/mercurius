@@ -111,8 +111,9 @@ class _DiaryPageItem extends StatelessWidget {
       /// TIPS: https://github.com/flutter/flutter/issues/141922
       persistentFooterAlignment: AlignmentDirectional.centerStart,
       persistentFooterButtons: [
-        _MoodChip(diary: diary),
-        _WeatherChip(diary: diary),
+        if (diary.moodType != null) _MoodChip(moodType: diary.moodType!),
+        if (diary.weatherType != null)
+          _WeatherChip(weatherType: diary.weatherType!),
         _WordsChip(diary: diary),
       ],
       bottomNavigationBar: BottomAppBar(
@@ -181,33 +182,33 @@ class _WordsChip extends StatelessWidget {
 }
 
 class _WeatherChip extends StatelessWidget {
-  const _WeatherChip({required this.diary});
+  const _WeatherChip({required this.weatherType});
 
-  final Diary diary;
+  final DiaryWeatherType weatherType;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return Chip(
-      avatar: Icon(diary.weatherType.qweatherIcons.iconData),
-      label: Text(l10n.weatherText(diary.weatherType.weather)),
+      avatar: Icon(weatherType.qweatherIcons.iconData),
+      label: Text(l10n.weatherText(weatherType.weather)),
     );
   }
 }
 
 class _MoodChip extends StatelessWidget {
-  const _MoodChip({required this.diary});
+  const _MoodChip({required this.moodType});
 
-  final Diary diary;
+  final DiaryMoodType moodType;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return Chip(
-      avatar: Icon(diary.moodType.iconData),
-      label: Text(l10n.moodText(diary.moodType.mood)),
+      avatar: Icon(moodType.iconData),
+      label: Text(l10n.moodText(moodType.mood)),
     );
   }
 }
@@ -232,6 +233,8 @@ class _DiaryShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final lang = Localizations.localeOf(context).toLanguageTag();
+    final weatherType = diary.weatherType;
+    final moodType = diary.moodType;
 
     return IconButton(
       onPressed: () {
@@ -240,8 +243,10 @@ class _DiaryShareButton extends StatelessWidget {
             [
               diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
               '${l10n.title} - ${diary.title.isEmpty ? l10n.untitled : diary.title}',
-              '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}',
-              '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}',
+              if (weatherType != null)
+                '${l10n.weather} - ${l10n.weatherText(weatherType.weather)}',
+              if (moodType != null)
+                '${l10n.mood} - ${l10n.moodText(moodType.mood)}',
               '',
               '--- ${l10n.content} ---',
               '',

@@ -74,8 +74,10 @@ class DiaryListItem extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _Mood(diary: diary),
-                      _Weather(diary: diary),
+                      if (diary.moodType != null)
+                        _Mood(moodType: diary.moodType!),
+                      if (diary.weatherType != null)
+                        _Weather(weatherType: diary.weatherType!),
                     ],
                   ),
                 ),
@@ -89,25 +91,25 @@ class DiaryListItem extends StatelessWidget {
   }
 }
 
-class _Weather extends StatelessWidget {
-  const _Weather({required this.diary});
+class _Mood extends StatelessWidget {
+  const _Mood({required this.moodType});
 
-  final Diary diary;
+  final DiaryMoodType moodType;
 
   @override
   Widget build(BuildContext context) {
-    return Icon(size: 18, diary.weatherType.qweatherIcons.iconData);
+    return Icon(size: 18, moodType.iconData);
   }
 }
 
-class _Mood extends StatelessWidget {
-  const _Mood({required this.diary});
+class _Weather extends StatelessWidget {
+  const _Weather({required this.weatherType});
 
-  final Diary diary;
+  final DiaryWeatherType weatherType;
 
   @override
   Widget build(BuildContext context) {
-    return Icon(size: 18, diary.moodType.iconData);
+    return Icon(size: 18, weatherType.qweatherIcons.iconData);
   }
 }
 

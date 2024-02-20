@@ -51,12 +51,6 @@ android {
     }
 
     signingConfigs{
-        debug{
-            keyAlias 'key_alias'
-            keyPassword 'key_alias_password'
-            storeFile file('C:\\click\\key_alias.jks')
-            storePassword 'key_alias_password'
-        }
         release{
             keyAlias 'key_alias'
             keyPassword 'key_alias_password'
@@ -67,7 +61,7 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
         }
         release {
             signingConfig signingConfigs.release

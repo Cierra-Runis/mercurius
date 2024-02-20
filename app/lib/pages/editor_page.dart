@@ -734,7 +734,7 @@ class _MoodSelector extends StatelessWidget {
               tooltip: l10n.moodText(moodType.mood),
               onPressed: () => context.pop(moodType),
               icon: Icon(moodType.iconData),
-              color: diary.moodType.name == moodType.name
+              color: diary.moodType?.name == moodType.name
                   ? context.colorScheme.primary
                   : null,
             );
@@ -789,7 +789,7 @@ class _WeatherSelector extends ConsumerWidget {
             final weatherType = DiaryWeatherType.values[index];
             return IconButton(
               tooltip: l10n.weatherText(weatherType.weather),
-              color: diary.weatherType.weather == weatherType.weather
+              color: diary.weatherType?.weather == weatherType.weather
                   ? context.colorScheme.primary
                   : null,
               onPressed: () => context.pop(weatherType),

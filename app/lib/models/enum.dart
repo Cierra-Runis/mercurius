@@ -2,7 +2,7 @@ import 'package:mercurius/index.dart';
 
 /// [DiaryMoodType]
 enum DiaryMoodType {
-  defaultType('smile', UniconsLine.smile),
+  smile('smile', UniconsLine.smile),
   angry('angry', UniconsLine.angry),
   confused('confused', UniconsLine.confused),
   frown('frown', UniconsLine.frown),
@@ -13,13 +13,14 @@ enum DiaryMoodType {
   mehClosedEye('normal', UniconsLine.meh_closed_eye);
 
   const DiaryMoodType(this.mood, this.iconData);
+  @enumValue
   final String mood;
   final IconData iconData;
 }
 
 /// [DiaryWeatherType]
 enum DiaryWeatherType {
-  defaultType('sunny', QWeatherIcons.tag_sunny),
+  sunny('sunny', QWeatherIcons.tag_sunny),
   cloudy('cloudy', QWeatherIcons.tag_cloudy),
   fewClouds('fewClouds', QWeatherIcons.tag_few_clouds),
   heavyThunderstorm('heavyThunderstorm', QWeatherIcons.tag_heavy_thunderstorm),
@@ -30,6 +31,8 @@ enum DiaryWeatherType {
   foggy('foggy', QWeatherIcons.tag_foggy);
 
   const DiaryWeatherType(this.weather, this.qweatherIcons);
+
+  @enumValue
   final String weather;
   final QWeatherIcons qweatherIcons;
 }

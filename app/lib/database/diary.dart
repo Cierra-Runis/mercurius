@@ -15,8 +15,8 @@ class Diary with _$Diary {
     required List<dynamic> content,
     @Default(false) bool editing,
     @Default('') String title,
-    @Default(DiaryMoodType.defaultType) DiaryMoodType moodType,
-    @Default(DiaryWeatherType.defaultType) DiaryWeatherType weatherType,
+    DiaryMoodType? moodType,
+    DiaryWeatherType? weatherType,
   }) = _Diary;
 
   @ignore
