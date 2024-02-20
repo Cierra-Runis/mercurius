@@ -64,7 +64,7 @@ class DiaryListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _EditAt(diary: diary),
-                      _CreateAt(diary: diary),
+                      _BelongTo(diary: diary),
                       _Content(diary: diary),
                     ],
                   ),
@@ -133,15 +133,15 @@ class _Content extends StatelessWidget {
   }
 }
 
-class _CreateAt extends StatelessWidget {
-  const _CreateAt({required this.diary});
+class _BelongTo extends StatelessWidget {
+  const _BelongTo({required this.diary});
 
   final Diary diary;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      diary.title.isEmpty ? diary.createAt.format('y-M-d') : diary.title,
+      diary.title.isEmpty ? diary.belongTo.format('y-M-d') : diary.title,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
@@ -179,7 +179,7 @@ class _Weekday extends StatelessWidget {
     final lang = Localizations.localeOf(context).toLanguageTag();
 
     return Text(
-      diary.createAt.format(DateFormat.WEEKDAY, lang),
+      diary.belongTo.format(DateFormat.WEEKDAY, lang),
       style: const TextStyle(
         fontSize: 10,
       ),
@@ -195,7 +195,7 @@ class _Day extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      diary.createAt.format('dd'),
+      diary.belongTo.format('dd'),
       style: const TextStyle(
         fontSize: 24,
         fontFamily: App.fontSaira,

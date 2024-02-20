@@ -62,7 +62,7 @@ mixin _DiaryService on _IsarService {
     final isar = db;
     return isar.diarys
         .where()
-        .createAtBetween(
+        .belongToBetween(
           DateTime(dateTime.year, dateTime.month, dateTime.day),
           DateTime(dateTime.year, dateTime.month, dateTime.day)
               .nextDay
@@ -81,7 +81,7 @@ mixin _DiaryService on _IsarService {
 
   Future<List<Diary>> getAllDiaries() async {
     final isar = db;
-    return isar.diarys.where().sortByCreateAt().findAll();
+    return isar.diarys.where().sortByBelongTo().findAll();
   }
 
   Stream<List<Diary>> listenToAllDiaries() async* {
@@ -89,7 +89,7 @@ mixin _DiaryService on _IsarService {
     yield* isar.diarys
         .where()
         .editingEqualTo(false)
-        .sortByCreateAtDesc()
+        .sortByBelongToDesc()
         .watch(fireImmediately: true);
   }
 

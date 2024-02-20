@@ -9,6 +9,7 @@ class Diary with _$Diary {
 
   const factory Diary({
     required int id,
+    required DateTime belongTo,
     required DateTime createAt,
     required DateTime editAt,
     required List<dynamic> content,

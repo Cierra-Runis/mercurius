@@ -171,7 +171,7 @@ class _CreateButton extends StatelessWidget {
   const _CreateButton();
 
   void _createDiary(BuildContext context) async {
-    final dateTime = await showDatePicker(
+    final belongTo = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
@@ -182,11 +182,13 @@ class _CreateButton extends StatelessWidget {
       ),
     );
 
-    if (context.mounted && dateTime != null) {
+    if (context.mounted && belongTo != null) {
+      final now = DateTime.now();
       final diary = Diary(
         id: isarService.diarysAutoIncrement(),
-        createAt: dateTime,
-        editAt: dateTime,
+        belongTo: belongTo,
+        editAt: now,
+        createAt: now,
         content: Document().toDelta().toJson(),
         editing: true,
       );
@@ -393,24 +395,24 @@ class _DiaryListViewState extends State<_DiaryListView> {
   List<_DiaryListViewSection> _parseDiaries(List<Diary> diaries, String lang) {
     final sections = <_DiaryListViewSection>[];
 
-    var year = diaries[0].createAt.year;
-    var month = diaries[0].createAt.month;
+    var year = diaries[0].belongTo.year;
+    var month = diaries[0].belongTo.month;
     sections.add(
       _DiaryListViewSection(
-        header: diaries[0].createAt.format(DateFormat.YEAR_ABBR_MONTH, lang),
+        header: diaries[0].belongTo.format(DateFormat.YEAR_ABBR_MONTH, lang),
         items: [],
       ),
     );
 
     for (final diary in diaries) {
-      if (diary.createAt.month == month && diary.createAt.year == year) {
+      if (diary.belongTo.month == month && diary.belongTo.year == year) {
         sections.last.items.add(diary);
       } else {
-        month = diary.createAt.month;
-        year = diary.createAt.year;
+        month = diary.belongTo.month;
+        year = diary.belongTo.year;
         sections.add(
           _DiaryListViewSection(
-            header: diary.createAt.format(DateFormat.YEAR_ABBR_MONTH, lang),
+            header: diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH, lang),
             items: [diary],
           ),
         );

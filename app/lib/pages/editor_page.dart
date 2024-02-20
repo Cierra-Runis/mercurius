@@ -431,18 +431,18 @@ class _EditorToolbar extends StatelessWidget {
   }
 
   void changeDate(BuildContext context, Diary diary) async {
-    final createAt = await showDatePicker(
+    final belongTo = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
-      initialDate: diary.createAt,
+      initialDate: diary.belongTo,
       firstDate: DateTime(1949, 10),
       lastDate: DateTime.now().add(
         const Duration(days: 20000),
       ),
     );
     handleChangeDiary(
-      diary.copyWith(createAt: createAt ?? diary.createAt),
+      diary.copyWith(belongTo: belongTo ?? diary.belongTo),
     );
   }
 }

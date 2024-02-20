@@ -139,7 +139,7 @@ class _ListTile extends StatelessWidget {
 
     final title = diary.title.isNotEmpty
         ? diary.title
-        : diary.createAt.format(
+        : diary.belongTo.format(
             DateFormat.YEAR_ABBR_MONTH_DAY,
             lang,
           );

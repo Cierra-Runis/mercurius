@@ -90,7 +90,7 @@ class _DiaryPageItem extends StatelessWidget {
             snap: true,
             title: Column(
               children: [
-                _CreateAt(diary: diary),
+                _BelongTo(diary: diary),
                 if (diary.title.isNotEmpty) _Title(diary: diary),
               ],
             ),
@@ -151,8 +151,8 @@ class _DiaryPageItem extends StatelessWidget {
   }
 }
 
-class _CreateAt extends StatelessWidget {
-  const _CreateAt({required this.diary});
+class _BelongTo extends StatelessWidget {
+  const _BelongTo({required this.diary});
 
   final Diary diary;
 
@@ -161,7 +161,7 @@ class _CreateAt extends StatelessWidget {
     final lang = Localizations.localeOf(context).toLanguageTag();
 
     return Text(
-      diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
+      diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
       style: const TextStyle(fontWeight: FontWeight.w600),
     );
   }
@@ -238,7 +238,7 @@ class _DiaryShareButton extends StatelessWidget {
         try {
           Share.share(
             [
-              diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
+              diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
               '${l10n.title} - ${diary.title.isEmpty ? l10n.untitled : diary.title}',
               '${l10n.weather} - ${l10n.weatherText(diary.weatherType.weather)}',
               '${l10n.mood} - ${l10n.moodText(diary.moodType.mood)}',

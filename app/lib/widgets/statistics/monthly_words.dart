@@ -93,9 +93,9 @@ class MonthlyWords extends HookWidget {
       return result;
     }
 
-    var start = diaries.first.createAt;
+    var start = diaries.first.belongTo;
     start = DateTime(start.year, start.month);
-    final end = diaries.last.createAt;
+    final end = diaries.last.belongTo;
 
     while (start.isBefore(end)) {
       data.addAll({start: 0});
@@ -104,7 +104,7 @@ class MonthlyWords extends HookWidget {
 
     data.forEach((key, _) {
       for (final diary in diaries) {
-        if (key.isSameYear(diary.createAt) && key.isSameMonth(diary.createAt)) {
+        if (key.isSameYear(diary.belongTo) && key.isSameMonth(diary.belongTo)) {
           data.update(key, (value) => value += diary.words);
         }
       }
