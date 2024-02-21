@@ -24,11 +24,7 @@ class RootPage extends StatelessWidget {
         leftWidget: _RootPage(key: _rootPage),
         dividerWidth: 0,
         rightPlaceholder: const Scaffold(
-          body: Center(
-            child: AppIcon(
-              size: 96,
-            ),
-          ),
+          body: Center(child: AppIcon(size: 96)),
         ),
       ),
     );
@@ -36,9 +32,7 @@ class RootPage extends StatelessWidget {
 }
 
 class _RootPage extends ConsumerWidget {
-  const _RootPage({
-    super.key,
-  });
+  const _RootPage({super.key});
 
   static const bodyWidgets = [
     HomePage(key: PageStorageKey(HomePage)),

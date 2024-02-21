@@ -1,9 +1,7 @@
 import 'package:mercurius/index.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({
-    super.key,
-  });
+  const Loading({super.key});
 
   @override
   Widget build(BuildContext context) {

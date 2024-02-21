@@ -49,9 +49,7 @@ class _SyncButton extends StatelessWidget {
 }
 
 class _AppBarTitle extends ConsumerWidget {
-  const _AppBarTitle({
-    required this.controller,
-  });
+  const _AppBarTitle({required this.controller});
 
   final ScrollController controller;
 
@@ -115,9 +113,7 @@ class _AppBarTitle extends ConsumerWidget {
 }
 
 class _HomePageBody extends ConsumerWidget {
-  const _HomePageBody({
-    required this.controller,
-  });
+  const _HomePageBody({required this.controller});
 
   final ScrollController controller;
 

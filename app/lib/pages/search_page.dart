@@ -40,9 +40,7 @@ class _SearchPageState extends State<SearchPage> {
 }
 
 class _ViewContent extends StatefulWidget {
-  const _ViewContent({
-    required this.text,
-  });
+  const _ViewContent({required this.text});
 
   final String text;
 

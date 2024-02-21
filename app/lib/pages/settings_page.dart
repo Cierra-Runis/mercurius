@@ -104,9 +104,7 @@ class _AccentColorListTile extends StatelessWidget {
 }
 
 class _ColorPicker extends ConsumerStatefulWidget {
-  const _ColorPicker({
-    required this.color,
-  });
+  const _ColorPicker({required this.color});
 
   final Color color;
   @override

@@ -448,9 +448,7 @@ class _EditorToolbar extends StatelessWidget {
 }
 
 class _EditorImageButton extends ConsumerWidget {
-  const _EditorImageButton({
-    required this.controller,
-  });
+  const _EditorImageButton({required this.controller});
 
   final QuillController controller;
 
@@ -568,9 +566,7 @@ class _EditorImageButton extends ConsumerWidget {
 }
 
 class _EditorTagButton extends StatelessWidget {
-  const _EditorTagButton({
-    required this.controller,
-  });
+  const _EditorTagButton({required this.controller});
 
   final QuillController controller;
 
@@ -624,9 +620,7 @@ class _EditorTagButton extends StatelessWidget {
 }
 
 class _TagSelector extends StatefulWidget {
-  const _TagSelector({
-    required this.defaultMessage,
-  });
+  const _TagSelector({required this.defaultMessage});
 
   final String defaultMessage;
 
@@ -695,9 +689,7 @@ class _TagSelectorState extends State<_TagSelector> {
 }
 
 class _MoodSelector extends StatelessWidget {
-  const _MoodSelector({
-    required this.diary,
-  });
+  const _MoodSelector({required this.diary});
 
   final Diary diary;
 
@@ -752,9 +744,7 @@ class _MoodSelector extends StatelessWidget {
 }
 
 class _WeatherSelector extends ConsumerWidget {
-  const _WeatherSelector({
-    required this.diary,
-  });
+  const _WeatherSelector({required this.diary});
 
   final Diary diary;
 

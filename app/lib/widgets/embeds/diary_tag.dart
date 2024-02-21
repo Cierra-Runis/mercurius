@@ -19,21 +19,21 @@ class DiaryTag with _$DiaryTag {
 class _TagBlockEmbeddable extends Embeddable {
   const _TagBlockEmbeddable({
     required Json json,
-  }) : super(tagType, json);
+  }) : super(_type, json);
 
-  static const tagType = 'mercuriusTag';
+  static const _type = 'mercuriusTag';
 }
 
 class TagBlockEmbedBuilder extends EmbedBuilder {
   const TagBlockEmbedBuilder();
 
   @override
-  String get key => _TagBlockEmbeddable.tagType;
+  String get key => _TagBlockEmbeddable._type;
 
   @override
   String toPlainText(Embed node) {
     final tag = DiaryTag.fromJson(node.value.data);
-    return '[$key ${tag.message}]';
+    return '[${tag.message}]';
   }
 
   @override

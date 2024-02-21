@@ -3,19 +3,19 @@ import 'package:mercurius/index.dart';
 class ImageBlockEmbed extends Embeddable {
   const ImageBlockEmbed({
     required String filename,
-  }) : super(imageType, filename);
+  }) : super(_type, filename);
 
-  static const imageType = 'mercuriusImage';
+  static const _type = 'mercuriusImage';
 }
 
 class ImageBlockEmbedBuilder extends EmbedBuilder {
   const ImageBlockEmbedBuilder();
 
   @override
-  String get key => ImageBlockEmbed.imageType;
+  String get key => ImageBlockEmbed._type;
 
   @override
-  String toPlainText(Embed node) => '[$key ${node.value.data}]';
+  String toPlainText(Embed node) => '[$key]';
 
   @override
   Widget build(
