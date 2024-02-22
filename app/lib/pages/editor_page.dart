@@ -318,6 +318,8 @@ class _EditorToolbar extends StatelessWidget {
       alignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
       runAlignment: WrapAlignment.center,
+      spacing: -6,
+      runSpacing: -6,
       children: [
         QuillToolbarToggleStyleButton(
           controller: controller,

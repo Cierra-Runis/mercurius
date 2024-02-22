@@ -19,3 +19,4 @@
 
 - [关于离线优先应用的多端同步的思考和总结](https://www.auroras.xyz/blog/post/关于离线优先应用的多端同步的思考和总结/)
 - [Isar CRDT](https://github.com/kerero/isar-crdt)
+- [数据同步原理](https://segmentfault.com/a/1190000004887200)
