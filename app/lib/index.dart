@@ -12,8 +12,9 @@ export 'main.dart';
 /// flutter
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
 export 'package:flutter/foundation.dart' hide describeIdentity, shortHash;
-export 'package:flutter/material.dart';
 export 'package:flutter/gestures.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter/services.dart';
 
 /// dart
 export 'dart:async' show Timer, StreamSubscription;
@@ -49,6 +50,7 @@ export 'package:isar/isar.dart';
 export 'package:intl/intl.dart' hide TextDirection;
 export 'package:json_annotation/json_annotation.dart';
 export 'package:keframe/keframe.dart';
+export 'package:keypress_simulator/keypress_simulator.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:material_color_utilities/material_color_utilities.dart'
     show CorePalette;

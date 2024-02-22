@@ -15,6 +15,7 @@ class AppIcon extends StatelessWidget {
       child: SvgPicture.asset(
         'assets/icon/icon.svg',
         height: size,
+        width: size,
       ),
     );
   }

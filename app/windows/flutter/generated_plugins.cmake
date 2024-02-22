@@ -7,6 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_windows
   irondash_engine_context
   isar_flutter_libs
+  keypress_simulator_windows
   screen_retriever
   share_plus
   super_native_extensions

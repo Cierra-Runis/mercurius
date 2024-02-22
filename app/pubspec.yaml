@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.18.1
   json_annotation: ^4.8.1
   keframe: ^3.0.0
+  keypress_simulator: ^0.2.0
   loading_animation_widget: ^1.2.0+4
   material_color_utilities: ^0.8.0
   path: ^1.9.0
