@@ -1,3 +1,4 @@
+export 'advance_search.dart';
 export 'color_schemes.dart';
 export 'github_latest_release.dart';
 export 'paths.dart';

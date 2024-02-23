@@ -54,16 +54,6 @@ extension BuildContextExt on BuildContext {
   L10N get l10n => L10N.maybeOf(this) ?? L10N.current;
 }
 
-extension StringExt on String {
-  Pattern tryParse() {
-    try {
-      return RegExp(this);
-    } on FormatException {
-      return this;
-    }
-  }
-}
-
 extension BrightnessExt on Brightness {
   bool get isDark => this == Brightness.dark;
   bool get isLight => this == Brightness.light;
