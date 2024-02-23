@@ -22,7 +22,7 @@ class MainApp extends ConsumerWidget {
     final themes = colorSchemes.toThemes();
 
     return MaterialApp(
-      scrollBehavior: const _ScrollBehavior(),
+      scrollBehavior: _ScrollBehavior.noScrollBar,
       theme: themes.theme,
       darkTheme: themes.darkTheme,
       themeMode: settings.themeMode,
@@ -44,6 +44,9 @@ class MainApp extends ConsumerWidget {
 
 class _ScrollBehavior extends CupertinoScrollBehavior {
   const _ScrollBehavior();
+
+  static final noScrollBar =
+      const _ScrollBehavior().copyWith(scrollbars: false);
 
   @override
   Set<PointerDeviceKind> get dragDevices => {
