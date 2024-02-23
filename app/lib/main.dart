@@ -5,12 +5,14 @@ void main() => App.run();
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
-  Widget builder(context, child) => Column(
-        children: [
-          if (Platform.isWindows || Platform.isMacOS) const WindowAppBar(),
-          Expanded(child: ClipRRect(child: child)),
-        ],
-      );
+  Widget builder(BuildContext context, Widget? child) {
+    return Column(
+      children: [
+        if (Platform.isWindows || Platform.isMacOS) const WindowAppBar(),
+        Expanded(child: ClipRRect(child: child)),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

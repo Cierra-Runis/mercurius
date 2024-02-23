@@ -27,7 +27,7 @@ class _DiaryPageViewState extends State<DiaryPageView> {
 
     final diaries = snapshot.data!;
 
-    /// FIXME: 问题见 https://github.com/flutter/flutter/issues/45632
+    /// FIXME: https://github.com/flutter/flutter/issues/45632
     return PageView.builder(
       itemCount: diaries.length,
       controller: PageController(

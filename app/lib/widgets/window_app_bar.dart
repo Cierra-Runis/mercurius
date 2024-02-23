@@ -12,6 +12,7 @@ class WindowAppBar extends ConsumerWidget {
       : windowManager.maximize();
 
   /// TODO: based_snap_assist
+  /// FIXME: https://github.com/leanflutter/keypress_simulator/issues/10
   void triggerSnapAssist(bool value) async {
     if (!Platform.isWindows || !value) return;
     if (!await keyPressSimulator.isAccessAllowed()) return;
