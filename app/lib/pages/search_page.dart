@@ -10,8 +10,12 @@ class SearchPage extends StatelessWidget {
         title: const _SearchBar(),
         actions: const [_HelperButton()],
       ),
-      body: const _ViewContent(),
-      bottomNavigationBar: const _BottomActions(),
+      body: const Column(
+        children: [
+          Expanded(child: _ViewContent()),
+          _BottomActions(),
+        ],
+      ),
     );
   }
 }
