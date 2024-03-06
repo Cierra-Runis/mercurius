@@ -10,10 +10,17 @@ class SearchPage extends StatelessWidget {
         title: const _SearchBar(),
         actions: const [_HelperButton()],
       ),
-      body: const Column(
+      body: Column(
         children: [
-          Expanded(child: _ViewContent()),
-          _BottomActions(),
+          Expanded(
+            child: Material(
+              shape: Border(
+                bottom: Divider.createBorderSide(context, width: 1.0),
+              ),
+              child: const _ViewContent(),
+            ),
+          ),
+          const _BottomActions(),
         ],
       ),
     );
@@ -102,21 +109,16 @@ class _BottomActions extends StatelessWidget {
       ),
     ];
 
-    return Material(
-      shape: Border(top: Divider.createBorderSide(context, width: 1.0)),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            alignment: WrapAlignment.end,
-            runAlignment: WrapAlignment.end,
-            verticalDirection: VerticalDirection.up,
-            children: models.map((e) => _BottomAction(model: e)).toList(),
-          ),
-        ),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.all(8.0),
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        alignment: WrapAlignment.end,
+        runAlignment: WrapAlignment.end,
+        verticalDirection: VerticalDirection.up,
+        children: models.map((e) => _BottomAction(model: e)).toList(),
       ),
     );
   }
