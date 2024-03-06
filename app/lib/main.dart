@@ -33,10 +33,7 @@ class MainApp extends ConsumerWidget {
         appName: AppName(fontSize: 42),
       ),
       locale: settings.locale,
-      localizationsDelegates: const [
-        L10N.delegate,
-        ...FlutterQuillLocalizations.localizationsDelegates,
-      ],
+      localizationsDelegates: App.localizationsDelegates,
       supportedLocales: App.supportLanguages.values,
     );
   }

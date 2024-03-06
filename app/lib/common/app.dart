@@ -31,6 +31,11 @@ abstract class App {
     '中文': Locale('zh'),
   };
 
+  static const localizationsDelegates = [
+    L10N.delegate,
+    ...FlutterQuillLocalizations.localizationsDelegates,
+  ];
+
   /// The entry of [App].
   ///
   /// Initialize settings for different platforms,
