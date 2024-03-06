@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "Mercurius" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "Mercurius" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 pers.cierra_runis. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 pers.cierra_runis. All rights reserved." "\0"
             VALUE "OriginalFilename", "Mercurius.exe" "\0"
             VALUE "ProductName", "Mercurius" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
