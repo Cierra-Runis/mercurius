@@ -41,6 +41,9 @@ class _DiaryEditorPageState extends State<EditorPage> {
   @override
   void dispose() {
     FocusManager.instance.primaryFocus?.unfocus();
+    _titleController.dispose();
+    _quillController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
