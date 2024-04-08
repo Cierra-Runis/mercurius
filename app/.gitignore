@@ -44,3 +44,4 @@ lib/l10n/**/*.dart
 lib/common/key.dart
 
 .release_tool/
+.env
