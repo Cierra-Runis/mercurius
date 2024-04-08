@@ -42,11 +42,13 @@ class Gallery extends HookWidget {
         itemCount: files.length,
         itemBuilder: (context, index) {
           final filename = p.basename(files[index].path);
-          return _GalleryCard(
-            key: Key(filename),
-            filename: filename,
-            onCardTap: onCardTap,
-            actionsBuilder: actionsBuilder,
+          return FrameSeparateWidget(
+            child: _GalleryCard(
+              key: Key(filename),
+              filename: filename,
+              onCardTap: onCardTap,
+              actionsBuilder: actionsBuilder,
+            ),
           );
         },
       );
