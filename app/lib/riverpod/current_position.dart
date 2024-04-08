@@ -11,9 +11,9 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
 
   try {
     response = await Dio().get(
-      MercuriusApi.aMap.apiUrl,
+      App.aMapApiUrl,
       queryParameters: {
-        'key': MercuriusApi.aMap.apiKey,
+        'key': App.aMapApiKey,
         'output': 'json',
       },
     );
@@ -34,8 +34,10 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
 
   final match = RegExp(r'(.*),(.*);').firstMatch(data['rectangle']);
 
+  if (match == null) return const CurrentPosition();
+
   return CurrentPosition(
-    latitude: double.parse('${match![1]}').toStringAsFixed(2),
+    latitude: double.parse('${match[1]}').toStringAsFixed(2),
     longitude: double.parse('${match[2]}').toStringAsFixed(2),
     city: data['city'],
   );

@@ -137,7 +137,7 @@ class _ReleaseTile extends ConsumerWidget {
     return BasedListTile(
       leading: const AppIcon(size: 24),
       titleText: App.name,
-      subtitleText: tagName,
+      subtitleText: '$tagName ${App.builtAt}',
       detailText:
           hasUpdate ? l10n.clickHereToUpdate : l10n.alreadyTheLatestVersion,
       showTrailingBadge: hasUpdate,

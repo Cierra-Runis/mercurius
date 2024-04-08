@@ -10,15 +10,12 @@ Future<QWeatherNow> qWeatherNow(
   ref.keepAlive();
   final currentPosition = await ref.watch(currentPositionProvider.future);
 
-  final apiUrl = MercuriusApi.qWeather.apiUrl;
-  final aqiKey = MercuriusApi.qWeather.apiKey;
-
   Response response;
   try {
     response = await Dio().get(
-      apiUrl,
+      App.qWeatherApiUrl,
       queryParameters: {
-        'key': aqiKey,
+        'key': App.qWeatherApiKey,
         'location': '${currentPosition.latitude},${currentPosition.longitude}',
       },
     );

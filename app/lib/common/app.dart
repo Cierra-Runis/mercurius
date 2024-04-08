@@ -19,6 +19,14 @@ abstract class App {
   static const thirdPartyLicenseUrl = '$repoUrl/wiki/Third-Party-License';
   static const privacyPolicyUrl = '$repoUrl/wiki/Privacy-Policy';
 
+  static const aMapApiUrl = 'https://restapi.amap.com/v3/ip';
+  static const aMapApiKey = String.fromEnvironment('aMapApiKey');
+
+  static const qWeatherApiUrl = 'https://devapi.qweather.com/v7/weather/now';
+  static const qWeatherApiKey = String.fromEnvironment('qWeatherApiKey');
+
+  static const builtAt = String.fromEnvironment('builtAt');
+
   static const themeModeIcon = {
     ThemeMode.system: Icons.brightness_auto_rounded,
     ThemeMode.light: Icons.light_mode_rounded,
