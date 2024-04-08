@@ -49,16 +49,13 @@ class _DiaryPageViewState extends State<DiaryPageView> {
     if (snapshot.hasError) {
       return Center(child: Text('Steam error: ${snapshot.error}'));
     }
-    switch (snapshot.connectionState) {
-      case ConnectionState.none:
-        return const Center(child: Icon(UniconsLine.data_sharing));
-      case ConnectionState.waiting:
-        return const Loading();
-      case ConnectionState.active:
-        return _getPageBySnapshotData(context, snapshot);
-      case ConnectionState.done:
-        return const Center(child: Text('Stream closed'));
-    }
+    return switch (snapshot.connectionState) {
+      ConnectionState.none =>
+        const Center(child: Icon(UniconsLine.data_sharing)),
+      ConnectionState.waiting => const Loading(),
+      ConnectionState.active => _getPageBySnapshotData(context, snapshot),
+      ConnectionState.done => const Center(child: Text('Stream closed')),
+    };
   }
 
   @override
