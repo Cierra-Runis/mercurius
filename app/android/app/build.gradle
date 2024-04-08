@@ -54,7 +54,7 @@ android {
         release{
             keyAlias 'key_alias'
             keyPassword 'key_alias_password'
-            storeFile file('C:\\click\\key_alias.jks')
+            storeFile file('D:\\Desktop\\Default\\key_alias.jks')
             storePassword 'key_alias_password'
         }
     }
