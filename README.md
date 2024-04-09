@@ -59,37 +59,23 @@ And some of the realized functions are as follows:
 ## 🌕️ Dark Mode
 
 <p>
-
   <img width="400" src=".github/image/black_1.jpg" alt="black_1" />
-
   <img width="400" src=".github/image/black_2.jpg" alt="black_2" />
-
   <img width="400" src=".github/image/black_3.jpg" alt="black_3" />
-
   <img width="400" src=".github/image/black_4.jpg" alt="black_4" />
-
   <img width="400" src=".github/image/black_5.jpg" alt="black_5" />
-
   <img width="400" src=".github/image/black_6.jpg" alt="black_6" />
-
 </p>
 
 ## 🌞️ Bright Mode
 
 <p>
-
   <img width="400" src=".github/image/white_1.jpg" alt="white_1" />
-
   <img width="400" src=".github/image/white_2.jpg" alt="white_2" />
-
   <img width="400" src=".github/image/white_3.jpg" alt="white_3" />
-
   <img width="400" src=".github/image/white_4.jpg" alt="white_4" />
-
   <img width="400" src=".github/image/white_5.jpg" alt="white_5" />
-
   <img width="400" src=".github/image/white_6.jpg" alt="white_6" />
-
 </p>
 
 # 📦 How to use
