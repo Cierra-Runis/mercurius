@@ -45,3 +45,4 @@ lib/common/key.dart
 
 .release_tool/
 .env
+**/.DS_Store
