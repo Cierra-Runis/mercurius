@@ -1,0 +1,130 @@
+{
+  "@@last_modified": "2023-06-19T16:53:53+08:00",
+  "@@locale": "zh",
+  "@diaryCount": {
+    "description": "某时间段内的日记数",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@moodText": {
+    "description": "Get mood text by mood in [DiaryMoodType]",
+    "placeholders": {
+      "mood": {
+        "type": "String"
+      }
+    }
+  },
+  "@weatherText": {
+    "description": "Get weather text by weather in [DiaryWeatherType]",
+    "placeholders": {
+      "weather": {
+        "type": "String"
+      }
+    }
+  },
+  "@wordCount": {
+    "description": "日记字数",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutApp": "关于",
+  "accentColor": "主题色",
+  "alreadyTheLatestVersion": "已是最新",
+  "alwaysBright": "常亮模式",
+  "alwaysDark": "常暗模式",
+  "areYouSureToDeleteTheDiary": "确定删除日记吗？",
+  "areYouSureToDeleteTheImage": "确定删除图片吗？",
+  "back": "返回",
+  "backAgainToExit": "再次返回以退出",
+  "backgroundImage": "背景图像",
+  "buttonVibration": "按钮振动",
+  "cancel": "取消",
+  "caseSensitive": "区分大小写",
+  "caseSensitiveTooltip": "区分大小写",
+  "changeDate": "修改日期",
+  "changeMood": "修改心情",
+  "changeWeather": "修改天气",
+  "clear": "清除",
+  "clickHereToUpdate": "点此更新",
+  "confirm": "确认",
+  "contactUs": "联系我们",
+  "content": "内容",
+  "contentCannotBeEmpty": "内容不能为空",
+  "continueEditingDiary": "继续编辑日记",
+  "createNewDiary": "创建新日记",
+  "darkMode": "深色模式",
+  "diaryCount": "共 {count} 篇",
+  "disabled": "已禁用",
+  "dotAll": "点号换行",
+  "dotAllTooltip": "\".\" 匹配换行符",
+  "enabled": "已启用",
+  "export": "导出",
+  "exportJsonFile": "导出 Json 文件",
+  "exportNfcData": "导出 NFC 数据",
+  "failedToGetVersion": "获取版本失败",
+  "followTheSystem": "跟随系统",
+  "hiToKoToFetching": "正在获取「一言」",
+  "hiToKoToProvider": "该服务由 Hitokoto「一言」 提供",
+  "homePage": "主页",
+  "howIsYourMoodNow": "现在心情如何？",
+  "howIsYourMoodNowDescription": "ねぇ、今どんな気持ち",
+  "imageGallery": "图片库",
+  "imageMissing": "图片缺失",
+  "import": "导入",
+  "importAndExport": "导入导出",
+  "importJsonFile": "导入 Json 文件",
+  "importNfcData": "导入 NFC 数据",
+  "importV1Data": "导入 v1 数据",
+  "insertImage": "插入图片",
+  "insertTag": "插入标签",
+  "insertTagMessage": "请输入标签信息",
+  "insertTagTitle": "请选择标签图标并输入信息",
+  "insertTheImageFrom": "从何处插入图片？",
+  "language": "语言",
+  "monthlyWordCountStatistics": "月度字数统计",
+  "mood": "心情",
+  "moodText": "{mood, select, other{Unknown Mood} smile{开心} angry{生气} confused{困惑} frown{难过} laughing{大笑} silentSquint{难受} sadCrying{大哭} smileDizzy{我死} normal{一般}}",
+  "morePage": "更多",
+  "multiLine": "多行匹配",
+  "multiLineTooltip": "使 \"^\" 和 \"$\" 匹配一段文本中每行的开始和结束位置",
+  "noData": "无数据",
+  "noImageSelected": "未选择图片",
+  "notYetCompleted": "暂未完成",
+  "pleaseBackToHomePage": "请回到主页",
+  "pleaseThinkTwiceAboutDeletingTheDiary": "请再三思考是否删除日记",
+  "pleaseThinkTwiceAboutDeletingTheImage": "再三思考是否删除图片",
+  "privacyPolicy": "隐私政策",
+  "whatIsRegularExpression": "什么是正则表达式？",
+  "regularExpressionDoc": "https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_expressions",
+  "releasePage": "更新页",
+  "releasePageOops": "我超！请刷新页面！",
+  "resetToDefault": "重置为默认",
+  "save": "保存",
+  "searchDiary": "查找日记",
+  "searchHint": "支持正则表达式",
+  "selectAccentColor": "选择主题色",
+  "settings": "设置",
+  "statistics": "统计数据",
+  "systemFile": "系统文件",
+  "thirdPartyLicense": "第三方许可",
+  "thirdPartyLicenseDescription": "字体、图标、天气服务相关",
+  "thisDayLastYear": "去年今日",
+  "title": "标题",
+  "unicode": "Unicode",
+  "unicodeTooltip": "使用 Unicode 码模式匹配",
+  "unknownVersion": "未知版本",
+  "unsupportedImageFormat": "不支持的图片格式",
+  "untitled": "无标题",
+  "weather": "天气",
+  "weatherText": "{weather, select, other{未知} sunny{晴} cloudy{多云} fewClouds{少云} heavyThunderstorm{雷暴} lightRain{小雨} heavyRain{大雨} lightSnow{小雪} heavySnow{大雪} foggy{雾}}",
+  "whatIsTheWeatherNow": "现在天气如何？",
+  "whatIsTheWeatherNowDescription": "今日もいい天気",
+  "wordCount": "{count} 字",
+  "writingSomethingHere": "写些什么吧……"
+}

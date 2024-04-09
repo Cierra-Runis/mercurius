@@ -1,0 +1,130 @@
+{
+  "@@last_modified": "2023-06-19T16:53:41+08:00",
+  "@@locale": "en",
+  "@diaryCount": {
+    "description": "Diary count in a certain time period",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@moodText": {
+    "description": "Get mood text by mood in [DiaryMoodType]",
+    "placeholders": {
+      "mood": {
+        "type": "String"
+      }
+    }
+  },
+  "@weatherText": {
+    "description": "Get weather text by weather in [DiaryWeatherType]",
+    "placeholders": {
+      "weather": {
+        "type": "String"
+      }
+    }
+  },
+  "@wordCount": {
+    "description": "Word count of a diary",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aboutApp": "About App",
+  "accentColor": "Accent Color",
+  "alreadyTheLatestVersion": "Updated",
+  "alwaysBright": "Always Bright",
+  "alwaysDark": "Always Dark",
+  "areYouSureToDeleteTheDiary": "Confirm delete the diary?",
+  "areYouSureToDeleteTheImage": "Confirm delete the image?",
+  "back": "Back",
+  "backAgainToExit": "Go Back Again To Exit",
+  "backgroundImage": "Background Image",
+  "buttonVibration": "Button vibration",
+  "cancel": "Cancel",
+  "caseSensitive": "Case Sensitive",
+  "caseSensitiveTooltip": "Case Sensitive",
+  "changeDate": "Change Date",
+  "changeMood": "Change Mood",
+  "changeWeather": "Change Weather",
+  "clear": "Clear",
+  "clickHereToUpdate": "To Update",
+  "confirm": "Confirm",
+  "contactUs": "Contact Us",
+  "content": "Content",
+  "contentCannotBeEmpty": "Content Cannot Be Empty",
+  "continueEditingDiary": "Continue Editing Diary",
+  "createNewDiary": "Create New Diary",
+  "darkMode": "Dark Mode",
+  "diaryCount": "{count, plural, =1{{count} Diary} other{{count} Diaries}}",
+  "disabled": "Disabled",
+  "dotAll": "Dot All",
+  "dotAllTooltip": "Allows \".\" to match newline characters",
+  "enabled": "Enabled",
+  "export": "Export",
+  "exportJsonFile": "Export JSON File",
+  "exportNfcData": "Export NFC Data",
+  "failedToGetVersion": "Failed To Get Version",
+  "followTheSystem": "Follow The System",
+  "hiToKoToFetching": "Fetching 「一言」...",
+  "hiToKoToProvider": "This service is provided by Hitokoto「一言」",
+  "homePage": "Home",
+  "howIsYourMoodNow": "How is your mood now?",
+  "howIsYourMoodNowDescription": "ねぇ、今どんな気持ち",
+  "imageGallery": "Gallery",
+  "imageMissing": "Image Missing",
+  "import": "Import",
+  "importAndExport": "Import & Export",
+  "importJsonFile": "Import JSON File",
+  "importNfcData": "Import NFC Data",
+  "importV1Data": "Import v1 Data",
+  "insertImage": "Insert Image",
+  "insertTag": "Insert Tag",
+  "insertTagMessage": "Please Enter Tag Message",
+  "insertTagTitle": "Please Select The Tag Icon And Enter Message",
+  "insertTheImageFrom": "Insert the image from...",
+  "language": "Language",
+  "monthlyWordCountStatistics": "Monthly Word Count",
+  "mood": "Mood",
+  "moodText": "{mood, select, other{Unknown Mood} smile{Happy} angry{Angry} confused{Confused} frown{Frown} laughing{Laughing} silentSquint{Silent Squint} sadCrying{Sad Crying} smileDizzy{Smile Dizzy} normal{Normal}}",
+  "morePage": "More",
+  "multiLine": "Multi Line",
+  "multiLineTooltip": "Allows \"^\" and \"$\" to match next to newline characters",
+  "noData": "No Data",
+  "noImageSelected": "No Image Selected",
+  "notYetCompleted": "Not Yet Completed",
+  "pleaseBackToHomePage": "Please Back To Home Page",
+  "pleaseThinkTwiceAboutDeletingTheDiary": "Please think twice about deleting the diary",
+  "pleaseThinkTwiceAboutDeletingTheImage": "Please think twice about deleting the image",
+  "privacyPolicy": "Privacy Policy",
+  "whatIsRegularExpression": "What Is Regular Expression?",
+  "regularExpressionDoc": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions",
+  "releasePage": "Release Page",
+  "releasePageOops": "Oops! Please refresh the page!",
+  "resetToDefault": "Reset To Default",
+  "save": "Save",
+  "searchDiary": "Search Diary",
+  "searchHint": "Support Regular Expression",
+  "selectAccentColor": "Select Accent Color",
+  "settings": "Settings",
+  "statistics": "Statistics",
+  "systemFile": "System File",
+  "thirdPartyLicense": "Third Party License",
+  "thirdPartyLicenseDescription": "Fonts, Icons, Weather Service Related",
+  "thisDayLastYear": "This Day Last Year",
+  "title": "Title",
+  "unicode": "Unicode",
+  "unicodeTooltip": "Treat a pattern as a sequence of Unicode code points",
+  "unknownVersion": "Unknown Version",
+  "unsupportedImageFormat": "Unsupported Image Format",
+  "untitled": "Untitled",
+  "weather": "Weather",
+  "weatherText": "{weather, select, other{Unknown Weather} sunny{Sunny} cloudy{Cloudy} fewClouds{Few Clouds} heavyThunderstorm{Heavy Thunderstorm} lightRain{Light Rain} heavyRain{Heavy Rain} lightSnow{Light Snow} heavySnow{Heavy Snow} foggy{Foggy}}",
+  "whatIsTheWeatherNow": "What is the weather now?",
+  "whatIsTheWeatherNowDescription": "今日もいい天気",
+  "wordCount": "{count, plural, =1{{count} Word} other{{count} Words}}",
+  "writingSomethingHere": "Writing Something Here..."
+}

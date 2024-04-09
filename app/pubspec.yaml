@@ -1,0 +1,137 @@
+name: mercurius
+description: For mercurius.
+
+publish_to: "none"
+
+version: 2.0.0+104
+
+environment:
+  sdk: ">=3.1.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  another_flushbar: ^1.12.31-dev.1
+  based_list: ^1.1.3
+  based_local_first_image: ^1.1.0
+  based_splash_page: ^1.0.1
+  based_split_view: ^1.2.0
+  cross_file: ^0.3.4+1
+  dio: ^5.4.2+1
+  dart_date: ^1.3.2
+  dynamic_color: ^1.7.0
+  flex_color_picker: ^3.4.1
+  file_picker: ^8.0.0+1
+  flutter_displaymode: ^0.6.0
+  flutter_hooks: ^0.20.5
+  flutter_markdown: ^0.6.22+1
+  flutter_quill: ^9.3.6
+  flutter_svg: ^2.0.10+1
+  hooks_riverpod: ^2.5.1
+  image_picker: ^1.0.7
+  image_picker_android: ^0.8.9+5
+  image_picker_platform_interface: ^2.10.0
+  isar: ^4.0.0-dev.14
+  isar_flutter_libs: ^4.0.0-dev.14
+  intl: ^0.18.1
+  json_annotation: ^4.8.1
+  keframe: ^3.0.0
+  keypress_simulator: ^0.2.0
+  loading_animation_widget: ^1.2.1
+  material_color_utilities: ^0.8.0
+  path: ^1.9.0
+  path_provider: ^2.1.2
+  path_provider_android: ^2.2.2 # FIXME: https://github.com/flutter/flutter/issues/142518
+  package_info_plus: ^6.0.0
+  pausable_timer: ^3.1.0+3
+  photo_view: ^0.14.0
+  qweather_icons: ^1.6.0
+  riverpod_annotation: ^2.3.5
+  share_plus: ^8.0.2
+  shared_preferences: ^2.2.2
+  syncfusion_flutter_charts: ^25.1.38
+  url_launcher: ^6.2.5
+  unicons: ^2.1.1
+  vibration: ^1.8.4
+  window_manager: ^0.3.8
+  freezed_annotation: ^2.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.2
+  build_runner: ^2.4.9
+  custom_lint: ^0.6.4
+  freezed: ^2.5.1
+  intl_utils: ^2.8.7
+  json_serializable: ^6.7.1
+  riverpod_generator: ^2.4.0
+  riverpod_lint: ^2.3.10
+
+flutter:
+  generate: true
+  uses-material-design: true
+  fonts:
+    - family: Saira
+      fonts:
+        - asset: assets/fonts/Saira/Saira-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Saira/Saira-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Saira/Saira-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Saira/Saira-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Saira/Saira-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Saira/Saira-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Saira/Saira-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Saira/Saira-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Saira/Saira-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Saira/Saira-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Saira/Saira-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Saira/Saira-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Saira/Saira-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Saira/Saira-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Saira/Saira-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Saira/Saira-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Saira/Saira-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Saira/Saira-BlackItalic.ttf
+          weight: 900
+          style: italic
+    - family: MiSans
+      fonts:
+        - asset: assets/fonts/MiSans/MiSans-Regular.ttf
+    - family: CascadiaCodePL
+      fonts:
+        - asset: assets/fonts/CascadiaCodePL/CascadiaCodePL-Regular.otf
+  assets:
+    - assets/icon/
+
+flutter_intl:
+  enabled: true
+  class_name: L10N
+  arb_dir: lib/l10n
+  output_dir: lib/l10n
