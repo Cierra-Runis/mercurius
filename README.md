@@ -8,7 +8,7 @@
 
 </div>
 
-`Latest update: 2023-06-22 03:00:00`
+`Latest update: 2024-04-09 18:36:55`
 
 [📚 Introduction](#-Introduction)
 
@@ -16,19 +16,15 @@
 
 [📦 How to use](#-How-to-use)
 
-[⏳ Rate of progress](#-Rate-of-progress)
-
 [📌 Cautions](#-Cautions)
 
 [🧑‍💻 Contributor](#-Contributor)
 
 [🔦 Declaration](#-Declaration)
 
----
-
 # 📚 Introduction
 
-`Mercurius` is a diary application developed based on [Flutter](https://flutter.dev/), it supports `Android` and `Windows` platforms.
+`Mercurius` is a diary application developed based on [Flutter](https://flutter.dev/), it supports `Android` and `Windows` platforms, `iOS` and `macOS` is WIP.
 
 And some of the realized functions are as follows:
 
@@ -42,11 +38,11 @@ And some of the realized functions are as follows:
 
   3. Support large, medium and small three-level titles and ordinary characters
 
-  4. Support the function of inserting refers, images and time tags
+  4. Support the function of inserting refers, images and tags
 
   5. Support to modify diary mood, weather, date and other attributes.
 
-- Support full-text search
+- Support full-text search and Regex
 
 - Support import and export diary in `json` format
 
@@ -88,14 +84,11 @@ And some of the realized functions are as follows:
 
   Go [Releases Page](https://github.com/Cierra-Runis/mercurius/releases) and select the latest version of `Mercurius.for.Windows.zip` to download and unzip it, the double click `Mercurius.exe`
 
-# ⏳ Rate of progress
-
-Official version has been released
-
 # 📌 Cautions
 
 - Please pay attention to the relevant information marked in the list of breaking updated versions on the update page
-- and actively use the `import and export` function to back up diary data in time to prevent data loss after updating the version
+
+- Actively use the `import and export` function to back up diary data in time to prevent data loss after updating the version
 
 # 🧑‍💻 Contributor
 
