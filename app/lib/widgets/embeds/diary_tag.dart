@@ -1,6 +1,7 @@
 import 'package:mercurius/index.dart';
-part 'diary_tag.g.dart';
+
 part 'diary_tag.freezed.dart';
+part 'diary_tag.g.dart';
 
 @freezed
 class DiaryTag with _$DiaryTag {

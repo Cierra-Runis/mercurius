@@ -1,6 +1,7 @@
 import 'package:mercurius/index.dart';
-part 'diary.g.dart';
+
 part 'diary.freezed.dart';
+part 'diary.g.dart';
 
 @collection
 @freezed

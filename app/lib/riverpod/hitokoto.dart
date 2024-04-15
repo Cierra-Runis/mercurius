@@ -1,5 +1,6 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'hitokoto.g.dart';
 
 const String _url = 'https://v1.hitokoto.cn/';

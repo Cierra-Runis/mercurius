@@ -1,7 +1,7 @@
 import 'package:mercurius/index.dart';
 
-part 'hitokoto.g.dart';
 part 'hitokoto.freezed.dart';
+part 'hitokoto.g.dart';
 
 @freezed
 class HiToKoTo with _$HiToKoTo {

@@ -1,6 +1,7 @@
 import 'package:mercurius/index.dart';
 import 'package:path/path.dart' as p;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'paths.g.dart';
 
 @riverpod

@@ -1,7 +1,8 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'color_schemes.g.dart';
+
 part 'color_schemes.freezed.dart';
+part 'color_schemes.g.dart';
 
 @freezed
 class ColorSchemesState with _$ColorSchemesState {

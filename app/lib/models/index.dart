@@ -1,2 +1,2 @@
-export 'hitokoto.dart';
 export 'enum.dart';
+export 'hitokoto.dart';

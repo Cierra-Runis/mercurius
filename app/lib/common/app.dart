@@ -1,6 +1,6 @@
-import 'package:mercurius/index.dart';
-
 import 'dart:developer' as devtools show log, inspect;
+
+import 'package:mercurius/index.dart';
 
 late final IsarService isarService;
 

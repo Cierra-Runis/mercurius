@@ -1,7 +1,8 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'settings.g.dart';
+
 part 'settings.freezed.dart';
+part 'settings.g.dart';
 
 /// Add abstracts layer extension to [Persistence]
 ///

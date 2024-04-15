@@ -1,7 +1,8 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'advance_search.g.dart';
+
 part 'advance_search.freezed.dart';
+part 'advance_search.g.dart';
 
 @freezed
 class AdvanceSearchState with _$AdvanceSearchState {

@@ -1,5 +1,6 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'root_page.g.dart';
 
 final splitViewKey = GlobalKey<NavigatorState>();

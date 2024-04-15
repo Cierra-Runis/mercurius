@@ -1,7 +1,8 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'github_latest_release.g.dart';
+
 part 'github_latest_release.freezed.dart';
+part 'github_latest_release.g.dart';
 
 @riverpod
 Future<GitHubLatestRelease> gitHubLatestRelease(

@@ -1,5 +1,6 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'persistence.g.dart';
 
 @Riverpod(keepAlive: true)

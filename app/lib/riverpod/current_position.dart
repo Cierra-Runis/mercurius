@@ -1,7 +1,8 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'current_position.g.dart';
+
 part 'current_position.freezed.dart';
+part 'current_position.g.dart';
 
 @riverpod
 Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
