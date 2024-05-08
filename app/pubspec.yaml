@@ -27,11 +27,11 @@ dependencies:
   flutter_displaymode: ^0.6.0
   flutter_hooks: ^0.20.5
   flutter_markdown: ^0.7.1
-  flutter_quill: ^9.3.9
+  flutter_quill: ^9.3.10
   flutter_svg: ^2.0.10+1
   hooks_riverpod: ^2.5.1
-  image_picker: ^1.1.0
-  image_picker_android: ^0.8.10
+  image_picker: ^1.1.1
+  image_picker_android: ^0.8.11
   image_picker_platform_interface: ^2.10.0
   isar: ^4.0.0-dev.14
   isar_flutter_libs: ^4.0.0-dev.14
@@ -51,7 +51,7 @@ dependencies:
   riverpod_annotation: ^2.3.5
   share_plus: ^9.0.0
   shared_preferences: ^2.2.3
-  syncfusion_flutter_charts: ^25.1.42
+  syncfusion_flutter_charts: ^25.2.3
   url_launcher: ^6.2.6
   unicons: ^2.1.1
   vibration: ^1.8.4

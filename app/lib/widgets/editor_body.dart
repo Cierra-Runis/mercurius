@@ -42,7 +42,7 @@ class EditorBody extends StatelessWidget {
       focusNode: FocusNode(),
       scrollController: scrollController,
       configurations: QuillEditorConfigurations(
-        controller: controller,
+        controller: controller..readOnly = readOnly,
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         autoFocus: autoFocus,
         placeholder: l10n.writingSomethingHere,
@@ -50,7 +50,6 @@ class EditorBody extends StatelessWidget {
         enableInteractiveSelection: enableInteractiveSelection,
         enableSelectionToolbar: enableSelectionToolbar,
         showCursor: showCursor,
-        readOnly: readOnly,
         onLaunchUrl: onLaunchUrl,
         scrollBottomInset: 10,
         embedBuilders: embedBuilders,
