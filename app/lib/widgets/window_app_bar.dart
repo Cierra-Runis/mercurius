@@ -16,6 +16,10 @@ class WindowAppBar extends ConsumerWidget {
   void triggerSnapAssist(bool value) async {
     if (!Platform.isWindows || !value) return;
     if (!await keyPressSimulator.isAccessAllowed()) return;
+
+    await windowManager.focus();
+    if (!await windowManager.isFocused()) return;
+
     await keyPressSimulator.simulateKeyDown(
       PhysicalKeyboardKey.keyZ,
       [ModifierKey.metaModifier],
