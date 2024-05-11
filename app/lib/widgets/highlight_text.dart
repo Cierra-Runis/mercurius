@@ -1,10 +1,17 @@
 import 'package:mercurius/index.dart';
 
+class HighlightTextController extends ChangeNotifier {
+  HighlightTextController();
+
+  int count = 0;
+}
+
 class HighlightText extends StatelessWidget {
   const HighlightText({
     super.key,
     required this.text,
     required this.pattern,
+    this.controller,
     this.textStyle,
     this.highlightStyle,
     this.spansTransform,
@@ -14,6 +21,7 @@ class HighlightText extends StatelessWidget {
 
   final String text;
   final Pattern pattern;
+  final HighlightTextController? controller;
   final TextStyle? textStyle;
   final TextStyle? highlightStyle;
   final List<TextSpan> Function(List<TextSpan> spans)? spansTransform;
@@ -30,6 +38,8 @@ class HighlightText extends StatelessWidget {
     final normal = text.split(pattern);
     final matches =
         pattern.allMatches(text).map((e) => e.group(0) ?? '').toList();
+
+    controller?.count = matches.length;
 
     final result = <TextSpan>[];
     for (var i = 0; i < normal.length || i < matches.length; i++) {
@@ -63,10 +73,10 @@ class HighlightText extends StatelessWidget {
       highlightStyle,
     );
 
+    final finalSpans = spansTransform?.call(spans) ?? spans;
+
     return Text.rich(
-      TextSpan(
-        children: spansTransform?.call(spans) ?? spans,
-      ),
+      TextSpan(children: finalSpans),
       overflow: overflow,
       maxLines: maxLines,
     );

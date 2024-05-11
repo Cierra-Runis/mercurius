@@ -251,7 +251,7 @@ class _View extends ConsumerWidget {
   }
 }
 
-class _ListTile extends StatelessWidget {
+class _ListTile extends StatefulWidget {
   const _ListTile({
     required this.diary,
     required this.pattern,
@@ -261,13 +261,20 @@ class _ListTile extends StatelessWidget {
   final Pattern pattern;
 
   @override
+  State<_ListTile> createState() => _ListTileState();
+}
+
+class _ListTileState extends State<_ListTile> {
+  final _controller = HighlightTextController();
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
     final lang = Localizations.localeOf(context).toLanguageTag();
 
-    final title = diary.title.isNotEmpty
-        ? diary.title
-        : diary.belongTo.format(
+    final title = widget.diary.title.isNotEmpty
+        ? widget.diary.title
+        : widget.diary.belongTo.format(
             DateFormat.YEAR_ABBR_MONTH_DAY,
             lang,
           );
@@ -279,15 +286,24 @@ class _ListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: HighlightText(
-        text: diary.plainText,
-        pattern: pattern,
+        text: widget.diary.plainText,
+        pattern: widget.pattern,
+        controller: _controller,
         textStyle: TextStyle(color: colorScheme.outline, fontSize: 10),
-        spansTransform: (spans) => spans.skip(1).toList(),
+        spansTransform: (spans) {
+          return spans.skip(1).toList();
+        },
         overflow: TextOverflow.ellipsis,
         maxLines: 3,
       ),
+      trailing: Badge(
+        label: ListenableBuilder(
+          listenable: _controller,
+          builder: (context, child) => Text('${_controller.count}'),
+        ),
+      ),
       onTap: () => context.pushDialog(
-        DiaryPageView(initialId: diary.id),
+        DiaryPageView(initialId: widget.diary.id),
       ),
     );
   }
