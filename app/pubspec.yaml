@@ -59,6 +59,10 @@ dependencies:
 
 dependency_overrides:
   intl: ^0.19.0
+  flutter_colorpicker:
+    git:
+      url: https://github.com/mchome/flutter_colorpicker
+      ref: master
 
 dev_dependencies:
   flutter_test:
