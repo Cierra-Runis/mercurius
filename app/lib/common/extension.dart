@@ -69,7 +69,7 @@ extension DefaultStylesExt on DefaultStyles {
     final colorScheme = Theme.of(context).colorScheme;
 
     final baseStyle = TextStyle(
-      color: colorScheme.onBackground,
+      color: colorScheme.onSurface,
       fontFamily: fontFamily,
       fontFamilyFallback: [codeFontFamily, ...fontFamilyFallback],
       height: 4 / 3,

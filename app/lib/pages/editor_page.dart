@@ -211,8 +211,8 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
     return Transform.scale(
       scale: 0.7,
       child: Switch(
-        thumbIcon: MaterialStateProperty.resolveWith<Icon>(
-          (Set<MaterialState> states) => states.contains(MaterialState.selected)
+        thumbIcon: WidgetStateProperty.resolveWith<Icon>(
+          (Set<WidgetState> states) => states.contains(WidgetState.selected)
               ? const Icon(Icons.timer_rounded)
               : const Icon(Icons.timer_off_rounded),
         ),
@@ -291,7 +291,7 @@ class _EditorSaveButton extends StatelessWidget {
         ).show(context);
       },
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all<Size>(
+        minimumSize: WidgetStateProperty.all<Size>(
           const Size(56, 56),
         ),
       ),

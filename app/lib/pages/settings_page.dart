@@ -56,7 +56,7 @@ class _ThemeSelector extends ConsumerWidget {
     return SegmentedButton<ThemeMode>(
       showSelectedIcon: false,
       style: const ButtonStyle(
-        padding: MaterialStatePropertyAll(EdgeInsets.zero),
+        padding: WidgetStatePropertyAll(EdgeInsets.zero),
         visualDensity: VisualDensity.compact,
       ),
       segments: [
