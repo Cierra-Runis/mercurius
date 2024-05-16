@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "name": "Flutter DEBUG",
+      "type": "dart",
+      "request": "launch",
+      "program": "./app/lib/main.dart",
+      "args": [
+        "--dart-define-from-file=.env",
+      ]
+    }
+  ]
+}
