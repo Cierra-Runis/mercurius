@@ -525,8 +525,12 @@ class _EditorImageButton extends ConsumerWidget {
     BuildContext context,
     Directory imageDirectory,
   ) async {
+    final l10n = context.l10n;
     final selectedFilename = await context.push<String?>(
       Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.imageGallery),
+        ),
         body: Gallery(
           directory: imageDirectory,
           onCardTap: (context, filename) => context.pop(filename),
