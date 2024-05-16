@@ -26,6 +26,7 @@ class MainApp extends ConsumerWidget {
       theme: themes.theme,
       darkTheme: themes.darkTheme,
       themeMode: settings.themeMode,
+      themeAnimationCurve: Curves.easeInOut,
       builder: builder,
       home: const BasedSplashPage(
         rootPage: RootPage(),
