@@ -31,31 +31,32 @@ class Gallery extends HookWidget {
       initialData: directory.listSync(),
     );
 
-    if (stream.hasData) {
-      final files = stream.data!;
-      return GridView.builder(
-        cacheExtent: 1000,
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-        ),
-        padding: const EdgeInsets.all(12.0),
-        itemCount: files.length,
-        itemBuilder: (context, index) {
-          final filename = p.basename(files[index].path);
-          return FrameSeparateWidget(
-            child: _GalleryCard(
-              key: Key(filename),
-              filename: filename,
-              onCardTap: onCardTap,
-              actionsBuilder: actionsBuilder,
-            ),
-          );
-        },
+    final files = stream.data;
+
+    if (files == null || files.isEmpty) {
+      return Center(
+        child: Text(l10n.noData),
       );
     }
 
-    return Center(
-      child: Text(l10n.noData),
+    return GridView.builder(
+      cacheExtent: 1000,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+      ),
+      padding: const EdgeInsets.all(12.0),
+      itemCount: files.length,
+      itemBuilder: (context, index) {
+        final filename = p.basename(files[index].path);
+        return FrameSeparateWidget(
+          child: _GalleryCard(
+            key: Key(filename),
+            filename: filename,
+            onCardTap: onCardTap,
+            actionsBuilder: actionsBuilder,
+          ),
+        );
+      },
     );
   }
 }
