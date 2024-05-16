@@ -1,13 +1,88 @@
 import 'package:mercurius/index.dart';
 
-class WindowAppBar extends ConsumerWidget {
+class WindowAppBar extends StatelessWidget {
   const WindowAppBar({super.key});
 
   static const appBarHeight = 24.0;
-  static const _actionSize = 16.0;
-  static const _actionWidth = _actionSize * 2;
+  static const actionSize = 16.0;
+  static const actionWidth = actionSize * 2;
 
-  void toggleMaximized() async => await windowManager.isMaximized()
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onLongPress: windowManager.center,
+      onDoubleTap: _MaximizeButton.toggleMaximized,
+      onPanStart: (details) => windowManager.startDragging(),
+      child: AppBar(
+        toolbarHeight: appBarHeight,
+        title: const Text(
+          App.name,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: const [
+          _LoopThemeModeButton(),
+          _AlwaysOnTopButton(),
+          _MinimizeButton(),
+          _MaximizeButton(),
+          _CloseButton(),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoopThemeModeButton extends ConsumerWidget {
+  const _LoopThemeModeButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+    final setSettings = ref.watch(settingsProvider.notifier);
+
+    return InkWell(
+      onTap: setSettings.loopThemeMode,
+      child: SizedBox(
+        width: WindowAppBar.actionWidth,
+        height: WindowAppBar.appBarHeight,
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          child: Icon(
+            key: ValueKey(settings.themeMode),
+            App.themeModeIcon[settings.themeMode],
+            size: WindowAppBar.actionSize,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MinimizeButton extends StatelessWidget {
+  const _MinimizeButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: windowManager.minimize,
+      child: const SizedBox(
+        width: WindowAppBar.actionWidth,
+        height: WindowAppBar.appBarHeight,
+        child: Icon(
+          Icons.remove_rounded,
+          size: WindowAppBar.actionSize,
+        ),
+      ),
+    );
+  }
+}
+
+class _MaximizeButton extends StatelessWidget {
+  const _MaximizeButton();
+
+  static void toggleMaximized() async => await windowManager.isMaximized()
       ? windowManager.unmaximize()
       : windowManager.maximize();
 
@@ -31,87 +106,77 @@ class WindowAppBar extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    final setSettings = ref.watch(settingsProvider.notifier);
-
-    return GestureDetector(
-      onDoubleTap: toggleMaximized,
-      onPanStart: (details) => windowManager.startDragging(),
-      child: AppBar(
-        toolbarHeight: appBarHeight,
-        title: const Text(
-          App.name,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
+  Widget build(BuildContext context) {
+    return InkWell(
+      onHover: triggerSnapAssist,
+      onTap: toggleMaximized,
+      child: const SizedBox(
+        width: WindowAppBar.actionWidth,
+        height: WindowAppBar.appBarHeight,
+        child: Icon(
+          Icons.fullscreen_rounded,
+          size: WindowAppBar.actionSize,
         ),
-        actions: [
-          InkWell(
-            onTap: setSettings.loopThemeMode,
-            child: SizedBox(
-              width: _actionWidth,
-              height: appBarHeight,
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                child: Icon(
-                  key: ValueKey(settings.themeMode),
-                  App.themeModeIcon[settings.themeMode],
-                  size: _actionSize,
-                ),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () async => windowManager.setAlwaysOnTop(
-              !await windowManager.isAlwaysOnTop(),
-            ),
-            child: const SizedBox(
-              width: _actionWidth,
-              height: appBarHeight,
-              child: Icon(
-                Icons.push_pin_rounded,
-                size: _actionSize,
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: windowManager.minimize,
-            child: const SizedBox(
-              width: _actionWidth,
-              height: appBarHeight,
-              child: Icon(
-                Icons.remove_rounded,
-                size: _actionSize,
-              ),
-            ),
-          ),
-          InkWell(
-            onHover: triggerSnapAssist,
-            onTap: toggleMaximized,
-            child: const SizedBox(
-              width: _actionWidth,
-              height: appBarHeight,
-              child: Icon(
-                Icons.fullscreen_rounded,
-                size: _actionSize,
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: windowManager.close,
-            hoverColor: Colors.red,
-            child: const SizedBox(
-              width: _actionWidth,
-              height: appBarHeight,
-              child: Icon(
-                Icons.close_rounded,
-                size: _actionSize,
-              ),
-            ),
-          ),
-        ],
+      ),
+    );
+  }
+}
+
+class _AlwaysOnTopButton extends StatefulWidget {
+  const _AlwaysOnTopButton();
+
+  @override
+  State<_AlwaysOnTopButton> createState() => _AlwaysOnTopButtonState();
+}
+
+class _AlwaysOnTopButtonState extends State<_AlwaysOnTopButton> {
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = context.colorScheme;
+
+    return InkWell(
+      onTap: () async {
+        await windowManager.setAlwaysOnTop(
+          !await windowManager.isAlwaysOnTop(),
+        );
+        setState(() {});
+      },
+      child: SizedBox(
+        width: WindowAppBar.actionWidth,
+        height: WindowAppBar.appBarHeight,
+        child: FutureBuilder<bool>(
+          future: windowManager.isAlwaysOnTop(),
+          builder: (context, snapshot) {
+            final data = snapshot.data;
+            final isAlwaysOnTop = data != null && data;
+
+            return Icon(
+              Icons.push_pin_rounded,
+              size: WindowAppBar.actionSize,
+              color: isAlwaysOnTop ? colorScheme.error : null,
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  const _CloseButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: windowManager.close,
+      hoverColor: Colors.red,
+      child: const SizedBox(
+        width: WindowAppBar.actionWidth,
+        height: WindowAppBar.appBarHeight,
+        child: Icon(
+          Icons.close_rounded,
+          size: WindowAppBar.actionSize,
+        ),
       ),
     );
   }
