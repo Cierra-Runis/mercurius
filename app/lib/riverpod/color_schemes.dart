@@ -28,7 +28,7 @@ class ColorSchemesState with _$ColorSchemesState {
       ),
       fontFamily: App.fontSaira,
       fontFamilyFallback: const [App.fontMiSans],
-      appBarTheme: appBarTheme,
+      appBarTheme: appBarTheme.copyWith(color: light.surface),
     );
 
     final darkTheme = ThemeData(
@@ -39,7 +39,7 @@ class ColorSchemesState with _$ColorSchemesState {
       ),
       fontFamily: App.fontSaira,
       fontFamilyFallback: const [App.fontMiSans],
-      appBarTheme: appBarTheme,
+      appBarTheme: appBarTheme.copyWith(color: dark.surface),
     );
 
     return (theme: theme, darkTheme: darkTheme);

@@ -30,7 +30,7 @@ class DiaryListItem extends StatelessWidget {
           ).confirm ==
           ConfirmResult.confirm,
       child: Card(
-        color: colorScheme.surface.withOpacity(0.8),
+        color: colorScheme.surfaceContainerLow.withOpacity(0.8),
         margin: const EdgeInsets.all(10.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24.0),
