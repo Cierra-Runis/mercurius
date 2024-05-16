@@ -6,7 +6,7 @@ export 'dart:convert';
 export 'dart:io';
 export 'dart:ui' show ImageFilter, FontFeature;
 
-/// others
+/// flutter
 export 'package:another_flushbar/flushbar.dart';
 export 'package:based_list/based_list.dart';
 export 'package:based_local_first_image/based_local_first_image.dart';
@@ -18,8 +18,6 @@ export 'package:dio/dio.dart';
 export 'package:dynamic_color/dynamic_color.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:flex_color_picker/flex_color_picker.dart';
-
-/// flutter
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
 export 'package:flutter/foundation.dart' hide describeIdentity, shortHash;
 export 'package:flutter/gestures.dart';
@@ -58,6 +56,7 @@ export 'package:url_launcher/url_launcher_string.dart';
 export 'package:vibration/vibration.dart';
 export 'package:window_manager/window_manager.dart';
 
+/// others
 export 'common/index.dart';
 export 'database/index.dart';
 export 'l10n/l10n.dart';
