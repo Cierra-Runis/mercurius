@@ -7,5 +7,5 @@ export 'more_page.dart';
 export 'release_page.dart';
 export 'root_page.dart';
 export 'search_page.dart';
-export 'settings_page.dart';
+export 'settings/index.dart';
 export 'statistic_page.dart';

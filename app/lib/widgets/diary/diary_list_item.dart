@@ -121,10 +121,7 @@ class _Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      diary.document.toPlainText(
-        EditorBody.embedBuilders,
-        EditorBody.unknownEmbedBuilder,
-      ),
+      diary.document.plainText,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(

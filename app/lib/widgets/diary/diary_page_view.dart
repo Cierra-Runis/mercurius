@@ -174,7 +174,7 @@ class _WordsChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Chip(label: Text(l10n.wordCount(diary.words)));
+    return Chip(label: Text(l10n.wordCount(diary.length)));
   }
 }
 

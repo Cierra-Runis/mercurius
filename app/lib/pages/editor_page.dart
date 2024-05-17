@@ -182,11 +182,9 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
       _timer
         ..reset()
         ..start();
-      final plainText = _quillController.document.toPlainText(
-        EditorBody.embedBuilders,
-        EditorBody.unknownEmbedBuilder,
-      );
-      if (plainText.isEmpty) return;
+
+      if (_quillController.document.plainTextIsEmpty) return;
+
       final newDiary = _diary.copyWith(
         content: _quillController.document.toDelta().toJson(),
         editAt: DateTime.now(),
@@ -246,11 +244,7 @@ class _EditorSaveButton extends StatelessWidget {
 
     return TextButton(
       onPressed: () {
-        final plainText = quillController.document.toPlainText(
-          EditorBody.embedBuilders,
-          EditorBody.unknownEmbedBuilder,
-        );
-        if (plainText.isNotEmpty) {
+        if (!quillController.document.plainTextIsEmpty) {
           final newDiary = diary.copyWith(
             content: quillController.document.toDelta().toJson(),
             editAt: DateTime.now(),

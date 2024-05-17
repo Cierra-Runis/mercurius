@@ -24,13 +24,10 @@ class Diary with _$Diary {
   Document get document => Document.fromJson(content);
 
   @ignore
-  String get plainText => document.toPlainText(
-        EditorBody.embedBuilders,
-        EditorBody.unknownEmbedBuilder,
-      );
+  String get plainText => document.plainText;
 
   @ignore
-  int get words => plainText.length;
+  int get length => plainText.length;
 
   factory Diary.fromJson(Json json) => _$DiaryFromJson(json);
 }

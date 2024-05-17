@@ -26,11 +26,12 @@ class LanguagePage extends ConsumerWidget {
           SliverList.builder(
             itemCount: App.supportLanguages.length,
             itemBuilder: (context, index) {
-              final map = App.supportLanguages.entries.elementAt(index);
+              final MapEntry(key: humanString, value: locale) =
+                  App.supportLanguages.entries.elementAt(index);
               return BasedRadioListTile<Locale>(
-                value: App.supportLanguages.values.elementAt(index),
+                value: locale,
                 groupValue: settings.locale,
-                titleText: '${map.key} (${map.value})',
+                titleText: '$humanString ($locale)',
                 onChanged: setSettings.setLocale,
               );
             },

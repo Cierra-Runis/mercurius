@@ -15,6 +15,15 @@ extension CacheForExtension on AutoDisposeRef<Object?> {
   }
 }
 
+extension DocumentExt on Document {
+  String get plainText => toPlainText(
+        EditorBody.embedBuilders,
+        EditorBody.unknownEmbedBuilder,
+      );
+
+  bool get plainTextIsEmpty => plainText.length <= 1;
+}
+
 extension BuildContextExt on BuildContext {
   NavigatorState get _navigator =>
       splitViewKey.currentState ?? Navigator.of(this);

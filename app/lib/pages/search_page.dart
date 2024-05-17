@@ -190,8 +190,8 @@ class _ViewContent extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final result = useMemoized(() => isarService.listenToAllDiaries());
-    final snapshot = useStream(result);
+    final stream = useMemoized(isarService.listenToAllDiaries);
+    final snapshot = useStream(stream);
 
     if (snapshot.hasError) {
       return Center(child: Text('Steam error: ${snapshot.error}'));
