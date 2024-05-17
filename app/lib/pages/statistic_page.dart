@@ -11,9 +11,18 @@ class StatisticPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.statistics),
       ),
-      body: const BasedListView(
+      body: BasedListView(
         children: [
-          MonthlyWords(),
+          BasedListSection(
+            titleText: l10n.monthlyWordCountStatistics,
+            titleTextStyle: const TextStyle(
+              fontFamily: App.fontSaira,
+              fontSize: 18,
+            ),
+            children: const [
+              MonthlyWords(),
+            ],
+          ),
         ],
       ),
     );
