@@ -1,30 +1,20 @@
 import 'package:mercurius/index.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class GeneralSettingsSection extends StatelessWidget {
+  const GeneralSettingsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.settings),
-      ),
-      body: const Center(
-        child: BasedListView(
-          children: [
-            BasedListSection(
-              children: [
-                _ThemeSelectListTile(),
-                _AccentColorListTile(),
-                _BackgroundImageListTile(),
-                _LanguageSelectListTile(),
-              ],
-            ),
-          ],
-        ),
-      ),
+    return BasedListSection(
+      titleText: l10n.generalSettings,
+      children: const [
+        _ThemeSelectListTile(),
+        _AccentColorListTile(),
+        _BackgroundImageListTile(),
+        _LanguageSelectListTile(),
+      ],
     );
   }
 }
