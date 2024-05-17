@@ -122,40 +122,26 @@ class _MaximizeButton extends StatelessWidget {
   }
 }
 
-class _AlwaysOnTopButton extends StatefulWidget {
+class _AlwaysOnTopButton extends HookWidget {
   const _AlwaysOnTopButton();
 
   @override
-  State<_AlwaysOnTopButton> createState() => _AlwaysOnTopButtonState();
-}
-
-class _AlwaysOnTopButtonState extends State<_AlwaysOnTopButton> {
-  @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
+    final snapshot = useFuture(windowManager.isAlwaysOnTop());
+    final isAlwaysOnTop = snapshot.data ?? false;
 
     return InkWell(
-      onTap: () async {
-        await windowManager.setAlwaysOnTop(
-          !await windowManager.isAlwaysOnTop(),
-        );
-        setState(() {});
-      },
+      onTap: () async => windowManager.setAlwaysOnTop(
+        !await windowManager.isAlwaysOnTop(),
+      ),
       child: SizedBox(
         width: WindowAppBar.actionWidth,
         height: WindowAppBar.appBarHeight,
-        child: FutureBuilder<bool>(
-          future: windowManager.isAlwaysOnTop(),
-          builder: (context, snapshot) {
-            final data = snapshot.data;
-            final isAlwaysOnTop = data != null && data;
-
-            return Icon(
-              Icons.push_pin_rounded,
-              size: WindowAppBar.actionSize,
-              color: isAlwaysOnTop ? colorScheme.error : null,
-            );
-          },
+        child: Icon(
+          Icons.push_pin_rounded,
+          size: WindowAppBar.actionSize,
+          color: isAlwaysOnTop ? colorScheme.error : null,
         ),
       ),
     );
