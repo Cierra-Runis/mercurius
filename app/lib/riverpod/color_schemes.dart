@@ -20,6 +20,8 @@ class ColorSchemesState with _$ColorSchemesState {
       centerTitle: true,
     );
 
+    const cardTheme = CardTheme(elevation: 0);
+
     final theme = ThemeData(
       useMaterial3: true,
       colorScheme: light,
@@ -29,6 +31,7 @@ class ColorSchemesState with _$ColorSchemesState {
       fontFamily: App.fontSaira,
       fontFamilyFallback: const [App.fontMiSans],
       appBarTheme: appBarTheme.copyWith(color: light.surface),
+      cardTheme: cardTheme,
     );
 
     final darkTheme = ThemeData(
@@ -40,6 +43,7 @@ class ColorSchemesState with _$ColorSchemesState {
       fontFamily: App.fontSaira,
       fontFamilyFallback: const [App.fontMiSans],
       appBarTheme: appBarTheme.copyWith(color: dark.surface),
+      cardTheme: cardTheme,
     );
 
     return (theme: theme, darkTheme: darkTheme);
@@ -53,33 +57,39 @@ class ColorSchemes extends _$ColorSchemes {
     final dynamicColor = ref.watch(dynamicColorProvider);
     final settings = ref.watch(settingsProvider);
 
-    if (settings.accentColor != null) {
+    final accentColor = settings.accentColor;
+
+    if (accentColor != null) {
       return ColorSchemesState(
         light: ColorScheme.fromSeed(
-          seedColor: settings.accentColor!,
+          seedColor: accentColor,
         ),
         dark: ColorScheme.fromSeed(
-          seedColor: settings.accentColor!,
+          seedColor: accentColor,
           brightness: Brightness.dark,
         ),
       );
     }
 
-    if (dynamicColor.corePalette != null) {
+    final corePalette = dynamicColor.corePalette;
+
+    if (corePalette != null) {
       return ColorSchemesState(
-        light: dynamicColor.corePalette!.toColorScheme(),
-        dark: dynamicColor.corePalette!.toColorScheme(
+        light: corePalette.toColorScheme(),
+        dark: corePalette.toColorScheme(
           brightness: Brightness.dark,
         ),
       );
     }
+
+    final seedColor = dynamicColor.seedColor;
 
     return ColorSchemesState(
       light: ColorScheme.fromSeed(
-        seedColor: dynamicColor.seedColor,
+        seedColor: seedColor,
       ),
       dark: ColorScheme.fromSeed(
-        seedColor: dynamicColor.seedColor,
+        seedColor: seedColor,
         brightness: Brightness.dark,
       ),
     );
