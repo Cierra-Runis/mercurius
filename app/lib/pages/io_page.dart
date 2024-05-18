@@ -34,6 +34,7 @@ class _ImportSection extends StatelessWidget {
       children: [
         const _ImportJsonFile(),
         const _ImportImages(),
+        const _ImportImageJson(),
         BasedListTile(
           leadingIcon: Icons.nfc_rounded,
           titleText: l10n.importNfcData,
@@ -106,8 +107,8 @@ class _ImportJsonFile extends StatelessWidget {
   }
 }
 
-class _ImportImages extends ConsumerWidget {
-  const _ImportImages();
+class _ImportImageJson extends ConsumerWidget {
+  const _ImportImageJson();
 
   void importImages(String imageDirectory) async {
     /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
@@ -146,6 +147,43 @@ class _ImportImages extends ConsumerWidget {
   }
 }
 
+class _ImportImages extends ConsumerWidget {
+  const _ImportImages();
+
+  void importImages(String imageDirectory) async {
+    /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
+    if (Platform.isAndroid || Platform.isIOS) {
+      await FilePicker.platform.clearTemporaryFiles();
+    }
+
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+    );
+
+    if (result == null || result.count < 1) return;
+
+    try {
+      for (final file in result.files) {
+        final f = File(p.join(imageDirectory, p.basename(file.path!)));
+        f.writeAsBytes(await file.xFile.readAsBytes());
+      }
+    } catch (e, s) {
+      App.printLog('$e', error: e, stackTrace: s);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final paths = ref.watch(pathsProvider);
+
+    return BasedListTile(
+      leadingIcon: Icons.image_rounded,
+      titleText: '导入日记图片',
+      onTap: () => importImages(paths.imageDirectory.path),
+    );
+  }
+}
+
 class _ExportSection extends ConsumerWidget {
   const _ExportSection();
 
@@ -159,12 +197,38 @@ class _ExportSection extends ConsumerWidget {
       children: [
         BasedListTile(
           leadingIcon: Icons.data_object_rounded,
-          titleText: l10n.exportJsonFile,
+          titleText: l10n.exportDiaryJsonFile,
           onTap: () async {
             final path = p.join(paths.temp.path, 'export.json');
             final json = await isarService.exportDiaryJson();
             await File(path).writeAsString(jsonEncode(json));
             await Share.shareXFiles([XFile(path)]);
+          },
+        ),
+        BasedListTile(
+          leadingIcon: Icons.photo_rounded,
+          titleText: '导出日记图片',
+          onTap: () async {
+            final images = paths.imageDirectory.listSync();
+
+            if (images.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.noData)),
+              );
+              return;
+            }
+
+            try {
+              await Share.shareXFiles(
+                images.map((e) => XFile(e.path)).toList(),
+              );
+            } catch (e) {
+              App.printLog('Export Diary Image Failed', error: e);
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('$e')),
+              );
+            }
           },
         ),
         BasedListTile(
