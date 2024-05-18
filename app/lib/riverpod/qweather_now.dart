@@ -8,7 +8,7 @@ part 'qweather_now.g.dart';
 Future<QWeatherNow> qWeatherNow(
   QWeatherNowRef ref,
 ) async {
-  ref.keepAlive();
+  ref.refreshFor(const Duration(minutes: 10));
   final currentPosition = await ref.watch(currentPositionProvider.future);
 
   Response response;
