@@ -35,7 +35,7 @@ class MainApp extends ConsumerWidget {
       ),
       locale: settings.locale,
       localizationsDelegates: App.localizationsDelegates,
-      supportedLocales: App.supportLanguages.values,
+      supportedLocales: App.supportLanguages.keys,
     );
   }
 }
