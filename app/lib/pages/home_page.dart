@@ -11,7 +11,7 @@ class HomePage extends HookWidget {
       appBar: AppBar(
         leading: const _SearchButton(),
         title: _AppBarTitle(controller: controller),
-        actions: const [_SyncButton()],
+        actions: const [_UploadButton()],
       ),
       body: _HomePageBody(controller: controller),
       floatingActionButton: const _FloatingButton(),
@@ -33,13 +33,17 @@ class _SearchButton extends StatelessWidget {
   }
 }
 
-class _SyncButton extends StatelessWidget {
-  const _SyncButton();
+class _UploadButton extends StatelessWidget {
+  const _UploadButton();
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: () => context.push(
+        Scaffold(
+          appBar: AppBar(),
+        ),
+      ),
       icon: const Badge(
         backgroundColor: Colors.green,
         child: Icon(Icons.dns_rounded),
