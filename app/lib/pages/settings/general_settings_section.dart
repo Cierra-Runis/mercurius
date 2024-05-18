@@ -16,7 +16,7 @@ class GeneralSettingsSection extends StatelessWidget {
         _AccentColorListTile(),
         _BackgroundImageListTile(),
         _LanguageSelectListTile(),
-        _CacheCleanTile(),
+        _CacheCleaningTile(),
       ],
     );
   }
@@ -288,16 +288,17 @@ extension _DirectoryExt on Directory {
   }
 }
 
-class _CacheCleanTile extends ConsumerWidget {
-  const _CacheCleanTile();
+class _CacheCleaningTile extends ConsumerWidget {
+  const _CacheCleaningTile();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
     final appCache = paths.appCache;
     return BasedListTile(
       leadingIcon: Icons.cleaning_services_rounded,
-      titleText: '应用缓存清理',
+      titleText: l10n.cacheCleaning,
       onTap: () {
         final files = appCache.listSync();
         for (final file in files) {

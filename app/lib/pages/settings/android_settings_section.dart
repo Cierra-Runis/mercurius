@@ -73,14 +73,15 @@ class _ImagePickerStyleTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final settings = ref.watch(settingsProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
 
     return BasedSwitchListTile(
       value: settings.useAndroid13PhotoPicker,
       onChanged: setSettings.setUseAndroid13PhotoPicker,
-      titleText: '图片选择器',
-      subtitleText: '使用 Android 13 及以上新样式',
+      titleText: l10n.imagePicker,
+      subtitleText: l10n.useAndroid13PhotoPicker,
       leadingIcon: Icons.photo_album_rounded,
     );
   }

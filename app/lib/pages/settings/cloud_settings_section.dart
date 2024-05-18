@@ -5,9 +5,10 @@ class CloudSettingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BasedListSection(
-      titleText: '云端设置',
-      children: [
+    final l10n = context.l10n;
+    return BasedListSection(
+      titleText: l10n.cloudSettings,
+      children: const [
         _GitHubSettingsTile(),
         _AutoUploadImagesTile(),
         _AutoBackupDiariesTile(),
@@ -21,8 +22,9 @@ class _GitHubSettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BasedListTile(
-      titleText: 'GitHub 设定',
+      titleText: l10n.gitHubSettings,
       leadingIcon: UniconsLine.github,
       onTap: () => context.pushDialog(const _GitHubSettingsPage()),
     );
@@ -53,9 +55,9 @@ class _GitHubSettingsPage extends HookConsumerWidget {
                 title: TextFormField(
                   initialValue: settings.gitHubSlugOwner,
                   onSaved: setSettings.setGitHubSlugOwner,
-                  decoration: const InputDecoration(
-                    icon: Icon(UniconsLine.github),
-                    label: Text('GitHub 用户名称'),
+                  decoration: InputDecoration(
+                    icon: const Icon(UniconsLine.github),
+                    label: Text(l10n.gitHubUsername),
                   ),
                 ),
               ),
@@ -63,9 +65,9 @@ class _GitHubSettingsPage extends HookConsumerWidget {
                 title: TextFormField(
                   initialValue: settings.gitHubSlugName,
                   onSaved: setSettings.setGitHubSlugName,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.cabin_rounded),
-                    label: Text('GitHub 仓库名称'),
+                  decoration: InputDecoration(
+                    icon: const Icon(Icons.cabin_rounded),
+                    label: Text(l10n.githubRepoName),
                   ),
                 ),
               ),
@@ -73,9 +75,9 @@ class _GitHubSettingsPage extends HookConsumerWidget {
                 title: TextFormField(
                   initialValue: settings.gitHubToken,
                   onSaved: setSettings.setGitHubToken,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.token_rounded),
-                    label: Text('GitHub TOKEN'),
+                  decoration: InputDecoration(
+                    icon: const Icon(Icons.token_rounded),
+                    label: Text(l10n.gitHubToken),
                   ),
                 ),
               ),
@@ -105,6 +107,7 @@ class _AutoUploadImagesTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final settings = ref.watch(settingsProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
 
@@ -112,7 +115,7 @@ class _AutoUploadImagesTile extends ConsumerWidget {
       value: settings.autoUploadImages,
       onChanged: setSettings.setAutoUploadImages,
       leadingIcon: Icons.backup_rounded,
-      titleText: '自动上传图片',
+      titleText: l10n.autoUploadImages,
     );
   }
 }
@@ -122,13 +125,14 @@ class _AutoBackupDiariesTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final settings = ref.watch(settingsProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
 
     return BasedSwitchListTile(
       value: settings.autoBackupDiaries,
       onChanged: setSettings.setAutoBackupDiaries,
-      titleText: '自动备份日记',
+      titleText: l10n.autoBackupDiaries,
       leadingIcon: Icons.backup_rounded,
     );
   }

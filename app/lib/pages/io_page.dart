@@ -31,16 +31,10 @@ class _ImportSection extends StatelessWidget {
 
     return BasedListSection(
       titleText: l10n.import,
-      children: [
-        const _ImportJsonFile(),
-        const _ImportImages(),
-        const _ImportImageJson(),
-        BasedListTile(
-          leadingIcon: Icons.nfc_rounded,
-          titleText: l10n.importNfcData,
-          // TODO: 写逻辑
-          subtitleText: l10n.notYetCompleted,
-        ),
+      children: const [
+        _ImportJsonFile(),
+        _ImportDiaryImages(),
+        _ImportImageJsonFromV1(),
       ],
     );
   }
@@ -107,8 +101,8 @@ class _ImportJsonFile extends StatelessWidget {
   }
 }
 
-class _ImportImageJson extends ConsumerWidget {
-  const _ImportImageJson();
+class _ImportImageJsonFromV1 extends ConsumerWidget {
+  const _ImportImageJsonFromV1();
 
   void importImages(String imageDirectory) async {
     /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
@@ -137,18 +131,19 @@ class _ImportImageJson extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
 
     return BasedListTile(
       leadingIcon: Icons.add_photo_alternate_rounded,
-      titleText: '导入自 v1 的 image.json',
+      titleText: l10n.importImageJsonFromV1,
       onTap: () => importImages(paths.imageDirectory.path),
     );
   }
 }
 
-class _ImportImages extends ConsumerWidget {
-  const _ImportImages();
+class _ImportDiaryImages extends ConsumerWidget {
+  const _ImportDiaryImages();
 
   void importImages(String imageDirectory) async {
     /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
@@ -174,11 +169,12 @@ class _ImportImages extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
 
     return BasedListTile(
       leadingIcon: Icons.image_rounded,
-      titleText: '导入日记图片',
+      titleText: l10n.importDiaryImages,
       onTap: () => importImages(paths.imageDirectory.path),
     );
   }
@@ -205,39 +201,45 @@ class _ExportSection extends ConsumerWidget {
             await Share.shareXFiles([XFile(path)]);
           },
         ),
-        BasedListTile(
-          leadingIcon: Icons.photo_rounded,
-          titleText: '导出日记图片',
-          onTap: () async {
-            final images = paths.imageDirectory.listSync();
-
-            if (images.isEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.noData)),
-              );
-              return;
-            }
-
-            try {
-              await Share.shareXFiles(
-                images.map((e) => XFile(e.path)).toList(),
-              );
-            } catch (e) {
-              App.printLog('Export Diary Image Failed', error: e);
-              if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('$e')),
-              );
-            }
-          },
-        ),
-        BasedListTile(
-          leadingIcon: Icons.nfc_rounded,
-          titleText: l10n.exportNfcData,
-          // TODO: 写逻辑
-          subtitleText: l10n.notYetCompleted,
-        ),
+        const _ExportDiaryImagesTile(),
       ],
+    );
+  }
+}
+
+class _ExportDiaryImagesTile extends ConsumerWidget {
+  const _ExportDiaryImagesTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final paths = ref.watch(pathsProvider);
+
+    return BasedListTile(
+      leadingIcon: Icons.photo_rounded,
+      titleText: l10n.exportDiaryImages,
+      onTap: () async {
+        final images = paths.imageDirectory.listSync();
+
+        if (images.isEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l10n.noData)),
+          );
+          return;
+        }
+
+        try {
+          await Share.shareXFiles(
+            images.map((e) => XFile(e.path)).toList(),
+          );
+        } catch (e) {
+          App.printLog('Export Diary Image Failed', error: e);
+          if (!context.mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('$e')),
+          );
+        }
+      },
     );
   }
 }
