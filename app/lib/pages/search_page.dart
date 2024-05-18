@@ -155,9 +155,11 @@ class _SearchBar extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final colorScheme = context.colorScheme;
-    final textEditingController = useTextEditingController();
     final advanceSearch = ref.watch(advanceSearchProvider);
     final setAdvanceSearch = ref.watch(advanceSearchProvider.notifier);
+    final textEditingController = useTextEditingController(
+      text: advanceSearch.source,
+    );
 
     return TextField(
       autofocus: true,

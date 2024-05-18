@@ -7,8 +7,7 @@ const String _url = 'https://v1.hitokoto.cn/';
 
 @riverpod
 Future<HiToKoTo> hitokoto(HitokotoRef ref) async {
-  ref.refreshFor(const Duration(seconds: 3));
-
+  ref.refreshFor(const Duration(seconds: 5));
   Response response;
 
   try {

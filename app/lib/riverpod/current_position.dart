@@ -6,8 +6,7 @@ part 'current_position.g.dart';
 
 @riverpod
 Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
-  ref.keepAlive();
-
+  ref.refreshFor(const Duration(minutes: 10));
   final Response response;
 
   try {

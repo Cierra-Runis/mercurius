@@ -37,7 +37,7 @@ typedef TransformFunction = AdvanceSearchState Function(
   AdvanceSearchState state,
 );
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AdvanceSearch extends _$AdvanceSearch {
   @override
   AdvanceSearchState build() => const AdvanceSearchState();
