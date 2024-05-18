@@ -11,6 +11,7 @@ class AndroidSettingsSection extends StatelessWidget {
       titleText: l10n.androidPlatformSpecificSettings,
       children: const [
         _DisplaySettings(),
+        _ImagePickerStyleTile(),
       ],
     );
   }
@@ -30,7 +31,6 @@ class _DisplaySettings extends HookWidget {
       subtitleText: '${snapshot.data ?? ''}',
       onTap: () => showModalBottomSheet(
         context: context,
-        showDragHandle: true,
         builder: (context) => const _DisplaySettingsSheet(),
       ),
     );
@@ -57,9 +57,31 @@ class _DisplaySettingsSheet extends HookWidget {
         return BasedListTile(
           leadingIcon: Icons.display_settings_rounded,
           titleText: '$displayMode',
-          onTap: () => FlutterDisplayMode.setPreferredMode(displayMode),
+          onTap: () {
+            FlutterDisplayMode.setPreferredMode(displayMode);
+            context.pop();
+          },
         );
       },
+    );
+  }
+}
+
+/// https://developer.android.com/training/data-storage/shared/photopicker
+class _ImagePickerStyleTile extends ConsumerWidget {
+  const _ImagePickerStyleTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+    final setSettings = ref.watch(settingsProvider.notifier);
+
+    return BasedSwitchListTile(
+      value: settings.useAndroid13PhotoPicker,
+      onChanged: setSettings.setUseAndroid13PhotoPicker,
+      titleText: '图片选择器',
+      subtitleText: '使用 Android 13 及以上新样式',
+      leadingIcon: Icons.photo_album_rounded,
     );
   }
 }
