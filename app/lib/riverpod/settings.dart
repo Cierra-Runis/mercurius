@@ -7,7 +7,7 @@ part 'settings.g.dart';
 /// Add abstracts layer extension to [Persistence]
 ///
 /// Naming the new keys, and provide default set/get methods
-extension _Ext on Persistence {
+extension _GeneralSettingsExt on Persistence {
   static const themeMode = '${Persistence.prefix}_themeMode';
   ThemeMode getThemeMode() => ThemeMode.values.firstWhere(
         (element) => element.name == sp.getString(themeMode),
@@ -55,6 +55,71 @@ extension _Ext on Persistence {
   }
 }
 
+/// Add abstracts layer extension to [Persistence]
+///
+/// Naming the new keys, and provide default set/get methods
+extension _CloudSettingsExt on Persistence {
+  static const autoUploadImages = '${Persistence.prefix}_autoUploadImages';
+  bool getAutoUploadImages() => sp.getBool(autoUploadImages) ?? false;
+  Future<bool> setAutoUploadImages(bool? value) async {
+    if (value == null) return sp.remove(autoUploadImages);
+    return sp.setBool(autoUploadImages, value);
+  }
+
+  static const autoBackupDiaries = '${Persistence.prefix}_autoBackupDiaries';
+  bool getAutoBackupDiaries() => sp.getBool(autoBackupDiaries) ?? false;
+  Future<bool> setAutoBackupDiaries(bool? value) async {
+    if (value == null) return sp.remove(autoBackupDiaries);
+    return sp.setBool(autoBackupDiaries, value);
+  }
+
+  static const gitHubSlugOwner = '${Persistence.prefix}_gitHubSlugOwner';
+  String? getGitHubSlugOwner() => sp.getString(gitHubSlugOwner);
+  Future<bool> setGitHubSlugOwner(String? value) async {
+    if (value == null) return sp.remove(gitHubSlugOwner);
+    return sp.setString(gitHubSlugOwner, value);
+  }
+
+  static const gitHubSlugName = '${Persistence.prefix}_gitHubSlugName';
+  String? getGitHubSlugName() => sp.getString(gitHubSlugName);
+  Future<bool> setGitHubSlugName(String? value) async {
+    if (value == null) return sp.remove(gitHubSlugName);
+    return sp.setString(gitHubSlugName, value);
+  }
+
+  static const gitHubToken = '${Persistence.prefix}_gitHubToken';
+  String? getGitHubToken() => sp.getString(gitHubToken);
+  Future<bool> setGitHubToken(String? value) async {
+    if (value == null) return sp.remove(gitHubToken);
+    return sp.setString(gitHubToken, value);
+  }
+}
+
+extension _AndroidSettingsExt on Persistence {
+  static const useAndroid13PhotoPicker =
+      '${Persistence.prefix}_useAndroid13PhotoPicker';
+  bool getUseAndroid13PhotoPicker() {
+    final value = sp.getBool(useAndroid13PhotoPicker) ?? true;
+
+    final imagePicker = ImagePickerPlatform.instance;
+    if (imagePicker is ImagePickerAndroid) {
+      imagePicker.useAndroidPhotoPicker = value;
+    }
+    return value;
+  }
+
+  Future<bool> setUseAndroid13PhotoPicker(bool? value) async {
+    if (value == null) return sp.remove(useAndroid13PhotoPicker);
+
+    final imagePicker = ImagePickerPlatform.instance;
+    if (imagePicker is ImagePickerAndroid) {
+      imagePicker.useAndroidPhotoPicker = value;
+    }
+
+    return sp.setBool(useAndroid13PhotoPicker, value);
+  }
+}
+
 /// State which return by [ref.watch]
 ///
 /// It contains [toString], [fromJson], [toJson], [copyWith] methods
@@ -63,18 +128,30 @@ class SettingsState with _$SettingsState {
   const SettingsState._();
 
   const factory SettingsState({
-    @JsonKey(name: _Ext.themeMode) required ThemeMode themeMode,
-    @JsonKey(name: _Ext.bgImgPath) String? bgImgPath,
-    @JsonKey(name: _Ext.locale) Locale? locale,
-    @JsonKey(name: _Ext.accentColor) Color? accentColor,
+    @JsonKey(name: _GeneralSettingsExt.themeMode) required ThemeMode themeMode,
+    @JsonKey(name: _GeneralSettingsExt.bgImgPath) String? bgImgPath,
+    @JsonKey(name: _GeneralSettingsExt.locale) Locale? locale,
+    @JsonKey(name: _GeneralSettingsExt.accentColor) Color? accentColor,
+    @JsonKey(name: _CloudSettingsExt.autoUploadImages)
+    required bool autoUploadImages,
+    @JsonKey(name: _CloudSettingsExt.autoBackupDiaries)
+    required bool autoBackupDiaries,
+    @JsonKey(name: _CloudSettingsExt.gitHubSlugOwner) String? gitHubSlugOwner,
+    @JsonKey(name: _CloudSettingsExt.gitHubSlugName) String? gitHubSlugName,
+    @JsonKey(name: _CloudSettingsExt.gitHubToken) String? gitHubToken,
+    @JsonKey(name: _AndroidSettingsExt.useAndroid13PhotoPicker)
+    required bool useAndroid13PhotoPicker,
   }) = _SettingsState;
+
+  bool get gitHubSettled =>
+      gitHubSlugOwner != null && gitHubSlugName != null && gitHubToken != null;
 }
 
 /// State management
 ///
 /// By watching [persistenceProvider],
 /// its state reacts when [Persistence] change
-@riverpod
+@Riverpod(keepAlive: true)
 class Settings extends _$Settings {
   late final Persistence _pers;
 
@@ -86,6 +163,12 @@ class Settings extends _$Settings {
       bgImgPath: _pers.getBgImgPath(),
       locale: _pers.getLocale(),
       accentColor: _pers.getAccentColor(),
+      autoUploadImages: _pers.getAutoUploadImages(),
+      autoBackupDiaries: _pers.getAutoBackupDiaries(),
+      gitHubSlugOwner: _pers.getGitHubSlugOwner(),
+      gitHubSlugName: _pers.getGitHubSlugName(),
+      gitHubToken: _pers.getGitHubToken(),
+      useAndroid13PhotoPicker: _pers.getUseAndroid13PhotoPicker(),
     );
   }
 
@@ -115,5 +198,35 @@ class Settings extends _$Settings {
   Future<bool> setAccentColor(Color? value) async {
     state = state.copyWith(accentColor: value);
     return _pers.setAccentColor(value);
+  }
+
+  Future<bool> setAutoUploadImages(bool value) async {
+    state = state.copyWith(autoUploadImages: value);
+    return _pers.setAutoUploadImages(value);
+  }
+
+  Future<bool> setAutoBackupDiaries(bool value) async {
+    state = state.copyWith(autoBackupDiaries: value);
+    return _pers.setAutoBackupDiaries(value);
+  }
+
+  Future<bool> setGitHubSlugOwner(String? value) async {
+    state = state.copyWith(gitHubSlugOwner: value);
+    return _pers.setGitHubSlugOwner(value);
+  }
+
+  Future<bool> setGitHubSlugName(String? value) async {
+    state = state.copyWith(gitHubSlugName: value);
+    return _pers.setGitHubSlugName(value);
+  }
+
+  Future<bool> setGitHubToken(String? value) async {
+    state = state.copyWith(gitHubToken: value);
+    return _pers.setGitHubToken(value);
+  }
+
+  Future<bool> setUseAndroid13PhotoPicker(bool value) async {
+    state = state.copyWith(useAndroid13PhotoPicker: value);
+    return _pers.setUseAndroid13PhotoPicker(value);
   }
 }
