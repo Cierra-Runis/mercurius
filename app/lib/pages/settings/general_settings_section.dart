@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:mercurius/index.dart';
 
 class GeneralSettingsSection extends StatelessWidget {
@@ -14,6 +16,7 @@ class GeneralSettingsSection extends StatelessWidget {
         _AccentColorListTile(),
         _BackgroundImageListTile(),
         _LanguageSelectListTile(),
+        _CacheCleanTile(),
       ],
     );
   }
@@ -158,7 +161,7 @@ class _BackgroundImageListTile extends ConsumerWidget {
     return BasedListTile(
       leadingIcon: Icons.flip_to_back_rounded,
       titleText: l10n.backgroundImage,
-      detailText: settings.bgImgPath == null ? l10n.noImageSelected : '',
+      detailText: settings.bgImgPath ?? l10n.noImageSelected,
       onTap: () => context.push(const _BackgroundImagePage()),
     );
   }
@@ -194,17 +197,119 @@ class _BackgroundImagePage extends ConsumerWidget {
   }
 }
 
-class _LanguageSelectListTile extends StatelessWidget {
+class _LanguageSelectListTile extends ConsumerWidget {
   const _LanguageSelectListTile();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+
+    final humanString = App.supportLanguages[settings.locale];
 
     return BasedListTile(
       leadingIcon: Icons.translate_rounded,
       titleText: l10n.language,
-      onTap: () => context.push(const LanguagePage()),
+      detailText: humanString ?? l10n.followTheSystem,
+      onTap: () => context.push(const _LanguagePage()),
+    );
+  }
+}
+
+class _LanguagePage extends ConsumerWidget {
+  const _LanguagePage();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+    final setSettings = ref.watch(settingsProvider.notifier);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.language),
+      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: BasedRadioListTile<Locale?>(
+              value: null,
+              groupValue: settings.locale,
+              titleText: l10n.followTheSystem,
+              onChanged: setSettings.setLocale,
+            ),
+          ),
+          SliverList.builder(
+            itemCount: App.supportLanguages.length,
+            itemBuilder: (context, index) {
+              final MapEntry(key: locale, value: humanString) =
+                  App.supportLanguages.entries.elementAt(index);
+              return BasedRadioListTile<Locale>(
+                value: locale,
+                groupValue: settings.locale,
+                titleText: '$humanString ($locale)',
+                onChanged: setSettings.setLocale,
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+abstract class _Bytes {
+  static String format({
+    required int bytes,
+    int decimals = 2,
+  }) {
+    if (bytes <= 0) return '0 B';
+    const suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    final i = (math.log(bytes) / math.log(1024)).floor();
+    return '${(bytes / math.pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
+  }
+}
+
+extension _FileSystemEntityExt on FileSystemEntity {
+  int getBytes() => switch (this) {
+        final File file => file.lengthSync(),
+        final Directory directory => directory.getBytes(),
+        _ => 0,
+      };
+}
+
+extension _DirectoryExt on Directory {
+  int getBytes() {
+    var sum = 0;
+    for (final file in listSync()) {
+      sum += file.getBytes();
+    }
+    return sum;
+  }
+}
+
+class _CacheCleanTile extends ConsumerWidget {
+  const _CacheCleanTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final paths = ref.watch(pathsProvider);
+    final appCache = paths.appCache;
+    return BasedListTile(
+      leadingIcon: Icons.cleaning_services_rounded,
+      titleText: '应用缓存清理',
+      onTap: () {
+        final files = appCache.listSync();
+        for (final file in files) {
+          try {
+            file.deleteSync(recursive: true);
+          } catch (e) {
+            App.printLog('File / Directory delete Failed', error: e);
+          }
+        }
+        ref.invalidate(pathsProvider);
+      },
+      detailText: _Bytes.format(bytes: appCache.getBytes()),
     );
   }
 }
