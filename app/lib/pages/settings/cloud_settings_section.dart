@@ -53,8 +53,8 @@ class _GitHubSettingsPage extends HookConsumerWidget {
             children: [
               ListTile(
                 title: TextFormField(
-                  initialValue: settings.gitHubSlugOwner,
-                  onSaved: setSettings.setGitHubSlugOwner,
+                  initialValue: settings.gitHubOwner,
+                  onSaved: setSettings.setGitHubOwner,
                   decoration: InputDecoration(
                     icon: const Icon(UniconsLine.github),
                     label: Text(l10n.gitHubUsername),
@@ -63,8 +63,8 @@ class _GitHubSettingsPage extends HookConsumerWidget {
               ),
               ListTile(
                 title: TextFormField(
-                  initialValue: settings.gitHubSlugName,
-                  onSaved: setSettings.setGitHubSlugName,
+                  initialValue: settings.gitHubRepo,
+                  onSaved: setSettings.setGitHubRepo,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.cabin_rounded),
                     label: Text(l10n.githubRepoName),

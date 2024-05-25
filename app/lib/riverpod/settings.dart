@@ -73,18 +73,18 @@ extension _CloudSettingsExt on Persistence {
     return sp.setBool(autoBackupDiaries, value);
   }
 
-  static const gitHubSlugOwner = '${Persistence.prefix}_gitHubSlugOwner';
-  String? getGitHubSlugOwner() => sp.getString(gitHubSlugOwner);
-  Future<bool> setGitHubSlugOwner(String? value) async {
-    if (value == null) return sp.remove(gitHubSlugOwner);
-    return sp.setString(gitHubSlugOwner, value);
+  static const gitHubOwner = '${Persistence.prefix}_gitHubOwner';
+  String? getGitHubOwner() => sp.getString(gitHubOwner);
+  Future<bool> setGitHubOwner(String? value) async {
+    if (value == null) return sp.remove(gitHubOwner);
+    return sp.setString(gitHubOwner, value);
   }
 
-  static const gitHubSlugName = '${Persistence.prefix}_gitHubSlugName';
-  String? getGitHubSlugName() => sp.getString(gitHubSlugName);
-  Future<bool> setGitHubSlugName(String? value) async {
-    if (value == null) return sp.remove(gitHubSlugName);
-    return sp.setString(gitHubSlugName, value);
+  static const gitHubRepo = '${Persistence.prefix}_gitHubRepo';
+  String? getGitHubRepo() => sp.getString(gitHubRepo);
+  Future<bool> setGitHubRepo(String? value) async {
+    if (value == null) return sp.remove(gitHubRepo);
+    return sp.setString(gitHubRepo, value);
   }
 
   static const gitHubToken = '${Persistence.prefix}_gitHubToken';
@@ -136,15 +136,12 @@ class SettingsState with _$SettingsState {
     required bool autoUploadImages,
     @JsonKey(name: _CloudSettingsExt.autoBackupDiaries)
     required bool autoBackupDiaries,
-    @JsonKey(name: _CloudSettingsExt.gitHubSlugOwner) String? gitHubSlugOwner,
-    @JsonKey(name: _CloudSettingsExt.gitHubSlugName) String? gitHubSlugName,
+    @JsonKey(name: _CloudSettingsExt.gitHubOwner) String? gitHubOwner,
+    @JsonKey(name: _CloudSettingsExt.gitHubRepo) String? gitHubRepo,
     @JsonKey(name: _CloudSettingsExt.gitHubToken) String? gitHubToken,
     @JsonKey(name: _AndroidSettingsExt.useAndroid13PhotoPicker)
     required bool useAndroid13PhotoPicker,
   }) = _SettingsState;
-
-  bool get gitHubSettled =>
-      gitHubSlugOwner != null && gitHubSlugName != null && gitHubToken != null;
 }
 
 /// State management
@@ -165,8 +162,8 @@ class Settings extends _$Settings {
       accentColor: _pers.getAccentColor(),
       autoUploadImages: _pers.getAutoUploadImages(),
       autoBackupDiaries: _pers.getAutoBackupDiaries(),
-      gitHubSlugOwner: _pers.getGitHubSlugOwner(),
-      gitHubSlugName: _pers.getGitHubSlugName(),
+      gitHubOwner: _pers.getGitHubOwner(),
+      gitHubRepo: _pers.getGitHubRepo(),
       gitHubToken: _pers.getGitHubToken(),
       useAndroid13PhotoPicker: _pers.getUseAndroid13PhotoPicker(),
     );
@@ -210,14 +207,14 @@ class Settings extends _$Settings {
     return _pers.setAutoBackupDiaries(value);
   }
 
-  Future<bool> setGitHubSlugOwner(String? value) async {
-    state = state.copyWith(gitHubSlugOwner: value);
-    return _pers.setGitHubSlugOwner(value);
+  Future<bool> setGitHubOwner(String? value) async {
+    state = state.copyWith(gitHubOwner: value);
+    return _pers.setGitHubOwner(value);
   }
 
-  Future<bool> setGitHubSlugName(String? value) async {
-    state = state.copyWith(gitHubSlugName: value);
-    return _pers.setGitHubSlugName(value);
+  Future<bool> setGitHubRepo(String? value) async {
+    state = state.copyWith(gitHubRepo: value);
+    return _pers.setGitHubRepo(value);
   }
 
   Future<bool> setGitHubToken(String? value) async {

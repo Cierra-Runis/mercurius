@@ -27,9 +27,8 @@ dependencies:
   flutter_displaymode: ^0.6.0
   flutter_hooks: ^0.20.5
   flutter_markdown: ^0.7.1
-  flutter_quill: ^9.3.11
+  flutter_quill: ^9.3.18
   flutter_svg: ^2.0.10+1
-  github: ^9.24.0
   hooks_riverpod: ^2.5.1
   intl: ^0.19.0
   image_picker: ^1.1.1
@@ -61,10 +60,6 @@ dependencies:
 
 dependency_overrides:
   intl: ^0.19.0
-  flutter_colorpicker:
-    git:
-      url: https://github.com/mchome/flutter_colorpicker
-      ref: master
 
 dev_dependencies:
   flutter_test:
