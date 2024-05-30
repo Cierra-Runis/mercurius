@@ -8,5 +8,5 @@ PackageInfo packageInfo(PackageInfoRef ref) =>
     throw Exception('packageInfoProvider not initialized');
 
 extension PackageInfoExt on PackageInfo {
-  String get tagName => 'v$version+$buildNumber';
+  String get tagName => '$version+$buildNumber';
 }

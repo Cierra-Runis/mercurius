@@ -47,6 +47,7 @@ dependencies:
   package_info_plus: ^8.0.0
   pausable_timer: ^3.1.0+3
   photo_view: ^0.15.0
+  pub_semver: ^2.1.4
   qweather_icons: ^1.6.0
   riverpod_annotation: ^2.3.5
   share_plus: ^9.0.0

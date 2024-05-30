@@ -131,7 +131,10 @@ class _ReleaseTile extends ConsumerWidget {
     final hasUpdate = gitHubLatestRelease.when(
       loading: () => false,
       error: (error, stackTrace) => false,
-      data: (github) => tagName != github.tagName,
+
+      /// TODO: Remove 'v' for next release
+      data: (data) =>
+          Version.parse(tagName) < Version.parse(data.tagName.substring(1)),
     );
 
     return BasedListTile(

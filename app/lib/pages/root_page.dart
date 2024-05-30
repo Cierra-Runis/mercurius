@@ -69,7 +69,10 @@ class _BottomBarMorePageIcon extends ConsumerWidget {
       isLabelVisible: gitHubLatestRelease.when(
         loading: () => false,
         error: (error, stackTrace) => false,
-        data: (data) => tagName != data.tagName,
+
+        /// TODO: Remove 'v' for next release
+        data: (data) =>
+            Version.parse(tagName) < Version.parse(data.tagName.substring(1)),
       ),
       child: const Icon(Icons.more_horiz),
     );

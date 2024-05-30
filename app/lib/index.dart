@@ -47,6 +47,7 @@ export 'package:package_info_plus/package_info_plus.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:pausable_timer/pausable_timer.dart';
 export 'package:photo_view/photo_view.dart';
+export 'package:pub_semver/pub_semver.dart';
 export 'package:qweather_icons/qweather_icons.dart';
 export 'package:share_plus/share_plus.dart';
 export 'package:shared_preferences/shared_preferences.dart';
