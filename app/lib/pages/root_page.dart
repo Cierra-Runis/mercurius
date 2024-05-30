@@ -1,38 +1,25 @@
 import 'package:mercurius/index.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'root_page.g.dart';
 
 final splitViewKey = GlobalKey<NavigatorState>();
 final _rootPage = GlobalKey();
-
-@riverpod
-class CurrentIndex extends _$CurrentIndex {
-  @override
-  int build() => 0;
-
-  void changeTo(int value) => state = value;
-}
 
 class RootPage extends StatelessWidget {
   const RootPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DoubleBack(
-      child: BasedSplitView(
-        navigatorKey: splitViewKey,
-        leftWidget: _RootPage(key: _rootPage),
-        dividerWidth: 0,
-        rightPlaceholder: const Scaffold(
-          body: Center(child: AppIcon(size: 96)),
-        ),
+    return BasedSplitView(
+      navigatorKey: splitViewKey,
+      leftWidget: _RootPage(key: _rootPage),
+      dividerWidth: 0,
+      rightPlaceholder: const Scaffold(
+        body: Center(child: AppIcon(size: 96)),
       ),
     );
   }
 }
 
-class _RootPage extends ConsumerWidget {
+class _RootPage extends HookWidget {
   const _RootPage({super.key});
 
   static const bodyWidgets = [
@@ -41,21 +28,20 @@ class _RootPage extends ConsumerWidget {
   ];
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final currentIndex = ref.watch(currentIndexProvider);
-    final setCurrentIndex = ref.watch(currentIndexProvider.notifier);
+    final currentIndex = useState(0);
 
     return Scaffold(
       body: Center(
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
-          child: bodyWidgets[currentIndex],
+          child: bodyWidgets[currentIndex.value],
         ),
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentIndex,
-        onDestinationSelected: setCurrentIndex.changeTo,
+        selectedIndex: currentIndex.value,
+        onDestinationSelected: (value) => currentIndex.value = value,
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         destinations: [
           NavigationDestination(

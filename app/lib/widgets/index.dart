@@ -3,7 +3,6 @@ export 'app_name.dart';
 export 'based_shimmer.dart';
 export 'confirm_dialog.dart';
 export 'diary/index.dart';
-export 'double_back.dart';
 export 'editor_body.dart';
 export 'embeds/index.dart';
 export 'gallery.dart';
