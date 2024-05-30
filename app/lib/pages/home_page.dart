@@ -138,11 +138,8 @@ class _HomePageBody extends ConsumerWidget {
             errorBuilder: (context, error, stackTrace) => const SizedBox(),
             fit: BoxFit.cover,
           ),
-        BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
-          child: _DiaryListView(
-            controller: controller,
-          ),
+        _DiaryListView(
+          controller: controller,
         ),
       ],
     );
@@ -380,17 +377,50 @@ class _ThisDayLastYearDialogState extends State<_ThisDayLastYearDialog> {
   }
 }
 
-class _DiaryListView extends StatefulWidget {
+class _DiaryListViewSection {
+  const _DiaryListViewSection({
+    required this.items,
+    required this.header,
+  });
+
+  final String header;
+  final List<Diary> items;
+}
+
+class _DiaryListView extends HookWidget {
   const _DiaryListView({required this.controller});
 
   final ScrollController controller;
 
   @override
-  State<_DiaryListView> createState() => _DiaryListViewState();
+  Widget build(BuildContext context) {
+    final stream = useMemoized(isarService.listenToAllDiaries);
+    final snapshot = useStream(stream);
+
+    if (snapshot.hasError) {
+      return Center(child: Text('Steam error: ${snapshot.error}'));
+    }
+    return switch (snapshot.connectionState) {
+      ConnectionState.none =>
+        const Center(child: Icon(UniconsLine.data_sharing)),
+      ConnectionState.waiting => const Loading(),
+      ConnectionState.active => _View(
+          snapshot: snapshot,
+          controller: controller,
+        ),
+      ConnectionState.done => const Center(child: Text('Stream closed')),
+    };
+  }
 }
 
-class _DiaryListViewState extends State<_DiaryListView> {
-  final stream = isarService.listenToAllDiaries();
+class _View extends ConsumerWidget {
+  const _View({
+    required this.snapshot,
+    required this.controller,
+  });
+
+  final AsyncSnapshot<List<Diary>> snapshot;
+  final ScrollController controller;
 
   List<_DiaryListViewSection> _parseDiaries(List<Diary> diaries, String lang) {
     final sections = <_DiaryListViewSection>[];
@@ -422,10 +452,8 @@ class _DiaryListViewState extends State<_DiaryListView> {
     return sections;
   }
 
-  Widget _getCardBySnapshotData(
-    BuildContext context,
-    AsyncSnapshot<List<Diary>> snapshot,
-  ) {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final lang = Localizations.localeOf(context).toLanguageTag();
 
@@ -437,7 +465,7 @@ class _DiaryListViewState extends State<_DiaryListView> {
 
     return ListView.builder(
       cacheExtent: 1000,
-      controller: widget.controller,
+      controller: controller,
       itemCount: sections.length,
       itemBuilder: (context, index) {
         final section = sections[index];
@@ -464,38 +492,4 @@ class _DiaryListViewState extends State<_DiaryListView> {
       },
     );
   }
-
-  Widget _getBodyBySnapshotState(
-    BuildContext context,
-    AsyncSnapshot<List<Diary>> snapshot,
-  ) {
-    if (snapshot.hasError) {
-      return Center(child: Text('Steam error: ${snapshot.error}'));
-    }
-    return switch (snapshot.connectionState) {
-      ConnectionState.none =>
-        const Center(child: Icon(UniconsLine.data_sharing)),
-      ConnectionState.waiting => const Loading(),
-      ConnectionState.active => _getCardBySnapshotData(context, snapshot),
-      ConnectionState.done => const Center(child: Text('Stream closed')),
-    };
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<List<Diary>>(
-      stream: stream,
-      builder: _getBodyBySnapshotState,
-    );
-  }
-}
-
-class _DiaryListViewSection {
-  const _DiaryListViewSection({
-    required this.items,
-    required this.header,
-  });
-
-  final String header;
-  final List<Diary> items;
 }
