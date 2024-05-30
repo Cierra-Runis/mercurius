@@ -9,6 +9,11 @@
         android:label="Mercurius"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <provider
+            android:name="com.superlist.super_native_extensions.DataProvider"
+            android:authorities="pers.cierra_runis.mercurius.SuperClipboardDataProvider"
+            android:exported="true"
+            android:grantUriPermissions="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
