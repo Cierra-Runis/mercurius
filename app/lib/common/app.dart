@@ -170,6 +170,7 @@ abstract class _PlatformWindowManager {
       center: true,
       backgroundColor: Colors.transparent,
       skipTaskbar: false,
+      windowButtonVisibility: false,
       titleBarStyle: TitleBarStyle.hidden,
     );
     await windowManager.waitUntilReadyToShow(windowOptions, () {
