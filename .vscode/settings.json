@@ -51,7 +51,7 @@
         "**/*.g.dart": true,
         "**/*.freezed.dart": true,
         "**/custom_lint.log": true,
-        "**/mercurius.iml": true,
+        "**/**.iml": true,
         "**/.metadata": true,
         "**/.flutter-plugins": true,
         "**/.flutter-plugins-dependencies": true,

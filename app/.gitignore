@@ -43,6 +43,6 @@ app.*.map.json
 lib/l10n/**/*.dart
 lib/common/key.dart
 
-.release_tool/
+/out/
 .env
 **/.DS_Store
