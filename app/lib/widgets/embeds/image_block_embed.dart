@@ -58,9 +58,8 @@ class _ImageBlock extends ConsumerWidget {
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.0),
-      child: MouseRegion(
-        cursor: readOnly ? SystemMouseCursors.click : SystemMouseCursors.basic,
-        child: GestureDetector(
+      child: Material(
+        child: InkWell(
           onTap: readOnly
               ? () => context.pushDialog(
                     ImageView(filename: node.value.data as String),
