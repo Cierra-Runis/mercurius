@@ -13,35 +13,37 @@ class ImageView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final paths = ref.watch(pathsProvider);
 
-    return Stack(
-      children: [
-        Center(
-          child: PhotoView(
-            enableRotation: true,
-            backgroundDecoration: const BoxDecoration(),
-            tightMode: true,
-            imageProvider: BasedLocalFirstImage(
-              filename: filename,
-              localDirectory: paths.imageDirectory.path,
+    return SafeArea(
+      child: Stack(
+        children: [
+          Center(
+            child: PhotoView(
+              enableRotation: true,
+              backgroundDecoration: const BoxDecoration(),
+              tightMode: true,
+              imageProvider: BasedLocalFirstImage(
+                filename: filename,
+                localDirectory: paths.imageDirectory.path,
+              ),
             ),
           ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: CloseButton(
-            onPressed: context.pop,
+          Align(
+            alignment: Alignment.topRight,
+            child: CloseButton(
+              onPressed: context.pop,
+            ),
           ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: IconButton(
-            onPressed: () => Share.shareXFiles([
-              XFile(p.join(paths.imageDirectory.path, filename)),
-            ]),
-            icon: const Icon(UniconsLine.share),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: IconButton(
+              onPressed: () => Share.shareXFiles([
+                XFile(p.join(paths.imageDirectory.path, filename)),
+              ]),
+              icon: const Icon(UniconsLine.share),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
