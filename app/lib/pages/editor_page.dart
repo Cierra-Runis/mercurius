@@ -350,9 +350,10 @@ class _EditorToolbar extends StatelessWidget {
           controller: controller,
           attribute: Attribute.rightAlignment,
         ),
-        QuillToolbarToggleStyleButton(
+
+        /// TODO: CheckList
+        QuillToolbarToggleCheckListButton(
           controller: controller,
-          attribute: Attribute.checked,
         ),
 
         /// TODO: Header
