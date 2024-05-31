@@ -2,7 +2,7 @@ export 'advance_search.dart';
 export 'color_schemes.dart';
 export 'current_position.dart';
 export 'dynamic_color.dart';
-export 'git/index.dart';
+export 'github/index.dart';
 export 'hitokoto.dart';
 export 'package_info.dart';
 export 'paths.dart';
