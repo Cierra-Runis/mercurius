@@ -11,7 +11,6 @@ class HomePage extends HookWidget {
       appBar: AppBar(
         leading: const _SearchButton(),
         title: _AppBarTitle(controller: controller),
-        actions: const [_UploadButton()],
       ),
       body: _HomePageBody(controller: controller),
       floatingActionButton: const _FloatingButton(),
@@ -29,25 +28,6 @@ class _SearchButton extends StatelessWidget {
       tooltip: l10n.searchDiary,
       onPressed: () => context.push(const SearchPage()),
       icon: const Icon(Icons.search),
-    );
-  }
-}
-
-class _UploadButton extends StatelessWidget {
-  const _UploadButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => context.push(
-        Scaffold(
-          appBar: AppBar(),
-        ),
-      ),
-      icon: const Badge(
-        backgroundColor: Colors.green,
-        child: Icon(Icons.dns_rounded),
-      ),
     );
   }
 }

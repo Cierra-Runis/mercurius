@@ -1,17 +1,16 @@
 import 'package:mercurius/index.dart';
 
 abstract class _IsarService {
-  final Isar db;
+  final Isar isar;
 
-  const _IsarService({required this.db});
+  const _IsarService({required this.isar});
 }
 
 class IsarService extends _IsarService with _DiaryService {
-  const IsarService(Isar db) : super(db: db);
+  const IsarService(Isar isar) : super(isar: isar);
 
   Future<bool> importJsonWith(String path) async {
     try {
-      final isar = db;
       final bytes = await File(path).readAsString();
       await isar.writeAsync((isar) {
         isar.diarys.clear();
@@ -24,12 +23,10 @@ class IsarService extends _IsarService with _DiaryService {
   }
 
   Future<List<Json>> exportDiaryJson() async {
-    final isar = db;
     return isar.diarys.where().exportJson();
   }
 
   Future<void> cleanDb() async {
-    final isar = db;
     await isar.writeAsync((isar) => isar.clear);
   }
 
@@ -51,15 +48,13 @@ class IsarService extends _IsarService with _DiaryService {
 }
 
 mixin _DiaryService on _IsarService {
-  int diarysAutoIncrement() => db.diarys.autoIncrement();
+  int diarysAutoIncrement() => isar.diarys.autoIncrement();
 
   Future<void> saveDiary(Diary newDiary) async {
-    final isar = db;
     return isar.writeAsync((isar) => isar.diarys.put(newDiary));
   }
 
   Stream<List<Diary>> listenToDiariesWithDate(DateTime dateTime) {
-    final isar = db;
     return isar.diarys
         .where()
         .belongToBetween(
@@ -72,7 +67,6 @@ mixin _DiaryService on _IsarService {
   }
 
   Stream<List<Diary>> listenToDiariesEditing() async* {
-    final isar = db;
     yield* isar.diarys
         .where()
         .editingEqualTo(true)
@@ -80,12 +74,10 @@ mixin _DiaryService on _IsarService {
   }
 
   Future<List<Diary>> getAllDiaries() async {
-    final isar = db;
     return isar.diarys.where().sortByBelongTo().findAll();
   }
 
   Stream<List<Diary>> listenToAllDiaries() async* {
-    final isar = db;
     yield* isar.diarys
         .where()
         .editingEqualTo(false)
@@ -94,7 +86,6 @@ mixin _DiaryService on _IsarService {
   }
 
   Future<void> deleteDiaryById(int id) async {
-    final isar = db;
     await isar.writeAsync((isar) => isar.diarys.delete(id));
   }
 }

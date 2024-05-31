@@ -51,11 +51,11 @@ class Gallery extends HookWidget {
       itemBuilder: (context, index) {
         final filename = p.basename(files[index].path);
         return FrameSeparateWidget(
+          key: Key(filename),
           placeHolder: const Center(
             child: Loading(),
           ),
           child: _GalleryCard(
-            key: Key(filename),
             filename: filename,
             onCardTap: onCardTap,
             actionsBuilder: actionsBuilder,
@@ -68,7 +68,6 @@ class Gallery extends HookWidget {
 
 class _GalleryCard extends ConsumerWidget {
   const _GalleryCard({
-    super.key,
     required this.filename,
     this.onCardTap,
     this.actionsBuilder,

@@ -35,7 +35,7 @@ class _RootPage extends HookWidget {
     return Scaffold(
       body: Center(
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
+          duration: Durations.medium2,
           child: bodyWidgets[currentIndex.value],
         ),
       ),
