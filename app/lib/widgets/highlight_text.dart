@@ -39,6 +39,7 @@ class HighlightText extends StatelessWidget {
     final matches =
         pattern.allMatches(text).map((e) => e.group(0) ?? '').toList();
 
+    /// FIXME: Bad implement
     controller?.count = matches.length;
 
     final result = <TextSpan>[];
