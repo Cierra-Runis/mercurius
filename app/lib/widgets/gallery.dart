@@ -26,12 +26,14 @@ class Gallery extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final stream = useStream(
-      directory.watch().map((event) => directory.listSync()),
-      initialData: directory.listSync(),
+
+    final stream = useMemoized(
+      () => directory.watch().map((event) => directory.listSync()),
     );
 
-    final files = stream.data;
+    final snapshot = useStream(stream, initialData: directory.listSync());
+
+    final files = snapshot.data;
 
     if (files == null || files.isEmpty) {
       return Center(
@@ -49,6 +51,9 @@ class Gallery extends HookWidget {
       itemBuilder: (context, index) {
         final filename = p.basename(files[index].path);
         return FrameSeparateWidget(
+          placeHolder: const Center(
+            child: Loading(),
+          ),
           child: _GalleryCard(
             key: Key(filename),
             filename: filename,
@@ -81,7 +86,6 @@ class _GalleryCard extends ConsumerWidget {
     final colorScheme = context.colorScheme;
 
     return Card(
-      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onCardTap != null ? () => onCardTap!(context, filename) : null,
         child: Stack(

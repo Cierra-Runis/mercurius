@@ -6,12 +6,12 @@ class MonthlyWords extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final lang = Localizations.localeOf(context).toLanguageTag();
+    final snapshot = useFuture(_getWordsData());
 
     return SizedBox(
       height: 220,
-      child: FutureBuilder<List<_WordsData>>(
-        future: _getWordsData(),
-        builder: (context, snapshot) {
+      child: Builder(
+        builder: (context) {
           if (!snapshot.hasData) return const Loading();
 
           return SfCartesianChart(
@@ -65,6 +65,7 @@ class MonthlyWords extends HookWidget {
 
     final data = <DateTime, int>{};
 
+    /// FIXME: Try to use Isolate.run
     await Future.delayed(const Duration(milliseconds: 1000));
 
     final diaries = await isarService.getAllDiaries();

@@ -60,6 +60,7 @@ class _DiaryPageViewState extends State<DiaryPageView> {
 
   @override
   Widget build(BuildContext context) {
+    /// TODO: Use Hook
     return StreamBuilder<List<Diary>>(
       stream: stream,
       builder: _getBodyBySnapshotState,
