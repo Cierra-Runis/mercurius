@@ -54,7 +54,7 @@ class EditorBody extends StatelessWidget {
         scrollBottomInset: 10,
         embedBuilders: embedBuilders,
         unknownEmbedBuilder: unknownEmbedBuilder,
-        readOnlyMouseCursor: SystemMouseCursors.wait,
+        readOnlyMouseCursor: SystemMouseCursors.alias,
         customStyles: DefaultStylesExt.material(
           context: context,
           fontFamily: App.fontSaira,
