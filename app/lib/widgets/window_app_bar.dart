@@ -19,6 +19,7 @@ class WindowAppBar extends StatelessWidget {
           App.name,
           style: TextStyle(
             fontSize: 14,
+            fontFamily: App.fontSaira,
             fontWeight: FontWeight.bold,
           ),
         ),

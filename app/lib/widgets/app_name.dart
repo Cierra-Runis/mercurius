@@ -13,6 +13,7 @@ class AppName extends StatelessWidget {
     return Text(
       App.name,
       style: TextStyle(
+        fontFamily: App.fontSaira,
         fontWeight: FontWeight.w600,
         fontSize: fontSize,
       ),

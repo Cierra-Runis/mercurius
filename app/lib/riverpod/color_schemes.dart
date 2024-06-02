@@ -13,7 +13,7 @@ class ColorSchemesState with _$ColorSchemesState {
     required ColorScheme dark,
   }) = _ColorSchemesState;
 
-  ({ThemeData theme, ThemeData darkTheme}) toThemes() {
+  ({ThemeData theme, ThemeData darkTheme}) toThemes([String? fontFamily]) {
     const appBarTheme = AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -31,8 +31,7 @@ class ColorSchemesState with _$ColorSchemesState {
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
-      fontFamily: App.fontSaira,
-      fontFamilyFallback: const [App.fontMiSans],
+      fontFamily: fontFamily,
       appBarTheme: appBarTheme.copyWith(color: light.surface),
       cardTheme: cardTheme,
     );
@@ -43,8 +42,7 @@ class ColorSchemesState with _$ColorSchemesState {
       datePickerTheme: const DatePickerThemeData(
         dayStyle: TextStyle(fontSize: 12),
       ),
-      fontFamily: App.fontSaira,
-      fontFamilyFallback: const [App.fontMiSans],
+      fontFamily: fontFamily,
       appBarTheme: appBarTheme.copyWith(color: dark.surface),
       cardTheme: cardTheme,
     );

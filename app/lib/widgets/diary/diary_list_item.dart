@@ -124,10 +124,7 @@ class _Content extends StatelessWidget {
       diary.document.plainText,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-      ),
+      style: const TextStyle(fontSize: 14),
     );
   }
 }
@@ -195,10 +192,7 @@ class _Day extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       diary.belongTo.format('dd'),
-      style: const TextStyle(
-        fontSize: 24,
-        fontFamily: App.fontSaira,
-      ),
+      style: const TextStyle(fontSize: 24),
     );
   }
 }

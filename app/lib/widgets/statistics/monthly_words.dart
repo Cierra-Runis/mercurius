@@ -48,7 +48,7 @@ class MonthlyWords extends HookWidget {
                 dataLabelSettings: const DataLabelSettings(
                   isVisible: true,
                   textStyle: TextStyle(
-                    fontFamily: App.fontSaira,
+                    fontFamily: App.fontCascadiaCodePL,
                     fontSize: 6,
                   ),
                 ),

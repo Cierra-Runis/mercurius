@@ -140,6 +140,7 @@ class _ReleaseTile extends ConsumerWidget {
     return BasedListTile(
       leading: const AppIcon(size: 24),
       titleText: App.name,
+      titleTextStyle: const TextStyle(fontFamily: App.fontSaira, fontSize: 16),
       subtitleText: '$tagName ${App.builtAt}',
       detailText:
           hasUpdate ? l10n.clickHereToUpdate : l10n.alreadyTheLatestVersion,

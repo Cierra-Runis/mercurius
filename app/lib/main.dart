@@ -19,7 +19,7 @@ class MainApp extends ConsumerWidget {
     final colorSchemes = ref.watch(colorSchemesProvider);
     final settings = ref.watch(settingsProvider);
 
-    final themes = colorSchemes.toThemes();
+    final themes = colorSchemes.toThemes(settings.fontFamily);
 
     return MaterialApp(
       scrollBehavior: const _ScrollBehavior(),

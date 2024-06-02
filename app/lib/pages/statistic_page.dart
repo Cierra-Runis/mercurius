@@ -15,10 +15,6 @@ class StatisticPage extends StatelessWidget {
         children: [
           BasedListSection(
             titleText: l10n.monthlyWordCountStatistics,
-            titleTextStyle: const TextStyle(
-              fontFamily: App.fontSaira,
-              fontSize: 18,
-            ),
             children: const [
               MonthlyWords(),
             ],

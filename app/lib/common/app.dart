@@ -9,15 +9,24 @@ typedef Json = Map<String, dynamic>;
 abstract class App {
   static const name = 'Mercurius';
   static const database = 'mercurius_database';
-  static const fontSaira = 'Saira';
-  static const fontCascadiaCodePL = 'CascadiaCodePL';
-  static const fontMiSans = 'MiSans';
 
   static const githubUrl = 'https://github.com/Cierra-Runis';
   static const repoUrl = '$githubUrl/mercurius';
+
+  static const rawGitHubUrl = 'https://raw.githubusercontent.com/Cierra-Runis';
+  static const rawRepoUrl = '$rawGitHubUrl/mercurius';
+  static const branch = 'master';
+
   static const openIssueUrl = '$repoUrl/issues/new/choose';
   static const thirdPartyLicenseUrl = '$repoUrl/wiki/Third-Party-License';
   static const privacyPolicyUrl = '$repoUrl/wiki/Privacy-Policy';
+
+  /// [fontSaira] apply to [App.name]
+  static const fontSaira = 'Saira';
+  static const fontCascadiaCodePL = 'CascadiaCodePL';
+
+  static const fontsFolderUrl = '$rawRepoUrl/$branch/public/fonts';
+  static const fontsManifestUrl = '$fontsFolderUrl/fonts_manifest.json';
 
   static const aMapApiUrl = 'https://restapi.amap.com/v3/ip';
   static const aMapApiKey = String.fromEnvironment('aMapApiKey');
@@ -34,9 +43,11 @@ abstract class App {
   };
 
   static final supportLanguages = {
+    /// TIPS: Use zh_CN as default locale
+    /// See https://github.com/flutter/flutter/issues/103811#issuecomment-1199012026
+    const Locale('zh', 'CN'): '简体中文',
     const Locale('en'): 'English',
     const Locale('ja'): '日本語',
-    const Locale('zh'): '中文',
   };
 
   static const localizationsDelegates = [
@@ -72,14 +83,14 @@ abstract class App {
 
       runApp(
         ProviderScope(
-          observers: const [_ProviderObserver()],
+          observers: const [if (!kReleaseMode) _ProviderObserver()],
           overrides: [
             pathsProvider.overrideWithValue(paths),
             persistenceProvider.overrideWithValue(persistence),
             dynamicColorProvider.overrideWithValue(dynamicColor),
             packageInfoProvider.overrideWithValue(packageInfo),
           ],
-          child: const MainApp(),
+          child: const _MainApp(),
         ),
       );
     } catch (e, s) {
@@ -135,6 +146,17 @@ abstract class App {
     } catch (e, s) {
       App.printLog('Vibration error', error: e, stackTrace: s);
     }
+  }
+}
+
+class _MainApp extends ConsumerWidget {
+  const _MainApp();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    /// https://riverpod.dev/docs/essentials/eager_initialization
+    ref.watch(fontsLoaderProvider);
+    return const MainApp();
   }
 }
 

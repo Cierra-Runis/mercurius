@@ -125,9 +125,6 @@ flutter:
         - asset: assets/fonts/Saira/Saira-BlackItalic.ttf
           weight: 900
           style: italic
-    - family: MiSans
-      fonts:
-        - asset: assets/fonts/MiSans/MiSans-Regular.ttf
     - family: CascadiaCodePL
       fonts:
         - asset: assets/fonts/CascadiaCodePL/CascadiaCodePL-Regular.otf

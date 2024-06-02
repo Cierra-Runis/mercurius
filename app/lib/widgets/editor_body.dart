@@ -1,6 +1,6 @@
 import 'package:mercurius/index.dart';
 
-class EditorBody extends StatelessWidget {
+class EditorBody extends ConsumerWidget {
   const EditorBody({
     super.key,
     required this.controller,
@@ -35,8 +35,9 @@ class EditorBody extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
 
     return QuillEditor(
       focusNode: FocusNode(),
@@ -57,9 +58,8 @@ class EditorBody extends StatelessWidget {
         readOnlyMouseCursor: SystemMouseCursors.alias,
         customStyles: DefaultStylesExt.material(
           context: context,
-          fontFamily: App.fontSaira,
+          fontFamily: settings.fontFamily,
           codeFontFamily: App.fontCascadiaCodePL,
-          fontFamilyFallback: [App.fontMiSans],
         ),
       ),
     );
