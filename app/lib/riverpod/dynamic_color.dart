@@ -5,7 +5,7 @@ part 'dynamic_color.g.dart';
 
 @Riverpod(keepAlive: true)
 DynamicColor dynamicColor(DynamicColorRef ref) =>
-    throw Exception('dynamicColorProvider not initialized');
+    throw Exception('$dynamicColorProvider not initialized');
 
 class DynamicColor {
   final CorePalette? corePalette;

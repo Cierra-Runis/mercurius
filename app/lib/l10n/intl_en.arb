@@ -76,6 +76,7 @@
   "exportNfcData": "Export NFC Data",
   "failedToGetVersion": "Failed To Get Version",
   "followTheSystem": "Follow The System",
+  "font": "Font",
   "generalSettings": "General Settings",
   "gitHubSettings": "GitHub Settings",
   "gitHubToken": "GitHub Token",

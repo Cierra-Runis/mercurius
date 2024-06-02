@@ -550,7 +550,7 @@ class _EditorImageButton extends ConsumerWidget {
         ).confirm;
 
         if (!context.mounted) return;
-        final directory = paths.imageDirectory;
+        final directory = paths.image;
 
         return switch (newImage) {
           ConfirmResult.deny => _insertFromGallery(context, directory),

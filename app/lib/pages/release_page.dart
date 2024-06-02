@@ -6,8 +6,8 @@ class ReleasePage extends ConsumerWidget {
     return () {
       try {
         if (Platform.isAndroid) {
-          final asset = data.assets?.firstWhere(
-            (element) => element.name.endsWith('.apk'),
+          final asset = data.assets?.firstWhereOr(
+            (e) => e.name.endsWith('.apk'),
           );
           if (asset != null) {
             launchUrlString(
@@ -17,8 +17,8 @@ class ReleasePage extends ConsumerWidget {
           }
         }
         if (Platform.isWindows) {
-          final asset = data.assets?.firstWhere(
-            (element) => element.name.endsWith('.zip'),
+          final asset = data.assets?.firstWhereOr(
+            (e) => e.name.endsWith('.zip'),
           );
           if (asset != null) {
             launchUrlString(

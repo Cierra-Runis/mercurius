@@ -5,7 +5,7 @@ part 'persistence.g.dart';
 
 @Riverpod(keepAlive: true)
 Persistence persistence(PersistenceRef ref) =>
-    throw Exception('persistenceProvider not initialized');
+    throw Exception('$persistenceProvider not initialized');
 
 /// This service abstracts the persistence layer.
 class Persistence {

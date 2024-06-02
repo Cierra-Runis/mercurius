@@ -5,7 +5,7 @@ part 'package_info.g.dart';
 
 @Riverpod(keepAlive: true)
 PackageInfo packageInfo(PackageInfoRef ref) =>
-    throw Exception('packageInfoProvider not initialized');
+    throw Exception('$packageInfoProvider not initialized');
 
 extension PackageInfoExt on PackageInfo {
   String get tagName => '$version+$buildNumber';

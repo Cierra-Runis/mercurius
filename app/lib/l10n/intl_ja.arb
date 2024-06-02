@@ -76,6 +76,7 @@
   "exportNfcData": "NFC データをエクスポート",
   "failedToGetVersion": "バージョンの取得に失敗しました",
   "followTheSystem": "システムに従います",
+  "font": "フォント",
   "generalSettings": "一般設定",
   "gitHubSettings": "GitHub の設定",
   "gitHubToken": "GitHub トークン",

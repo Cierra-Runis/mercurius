@@ -227,11 +227,8 @@ class _View extends ConsumerWidget {
     final diaries = snapshot.data!;
 
     final pattern = advanceSearch.pattern;
-    final filteredDiaries = diaries
-        .where(
-          (element) => element.plainText.contains(pattern),
-        )
-        .toList();
+    final filteredDiaries =
+        diaries.where((e) => e.plainText.contains(pattern)).toList();
 
     if (filteredDiaries.isEmpty) {
       return Center(child: Text(l10n.noData));

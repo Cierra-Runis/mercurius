@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'paths.g.dart';
 
 @Riverpod(keepAlive: true)
-Paths paths(PathsRef ref) => throw Exception('pathsProvider not initialized');
+Paths paths(PathsRef ref) => throw Exception('$pathsProvider not initialized');
 
 class Paths {
   final Directory temp;
@@ -13,9 +13,9 @@ class Paths {
   final Directory appCache;
   final Directory documents;
 
-  Directory get imageDirectory => Directory(
-        p.join(appSupport.path, 'image'),
-      )..create();
+  Directory get image => Directory(p.join(appSupport.path, 'image'))..create();
+
+  Directory get font => Directory(p.join(appSupport.path, 'font'))..create();
 
   const Paths._({
     required this.temp,

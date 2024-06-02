@@ -1,24 +1,7 @@
-import 'package:mercurius/index.dart';
+part of 'android_section.dart';
 
-class AndroidSettingsSection extends StatelessWidget {
-  const AndroidSettingsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListSection(
-      titleText: l10n.androidPlatformSpecificSettings,
-      children: const [
-        _DisplaySettings(),
-        _ImagePickerStyleTile(),
-      ],
-    );
-  }
-}
-
-class _DisplaySettings extends HookWidget {
-  const _DisplaySettings();
+class _DisplaySettingsTile extends HookWidget {
+  const _DisplaySettingsTile();
 
   @override
   Widget build(BuildContext context) {
@@ -63,26 +46,6 @@ class _DisplaySettingsSheet extends HookWidget {
           },
         );
       },
-    );
-  }
-}
-
-/// https://developer.android.com/training/data-storage/shared/photopicker
-class _ImagePickerStyleTile extends ConsumerWidget {
-  const _ImagePickerStyleTile();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final settings = ref.watch(settingsProvider);
-    final setSettings = ref.watch(settingsProvider.notifier);
-
-    return BasedSwitchListTile(
-      value: settings.useAndroid13PhotoPicker,
-      onChanged: setSettings.setUseAndroid13PhotoPicker,
-      titleText: l10n.imagePicker,
-      subtitleText: l10n.useAndroid13PhotoPicker,
-      leadingIcon: Icons.photo_album_rounded,
     );
   }
 }

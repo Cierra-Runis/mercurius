@@ -1,6 +1,6 @@
 {
   "@@last_modified": "2023-06-19T16:53:53+08:00",
-  "@@locale": "zh",
+  "@@locale": "zh_CN",
   "@diaryCount": {
     "description": "某时间段内的日记数",
     "placeholders": {
@@ -76,6 +76,7 @@
   "exportNfcData": "导出 NFC 数据",
   "failedToGetVersion": "获取版本失败",
   "followTheSystem": "跟随系统",
+  "font": "字体",
   "generalSettings": "通用设置",
   "gitHubSettings": "GitHub 设定",
   "gitHubToken": "GitHub Token",

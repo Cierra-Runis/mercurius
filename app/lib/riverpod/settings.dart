@@ -10,7 +10,7 @@ part 'settings.g.dart';
 extension _GeneralSettingsExt on Persistence {
   static const themeMode = '${Persistence.prefix}_themeMode';
   ThemeMode getThemeMode() => ThemeMode.values.firstWhere(
-        (element) => element.name == sp.getString(themeMode),
+        (e) => e.name == sp.getString(themeMode),
         orElse: () => ThemeMode.system,
       );
 
@@ -52,6 +52,13 @@ extension _GeneralSettingsExt on Persistence {
   Future<bool> setAccentColor(Color? value) async {
     if (value == null) return sp.remove(accentColor);
     return sp.setInt(accentColor, value.value);
+  }
+
+  static const fontFamily = '${Persistence.prefix}_fontFamily';
+  String? getFontFamily() => sp.getString(fontFamily);
+  Future<bool> setFontFamily(String? value) async {
+    if (value == null) return sp.remove(fontFamily);
+    return sp.setString(fontFamily, value);
   }
 }
 
@@ -132,6 +139,7 @@ class SettingsState with _$SettingsState {
     @JsonKey(name: _GeneralSettingsExt.bgImgPath) String? bgImgPath,
     @JsonKey(name: _GeneralSettingsExt.locale) Locale? locale,
     @JsonKey(name: _GeneralSettingsExt.accentColor) Color? accentColor,
+    @JsonKey(name: _GeneralSettingsExt.fontFamily) String? fontFamily,
     @JsonKey(name: _CloudSettingsExt.autoUploadImages)
     required bool autoUploadImages,
     @JsonKey(name: _CloudSettingsExt.autoBackupDiaries)
@@ -160,6 +168,7 @@ class Settings extends _$Settings {
       bgImgPath: _pers.getBgImgPath(),
       locale: _pers.getLocale(),
       accentColor: _pers.getAccentColor(),
+      fontFamily: _pers.getFontFamily(),
       autoUploadImages: _pers.getAutoUploadImages(),
       autoBackupDiaries: _pers.getAutoBackupDiaries(),
       gitHubOwner: _pers.getGitHubOwner(),
@@ -195,6 +204,11 @@ class Settings extends _$Settings {
   Future<bool> setAccentColor(Color? value) async {
     state = state.copyWith(accentColor: value);
     return _pers.setAccentColor(value);
+  }
+
+  Future<bool> setFontFamily(String? value) async {
+    state = state.copyWith(fontFamily: value);
+    return _pers.setFontFamily(value);
   }
 
   Future<bool> setAutoUploadImages(bool value) async {

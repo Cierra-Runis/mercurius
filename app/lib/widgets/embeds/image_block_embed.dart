@@ -68,7 +68,7 @@ class _ImageBlock extends ConsumerWidget {
           child: Image(
             image: BasedLocalFirstImage(
               filename: node.value.data as String,
-              localDirectory: paths.imageDirectory.path,
+              localDirectory: paths.image.path,
             ),
             errorBuilder: (context, error, stackTrace) {
               return BasedShimmer(

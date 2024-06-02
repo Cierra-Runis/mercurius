@@ -113,7 +113,7 @@ class _HomePageBody extends ConsumerWidget {
           Image(
             image: BasedLocalFirstImage(
               filename: settings.bgImgPath!,
-              localDirectory: path.imageDirectory.path,
+              localDirectory: path.image.path,
             ),
             errorBuilder: (context, error, stackTrace) => const SizedBox(),
             fit: BoxFit.cover,

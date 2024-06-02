@@ -137,7 +137,7 @@ class _ImportImageJsonFromV1 extends ConsumerWidget {
     return BasedListTile(
       leadingIcon: Icons.add_photo_alternate_rounded,
       titleText: l10n.importImageJsonFromV1,
-      onTap: () => importImages(paths.imageDirectory.path),
+      onTap: () => importImages(paths.image.path),
     );
   }
 }
@@ -175,7 +175,7 @@ class _ImportDiaryImages extends ConsumerWidget {
     return BasedListTile(
       leadingIcon: Icons.image_rounded,
       titleText: l10n.importDiaryImages,
-      onTap: () => importImages(paths.imageDirectory.path),
+      onTap: () => importImages(paths.image.path),
     );
   }
 }
@@ -219,7 +219,7 @@ class _ExportDiaryImagesTile extends ConsumerWidget {
       leadingIcon: Icons.photo_rounded,
       titleText: l10n.exportDiaryImages,
       onTap: () async {
-        final images = paths.imageDirectory.listSync();
+        final images = paths.image.listSync();
 
         if (images.isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(

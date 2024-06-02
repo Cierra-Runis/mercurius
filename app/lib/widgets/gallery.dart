@@ -93,7 +93,7 @@ class _GalleryCard extends ConsumerWidget {
             Image(
               image: BasedLocalFirstImage(
                 filename: filename,
-                localDirectory: paths.imageDirectory.path,
+                localDirectory: paths.image.path,
               ),
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
