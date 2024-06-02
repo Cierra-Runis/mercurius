@@ -1,6 +1,6 @@
 part of 'general_section.dart';
 
-class _CacheCleaningTile extends ConsumerWidget {
+class _CacheCleaningTile extends HookConsumerWidget {
   const _CacheCleaningTile();
 
   @override
@@ -8,6 +8,8 @@ class _CacheCleaningTile extends ConsumerWidget {
     final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
     final appCache = paths.appCache;
+    final cacheSize = useBytes(appCache);
+
     return BasedListTile(
       leadingIcon: Icons.cleaning_services_rounded,
       titleText: l10n.cacheCleaning,
@@ -15,14 +17,14 @@ class _CacheCleaningTile extends ConsumerWidget {
         final files = appCache.listSync();
         for (final file in files) {
           try {
-            file.delete(recursive: true);
+            await file.delete(recursive: true);
           } catch (e) {
             App.printLog('File / Directory delete Failed', error: e);
           }
         }
         ref.invalidate(pathsProvider);
       },
-      detailText: Bytes.format(bytes: appCache.getBytes()),
+      detailText: Bytes.format(bytes: cacheSize.data ?? 0),
     );
   }
 }

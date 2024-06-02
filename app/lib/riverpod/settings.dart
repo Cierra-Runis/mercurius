@@ -80,25 +80,25 @@ extension _CloudSettingsExt on Persistence {
     return sp.setBool(autoBackupDiaries, value);
   }
 
-  static const gitHubOwner = '${Persistence.prefix}_gitHubOwner';
-  String? getGitHubOwner() => sp.getString(gitHubOwner);
+  static const githubOwner = '${Persistence.prefix}_githubOwner';
+  String? getGitHubOwner() => sp.getString(githubOwner);
   Future<bool> setGitHubOwner(String? value) async {
-    if (value == null) return sp.remove(gitHubOwner);
-    return sp.setString(gitHubOwner, value);
+    if (value == null) return sp.remove(githubOwner);
+    return sp.setString(githubOwner, value);
   }
 
-  static const gitHubRepo = '${Persistence.prefix}_gitHubRepo';
-  String? getGitHubRepo() => sp.getString(gitHubRepo);
+  static const githubRepo = '${Persistence.prefix}_githubRepo';
+  String? getGitHubRepo() => sp.getString(githubRepo);
   Future<bool> setGitHubRepo(String? value) async {
-    if (value == null) return sp.remove(gitHubRepo);
-    return sp.setString(gitHubRepo, value);
+    if (value == null) return sp.remove(githubRepo);
+    return sp.setString(githubRepo, value);
   }
 
-  static const gitHubToken = '${Persistence.prefix}_gitHubToken';
-  String? getGitHubToken() => sp.getString(gitHubToken);
+  static const githubToken = '${Persistence.prefix}_githubToken';
+  String? getGitHubToken() => sp.getString(githubToken);
   Future<bool> setGitHubToken(String? value) async {
-    if (value == null) return sp.remove(gitHubToken);
-    return sp.setString(gitHubToken, value);
+    if (value == null) return sp.remove(githubToken);
+    return sp.setString(githubToken, value);
   }
 }
 
@@ -144,9 +144,9 @@ class SettingsState with _$SettingsState {
     required bool autoUploadImages,
     @JsonKey(name: _CloudSettingsExt.autoBackupDiaries)
     required bool autoBackupDiaries,
-    @JsonKey(name: _CloudSettingsExt.gitHubOwner) String? gitHubOwner,
-    @JsonKey(name: _CloudSettingsExt.gitHubRepo) String? gitHubRepo,
-    @JsonKey(name: _CloudSettingsExt.gitHubToken) String? gitHubToken,
+    @JsonKey(name: _CloudSettingsExt.githubOwner) String? githubOwner,
+    @JsonKey(name: _CloudSettingsExt.githubRepo) String? githubRepo,
+    @JsonKey(name: _CloudSettingsExt.githubToken) String? githubToken,
     @JsonKey(name: _AndroidSettingsExt.useAndroid13PhotoPicker)
     required bool useAndroid13PhotoPicker,
   }) = _SettingsState;
@@ -171,9 +171,9 @@ class Settings extends _$Settings {
       fontFamily: _pers.getFontFamily(),
       autoUploadImages: _pers.getAutoUploadImages(),
       autoBackupDiaries: _pers.getAutoBackupDiaries(),
-      gitHubOwner: _pers.getGitHubOwner(),
-      gitHubRepo: _pers.getGitHubRepo(),
-      gitHubToken: _pers.getGitHubToken(),
+      githubOwner: _pers.getGitHubOwner(),
+      githubRepo: _pers.getGitHubRepo(),
+      githubToken: _pers.getGitHubToken(),
       useAndroid13PhotoPicker: _pers.getUseAndroid13PhotoPicker(),
     );
   }
@@ -222,17 +222,17 @@ class Settings extends _$Settings {
   }
 
   Future<bool> setGitHubOwner(String? value) async {
-    state = state.copyWith(gitHubOwner: value);
+    state = state.copyWith(githubOwner: value);
     return _pers.setGitHubOwner(value);
   }
 
   Future<bool> setGitHubRepo(String? value) async {
-    state = state.copyWith(gitHubRepo: value);
+    state = state.copyWith(githubRepo: value);
     return _pers.setGitHubRepo(value);
   }
 
   Future<bool> setGitHubToken(String? value) async {
-    state = state.copyWith(gitHubToken: value);
+    state = state.copyWith(githubToken: value);
     return _pers.setGitHubToken(value);
   }
 

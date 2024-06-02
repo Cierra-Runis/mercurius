@@ -1,5 +1,6 @@
 export 'app_icon.dart';
 export 'app_name.dart';
+export 'based_badge.dart';
 export 'based_shimmer.dart';
 export 'confirm_dialog.dart';
 export 'diary/index.dart';

@@ -5,8 +5,8 @@ part 'github_latest_release.freezed.dart';
 part 'github_latest_release.g.dart';
 
 @riverpod
-Future<GitHubLatestRelease> gitHubLatestRelease(
-  GitHubLatestReleaseRef ref,
+Future<GitHubLatestRelease> githubLatestRelease(
+  GithubLatestReleaseRef ref,
 ) async {
   ref.refreshFor(const Duration(minutes: 5));
   const url =
@@ -14,13 +14,13 @@ Future<GitHubLatestRelease> gitHubLatestRelease(
 
   final tagName = ref.watch(packageInfoProvider).tagName;
 
-  final gitHubLatestRelease = GitHubLatestRelease(tagName: tagName);
+  final githubLatestRelease = GitHubLatestRelease(tagName: tagName);
 
   Response response;
   try {
-    response = await Dio().get(url);
+    response = await App.dio.get(url);
   } catch (e) {
-    return gitHubLatestRelease;
+    return githubLatestRelease;
   }
 
   if (response.statusCode == 200) {
@@ -29,7 +29,7 @@ Future<GitHubLatestRelease> gitHubLatestRelease(
     );
   }
 
-  return gitHubLatestRelease;
+  return githubLatestRelease;
 }
 
 @freezed

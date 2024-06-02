@@ -13,7 +13,7 @@ class ColorSchemesState with _$ColorSchemesState {
     required ColorScheme dark,
   }) = _ColorSchemesState;
 
-  ({ThemeData theme, ThemeData darkTheme}) toThemes([String? fontFamily]) {
+  ({ThemeData theme, ThemeData darkTheme}) toThemes(String? fontFamily) {
     const appBarTheme = AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
@@ -25,6 +25,11 @@ class ColorSchemesState with _$ColorSchemesState {
       clipBehavior: Clip.antiAlias,
     );
 
+    const expansionTileTheme = ExpansionTileThemeData(
+      shape: Border(),
+      collapsedShape: Border(),
+    );
+
     final theme = ThemeData(
       useMaterial3: true,
       colorScheme: light,
@@ -34,6 +39,7 @@ class ColorSchemesState with _$ColorSchemesState {
       fontFamily: fontFamily,
       appBarTheme: appBarTheme.copyWith(color: light.surface),
       cardTheme: cardTheme,
+      expansionTileTheme: expansionTileTheme,
     );
 
     final darkTheme = ThemeData(
@@ -45,6 +51,7 @@ class ColorSchemesState with _$ColorSchemesState {
       fontFamily: fontFamily,
       appBarTheme: appBarTheme.copyWith(color: dark.surface),
       cardTheme: cardTheme,
+      expansionTileTheme: expansionTileTheme,
     );
 
     return (theme: theme, darkTheme: darkTheme);

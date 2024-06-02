@@ -36,16 +36,7 @@ class _HelperButton extends StatelessWidget {
 
     return IconButton(
       tooltip: l10n.whatIsRegularExpression,
-      onPressed: () async {
-        try {
-          await launchUrlString(
-            l10n.regularExpressionDoc,
-            mode: LaunchMode.externalApplication,
-          );
-        } catch (e, s) {
-          App.printLog('Launch doc error', error: e, stackTrace: s);
-        }
-      },
+      onPressed: () => App.launchUrl(l10n.regularExpressionDoc),
       icon: const Icon(Icons.help_rounded),
     );
   }

@@ -17,6 +17,22 @@
       }
     }
   },
+  "@occupiedBytes": {
+    "description": "Bytes of a file or directory",
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      }
+    }
+  },
+  "@variantCount": {
+    "description": "Font variants count of a font family",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "@weatherText": {
     "description": "Get weather text by weather in [DiaryWeatherType]",
     "placeholders": {
@@ -78,10 +94,10 @@
   "followTheSystem": "跟随系统",
   "font": "字体",
   "generalSettings": "通用设置",
-  "gitHubSettings": "GitHub 设定",
-  "gitHubToken": "GitHub Token",
-  "gitHubUsername": "GitHub 用户名",
   "githubRepoName": "GitHub 仓库名",
+  "githubSettings": "GitHub 设定",
+  "githubToken": "GitHub Token",
+  "githubUsername": "GitHub 用户名",
   "hiToKoToFetching": "正在获取「一言」",
   "hiToKoToProvider": "该服务由 Hitokoto「一言」 提供",
   "homePage": "主页",
@@ -111,6 +127,8 @@
   "noData": "无数据",
   "noImageSelected": "未选择图片",
   "notYetCompleted": "暂未完成",
+  "occupiedBytes": "已占用 {bytes}",
+  "officialWebsite": "官网",
   "pleaseBackToHomePage": "请回到主页",
   "pleaseThinkTwiceAboutDeletingTheDiary": "请再三思考是否删除日记",
   "pleaseThinkTwiceAboutDeletingTheImage": "再三思考是否删除图片",
@@ -136,6 +154,7 @@
   "unsupportedImageFormat": "不支持的图片格式",
   "untitled": "无标题",
   "useAndroid13PhotoPicker": "使用 Android 13 及以上新样式",
+  "variantCount": "{count} 个变体",
   "weather": "天气",
   "weatherText": "{weather, select, other{未知} sunny{晴} cloudy{多云} fewClouds{少云} heavyThunderstorm{雷暴} lightRain{小雨} heavyRain{大雨} lightSnow{小雪} heavySnow{大雪} foggy{雾}}",
   "whatIsRegularExpression": "什么是正则表达式？",

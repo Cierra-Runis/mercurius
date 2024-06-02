@@ -17,6 +17,22 @@
       }
     }
   },
+  "@occupiedBytes": {
+    "description": "Bytes of a file or directory",
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      }
+    }
+  },
+  "@variantCount": {
+    "description": "Font variants count of a font family",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "@weatherText": {
     "description": "Get weather text by weather in [DiaryWeatherType]",
     "placeholders": {
@@ -78,10 +94,10 @@
   "followTheSystem": "システムに従います",
   "font": "フォント",
   "generalSettings": "一般設定",
-  "gitHubSettings": "GitHub の設定",
-  "gitHubToken": "GitHub トークン",
-  "gitHubUsername": "GitHub のユーザー名",
   "githubRepoName": "GitHub リポジトリ名",
+  "githubSettings": "GitHub の設定",
+  "githubToken": "GitHub トークン",
+  "githubUsername": "GitHub のユーザー名",
   "hiToKoToFetching": "「一言」を取得中",
   "hiToKoToProvider": "このサービスは、Hitokoto「一言」が提供しています",
   "homePage": "ホーム",
@@ -111,6 +127,8 @@
   "noData": "データ無し",
   "noImageSelected": "画像が選択されていません",
   "notYetCompleted": "まだ完成していません",
+  "occupiedBytes": "{bytes} 使用中",
+  "officialWebsite": "公式サイト",
   "pleaseBackToHomePage": "ホームページに戻ってください",
   "pleaseThinkTwiceAboutDeletingTheDiary": "日記を削除するかどうかよく考えてください",
   "pleaseThinkTwiceAboutDeletingTheImage": "画像を削除するかどうかよく考えてください",
@@ -136,6 +154,7 @@
   "unsupportedImageFormat": "サポートされていない画像フォーマット",
   "untitled": "タイトル無し",
   "useAndroid13PhotoPicker": "Android 13 以降で新しいスタイルを使用する",
+  "variantCount": "{count} 種類のバリアント",
   "weather": "天気",
   "weatherText": "{weather, select, other{未知} sunny{晴れ} cloudy{曇り} fewClouds{雲が少ない} heavyThunderstorm{激しい雷雨} lightRain{小雨} heavyRain{大雨} lightSnow{小雪} heavySnow{大雪} foggy{霧}}",
   "whatIsRegularExpression": "正規表現とは？",

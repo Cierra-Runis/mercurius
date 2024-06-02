@@ -17,6 +17,22 @@
       }
     }
   },
+  "@occupiedBytes": {
+    "description": "Bytes of a file or directory",
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      }
+    }
+  },
+  "@variantCount": {
+    "description": "Font variants count of a font family",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "@weatherText": {
     "description": "Get weather text by weather in [DiaryWeatherType]",
     "placeholders": {
@@ -78,10 +94,10 @@
   "followTheSystem": "Follow The System",
   "font": "Font",
   "generalSettings": "General Settings",
-  "gitHubSettings": "GitHub Settings",
-  "gitHubToken": "GitHub Token",
-  "gitHubUsername": "GitHub Username",
   "githubRepoName": "Github Repo Name",
+  "githubSettings": "GitHub Settings",
+  "githubToken": "GitHub Token",
+  "githubUsername": "GitHub Username",
   "hiToKoToFetching": "Fetching 「一言」...",
   "hiToKoToProvider": "This service is provided by Hitokoto「一言」",
   "homePage": "Home",
@@ -111,6 +127,8 @@
   "noData": "No Data",
   "noImageSelected": "No Image Selected",
   "notYetCompleted": "Not Yet Completed",
+  "occupiedBytes": "{bytes} Occupied",
+  "officialWebsite": "Official Website",
   "pleaseBackToHomePage": "Please Back To Home Page",
   "pleaseThinkTwiceAboutDeletingTheDiary": "Please think twice about deleting the diary",
   "pleaseThinkTwiceAboutDeletingTheImage": "Please think twice about deleting the image",
@@ -136,6 +154,7 @@
   "unsupportedImageFormat": "Unsupported Image Format",
   "untitled": "Untitled",
   "useAndroid13PhotoPicker": "Use new styles in Android 13 and above",
+  "variantCount": "{count, plural, =1{{count} Variant} other{{count} Variants}}",
   "weather": "Weather",
   "weatherText": "{weather, select, other{Unknown Weather} sunny{Sunny} cloudy{Cloudy} fewClouds{Few Clouds} heavyThunderstorm{Heavy Thunderstorm} lightRain{Light Rain} heavyRain{Heavy Rain} lightSnow{Light Snow} heavySnow{Heavy Snow} foggy{Foggy}}",
   "whatIsRegularExpression": "What Is Regular Expression?",
