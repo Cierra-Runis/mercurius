@@ -1,0 +1,22 @@
+[
+  {
+    "fontFamily": "MiSans",
+    "files": [
+      "MiSans/MiSans-Bold.ttf",
+      "MiSans/MiSans-Demibold.ttf",
+      "MiSans/MiSans-ExtraLight.ttf",
+      "MiSans/MiSans-Heavy.ttf",
+      "MiSans/MiSans-Light.ttf",
+      "MiSans/MiSans-Medium.ttf",
+      "MiSans/MiSans-Normal.ttf",
+      "MiSans/MiSans-Regular.ttf",
+      "MiSans/MiSans-Semibold.ttf",
+      "MiSans/MiSans-Thin.ttf"
+    ],
+    "website": "https://hyperos.mi.com/font",
+    "license": {
+      "type": "Other",
+      "link": "https://hyperos.mi.com/font/faq"
+    }
+  }
+]
