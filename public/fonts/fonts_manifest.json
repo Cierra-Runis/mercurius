@@ -3,7 +3,7 @@
     "fontFamily": "MiSans",
     "name": {
       "en": "MiSans",
-      "zh_CN": "MiSans",
+      "zh-CN": "MiSans",
       "ja": "MiSans"
     },
     "files": [
@@ -20,7 +20,7 @@
     ],
     "description": {
       "en": "MiSans Global is a global language font customization project led by Xiaomi, jointly created by Monotype and Hanyi. This is a huge font family that covers more than 20 writing systems, supports more than 600 languages, and has more than 100,000 characters. As the default font of Xiaomi HyperOS system, we build a multi-language information experience consistency based on the basic principles of simplicity/clarity, humanity/easy to read, and a unified visual style, aiming to help provide Xiaomi HyperOS with an interconnected universal experience.",
-      "zh_CN": "MiSans Global 是由小米主导，联合蒙纳字库、汉仪字库共同打造的全球语言字体定制项目。这是一个庞大的字体家族，涵盖 20 多种书写系统，支持 600 多种语言，字符数量超过 10 万个。作为 Xiaomi HyperOS 系统默认字体，我们以简约/清晰，人文/易读，统一的视觉风格为基本原则出发，构建多语言信息体验一致性，旨在帮助为 Xiaomi HyperOS 提供互联的通用体验。",
+      "zh-CN": "MiSans Global 是由小米主导，联合蒙纳字库、汉仪字库共同打造的全球语言字体定制项目。这是一个庞大的字体家族，涵盖 20 多种书写系统，支持 600 多种语言，字符数量超过 10 万个。作为 Xiaomi HyperOS 系统默认字体，我们以简约/清晰，人文/易读，统一的视觉风格为基本原则出发，构建多语言信息体验一致性，旨在帮助为 Xiaomi HyperOS 提供互联的通用体验。",
       "ja": "MiSans Global は、Xiaomi が主導し、Monotype Font と Hanyi Font が共同で作成したグローバル言語フォント カスタマイズ プロジェクトです。これは、20 以上の書記体系をカバーし、600 以上の言語をサポートし、文字数は 10 を超える巨大なフォント ファミリです。 Xiaomi HyperOS システムのデフォルトのフォントとして、一貫した多言語情報エクスペリエンスを構築するための基本原則として、シンプル/明確、人間味のある/読みやすい、統一されたビジュアル スタイルを使用し、ユニバーサルな相互接続を提供することを目指しています。 Xiaomi HyperOS の経験。"
     },
     "website": "https://hyperos.mi.com/font",
