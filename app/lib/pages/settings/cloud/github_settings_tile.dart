@@ -7,7 +7,7 @@ class _GitHubSettingsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return BasedListTile(
-      titleText: l10n.gitHubSettings,
+      titleText: l10n.githubSettings,
       leadingIcon: UniconsLine.github,
       onTap: () => context.pushDialog(const _GitHubSettingsPage()),
     );
@@ -36,17 +36,17 @@ class _GitHubSettingsPage extends HookConsumerWidget {
             children: [
               ListTile(
                 title: TextFormField(
-                  initialValue: settings.gitHubOwner,
+                  initialValue: settings.githubOwner,
                   onSaved: setSettings.setGitHubOwner,
                   decoration: InputDecoration(
                     icon: const Icon(UniconsLine.github),
-                    label: Text(l10n.gitHubUsername),
+                    label: Text(l10n.githubUsername),
                   ),
                 ),
               ),
               ListTile(
                 title: TextFormField(
-                  initialValue: settings.gitHubRepo,
+                  initialValue: settings.githubRepo,
                   onSaved: setSettings.setGitHubRepo,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.cabin_rounded),
@@ -56,11 +56,11 @@ class _GitHubSettingsPage extends HookConsumerWidget {
               ),
               ListTile(
                 title: TextFormField(
-                  initialValue: settings.gitHubToken,
+                  initialValue: settings.githubToken,
                   onSaved: setSettings.setGitHubToken,
                   decoration: InputDecoration(
                     icon: const Icon(Icons.token_rounded),
-                    label: Text(l10n.gitHubToken),
+                    label: Text(l10n.githubToken),
                   ),
                 ),
               ),

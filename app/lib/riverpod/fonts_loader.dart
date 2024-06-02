@@ -6,8 +6,6 @@ part 'fonts_loader.g.dart';
 
 @riverpod
 Future<void> fontsLoader(FontsLoaderRef ref) async {
-  App.printLog('log');
-
   /// Check settings first
   /// If user didn't config it, do nothing
   final settings = ref.watch(settingsProvider);
@@ -29,11 +27,21 @@ Future<void> fontsLoader(FontsLoaderRef ref) async {
   final paths = ref.watch(pathsProvider);
   final fontLoader = FontLoader(fontFamily);
 
+  /// FIXME: Font loading order is Wrong
   for (final filename in font.files) {
-    final fontFile = File(p.join(paths.font.path, filename));
+    final fontFile = File(p.join(paths.font.path, font.fontFamily, filename));
 
     if (!fontFile.existsSync()) {
-      await Dio().download('${App.fontsFolderUrl}/$filename', fontFile.path);
+      final res = await App.dio.download(
+        '${App.fontsFolderUrl}/$fontFamily/$filename',
+        fontFile.path,
+      );
+
+      if (res.statusCode == 200) {
+        ScaffoldMessenger.of(splitViewKey.currentContext!).showSnackBar(
+          SnackBar(content: Text('Download $filename Done.')),
+        );
+      }
     }
 
     fontLoader.addFont(
@@ -47,11 +55,9 @@ Future<void> fontsLoader(FontsLoaderRef ref) async {
 abstract class FontsLoader {
   static void deleteFont(Font font, Directory fontDirectory) async {
     try {
-      for (final filename in font.files) {
-        final fontFile = File(p.join(fontDirectory.path, filename));
-        fontFile.deleteSync(recursive: true);
-        Directory(p.join(fontDirectory.path));
-      }
+      final fontFolder = Directory(p.join(fontDirectory.path, font.fontFamily));
+      if (!fontFolder.existsSync()) return;
+      fontFolder.deleteSync(recursive: true);
     } catch (e, s) {
       App.printLog('Delete Error', error: e, stackTrace: s);
     }

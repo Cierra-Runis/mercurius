@@ -1,6 +1,8 @@
 import 'dart:developer' as devtools show log, inspect;
 
 import 'package:mercurius/index.dart';
+import 'package:url_launcher/url_launcher.dart' as launcher1;
+import 'package:url_launcher/url_launcher_string.dart' as launcher2;
 
 late final IsarService isarService;
 
@@ -13,9 +15,10 @@ abstract class App {
   static const githubUrl = 'https://github.com/Cierra-Runis';
   static const repoUrl = '$githubUrl/mercurius';
 
-  static const rawGitHubUrl = 'https://raw.githubusercontent.com/Cierra-Runis';
-  static const rawRepoUrl = '$rawGitHubUrl/mercurius';
-  static const branch = 'master';
+  static const publicGitHubUrl =
+      'https://raw.githubusercontent.com/Cierra-Runis';
+  static const publicRepoUrl = '$publicGitHubUrl/Cierra-Runis';
+  static const branch = 'main';
 
   static const openIssueUrl = '$repoUrl/issues/new/choose';
   static const thirdPartyLicenseUrl = '$repoUrl/wiki/Third-Party-License';
@@ -25,7 +28,7 @@ abstract class App {
   static const fontSaira = 'Saira';
   static const fontCascadiaCodePL = 'CascadiaCodePL';
 
-  static const fontsFolderUrl = '$rawRepoUrl/$branch/public/fonts';
+  static const fontsFolderUrl = '$publicRepoUrl/$branch/public/fonts';
   static const fontsManifestUrl = '$fontsFolderUrl/fonts_manifest.json';
 
   static const aMapApiUrl = 'https://restapi.amap.com/v3/ip';
@@ -35,6 +38,16 @@ abstract class App {
   static const qWeatherApiKey = String.fromEnvironment('qWeatherApiKey');
 
   static const builtAt = String.fromEnvironment('builtAt');
+
+  static final dio = Dio(
+    BaseOptions(
+      connectTimeout: const Duration(seconds: 3),
+      receiveTimeout: const Duration(seconds: 3),
+      sendTimeout: const Duration(seconds: 3),
+      followRedirects: true,
+      maxRedirects: 3,
+    ),
+  );
 
   static const themeModeIcon = {
     ThemeMode.system: Icons.brightness_auto_rounded,
@@ -145,6 +158,40 @@ abstract class App {
       );
     } catch (e, s) {
       App.printLog('Vibration error', error: e, stackTrace: s);
+    }
+  }
+
+  static void launchUrl(
+    dynamic url, {
+    launcher1.LaunchMode mode = launcher1.LaunchMode.externalApplication,
+    launcher1.WebViewConfiguration webViewConfiguration =
+        const launcher1.WebViewConfiguration(),
+    String? webOnlyWindowName,
+  }) async {
+    if (url is Uri) {
+      try {
+        await launcher1.launchUrl(
+          url,
+          mode: mode,
+          webViewConfiguration: webViewConfiguration,
+          webOnlyWindowName: webOnlyWindowName,
+        );
+      } catch (e, s) {
+        printLog('Launch $url Failed', error: e, stackTrace: s);
+      }
+    }
+
+    if (url is String) {
+      try {
+        await launcher2.launchUrlString(
+          url,
+          mode: mode,
+          webViewConfiguration: webViewConfiguration,
+          webOnlyWindowName: webOnlyWindowName,
+        );
+      } catch (e, s) {
+        printLog('Launch $url Failed', error: e, stackTrace: s);
+      }
     }
   }
 }

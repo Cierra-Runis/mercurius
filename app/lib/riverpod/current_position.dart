@@ -10,7 +10,7 @@ Future<CurrentPosition> currentPosition(CurrentPositionRef ref) async {
   final Response response;
 
   try {
-    response = await Dio().get(
+    response = await App.dio.get(
       App.aMapApiUrl,
       queryParameters: {
         'key': App.aMapApiKey,

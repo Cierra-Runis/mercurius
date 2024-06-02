@@ -125,10 +125,10 @@ class _ReleaseTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
-    final gitHubLatestRelease = ref.watch(gitHubLatestReleaseProvider);
+    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
     final tagName = ref.watch(packageInfoProvider).tagName;
 
-    final hasUpdate = gitHubLatestRelease.when(
+    final hasUpdate = githubLatestRelease.when(
       loading: () => false,
       error: (error, stackTrace) => false,
 
@@ -161,18 +161,7 @@ class _ContactTile extends StatelessWidget {
       leadingIcon: Icons.link,
       titleText: l10n.contactUs,
       subtitleText: App.githubUrl,
-      onTap: () {
-        try {
-          launchUrlString(
-            App.githubUrl,
-            mode: LaunchMode.externalApplication,
-          );
-        } catch (e) {
-          App.printLog(
-            'launch ${App.githubUrl} failed: $e',
-          );
-        }
-      },
+      onTap: () => App.launchUrl(App.githubUrl),
     );
   }
 }
@@ -188,18 +177,7 @@ class _ThirdPartyLicenseTile extends StatelessWidget {
       leadingIcon: Icons.import_contacts_rounded,
       titleText: l10n.thirdPartyLicense,
       subtitleText: l10n.thirdPartyLicenseDescription,
-      onTap: () {
-        try {
-          launchUrlString(
-            App.thirdPartyLicenseUrl,
-            mode: LaunchMode.externalApplication,
-          );
-        } catch (e) {
-          App.printLog(
-            'launch ${App.thirdPartyLicenseUrl} failed: $e',
-          );
-        }
-      },
+      onTap: () => App.launchUrl(App.thirdPartyLicenseUrl),
     );
   }
 }
@@ -215,18 +193,7 @@ class _PrivacyPolicyTile extends StatelessWidget {
       leadingIcon: Icons.privacy_tip_rounded,
       titleText: l10n.privacyPolicy,
       subtitleText: '${App.name} ${l10n.privacyPolicy}',
-      onTap: () {
-        try {
-          launchUrlString(
-            App.privacyPolicyUrl,
-            mode: LaunchMode.externalApplication,
-          );
-        } catch (e) {
-          App.printLog(
-            'launch ${App.privacyPolicyUrl} failed: $e',
-          );
-        }
-      },
+      onTap: () => App.printLog(App.privacyPolicyUrl),
     );
   }
 }

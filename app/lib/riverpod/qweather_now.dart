@@ -13,7 +13,7 @@ Future<QWeatherNow> qWeatherNow(
 
   Response response;
   try {
-    response = await Dio().get(
+    response = await App.dio.get(
       App.qWeatherApiUrl,
       queryParameters: {
         'key': App.qWeatherApiKey,

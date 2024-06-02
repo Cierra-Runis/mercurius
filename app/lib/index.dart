@@ -53,7 +53,6 @@ export 'package:share_plus/share_plus.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:syncfusion_flutter_charts/charts.dart';
 export 'package:unicons/unicons.dart';
-export 'package:url_launcher/url_launcher_string.dart';
 export 'package:vibration/vibration.dart';
 export 'package:window_manager/window_manager.dart';
 

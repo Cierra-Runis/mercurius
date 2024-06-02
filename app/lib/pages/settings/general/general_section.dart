@@ -1,5 +1,5 @@
 import 'package:mercurius/index.dart';
-import 'package:mercurius/riverpod/fonts_loader.dart';
+import 'package:path/path.dart' as p;
 
 part 'accent_color_tile.dart';
 part 'background_image_tile.dart';

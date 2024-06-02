@@ -5,7 +5,7 @@ part 'fonts_manifest.g.dart';
 
 @riverpod
 Future<List<Font>> fontsManifest(FontsManifestRef ref) async {
-  final response = await Dio().get(App.fontsManifestUrl);
+  final response = await App.dio.get(App.fontsManifestUrl);
   final jsonList = jsonDecode(response.data) as List;
   return jsonList.map((e) => Font.fromJson(e as Json)).toList();
 }

@@ -9,20 +9,9 @@ class HiToKoToWidget extends ConsumerWidget {
     final hitokoto = ref.watch(hitokotoProvider);
 
     return InkWell(
-      onTap: () {
-        hitokoto.whenData(
-          (value) {
-            try {
-              launchUrlString(
-                'https://hitokoto.cn/?uuid=${value.uuid}',
-                mode: LaunchMode.externalApplication,
-              );
-            } catch (e) {
-              App.printLog('launch hitokoto failed: $e');
-            }
-          },
-        );
-      },
+      onTap: () => hitokoto.whenData(
+        (value) => App.launchUrl('https://hitokoto.cn/?uuid=${value.uuid}'),
+      ),
       child: Tooltip(
         message: l10n.hiToKoToProvider,
         preferBelow: false,

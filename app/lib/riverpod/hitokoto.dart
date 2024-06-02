@@ -11,7 +11,7 @@ Future<HiToKoTo> hitokoto(HitokotoRef ref) async {
   Response response;
 
   try {
-    response = await Dio().get(_url);
+    response = await App.dio.get(_url);
   } catch (e) {
     return const HiToKoTo(
       hitokoto: '没有BUG的代码是不完美的！[连接失败]',

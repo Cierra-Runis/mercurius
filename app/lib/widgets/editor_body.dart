@@ -23,17 +23,6 @@ class EditorBody extends ConsumerWidget {
 
   static const unknownEmbedBuilder = DeprecatedEmbedBuilder();
 
-  void onLaunchUrl(url) {
-    try {
-      launchUrlString(
-        url,
-        mode: LaunchMode.externalApplication,
-      );
-    } catch (e) {
-      App.printLog('launch $url failed: $e');
-    }
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
@@ -51,7 +40,7 @@ class EditorBody extends ConsumerWidget {
         enableInteractiveSelection: enableInteractiveSelection,
         enableSelectionToolbar: enableSelectionToolbar,
         showCursor: showCursor,
-        onLaunchUrl: onLaunchUrl,
+        onLaunchUrl: App.launchUrl,
         scrollBottomInset: 10,
         embedBuilders: embedBuilders,
         unknownEmbedBuilder: unknownEmbedBuilder,

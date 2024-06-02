@@ -452,8 +452,6 @@ class _View extends ConsumerWidget {
         return ExpansionTile(
           key: PageStorageKey<String>(section.header),
           initiallyExpanded: true,
-          shape: const Border(),
-          collapsedShape: const Border(),
           leading: const AppIcon(size: 28),
           title: Text(section.header),
           trailing: Text(l10n.diaryCount(section.items.length)),
