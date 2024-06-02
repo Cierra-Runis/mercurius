@@ -7,16 +7,16 @@
       "ja": "MiSans"
     },
     "files": [
-      "MiSans/MiSans-Bold.ttf",
-      "MiSans/MiSans-Demibold.ttf",
-      "MiSans/MiSans-ExtraLight.ttf",
-      "MiSans/MiSans-Heavy.ttf",
-      "MiSans/MiSans-Light.ttf",
-      "MiSans/MiSans-Medium.ttf",
-      "MiSans/MiSans-Normal.ttf",
-      "MiSans/MiSans-Regular.ttf",
-      "MiSans/MiSans-Semibold.ttf",
-      "MiSans/MiSans-Thin.ttf"
+      "MiSans-Bold.ttf",
+      "MiSans-Demibold.ttf",
+      "MiSans-ExtraLight.ttf",
+      "MiSans-Heavy.ttf",
+      "MiSans-Light.ttf",
+      "MiSans-Medium.ttf",
+      "MiSans-Normal.ttf",
+      "MiSans-Regular.ttf",
+      "MiSans-Semibold.ttf",
+      "MiSans-Thin.ttf"
     ],
     "description": {
       "en": "MiSans Global is a global language font customization project led by Xiaomi, jointly created by Monotype and Hanyi. This is a huge font family that covers more than 20 writing systems, supports more than 600 languages, and has more than 100,000 characters. As the default font of Xiaomi HyperOS system, we build a multi-language information experience consistency based on the basic principles of simplicity/clarity, humanity/easy to read, and a unified visual style, aiming to help provide Xiaomi HyperOS with an interconnected universal experience.",
