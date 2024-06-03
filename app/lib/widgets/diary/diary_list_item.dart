@@ -137,7 +137,7 @@ class _BelongTo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      diary.title.isEmpty ? diary.belongTo.format('y-M-d') : diary.title,
+      diary.belongTo.format('y-M-d'),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(

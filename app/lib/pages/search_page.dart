@@ -262,12 +262,10 @@ class _ListTileState extends State<_ListTile> {
     final colorScheme = context.colorScheme;
     final lang = Localizations.localeOf(context).toLanguageTag();
 
-    final title = widget.diary.title.isNotEmpty
-        ? widget.diary.title
-        : widget.diary.belongTo.format(
-            DateFormat.YEAR_ABBR_MONTH_DAY,
-            lang,
-          );
+    final title = widget.diary.belongTo.format(
+      DateFormat.YEAR_ABBR_MONTH_DAY,
+      lang,
+    );
 
     return ListTile(
       title: Text(

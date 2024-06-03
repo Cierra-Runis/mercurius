@@ -86,12 +86,7 @@ class _DiaryPageItem extends StatelessWidget {
           SliverAppBar(
             floating: true,
             snap: true,
-            title: Column(
-              children: [
-                _BelongTo(diary: diary),
-                if (diary.title.isNotEmpty) _Title(diary: diary),
-              ],
-            ),
+            title: _BelongTo(diary: diary),
           ),
           SliverToBoxAdapter(
             child: EditorBody(
@@ -211,17 +206,6 @@ class _MoodChip extends StatelessWidget {
   }
 }
 
-class _Title extends StatelessWidget {
-  const _Title({required this.diary});
-
-  final Diary diary;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(diary.title, style: const TextStyle(fontSize: 16));
-  }
-}
-
 class _DiaryShareButton extends StatelessWidget {
   const _DiaryShareButton({required this.diary});
 
@@ -240,7 +224,6 @@ class _DiaryShareButton extends StatelessWidget {
           Share.share(
             [
               diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
-              '${l10n.title} - ${diary.title.isEmpty ? l10n.untitled : diary.title}',
               if (weatherType != null)
                 '${l10n.weather} - ${l10n.weatherText(weatherType.weather)}',
               if (moodType != null)

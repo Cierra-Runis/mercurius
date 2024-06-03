@@ -15,7 +15,6 @@ class Diary with _$Diary {
     required DateTime editAt,
     required List<dynamic> content,
     @Default(false) bool editing,
-    @Default('') String title,
     DiaryMoodType? moodType,
     DiaryWeatherType? weatherType,
   }) = _Diary;

@@ -17,7 +17,6 @@ class EditorPage extends StatefulWidget {
 
 class _DiaryEditorPageState extends State<EditorPage> {
   late final QuillController _quillController;
-  late final TextEditingController _titleController;
 
   final _scrollController = ScrollController();
 
@@ -33,15 +32,11 @@ class _DiaryEditorPageState extends State<EditorPage> {
       document: _diary.document,
       selection: const TextSelection.collapsed(offset: 0),
     );
-    _titleController = TextEditingController(
-      text: _diary.title,
-    );
   }
 
   @override
   void dispose() {
     FocusManager.instance.primaryFocus?.unfocus();
-    _titleController.dispose();
     _quillController.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -61,7 +56,6 @@ class _DiaryEditorPageState extends State<EditorPage> {
       appBar: _EditorAppBar(
         diary: _diary,
         quillController: _quillController,
-        titleController: _titleController,
         handleChangeDiary: _handleChangeDiary,
         handleAutoSaveToggle: _handleAutoSaveToggle,
         autoSave: _autoSave,
@@ -92,7 +86,6 @@ class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
   const _EditorAppBar({
     required this.diary,
     required this.quillController,
-    required this.titleController,
     required this.handleChangeDiary,
     required this.handleAutoSaveToggle,
     this.autoSave = false,
@@ -102,7 +95,6 @@ class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final Diary diary;
   final QuillController quillController;
-  final TextEditingController titleController;
   final ValueChanged<Diary?> handleChangeDiary;
   final ValueChanged<bool> handleAutoSaveToggle;
 
@@ -117,7 +109,6 @@ class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: TextField(
         textAlign: TextAlign.center,
         key: GlobalKey<FormState>(),
-        controller: titleController,
         decoration: InputDecoration(
           hintText: l10n.untitled,
           border: InputBorder.none,
@@ -127,7 +118,6 @@ class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
         _EditorAutoSaveButton(
           diary: diary,
           quillController: quillController,
-          titleController: titleController,
           autoSave: autoSave,
           handleAutoSaveToggle: handleAutoSaveToggle,
         ),
@@ -135,7 +125,6 @@ class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
           diary: diary,
           quillController: quillController,
           handleChangeDiary: handleChangeDiary,
-          titleController: titleController,
         ),
       ],
     );
@@ -146,7 +135,6 @@ class _EditorAutoSaveButton extends StatefulWidget {
   const _EditorAutoSaveButton({
     required this.diary,
     required this.quillController,
-    required this.titleController,
     required this.handleAutoSaveToggle,
     this.autoSave = false,
   });
@@ -154,7 +142,6 @@ class _EditorAutoSaveButton extends StatefulWidget {
   final Diary diary;
   final bool autoSave;
   final QuillController quillController;
-  final TextEditingController titleController;
   final ValueChanged<bool> handleAutoSaveToggle;
 
   @override
@@ -165,7 +152,6 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
   late Diary _diary;
   late bool _autoSave;
   late QuillController _quillController;
-  late TextEditingController _textEditingController;
   late ValueChanged<bool> _handleAutoSaveToggle;
 
   late PausableTimer _timer;
@@ -176,7 +162,6 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
     _diary = widget.diary;
     _autoSave = widget.autoSave;
     _quillController = widget.quillController;
-    _textEditingController = widget.titleController;
     _handleAutoSaveToggle = widget.handleAutoSaveToggle;
     _timer = PausableTimer(const Duration(seconds: 5), () {
       _timer
@@ -188,7 +173,6 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
       final newDiary = _diary.copyWith(
         content: _quillController.document.toDelta().toJson(),
         editAt: DateTime.now(),
-        title: _textEditingController.text,
         editing: true,
       );
       isarService.saveDiary(newDiary);
@@ -229,18 +213,15 @@ class _EditorSaveButton extends StatelessWidget {
     required this.diary,
     required this.quillController,
     required this.handleChangeDiary,
-    required this.titleController,
   });
 
   final Diary diary;
   final QuillController quillController;
   final ValueChanged<Diary?> handleChangeDiary;
-  final TextEditingController titleController;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final colorScheme = context.colorScheme;
 
     return TextButton(
       onPressed: () {
@@ -248,7 +229,6 @@ class _EditorSaveButton extends StatelessWidget {
           final newDiary = diary.copyWith(
             content: quillController.document.toDelta().toJson(),
             editAt: DateTime.now(),
-            title: titleController.text,
             editing: false,
           );
           handleChangeDiary(newDiary);
@@ -257,32 +237,11 @@ class _EditorSaveButton extends StatelessWidget {
         }
 
         App.vibration();
-        Flushbar(
-          icon: const Icon(UniconsLine.confused),
-          isDismissible: false,
-          messageText: Center(
-            child: Text(
-              l10n.contentCannotBeEmpty,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.contentCannotBeEmpty),
           ),
-          margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
-          barBlur: 1.0,
-          borderRadius: BorderRadius.circular(16),
-          backgroundColor: colorScheme.outline.withAlpha(16),
-          boxShadows: const [
-            BoxShadow(
-              color: Colors.transparent,
-              offset: Offset(0, 16),
-            ),
-          ],
-          duration: const Duration(
-            milliseconds: 600,
-          ),
-          flushbarPosition: FlushbarPosition.TOP,
-        ).show(context);
+        );
       },
       style: ButtonStyle(
         minimumSize: WidgetStateProperty.all<Size>(
@@ -355,6 +314,8 @@ class _EditorToolbar extends StatelessWidget {
         QuillToolbarToggleCheckListButton(
           controller: controller,
         ),
+
+        // QuillToolbarSearchButton(controller: controller),
 
         /// TODO: Header
         // QuillToolbarSelectHeaderStyleDropdownButton(
