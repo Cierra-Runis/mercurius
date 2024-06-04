@@ -182,9 +182,6 @@ class _CreateButton extends StatelessWidget {
     return FloatingActionButton(
       heroTag: 'create',
       tooltip: l10n.createNewDiary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40),
-      ),
       onPressed: () => _createDiary(context),
       child: const Icon(UniconsLine.diary),
     );
