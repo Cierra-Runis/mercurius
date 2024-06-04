@@ -7,7 +7,6 @@ export 'dart:io';
 export 'dart:ui' show ImageFilter, FontFeature;
 
 /// flutter
-export 'package:another_flushbar/flushbar.dart';
 export 'package:based_list/based_list.dart';
 export 'package:based_local_first_image/based_local_first_image.dart';
 export 'package:based_splash_page/based_splash_page.dart';

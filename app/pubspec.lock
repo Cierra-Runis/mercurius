@@ -25,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.3"
-  another_flushbar:
-    dependency: "direct main"
-    description:
-      name: another_flushbar
-      sha256: "5c178a7fa2d309ecd86fc504416766006734c135025da59e1d4913f10241801d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.12.31-dev.1"
   archive:
     dependency: transitive
     description:

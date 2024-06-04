@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  another_flushbar: ^1.12.31-dev.1
   based_list: ^1.1.3
   based_local_first_image: ^1.1.0
   based_splash_page: ^1.0.1

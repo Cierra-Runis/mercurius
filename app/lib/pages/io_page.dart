@@ -69,32 +69,9 @@ class _ImportJsonFile extends StatelessWidget {
 
         if (context.mounted && succuss) {
           App.vibration();
-          Flushbar(
-            icon: const Icon(UniconsLine.smile),
-            isDismissible: false,
-            messageText: Center(
-              child: Text(
-                l10n.pleaseBackToHomePage,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            margin: const EdgeInsets.fromLTRB(60, 16, 60, 0),
-            barBlur: 1.0,
-            borderRadius: BorderRadius.circular(16),
-            backgroundColor: context.colorScheme.outline.withAlpha(16),
-            boxShadows: const [
-              BoxShadow(
-                color: Colors.transparent,
-                offset: Offset(0, 16),
-              ),
-            ],
-            duration: const Duration(
-              milliseconds: 600,
-            ),
-            flushbarPosition: FlushbarPosition.TOP,
-          ).show(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l10n.pleaseBackToHomePage)),
+          );
         }
       },
     );
