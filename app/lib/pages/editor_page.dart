@@ -52,81 +52,67 @@ class _DiaryEditorPageState extends State<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
-      appBar: _EditorAppBar(
-        diary: _diary,
-        quillController: _quillController,
-        handleChangeDiary: _handleChangeDiary,
-        handleAutoSaveToggle: _handleAutoSaveToggle,
-        autoSave: _autoSave,
-      ),
-      body: Column(
-        children: [
-          Expanded(
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            snap: true,
+            pinned: true,
+            title: Text(_diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY)),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(40),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: _EditorToolbar(
+                  diary: _diary,
+                  controller: _quillController,
+                  handleChangeDiary: _handleChangeDiary,
+                ),
+              ),
+            ),
+            actions: [
+              _EditorAutoSaveButton(
+                diary: _diary,
+                quillController: _quillController,
+                handleAutoSaveToggle: _handleAutoSaveToggle,
+                autoSave: _autoSave,
+              ),
+              TextButton(
+                onPressed: () {
+                  if (!_quillController.document.plainTextIsEmpty) {
+                    final newDiary = _diary.copyWith(
+                      content: _quillController.document.toDelta().toJson(),
+                      editAt: DateTime.now(),
+                      editing: false,
+                    );
+                    isarService.saveDiary(newDiary);
+                    return context.pop(newDiary);
+                  }
+
+                  App.vibration();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(l10n.contentCannotBeEmpty),
+                    ),
+                  );
+                },
+                child: Text(l10n.save),
+              ),
+            ],
+          ),
+          SliverToBoxAdapter(
             child: EditorBody(
               readOnly: false,
               controller: _quillController,
               scrollController: _scrollController,
             ),
           ),
-          const Divider(height: 0),
-          _EditorToolbar(
-            diary: _diary,
-            controller: _quillController,
-            scrollController: _scrollController,
-            handleChangeDiary: _handleChangeDiary,
-          ),
         ],
       ),
-    );
-  }
-}
-
-class _EditorAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _EditorAppBar({
-    required this.diary,
-    required this.quillController,
-    required this.handleChangeDiary,
-    required this.handleAutoSaveToggle,
-    this.autoSave = false,
-  });
-
-  final bool autoSave;
-
-  final Diary diary;
-  final QuillController quillController;
-  final ValueChanged<Diary?> handleChangeDiary;
-  final ValueChanged<bool> handleAutoSaveToggle;
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return AppBar(
-      title: TextField(
-        textAlign: TextAlign.center,
-        key: GlobalKey<FormState>(),
-        decoration: InputDecoration(
-          hintText: l10n.untitled,
-          border: InputBorder.none,
-        ),
-      ),
-      actions: [
-        _EditorAutoSaveButton(
-          diary: diary,
-          quillController: quillController,
-          autoSave: autoSave,
-          handleAutoSaveToggle: handleAutoSaveToggle,
-        ),
-        _EditorSaveButton(
-          diary: diary,
-          quillController: quillController,
-          handleChangeDiary: handleChangeDiary,
-        ),
-      ],
     );
   }
 }
@@ -208,75 +194,32 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
   }
 }
 
-class _EditorSaveButton extends StatelessWidget {
-  const _EditorSaveButton({
-    required this.diary,
-    required this.quillController,
-    required this.handleChangeDiary,
-  });
-
-  final Diary diary;
-  final QuillController quillController;
-  final ValueChanged<Diary?> handleChangeDiary;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return TextButton(
-      onPressed: () {
-        if (!quillController.document.plainTextIsEmpty) {
-          final newDiary = diary.copyWith(
-            content: quillController.document.toDelta().toJson(),
-            editAt: DateTime.now(),
-            editing: false,
-          );
-          handleChangeDiary(newDiary);
-          isarService.saveDiary(newDiary);
-          return context.pop(newDiary);
-        }
-
-        App.vibration();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.contentCannotBeEmpty),
-          ),
-        );
-      },
-      style: ButtonStyle(
-        minimumSize: WidgetStateProperty.all<Size>(
-          const Size(56, 56),
-        ),
-      ),
-      child: Text(l10n.save),
-    );
-  }
-}
-
 class _EditorToolbar extends StatelessWidget {
   const _EditorToolbar({
     required this.diary,
     required this.controller,
-    required this.scrollController,
     required this.handleChangeDiary,
   });
 
   final Diary diary;
   final QuillController controller;
-  final ScrollController scrollController;
   final ValueChanged<Diary?> handleChangeDiary;
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Wrap(
-      alignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      runAlignment: WrapAlignment.center,
-      spacing: -6,
-      runSpacing: -6,
+    return Row(
       children: [
+        QuillToolbarHistoryButton(controller: controller, isUndo: true),
+        QuillToolbarHistoryButton(controller: controller, isUndo: false),
+
+        const SizedBox(height: 18, child: VerticalDivider()),
+
+        QuillToolbarSelectHeaderStyleDropdownButton(
+          controller: controller,
+        ),
+
         QuillToolbarToggleStyleButton(
           controller: controller,
           attribute: Attribute.bold,
@@ -297,6 +240,9 @@ class _EditorToolbar extends StatelessWidget {
           controller: controller,
           attribute: Attribute.small,
         ),
+
+        const SizedBox(height: 18, child: VerticalDivider()),
+
         QuillToolbarToggleStyleButton(
           controller: controller,
           attribute: Attribute.leftAlignment,
@@ -315,12 +261,6 @@ class _EditorToolbar extends StatelessWidget {
           controller: controller,
         ),
 
-        // QuillToolbarSearchButton(controller: controller),
-
-        /// TODO: Header
-        // QuillToolbarSelectHeaderStyleDropdownButton(
-        //   controller: controller,
-        // ),
         QuillToolbarToggleStyleButton(
           controller: controller,
           attribute: Attribute.ol,
@@ -337,12 +277,18 @@ class _EditorToolbar extends StatelessWidget {
           controller: controller,
           attribute: Attribute.blockQuote,
         ),
+
+        const SizedBox(height: 18, child: VerticalDivider()),
+
         _EditorImageButton(
           controller: controller,
         ),
         _EditorTagButton(
           controller: controller,
         ),
+
+        const SizedBox(height: 18, child: VerticalDivider()),
+
         IconButton(
           tooltip: l10n.changeMood,
           onPressed: () => changMood(context, diary),
@@ -376,7 +322,7 @@ class _EditorToolbar extends StatelessWidget {
       ),
     );
     handleChangeDiary(
-      diary.copyWith(moodType: type ?? diary.moodType),
+      diary.copyWith(moodType: type),
     );
   }
 
@@ -387,7 +333,7 @@ class _EditorToolbar extends StatelessWidget {
       ),
     );
     handleChangeDiary(
-      diary.copyWith(weatherType: type ?? diary.weatherType),
+      diary.copyWith(weatherType: type),
     );
   }
 
