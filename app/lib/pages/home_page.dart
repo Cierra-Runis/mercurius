@@ -110,7 +110,7 @@ class _HomePageBody extends ConsumerWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: BasedLocalFirstImage(
-            filename: settings.bgImgPath!,
+            filename: settings.bgImgPath ?? '',
             localDirectory: path.image.path,
           ),
         ),
