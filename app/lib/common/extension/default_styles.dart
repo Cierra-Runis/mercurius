@@ -73,7 +73,7 @@ extension DefaultStylesExt on DefaultStyles {
       radius: const Radius.circular(120),
     );
 
-    final link = small.copyWith(
+    final link = baseStyle.copyWith(
       color: colorScheme.primary,
       fontFamily: codeFontFamily,
       fontFamilyFallback: [
@@ -92,12 +92,7 @@ extension DefaultStylesExt on DefaultStyles {
     );
 
     final lists = DefaultListBlockStyle(
-      small.copyWith(
-        fontFamily: codeFontFamily,
-        fontFamilyFallback: [
-          if (fontFamily != null) fontFamily,
-        ],
-      ),
+      baseStyle,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -119,7 +114,7 @@ extension DefaultStylesExt on DefaultStyles {
     );
 
     final code = DefaultTextBlockStyle(
-      small.copyWith(
+      baseStyle.copyWith(
         color: colorScheme.secondary,
         fontFamily: codeFontFamily,
         fontFamilyFallback: [
