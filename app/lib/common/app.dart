@@ -55,6 +55,7 @@ abstract class App {
   static Future<void> showSnackBar(Widget content) async {
     final buildContext = splitViewKey.currentContext;
     if (buildContext == null) return;
+    App.printLog(content);
     ScaffoldMessenger.of(buildContext).showSnackBar(
       SnackBar(content: content),
     );
@@ -98,6 +99,11 @@ abstract class App {
   static void run() async {
     WidgetsFlutterBinding.ensureInitialized();
 
+    FlutterError.onError = (details) {
+      FlutterError.presentError(details);
+      if (!kDebugMode) debugPrint(details.toString());
+    };
+
     try {
       if (Platform.isWindows || Platform.isMacOS) {
         await _PlatformWindowManager.init();
@@ -117,7 +123,7 @@ abstract class App {
 
       runApp(
         ProviderScope(
-          observers: const [if (!kReleaseMode) _ProviderObserver()],
+          observers: const [_ProviderObserver()],
           overrides: [
             pathsProvider.overrideWithValue(paths),
             persistenceProvider.overrideWithValue(persistence),
@@ -142,6 +148,7 @@ abstract class App {
     Object? error,
     StackTrace? stackTrace,
   }) {
+    debugPrint('$log');
     devtools.log(
       '$log',
       name: name,
