@@ -13,9 +13,9 @@ class Paths {
   final Directory appCache;
   final Directory documents;
 
-  Directory get image => Directory(p.join(appSupport.path, 'image'))..create();
+  Directory get image => Directory(p.join(appSupport.path, 'image'));
 
-  Directory get font => Directory(p.join(appSupport.path, 'font'))..create();
+  Directory get font => Directory(p.join(appSupport.path, 'font'));
 
   const Paths._({
     required this.temp,
@@ -31,6 +31,10 @@ class Paths {
       appCache: await getApplicationCacheDirectory(),
       documents: await getApplicationDocumentsDirectory(),
     );
+
+    await paths.image.create();
+    await paths.font.create();
+
     return paths;
   }
 }
