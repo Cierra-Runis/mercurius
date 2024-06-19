@@ -1,5 +1,5 @@
-import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'persistence.g.dart';
 

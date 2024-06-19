@@ -32,10 +32,6 @@ class EditorBody extends ConsumerWidget {
       focusNode: FocusNode(),
       scrollController: scrollController,
       configurations: QuillEditorConfigurations(
-        /// TIPS: This is important,
-        /// TIPS: It means [scrollController] is from another scroll view
-        /// TIPS: where the editor scrolling behavior shows
-        scrollable: false,
         controller: controller..readOnly = readOnly,
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         autoFocus: autoFocus,

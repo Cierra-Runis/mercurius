@@ -125,22 +125,17 @@ class _ReleaseTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
-    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
+    final githubHasUpdate = ref.watch(githubHasUpdateProvider);
     final tagName = ref.watch(packageInfoProvider).tagName;
-
-    final hasUpdate = githubLatestRelease.when(
-      loading: () => false,
-      error: (error, stackTrace) => false,
-
-      /// TODO: Remove 'v' for next release
-      data: (data) =>
-          Version.parse(tagName) < Version.parse(data.tagName.substring(1)),
-    );
+    final hasUpdate = githubHasUpdate.value ?? false;
 
     return BasedListTile(
       leading: const AppIcon(size: 24),
       titleText: App.name,
-      titleTextStyle: const TextStyle(fontFamily: App.fontSaira, fontSize: 16),
+      titleTextStyle: const TextStyle(
+        fontFamily: App.fontSaira,
+        fontSize: App.fontSize16,
+      ),
       subtitleText: '$tagName ${App.builtAt}',
       detailText:
           hasUpdate ? l10n.clickHereToUpdate : l10n.alreadyTheLatestVersion,

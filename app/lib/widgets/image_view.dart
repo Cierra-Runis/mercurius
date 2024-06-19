@@ -36,7 +36,7 @@ class ImageView extends ConsumerWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: IconButton(
-              onPressed: () => Share.shareXFiles([
+              onPressed: () => App.shareXFiles([
                 XFile(p.join(paths.image.path, filename)),
               ]),
               icon: const Icon(UniconsLine.share),

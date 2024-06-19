@@ -100,7 +100,10 @@ class _FontTile extends HookConsumerWidget {
               FontsLoader.deleteFont(font, paths.font);
             },
           ),
-          BasedBadge(label: Text(l10n.variantCount(font.files.length))),
+          BasedBadge(
+            label: Text(l10n.variantCount(font.files.length)),
+            onPressed: () => setSettings.setFontFamily(font.fontFamily),
+          ),
           BasedBadge(
             label: Text(l10n.officialWebsite),
             onPressed: () => App.launchUrl(font.website),
@@ -114,7 +117,7 @@ class _FontTile extends HookConsumerWidget {
       subtitle: Text(
         l10nDescription,
         style: TextStyle(
-          fontSize: 12,
+          fontSize: App.fontSize12,
           color: context.colorScheme.outline,
         ),
       ),

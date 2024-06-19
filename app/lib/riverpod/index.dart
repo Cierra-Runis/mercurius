@@ -1,4 +1,4 @@
-export 'advance_search.dart';
+export 'search.dart';
 export 'color_schemes.dart';
 export 'current_position.dart';
 export 'dynamic_color.dart';

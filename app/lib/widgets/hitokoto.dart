@@ -24,7 +24,7 @@ class HiToKoToWidget extends ConsumerWidget {
               loading: () => l10n.hiToKoToFetching,
             ),
             style: TextStyle(
-              fontSize: 12,
+              fontSize: App.fontSize12,
               color: context.colorScheme.outline,
             ),
             key: UniqueKey(),

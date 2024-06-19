@@ -34,7 +34,7 @@ class ColorSchemesState with _$ColorSchemesState {
       useMaterial3: true,
       colorScheme: light,
       datePickerTheme: const DatePickerThemeData(
-        dayStyle: TextStyle(fontSize: 12),
+        dayStyle: TextStyle(fontSize: App.fontSize12),
       ),
       fontFamily: fontFamily,
       appBarTheme: appBarTheme.copyWith(color: light.surface),
@@ -46,7 +46,7 @@ class ColorSchemesState with _$ColorSchemesState {
       useMaterial3: true,
       colorScheme: dark,
       datePickerTheme: const DatePickerThemeData(
-        dayStyle: TextStyle(fontSize: 12),
+        dayStyle: TextStyle(fontSize: App.fontSize12),
       ),
       fontFamily: fontFamily,
       appBarTheme: appBarTheme.copyWith(color: dark.surface),

@@ -1,3 +1,4 @@
+import 'package:keypress_simulator/keypress_simulator.dart';
 import 'package:mercurius/index.dart';
 
 class WindowAppBar extends StatelessWidget {
@@ -18,7 +19,7 @@ class WindowAppBar extends StatelessWidget {
         title: const Text(
           App.name,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: App.fontSize16,
             fontFamily: App.fontSaira,
             fontWeight: FontWeight.bold,
           ),

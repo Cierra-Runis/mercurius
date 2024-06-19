@@ -124,7 +124,7 @@ class _Content extends StatelessWidget {
       diary.document.plainText,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(fontSize: 14),
+      style: const TextStyle(fontSize: App.fontSize12),
     );
   }
 }
@@ -141,7 +141,7 @@ class _BelongTo extends StatelessWidget {
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: const TextStyle(
-        fontSize: 16,
+        fontSize: App.fontSize16,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -158,7 +158,7 @@ class _EditAt extends StatelessWidget {
     return Text(
       diary.editAt.format('HH:mm:ss'),
       style: const TextStyle(
-        fontSize: 12,
+        fontSize: App.fontSize12,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -177,7 +177,7 @@ class _Weekday extends StatelessWidget {
     return Text(
       diary.belongTo.format(DateFormat.WEEKDAY, lang),
       style: const TextStyle(
-        fontSize: 10,
+        fontSize: App.fontSize10,
       ),
     );
   }
@@ -192,7 +192,7 @@ class _Day extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       diary.belongTo.format('dd'),
-      style: const TextStyle(fontSize: 24),
+      style: const TextStyle(fontSize: App.fontSize24),
     );
   }
 }

@@ -38,9 +38,7 @@ Future<void> fontsLoader(FontsLoaderRef ref) async {
       );
 
       if (res.statusCode == 200) {
-        ScaffoldMessenger.of(splitViewKey.currentContext!).showSnackBar(
-          SnackBar(content: Text('Download $filename Done.')),
-        );
+        App.showSnackBar(Text('Download $filename Done.'));
       }
     }
 

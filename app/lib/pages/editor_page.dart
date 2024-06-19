@@ -55,60 +55,53 @@ class _DiaryEditorPageState extends State<EditorPage> {
     final l10n = context.l10n;
 
     return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            snap: true,
-            pinned: true,
-            title: Text(_diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY)),
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(40),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: _EditorToolbar(
-                  diary: _diary,
-                  controller: _quillController,
-                  handleChangeDiary: _handleChangeDiary,
-                ),
-              ),
-            ),
-            actions: [
-              _EditorAutoSaveButton(
-                diary: _diary,
-                quillController: _quillController,
-                handleAutoSaveToggle: _handleAutoSaveToggle,
-                autoSave: _autoSave,
-              ),
-              TextButton(
-                onPressed: () {
-                  if (!_quillController.document.plainTextIsEmpty) {
-                    final newDiary = _diary.copyWith(
-                      content: _quillController.document.toDelta().toJson(),
-                      editAt: DateTime.now(),
-                      editing: false,
-                    );
-                    isarService.saveDiary(newDiary);
-                    return context.pop(newDiary);
-                  }
-
-                  App.vibration();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(l10n.contentCannotBeEmpty),
-                    ),
-                  );
-                },
-                child: Text(l10n.save),
-              ),
-            ],
+      appBar: AppBar(
+        title: Text(_diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY)),
+        actions: [
+          _EditorAutoSaveButton(
+            diary: _diary,
+            quillController: _quillController,
+            handleAutoSaveToggle: _handleAutoSaveToggle,
+            autoSave: _autoSave,
           ),
-          SliverToBoxAdapter(
+          TextButton(
+            onPressed: () {
+              if (!_quillController.document.plainTextIsEmpty) {
+                final newDiary = _diary.copyWith(
+                  content: _quillController.document.toDelta().toJson(),
+                  editAt: DateTime.now(),
+                  editing: false,
+                );
+                isarService.saveDiary(newDiary);
+                return context.pop(newDiary);
+              }
+
+              App.vibration();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(l10n.contentCannotBeEmpty),
+                ),
+              );
+            },
+            child: Text(l10n.save),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
             child: EditorBody(
               readOnly: false,
               controller: _quillController,
               scrollController: _scrollController,
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: _EditorToolbar(
+              diary: _diary,
+              controller: _quillController,
+              handleChangeDiary: _handleChangeDiary,
             ),
           ),
         ],
@@ -209,109 +202,111 @@ class _EditorToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return Row(
-      children: [
-        QuillToolbarHistoryButton(controller: controller, isUndo: true),
-        QuillToolbarHistoryButton(controller: controller, isUndo: false),
+    return Card(
+      child: Row(
+        children: [
+          QuillToolbarHistoryButton(controller: controller, isUndo: true),
+          QuillToolbarHistoryButton(controller: controller, isUndo: false),
 
-        const SizedBox(height: 18, child: VerticalDivider()),
+          const SizedBox(height: 18, child: VerticalDivider()),
 
-        QuillToolbarSelectHeaderStyleDropdownButton(
-          controller: controller,
-        ),
+          QuillToolbarSelectHeaderStyleDropdownButton(
+            controller: controller,
+          ),
 
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.bold,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.italic,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.underline,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.strikeThrough,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.small,
-        ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.bold,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.italic,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.underline,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.strikeThrough,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.small,
+          ),
 
-        const SizedBox(height: 18, child: VerticalDivider()),
+          const SizedBox(height: 18, child: VerticalDivider()),
 
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.leftAlignment,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.centerAlignment,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.rightAlignment,
-        ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.leftAlignment,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.centerAlignment,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.rightAlignment,
+          ),
 
-        /// TODO: CheckList
-        QuillToolbarToggleCheckListButton(
-          controller: controller,
-        ),
+          /// TODO: CheckList
+          QuillToolbarToggleCheckListButton(
+            controller: controller,
+          ),
 
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.ol,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.ul,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.codeBlock,
-        ),
-        QuillToolbarToggleStyleButton(
-          controller: controller,
-          attribute: Attribute.blockQuote,
-        ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.ol,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.ul,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.codeBlock,
+          ),
+          QuillToolbarToggleStyleButton(
+            controller: controller,
+            attribute: Attribute.blockQuote,
+          ),
 
-        const SizedBox(height: 18, child: VerticalDivider()),
+          const SizedBox(height: 18, child: VerticalDivider()),
 
-        _EditorImageButton(
-          controller: controller,
-        ),
-        _EditorTagButton(
-          controller: controller,
-        ),
+          _EditorImageButton(
+            controller: controller,
+          ),
+          _EditorTagButton(
+            controller: controller,
+          ),
 
-        const SizedBox(height: 18, child: VerticalDivider()),
+          const SizedBox(height: 18, child: VerticalDivider()),
 
-        IconButton(
-          tooltip: l10n.changeMood,
-          onPressed: () => changMood(context, diary),
-          icon: const Icon(Icons.mood_rounded),
-        ),
-        IconButton(
-          tooltip: l10n.changeWeather,
-          onPressed: () => changeWeather(context, diary),
-          icon: const Icon(Icons.cloud_rounded),
-        ),
-        IconButton(
-          tooltip: l10n.changeDate,
-          onPressed: () => changeDate(context, diary),
-          icon: const Icon(Icons.calendar_month_rounded),
-        ),
-      ]
-          .map(
-            (e) => Transform.scale(
-              scale: 0.8,
-              child: e,
-            ),
-          )
-          .toList(),
+          IconButton(
+            tooltip: l10n.changeMood,
+            onPressed: () => changMood(context, diary),
+            icon: const Icon(Icons.mood_rounded),
+          ),
+          IconButton(
+            tooltip: l10n.changeWeather,
+            onPressed: () => changeWeather(context, diary),
+            icon: const Icon(Icons.cloud_rounded),
+          ),
+          IconButton(
+            tooltip: l10n.changeDate,
+            onPressed: () => changeDate(context, diary),
+            icon: const Icon(Icons.calendar_month_rounded),
+          ),
+        ]
+            .map(
+              (e) => Transform.scale(
+                scale: 0.8,
+                child: e,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 

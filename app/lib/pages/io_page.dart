@@ -175,7 +175,7 @@ class _ExportSection extends ConsumerWidget {
             final path = p.join(paths.temp.path, 'export.json');
             final json = await isarService.exportDiaryJson();
             await File(path).writeAsString(jsonEncode(json));
-            await Share.shareXFiles([XFile(path)]);
+            await App.shareXFiles([XFile(path)]);
           },
         ),
         const _ExportDiaryImagesTile(),
@@ -205,17 +205,9 @@ class _ExportDiaryImagesTile extends ConsumerWidget {
           return;
         }
 
-        try {
-          await Share.shareXFiles(
-            images.map((e) => XFile(e.path)).toList(),
-          );
-        } catch (e) {
-          App.printLog('Export Diary Image Failed', error: e);
-          if (!context.mounted) return;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$e')),
-          );
-        }
+        App.shareXFiles(
+          images.map((e) => XFile(e.path)).toList(),
+        );
       },
     );
   }

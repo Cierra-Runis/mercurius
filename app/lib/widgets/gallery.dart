@@ -105,7 +105,7 @@ class _GalleryCard extends ConsumerWidget {
                     l10n.unsupportedImageFormat,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: 8.0,
+                      fontSize: App.fontSize8,
                     ),
                   ),
                 );

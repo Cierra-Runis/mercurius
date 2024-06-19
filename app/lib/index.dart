@@ -38,7 +38,6 @@ export 'package:intl/intl.dart' hide TextDirection;
 export 'package:isar/isar.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:keframe/keframe.dart';
-export 'package:keypress_simulator/keypress_simulator.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
 export 'package:material_color_utilities/material_color_utilities.dart'
     show CorePalette;
@@ -48,8 +47,6 @@ export 'package:pausable_timer/pausable_timer.dart';
 export 'package:photo_view/photo_view.dart';
 export 'package:pub_semver/pub_semver.dart';
 export 'package:qweather_icons/qweather_icons.dart';
-export 'package:share_plus/share_plus.dart';
-export 'package:shared_preferences/shared_preferences.dart';
 export 'package:syncfusion_flutter_charts/charts.dart';
 export 'package:unicons/unicons.dart';
 export 'package:vibration/vibration.dart';

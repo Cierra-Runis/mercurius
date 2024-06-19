@@ -31,7 +31,7 @@ class ConfirmDialog extends StatelessWidget {
           Text(
             summary,
             style: TextStyle(
-              fontSize: 10,
+              fontSize: App.fontSize10,
               color: context.colorScheme.outline,
             ),
           ),

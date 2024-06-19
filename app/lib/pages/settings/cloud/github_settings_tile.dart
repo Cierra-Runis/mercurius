@@ -9,13 +9,13 @@ class _GitHubSettingsTile extends StatelessWidget {
     return BasedListTile(
       titleText: l10n.githubSettings,
       leadingIcon: UniconsLine.github,
-      onTap: () => context.pushDialog(const _GitHubSettingsPage()),
+      onTap: () => context.pushDialog(const _GitHubSettingsDialog()),
     );
   }
 }
 
-class _GitHubSettingsPage extends HookConsumerWidget {
-  const _GitHubSettingsPage();
+class _GitHubSettingsDialog extends HookConsumerWidget {
+  const _GitHubSettingsDialog();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

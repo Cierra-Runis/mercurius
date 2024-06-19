@@ -42,99 +42,118 @@ class _HelperButton extends StatelessWidget {
   }
 }
 
-class _BottomActionModel {
-  const _BottomActionModel({
-    required this.label,
-    required this.avatar,
-    required this.selected,
-    required this.onSelected,
-    this.tooltip,
-  });
-
-  final String label;
-  final Widget avatar;
-  final bool Function(AdvanceSearchState advanceSearch) selected;
-  final void Function(bool value, AdvanceSearch setAdvanceSearch) onSelected;
-  final String? tooltip;
-}
-
 class _BottomActions extends StatelessWidget {
   const _BottomActions();
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    final models = [
-      _BottomActionModel(
-        label: l10n.multiLine,
-        avatar: const Icon(Icons.notes_rounded),
-        tooltip: l10n.multiLineTooltip,
-        selected: (advanceSearch) => advanceSearch.multiLine,
-        onSelected: (value, setAdvanceSearch) => setAdvanceSearch
-            .changeTo((state) => state.copyWith(multiLine: value)),
-      ),
-      _BottomActionModel(
-        label: l10n.caseSensitive,
-        avatar: const Icon(Icons.abc_rounded),
-        tooltip: l10n.caseSensitiveTooltip,
-        selected: (advanceSearch) => advanceSearch.caseSensitive,
-        onSelected: (value, setAdvanceSearch) => setAdvanceSearch
-            .changeTo((state) => state.copyWith(caseSensitive: value)),
-      ),
-      _BottomActionModel(
-        label: l10n.unicode,
-        avatar: const Icon(Icons.public_rounded),
-        tooltip: l10n.unicodeTooltip,
-        selected: (advanceSearch) => advanceSearch.unicode,
-        onSelected: (value, setAdvanceSearch) => setAdvanceSearch
-            .changeTo((state) => state.copyWith(unicode: value)),
-      ),
-      _BottomActionModel(
-        label: l10n.dotAll,
-        avatar: const Icon(Icons.star_rounded),
-        tooltip: l10n.dotAllTooltip,
-        selected: (advanceSearch) => advanceSearch.dotAll,
-        onSelected: (value, setAdvanceSearch) =>
-            setAdvanceSearch.changeTo((state) => state.copyWith(dotAll: value)),
-      ),
-    ];
-
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0),
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
         alignment: WrapAlignment.end,
         runAlignment: WrapAlignment.end,
         verticalDirection: VerticalDirection.up,
-        children: models.map((e) => _BottomAction(model: e)).toList(),
+        children: [
+          _Multiline(),
+          _CaseSensitive(),
+          _Unicode(),
+          _DotAll(),
+        ],
       ),
     );
   }
 }
 
-class _BottomAction extends ConsumerWidget {
-  const _BottomAction({
-    required this.model,
-  });
-  final _BottomActionModel model;
+class _Multiline extends ConsumerWidget {
+  const _Multiline();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+
     final colorScheme = context.colorScheme;
-    final advanceSearch = ref.watch(advanceSearchProvider);
-    final setAdvanceSearch = ref.watch(advanceSearchProvider.notifier);
-    final selected = model.selected(advanceSearch);
+    final search = ref.watch(searchProvider);
+    final setSearch = ref.watch(searchProvider.notifier);
 
     return ChoiceChip.elevated(
-      tooltip: model.tooltip,
-      avatar: !selected ? model.avatar : null,
-      label: Text(model.label),
+      tooltip: l10n.multiLineTooltip,
+      avatar: search.multiLine ? const Icon(Icons.notes_rounded) : null,
+      label: Text(l10n.multiLine),
       checkmarkColor: colorScheme.primary,
-      onSelected: (value) => model.onSelected(value, setAdvanceSearch),
-      selected: selected,
+      onSelected: (value) =>
+          setSearch.changeTo(search.copyWith(multiLine: value)),
+      selected: search.multiLine,
+    );
+  }
+}
+
+class _CaseSensitive extends ConsumerWidget {
+  const _CaseSensitive();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+
+    final colorScheme = context.colorScheme;
+    final search = ref.watch(searchProvider);
+    final setSearch = ref.watch(searchProvider.notifier);
+
+    return ChoiceChip.elevated(
+      tooltip: l10n.caseSensitiveTooltip,
+      avatar: search.caseSensitive ? const Icon(Icons.abc_rounded) : null,
+      label: Text(l10n.caseSensitive),
+      checkmarkColor: colorScheme.primary,
+      onSelected: (value) =>
+          setSearch.changeTo(search.copyWith(caseSensitive: value)),
+      selected: search.caseSensitive,
+    );
+  }
+}
+
+class _Unicode extends ConsumerWidget {
+  const _Unicode();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+
+    final colorScheme = context.colorScheme;
+    final search = ref.watch(searchProvider);
+    final setSearch = ref.watch(searchProvider.notifier);
+
+    return ChoiceChip.elevated(
+      tooltip: l10n.unicodeTooltip,
+      avatar: search.unicode ? const Icon(Icons.public_rounded) : null,
+      label: Text(l10n.unicode),
+      checkmarkColor: colorScheme.primary,
+      onSelected: (value) =>
+          setSearch.changeTo(search.copyWith(unicode: value)),
+      selected: search.unicode,
+    );
+  }
+}
+
+class _DotAll extends ConsumerWidget {
+  const _DotAll();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+
+    final colorScheme = context.colorScheme;
+    final search = ref.watch(searchProvider);
+    final setSearch = ref.watch(searchProvider.notifier);
+
+    return ChoiceChip.elevated(
+      tooltip: l10n.dotAllTooltip,
+      avatar: search.dotAll ? const Icon(Icons.star_rounded) : null,
+      label: Text(l10n.dotAll),
+      checkmarkColor: colorScheme.primary,
+      onSelected: (value) => setSearch.changeTo(search.copyWith(dotAll: value)),
+      selected: search.dotAll,
     );
   }
 }
@@ -146,31 +165,31 @@ class _SearchBar extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final colorScheme = context.colorScheme;
-    final advanceSearch = ref.watch(advanceSearchProvider);
-    final setAdvanceSearch = ref.watch(advanceSearchProvider.notifier);
+    final search = ref.watch(searchProvider);
+    final setSearch = ref.watch(searchProvider.notifier);
     final textEditingController = useTextEditingController(
-      text: advanceSearch.source,
+      text: search.source,
     );
 
     return TextField(
       autofocus: true,
       controller: textEditingController,
-      onChanged: (value) =>
-          setAdvanceSearch.changeTo((state) => state.copyWith(source: value)),
+      onChanged: (value) => setSearch.changeTo(
+        search.copyWith(source: value),
+      ),
       decoration: InputDecoration(
         hintText: l10n.searchHint,
         suffixIcon: IconButton(
           onPressed: () {
             textEditingController.clear();
-            setAdvanceSearch.clear();
+            setSearch.clear();
           },
           icon: const Icon(Icons.clear_rounded),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
             width: 2,
-            color:
-                advanceSearch.isRegex ? colorScheme.primary : colorScheme.error,
+            color: search.isRegex ? colorScheme.primary : colorScheme.error,
           ),
         ),
       ),
@@ -178,46 +197,27 @@ class _SearchBar extends HookConsumerWidget {
   }
 }
 
-class _ViewContent extends HookWidget {
+class _ViewContent extends HookConsumerWidget {
   const _ViewContent();
-
-  @override
-  Widget build(BuildContext context) {
-    final stream = useMemoized(isarService.listenToAllDiaries);
-    final snapshot = useStream(stream);
-
-    if (snapshot.hasError) {
-      return Center(child: Text('Steam error: ${snapshot.error}'));
-    }
-    return switch (snapshot.connectionState) {
-      ConnectionState.none =>
-        const Center(child: Icon(UniconsLine.data_sharing)),
-      ConnectionState.waiting => const Loading(),
-      ConnectionState.active => _View(snapshot: snapshot),
-      ConnectionState.done => const Center(child: Text('Stream closed')),
-    };
-  }
-}
-
-class _View extends ConsumerWidget {
-  const _View({required this.snapshot});
-
-  final AsyncSnapshot<List<Diary>> snapshot;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final advanceSearch = ref.watch(advanceSearchProvider);
 
-    if (advanceSearch.source.isEmpty ||
-        snapshot.data == null ||
-        snapshot.data!.isEmpty) {
+    final stream = useMemoized(isarService.listenToAllDiaries);
+    final snapshot = useStream(stream);
+    final data = snapshot.data;
+    final hasData = data != null && data.isNotEmpty;
+
+    final search = ref.watch(searchProvider);
+
+    if (search.source.isEmpty || !hasData) {
       return Center(child: Text(l10n.noData));
     }
 
     final diaries = snapshot.data!;
 
-    final pattern = advanceSearch.pattern;
+    final pattern = search.pattern;
     final filteredDiaries =
         diaries.where((e) => e.plainText.contains(pattern)).toList();
 
@@ -277,7 +277,10 @@ class _ListTileState extends State<_ListTile> {
         text: widget.diary.plainText,
         pattern: widget.pattern,
         controller: _controller,
-        textStyle: TextStyle(color: colorScheme.outline, fontSize: 10),
+        textStyle: TextStyle(
+          color: colorScheme.outline,
+          fontSize: App.fontSize10,
+        ),
         spansTransform: (spans) {
           return spans.skip(1).toList();
         },

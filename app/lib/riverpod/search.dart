@@ -1,23 +1,24 @@
 import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'advance_search.freezed.dart';
-part 'advance_search.g.dart';
+part 'search.freezed.dart';
+part 'search.g.dart';
 
 @freezed
-class AdvanceSearchState with _$AdvanceSearchState {
-  const AdvanceSearchState._();
+class SearchState with _$SearchState {
+  const SearchState._();
 
-  const factory AdvanceSearchState({
+  const factory SearchState({
     @Default('') String source,
     @Default(false) bool multiLine,
     @Default(true) bool caseSensitive,
     @Default(false) bool unicode,
     @Default(false) bool dotAll,
-  }) = _AdvanceSearchState;
+  }) = _SearchState;
 
   bool get isRegex => pattern is RegExp;
 
+  /// Dart union type when?
   Pattern get pattern {
     try {
       return RegExp(
@@ -33,16 +34,12 @@ class AdvanceSearchState with _$AdvanceSearchState {
   }
 }
 
-typedef TransformFunction = AdvanceSearchState Function(
-  AdvanceSearchState state,
-);
-
 @Riverpod(keepAlive: true)
-class AdvanceSearch extends _$AdvanceSearch {
+class Search extends _$Search {
   @override
-  AdvanceSearchState build() => const AdvanceSearchState();
+  SearchState build() => const SearchState();
 
-  void clear() => changeTo((state) => state.copyWith(source: ''));
+  void clear() => state = state.copyWith(source: '');
 
-  void changeTo(TransformFunction transform) => state = transform(state);
+  void changeTo(SearchState search) => state = search;
 }

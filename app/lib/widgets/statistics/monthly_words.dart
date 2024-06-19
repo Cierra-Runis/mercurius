@@ -19,19 +19,19 @@ class MonthlyWords extends HookWidget {
             primaryXAxis: const CategoryAxis(
               majorGridLines: MajorGridLines(width: 0),
               labelPlacement: LabelPlacement.onTicks,
-              labelStyle: TextStyle(fontSize: 6),
+              labelStyle: TextStyle(fontSize: App.fontSize6),
             ),
             primaryYAxis: const NumericAxis(
               axisLine: AxisLine(width: 0),
               labelFormat: '{value}',
               majorTickLines: MajorTickLines(size: 0),
-              labelStyle: TextStyle(fontSize: 6),
+              labelStyle: TextStyle(fontSize: App.fontSize6),
             ),
             tooltipBehavior: TooltipBehavior(
               header: '',
               format: 'point.x point.y',
               enable: true,
-              textStyle: const TextStyle(fontSize: 8),
+              textStyle: const TextStyle(fontSize: App.fontSize8),
             ),
             zoomPanBehavior: ZoomPanBehavior(
               enablePinching: true,
@@ -49,7 +49,7 @@ class MonthlyWords extends HookWidget {
                   isVisible: true,
                   textStyle: TextStyle(
                     fontFamily: App.fontCascadiaCodePL,
-                    fontSize: 6,
+                    fontSize: App.fontSize6,
                   ),
                 ),
               ),

@@ -21,11 +21,11 @@ class _DiaryPageViewState extends State<DiaryPageView> {
   ) {
     final l10n = context.l10n;
 
-    if (snapshot.data == null || snapshot.data!.isEmpty) {
+    final diaries = snapshot.data;
+
+    if (diaries == null || diaries.isEmpty) {
       return AlertDialog(title: Center(child: Text(l10n.noData)));
     }
-
-    final diaries = snapshot.data!;
 
     /// FIXME: https://github.com/flutter/flutter/issues/45632
     return PageView.builder(
@@ -220,26 +220,19 @@ class _DiaryShareButton extends StatelessWidget {
 
     return IconButton(
       onPressed: () {
-        try {
-          Share.share(
-            [
-              diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
-              if (weatherType != null)
-                '${l10n.weather} - ${l10n.weatherText(weatherType.weather)}',
-              if (moodType != null)
-                '${l10n.mood} - ${l10n.moodText(moodType.mood)}',
-              '',
-              '--- ${l10n.content} ---',
-              '',
-              diary.plainText,
-            ].join('\n'),
-          );
-        } catch (e, s) {
-          App.printLog('Share Failed', error: e, stackTrace: s);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Share Failed')),
-          );
-        }
+        App.share(
+          [
+            diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH_DAY, lang),
+            if (weatherType != null)
+              '${l10n.weather} - ${l10n.weatherText(weatherType.weather)}',
+            if (moodType != null)
+              '${l10n.mood} - ${l10n.moodText(moodType.mood)}',
+            '',
+            '--- ${l10n.content} ---',
+            '',
+            diary.plainText,
+          ].join('\n'),
+        );
       },
       icon: const Icon(UniconsLine.share),
     );

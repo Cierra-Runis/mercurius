@@ -12,7 +12,7 @@ extension CacheForExtension on AutoDisposeRef<Object?> {
     /// Immediately prevent the state from getting destroyed.
     keepAlive();
 
-    /// After duration has elapsed, we re-enable automatic disposal.
+    /// After duration has elapsed, we invalidateSelf.
     final timer = Timer(duration, invalidateSelf);
 
     /// Optional: when the provider is recomputed (such as with ref.watch),
@@ -32,7 +32,7 @@ extension DocumentExt on Document {
 
 extension BuildContextExt on BuildContext {
   NavigatorState get _navigator =>
-      splitViewKey.currentState ?? Navigator.of(this);
+      App.splitViewKey.currentState ?? Navigator.of(this);
 
   Future<T?> push<T extends Object?>(Widget page) =>
       _navigator.push(CupertinoPageRoute<T>(builder: (_) => page));

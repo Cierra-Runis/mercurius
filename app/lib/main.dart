@@ -31,7 +31,7 @@ class MainApp extends ConsumerWidget {
       home: const BasedSplashPage(
         rootPage: RootPage(),
         appIcon: AppIcon(),
-        appName: AppName(fontSize: 42),
+        appName: AppName(fontSize: App.fontSize42),
       ),
       locale: settings.locale,
       localizationsDelegates: App.localizationsDelegates,

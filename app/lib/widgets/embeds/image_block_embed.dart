@@ -79,7 +79,7 @@ class _ImageBlock extends ConsumerWidget {
                   l10n.unsupportedImageFormat,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 16.0,
+                    fontSize: App.fontSize16,
                   ),
                 ),
               );

@@ -64,7 +64,7 @@ class _AppBarTitle extends ConsumerWidget {
                   data: (data) => ' ${data.humanFormat} ',
                 ),
                 style: const TextStyle(
-                  fontSize: 8,
+                  fontSize: App.fontSize8,
                 ),
               ),
               Icon(
@@ -84,10 +84,10 @@ class _AppBarTitle extends ConsumerWidget {
             currentPosition.when(
               loading: () => const CurrentPosition().city,
               error: (error, stackTrace) => 'error',
-              data: (cachePosition) => cachePosition.city,
+              data: (data) => data.city,
             ),
             style: const TextStyle(
-              fontSize: 8,
+              fontSize: App.fontSize8,
             ),
           ),
         ],
@@ -106,22 +106,18 @@ class _HomePageBody extends ConsumerWidget {
     final path = ref.watch(pathsProvider);
     final settings = ref.watch(settingsProvider);
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        if (settings.bgImgPath != null)
-          Image(
-            image: BasedLocalFirstImage(
-              filename: settings.bgImgPath!,
-              localDirectory: path.image.path,
-            ),
-            errorBuilder: (context, error, stackTrace) => const SizedBox(),
-            fit: BoxFit.cover,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: BasedLocalFirstImage(
+            filename: settings.bgImgPath!,
+            localDirectory: path.image.path,
           ),
-        _DiaryListView(
-          controller: controller,
         ),
-      ],
+      ),
+      child: _DiaryListView(
+        controller: controller,
+      ),
     );
   }
 }
@@ -188,167 +184,138 @@ class _CreateButton extends StatelessWidget {
   }
 }
 
-class _EditingButton extends StatefulWidget {
+class _EditingButton extends HookWidget {
   const _EditingButton();
-
-  @override
-  State<_EditingButton> createState() => _EditingButtonState();
-}
-
-class _EditingButtonState extends State<_EditingButton> {
-  final stream = isarService.listenToDiariesEditing();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return StreamBuilder<List<Diary>>(
-      stream: stream,
-      builder: (context, snapshot) {
-        final hasData = snapshot.hasData && snapshot.data!.isNotEmpty;
-        if (!hasData) return const SizedBox();
+    final stream = useMemoized(isarService.listenToDiariesEditing);
+    final snapshot = useStream(stream);
+    final data = snapshot.data;
+    final hasData = data != null && data.isNotEmpty;
+    if (!hasData) return const SizedBox();
 
-        return FloatingActionButton.small(
-          tooltip: l10n.continueEditingDiary,
-          onPressed: () => context.pushDialog(
-            const _EditingDialog(),
-          ),
-          child: const Icon(Icons.drafts_rounded),
-        );
-      },
+    return FloatingActionButton.small(
+      tooltip: l10n.continueEditingDiary,
+      onPressed: () => context.pushDialog(
+        const _EditingDialog(),
+      ),
+      child: const Icon(Icons.drafts_rounded),
     );
   }
 }
 
-class _EditingDialog extends StatefulWidget {
+class _EditingDialog extends HookWidget {
   const _EditingDialog();
-
-  @override
-  State<_EditingDialog> createState() => _EditingDialogState();
-}
-
-class _EditingDialogState extends State<_EditingDialog> {
-  final stream = isarService.listenToDiariesEditing();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final stream = useMemoized(isarService.listenToDiariesEditing);
+    final snapshot = useStream(stream);
+
+    final data = snapshot.data;
+    final hasData = data != null && data.isNotEmpty;
 
     return AlertDialog(
       title: Text(l10n.continueEditingDiary),
       content: SizedBox(
         width: double.maxFinite,
-        child: StreamBuilder(
-          stream: stream,
-          builder: (context, snapshot) {
-            final hasData = snapshot.hasData && snapshot.data!.isNotEmpty;
-            if (!hasData) return Text(l10n.noData);
-
-            final diaries = snapshot.data!;
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: diaries.length,
-              itemBuilder: (context, index) => FrameSeparateWidget(
-                index: index,
-                placeHolder: const DiaryListItemPlaceholder(),
-                child: DiaryListItem(
-                  onTap: () {
-                    context.pop();
-                    context.push(
-                      EditorPage(diary: diaries[index]),
-                    );
-                  },
-                  diary: diaries[index],
+        child: !hasData
+            ? Text(l10n.noData)
+            : ListView.builder(
+                shrinkWrap: true,
+                itemCount: data.length,
+                itemBuilder: (context, index) => FrameSeparateWidget(
+                  index: index,
+                  placeHolder: const DiaryListItemPlaceholder(),
+                  child: DiaryListItem(
+                    onTap: () {
+                      context.pop();
+                      context.push(EditorPage(diary: data[index]));
+                    },
+                    diary: data[index],
+                  ),
                 ),
               ),
-            );
-          },
-        ),
       ),
     );
   }
 }
 
-class _ThisDayLastYearButton extends StatefulWidget {
+class _ThisDayLastYearButton extends HookWidget {
   const _ThisDayLastYearButton();
-
-  @override
-  State<_ThisDayLastYearButton> createState() => _ThisDayLastYearButtonState();
-}
-
-class _ThisDayLastYearButtonState extends State<_ThisDayLastYearButton> {
-  final stream = isarService.listenToDiariesWithDate(
-    DateTime.now().previousYear,
-  );
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    return StreamBuilder<List<Diary>>(
-      stream: stream,
-      builder: (context, snapshot) {
-        final hasData = snapshot.hasData && snapshot.data!.isNotEmpty;
-        if (!hasData) return const SizedBox();
+    final stream = useMemoized(
+      () => isarService.listenToDiariesWithDate(
+        DateTime.now().previousYear,
+      ),
+    );
 
-        return FloatingActionButton.small(
-          heroTag: 'thisDayLastYear',
-          tooltip: l10n.thisDayLastYear,
-          onPressed: () => context.pushDialog(
-            const _ThisDayLastYearDialog(),
-          ),
-          child: const Icon(Icons.nights_stay_rounded),
-        );
-      },
+    final snapshot = useStream(stream);
+    final data = snapshot.data;
+
+    final hasData = data != null && data.isNotEmpty;
+    if (!hasData) return const SizedBox();
+
+    return FloatingActionButton.small(
+      heroTag: 'thisDayLastYear',
+      tooltip: l10n.thisDayLastYear,
+      onPressed: () => context.pushDialog(
+        const _ThisDayLastYearDialog(),
+      ),
+      child: const Icon(Icons.nights_stay_rounded),
     );
   }
 }
 
-class _ThisDayLastYearDialog extends StatefulWidget {
+class _ThisDayLastYearDialog extends HookWidget {
   const _ThisDayLastYearDialog();
-
-  @override
-  State<_ThisDayLastYearDialog> createState() => _ThisDayLastYearDialogState();
-}
-
-class _ThisDayLastYearDialogState extends State<_ThisDayLastYearDialog> {
-  final stream = isarService.listenToDiariesWithDate(
-    DateTime.now().previousYear,
-  );
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    final stream = useMemoized(
+      () => isarService.listenToDiariesWithDate(
+        DateTime.now().previousYear,
+      ),
+    );
+
+    final snapshot = useStream(stream);
+    final data = snapshot.data;
+
+    final hasData = data != null && data.isNotEmpty;
+    if (!hasData) return const SizedBox();
 
     return AlertDialog(
       title: Text(l10n.thisDayLastYear),
       content: SizedBox(
         width: double.maxFinite,
-        child: StreamBuilder(
-          stream: stream,
-          builder: (context, snapshot) {
-            final hasData = snapshot.hasData && snapshot.data!.isNotEmpty;
-            if (!hasData) return Text(l10n.noData);
-
-            final diaries = snapshot.data!;
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: diaries.length,
-              itemBuilder: (context, index) => FrameSeparateWidget(
-                index: index,
-                placeHolder: const DiaryListItemPlaceholder(),
-                child: DiaryListItem(
-                  onTap: () => context.pushDialog(
-                    DiaryPageView(
-                      initialId: diaries[index].id,
+        child: !hasData
+            ? Text(l10n.noData)
+            : ListView.builder(
+                shrinkWrap: true,
+                itemCount: data.length,
+                itemBuilder: (context, index) => FrameSeparateWidget(
+                  index: index,
+                  placeHolder: const DiaryListItemPlaceholder(),
+                  child: DiaryListItem(
+                    onTap: () => context.pushDialog(
+                      DiaryPageView(
+                        initialId: data[index].id,
+                      ),
                     ),
+                    diary: data[index],
                   ),
-                  diary: diaries[index],
                 ),
               ),
-            );
-          },
-        ),
       ),
     );
   }
@@ -369,37 +336,10 @@ class _DiaryListView extends HookWidget {
 
   final ScrollController controller;
 
-  @override
-  Widget build(BuildContext context) {
-    final stream = useMemoized(isarService.listenToAllDiaries);
-    final snapshot = useStream(stream);
-
-    if (snapshot.hasError) {
-      return Center(child: Text('Steam error: ${snapshot.error}'));
-    }
-    return switch (snapshot.connectionState) {
-      ConnectionState.none =>
-        const Center(child: Icon(UniconsLine.data_sharing)),
-      ConnectionState.waiting => const Loading(),
-      ConnectionState.active => _View(
-          snapshot: snapshot,
-          controller: controller,
-        ),
-      ConnectionState.done => const Center(child: Text('Stream closed')),
-    };
-  }
-}
-
-class _View extends ConsumerWidget {
-  const _View({
-    required this.snapshot,
-    required this.controller,
-  });
-
-  final AsyncSnapshot<List<Diary>> snapshot;
-  final ScrollController controller;
-
-  List<_DiaryListViewSection> _parseDiaries(List<Diary> diaries, String lang) {
+  List<_DiaryListViewSection> _parseDiaries(
+    List<Diary> diaries,
+    String lang,
+  ) {
     final sections = <_DiaryListViewSection>[];
 
     var year = diaries[0].belongTo.year;
@@ -430,11 +370,15 @@ class _View extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
     final lang = Localizations.localeOf(context).toLanguageTag();
+    final stream = useMemoized(isarService.listenToAllDiaries);
+    final snapshot = useStream(stream);
+    final data = snapshot.data;
+    final hasData = data != null && data.isNotEmpty;
 
-    if (snapshot.data == null || snapshot.data!.isEmpty) {
+    if (!hasData) {
       return Center(child: Text(l10n.noData));
     }
 

@@ -1,6 +1,5 @@
 import 'package:mercurius/index.dart';
 
-final splitViewKey = GlobalKey<NavigatorState>();
 final _rootPage = GlobalKey();
 
 class RootPage extends StatelessWidget {
@@ -9,7 +8,7 @@ class RootPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasedSplitView(
-      navigatorKey: splitViewKey,
+      navigatorKey: App.splitViewKey,
       leftWidget: _RootPage(key: _rootPage),
       dividerWidth: 0,
       rightPlaceholder: const Scaffold(
@@ -63,17 +62,11 @@ class _BottomBarMorePageIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
-    final tagName = ref.watch(packageInfoProvider).tagName;
-    return Badge(
-      isLabelVisible: githubLatestRelease.when(
-        loading: () => false,
-        error: (error, stackTrace) => false,
+    final githubHasUpdate = ref.watch(githubHasUpdateProvider);
+    final hasUpdate = githubHasUpdate.value ?? false;
 
-        /// TODO: Remove 'v' for next release
-        data: (data) =>
-            Version.parse(tagName) < Version.parse(data.tagName.substring(1)),
-      ),
+    return Badge(
+      isLabelVisible: hasUpdate,
       child: const Icon(Icons.more_horiz),
     );
   }

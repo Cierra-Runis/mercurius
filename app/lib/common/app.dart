@@ -1,8 +1,9 @@
 import 'dart:developer' as devtools show log, inspect;
 
 import 'package:mercurius/index.dart';
-import 'package:url_launcher/url_launcher.dart' as launcher1;
-import 'package:url_launcher/url_launcher_string.dart' as launcher2;
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart' as launch1;
+import 'package:url_launcher/url_launcher_string.dart' as launch2;
 
 late final IsarService isarService;
 
@@ -49,6 +50,16 @@ abstract class App {
     ),
   );
 
+  static final splitViewKey = GlobalKey<NavigatorState>();
+
+  static Future<void> showSnackBar(Widget content) async {
+    final buildContext = splitViewKey.currentContext;
+    if (buildContext == null) return;
+    ScaffoldMessenger.of(buildContext).showSnackBar(
+      SnackBar(content: content),
+    );
+  }
+
   static const themeModeIcon = {
     ThemeMode.system: Icons.brightness_auto_rounded,
     ThemeMode.light: Icons.light_mode_rounded,
@@ -67,6 +78,16 @@ abstract class App {
     L10N.delegate,
     ...FlutterQuillLocalizations.localizationsDelegates,
   ];
+
+  static const fontSize6 = 6.0;
+  static const fontSize8 = 8.0;
+  static const fontSize10 = 10.0;
+  static const fontSize12 = 12.0;
+  static const fontSize16 = 16.0;
+  static const fontSize18 = 18.0;
+  static const fontSize20 = 20.0;
+  static const fontSize24 = 24.0;
+  static const fontSize42 = 42.0;
 
   /// The entry of [App].
   ///
@@ -157,23 +178,26 @@ abstract class App {
         amplitude: amplitude,
       );
     } catch (e, s) {
-      App.printLog('Vibration error', error: e, stackTrace: s);
+      App.printLog('Vibrate Failed', error: e, stackTrace: s);
     }
   }
 
   static void launchUrl(
     dynamic url, {
-    launcher1.LaunchMode mode = launcher1.LaunchMode.externalApplication,
-    launcher1.WebViewConfiguration webViewConfiguration =
-        const launcher1.WebViewConfiguration(),
+    launch1.LaunchMode mode = launch1.LaunchMode.externalApplication,
+    launch1.WebViewConfiguration webViewConfiguration =
+        const launch1.WebViewConfiguration(),
+    launch1.BrowserConfiguration browserConfiguration =
+        const launch1.BrowserConfiguration(),
     String? webOnlyWindowName,
   }) async {
     if (url is Uri) {
       try {
-        await launcher1.launchUrl(
+        await launch1.launchUrl(
           url,
           mode: mode,
           webViewConfiguration: webViewConfiguration,
+          browserConfiguration: browserConfiguration,
           webOnlyWindowName: webOnlyWindowName,
         );
       } catch (e, s) {
@@ -183,10 +207,11 @@ abstract class App {
 
     if (url is String) {
       try {
-        await launcher2.launchUrlString(
+        await launch2.launchUrlString(
           url,
           mode: mode,
           webViewConfiguration: webViewConfiguration,
+          browserConfiguration: browserConfiguration,
           webOnlyWindowName: webOnlyWindowName,
         );
       } catch (e, s) {
@@ -194,14 +219,64 @@ abstract class App {
       }
     }
   }
+
+  static Future<void> shareUri(
+    Uri uri, {
+    Rect? sharePositionOrigin,
+  }) async {
+    try {
+      await Share.shareUri(
+        uri,
+        sharePositionOrigin: sharePositionOrigin,
+      );
+    } catch (e, s) {
+      printLog('Share $uri Failed', error: e, stackTrace: s);
+    }
+  }
+
+  static Future<void> share(
+    String text, {
+    String? subject,
+    Rect? sharePositionOrigin,
+  }) async {
+    if (text.isEmpty) return;
+    try {
+      await Share.share(
+        text,
+        subject: subject,
+        sharePositionOrigin: sharePositionOrigin,
+      );
+    } catch (e, s) {
+      printLog('Share $text Failed', error: e, stackTrace: s);
+    }
+  }
+
+  static Future<void> shareXFiles(
+    List<XFile> files, {
+    String? subject,
+    String? text,
+    Rect? sharePositionOrigin,
+  }) async {
+    if (files.isEmpty) return;
+    try {
+      await Share.shareXFiles(
+        files,
+        subject: subject,
+        text: text,
+        sharePositionOrigin: sharePositionOrigin,
+      );
+    } catch (e, s) {
+      printLog('Share $files Failed', error: e, stackTrace: s);
+    }
+  }
 }
 
+/// https://riverpod.dev/docs/essentials/eager_initialization
 class _MainApp extends ConsumerWidget {
   const _MainApp();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /// https://riverpod.dev/docs/essentials/eager_initialization
     ref.watch(fontsLoaderProvider);
     return const MainApp();
   }
