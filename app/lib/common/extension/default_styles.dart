@@ -5,14 +5,12 @@ extension DefaultStylesExt on DefaultStyles {
     required BuildContext context,
     String? fontFamily,
     required String codeFontFamily,
-    List<String> fontFamilyFallback = const [],
   }) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = context.colorScheme;
 
     final baseStyle = TextStyle(
       color: colorScheme.onSurface,
       fontFamily: fontFamily,
-      fontFamilyFallback: [codeFontFamily, ...fontFamilyFallback],
       height: 4 / 3,
     );
 
@@ -20,21 +18,21 @@ extension DefaultStylesExt on DefaultStyles {
     const lineSpacing = VerticalSpacing(2, 2);
 
     final h1 = DefaultTextBlockStyle(
-      baseStyle.copyWith(fontSize: 20),
+      baseStyle.copyWith(fontSize: App.fontSize20),
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
     );
 
     final h2 = DefaultTextBlockStyle(
-      baseStyle.copyWith(fontSize: 18),
+      baseStyle.copyWith(fontSize: App.fontSize18),
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
     );
 
     final h3 = DefaultTextBlockStyle(
-      baseStyle.copyWith(fontSize: 16),
+      baseStyle.copyWith(fontSize: App.fontSize16),
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -60,7 +58,7 @@ extension DefaultStylesExt on DefaultStyles {
       fontStyle: FontStyle.italic,
     );
     final small = baseStyle.copyWith(
-      fontSize: 12,
+      fontSize: App.fontSize12,
     );
     final underline = baseStyle.copyWith(
       decoration: TextDecoration.underline,
@@ -80,7 +78,6 @@ extension DefaultStylesExt on DefaultStyles {
       fontFamily: codeFontFamily,
       fontFamilyFallback: [
         if (fontFamily != null) fontFamily,
-        ...fontFamilyFallback,
       ],
       decoration: TextDecoration.underline,
     );
@@ -99,7 +96,6 @@ extension DefaultStylesExt on DefaultStyles {
         fontFamily: codeFontFamily,
         fontFamilyFallback: [
           if (fontFamily != null) fontFamily,
-          ...fontFamilyFallback,
         ],
       ),
       verticalSpacing,
@@ -128,7 +124,6 @@ extension DefaultStylesExt on DefaultStyles {
         fontFamily: codeFontFamily,
         fontFamilyFallback: [
           if (fontFamily != null) fontFamily,
-          ...fontFamilyFallback,
         ],
       ),
       verticalSpacing,
@@ -160,9 +155,9 @@ extension DefaultStylesExt on DefaultStyles {
       null,
     );
 
-    final sizeSmall = baseStyle.copyWith(fontSize: 10);
-    final sizeLarge = baseStyle.copyWith(fontSize: 16);
-    final sizeHuge = baseStyle.copyWith(fontSize: 18);
+    final sizeSmall = baseStyle.copyWith(fontSize: App.fontSize12);
+    final sizeLarge = baseStyle.copyWith(fontSize: App.fontSize16);
+    final sizeHuge = baseStyle.copyWith(fontSize: App.fontSize18);
 
     return DefaultStyles(
       h1: h1,
