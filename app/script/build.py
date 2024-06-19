@@ -8,9 +8,11 @@ from datetime import datetime
 builtAt = datetime.now().strftime("%Y-%m-%d %H:%M")
 
 common = [
-    '--obfuscate', '--split-debug-info=splitMap',
-    '--dart-define-from-file=.env', f'--dart-define=builtAt="{builtAt}"',
-    '--verbose'
+    '--obfuscate',
+    '--split-debug-info=splitMap',
+    '--dart-define-from-file=.env',
+    f'--dart-define=builtAt="{builtAt}"',
+    # '--verbose'
 ]
 
 android = [
