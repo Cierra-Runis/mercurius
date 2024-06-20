@@ -153,7 +153,7 @@ abstract class App {
     devtools.log(
       '$log',
       name: name,
-      time: DateTime.now(),
+      time: Date.today,
       error: error,
       stackTrace: stackTrace,
     );

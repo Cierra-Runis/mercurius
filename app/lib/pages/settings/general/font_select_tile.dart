@@ -67,7 +67,7 @@ class _FontTile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
+    // final settings = ref.watch(settingsProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
     final paths = ref.watch(pathsProvider);
     final cacheSize = useBytes(

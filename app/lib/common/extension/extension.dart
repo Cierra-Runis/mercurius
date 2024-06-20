@@ -67,6 +67,7 @@ extension BuildContextExt on BuildContext {
   Brightness get brightness => colorScheme.brightness;
 
   L10N get l10n => L10N.maybeOf(this) ?? L10N.current;
+  MaterialLocalizations get ml10n => MaterialLocalizations.of(this);
   String get languageTag => Localizations.localeOf(this).toLanguageTag();
 }
 

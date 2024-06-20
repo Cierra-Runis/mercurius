@@ -204,7 +204,7 @@ class _ViewContent extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
 
-    final stream = useMemoized(isarService.listenToAllDiaries);
+    final stream = useMemoized(isarService.listenAllDiaries);
     final snapshot = useStream(stream);
     final data = snapshot.data;
     final hasData = data != null && data.isNotEmpty;

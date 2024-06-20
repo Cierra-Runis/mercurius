@@ -54,35 +54,33 @@ mixin _DiaryService on _IsarService {
     return isar.writeAsync((isar) => isar.diarys.put(newDiary));
   }
 
-  Stream<List<Diary>> listenToDiariesWithDate(DateTime dateTime) {
+  Stream<List<Diary>> listenDiariesBetween(DateTime start, DateTime end) {
     return isar.diarys
         .where()
         .belongToBetween(
-          DateTime(dateTime.year, dateTime.month, dateTime.day),
-          DateTime(dateTime.year, dateTime.month, dateTime.day)
-              .nextDay
-              .subSeconds(1),
+          DateUtils.dateOnly(start),
+          DateUtils.dateOnly(end),
         )
         .watch(fireImmediately: true);
   }
 
-  Stream<List<Diary>> listenToDiariesEditing() async* {
+  Stream<List<Diary>> listenEditingDiaries() async* {
     yield* isar.diarys
         .where()
         .editingEqualTo(true)
         .watch(fireImmediately: true);
   }
 
-  Future<List<Diary>> getAllDiaries() async {
-    return isar.diarys.where().sortByBelongTo().findAll();
-  }
-
-  Stream<List<Diary>> listenToAllDiaries() async* {
+  Stream<List<Diary>> listenAllDiaries() async* {
     yield* isar.diarys
         .where()
         .editingEqualTo(false)
         .sortByBelongToDesc()
         .watch(fireImmediately: true);
+  }
+
+  Future<List<Diary>> getAllDiaries() async {
+    return isar.diarys.where().sortByBelongTo().findAll();
   }
 
   Future<void> deleteDiaryById(int id) async {

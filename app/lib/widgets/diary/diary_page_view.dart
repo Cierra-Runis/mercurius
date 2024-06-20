@@ -13,7 +13,7 @@ class DiaryPageView extends StatefulWidget {
 }
 
 class _DiaryPageViewState extends State<DiaryPageView> {
-  final stream = isarService.listenToAllDiaries();
+  final stream = isarService.listenAllDiaries();
 
   Widget _getPageBySnapshotData(
     BuildContext context,

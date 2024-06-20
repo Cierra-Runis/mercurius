@@ -35,7 +35,7 @@ class BasedShimmer extends StatefulWidget {
 
 class _BasedShimmerState extends State<BasedShimmer> {
   static final isHighLightStream = Stream<bool>.periodic(
-    const Duration(seconds: 1),
+    Durations.extralong4,
     (x) => x % 2 == 0,
   ).asBroadcastStream();
 
