@@ -40,7 +40,7 @@ class _Next extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => controller.value -= 1,
+      onPressed: () => controller.value += 1,
       icon: const Icon(Icons.navigate_next_rounded),
     );
   }
@@ -56,7 +56,7 @@ class _Previous extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => controller.value += 1,
+      onPressed: () => controller.value -= 1,
       icon: const Icon(Icons.navigate_before_rounded),
     );
   }
