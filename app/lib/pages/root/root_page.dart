@@ -48,9 +48,9 @@ class _RootPage extends HookWidget {
             icon: const Icon(Icons.home),
             label: l10n.homePage,
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.calendar_month_rounded),
-            label: 'Calender',
+          NavigationDestination(
+            icon: const Icon(Icons.calendar_month_rounded),
+            label: l10n.calendar,
           ),
           NavigationDestination(
             icon: const _BottomBarMorePageIcon(),
