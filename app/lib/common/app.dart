@@ -148,7 +148,8 @@ abstract class App {
     Object? error,
     StackTrace? stackTrace,
   }) {
-    debugPrint('$log');
+    if (!kDebugMode) debugPrint('$log');
+
     devtools.log(
       '$log',
       name: name,
