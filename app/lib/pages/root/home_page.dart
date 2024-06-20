@@ -1,5 +1,8 @@
 import 'package:mercurius/index.dart';
 
+import '_app_bar_title.dart';
+import '_search_button.dart';
+
 class HomePage extends HookWidget {
   const HomePage({super.key});
 
@@ -9,89 +12,11 @@ class HomePage extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const _SearchButton(),
-        title: _AppBarTitle(controller: controller),
+        leading: const SearchButton(),
+        title: AppBarTitle(controller: controller),
       ),
       body: _HomePageBody(controller: controller),
       floatingActionButton: const _FloatingButton(),
-    );
-  }
-}
-
-class _SearchButton extends StatelessWidget {
-  const _SearchButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return IconButton(
-      tooltip: l10n.searchDiary,
-      onPressed: () => context.push(const SearchPage()),
-      icon: const Icon(Icons.search),
-    );
-  }
-}
-
-class _AppBarTitle extends ConsumerWidget {
-  const _AppBarTitle({required this.controller});
-
-  final ScrollController controller;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentPosition = ref.watch(currentPositionProvider);
-
-    return GestureDetector(
-      onTap: () => controller.animateTo(
-        -WindowAppBar.appBarHeight,
-        duration: const Duration(seconds: 1),
-        curve: Curves.easeInOut,
-      ),
-      child: Column(
-        children: [
-          const AppName(),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                UniconsLine.location_arrow,
-                size: 6,
-              ),
-              Text(
-                currentPosition.when(
-                  loading: () => ' ${const CurrentPosition().humanFormat} ',
-                  error: (error, stackTrace) => 'error',
-                  data: (data) => ' ${data.humanFormat} ',
-                ),
-                style: const TextStyle(
-                  fontSize: App.fontSize8,
-                ),
-              ),
-              Icon(
-                QWeatherIcons.getIconWith(
-                  ref.watch(qWeatherNowProvider).when(
-                        data: (data) => data.icon,
-                        error: (error, stackTrace) =>
-                            QWeatherIcons.tag_unknown_fill.tag,
-                        loading: () => QWeatherIcons.tag_1031.tag,
-                      ),
-                ).iconData,
-                size: 6,
-              ),
-            ],
-          ),
-          Text(
-            currentPosition.when(
-              loading: () => const CurrentPosition().city,
-              error: (error, stackTrace) => 'error',
-              data: (data) => data.city,
-            ),
-            style: const TextStyle(
-              fontSize: App.fontSize8,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -148,20 +73,20 @@ class _CreateButton extends StatelessWidget {
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
-      initialDate: DateTime.now(),
+      initialDate: Date.today,
       firstDate: DateTime(1949, 10),
-      lastDate: DateTime.now().add(
+      lastDate: Date.today.add(
         const Duration(days: 20000),
       ),
     );
 
     if (context.mounted && belongTo != null) {
-      final now = DateTime.now();
+      final today = Date.today;
       final diary = Diary(
         id: isarService.diarysAutoIncrement(),
         belongTo: belongTo,
-        editAt: now,
-        createAt: now,
+        editAt: today,
+        createAt: today,
         content: Document().toDelta().toJson(),
         editing: true,
       );
@@ -191,7 +116,7 @@ class _EditingButton extends HookWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    final stream = useMemoized(isarService.listenToDiariesEditing);
+    final stream = useMemoized(isarService.listenEditingDiaries);
     final snapshot = useStream(stream);
     final data = snapshot.data;
     final hasData = data != null && data.isNotEmpty;
@@ -213,7 +138,7 @@ class _EditingDialog extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final stream = useMemoized(isarService.listenToDiariesEditing);
+    final stream = useMemoized(isarService.listenEditingDiaries);
     final snapshot = useStream(stream);
 
     final data = snapshot.data;
@@ -253,8 +178,9 @@ class _ThisDayLastYearButton extends HookWidget {
     final l10n = context.l10n;
 
     final stream = useMemoized(
-      () => isarService.listenToDiariesWithDate(
-        DateTime.now().previousYear,
+      () => isarService.listenDiariesBetween(
+        Date.today.previousYear,
+        Date.today.previousYear.nextDay.subSeconds(1),
       ),
     );
 
@@ -283,8 +209,9 @@ class _ThisDayLastYearDialog extends HookWidget {
     final l10n = context.l10n;
 
     final stream = useMemoized(
-      () => isarService.listenToDiariesWithDate(
-        DateTime.now().previousYear,
+      () => isarService.listenDiariesBetween(
+        Date.today.previousYear,
+        Date.today.previousYear.nextDay.subSeconds(1),
       ),
     );
 
@@ -373,7 +300,7 @@ class _DiaryListView extends HookWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final lang = Localizations.localeOf(context).toLanguageTag();
-    final stream = useMemoized(isarService.listenToAllDiaries);
+    final stream = useMemoized(isarService.listenAllDiaries);
     final snapshot = useStream(stream);
     final data = snapshot.data;
     final hasData = data != null && data.isNotEmpty;
