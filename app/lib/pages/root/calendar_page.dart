@@ -8,24 +8,22 @@ class CalendarPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final delta = DateUtils.monthDelta(DateTime(1949, 10), Date.today);
-    final controller = usePageController(initialPage: delta);
+    final offset = useState(0);
 
     return Scaffold(
       appBar: AppBar(
         leading: const SearchButton(),
         title: const AppBarTitle(),
         actions: [
-          _Previous(controller: controller),
-          _Next(controller: controller),
+          _Previous(controller: offset),
+          _Next(controller: offset),
         ],
       ),
-      body: PageView.builder(
-        controller: controller,
-        allowImplicitScrolling: true,
-        itemBuilder: (context, index) => _Month(
-          key: Key('$index'),
-          dateTime: Date.today.subMonths(delta).addMonths(index),
+      body: AnimatedSwitcher(
+        duration: Durations.medium2,
+        child: _Month(
+          key: ValueKey(offset.value),
+          dateTime: Date.today.addMonths(offset.value),
         ),
       ),
     );
@@ -37,15 +35,12 @@ class _Next extends StatelessWidget {
     required this.controller,
   });
 
-  final PageController controller;
+  final ValueNotifier<int> controller;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => controller.nextPage(
-        duration: Durations.medium1,
-        curve: Curves.easeInOut,
-      ),
+      onPressed: () => controller.value -= 1,
       icon: const Icon(Icons.navigate_next_rounded),
     );
   }
@@ -56,15 +51,12 @@ class _Previous extends StatelessWidget {
     required this.controller,
   });
 
-  final PageController controller;
+  final ValueNotifier<int> controller;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => controller.previousPage(
-        duration: Durations.medium1,
-        curve: Curves.easeInOut,
-      ),
+      onPressed: () => controller.value += 1,
       icon: const Icon(Icons.navigate_before_rounded),
     );
   }
@@ -160,7 +152,7 @@ class _Day extends StatelessWidget {
         child: IconButton(
           onPressed: () {
             if (diaries.isEmpty) return;
-            context.push(DiaryPageView(initialId: diaries.first.id));
+            context.pushDialog(DiaryPageView(initialId: diaries.first.id));
           },
           icon: Text('${dateTime.day}'),
         ),
