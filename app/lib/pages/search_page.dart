@@ -80,7 +80,7 @@ class _Multiline extends ConsumerWidget {
 
     return ChoiceChip.elevated(
       tooltip: l10n.multiLineTooltip,
-      avatar: search.multiLine ? const Icon(Icons.notes_rounded) : null,
+      avatar: const Icon(Icons.notes_rounded),
       label: Text(l10n.multiLine),
       checkmarkColor: colorScheme.primary,
       onSelected: (value) =>
@@ -103,7 +103,7 @@ class _CaseSensitive extends ConsumerWidget {
 
     return ChoiceChip.elevated(
       tooltip: l10n.caseSensitiveTooltip,
-      avatar: search.caseSensitive ? const Icon(Icons.abc_rounded) : null,
+      avatar: const Icon(Icons.abc_rounded),
       label: Text(l10n.caseSensitive),
       checkmarkColor: colorScheme.primary,
       onSelected: (value) =>
@@ -126,7 +126,7 @@ class _Unicode extends ConsumerWidget {
 
     return ChoiceChip.elevated(
       tooltip: l10n.unicodeTooltip,
-      avatar: search.unicode ? const Icon(Icons.public_rounded) : null,
+      avatar: const Icon(Icons.public_rounded),
       label: Text(l10n.unicode),
       checkmarkColor: colorScheme.primary,
       onSelected: (value) =>
@@ -149,7 +149,7 @@ class _DotAll extends ConsumerWidget {
 
     return ChoiceChip.elevated(
       tooltip: l10n.dotAllTooltip,
-      avatar: search.dotAll ? const Icon(Icons.star_rounded) : null,
+      avatar: const Icon(Icons.star_rounded),
       label: Text(l10n.dotAll),
       checkmarkColor: colorScheme.primary,
       onSelected: (value) => setSearch.changeTo(search.copyWith(dotAll: value)),
@@ -260,7 +260,7 @@ class _ListTileState extends State<_ListTile> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.colorScheme;
-    final lang = Localizations.localeOf(context).toLanguageTag();
+    final lang = context.languageTag;
 
     final title = widget.diary.belongTo.format(
       DateFormat.YEAR_ABBR_MONTH_DAY,
