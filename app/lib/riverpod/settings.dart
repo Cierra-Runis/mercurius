@@ -60,6 +60,13 @@ extension _GeneralSettingsExt on Persistence {
     if (value == null) return sp.remove(fontFamily);
     return sp.setString(fontFamily, value);
   }
+
+  static const fontFilename = '${Persistence.prefix}_fontFilename';
+  String? getFontFilename() => sp.getString(fontFilename);
+  Future<bool> setFontFilename(String? value) async {
+    if (value == null) return sp.remove(fontFilename);
+    return sp.setString(fontFilename, value);
+  }
 }
 
 /// Add abstracts layer extension to [Persistence]
@@ -140,6 +147,7 @@ class SettingsState with _$SettingsState {
     @JsonKey(name: _GeneralSettingsExt.locale) Locale? locale,
     @JsonKey(name: _GeneralSettingsExt.accentColor) Color? accentColor,
     @JsonKey(name: _GeneralSettingsExt.fontFamily) String? fontFamily,
+    @JsonKey(name: _GeneralSettingsExt.fontFilename) String? fontFilename,
     @JsonKey(name: _CloudSettingsExt.autoUploadImages)
     required bool autoUploadImages,
     @JsonKey(name: _CloudSettingsExt.autoBackupDiaries)
@@ -169,6 +177,7 @@ class Settings extends _$Settings {
       locale: _pers.getLocale(),
       accentColor: _pers.getAccentColor(),
       fontFamily: _pers.getFontFamily(),
+      fontFilename: _pers.getFontFilename(),
       autoUploadImages: _pers.getAutoUploadImages(),
       autoBackupDiaries: _pers.getAutoBackupDiaries(),
       githubOwner: _pers.getGitHubOwner(),
@@ -209,6 +218,11 @@ class Settings extends _$Settings {
   Future<bool> setFontFamily(String? value) async {
     state = state.copyWith(fontFamily: value);
     return _pers.setFontFamily(value);
+  }
+
+  Future<bool> setFontFilename(String? value) async {
+    state = state.copyWith(fontFilename: value);
+    return _pers.setFontFilename(value);
   }
 
   Future<bool> setAutoUploadImages(bool value) async {

@@ -7,50 +7,50 @@ part 'fonts_loader.g.dart';
 @riverpod
 Future<void> fontsLoader(FontsLoaderRef ref) async {
   /// Check settings first
-  /// If user didn't config it, do nothing
   final settings = ref.watch(settingsProvider);
   final fontFamily = settings.fontFamily;
+  final fontFilename = settings.fontFilename;
+
+  /// If user didn't configure, return null
   if (fontFamily == null) return;
+  if (fontFilename == null) return;
 
-  /// Else get the fonts manifest from remote
-  /// If user's config doesn't exist in remote,
-  /// then clear the settings
-  final setSettings = ref.watch(settingsProvider.notifier);
-  final fontsManifest = await ref.watch(fontsManifestProvider.future);
-  final font = fontsManifest.firstWhereOr((e) => e.fontFamily == fontFamily);
-  if (font == null) {
-    setSettings.setFontFamily(null);
-    return;
-  }
-
-  /// Now every time we get new font, enable the font
   final paths = ref.watch(pathsProvider);
   final fontLoader = FontLoader(fontFamily);
+  final fontFile = File(p.join(paths.font.path, fontFamily, fontFilename));
 
-  /// FIXME: Font loading order is Wrong
-  for (final filename in font.files) {
-    final fontFile = File(p.join(paths.font.path, font.fontFamily, filename));
+  /// Get the fonts manifest from remote
+  final fontsManifest = ref.watch(fontsManifestProvider).value;
+  final remoteFont = fontsManifest?.firstWhereOr(
+    (e) => e.fontFamily == fontFamily,
+  );
 
-    if (!fontFile.existsSync()) {
-      final res = await App.dio.download(
-        '${App.fontsFolderUrl}/$fontFamily/$filename',
-        fontFile.path,
-      );
+  if (!fontFile.existsSync()) {
+    if (remoteFont == null || !remoteFont.files.contains(fontFilename)) return;
 
-      if (res.statusCode == 200) {
-        App.showSnackBar(Text('Download $filename Done.'));
-      }
-    }
-
-    fontLoader.addFont(
-      fontFile.readAsBytes().then((value) => ByteData.view(value.buffer)),
+    App.showSnackBar(Text('Start Downloading $fontFilename'));
+    final res = await App.dio.download(
+      '${App.fontsFolderUrl}/$fontFamily/$fontFilename',
+      fontFile.path,
     );
+
+    if (res.statusCode == 200) {
+      App.showSnackBar(Text('Download $fontFilename Successfully'));
+    } else {
+      App.showSnackBar(
+        Text('Download $fontFilename Failed (${res.statusCode})'),
+      );
+    }
   }
 
-  return fontLoader.load();
+  final bytes = fontFile.readAsBytes();
+  final byteData = bytes.then((value) => ByteData.view(value.buffer));
+  fontLoader.addFont(byteData);
+  fontLoader.load();
+  App.showSnackBar(Text('Loaded $fontFilename'));
 }
 
-abstract class FontsLoader {
+abstract final class FontsLoader {
   static void deleteFont(Font font, Directory fontDirectory) async {
     try {
       final fontFolder = Directory(p.join(fontDirectory.path, font.fontFamily));

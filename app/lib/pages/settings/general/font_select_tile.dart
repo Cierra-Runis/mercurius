@@ -17,7 +17,7 @@ class _FontSelectTile extends ConsumerWidget {
   }
 }
 
-class _FontPage extends HookConsumerWidget {
+class _FontPage extends ConsumerWidget {
   const _FontPage();
 
   @override
@@ -34,10 +34,9 @@ class _FontPage extends HookConsumerWidget {
           skipLoadingOnRefresh: false,
           data: (data) => ListView.builder(
             itemCount: data.length,
-            itemBuilder: (context, index) {
-              final font = data[index];
-              return _FontTile(font: font);
-            },
+            itemBuilder: (context, index) => _FontTile(
+              font: data[index],
+            ),
           ),
           error: (error, stackTrace) => Text(l10n.releasePageOops),
           loading: () => const Loading(),
@@ -67,23 +66,17 @@ class _FontTile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final settings = ref.watch(settingsProvider);
+    final settings = ref.watch(settingsProvider);
     final setSettings = ref.watch(settingsProvider.notifier);
     final paths = ref.watch(pathsProvider);
     final cacheSize = useBytes(
-      Directory(
-        p.join(paths.font.path, font.fontFamily),
-      ),
+      Directory(p.join(paths.font.path, font.fontFamily)),
     );
     final l10n = context.l10n;
     final l10nName = font.l10nName(context.languageTag);
     final l10nDescription = font.l10nDescription(context.languageTag);
 
     return ExpansionTile(
-      // value: font.fontFamily,
-      // groupValue: settings.fontFamily,
-      // toggleable: true,
-      // onChanged: setSettings.setFontFamily,
       title: Wrap(
         runAlignment: WrapAlignment.center,
         crossAxisAlignment: WrapCrossAlignment.center,
@@ -97,12 +90,16 @@ class _FontTile extends HookConsumerWidget {
             ),
             onPressed: () {
               setSettings.setFontFamily(null);
+              setSettings.setFontFilename(null);
               FontsLoader.deleteFont(font, paths.font);
             },
           ),
           BasedBadge(
             label: Text(l10n.variantCount(font.files.length)),
-            onPressed: () => setSettings.setFontFamily(font.fontFamily),
+            onPressed: () {
+              setSettings.setFontFamily(font.fontFamily);
+              setSettings.setFontFilename(font.files.firstOrNull);
+            },
           ),
           BasedBadge(
             label: Text(l10n.officialWebsite),
@@ -121,17 +118,19 @@ class _FontTile extends HookConsumerWidget {
           color: context.colorScheme.outline,
         ),
       ),
-      children: font.files.map((e) => ListTile(title: Text(e))).toList(),
-      // secondary: IconButton(
-      //   onPressed: () {
-      //     setSettings.setFontFamily(null);
-      //     FontsLoader.deleteFont(font, paths.font);
-      //   },
-      //   icon: Icon(
-      //     Icons.delete_rounded,
-      //     color: context.colorScheme.error,
-      //   ),
-      // ),
+      children: font.files
+          .map(
+            (e) => CheckboxListTile(
+              value: settings.fontFilename == e,
+              onChanged: (value) {
+                final check = value ?? false;
+                setSettings.setFontFamily(check ? font.fontFamily : null);
+                setSettings.setFontFilename(check ? e : null);
+              },
+              title: Text(e),
+            ),
+          )
+          .toList(),
     );
   }
 }
