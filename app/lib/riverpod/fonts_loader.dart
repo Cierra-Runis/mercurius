@@ -7,17 +7,20 @@ part 'fonts_loader.g.dart';
 @riverpod
 Future<void> fontsLoader(FontsLoaderRef ref) async {
   /// Check settings first
-  final settings = ref.watch(settingsProvider);
-  final fontFamily = settings.fontFamily;
-  final fontFilename = settings.fontFilename;
+  final fontFamily = ref.watch(
+    settingsProvider.select((value) => value.fontFamily),
+  );
+  final fontFilename = ref.watch(
+    settingsProvider.select((value) => value.fontFilename),
+  );
 
   /// If user didn't configure, return null
   if (fontFamily == null) return;
   if (fontFilename == null) return;
 
-  final paths = ref.watch(pathsProvider);
+  final pathsFont = ref.watch(pathsProvider.select((value) => value.font));
   final fontLoader = FontLoader(fontFamily);
-  final fontFile = File(p.join(paths.font.path, fontFamily, fontFilename));
+  final fontFile = File(p.join(pathsFont.path, fontFamily, fontFilename));
 
   /// Get the fonts manifest from remote
   final fontsManifest = ref.watch(fontsManifestProvider).value;

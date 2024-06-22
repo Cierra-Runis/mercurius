@@ -17,15 +17,24 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorSchemes = ref.watch(colorSchemesProvider);
-    final settings = ref.watch(settingsProvider);
 
-    final themes = colorSchemes.toThemes(settings.fontFamily);
+    final fontFamily = ref.watch(
+      settingsProvider.select((value) => value.fontFamily),
+    );
+    final themeMode = ref.watch(
+      settingsProvider.select((value) => value.themeMode),
+    );
+    final locale = ref.watch(
+      settingsProvider.select((value) => value.locale),
+    );
+
+    final themes = colorSchemes.toThemes(fontFamily);
 
     return MaterialApp(
       scrollBehavior: const _ScrollBehavior(),
       theme: themes.theme,
       darkTheme: themes.darkTheme,
-      themeMode: settings.themeMode,
+      themeMode: themeMode,
       themeAnimationCurve: Curves.easeInOut,
       builder: builder,
       home: const BasedSplashPage(
@@ -33,7 +42,7 @@ class MainApp extends ConsumerWidget {
         appIcon: AppIcon(),
         appName: AppName(fontSize: App.fontSize42),
       ),
-      locale: settings.locale,
+      locale: locale,
       localizationsDelegates: App.localizationsDelegates,
       supportedLocales: App.supportLanguages.keys,
     );

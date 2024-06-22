@@ -63,9 +63,9 @@ class ColorSchemes extends _$ColorSchemes {
   @override
   ColorSchemesState build() {
     final dynamicColor = ref.watch(dynamicColorProvider);
-    final settings = ref.watch(settingsProvider);
-
-    final accentColor = settings.accentColor;
+    final accentColor = ref.watch(
+      settingsProvider.select((value) => value.accentColor),
+    );
 
     if (accentColor != null) {
       return ColorSchemesState(

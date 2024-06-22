@@ -36,11 +36,11 @@ class _GitHubGallery extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
+    final autoUploadImages = ref.watch(
+      settingsProvider.select((value) => value.autoBackupDiaries),
+    );
     return Center(
-      child: settings.autoUploadImages
-          ? const Text('Enabled')
-          : const Text('Disabled'),
+      child: autoUploadImages ? const Text('Enabled') : const Text('Disabled'),
     );
   }
 }
