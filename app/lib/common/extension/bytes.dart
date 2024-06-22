@@ -1,6 +1,6 @@
 part of 'extension.dart';
 
-abstract class Bytes {
+abstract final class Bytes {
   static String format({
     int? bytes,
     int decimals = 2,

@@ -6,7 +6,7 @@ part 'bytes.dart';
 part 'default_styles.dart';
 part 'iterable.dart';
 
-extension CacheForExtension on AutoDisposeRef<Object?> {
+extension CacheForExt on AutoDisposeRef<Object?> {
   /// Refresh provider each [duration].
   void refreshFor(Duration duration) {
     /// Immediately prevent the state from getting destroyed.

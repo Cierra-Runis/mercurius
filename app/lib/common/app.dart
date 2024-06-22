@@ -9,7 +9,7 @@ late final IsarService isarService;
 
 typedef Json = Map<String, dynamic>;
 
-abstract class App {
+abstract final class App {
   static const name = 'Mercurius';
   static const database = 'mercurius_database';
 
@@ -42,9 +42,9 @@ abstract class App {
 
   static final dio = Dio(
     BaseOptions(
-      connectTimeout: const Duration(seconds: 3),
-      receiveTimeout: const Duration(seconds: 3),
-      sendTimeout: const Duration(seconds: 3),
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
+      sendTimeout: const Duration(seconds: 30),
       followRedirects: true,
       maxRedirects: 3,
     ),
@@ -57,7 +57,10 @@ abstract class App {
     if (buildContext == null) return;
     App.printLog(content);
     ScaffoldMessenger.of(buildContext).showSnackBar(
-      SnackBar(content: content),
+      SnackBar(
+        content: content,
+        duration: Durations.extralong4,
+      ),
     );
   }
 
@@ -313,7 +316,7 @@ class _ErrorApp extends StatelessWidget {
   }
 }
 
-abstract class _PlatformWindowManager {
+abstract final class _PlatformWindowManager {
   static Future<void> init() async {
     await windowManager.ensureInitialized();
     const windowOptions = WindowOptions(
