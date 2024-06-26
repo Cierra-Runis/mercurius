@@ -34,6 +34,7 @@ class _HomePageBody extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         image: DecorationImage(
+          fit: BoxFit.cover,
           image: BasedLocalFirstImage(
             filename: settings.bgImgPath ?? '',
             localDirectory: path.image.path,
