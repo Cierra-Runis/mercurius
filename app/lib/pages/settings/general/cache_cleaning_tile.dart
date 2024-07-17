@@ -22,7 +22,6 @@ class _CacheCleaningTile extends HookConsumerWidget {
             App.printLog('File / Directory delete Failed', error: e);
           }
         }
-        ref.invalidate(pathsProvider);
       },
       detailText: Bytes.format(bytes: cacheSize.data ?? 0),
     );
