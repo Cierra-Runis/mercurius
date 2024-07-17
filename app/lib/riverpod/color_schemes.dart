@@ -20,10 +20,7 @@ class ColorSchemesState with _$ColorSchemesState {
       centerTitle: true,
     );
 
-    const cardTheme = CardTheme(
-      elevation: 0,
-      clipBehavior: Clip.antiAlias,
-    );
+    const cardTheme = CardTheme(elevation: 1);
 
     const expansionTileTheme = ExpansionTileThemeData(
       shape: Border(),
