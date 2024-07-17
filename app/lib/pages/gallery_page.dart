@@ -50,10 +50,12 @@ class _LocalGallery extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final paths = ref.watch(pathsProvider);
+    final imageDirectory = ref.watch(
+      pathsProvider.select((value) => value.image),
+    );
 
     return Gallery(
-      directory: paths.image,
+      directory: imageDirectory,
       onCardTap: (context, filename) => context.pushDialog(
         ImageView(filename: filename),
       ),
@@ -61,7 +63,7 @@ class _LocalGallery extends ConsumerWidget {
         IconButton(
           /// TODO: Confirm again
           onPressed: () => File(
-            p.join(paths.image.path, filename),
+            p.join(imageDirectory.path, filename),
           ).delete(),
           icon: const Icon(Icons.delete_rounded),
         ),

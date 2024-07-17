@@ -436,7 +436,9 @@ class _EditorImageButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final paths = ref.watch(pathsProvider);
+    final imageDirectory = ref.watch(
+      pathsProvider.select((value) => value.image),
+    );
 
     return IconButton(
       tooltip: l10n.insertImage,
@@ -452,11 +454,10 @@ class _EditorImageButton extends ConsumerWidget {
         ).confirm;
 
         if (!context.mounted) return;
-        final directory = paths.image;
 
         return switch (newImage) {
-          ConfirmResult.deny => _insertFromGallery(context, directory),
-          ConfirmResult.confirm => _insertFromSystem(directory),
+          ConfirmResult.deny => _insertFromGallery(context, imageDirectory),
+          ConfirmResult.confirm => _insertFromSystem(imageDirectory),
           _ => null
         };
       },

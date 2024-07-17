@@ -109,12 +109,14 @@ class _ImportImageJsonFromV1 extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final paths = ref.watch(pathsProvider);
+    final imageDirectory = ref.watch(
+      pathsProvider.select((value) => value.image),
+    );
 
     return BasedListTile(
       leadingIcon: Icons.add_photo_alternate_rounded,
       titleText: l10n.importImageJsonFromV1,
-      onTap: () => importImages(paths.image.path),
+      onTap: () => importImages(imageDirectory.path),
     );
   }
 }
@@ -147,12 +149,14 @@ class _ImportDiaryImages extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final paths = ref.watch(pathsProvider);
+    final imageDirectory = ref.watch(
+      pathsProvider.select((value) => value.image),
+    );
 
     return BasedListTile(
       leadingIcon: Icons.image_rounded,
       titleText: l10n.importDiaryImages,
-      onTap: () => importImages(paths.image.path),
+      onTap: () => importImages(imageDirectory.path),
     );
   }
 }
@@ -163,7 +167,9 @@ class _ExportSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final paths = ref.watch(pathsProvider);
+    final tempDirectory = ref.watch(
+      pathsProvider.select((value) => value.temp),
+    );
 
     return BasedListSection(
       titleText: l10n.export,
@@ -172,7 +178,7 @@ class _ExportSection extends ConsumerWidget {
           leadingIcon: Icons.data_object_rounded,
           titleText: l10n.exportDiaryJsonFile,
           onTap: () async {
-            final path = p.join(paths.temp.path, 'export.json');
+            final path = p.join(tempDirectory.path, 'export.json');
             final json = await isarService.exportDiaryJson();
             await File(path).writeAsString(jsonEncode(json));
             await App.shareXFiles([XFile(path)]);
@@ -190,13 +196,15 @@ class _ExportDiaryImagesTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final paths = ref.watch(pathsProvider);
+    final imageDirectory = ref.watch(
+      pathsProvider.select((value) => value.image),
+    );
 
     return BasedListTile(
       leadingIcon: Icons.photo_rounded,
       titleText: l10n.exportDiaryImages,
       onTap: () async {
-        final images = paths.image.listSync();
+        final images = imageDirectory.listSync();
 
         if (images.isEmpty) {
           ScaffoldMessenger.of(context).showSnackBar(
