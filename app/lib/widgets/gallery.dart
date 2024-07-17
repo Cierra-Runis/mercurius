@@ -85,6 +85,7 @@ class _GalleryCard extends ConsumerWidget {
     final colorScheme = context.colorScheme;
 
     return Card(
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onCardTap != null ? () => onCardTap!(context, filename) : null,
         child: Stack(
