@@ -152,7 +152,7 @@ class _Day extends StatelessWidget {
         child: IconButton(
           onPressed: () {
             if (diaries.isEmpty) return;
-            context.pushDialog(DiaryPageView(initialId: diaries.first.id));
+            context.push(DiaryPageView(initialId: diaries.first.id));
           },
           icon: Text('${dateTime.day}'),
         ),

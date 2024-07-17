@@ -235,7 +235,7 @@ class _ThisDayLastYearDialog extends HookWidget {
                   index: index,
                   placeHolder: const DiaryListItemPlaceholder(),
                   child: DiaryListItem(
-                    onTap: () => context.pushDialog(
+                    onTap: () => context.push(
                       DiaryPageView(
                         initialId: data[index].id,
                       ),

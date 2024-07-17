@@ -293,7 +293,7 @@ class _ListTileState extends State<_ListTile> {
           builder: (context, child) => Text('${_controller.count}'),
         ),
       ),
-      onTap: () => context.pushDialog(
+      onTap: () => context.push(
         DiaryPageView(initialId: widget.diary.id),
       ),
     );
