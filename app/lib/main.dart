@@ -9,7 +9,9 @@ class MainApp extends ConsumerWidget {
     return Column(
       children: [
         if (Platform.isWindows || Platform.isMacOS) const WindowAppBar(),
-        Expanded(child: ClipRRect(child: child)),
+        Expanded(
+          child: ClipRRect(clipBehavior: Clip.hardEdge, child: child),
+        ),
       ],
     );
   }
