@@ -188,7 +188,7 @@ class _PrivacyPolicyTile extends StatelessWidget {
       leadingIcon: Icons.privacy_tip_rounded,
       titleText: l10n.privacyPolicy,
       subtitleText: '${App.name} ${l10n.privacyPolicy}',
-      onTap: () => App.printLog(App.privacyPolicyUrl),
+      onTap: () => App.launchUrl(App.privacyPolicyUrl),
     );
   }
 }
