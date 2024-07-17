@@ -77,11 +77,7 @@ class _DiaryEditorPageState extends State<EditorPage> {
               }
 
               App.vibration();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(l10n.contentCannotBeEmpty),
-                ),
-              );
+              App.showSnackBar(Text(l10n.contentCannotBeEmpty));
             },
             child: Text(l10n.save),
           ),

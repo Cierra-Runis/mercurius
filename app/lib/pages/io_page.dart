@@ -69,9 +69,7 @@ class _ImportJsonFile extends StatelessWidget {
 
         if (context.mounted && succuss) {
           App.vibration();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10n.pleaseBackToHomePage)),
-          );
+          App.showSnackBar(Text(l10n.pleaseBackToHomePage));
         }
       },
     );
@@ -206,12 +204,7 @@ class _ExportDiaryImagesTile extends ConsumerWidget {
       onTap: () async {
         final images = imageDirectory.listSync();
 
-        if (images.isEmpty) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10n.noData)),
-          );
-          return;
-        }
+        if (images.isEmpty) return App.showSnackBar(Text(l10n.noData));
 
         App.shareXFiles(
           images.map((e) => XFile(e.path)).toList(),
