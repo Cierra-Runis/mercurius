@@ -14,11 +14,13 @@ extension DefaultStylesExt on DefaultStyles {
       height: 4 / 3,
     );
 
+    const horizontalSpacing = HorizontalSpacing(2, 2);
     const verticalSpacing = VerticalSpacing(4, 4);
     const lineSpacing = VerticalSpacing(2, 2);
 
     final h1 = DefaultTextBlockStyle(
       baseStyle.copyWith(fontSize: App.fontSize20),
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -26,6 +28,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final h2 = DefaultTextBlockStyle(
       baseStyle.copyWith(fontSize: App.fontSize18),
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -33,6 +36,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final h3 = DefaultTextBlockStyle(
       baseStyle.copyWith(fontSize: App.fontSize16),
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -40,6 +44,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final paragraph = DefaultTextBlockStyle(
       baseStyle,
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -86,6 +91,7 @@ extension DefaultStylesExt on DefaultStyles {
       baseStyle.copyWith(
         color: colorScheme.outline,
       ),
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -93,6 +99,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final lists = DefaultListBlockStyle(
       baseStyle,
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       const BoxDecoration(),
@@ -101,6 +108,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final quote = DefaultTextBlockStyle(
       placeholder.style,
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       BoxDecoration(
@@ -121,6 +129,7 @@ extension DefaultStylesExt on DefaultStyles {
           if (fontFamily != null) fontFamily,
         ],
       ),
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       BoxDecoration(
@@ -131,6 +140,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final indent = DefaultTextBlockStyle(
       baseStyle,
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       null,
@@ -138,6 +148,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final align = DefaultTextBlockStyle(
       baseStyle,
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       null,
@@ -145,6 +156,7 @@ extension DefaultStylesExt on DefaultStyles {
 
     final leading = DefaultTextBlockStyle(
       baseStyle,
+      horizontalSpacing,
       verticalSpacing,
       lineSpacing,
       null,

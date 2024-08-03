@@ -17,7 +17,7 @@ dependencies:
   based_local_first_image: ^1.1.0
   based_splash_page: ^1.0.1
   based_split_view: ^1.2.0
-  cross_file: ^0.3.4+1
+  cross_file: ^0.3.4+2
   dio: ^5.5.0+1
   dart_date: ^1.3.3
   dynamic_color: ^1.7.0
@@ -26,13 +26,13 @@ dependencies:
   flutter_displaymode: ^0.6.0
   flutter_hooks: ^0.20.5
   flutter_markdown: ^0.7.3
-  flutter_quill: ^9.6.0
+  flutter_quill: ^10.1.7
   flutter_svg: ^2.0.10+1
   freezed_annotation: ^2.4.4
   hooks_riverpod: ^2.5.1
   intl: ^0.19.0
   image_picker: ^1.1.2
-  image_picker_android: ^0.8.12+4
+  image_picker_android: ^0.8.12+10
   image_picker_platform_interface: ^2.10.0
   isar: ^4.0.0-dev.14
   isar_flutter_libs: ^4.0.0-dev.14
@@ -42,17 +42,16 @@ dependencies:
   loading_animation_widget: ^1.2.1
   material_color_utilities: ^0.8.0
   path: ^1.9.0
-  path_provider: ^2.1.3
-  path_provider_android: ^2.2.6 # FIXME: https://github.com/flutter/flutter/issues/142518
-  package_info_plus: ^8.0.0
+  path_provider: ^2.1.4
+  package_info_plus: ^8.0.1
   pausable_timer: ^3.1.0+3
   photo_view: ^0.15.0
   pub_semver: ^2.1.4
   qweather_icons: ^1.6.0
   riverpod_annotation: ^2.3.5
-  share_plus: ^9.0.0
-  shared_preferences: ^2.2.3
-  syncfusion_flutter_charts: ^26.1.42
+  share_plus: ^10.0.0
+  shared_preferences: ^2.3.1
+  syncfusion_flutter_charts: ^26.2.7
   url_launcher: ^6.3.0
   unicons: ^2.1.2
   vibration: ^1.9.0
