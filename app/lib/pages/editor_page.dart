@@ -53,10 +53,16 @@ class _DiaryEditorPageState extends State<EditorPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final languageTag = context.languageTag;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_diary.createAt.format(DateFormat.YEAR_ABBR_MONTH_DAY)),
+        title: Text(
+          _diary.createAt.format(
+            DateFormat.YEAR_ABBR_MONTH_DAY,
+            languageTag,
+          ),
+        ),
         actions: [
           _EditorAutoSaveButton(
             diary: _diary,
