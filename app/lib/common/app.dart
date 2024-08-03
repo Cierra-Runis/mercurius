@@ -70,9 +70,9 @@ abstract final class App {
     ThemeMode.dark: Icons.dark_mode_rounded,
   };
 
+  /// TIPS: Place zh_CN as the first locale
+  /// See https://github.com/flutter/flutter/issues/103811#issuecomment-1199012026
   static final supportLanguages = {
-    /// TIPS: Use zh_CN as default locale
-    /// See https://github.com/flutter/flutter/issues/103811#issuecomment-1199012026
     const Locale('zh', 'CN'): '简体中文',
     const Locale('en'): 'English',
     const Locale('ja'): '日本語',
