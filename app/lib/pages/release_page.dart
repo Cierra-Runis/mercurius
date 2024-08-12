@@ -29,6 +29,10 @@ class ReleasePage extends ConsumerWidget {
     if (data.body != null) {
       return Markdown(
         styleSheet: MarkdownStyleSheet(
+          code: TextStyle(
+            fontFamily: App.fontCascadiaCodePL,
+            backgroundColor: context.colorScheme.secondaryContainer,
+          ),
           blockquoteDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             color: context.colorScheme.surface,
