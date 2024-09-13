@@ -35,8 +35,22 @@ class _HelperButton extends StatelessWidget {
     final l10n = context.l10n;
 
     return IconButton(
-      tooltip: l10n.whatIsRegularExpression,
-      onPressed: () => App.launchUrl(l10n.regularExpressionDoc),
+      onPressed: () => context.pushDialog(
+        AlertDialog(
+          title: Text(l10n.whatIsRegularExpression),
+          content: Text(l10n.regularExpressionIs),
+          actions: [
+            TextButton(
+              onPressed: context.pop,
+              child: Text(l10n.back),
+            ),
+            TextButton(
+              onPressed: () => App.launchUrl(l10n.regularExpressionDoc),
+              child: Text(l10n.learnMore),
+            ),
+          ],
+        ),
+      ),
       icon: const Icon(Icons.help_rounded),
     );
   }
