@@ -48,7 +48,7 @@ export 'package:photo_view/photo_view.dart';
 export 'package:pub_semver/pub_semver.dart';
 export 'package:qweather_icons/qweather_icons.dart';
 export 'package:syncfusion_flutter_charts/charts.dart';
-export 'package:unicons/unicons.dart';
+export 'package:unicons/unicons.dart' hide TextPainter, BoxPainter, ImageIcon;
 export 'package:vibration/vibration.dart';
 export 'package:window_manager/window_manager.dart';
 

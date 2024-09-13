@@ -23,7 +23,7 @@ class CalendarPage extends HookWidget {
         duration: Durations.medium2,
         child: _Month(
           key: ValueKey(offset.value),
-          dateTime: Date.today.addMonths(offset.value),
+          dateTime: DateTimeExtension.today.addMonths(offset.value),
         ),
       ),
     );

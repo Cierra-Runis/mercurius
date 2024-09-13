@@ -19,7 +19,6 @@ abstract final class App {
   static const publicGitHubUrl =
       'https://raw.githubusercontent.com/Cierra-Runis';
   static const publicRepoUrl = '$publicGitHubUrl/Cierra-Runis';
-  static const branch = 'main';
 
   static const openIssueUrl = '$repoUrl/issues/new/choose';
   static const thirdPartyLicenseUrl = '$repoUrl/wiki/Third-Party-License';
@@ -27,9 +26,12 @@ abstract final class App {
 
   /// [fontSaira] apply to [App.name]
   static const fontSaira = 'Saira';
+
+  /// [fontCascadiaCodePL] apply to codes
   static const fontCascadiaCodePL = 'CascadiaCodePL';
 
-  static const fontsFolderUrl = '$publicRepoUrl/$branch/public/fonts';
+  static const _branch = 'main';
+  static const fontsFolderUrl = '$publicRepoUrl/$_branch/public/fonts';
   static const fontsManifestUrl = '$fontsFolderUrl/fonts_manifest.json';
 
   static const aMapApiUrl = 'https://restapi.amap.com/v3/ip';
@@ -40,6 +42,7 @@ abstract final class App {
 
   static const builtAt = String.fromEnvironment('builtAt');
 
+  /// Uniform Web request method
   static final dio = Dio(
     BaseOptions(
       connectTimeout: const Duration(seconds: 30),
@@ -53,10 +56,10 @@ abstract final class App {
   static final splitViewKey = GlobalKey<NavigatorState>();
 
   static Future<void> showSnackBar(Widget content) async {
-    final buildContext = splitViewKey.currentContext;
-    if (buildContext == null) return;
+    final context = splitViewKey.currentContext;
+    if (context == null) return;
     App.printLog(content);
-    ScaffoldMessenger.of(buildContext).showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: content,
         duration: Durations.extralong4,
@@ -70,7 +73,7 @@ abstract final class App {
     ThemeMode.dark: Icons.dark_mode_rounded,
   };
 
-  /// TIPS: Place zh_CN as the first locale
+  /// TIPS: Place zh_CN at first
   /// See https://github.com/flutter/flutter/issues/103811#issuecomment-1199012026
   static final supportLanguages = {
     const Locale('zh', 'CN'): '简体中文',
@@ -156,7 +159,7 @@ abstract final class App {
     devtools.log(
       '$log',
       name: name,
-      time: Date.today,
+      time: DateTimeExtension.today,
       error: error,
       stackTrace: stackTrace,
     );

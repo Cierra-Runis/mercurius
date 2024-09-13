@@ -74,15 +74,15 @@ class _CreateButton extends StatelessWidget {
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       useRootNavigator: false,
-      initialDate: Date.today,
+      initialDate: DateTimeExtension.today,
       firstDate: DateTime(1949, 10),
-      lastDate: Date.today.add(
+      lastDate: DateTimeExtension.today.add(
         const Duration(days: 20000),
       ),
     );
 
     if (context.mounted && belongTo != null) {
-      final today = Date.today;
+      final today = DateTimeExtension.today;
       final diary = Diary(
         id: isarService.diarysAutoIncrement(),
         belongTo: belongTo,
@@ -180,8 +180,8 @@ class _ThisDayLastYearButton extends HookWidget {
 
     final stream = useMemoized(
       () => isarService.listenDiariesBetween(
-        Date.today.previousYear,
-        Date.today.previousYear.nextDay.subSeconds(1),
+        DateTimeExtension.today.previousYear,
+        DateTimeExtension.today.previousYear.nextDay.subSeconds(1),
       ),
     );
 
@@ -211,8 +211,8 @@ class _ThisDayLastYearDialog extends HookWidget {
 
     final stream = useMemoized(
       () => isarService.listenDiariesBetween(
-        Date.today.previousYear,
-        Date.today.previousYear.nextDay.subSeconds(1),
+        DateTimeExtension.today.previousYear,
+        DateTimeExtension.today.previousYear.nextDay.subSeconds(1),
       ),
     );
 

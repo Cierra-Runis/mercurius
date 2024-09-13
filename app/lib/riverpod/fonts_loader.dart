@@ -38,7 +38,7 @@ Future<void> fontsLoader(FontsLoaderRef ref) async {
     );
 
     if (res.statusCode == 200) {
-      App.showSnackBar(Text('Download $fontFilename Successfully'));
+      App.showSnackBar(Text('Downloaded $fontFilename Successfully'));
     } else {
       App.showSnackBar(
         Text('Download $fontFilename Failed (${res.statusCode})'),
