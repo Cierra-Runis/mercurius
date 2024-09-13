@@ -58,7 +58,7 @@ class _DiaryEditorPageState extends State<EditorPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _diary.createAt.format(
+          _diary.belongTo.format(
             DateFormat.YEAR_ABBR_MONTH_DAY,
             languageTag,
           ),
@@ -75,7 +75,7 @@ class _DiaryEditorPageState extends State<EditorPage> {
               if (!_quillController.document.plainTextIsEmpty) {
                 final newDiary = _diary.copyWith(
                   content: _quillController.document.toDelta().toJson(),
-                  editAt: Date.today,
+                  editAt: DateTimeExtension.today,
                   editing: false,
                 );
                 isarService.saveDiary(newDiary);
@@ -153,7 +153,7 @@ class _EditorAutoSaveButtonState extends State<_EditorAutoSaveButton> {
 
       final newDiary = _diary.copyWith(
         content: _quillController.document.toDelta().toJson(),
-        editAt: Date.today,
+        editAt: DateTimeExtension.today,
         editing: true,
       );
       isarService.saveDiary(newDiary);
@@ -341,7 +341,7 @@ class _EditorToolbar extends StatelessWidget {
       useRootNavigator: false,
       initialDate: diary.belongTo,
       firstDate: DateTime(1949, 10),
-      lastDate: Date.today.add(
+      lastDate: DateTimeExtension.today.add(
         const Duration(days: 20000),
       ),
     );
@@ -506,7 +506,8 @@ class _EditorTagButton extends StatelessWidget {
       tooltip: l10n.insertTag,
       onPressed: () async {
         final lang = Localizations.localeOf(context).toLanguageTag();
-        final time = Date.today.format(DateFormat.HOUR24_MINUTE_SECOND, lang);
+        final time = DateTimeExtension.today
+            .format(DateFormat.HOUR24_MINUTE_SECOND, lang);
 
         final diaryTag = await showDialog<DiaryTag>(
           context: context,
