@@ -71,12 +71,11 @@ mixin _DiaryService on _IsarService {
         .watch(fireImmediately: true);
   }
 
-  Stream<List<Diary>> listenAllDiaries() async* {
-    yield* isar.diarys
-        .where()
-        .editingEqualTo(false)
-        .sortByBelongToDesc()
-        .watch(fireImmediately: true);
+  Stream<List<Diary>> listenAllDiaries([bool sortDesc = true]) async* {
+    final unsorted = isar.diarys.where().editingEqualTo(false);
+    final sorted =
+        sortDesc ? unsorted.sortByBelongToDesc() : unsorted.sortByBelongTo();
+    yield* sorted.watch(fireImmediately: true);
   }
 
   Future<List<Diary>> getAllDiaries() async {
