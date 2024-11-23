@@ -34,6 +34,7 @@ class MainApp extends ConsumerWidget {
 
     return MaterialApp(
       scrollBehavior: const _ScrollBehavior(),
+      scaffoldMessengerKey: App.scaffoldKey,
       theme: themes.theme,
       darkTheme: themes.darkTheme,
       themeMode: themeMode,

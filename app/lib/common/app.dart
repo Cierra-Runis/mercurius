@@ -54,12 +54,11 @@ abstract final class App {
   );
 
   static final splitViewKey = GlobalKey<NavigatorState>();
+  static final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
   static Future<void> showSnackBar(Widget content) async {
-    final context = splitViewKey.currentContext;
-    if (context == null) return;
     App.printLog(content);
-    ScaffoldMessenger.of(context).showSnackBar(
+    scaffoldKey.currentState?.showSnackBar(
       SnackBar(
         content: content,
         duration: Durations.extralong4,
