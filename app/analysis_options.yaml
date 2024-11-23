@@ -29,6 +29,6 @@ analyzer:
   plugins:
     - custom_lint
   exclude:
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
-    - "lib/l10n/*"
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - 'lib/l10n/*'

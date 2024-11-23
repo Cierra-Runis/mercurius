@@ -27,7 +27,7 @@ migrate_working_dir/
 .pub/
 /build/
 
-# 符号相关d
+# 符号相关
 app.*.symbols
 
 # 混淆相关
@@ -41,7 +41,6 @@ app.*.map.json
 *.g.dart
 *.freezed.dart
 lib/l10n/**/*.dart
-lib/common/key.dart
 
 /out/
 .env

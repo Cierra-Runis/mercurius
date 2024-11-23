@@ -66,5 +66,6 @@
     "commentTranslate.hover.variable": true,
     "commentTranslate.multiLineMerge": true,
     "explorerExclude.backup": {},
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cmake.ignoreCMakeListsMissing": true
 }
