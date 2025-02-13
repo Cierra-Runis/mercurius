@@ -41,7 +41,7 @@ class MonthlyWords extends HookWidget {
         ),
         series: <ColumnSeries<_WordsData, String>>[
           ColumnSeries<_WordsData, String>(
-            color: context.colorScheme.primary.withOpacity(0.7),
+            color: context.colorScheme.primary.withValues(alpha: 0.7),
             dataSource: _getWordsData(data),
             xValueMapper: (data, _) =>
                 data.dateTime.format(DateFormat.YEAR_ABBR_MONTH, lang),

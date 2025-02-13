@@ -16,7 +16,7 @@ class DiaryListItemPlaceholder extends StatelessWidget {
     final colorScheme = context.colorScheme;
 
     return Card(
-      color: colorScheme.surfaceContainerLow.withOpacity(0.8),
+      color: colorScheme.surfaceContainerLow.withValues(alpha: 0.8),
       margin: const EdgeInsets.all(10.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24.0),
