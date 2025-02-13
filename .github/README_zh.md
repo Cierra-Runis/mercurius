@@ -4,7 +4,7 @@
 
   <p>『 Mercurius - 记点日记！』</p>
 
-<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/.github/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/.github/README_ja.md">日本語</a>
+<a href="https://github.com/Cierra-Runis/mercurius/blob/main/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/main/.github/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/main/.github/README_ja.md">日本語</a>
 
 </div>
 
@@ -98,9 +98,9 @@
 
 # 🔦 声明
 
-[![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/main/LICENSE)
 
-该项目采用 `GPL-3.0` 许可协议，查看 [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) 以获得更多信息
+该项目采用 `GPL-3.0` 许可协议，查看 [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/main/LICENSE) 以获得更多信息
 
 有关 Mercurius 引入的开源库等信息，见 Mercurius 软件内的 `关于` 页面
 

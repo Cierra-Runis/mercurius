@@ -4,7 +4,7 @@
 
   <p>『 Mercurius - Write Some Diaries!』</p>
 
-<a href="https://github.com/Cierra-Runis/mercurius/blob/master/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/.github/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/master/.github/README_ja.md">日本語</a>
+<a href="https://github.com/Cierra-Runis/mercurius/blob/main/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/main/.github/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/main/.github/README_ja.md">日本語</a>
 
 </div>
 
@@ -98,9 +98,9 @@ And some of the realized functions are as follows:
 
 # 🔦 Declaration
 
-[![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/Cierra-Runis/mercurius)](https://github.com/Cierra-Runis/mercurius/blob/main/LICENSE)
 
-This project is licensed under the terms of the `GPL-3.0` license. See [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/master/LICENSE) for more details
+This project is licensed under the terms of the `GPL-3.0` license. See [LICENSE](https://github.com/Cierra-Runis/mercurius/blob/main/LICENSE) for more details
 
 For information about the open source library introduced by Mercurius, see the `About` page in Mercurius
 
