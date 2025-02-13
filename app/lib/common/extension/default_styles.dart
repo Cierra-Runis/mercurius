@@ -72,7 +72,6 @@ extension DefaultStylesExt on DefaultStyles {
       decoration: TextDecoration.lineThrough,
     );
 
-    /// FIXME: backgroundColor no effect <https://github.com/singerdmx/flutter-quill/issues/1409>
     final inlineCode = InlineCodeStyle(
       style: baseStyle,
       radius: const Radius.circular(120),
