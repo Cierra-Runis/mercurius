@@ -1,4 +1,4 @@
-library app;
+library;
 
 /// dart
 export 'dart:async' show Timer, StreamSubscription;
