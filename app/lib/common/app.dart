@@ -172,14 +172,14 @@ abstract final class App {
     List<int> intensities = const [],
     int amplitude = -1,
   }) async {
-    final hasVibrator = await Vibration.hasVibrator() ?? false;
+    final hasVibrator = await Vibration.hasVibrator();
     if (!hasVibrator) return;
 
-    final hasAmplitudeControl = await Vibration.hasAmplitudeControl() ?? false;
+    final hasAmplitudeControl = await Vibration.hasAmplitudeControl();
     if (!hasAmplitudeControl) return;
 
     final hasCustomVibrationsSupport =
-        await Vibration.hasCustomVibrationsSupport() ?? false;
+        await Vibration.hasCustomVibrationsSupport();
     if (!hasCustomVibrationsSupport) return;
 
     try {

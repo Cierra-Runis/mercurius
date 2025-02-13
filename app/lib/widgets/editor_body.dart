@@ -29,10 +29,10 @@ class EditorBody extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
 
     return QuillEditor(
+      controller: controller..readOnly = readOnly,
       focusNode: FocusNode(),
       scrollController: scrollController,
       configurations: QuillEditorConfigurations(
-        controller: controller..readOnly = readOnly,
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         autoFocus: autoFocus,
         placeholder: l10n.writingSomethingHere,
