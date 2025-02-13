@@ -5,9 +5,7 @@ part 'qweather_now.freezed.dart';
 part 'qweather_now.g.dart';
 
 @riverpod
-Future<QWeatherNow> qWeatherNow(
-  QWeatherNowRef ref,
-) async {
+Future<QWeatherNow> qWeatherNow(Ref ref) async {
   ref.refreshFor(const Duration(minutes: 10));
   final currentPosition = await ref.watch(currentPositionProvider.future);
 

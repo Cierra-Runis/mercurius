@@ -6,7 +6,7 @@ part 'hitokoto.g.dart';
 const String _url = 'https://v1.hitokoto.cn/';
 
 @riverpod
-Future<HiToKoTo> hitokoto(HitokotoRef ref) async {
+Future<HiToKoTo> hitokoto(Ref ref) async {
   ref.refreshFor(const Duration(seconds: 5));
   Response response;
 

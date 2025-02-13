@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'paths.g.dart';
 
 @Riverpod(keepAlive: true)
-Paths paths(PathsRef ref) => throw Exception('$pathsProvider not initialized');
+Paths paths(Ref ref) => throw Exception('$pathsProvider not initialized');
 
 class Paths {
   final Directory temp;

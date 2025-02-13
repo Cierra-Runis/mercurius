@@ -1,10 +1,11 @@
+import 'package:mercurius/index.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'persistence.g.dart';
 
 @Riverpod(keepAlive: true)
-Persistence persistence(PersistenceRef ref) =>
+Persistence persistence(Ref ref) =>
     throw Exception('$persistenceProvider not initialized');
 
 /// This service abstracts the persistence layer.

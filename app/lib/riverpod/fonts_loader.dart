@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'fonts_loader.g.dart';
 
 @riverpod
-Future<void> fontsLoader(FontsLoaderRef ref) async {
+Future<void> fontsLoader(Ref ref) async {
   /// Check settings first
   final fontFamily = ref.watch(
     settingsProvider.select((value) => value.fontFamily),

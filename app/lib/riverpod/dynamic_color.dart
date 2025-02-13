@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'dynamic_color.g.dart';
 
 @Riverpod(keepAlive: true)
-DynamicColor dynamicColor(DynamicColorRef ref) =>
+DynamicColor dynamicColor(Ref ref) =>
     throw Exception('$dynamicColorProvider not initialized');
 
 class DynamicColor {

@@ -5,9 +5,7 @@ part 'github_latest_release.freezed.dart';
 part 'github_latest_release.g.dart';
 
 @riverpod
-Future<GitHubLatestRelease> githubLatestRelease(
-  GithubLatestReleaseRef ref,
-) async {
+Future<GitHubLatestRelease> githubLatestRelease(Ref ref) async {
   ref.refreshFor(const Duration(minutes: 5));
   const url =
       'https://api.github.com/repos/Cierra-Runis/mercurius/releases/latest';

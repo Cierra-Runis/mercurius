@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'package_info.g.dart';
 
 @Riverpod(keepAlive: true)
-PackageInfo packageInfo(PackageInfoRef ref) =>
+PackageInfo packageInfo(Ref ref) =>
     throw Exception('$packageInfoProvider not initialized');
 
 extension PackageInfoExt on PackageInfo {

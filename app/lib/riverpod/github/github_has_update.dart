@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'github_has_update.g.dart';
 
 @riverpod
-Future<bool> githubHasUpdate(GithubHasUpdateRef ref) async {
+Future<bool> githubHasUpdate(Ref ref) async {
   final localVersion = ref.watch(packageInfoProvider);
   final githubLatestRelease =
       await ref.watch(githubLatestReleaseProvider.future);
