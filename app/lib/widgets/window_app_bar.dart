@@ -1,4 +1,3 @@
-import 'package:keypress_simulator/keypress_simulator.dart';
 import 'package:mercurius/index.dart';
 
 class WindowAppBar extends StatelessWidget {
@@ -88,29 +87,9 @@ class _MaximizeButton extends StatelessWidget {
       ? windowManager.unmaximize()
       : windowManager.maximize();
 
-  /// TODO: based_snap_assist
-  /// FIXME: https://github.com/leanflutter/keypress_simulator/issues/10
-  void triggerSnapAssist(bool value) async {
-    if (!Platform.isWindows || !value) return;
-    if (!await keyPressSimulator.isAccessAllowed()) return;
-
-    await windowManager.focus();
-    if (!await windowManager.isFocused()) return;
-
-    await keyPressSimulator.simulateKeyDown(
-      PhysicalKeyboardKey.keyZ,
-      [ModifierKey.metaModifier],
-    );
-    await keyPressSimulator.simulateKeyUp(
-      PhysicalKeyboardKey.keyZ,
-      [ModifierKey.metaModifier],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onHover: triggerSnapAssist,
       onTap: toggleMaximized,
       child: const SizedBox(
         width: WindowAppBar.actionWidth,
