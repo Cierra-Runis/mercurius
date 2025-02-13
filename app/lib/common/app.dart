@@ -323,9 +323,8 @@ abstract final class _PlatformWindowManager {
     await windowManager.ensureInitialized();
     const windowOptions = WindowOptions(
       title: App.name,
-      minimumSize: Size(400, 400),
+      minimumSize: Size.square(400),
       center: true,
-      backgroundColor: Colors.transparent,
       skipTaskbar: false,
       windowButtonVisibility: false,
       titleBarStyle: TitleBarStyle.hidden,
