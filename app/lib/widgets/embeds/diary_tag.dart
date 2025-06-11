@@ -40,12 +40,9 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
   @override
   Widget build(
     BuildContext context,
-    QuillController controller,
-    Embed node,
-    bool readOnly,
-    bool inline,
-    TextStyle textStyle,
+    EmbedContext embedContext,
   ) {
+    final node = embedContext.node;
     final tag = DiaryTag.fromJson(node.value.data);
 
     return Chip(

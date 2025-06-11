@@ -27,7 +27,6 @@ export 'package:flutter_hooks/flutter_hooks.dart' hide Hook;
 export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:flutter_markdown/flutter_markdown.dart';
 export 'package:flutter_quill/flutter_quill.dart';
-export 'package:flutter_quill/translations.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:hooks_riverpod/hooks_riverpod.dart';

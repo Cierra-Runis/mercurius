@@ -20,54 +20,39 @@ class ImageBlockEmbedBuilder extends EmbedBuilder {
   @override
   Widget build(
     BuildContext context,
-    QuillController controller,
-    Embed node,
-    bool readOnly,
-    bool inline,
-    TextStyle textStyle,
+    EmbedContext embedContext,
   ) {
     return _ImageBlock(
-      controller: controller,
-      node: node,
-      readOnly: readOnly,
-      inline: inline,
-      textStyle: textStyle,
+      embedContext: embedContext,
     );
   }
 }
 
 class _ImageBlock extends ConsumerWidget {
   const _ImageBlock({
-    required this.controller,
-    required this.node,
-    required this.readOnly,
-    required this.inline,
-    required this.textStyle,
+    required this.embedContext,
   });
 
-  final QuillController controller;
-  final Embed node;
-  final bool readOnly;
-  final bool inline;
-  final TextStyle textStyle;
+  final EmbedContext embedContext;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final paths = ref.watch(pathsProvider);
+    final filename = embedContext.node.value.data as String;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.0),
       child: Material(
         child: InkWell(
-          onTap: readOnly
+          onTap: embedContext.readOnly
               ? () => context.pushDialog(
-                    ImageView(filename: node.value.data as String),
+                    ImageView(filename: filename),
                   )
               : null,
           child: Image(
             image: BasedLocalFirstImage(
-              filename: node.value.data as String,
+              filename: filename,
               localDirectory: paths.image.path,
             ),
             errorBuilder: (context, error, stackTrace) {

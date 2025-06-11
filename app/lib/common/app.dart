@@ -56,16 +56,6 @@ abstract final class App {
   static final splitViewKey = GlobalKey<NavigatorState>();
   static final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
-  static Future<void> showSnackBar(Widget content) async {
-    App.printLog(content);
-    scaffoldKey.currentState?.showSnackBar(
-      SnackBar(
-        content: content,
-        duration: Durations.extralong4,
-      ),
-    );
-  }
-
   static const themeModeIcon = {
     ThemeMode.system: Icons.brightness_auto_rounded,
     ThemeMode.light: Icons.light_mode_rounded,
@@ -94,6 +84,62 @@ abstract final class App {
   static const fontSize20 = 20.0;
   static const fontSize24 = 24.0;
   static const fontSize42 = 42.0;
+
+  static void launchUrl(
+    dynamic url, {
+    launch1.LaunchMode mode = launch1.LaunchMode.externalApplication,
+    launch1.WebViewConfiguration webViewConfiguration =
+        const launch1.WebViewConfiguration(),
+    launch1.BrowserConfiguration browserConfiguration =
+        const launch1.BrowserConfiguration(),
+    String? webOnlyWindowName,
+  }) async {
+    if (url is Uri) {
+      try {
+        await launch1.launchUrl(
+          url,
+          mode: mode,
+          webViewConfiguration: webViewConfiguration,
+          browserConfiguration: browserConfiguration,
+          webOnlyWindowName: webOnlyWindowName,
+        );
+      } catch (e, s) {
+        printLog('Launch $url Failed', error: e, stackTrace: s);
+      }
+    }
+
+    if (url is String) {
+      try {
+        await launch2.launchUrlString(
+          url,
+          mode: mode,
+          webViewConfiguration: webViewConfiguration,
+          browserConfiguration: browserConfiguration,
+          webOnlyWindowName: webOnlyWindowName,
+        );
+      } catch (e, s) {
+        printLog('Launch $url Failed', error: e, stackTrace: s);
+      }
+    }
+  }
+
+  static void printLog(
+    dynamic log, {
+    Object? inspect,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    if (!kDebugMode) debugPrint('$log');
+
+    devtools.log(
+      '$log',
+      name: name,
+      time: DateTimeExtension.today,
+      error: error,
+      stackTrace: stackTrace,
+    );
+    if (inspect != null) devtools.inspect(inspect);
+  }
 
   /// The entry of [App].
   ///
@@ -147,22 +193,70 @@ abstract final class App {
     }
   }
 
-  static void printLog(
-    dynamic log, {
-    Object? inspect,
-    Object? error,
-    StackTrace? stackTrace,
-  }) {
-    if (!kDebugMode) debugPrint('$log');
+  static Future<void> share(
+    String text, {
+    String? subject,
+    Rect? sharePositionOrigin,
+  }) async {
+    if (text.isEmpty) return;
+    try {
+      await SharePlus.instance.share(
+        ShareParams(
+          text: text,
+          subject: subject,
+          sharePositionOrigin: sharePositionOrigin,
+        ),
+      );
+    } catch (e, s) {
+      printLog('Share $text Failed', error: e, stackTrace: s);
+    }
+  }
 
-    devtools.log(
-      '$log',
-      name: name,
-      time: DateTimeExtension.today,
-      error: error,
-      stackTrace: stackTrace,
+  static Future<void> shareUri(
+    Uri uri, {
+    Rect? sharePositionOrigin,
+  }) async {
+    try {
+      await SharePlus.instance.share(
+        ShareParams(
+          uri: uri,
+          sharePositionOrigin: sharePositionOrigin,
+        ),
+      );
+    } catch (e, s) {
+      printLog('Share $uri Failed', error: e, stackTrace: s);
+    }
+  }
+
+  static Future<void> shareXFiles(
+    List<XFile> files, {
+    String? subject,
+    String? text,
+    Rect? sharePositionOrigin,
+  }) async {
+    if (files.isEmpty) return;
+    try {
+      await SharePlus.instance.share(
+        ShareParams(
+          files: files,
+          subject: subject,
+          text: text,
+          sharePositionOrigin: sharePositionOrigin,
+        ),
+      );
+    } catch (e, s) {
+      printLog('Share $files Failed', error: e, stackTrace: s);
+    }
+  }
+
+  static Future<void> showSnackBar(Widget content) async {
+    App.printLog(content);
+    scaffoldKey.currentState?.showSnackBar(
+      SnackBar(
+        content: content,
+        duration: Durations.extralong4,
+      ),
     );
-    if (inspect != null) devtools.inspect(inspect);
   }
 
   static void vibration({
@@ -194,115 +288,16 @@ abstract final class App {
       App.printLog('Vibrate Failed', error: e, stackTrace: s);
     }
   }
-
-  static void launchUrl(
-    dynamic url, {
-    launch1.LaunchMode mode = launch1.LaunchMode.externalApplication,
-    launch1.WebViewConfiguration webViewConfiguration =
-        const launch1.WebViewConfiguration(),
-    launch1.BrowserConfiguration browserConfiguration =
-        const launch1.BrowserConfiguration(),
-    String? webOnlyWindowName,
-  }) async {
-    if (url is Uri) {
-      try {
-        await launch1.launchUrl(
-          url,
-          mode: mode,
-          webViewConfiguration: webViewConfiguration,
-          browserConfiguration: browserConfiguration,
-          webOnlyWindowName: webOnlyWindowName,
-        );
-      } catch (e, s) {
-        printLog('Launch $url Failed', error: e, stackTrace: s);
-      }
-    }
-
-    if (url is String) {
-      try {
-        await launch2.launchUrlString(
-          url,
-          mode: mode,
-          webViewConfiguration: webViewConfiguration,
-          browserConfiguration: browserConfiguration,
-          webOnlyWindowName: webOnlyWindowName,
-        );
-      } catch (e, s) {
-        printLog('Launch $url Failed', error: e, stackTrace: s);
-      }
-    }
-  }
-
-  static Future<void> shareUri(
-    Uri uri, {
-    Rect? sharePositionOrigin,
-  }) async {
-    try {
-      await Share.shareUri(
-        uri,
-        sharePositionOrigin: sharePositionOrigin,
-      );
-    } catch (e, s) {
-      printLog('Share $uri Failed', error: e, stackTrace: s);
-    }
-  }
-
-  static Future<void> share(
-    String text, {
-    String? subject,
-    Rect? sharePositionOrigin,
-  }) async {
-    if (text.isEmpty) return;
-    try {
-      await Share.share(
-        text,
-        subject: subject,
-        sharePositionOrigin: sharePositionOrigin,
-      );
-    } catch (e, s) {
-      printLog('Share $text Failed', error: e, stackTrace: s);
-    }
-  }
-
-  static Future<void> shareXFiles(
-    List<XFile> files, {
-    String? subject,
-    String? text,
-    Rect? sharePositionOrigin,
-  }) async {
-    if (files.isEmpty) return;
-    try {
-      await Share.shareXFiles(
-        files,
-        subject: subject,
-        text: text,
-        sharePositionOrigin: sharePositionOrigin,
-      );
-    } catch (e, s) {
-      printLog('Share $files Failed', error: e, stackTrace: s);
-    }
-  }
-}
-
-/// https://riverpod.dev/docs/essentials/eager_initialization
-class _MainApp extends ConsumerWidget {
-  const _MainApp();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(fontsLoaderProvider);
-    return const MainApp();
-  }
 }
 
 class _ErrorApp extends StatelessWidget {
+  final Object e;
+
+  final StackTrace s;
   const _ErrorApp({
     required this.e,
     required this.s,
   });
-
-  final Object e;
-  final StackTrace s;
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +310,32 @@ class _ErrorApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _Inspect {
+  final ProviderBase<Object?> provider;
+  final Object? value;
+  final Object? previousValue;
+  final Object? newValue;
+  final ProviderContainer container;
+  const _Inspect({
+    required this.provider,
+    required this.container,
+    this.value,
+    this.previousValue,
+    this.newValue,
+  });
+}
+
+/// https://riverpod.dev/docs/essentials/eager_initialization
+class _MainApp extends ConsumerWidget {
+  const _MainApp();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(fontsLoaderProvider);
+    return const MainApp();
   }
 }
 
@@ -334,21 +355,6 @@ abstract final class _PlatformWindowManager {
       windowManager.focus();
     });
   }
-}
-
-class _Inspect {
-  const _Inspect({
-    required this.provider,
-    required this.container,
-    this.value,
-    this.previousValue,
-    this.newValue,
-  });
-  final ProviderBase<Object?> provider;
-  final Object? value;
-  final Object? previousValue;
-  final Object? newValue;
-  final ProviderContainer container;
 }
 
 class _ProviderObserver extends ProviderObserver {
@@ -375,19 +381,14 @@ class _ProviderObserver extends ProviderObserver {
         ),
       );
 
-  /// A provider emitted an error, be it by throwing during initialization
-  /// or by having a [Future]/[Stream] emit an error
+  /// A provider was disposed
   @override
-  void providerDidFail(
+  void didDisposeProvider(
     ProviderBase<Object?> provider,
-    Object error,
-    StackTrace stackTrace,
     ProviderContainer container,
   ) =>
       App.printLog(
-        'providerDidFail: ${provider.name}',
-        error: error,
-        stackTrace: stackTrace,
+        'didDisposeProvider: ${provider.name}',
         inspect: _Inspect(
           provider: provider,
           container: container,
@@ -415,14 +416,19 @@ class _ProviderObserver extends ProviderObserver {
         ),
       );
 
-  /// A provider was disposed
+  /// A provider emitted an error, be it by throwing during initialization
+  /// or by having a [Future]/[Stream] emit an error
   @override
-  void didDisposeProvider(
+  void providerDidFail(
     ProviderBase<Object?> provider,
+    Object error,
+    StackTrace stackTrace,
     ProviderContainer container,
   ) =>
       App.printLog(
-        'didDisposeProvider: ${provider.name}',
+        'providerDidFail: ${provider.name}',
+        error: error,
+        stackTrace: stackTrace,
         inspect: _Inspect(
           provider: provider,
           container: container,
