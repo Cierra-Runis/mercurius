@@ -51,7 +51,7 @@ extension _GeneralSettingsExt on Persistence {
 
   Future<bool> setAccentColor(Color? value) async {
     if (value == null) return sp.remove(accentColor);
-    return sp.setInt(accentColor, value.value);
+    return sp.setInt(accentColor, value.toARGB32());
   }
 
   static const fontFamily = '${Persistence.prefix}_fontFamily';
