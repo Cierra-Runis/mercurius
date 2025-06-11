@@ -49,4 +49,4 @@ $windowsZipDestination = 'out\Mercurius for Windows.zip'
 Write-Output "Zipping the Windows app..."
 Compress-Archive -Path $windowsZipSource -DestinationPath $windowsZipDestination -Force
 
-Exit
+exit 0
