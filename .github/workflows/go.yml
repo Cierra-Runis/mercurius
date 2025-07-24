@@ -14,7 +14,7 @@ jobs:
       - name: Move to server directory
         run: cd server
       - name: Install dependencies
-        run: go get .
+        run: go mod download
       - name: Build Go project
         run: go build
       - name: Test with Go
