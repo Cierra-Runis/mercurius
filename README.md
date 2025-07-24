@@ -4,11 +4,7 @@
 
   <p>『 Mercurius - Write Some Diaries!』</p>
 
-<a href="https://github.com/Cierra-Runis/mercurius/blob/main/README.md">English</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/main/.github/README_zh.md">中文</a> | <a href="https://github.com/Cierra-Runis/mercurius/blob/main/.github/README_ja.md">日本語</a>
-
 </div>
-
-`Latest update: 2024-04-09 18:36:55`
 
 [📚 Introduction](#-Introduction)
 
