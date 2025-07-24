@@ -10,9 +10,9 @@ Persistence persistence(Ref ref) =>
 
 /// This service abstracts the persistence layer.
 class Persistence {
-  final SharedPreferences sp;
   static const prefix = 'ms';
   static const _spVersion = '${prefix}_spVersion';
+  final SharedPreferences sp;
 
   const Persistence._(this.sp);
 

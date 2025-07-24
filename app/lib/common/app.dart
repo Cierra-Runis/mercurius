@@ -5,7 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart' as launch1;
 import 'package:url_launcher/url_launcher_string.dart' as launch2;
 
-late final IsarService isarService;
+// late final IsarService isarService;
 
 typedef Json = Map<String, dynamic>;
 
@@ -170,7 +170,7 @@ abstract final class App {
       final packageInfo = await PackageInfo.fromPlatform();
 
       /// TODO: use riverpod instead
-      isarService = IsarService.openDB(paths.appSupport);
+      // isarService = IsarService.openDB(paths.appSupport);
 
       runApp(
         ProviderScope(

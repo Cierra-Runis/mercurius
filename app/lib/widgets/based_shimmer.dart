@@ -1,6 +1,14 @@
 import 'package:mercurius/index.dart';
 
 class BasedShimmer extends StatefulWidget {
+  final double radius;
+
+  final double width;
+  final double height;
+  final Widget? child;
+  final AlignmentGeometry? childAlignment;
+  final int millisecondsDelay;
+
   const BasedShimmer({
     super.key,
     this.millisecondsDelay = 0,
@@ -10,14 +18,6 @@ class BasedShimmer extends StatefulWidget {
     required this.width,
     required this.height,
   });
-
-  final double radius;
-  final double width;
-  final double height;
-  final Widget? child;
-  final AlignmentGeometry? childAlignment;
-
-  final int millisecondsDelay;
 
   const BasedShimmer.round({
     super.key,
@@ -43,6 +43,30 @@ class _BasedShimmerState extends State<BasedShimmer> {
   late StreamSubscription sub;
 
   @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      curve: Curves.easeInOut,
+      duration: const Duration(milliseconds: 800),
+      width: widget.width,
+      height: widget.height,
+      decoration: BoxDecoration(
+        color: _isHighLight
+            ? context.colorScheme.outline.withValues(alpha: 0.4)
+            : context.colorScheme.outline.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(widget.radius),
+      ),
+      alignment: widget.childAlignment,
+      child: widget.child,
+    );
+  }
+
+  @override
+  void dispose() {
+    sub.cancel();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     sub = isHighLightStream.listen(
@@ -59,30 +83,6 @@ class _BasedShimmerState extends State<BasedShimmer> {
           setState(() {});
         }
       },
-    );
-  }
-
-  @override
-  void dispose() {
-    sub.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      curve: Curves.easeInOut,
-      duration: const Duration(milliseconds: 800),
-      width: widget.width,
-      height: widget.height,
-      decoration: BoxDecoration(
-        color: _isHighLight
-            ? context.colorScheme.outline.withValues(alpha: 0.4)
-            : context.colorScheme.outline.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(widget.radius),
-      ),
-      alignment: widget.childAlignment,
-      child: widget.child,
     );
   }
 }

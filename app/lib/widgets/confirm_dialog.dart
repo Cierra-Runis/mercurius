@@ -1,8 +1,12 @@
 import 'package:mercurius/index.dart';
 
-enum ConfirmResult { deny, confirm }
-
 class ConfirmDialog extends StatelessWidget {
+  final String title;
+
+  final String summary;
+  final String? denyString;
+  final String? confirmString;
+  final BuildContext context;
   const ConfirmDialog({
     super.key,
     required this.title,
@@ -12,11 +16,7 @@ class ConfirmDialog extends StatelessWidget {
     required this.context,
   });
 
-  final String title;
-  final String summary;
-  final String? denyString;
-  final String? confirmString;
-  final BuildContext context;
+  Future<ConfirmResult?> get confirm => context.pushDialog(this);
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +49,6 @@ class ConfirmDialog extends StatelessWidget {
       ],
     );
   }
-
-  Future<ConfirmResult?> get confirm => context.pushDialog(this);
 }
+
+enum ConfirmResult { deny, confirm }

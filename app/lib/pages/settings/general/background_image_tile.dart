@@ -1,22 +1,5 @@
 part of 'general_section.dart';
 
-class _BackgroundImageTile extends ConsumerWidget {
-  const _BackgroundImageTile();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final settings = ref.watch(settingsProvider);
-
-    return BasedListTile(
-      leadingIcon: Icons.flip_to_back_rounded,
-      titleText: l10n.backgroundImage,
-      detailText: settings.bgImgPath ?? l10n.noImageSelected,
-      onTap: () => context.push(const _BackgroundImagePage()),
-    );
-  }
-}
-
 class _BackgroundImagePage extends ConsumerWidget {
   const _BackgroundImagePage();
 
@@ -43,6 +26,23 @@ class _BackgroundImagePage extends ConsumerWidget {
           context.pop();
         },
       ),
+    );
+  }
+}
+
+class _BackgroundImageTile extends ConsumerWidget {
+  const _BackgroundImageTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+
+    return BasedListTile(
+      leadingIcon: Icons.flip_to_back_rounded,
+      titleText: l10n.backgroundImage,
+      detailText: settings.bgImgPath ?? l10n.noImageSelected,
+      onTap: () => context.push(const _BackgroundImagePage()),
     );
   }
 }

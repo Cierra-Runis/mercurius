@@ -5,24 +5,16 @@ part 'diary_tag.g.dart';
 
 @freezed
 class DiaryTag with _$DiaryTag {
-  const DiaryTag._();
-
   const factory DiaryTag({
     required DiaryTagType tagType,
     required String message,
   }) = _DiaryTag;
 
-  Embeddable toEmbeddable() => _TagBlockEmbeddable(json: toJson());
-
   factory DiaryTag.fromJson(Json json) => _$DiaryTagFromJson(json);
-}
 
-class _TagBlockEmbeddable extends Embeddable {
-  const _TagBlockEmbeddable({
-    required Json json,
-  }) : super(_type, json);
+  const DiaryTag._();
 
-  static const _type = 'mercuriusTag';
+  Embeddable toEmbeddable() => _TagBlockEmbeddable(json: toJson());
 }
 
 class TagBlockEmbedBuilder extends EmbedBuilder {
@@ -30,12 +22,6 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
 
   @override
   String get key => _TagBlockEmbeddable._type;
-
-  @override
-  String toPlainText(Embed node) {
-    final tag = DiaryTag.fromJson(node.value.data);
-    return '[${tag.message}]';
-  }
 
   @override
   Widget build(
@@ -53,4 +39,18 @@ class TagBlockEmbedBuilder extends EmbedBuilder {
       label: Text(tag.message),
     );
   }
+
+  @override
+  String toPlainText(Embed node) {
+    final tag = DiaryTag.fromJson(node.value.data);
+    return '[${tag.message}]';
+  }
+}
+
+class _TagBlockEmbeddable extends Embeddable {
+  static const _type = 'mercuriusTag';
+
+  const _TagBlockEmbeddable({
+    required Json json,
+  }) : super(_type, json);
 }

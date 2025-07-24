@@ -1,6 +1,10 @@
 import 'package:mercurius/index.dart';
 
 class DiaryListItem extends StatelessWidget {
+  final Diary diary;
+
+  final DismissDirection dismissDirection;
+  final VoidCallback? onTap;
   const DiaryListItem({
     super.key,
     required this.diary,
@@ -8,20 +12,17 @@ class DiaryListItem extends StatelessWidget {
     this.onTap,
   });
 
-  final Diary diary;
-  final DismissDirection dismissDirection;
-  final VoidCallback? onTap;
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colorScheme = context.colorScheme;
 
     return Dismissible(
-      key: ValueKey(diary.id),
+      // key: ValueKey(diary.id),
+      key: Key(diary.hashCode.toString()),
       direction: dismissDirection,
       movementDuration: const Duration(milliseconds: 400),
-      onDismissed: (_) => isarService.deleteDiaryById(diary.id),
+      // onDismissed: (_) => isarService.deleteDiaryById(diary.id),
       confirmDismiss: (_) async =>
           await ConfirmDialog(
             title: l10n.areYouSureToDeleteTheDiary,
@@ -36,10 +37,10 @@ class DiaryListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: InkWell(
-          onTap: onTap ??
-              () => context.push(
-                    DiaryPageView(initialId: diary.id),
-                  ),
+          // onTap: onTap ??
+          // () => context.push(
+          // DiaryPageView(initialId: diary.id),
+          // ),
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
             height: 80,
@@ -91,48 +92,10 @@ class DiaryListItem extends StatelessWidget {
   }
 }
 
-class _Mood extends StatelessWidget {
-  const _Mood({required this.moodType});
-
-  final DiaryMoodType moodType;
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(size: 18, moodType.iconData);
-  }
-}
-
-class _Weather extends StatelessWidget {
-  const _Weather({required this.weatherType});
-
-  final DiaryWeatherType weatherType;
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(size: 18, weatherType.qweatherIcons.iconData);
-  }
-}
-
-class _Content extends StatelessWidget {
-  const _Content({required this.diary});
-
-  final Diary diary;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      diary.document.plainText,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: const TextStyle(fontSize: App.fontSize12),
-    );
-  }
-}
-
 class _BelongTo extends StatelessWidget {
-  const _BelongTo({required this.diary});
-
   final Diary diary;
+
+  const _BelongTo({required this.diary});
 
   @override
   Widget build(BuildContext context) {
@@ -148,10 +111,40 @@ class _BelongTo extends StatelessWidget {
   }
 }
 
-class _EditAt extends StatelessWidget {
-  const _EditAt({required this.diary});
-
+class _Content extends StatelessWidget {
   final Diary diary;
+
+  const _Content({required this.diary});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.document.plainText,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: const TextStyle(fontSize: App.fontSize12),
+    );
+  }
+}
+
+class _Day extends StatelessWidget {
+  final Diary diary;
+
+  const _Day({required this.diary});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      diary.belongTo.format('dd'),
+      style: const TextStyle(fontSize: App.fontSize24),
+    );
+  }
+}
+
+class _EditAt extends StatelessWidget {
+  final Diary diary;
+
+  const _EditAt({required this.diary});
 
   @override
   Widget build(BuildContext context) {
@@ -165,10 +158,32 @@ class _EditAt extends StatelessWidget {
   }
 }
 
-class _Weekday extends StatelessWidget {
-  const _Weekday({required this.diary});
+class _Mood extends StatelessWidget {
+  final DiaryMoodType moodType;
 
+  const _Mood({required this.moodType});
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(size: 18, moodType.iconData);
+  }
+}
+
+class _Weather extends StatelessWidget {
+  final DiaryWeatherType weatherType;
+
+  const _Weather({required this.weatherType});
+
+  @override
+  Widget build(BuildContext context) {
+    return Icon(size: 18, weatherType.qweatherIcons.iconData);
+  }
+}
+
+class _Weekday extends StatelessWidget {
   final Diary diary;
+
+  const _Weekday({required this.diary});
 
   @override
   Widget build(BuildContext context) {
@@ -179,20 +194,6 @@ class _Weekday extends StatelessWidget {
       style: const TextStyle(
         fontSize: App.fontSize10,
       ),
-    );
-  }
-}
-
-class _Day extends StatelessWidget {
-  const _Day({required this.diary});
-
-  final Diary diary;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      diary.belongTo.format('dd'),
-      style: const TextStyle(fontSize: App.fontSize24),
     );
   }
 }

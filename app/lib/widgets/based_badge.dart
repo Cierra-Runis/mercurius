@@ -17,25 +17,6 @@ import 'package:mercurius/index.dart';
 /// configuration is intended to work well with a default sized (24)
 /// [Icon].
 class BasedBadge extends StatelessWidget {
-  /// Create a Badge that stacks [label] on top of [child].
-  ///
-  /// If [label] is null then just a filled circle is displayed. Otherwise
-  /// the [label] is displayed within a [StadiumBorder] shaped area.
-  const BasedBadge({
-    super.key,
-    required this.label,
-    this.onPressed,
-    this.backgroundColor,
-    this.textColor,
-    this.smallSize,
-    this.largeSize,
-    this.textStyle,
-    this.padding,
-    this.alignment,
-    this.offset,
-    this.isLabelVisible = true,
-  });
-
   final void Function()? onPressed;
 
   /// The badge's fill color.
@@ -123,6 +104,25 @@ class BasedBadge extends StatelessWidget {
   /// to create a badge that's only shown under certain conditions.
   final bool isLabelVisible;
 
+  /// Create a Badge that stacks [label] on top of [child].
+  ///
+  /// If [label] is null then just a filled circle is displayed. Otherwise
+  /// the [label] is displayed within a [StadiumBorder] shaped area.
+  const BasedBadge({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.backgroundColor,
+    this.textColor,
+    this.smallSize,
+    this.largeSize,
+    this.textStyle,
+    this.padding,
+    this.alignment,
+    this.offset,
+    this.isLabelVisible = true,
+  });
+
   @override
   Widget build(BuildContext context) {
     final badgeTheme = BadgeTheme.of(context);
@@ -166,6 +166,10 @@ class BasedBadge extends StatelessWidget {
 //   dev/tools/gen_defaults/bin/gen_defaults.dart.
 
 class _BadgeDefaultsM3 extends BadgeThemeData {
+  final BuildContext context;
+
+  late final ThemeData _theme = Theme.of(context);
+  late final ColorScheme _colors = _theme.colorScheme;
   _BadgeDefaultsM3(this.context)
       : super(
           smallSize: 6.0,
@@ -173,10 +177,6 @@ class _BadgeDefaultsM3 extends BadgeThemeData {
           padding: const EdgeInsets.symmetric(horizontal: 4),
           alignment: AlignmentDirectional.topEnd,
         );
-
-  final BuildContext context;
-  late final ThemeData _theme = Theme.of(context);
-  late final ColorScheme _colors = _theme.colorScheme;
 
   @override
   Color? get backgroundColor => _colors.primaryContainer;

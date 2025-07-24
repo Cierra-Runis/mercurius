@@ -6,12 +6,12 @@ class MonthlyWords extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final lang = context.languageTag;
-    final stream = useMemoized(() => isarService.listenAllDiaries(false));
-    final snapshot = useStream(stream);
-    final data = snapshot.data;
-    final hasData = data != null && data.isNotEmpty;
+    // final stream = useMemoized(() => isarService.listenAllDiaries(false));
+    // final snapshot = useStream(stream);
+    // final data = snapshot.data;
+    // final hasData = data != null && data.isNotEmpty;
 
-    if (!hasData) return const SizedBox(height: 260, child: Loading());
+    // if (!hasData) return const SizedBox(height: 260, child: Loading());
 
     return SizedBox(
       height: 260,
@@ -42,7 +42,7 @@ class MonthlyWords extends HookWidget {
         series: <ColumnSeries<_WordsData, String>>[
           ColumnSeries<_WordsData, String>(
             color: context.colorScheme.primary.withValues(alpha: 0.7),
-            dataSource: _getWordsData(data),
+            // dataSource: _getWordsData(data),
             xValueMapper: (data, _) =>
                 data.dateTime.format(DateFormat.YEAR_ABBR_MONTH, lang),
             yValueMapper: (sales, _) => sales.words,
@@ -88,7 +88,7 @@ class MonthlyWords extends HookWidget {
 }
 
 class _WordsData {
-  _WordsData(this.dateTime, this.words);
   final DateTime dateTime;
   int words;
+  _WordsData(this.dateTime, this.words);
 }

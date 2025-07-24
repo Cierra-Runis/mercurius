@@ -18,14 +18,29 @@ class RootPage extends StatelessWidget {
   }
 }
 
-class _RootPage extends HookWidget {
-  const _RootPage({super.key});
+class _BottomBarMorePageIcon extends ConsumerWidget {
+  const _BottomBarMorePageIcon();
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final githubHasUpdate = ref.watch(githubHasUpdateProvider);
+    final hasUpdate = githubHasUpdate.value ?? false;
+
+    return Badge(
+      isLabelVisible: hasUpdate,
+      child: const Icon(Icons.more_horiz),
+    );
+  }
+}
+
+class _RootPage extends HookWidget {
   static const bodyWidgets = [
     HomePage(key: PageStorageKey(HomePage)),
     CalendarPage(key: PageStorageKey(CalendarPage)),
     MorePage(key: PageStorageKey(MorePage)),
   ];
+
+  const _RootPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,21 +73,6 @@ class _RootPage extends HookWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _BottomBarMorePageIcon extends ConsumerWidget {
-  const _BottomBarMorePageIcon();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final githubHasUpdate = ref.watch(githubHasUpdateProvider);
-    final hasUpdate = githubHasUpdate.value ?? false;
-
-    return Badge(
-      isLabelVisible: hasUpdate,
-      child: const Icon(Icons.more_horiz),
     );
   }
 }

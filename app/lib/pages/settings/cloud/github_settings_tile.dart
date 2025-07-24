@@ -1,19 +1,5 @@
 part of 'cloud_section.dart';
 
-class _GitHubSettingsTile extends StatelessWidget {
-  const _GitHubSettingsTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return BasedListTile(
-      titleText: l10n.githubSettings,
-      leadingIcon: UniconsLine.github,
-      onTap: () => context.pushDialog(const _GitHubSettingsDialog()),
-    );
-  }
-}
-
 class _GitHubSettingsDialog extends HookConsumerWidget {
   const _GitHubSettingsDialog();
 
@@ -81,6 +67,20 @@ class _GitHubSettingsDialog extends HookConsumerWidget {
           child: Text(l10n.save),
         ),
       ],
+    );
+  }
+}
+
+class _GitHubSettingsTile extends StatelessWidget {
+  const _GitHubSettingsTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return BasedListTile(
+      titleText: l10n.githubSettings,
+      leadingIcon: UniconsLine.github,
+      onTap: () => context.pushDialog(const _GitHubSettingsDialog()),
     );
   }
 }

@@ -2,12 +2,12 @@ import 'package:mercurius/index.dart';
 import 'package:path/path.dart' as p;
 
 class GalleryPage extends StatelessWidget {
-  const GalleryPage({super.key});
-
   static const tabViews = [
     _LocalGallery(key: PageStorageKey(_LocalGallery)),
     _GitHubGallery(key: PageStorageKey(_GitHubGallery)),
   ];
+
+  const GalleryPage({super.key});
 
   @override
   Widget build(BuildContext context) {

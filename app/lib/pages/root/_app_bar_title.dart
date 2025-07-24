@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
 class AppBarTitle extends ConsumerWidget {
+  final ScrollController? controller;
+
   const AppBarTitle({
     super.key,
     this.controller,
   });
-
-  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

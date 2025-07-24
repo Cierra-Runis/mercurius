@@ -51,10 +51,10 @@ class CurrentPosition with _$CurrentPosition {
     @JsonKey(name: 'city') @Default('北京市') String city,
   }) = _CurrentPosition;
 
-  String get humanFormat => '${latitude}N ${longitude}E';
+  factory CurrentPosition.fromJson(Json json) =>
+      _$CurrentPositionFromJson(json);
 
   const CurrentPosition._();
 
-  factory CurrentPosition.fromJson(Json json) =>
-      _$CurrentPositionFromJson(json);
+  String get humanFormat => '${latitude}N ${longitude}E';
 }

@@ -35,9 +35,9 @@ class QWeatherNow with _$QWeatherNow {
     @JsonKey(name: 'icon') String? icon,
   }) = _QWeatherNow;
 
-  const QWeatherNow._();
-
   factory QWeatherNow.fromJson(Json json) => _$QWeatherNowFromJson(json);
+
+  const QWeatherNow._();
 }
 
 @freezed

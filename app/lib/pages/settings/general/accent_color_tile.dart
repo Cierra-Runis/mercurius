@@ -22,9 +22,9 @@ class _AccentColorTile extends StatelessWidget {
 }
 
 class _ColorPicker extends HookConsumerWidget {
-  const _ColorPicker({required this.initialColor});
-
   final Color initialColor;
+
+  const _ColorPicker({required this.initialColor});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

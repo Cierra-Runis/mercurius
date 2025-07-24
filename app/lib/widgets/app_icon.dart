@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
 class AppIcon extends StatelessWidget {
+  final double size;
+
   const AppIcon({
     super.key,
     this.size = 48,
   });
-
-  final double size;
 
   @override
   Widget build(BuildContext context) {

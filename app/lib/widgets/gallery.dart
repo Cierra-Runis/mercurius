@@ -1,27 +1,27 @@
 import 'package:mercurius/index.dart';
 import 'package:path/path.dart' as p;
 
-typedef GalleryOnTap = void Function(
-  BuildContext context,
-  String filename,
-);
-
 typedef GalleryActionsBuilder = List<Widget> Function(
   BuildContext context,
   String filename,
 );
 
+typedef GalleryOnTap = void Function(
+  BuildContext context,
+  String filename,
+);
+
 class Gallery extends HookWidget {
+  final Directory directory;
+
+  final GalleryOnTap onCardTap;
+  final GalleryActionsBuilder? actionsBuilder;
   const Gallery({
     super.key,
     required this.directory,
     required this.onCardTap,
     this.actionsBuilder,
   });
-
-  final Directory directory;
-  final GalleryOnTap onCardTap;
-  final GalleryActionsBuilder? actionsBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -67,16 +67,16 @@ class Gallery extends HookWidget {
 }
 
 class _GalleryCard extends ConsumerWidget {
+  final String filename;
+
+  final void Function(BuildContext context, String filename)? onCardTap;
+  final List<Widget> Function(BuildContext context, String filename)?
+      actionsBuilder;
   const _GalleryCard({
     required this.filename,
     this.onCardTap,
     this.actionsBuilder,
   });
-
-  final String filename;
-  final void Function(BuildContext context, String filename)? onCardTap;
-  final List<Widget> Function(BuildContext context, String filename)?
-      actionsBuilder;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

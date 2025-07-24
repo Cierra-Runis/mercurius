@@ -1,22 +1,5 @@
 part of 'general_section.dart';
 
-class _FontSelectTile extends ConsumerWidget {
-  const _FontSelectTile();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final settings = ref.watch(settingsProvider);
-
-    return BasedListTile(
-      leadingIcon: Icons.text_format_rounded,
-      titleText: l10n.font,
-      detailText: settings.fontFamily ?? l10n.followTheSystem,
-      onTap: () => context.push(const _FontPage()),
-    );
-  }
-}
-
 class _FontPage extends ConsumerWidget {
   const _FontPage();
 
@@ -57,12 +40,29 @@ class _FontPage extends ConsumerWidget {
   }
 }
 
+class _FontSelectTile extends ConsumerWidget {
+  const _FontSelectTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+
+    return BasedListTile(
+      leadingIcon: Icons.text_format_rounded,
+      titleText: l10n.font,
+      detailText: settings.fontFamily ?? l10n.followTheSystem,
+      onTap: () => context.push(const _FontPage()),
+    );
+  }
+}
+
 class _FontTile extends HookConsumerWidget {
+  final Font font;
+
   const _FontTile({
     required this.font,
   });
-
-  final Font font;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

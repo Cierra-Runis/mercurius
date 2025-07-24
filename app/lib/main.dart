@@ -5,17 +5,6 @@ void main() => App.run();
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
-  Widget builder(BuildContext context, Widget? child) {
-    return Column(
-      children: [
-        if (Platform.isWindows || Platform.isMacOS) const WindowAppBar(),
-        Expanded(
-          child: ClipRRect(clipBehavior: Clip.hardEdge, child: child),
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorSchemes = ref.watch(colorSchemesProvider);
@@ -50,10 +39,28 @@ class MainApp extends ConsumerWidget {
       supportedLocales: App.supportLanguages.keys,
     );
   }
+
+  Widget builder(BuildContext context, Widget? child) {
+    return Column(
+      children: [
+        if (Platform.isWindows || Platform.isMacOS) const WindowAppBar(),
+        Expanded(
+          child: ClipRRect(clipBehavior: Clip.hardEdge, child: child),
+        ),
+      ],
+    );
+  }
 }
 
 class _ScrollBehavior extends CupertinoScrollBehavior {
   const _ScrollBehavior();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 
   @override
   Widget buildScrollbar(
@@ -62,11 +69,4 @@ class _ScrollBehavior extends CupertinoScrollBehavior {
     ScrollableDetails details,
   ) =>
       child;
-
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
-      };
 }

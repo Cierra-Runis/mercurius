@@ -13,16 +13,16 @@ class Paths {
   final Directory appCache;
   final Directory documents;
 
-  Directory get image => Directory(p.join(appSupport.path, 'image'));
-
-  Directory get font => Directory(p.join(appSupport.path, 'font'));
-
   const Paths._({
     required this.temp,
     required this.appSupport,
     required this.appCache,
     required this.documents,
   });
+
+  Directory get font => Directory(p.join(appSupport.path, 'font'));
+
+  Directory get image => Directory(p.join(appSupport.path, 'image'));
 
   static Future<Paths> init() async {
     final paths = Paths._(

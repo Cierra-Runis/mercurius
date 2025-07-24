@@ -30,45 +30,41 @@ class CalendarPage extends HookWidget {
   }
 }
 
-class _Next extends StatelessWidget {
-  const _Next({
-    required this.controller,
-  });
+class _Day extends StatelessWidget {
+  final List<Diary> diaries;
 
-  final ValueNotifier<int> controller;
+  final DateTime dateTime;
+  const _Day({
+    super.key,
+    required this.diaries,
+    required this.dateTime,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => controller.value += 1,
-      icon: const Icon(Icons.navigate_next_rounded),
-    );
-  }
-}
-
-class _Previous extends StatelessWidget {
-  const _Previous({
-    required this.controller,
-  });
-
-  final ValueNotifier<int> controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => controller.value -= 1,
-      icon: const Icon(Icons.navigate_before_rounded),
+    return Center(
+      child: Badge(
+        isLabelVisible: diaries.isNotEmpty,
+        label: diaries.length > 1 ? Text('${diaries.length}') : null,
+        child: IconButton(
+          onPressed: () {
+            if (diaries.isEmpty) return;
+            // context.push(DiaryPageView(initialId: diaries.first.id));
+          },
+          icon: Text('${dateTime.day}'),
+        ),
+      ),
     );
   }
 }
 
 class _Month extends HookWidget {
+  final DateTime dateTime;
+
   const _Month({
     super.key,
     required this.dateTime,
   });
-
-  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -82,15 +78,15 @@ class _Month extends HookWidget {
       ml10n,
     );
 
-    final stream = useMemoized(
-      () => isarService.listenDiariesBetween(
-        startOfMonth,
-        endOfMonth.subSeconds(1),
-      ),
-    );
+    // final stream = useMemoized(
+    //   () => isarService.listenDiariesBetween(
+    //     startOfMonth,
+    //     endOfMonth.subSeconds(1),
+    //   ),
+    // );
 
-    final snapshot = useStream(stream);
-    final monthDiaries = snapshot.data ?? [];
+    // final snapshot = useStream(stream);
+    // final monthDiaries = snapshot.data ?? [];
 
     final itemCount = DateTime.daysPerWeek +
         needSkipCount +
@@ -118,13 +114,14 @@ class _Month extends HookWidget {
 
           final offset = index - DateTime.daysPerWeek - needSkipCount;
           final dateTime = startOfMonth.addDays(offset);
-          final diaries = monthDiaries
-              .where((e) => dateTime.isSameDay(e.belongTo))
-              .toList();
+          // final diaries = monthDiaries
+          //     .where((e) => dateTime.isSameDay(e.belongTo))
+          //     .toList();
 
           return _Day(
             key: Key('$offset'),
-            diaries: diaries,
+            // diaries: diaries,
+            diaries: [],
             dateTime: dateTime,
           );
         },
@@ -133,30 +130,34 @@ class _Month extends HookWidget {
   }
 }
 
-class _Day extends StatelessWidget {
-  const _Day({
-    super.key,
-    required this.diaries,
-    required this.dateTime,
-  });
+class _Next extends StatelessWidget {
+  final ValueNotifier<int> controller;
 
-  final List<Diary> diaries;
-  final DateTime dateTime;
+  const _Next({
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Badge(
-        isLabelVisible: diaries.isNotEmpty,
-        label: diaries.length > 1 ? Text('${diaries.length}') : null,
-        child: IconButton(
-          onPressed: () {
-            if (diaries.isEmpty) return;
-            context.push(DiaryPageView(initialId: diaries.first.id));
-          },
-          icon: Text('${dateTime.day}'),
-        ),
-      ),
+    return IconButton(
+      onPressed: () => controller.value += 1,
+      icon: const Icon(Icons.navigate_next_rounded),
+    );
+  }
+}
+
+class _Previous extends StatelessWidget {
+  final ValueNotifier<int> controller;
+
+  const _Previous({
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => controller.value -= 1,
+      icon: const Icon(Icons.navigate_before_rounded),
     );
   }
 }

@@ -22,22 +22,6 @@ class MorePage extends StatelessWidget {
   }
 }
 
-class _MoreSection extends StatelessWidget {
-  const _MoreSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return const BasedListSection(
-      children: [
-        _StatisticTile(),
-        _ImageGalleryTile(),
-        _IOTile(),
-        _SettingsTile(),
-      ],
-    );
-  }
-}
-
 class _AboutSection extends StatelessWidget {
   const _AboutSection();
 
@@ -58,17 +42,18 @@ class _AboutSection extends StatelessWidget {
   }
 }
 
-class _StatisticTile extends StatelessWidget {
-  const _StatisticTile();
+class _ContactTile extends StatelessWidget {
+  const _ContactTile();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return BasedListTile(
-      leadingIcon: Icons.analytics_rounded,
-      titleText: l10n.statistics,
-      onTap: () => context.push(const StatisticPage()),
+      leadingIcon: Icons.link,
+      titleText: l10n.contactUs,
+      subtitleText: App.githubUrl,
+      onTap: () => App.launchUrl(App.githubUrl),
     );
   }
 }
@@ -103,17 +88,34 @@ class _IOTile extends StatelessWidget {
   }
 }
 
-class _SettingsTile extends StatelessWidget {
-  const _SettingsTile();
+class _MoreSection extends StatelessWidget {
+  const _MoreSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return const BasedListSection(
+      children: [
+        _StatisticTile(),
+        _ImageGalleryTile(),
+        _IOTile(),
+        _SettingsTile(),
+      ],
+    );
+  }
+}
+
+class _PrivacyPolicyTile extends StatelessWidget {
+  const _PrivacyPolicyTile();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return BasedListTile(
-      leadingIcon: Icons.settings_rounded,
-      titleText: l10n.settings,
-      onTap: () => context.push(const SettingsPage()),
+      leadingIcon: Icons.privacy_tip_rounded,
+      titleText: l10n.privacyPolicy,
+      subtitleText: '${App.name} ${l10n.privacyPolicy}',
+      onTap: () => App.launchUrl(App.privacyPolicyUrl),
     );
   }
 }
@@ -145,18 +147,32 @@ class _ReleaseTile extends ConsumerWidget {
   }
 }
 
-class _ContactTile extends StatelessWidget {
-  const _ContactTile();
+class _SettingsTile extends StatelessWidget {
+  const _SettingsTile();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return BasedListTile(
-      leadingIcon: Icons.link,
-      titleText: l10n.contactUs,
-      subtitleText: App.githubUrl,
-      onTap: () => App.launchUrl(App.githubUrl),
+      leadingIcon: Icons.settings_rounded,
+      titleText: l10n.settings,
+      onTap: () => context.push(const SettingsPage()),
+    );
+  }
+}
+
+class _StatisticTile extends StatelessWidget {
+  const _StatisticTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return BasedListTile(
+      leadingIcon: Icons.analytics_rounded,
+      titleText: l10n.statistics,
+      onTap: () => context.push(const StatisticPage()),
     );
   }
 }
@@ -173,22 +189,6 @@ class _ThirdPartyLicenseTile extends StatelessWidget {
       titleText: l10n.thirdPartyLicense,
       subtitleText: l10n.thirdPartyLicenseDescription,
       onTap: () => App.launchUrl(App.thirdPartyLicenseUrl),
-    );
-  }
-}
-
-class _PrivacyPolicyTile extends StatelessWidget {
-  const _PrivacyPolicyTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListTile(
-      leadingIcon: Icons.privacy_tip_rounded,
-      titleText: l10n.privacyPolicy,
-      subtitleText: '${App.name} ${l10n.privacyPolicy}',
-      onTap: () => App.launchUrl(App.privacyPolicyUrl),
     );
   }
 }

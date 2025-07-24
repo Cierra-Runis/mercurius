@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
 class AppName extends StatelessWidget {
+  final double? fontSize;
+
   const AppName({
     super.key,
     this.fontSize,
   });
-
-  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {

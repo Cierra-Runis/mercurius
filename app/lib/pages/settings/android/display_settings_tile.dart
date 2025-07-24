@@ -1,25 +1,5 @@
 part of 'android_section.dart';
 
-class _DisplaySettingsTile extends HookWidget {
-  const _DisplaySettingsTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final snapshot = useFuture(FlutterDisplayMode.active);
-
-    return BasedListTile(
-      leadingIcon: Icons.display_settings_rounded,
-      titleText: l10n.displayMode,
-      subtitleText: '${snapshot.data ?? ''}',
-      onTap: () => showModalBottomSheet(
-        context: context,
-        builder: (context) => const _DisplaySettingsSheet(),
-      ),
-    );
-  }
-}
-
 class _DisplaySettingsSheet extends HookWidget {
   const _DisplaySettingsSheet();
 
@@ -46,6 +26,26 @@ class _DisplaySettingsSheet extends HookWidget {
           },
         );
       },
+    );
+  }
+}
+
+class _DisplaySettingsTile extends HookWidget {
+  const _DisplaySettingsTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final snapshot = useFuture(FlutterDisplayMode.active);
+
+    return BasedListTile(
+      leadingIcon: Icons.display_settings_rounded,
+      titleText: l10n.displayMode,
+      subtitleText: '${snapshot.data ?? ''}',
+      onTap: () => showModalBottomSheet(
+        context: context,
+        builder: (context) => const _DisplaySettingsSheet(),
+      ),
     );
   }
 }

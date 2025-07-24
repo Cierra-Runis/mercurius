@@ -1,7 +1,6 @@
 import 'package:mercurius/index.dart';
 
 part 'auto_backup_diaries_tile.dart';
-
 part 'auto_upload_images_tile.dart';
 part 'github_settings_tile.dart';
 

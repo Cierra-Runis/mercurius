@@ -1,24 +1,5 @@
 part of 'general_section.dart';
 
-class _LanguageSelectTile extends ConsumerWidget {
-  const _LanguageSelectTile();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final settings = ref.watch(settingsProvider);
-
-    final humanString = App.supportLanguages[settings.locale];
-
-    return BasedListTile(
-      leadingIcon: Icons.translate_rounded,
-      titleText: l10n.language,
-      detailText: humanString ?? l10n.followTheSystem,
-      onTap: () => context.push(const _LanguagePage()),
-    );
-  }
-}
-
 class _LanguagePage extends ConsumerWidget {
   const _LanguagePage();
 
@@ -57,6 +38,25 @@ class _LanguagePage extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _LanguageSelectTile extends ConsumerWidget {
+  const _LanguageSelectTile();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final settings = ref.watch(settingsProvider);
+
+    final humanString = App.supportLanguages[settings.locale];
+
+    return BasedListTile(
+      leadingIcon: Icons.translate_rounded,
+      titleText: l10n.language,
+      detailText: humanString ?? l10n.followTheSystem,
+      onTap: () => context.push(const _LanguagePage()),
     );
   }
 }

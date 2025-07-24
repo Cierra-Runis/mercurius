@@ -1,3 +1,4 @@
+export 'account_page.dart';
 export 'editor_page.dart';
 export 'gallery_page.dart';
 export 'io_page.dart';

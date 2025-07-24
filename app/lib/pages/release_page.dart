@@ -2,53 +2,6 @@ import 'package:mercurius/index.dart';
 
 class ReleasePage extends ConsumerWidget {
   const ReleasePage({super.key});
-  VoidCallback _downloadRelease(GitHubLatestRelease data) {
-    return () {
-      if (Platform.isAndroid) {
-        final asset = data.assets?.firstWhereOr(
-          (e) => e.name.endsWith('.apk'),
-        );
-        if (asset != null) {
-          App.launchUrl(asset.browserDownloadUrl);
-        }
-      }
-      if (Platform.isWindows) {
-        final asset = data.assets?.firstWhereOr(
-          (e) => e.name.endsWith('.zip'),
-        );
-        if (asset != null) {
-          App.launchUrl(asset.browserDownloadUrl);
-        }
-      }
-    };
-  }
-
-  Widget getBodyByData(BuildContext context, GitHubLatestRelease data) {
-    final l10n = context.l10n;
-
-    if (data.body != null) {
-      return Markdown(
-        styleSheet: MarkdownStyleSheet(
-          code: TextStyle(
-            fontFamily: App.fontCascadiaCodePL,
-            backgroundColor: context.colorScheme.secondaryContainer,
-          ),
-          blockquoteDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: context.colorScheme.surface,
-          ),
-        ),
-        data: data.body!,
-        onTapLink: (text, href, title) {
-          if (href != null) App.launchUrl(href);
-        },
-      );
-    }
-    return Center(
-      child: Text(l10n.releasePageOops),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final githubLatestRelease = ref.watch(githubLatestReleaseProvider);
@@ -90,5 +43,52 @@ class ReleasePage extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Widget getBodyByData(BuildContext context, GitHubLatestRelease data) {
+    final l10n = context.l10n;
+
+    if (data.body != null) {
+      return Markdown(
+        styleSheet: MarkdownStyleSheet(
+          code: TextStyle(
+            fontFamily: App.fontCascadiaCodePL,
+            backgroundColor: context.colorScheme.secondaryContainer,
+          ),
+          blockquoteDecoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: context.colorScheme.surface,
+          ),
+        ),
+        data: data.body!,
+        onTapLink: (text, href, title) {
+          if (href != null) App.launchUrl(href);
+        },
+      );
+    }
+    return Center(
+      child: Text(l10n.releasePageOops),
+    );
+  }
+
+  VoidCallback _downloadRelease(GitHubLatestRelease data) {
+    return () {
+      if (Platform.isAndroid) {
+        final asset = data.assets?.firstWhereOr(
+          (e) => e.name.endsWith('.apk'),
+        );
+        if (asset != null) {
+          App.launchUrl(asset.browserDownloadUrl);
+        }
+      }
+      if (Platform.isWindows) {
+        final asset = data.assets?.firstWhereOr(
+          (e) => e.name.endsWith('.zip'),
+        );
+        if (asset != null) {
+          App.launchUrl(asset.browserDownloadUrl);
+        }
+      }
+    };
   }
 }

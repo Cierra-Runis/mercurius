@@ -2,12 +2,12 @@ import 'package:mercurius/index.dart';
 import 'package:path/path.dart' as p;
 
 class ImageView extends ConsumerWidget {
+  final String filename;
+
   const ImageView({
     super.key,
     required this.filename,
   });
-
-  final String filename;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

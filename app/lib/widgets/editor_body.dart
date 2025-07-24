@@ -1,27 +1,27 @@
 import 'package:mercurius/index.dart';
 
 class EditorBody extends ConsumerWidget {
-  const EditorBody({
-    super.key,
-    required this.controller,
-    required this.scrollController,
-    required this.readOnly,
-  });
-
-  final QuillController controller;
-  final ScrollController scrollController;
-  final bool readOnly;
-  bool get autoFocus => !readOnly;
-  bool get showCursor => !readOnly;
-  bool get enableInteractiveSelection => !readOnly;
-  bool get enableSelectionToolbar => !readOnly;
-
   static const embedBuilders = [
     ImageBlockEmbedBuilder(),
     TagBlockEmbedBuilder(),
   ];
 
   static const unknownEmbedBuilder = DeprecatedEmbedBuilder();
+  final QuillController controller;
+  final ScrollController scrollController;
+  final bool readOnly;
+  const EditorBody({
+    super.key,
+    required this.controller,
+    required this.scrollController,
+    required this.readOnly,
+  });
+  bool get autoFocus => !readOnly;
+  bool get enableInteractiveSelection => !readOnly;
+
+  bool get enableSelectionToolbar => !readOnly;
+
+  bool get showCursor => !readOnly;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

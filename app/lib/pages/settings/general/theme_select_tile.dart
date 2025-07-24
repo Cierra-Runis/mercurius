@@ -1,20 +1,5 @@
 part of 'general_section.dart';
 
-class _ThemeSelectTile extends StatelessWidget {
-  const _ThemeSelectTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListTile(
-      leadingIcon: Icons.dark_mode_rounded,
-      titleText: l10n.darkMode,
-      trailing: const _ThemeSelector(),
-    );
-  }
-}
-
 class _ThemeSelector extends ConsumerWidget {
   const _ThemeSelector();
 
@@ -49,6 +34,21 @@ class _ThemeSelector extends ConsumerWidget {
       ],
       selected: {settings.themeMode},
       onSelectionChanged: (p0) => settingsNotifier.setThemeMode(p0.first),
+    );
+  }
+}
+
+class _ThemeSelectTile extends StatelessWidget {
+  const _ThemeSelectTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
+    return BasedListTile(
+      leadingIcon: Icons.dark_mode_rounded,
+      titleText: l10n.darkMode,
+      trailing: const _ThemeSelector(),
     );
   }
 }

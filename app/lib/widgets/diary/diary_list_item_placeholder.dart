@@ -1,12 +1,12 @@
 import 'package:mercurius/index.dart';
 
+const _belongTo = BasedShimmer(width: 72, height: 16, radius: 8);
+const _content = BasedShimmer(width: 160, height: 12, radius: 6);
 const _day = BasedShimmer(width: 24, height: 20, radius: 6);
+const _editAt = BasedShimmer(width: 32, height: 10, radius: 5);
+const _mood = BasedShimmer.round(size: 16);
 const _weather = BasedShimmer.round(size: 16);
 const _weekday = BasedShimmer(width: 30, height: 10, radius: 5);
-const _mood = BasedShimmer.round(size: 16);
-const _belongTo = BasedShimmer(width: 72, height: 16, radius: 8);
-const _editAt = BasedShimmer(width: 32, height: 10, radius: 5);
-const _content = BasedShimmer(width: 160, height: 12, radius: 6);
 
 class DiaryListItemPlaceholder extends StatelessWidget {
   const DiaryListItemPlaceholder({super.key});
