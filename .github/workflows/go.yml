@@ -13,8 +13,6 @@ jobs:
         uses: actions/setup-go@v5
       - name: Move to server directory
         run: cd server
-      - name: Install dependencies
-        run: go mod download
       - name: Build Go project
         run: go build
       - name: Test with Go
