@@ -7,18 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: cd to server directory
-        run: cd server
       - name: Setup Go
         uses: actions/setup-go@v5
       - name: Install dependencies
+        working-directory: ./server
         run: go mod tidy
       - name: Build Go project
+        working-directory: ./server
         run: go build
       - name: Test with Go
+        working-directory: ./server
         run: go test ./... -json > TestResults.json
       - name: Upload Go test results
         uses: actions/upload-artifact@v4
         with:
           name: results
-          path: TestResults.json
+          path: ./server/TestResults.json
