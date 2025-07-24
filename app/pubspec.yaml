@@ -1,7 +1,7 @@
 name: mercurius
 description: 'For mercurius.'
 publish_to: 'none'
-version: 2.1.0+107
+version: 3.0.0+108
 
 environment:
   sdk: ^3.6.0
