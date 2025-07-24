@@ -10,7 +10,6 @@ class RootPage extends HookWidget {
     return BasedSplitView(
       navigatorKey: App.splitViewKey,
       leftWidget: _RootPage(key: _rootPage),
-      dividerWidth: 0,
       rightPlaceholder: const Scaffold(
         body: Center(child: AppIcon(size: 96)),
       ),
