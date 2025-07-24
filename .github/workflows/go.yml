@@ -11,6 +11,8 @@ jobs:
         run: cd server
       - name: Setup Go
         uses: actions/setup-go@v5
+      - name: Install dependencies
+        run: go mod tidy
       - name: Build Go project
         run: go build
       - name: Test with Go
