@@ -487,7 +487,6 @@ class _EditorToolbar extends StatelessWidget {
     final belongTo = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
-      useRootNavigator: false,
       initialDate: diary.belongTo,
       firstDate: DateTime(1949, 10),
       lastDate: DateTimeExtension.today.add(
