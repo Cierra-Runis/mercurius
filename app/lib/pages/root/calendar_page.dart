@@ -13,7 +13,7 @@ class CalendarPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const SearchButton(),
-        title: const AppBarTitle(),
+        title: AppBarTitle(),
         actions: [
           _Previous(controller: offset),
           _Next(controller: offset),
@@ -78,16 +78,6 @@ class _Month extends HookWidget {
       ml10n,
     );
 
-    // final stream = useMemoized(
-    //   () => isarService.listenDiariesBetween(
-    //     startOfMonth,
-    //     endOfMonth.subSeconds(1),
-    //   ),
-    // );
-
-    // final snapshot = useStream(stream);
-    // final monthDiaries = snapshot.data ?? [];
-
     final itemCount = DateTime.daysPerWeek +
         needSkipCount +
         DateUtils.getDaysInMonth(dateTime.year, dateTime.month);
@@ -114,13 +104,9 @@ class _Month extends HookWidget {
 
           final offset = index - DateTime.daysPerWeek - needSkipCount;
           final dateTime = startOfMonth.addDays(offset);
-          // final diaries = monthDiaries
-          //     .where((e) => dateTime.isSameDay(e.belongTo))
-          //     .toList();
 
           return _Day(
             key: Key('$offset'),
-            // diaries: diaries,
             diaries: [],
             dateTime: dateTime,
           );

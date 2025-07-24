@@ -156,9 +156,7 @@ abstract final class App {
     };
 
     try {
-      if (Platform.isWindows || Platform.isMacOS) {
-        await _PlatformWindowManager.init();
-      }
+      await _PlatformWindowManager.init();
 
       if (Platform.isAndroid) {
         await FlutterDisplayMode.setHighRefreshRate();
@@ -168,9 +166,6 @@ abstract final class App {
       final persistence = await Persistence.init();
       final dynamicColor = await DynamicColor.init();
       final packageInfo = await PackageInfo.fromPlatform();
-
-      /// TODO: use riverpod instead
-      // isarService = IsarService.openDB(paths.appSupport);
 
       runApp(
         ProviderScope(
@@ -341,6 +336,7 @@ class _MainApp extends ConsumerWidget {
 
 abstract final class _PlatformWindowManager {
   static Future<void> init() async {
+    if (!Platform.isWindows && !Platform.isMacOS) return;
     await windowManager.ensureInitialized();
     const windowOptions = WindowOptions(
       title: App.name,

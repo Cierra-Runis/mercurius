@@ -178,9 +178,6 @@ class _ListTileState extends State<_ListTile> {
           builder: (context, child) => Text('${_controller.count}'),
         ),
       ),
-      // onTap: () => context.push(
-      // DiaryPageView(initialId: widget.diary.id),
-      // ),
     );
   }
 }
@@ -275,41 +272,11 @@ class _ViewContent extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-
-    // final stream = useMemoized(isarService.listenAllDiaries);
-    // final snapshot = useStream(stream);
-    // final data = snapshot.data;
-    // final hasData = data != null && data.isNotEmpty;
-
-    final search = ref.watch(searchProvider);
-
-    // if (search.source.isEmpty || !hasData) {
-    //   return Center(child: Text(l10n.noData));
-    // }
-
-    // final diaries = snapshot.data!;
-
-    final pattern = search.pattern;
-    // final filteredDiaries =
-    // diaries.where((e) => e.plainText.contains(pattern)).toList();
-
-    // if (filteredDiaries.isEmpty) {
-    //   return Center(child: Text(l10n.noData));
-    // }
-
     return SizeCacheWidget(
       child: ListView.builder(
         cacheExtent: 1000,
-        // itemCount: filteredDiaries.length,
         itemBuilder: (context, index) {
           return null;
-
-          // final diary = filteredDiaries[index];
-          // return FrameSeparateWidget(
-          // index: diary.id,
-          // child: _ListTile(diary: diary, pattern: pattern),
-          // );
         },
       ),
     );

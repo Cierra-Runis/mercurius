@@ -4,12 +4,15 @@ import '_app_bar_title.dart';
 import '_search_button.dart';
 
 class HomePage extends HookWidget {
-  const HomePage({super.key});
+  final ScrollController controller;
+
+  const HomePage({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final controller = useScrollController();
-
     return Scaffold(
       appBar: AppBar(
         leading: const SearchButton(),
@@ -17,12 +20,27 @@ class HomePage extends HookWidget {
         actions: [
           IconButton(
             onPressed: () => context.push(const SettingsPage()),
-            icon: const Icon(Icons.settings_rounded),
+            icon: _BottomBarMorePageIcon(),
           ),
         ],
       ),
-      body: _HomePageBody(controller: controller),
+      body: _DiaryListView(controller: controller),
       floatingActionButton: const _FloatingButton(),
+    );
+  }
+}
+
+class _BottomBarMorePageIcon extends ConsumerWidget {
+  const _BottomBarMorePageIcon();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final githubHasUpdate = ref.watch(githubHasUpdateProvider);
+    final hasUpdate = githubHasUpdate.value ?? false;
+
+    return Badge(
+      isLabelVisible: hasUpdate,
+      child: const Icon(Icons.settings_rounded),
     );
   }
 }
@@ -77,90 +95,14 @@ class _DiaryListView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final lang = Localizations.localeOf(context).toLanguageTag();
-    // final stream = useMemoized(isarService.listenAllDiaries);
-    // final snapshot = useStream(stream);
-    // final data = snapshot.data;
-    // final hasData = data != null && data.isNotEmpty;
-
-    // if (!hasData) {
-    // return Center(child: Text(l10n.noData));
-    // }
-
-    final sections = _parseDiaries([], lang);
-
     return ListView.builder(
-      cacheExtent: 1000,
       controller: controller,
-      itemCount: sections.length,
-      itemBuilder: (context, index) {
-        final section = sections[index];
-        return ExpansionTile(
-          key: PageStorageKey<String>(section.header),
-          initiallyExpanded: true,
-          leading: const AppIcon(size: 28),
-          title: Text(section.header),
-          trailing: Text(l10n.diaryCount(section.items.length)),
-          children: section.items
-              .map(
-                (e) => FrameSeparateWidget(
-                  placeHolder: const DiaryListItemPlaceholder(),
-                  child: DiaryListItem(
-                    dismissDirection: DismissDirection.endToStart,
-                    diary: e,
-                  ),
-                ),
-              )
-              .toList(),
-        );
-      },
-    );
-  }
-
-  List<_DiaryListViewSection> _parseDiaries(
-    List<Diary> diaries,
-    String lang,
-  ) {
-    if (diaries.isEmpty) return [];
-    final sections = <_DiaryListViewSection>[];
-
-    var year = diaries[0].belongTo.year;
-    var month = diaries[0].belongTo.month;
-    sections.add(
-      _DiaryListViewSection(
-        header: diaries[0].belongTo.format(DateFormat.YEAR_ABBR_MONTH, lang),
-        items: [],
+      itemBuilder: (context, index) => BasedListTile(
+        titleText: '$index',
+        onTap: () {},
       ),
     );
-
-    for (final diary in diaries) {
-      if (diary.belongTo.month == month && diary.belongTo.year == year) {
-        sections.last.items.add(diary);
-      } else {
-        month = diary.belongTo.month;
-        year = diary.belongTo.year;
-        sections.add(
-          _DiaryListViewSection(
-            header: diary.belongTo.format(DateFormat.YEAR_ABBR_MONTH, lang),
-            items: [diary],
-          ),
-        );
-      }
-    }
-
-    return sections;
   }
-}
-
-class _DiaryListViewSection {
-  final String header;
-
-  final List<Diary> items;
-  const _DiaryListViewSection({
-    required this.items,
-    required this.header,
-  });
 }
 
 class _EditingButton extends HookWidget {
@@ -169,12 +111,6 @@ class _EditingButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    // final stream = useMemoized(isarService.listenEditingDiaries);
-    // final snapshot = useStream(stream);
-    // final data = snapshot.data;
-    // final hasData = data != null && data.isNotEmpty;
-    // if (!hasData) return const SizedBox();
 
     return FloatingActionButton.small(
       tooltip: l10n.continueEditingDiary,
@@ -192,33 +128,11 @@ class _EditingDialog extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // final stream = useMemoized(isarService.listenEditingDiaries);
-    // final snapshot = useStream(stream);
-
-    // final data = snapshot.data;
-    // final hasData = data != null && data.isNotEmpty;
 
     return AlertDialog(
       title: Text(l10n.continueEditingDiary),
       content: SizedBox(
         width: double.maxFinite,
-        // child: !hasData
-        //     ? Text(l10n.noData)
-        //     : ListView.builder(
-        //         shrinkWrap: true,
-        //         itemCount: data.length,
-        //         itemBuilder: (context, index) => FrameSeparateWidget(
-        //           index: index,
-        //           placeHolder: const DiaryListItemPlaceholder(),
-        //           child: DiaryListItem(
-        //             onTap: () {
-        //               context.pop();
-        //               context.push(EditorPage(diary: data[index]));
-        //             },
-        //             diary: data[index],
-        //           ),
-        //         ),
-        //       ),
       ),
     );
   }
@@ -242,52 +156,12 @@ class _FloatingButton extends StatelessWidget {
   }
 }
 
-class _HomePageBody extends ConsumerWidget {
-  final ScrollController controller;
-
-  const _HomePageBody({required this.controller});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final path = ref.watch(pathsProvider);
-    final settings = ref.watch(settingsProvider);
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: BasedLocalFirstImage(
-            filename: settings.bgImgPath ?? '',
-            localDirectory: path.image.path,
-          ),
-        ),
-      ),
-      child: _DiaryListView(
-        controller: controller,
-      ),
-    );
-  }
-}
-
 class _ThisDayLastYearButton extends HookWidget {
   const _ThisDayLastYearButton();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-
-    // final stream = useMemoized(
-    //   () => isarService.listenDiariesBetween(
-    //     DateTimeExtension.today.previousYear,
-    //     DateTimeExtension.today.previousYear.nextDay.subSeconds(1),
-    //   ),
-    // );
-
-    // final snapshot = useStream(stream);
-    // final data = snapshot.data;
-
-    // final hasData = data != null && data.isNotEmpty;
-    // if (!hasData) return const SizedBox();
 
     return FloatingActionButton.small(
       heroTag: 'thisDayLastYear',
@@ -307,41 +181,10 @@ class _ThisDayLastYearDialog extends HookWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
-    // final stream = useMemoized(
-    //   () => isarService.listenDiariesBetween(
-    //     DateTimeExtension.today.previousYear,
-    //     DateTimeExtension.today.previousYear.nextDay.subSeconds(1),
-    //   ),
-    // );
-
-    // final snapshot = useStream(stream);
-    // final data = snapshot.data;
-
-    // final hasData = data != null && data.isNotEmpty;
-    // if (!hasData) return const SizedBox();
-
     return AlertDialog(
       title: Text(l10n.thisDayLastYear),
       content: SizedBox(
         width: double.maxFinite,
-        // child: !hasData
-        //     ? Text(l10n.noData)
-        //     : ListView.builder(
-        //         shrinkWrap: true,
-        //         itemCount: data.length,
-        //         itemBuilder: (context, index) => FrameSeparateWidget(
-        //           index: index,
-        //           placeHolder: const DiaryListItemPlaceholder(),
-        //           child: DiaryListItem(
-        //             onTap: () => context.push(
-        //               DiaryPageView(
-        //                 initialId: data[index].id,
-        //               ),
-        //             ),
-        //             diary: data[index],
-        //           ),
-        //         ),
-        //       ),
       ),
     );
   }

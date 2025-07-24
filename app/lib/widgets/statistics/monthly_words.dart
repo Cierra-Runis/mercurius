@@ -6,12 +6,6 @@ class MonthlyWords extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final lang = context.languageTag;
-    // final stream = useMemoized(() => isarService.listenAllDiaries(false));
-    // final snapshot = useStream(stream);
-    // final data = snapshot.data;
-    // final hasData = data != null && data.isNotEmpty;
-
-    // if (!hasData) return const SizedBox(height: 260, child: Loading());
 
     return SizedBox(
       height: 260,
@@ -57,33 +51,6 @@ class MonthlyWords extends HookWidget {
         ],
       ),
     );
-  }
-
-  List<_WordsData> _getWordsData(List<Diary> diaries) {
-    final result = <_WordsData>[];
-
-    final data = <DateTime, int>{};
-
-    var start = diaries.first.belongTo;
-    start = DateTime(start.year, start.month);
-    final end = diaries.last.belongTo;
-
-    while (start.isBefore(end)) {
-      data.addAll({start: 0});
-      start = DateTime(start.year, start.month + 1);
-    }
-
-    data.forEach((key, _) {
-      for (final diary in diaries) {
-        if (key.isSameYear(diary.belongTo) && key.isSameMonth(diary.belongTo)) {
-          data.update(key, (value) => value += diary.length);
-        }
-      }
-    });
-
-    data.forEach((key, value) => result.add(_WordsData(key, value)));
-
-    return result;
   }
 }
 

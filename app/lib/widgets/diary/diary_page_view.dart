@@ -82,9 +82,7 @@ class _DiaryPageItem extends StatelessWidget {
                   summary: l10n.pleaseThinkTwiceAboutDeletingTheDiary,
                   context: context,
                 ).confirm;
-                if (confirm == ConfirmResult.confirm) {
-                  // isarService.deleteDiaryById(diary.id);
-                }
+                if (confirm == ConfirmResult.confirm) {}
               },
               icon: const Icon(Icons.delete_outline_rounded),
             ),
@@ -108,11 +106,6 @@ class _DiaryPageItem extends StatelessWidget {
 class _DiaryPageViewState extends State<DiaryPageView> {
   @override
   Widget build(BuildContext context) {
-    /// TODO: Use Hook
-    // return StreamBuilder<List<Diary>>(
-    //   stream: stream,
-    //   builder: _getBodyBySnapshotState,
-    // );
     return Placeholder();
   }
 
@@ -132,8 +125,6 @@ class _DiaryPageViewState extends State<DiaryPageView> {
     };
   }
 
-  // final stream = isarService.listenAllDiaries();
-
   Widget _getPageBySnapshotData(
     BuildContext context,
     AsyncSnapshot<List<Diary>> snapshot,
@@ -149,16 +140,8 @@ class _DiaryPageViewState extends State<DiaryPageView> {
     /// FIXME: https://github.com/flutter/flutter/issues/45632
     return PageView.builder(
       itemCount: diaries.length,
-      controller: PageController(
-
-          /// TIPS: diaries maybe random
-          // initialPage: diaries.indexWhere((e) => e.id == widget.initialId),
-          ),
+      controller: PageController(),
       allowImplicitScrolling: true,
-      // itemBuilder: (context, index) => _DiaryPageItem(
-      //   key: ValueKey(diaries[index].id),
-      //   diary: diaries[index],
-      // ),
       itemBuilder: (context, index) => Center(child: Text('$index')),
     );
   }

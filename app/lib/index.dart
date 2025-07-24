@@ -21,6 +21,7 @@ export 'package:flutter/cupertino.dart' hide RefreshCallback, Notification;
 export 'package:flutter/foundation.dart' hide describeIdentity, shortHash;
 export 'package:flutter/gestures.dart';
 export 'package:flutter/material.dart' hide Notification;
+export 'package:flutter/rendering.dart' show ScrollDirection;
 export 'package:flutter/services.dart';
 export 'package:flutter_displaymode/flutter_displaymode.dart';
 export 'package:flutter_hooks/flutter_hooks.dart' hide Hook;

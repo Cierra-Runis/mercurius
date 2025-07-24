@@ -182,15 +182,6 @@ class _ImportJsonFile extends StatelessWidget {
         );
 
         if (result == null || result.files.single.path == null) return;
-
-        // final succuss = await isarService.importJsonWith(
-        //   result.files.single.path!,
-        // );
-
-        // if (context.mounted && succuss) {
-        //   App.vibration();
-        //   App.showSnackBar(Text(l10n.pleaseBackToHomePage));
-        // }
       },
     );
   }

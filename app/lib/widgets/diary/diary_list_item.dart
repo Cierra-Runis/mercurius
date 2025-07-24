@@ -37,10 +37,6 @@ class DiaryListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(24.0),
         ),
         child: InkWell(
-          // onTap: onTap ??
-          // () => context.push(
-          // DiaryPageView(initialId: diary.id),
-          // ),
           borderRadius: BorderRadius.circular(24.0),
           child: SizedBox(
             height: 80,
