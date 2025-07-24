@@ -118,6 +118,13 @@ flutter:
     - family: CascadiaCodePL
       fonts:
         - asset: assets/fonts/CascadiaCodePL/CascadiaCodePL-Regular.otf
+        - asset: assets/fonts/CascadiaCodePL/CascadiaCodePL-Bold.otf
+          weight: 700
+        - asset: assets/fonts/CascadiaCodePL/CascadiaCodePL-Italic.otf
+          style: italic
+        - asset: assets/fonts/CascadiaCodePL/CascadiaCodePL-BoldItalic.otf
+          weight: 700
+          style: italic
   assets:
     - assets/icon/
 
