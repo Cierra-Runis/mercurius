@@ -34,7 +34,6 @@ export 'package:image_picker/image_picker.dart';
 export 'package:image_picker_android/image_picker_android.dart';
 export 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 export 'package:intl/intl.dart' hide TextDirection;
-export 'package:isar/isar.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:keframe/keframe.dart';
 export 'package:loading_animation_widget/loading_animation_widget.dart';
