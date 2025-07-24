@@ -1,12 +1,11 @@
 import 'package:mercurius/index.dart';
-import 'package:path/path.dart' as p;
 
-part 'accent_color_tile.dart';
-part 'background_image_tile.dart';
+export 'style/style_page.dart';
+
+part 'account_tile.dart';
 part 'cache_cleaning_tile.dart';
-part 'font_select_tile.dart';
 part 'language_select_tile.dart';
-part 'theme_select_tile.dart';
+part 'style_tile.dart';
 
 class GeneralSection extends StatelessWidget {
   const GeneralSection({super.key});
@@ -18,11 +17,9 @@ class GeneralSection extends StatelessWidget {
     return BasedListSection(
       titleText: l10n.generalSettings,
       children: const [
-        _ThemeSelectTile(),
-        _AccentColorTile(),
-        _BackgroundImageTile(),
+        _AccountTile(),
+        _StyleTile(),
         _LanguageSelectTile(),
-        _FontSelectTile(),
         _CacheCleaningTile(),
       ],
     );

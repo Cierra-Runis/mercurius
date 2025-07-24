@@ -15,8 +15,9 @@ class SettingsPage extends StatelessWidget {
         child: BasedListView(
           children: [
             const GeneralSection(),
-            const CloudSection(),
             if (Platform.isAndroid) const AndroidSection(),
+            const MoreSection(),
+            const AboutSection(),
           ],
         ),
       ),

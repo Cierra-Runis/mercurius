@@ -37,7 +37,6 @@ class _RootPage extends HookWidget {
   static const bodyWidgets = [
     HomePage(key: PageStorageKey(HomePage)),
     CalendarPage(key: PageStorageKey(CalendarPage)),
-    MorePage(key: PageStorageKey(MorePage)),
   ];
 
   const _RootPage({super.key});
@@ -66,10 +65,6 @@ class _RootPage extends HookWidget {
           NavigationDestination(
             icon: const Icon(Icons.calendar_month_rounded),
             label: l10n.calendar,
-          ),
-          NavigationDestination(
-            icon: const _BottomBarMorePageIcon(),
-            label: l10n.morePage,
           ),
         ],
       ),

@@ -1,29 +1,7 @@
 import 'package:mercurius/index.dart';
 
-class MorePage extends StatelessWidget {
-  const MorePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.morePage),
-      ),
-      body: const BasedListView(
-        children: [
-          _MoreSection(),
-          _AboutSection(),
-        ],
-      ),
-      bottomNavigationBar: const HiToKoToWidget(),
-    );
-  }
-}
-
-class _AboutSection extends StatelessWidget {
-  const _AboutSection();
+class AboutSection extends StatelessWidget {
+  const AboutSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +9,6 @@ class _AboutSection extends StatelessWidget {
 
     return BasedListSection(
       titleText: l10n.aboutApp,
-      titleTextStyle: const TextStyle(),
       children: const [
         _ReleaseTile(),
         _ContactTile(),
@@ -54,52 +31,6 @@ class _ContactTile extends StatelessWidget {
       titleText: l10n.contactUs,
       subtitleText: App.githubUrl,
       onTap: () => App.launchUrl(App.githubUrl),
-    );
-  }
-}
-
-class _ImageGalleryTile extends StatelessWidget {
-  const _ImageGalleryTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListTile(
-      leadingIcon: Icons.image_rounded,
-      titleText: l10n.imageGallery,
-      onTap: () => context.push(const GalleryPage()),
-    );
-  }
-}
-
-class _IOTile extends StatelessWidget {
-  const _IOTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListTile(
-      leadingIcon: Icons.import_export_rounded,
-      titleText: l10n.importAndExport,
-      onTap: () => context.push(const IOPage()),
-    );
-  }
-}
-
-class _MoreSection extends StatelessWidget {
-  const _MoreSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return const BasedListSection(
-      children: [
-        _StatisticTile(),
-        _ImageGalleryTile(),
-        _IOTile(),
-        _SettingsTile(),
-      ],
     );
   }
 }
@@ -143,36 +74,6 @@ class _ReleaseTile extends ConsumerWidget {
           hasUpdate ? l10n.clickHereToUpdate : l10n.alreadyTheLatestVersion,
       showTrailingBadge: hasUpdate,
       onTap: () => context.push(const ReleasePage()),
-    );
-  }
-}
-
-class _SettingsTile extends StatelessWidget {
-  const _SettingsTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListTile(
-      leadingIcon: Icons.settings_rounded,
-      titleText: l10n.settings,
-      onTap: () => context.push(const SettingsPage()),
-    );
-  }
-}
-
-class _StatisticTile extends StatelessWidget {
-  const _StatisticTile();
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-
-    return BasedListTile(
-      leadingIcon: Icons.analytics_rounded,
-      titleText: l10n.statistics,
-      onTap: () => context.push(const StatisticPage()),
     );
   }
 }

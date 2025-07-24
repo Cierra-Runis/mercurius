@@ -7,7 +7,7 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.alwaysDark),
+        title: Text(context.l10n.account),
       ),
     );
   }

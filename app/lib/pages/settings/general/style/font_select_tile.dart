@@ -1,4 +1,4 @@
-part of 'general_section.dart';
+part of 'style_page.dart';
 
 class _FontPage extends ConsumerWidget {
   const _FontPage();

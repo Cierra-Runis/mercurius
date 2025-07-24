@@ -16,8 +16,8 @@ class HomePage extends HookWidget {
         title: AppBarTitle(controller: controller),
         actions: [
           IconButton(
-            onPressed: () => context.push(const AccountPage()),
-            icon: const Icon(Icons.account_circle_rounded),
+            onPressed: () => context.push(const SettingsPage()),
+            icon: const Icon(Icons.settings_rounded),
           ),
         ],
       ),
