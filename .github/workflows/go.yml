@@ -11,8 +11,6 @@ jobs:
         run: cd server
       - name: Setup Go
         uses: actions/setup-go@v5
-      - name: Move to server directory
-        run: cd server
       - name: Build Go project
         run: go build
       - name: Test with Go
