@@ -19,12 +19,9 @@ class Diary with _$Diary {
 
   const Diary._();
 
-  @ignore
   Document get document => Document.fromJson(content);
 
-  @ignore
   int get length => plainText.length;
 
-  @ignore
   String get plainText => document.plainText;
 }

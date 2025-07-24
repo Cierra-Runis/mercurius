@@ -12,29 +12,9 @@ enum DiaryMoodType {
   smileDizzy('smileDizzy', UniconsLine.smile_dizzy),
   mehClosedEye('normal', UniconsLine.meh_closed_eye);
 
-  const DiaryMoodType(this.mood, this.iconData);
-  @enumValue
   final String mood;
   final IconData iconData;
-}
-
-/// [DiaryWeatherType]
-enum DiaryWeatherType {
-  sunny('sunny', QWeatherIcons.tag_sunny),
-  cloudy('cloudy', QWeatherIcons.tag_cloudy),
-  fewClouds('fewClouds', QWeatherIcons.tag_few_clouds),
-  heavyThunderstorm('heavyThunderstorm', QWeatherIcons.tag_heavy_thunderstorm),
-  lightRain('lightRain', QWeatherIcons.tag_light_rain),
-  heavyRain('heavyRain', QWeatherIcons.tag_heavy_rain),
-  lightSnow('lightSnow', QWeatherIcons.tag_light_snow),
-  heavySnow('heavySnow', QWeatherIcons.tag_heavy_snow),
-  foggy('foggy', QWeatherIcons.tag_foggy);
-
-  const DiaryWeatherType(this.weather, this.qweatherIcons);
-
-  @enumValue
-  final String weather;
-  final QWeatherIcons qweatherIcons;
+  const DiaryMoodType(this.mood, this.iconData);
 }
 
 enum DiaryTagType {
@@ -53,6 +33,24 @@ enum DiaryTagType {
   beachAccess(Icons.beach_access_rounded),
   bed(Icons.bed_rounded);
 
-  const DiaryTagType(this.iconData);
   final IconData iconData;
+  const DiaryTagType(this.iconData);
+}
+
+/// [DiaryWeatherType]
+enum DiaryWeatherType {
+  sunny('sunny', QWeatherIcons.tag_sunny),
+  cloudy('cloudy', QWeatherIcons.tag_cloudy),
+  fewClouds('fewClouds', QWeatherIcons.tag_few_clouds),
+  heavyThunderstorm('heavyThunderstorm', QWeatherIcons.tag_heavy_thunderstorm),
+  lightRain('lightRain', QWeatherIcons.tag_light_rain),
+  heavyRain('heavyRain', QWeatherIcons.tag_heavy_rain),
+  lightSnow('lightSnow', QWeatherIcons.tag_light_snow),
+  heavySnow('heavySnow', QWeatherIcons.tag_heavy_snow),
+  foggy('foggy', QWeatherIcons.tag_foggy);
+
+  final String weather;
+
+  final QWeatherIcons qweatherIcons;
+  const DiaryWeatherType(this.weather, this.qweatherIcons);
 }

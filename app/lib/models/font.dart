@@ -5,8 +5,6 @@ part 'font.g.dart';
 
 @freezed
 class Font with _$Font {
-  const Font._();
-
   const factory Font({
     required String fontFamily,
     required Map<String, String> name,
@@ -18,13 +16,15 @@ class Font with _$Font {
 
   factory Font.fromJson(Json json) => _$FontFromJson(json);
 
-  String l10nName(String languageTag) =>
-      name.entries.firstWhereOr((e) => e.key == languageTag)?.value ??
-      fontFamily;
+  const Font._();
 
   String l10nDescription(String languageTag) =>
       description.entries.firstWhereOr((e) => e.key == languageTag)?.value ??
       description.entries.first.value;
+
+  String l10nName(String languageTag) =>
+      name.entries.firstWhereOr((e) => e.key == languageTag)?.value ??
+      fontFamily;
 }
 
 @freezed
