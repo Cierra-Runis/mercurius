@@ -44,7 +44,7 @@ Future<CurrentPosition> currentPosition(Ref ref) async {
 }
 
 @freezed
-class CurrentPosition with _$CurrentPosition {
+abstract class CurrentPosition with _$CurrentPosition {
   const factory CurrentPosition({
     @JsonKey(name: 'latitude') @Default('116.38') String latitude,
     @JsonKey(name: 'longitude') @Default('39.91') String longitude,

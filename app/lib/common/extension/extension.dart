@@ -50,7 +50,7 @@ extension BuildContextExt on BuildContext {
           : App.splitViewKey.currentState ?? Navigator.of(this);
 }
 
-extension CacheForExt on Ref<Object?> {
+extension CacheForExt on Ref {
   /// Refresh provider each [duration].
   void refreshFor(Duration duration) {
     /// Immediately prevent the state from getting destroyed.

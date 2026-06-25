@@ -51,7 +51,7 @@ class ColorSchemes extends _$ColorSchemes {
 }
 
 @freezed
-class ColorSchemesState with _$ColorSchemesState {
+abstract class ColorSchemesState with _$ColorSchemesState {
   const factory ColorSchemesState({
     required ColorScheme light,
     required ColorScheme dark,
@@ -80,7 +80,7 @@ class ColorSchemesState with _$ColorSchemesState {
         dayStyle: TextStyle(fontSize: App.fontSize12),
       ),
       fontFamily: fontFamily,
-      appBarTheme: appBarTheme.copyWith(color: light.surface),
+      appBarTheme: appBarTheme.copyWith(backgroundColor: light.surface),
       cardTheme: cardTheme,
       expansionTileTheme: expansionTileTheme,
     );
@@ -92,7 +92,7 @@ class ColorSchemesState with _$ColorSchemesState {
         dayStyle: TextStyle(fontSize: App.fontSize12),
       ),
       fontFamily: fontFamily,
-      appBarTheme: appBarTheme.copyWith(color: dark.surface),
+      appBarTheme: appBarTheme.copyWith(backgroundColor: dark.surface),
       cardTheme: cardTheme,
       expansionTileTheme: expansionTileTheme,
     );

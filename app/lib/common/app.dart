@@ -169,7 +169,7 @@ abstract final class App {
 
       runApp(
         ProviderScope(
-          observers: const [_ProviderObserver()],
+          // observers: const [_ProviderObserver()],
           overrides: [
             pathsProvider.overrideWithValue(paths),
             persistenceProvider.overrideWithValue(persistence),
@@ -308,21 +308,6 @@ class _ErrorApp extends StatelessWidget {
   }
 }
 
-class _Inspect {
-  final ProviderBase<Object?> provider;
-  final Object? value;
-  final Object? previousValue;
-  final Object? newValue;
-  final ProviderContainer container;
-  const _Inspect({
-    required this.provider,
-    required this.container,
-    this.value,
-    this.previousValue,
-    this.newValue,
-  });
-}
-
 /// https://riverpod.dev/docs/essentials/eager_initialization
 class _MainApp extends ConsumerWidget {
   const _MainApp();
@@ -351,83 +336,4 @@ abstract final class _PlatformWindowManager {
       windowManager.focus();
     });
   }
-}
-
-class _ProviderObserver extends ProviderObserver {
-  /// An object that listens to the changes of a [ProviderContainer].
-  ///
-  /// This can be used for logging or making devtools.
-  const _ProviderObserver();
-
-  /// A provider was initialized, and the value exposed is [value].
-  ///
-  /// [value] will be `null` if the provider threw during initialization.
-  @override
-  void didAddProvider(
-    ProviderBase<Object?> provider,
-    Object? value,
-    ProviderContainer container,
-  ) =>
-      App.printLog(
-        'didAddProvider: ${provider.name}',
-        inspect: _Inspect(
-          provider: provider,
-          value: value,
-          container: container,
-        ),
-      );
-
-  /// A provider was disposed
-  @override
-  void didDisposeProvider(
-    ProviderBase<Object?> provider,
-    ProviderContainer container,
-  ) =>
-      App.printLog(
-        'didDisposeProvider: ${provider.name}',
-        inspect: _Inspect(
-          provider: provider,
-          container: container,
-        ),
-      );
-
-  /// Called by providers when they emit a notification.
-  ///
-  /// - [newValue] will be `null` if the provider threw during initialization.
-  /// - [previousValue] will be `null` if the previous build threw during initialization.
-  @override
-  void didUpdateProvider(
-    ProviderBase<Object?> provider,
-    Object? previousValue,
-    Object? newValue,
-    ProviderContainer container,
-  ) =>
-      App.printLog(
-        'didUpdateProvider: ${provider.name}',
-        inspect: _Inspect(
-          provider: provider,
-          container: container,
-          previousValue: previousValue,
-          newValue: newValue,
-        ),
-      );
-
-  /// A provider emitted an error, be it by throwing during initialization
-  /// or by having a [Future]/[Stream] emit an error
-  @override
-  void providerDidFail(
-    ProviderBase<Object?> provider,
-    Object error,
-    StackTrace stackTrace,
-    ProviderContainer container,
-  ) =>
-      App.printLog(
-        'providerDidFail: ${provider.name}',
-        error: error,
-        stackTrace: stackTrace,
-        inspect: _Inspect(
-          provider: provider,
-          container: container,
-        ),
-      );
 }

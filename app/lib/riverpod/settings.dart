@@ -104,7 +104,7 @@ class Settings extends _$Settings {
 ///
 /// It contains [toString], [fromJson], [toJson], [copyWith] methods
 @Freezed(toJson: false, fromJson: false)
-class SettingsState with _$SettingsState {
+abstract class SettingsState with _$SettingsState {
   const factory SettingsState({
     @JsonKey(name: _GeneralSettingsExt.themeMode) required ThemeMode themeMode,
     @JsonKey(name: _GeneralSettingsExt.bgImgPath) String? bgImgPath,

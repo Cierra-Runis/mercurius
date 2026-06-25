@@ -4,7 +4,7 @@ part 'diary.freezed.dart';
 part 'diary.g.dart';
 
 @freezed
-class Diary with _$Diary {
+abstract class Diary with _$Diary {
   const factory Diary({
     required DateTime belongTo,
     required DateTime createAt,

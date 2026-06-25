@@ -32,7 +32,6 @@ class _DiaryPageItem extends StatelessWidget {
   final Diary diary;
 
   const _DiaryPageItem({
-    super.key,
     required this.diary,
   });
 

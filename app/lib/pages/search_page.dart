@@ -274,7 +274,7 @@ class _ViewContent extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SizeCacheWidget(
       child: ListView.builder(
-        cacheExtent: 1000,
+        scrollCacheExtent: ScrollCacheExtent.viewport(2),
         itemBuilder: (context, index) {
           return null;
         },

@@ -15,7 +15,7 @@ class Search extends _$Search {
 }
 
 @freezed
-class SearchState with _$SearchState {
+abstract class SearchState with _$SearchState {
   const factory SearchState({
     @Default('') String source,
     @Default(false) bool multiLine,

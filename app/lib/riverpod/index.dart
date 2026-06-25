@@ -8,6 +8,5 @@ export 'hitokoto.dart';
 export 'package_info.dart';
 export 'paths.dart';
 export 'persistence.dart';
-export 'qweather_now.dart';
 export 'search.dart';
 export 'settings.dart';

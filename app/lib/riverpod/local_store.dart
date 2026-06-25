@@ -23,7 +23,7 @@ class LocalStore extends _$LocalStore {
 }
 
 @Freezed(toJson: false, fromJson: false)
-class LocalStoreState with _$LocalStoreState {
+abstract class LocalStoreState with _$LocalStoreState {
   const factory LocalStoreState({
     @JsonKey(name: _LocalStoreExt.jwt) String? jwt,
   }) = _LocalStoreState;

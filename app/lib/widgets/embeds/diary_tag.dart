@@ -4,7 +4,7 @@ part 'diary_tag.freezed.dart';
 part 'diary_tag.g.dart';
 
 @freezed
-class DiaryTag with _$DiaryTag {
+abstract class DiaryTag with _$DiaryTag {
   const factory DiaryTag({
     required DiaryTagType tagType,
     required String message,

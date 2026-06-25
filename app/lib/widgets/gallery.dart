@@ -42,7 +42,7 @@ class Gallery extends HookWidget {
     }
 
     return GridView.builder(
-      cacheExtent: 1000,
+      scrollCacheExtent: ScrollCacheExtent.viewport(2),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
       ),

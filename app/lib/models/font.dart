@@ -4,7 +4,7 @@ part 'font.freezed.dart';
 part 'font.g.dart';
 
 @freezed
-class Font with _$Font {
+abstract class Font with _$Font {
   const factory Font({
     required String fontFamily,
     required Map<String, String> name,
@@ -28,7 +28,7 @@ class Font with _$Font {
 }
 
 @freezed
-class FontLicense with _$FontLicense {
+abstract class FontLicense with _$FontLicense {
   const factory FontLicense({
     required String type,
     required Uri link,

@@ -38,17 +38,6 @@ class AppBarTitle extends ConsumerWidget {
                   fontSize: App.fontSize8,
                 ),
               ),
-              Icon(
-                QWeatherIcons.getIconWith(
-                  ref.watch(qWeatherNowProvider).when(
-                        data: (data) => data.icon,
-                        error: (error, stackTrace) =>
-                            QWeatherIcons.tag_unknown_fill.tag,
-                        loading: () => QWeatherIcons.tag_1031.tag,
-                      ),
-                ).iconData,
-                size: 6,
-              ),
             ],
           ),
           Text(

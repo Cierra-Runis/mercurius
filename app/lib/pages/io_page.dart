@@ -97,10 +97,10 @@ class _ImportDiaryImages extends ConsumerWidget {
   void importImages(String imageDirectory) async {
     /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
     if (Platform.isAndroid || Platform.isIOS) {
-      await FilePicker.platform.clearTemporaryFiles();
+      await FilePicker.clearTemporaryFiles();
     }
 
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       allowMultiple: true,
     );
 
@@ -137,10 +137,10 @@ class _ImportImageJsonFromV1 extends ConsumerWidget {
   void importImages(String imageDirectory) async {
     /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
     if (Platform.isAndroid || Platform.isIOS) {
-      await FilePicker.platform.clearTemporaryFiles();
+      await FilePicker.clearTemporaryFiles();
     }
 
-    final result = await FilePicker.platform.pickFiles(
+    final result = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['json'],
     );
@@ -173,10 +173,10 @@ class _ImportJsonFile extends StatelessWidget {
       onTap: () async {
         /// TIPS: 需要清除缓存，否则使用选择的和以前一样名称的文件
         if (Platform.isAndroid || Platform.isIOS) {
-          await FilePicker.platform.clearTemporaryFiles();
+          await FilePicker.clearTemporaryFiles();
         }
 
-        final result = await FilePicker.platform.pickFiles(
+        final result = await FilePicker.pickFiles(
           type: FileType.custom,
           allowedExtensions: ['json'],
         );

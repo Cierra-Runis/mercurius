@@ -31,7 +31,7 @@ Future<GitHubLatestRelease> githubLatestRelease(Ref ref) async {
 }
 
 @freezed
-class AssetsItem with _$AssetsItem {
+abstract class AssetsItem with _$AssetsItem {
   const factory AssetsItem({
     @JsonKey(name: 'name') required String name,
     @JsonKey(name: 'content_type') required String contentType,
@@ -44,7 +44,7 @@ class AssetsItem with _$AssetsItem {
 }
 
 @freezed
-class GitHubLatestRelease with _$GitHubLatestRelease {
+abstract class GitHubLatestRelease with _$GitHubLatestRelease {
   const factory GitHubLatestRelease({
     @JsonKey(name: 'tag_name') required String tagName,
     @JsonKey(name: 'assets') List<AssetsItem>? assets,
